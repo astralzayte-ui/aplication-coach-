@@ -1,0 +1,38 @@
+# Dépendances
+node_modules/
+.pnp/
+.pnp.js
+
+# Expo / React Native
+app/.expo/
+app/dist/
+app/web-build/
+*.orig.*
+.expo/
+dist/
+
+# Environnement / secrets (NE JAMAIS committer de clés)
+.env
+.env.*
+!.env.example
+app/.env
+app/.env.*
+!app/.env.example
+supabase/.env
+
+# Builds natifs
+app/ios/
+app/android/
+*.ipa
+*.aab
+*.apk
+
+# Système
+.DS_Store
+*.log
+npm-debug.*
+yarn-error.*
+
+# Supabase local
+supabase/.branches/
+supabase/.temp/

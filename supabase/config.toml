@@ -1,0 +1,25 @@
+# Configuration du projet Supabase (utilisée par la CLI `supabase`).
+project_id = "forma"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+major_version = 16
+
+[auth]
+enable_signup = false          # pas d'inscription libre : on entre uniquement par code
+# Les jetons durent, l'app rafraîchit automatiquement (→ « se souvenir de moi »).
+jwt_expiry = 3600
+enable_refresh_token_rotation = true
+
+[functions.redeem-code]
+verify_jwt = false             # accessible sans être connecté (c'est la porte d'entrée)
+
+[functions.delete-account]
+verify_jwt = false             # on vérifie le jeton nous-mêmes dans la fonction
