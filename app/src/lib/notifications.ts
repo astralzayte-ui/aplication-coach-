@@ -15,7 +15,19 @@ Notifications.setNotificationHandler({
   }),
 });
 
+// Android exige un « canal » pour afficher les notifications (Android 8+).
+async function ensureAndroidChannel(): Promise<void> {
+  if (Platform.OS === "android") {
+    await Notifications.setNotificationChannelAsync("default", {
+      name: "FORMA",
+      importance: Notifications.AndroidImportance.DEFAULT,
+      lightColor: "#4F7DD1",
+    });
+  }
+}
+
 export async function ensurePermission(): Promise<boolean> {
+  await ensureAndroidChannel();
   const { status } = await Notifications.getPermissionsAsync();
   if (status === "granted") return true;
   const req = await Notifications.requestPermissionsAsync();
