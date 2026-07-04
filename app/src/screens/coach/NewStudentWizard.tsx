@@ -8,7 +8,7 @@ import { Chip } from "@/ui/components";
 import { colors, font, space } from "@/theme/tokens";
 import { useToast } from "@/ui/feedback";
 import { generateCode, GeneratedCode } from "@/lib/api";
-import { copyText, DURATIONS, openWhatsApp } from "@/lib/util";
+import { buildProgram, copyText, DURATIONS, openWhatsApp } from "@/lib/util";
 
 const OBJECTIVES = ["muscle", "masse", "perte", "poids"] as const;
 const TRAINING_DAYS = [3, 4, 5, 6];
@@ -123,22 +123,6 @@ function Step({ title, children }: { title: string; children: React.ReactNode })
       <Text style={styles.stepTitle}>{title}</Text>
       {children}
     </View>
-  );
-}
-
-// Génère un programme d'exemple selon le nb de jours et l'objectif.
-function buildProgram(days: number, objective: string): { name: string; sets: number; reps: string }[][] {
-  const pools: Record<string, string[]> = {
-    push: ["Développé couché", "Développé militaire", "Dips", "Élévations latérales"],
-    pull: ["Tractions", "Rowing", "Curl biceps", "Face pull"],
-    legs: ["Squat", "Fentes", "Soulevé de terre", "Mollets"],
-    full: ["Squat", "Développé couché", "Rowing", "Gainage"],
-  };
-  const order = ["push", "pull", "legs", "full", "push", "pull"];
-  const sets = objective === "perte" ? 3 : 4;
-  const reps = objective === "perte" ? "12-15" : objective === "muscle" ? "8-12" : "6-10";
-  return Array.from({ length: days }, (_, i) =>
-    (pools[order[i % order.length]] || pools.full).map((name) => ({ name, sets, reps })),
   );
 }
 

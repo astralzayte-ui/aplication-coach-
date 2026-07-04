@@ -10,9 +10,9 @@ import { useAsync } from "@/ui/useAsync";
 import { useConfirm, useToast } from "@/ui/feedback";
 import { colors, font, progressColor, radius, space } from "@/theme/tokens";
 import { extendSubscription } from "@/lib/api";
-import { deleteStudentAccount, getNote, getStudent, getStudentWeights, saveNote, updateStudent } from "@/lib/data";
+import { deleteStudentAccount, getNote, getStudent, getStudentProgram, getStudentWeights, saveNote, saveStudentProgram, updateStudent } from "@/lib/data";
 import { Chip } from "@/ui/components";
-import { analyzeWeights, daysLeftLabel, openWhatsApp, trendLabel } from "@/lib/util";
+import { analyzeWeights, buildProgram, daysLeftLabel, openWhatsApp, trendLabel } from "@/lib/util";
 
 const OBJECTIVES = ["muscle", "masse", "perte", "poids"] as const;
 
@@ -31,9 +31,19 @@ export default function CoachStudentDetail({
     const student = await getStudent(studentId);
     const weights = await getStudentWeights(studentId);
     const noteBody = await getNote(studentId);
+    const program = await getStudentProgram(studentId);
     setNote(noteBody);
-    return { student, weights };
+    return { student, weights, program };
   }, [studentId]);
+
+  const assignProgram = async () => {
+    if (!student) return;
+    try {
+      await saveStudentProgram(studentId, buildProgram(4, student.objective));
+      toast(t("saved"));
+      state.reload();
+    } catch { toast(t("err_generic")); }
+  };
 
   const student = state.data?.student;
   const weightVals = (state.data?.weights ?? []).map((w) => w.weight);
@@ -122,6 +132,18 @@ export default function CoachStudentDetail({
                   <Button label={"WhatsApp"} variant="soft" onPress={() => openWhatsApp(t("wa_code_msg", { c: "" }), student.whatsapp || undefined)} />
                 </View>
               </View>
+
+              {/* Programme (assigné à l'élève) */}
+              <Text style={styles.section}>{t("wiz_program")}</Text>
+              <Card>
+                <Text style={styles.ia}>
+                  {Array.isArray(state.data?.program) && (state.data?.program as any[]).length
+                    ? `${(state.data?.program as any[]).length} ${t("sessions")}`
+                    : t("no_program")}
+                </Text>
+                <View style={{ height: space.md }} />
+                <Button label={t("apply")} variant="soft" onPress={assignProgram} />
+              </Card>
 
               {/* Notes privées */}
               <Text style={styles.section}>{t("private_notes")}</Text>

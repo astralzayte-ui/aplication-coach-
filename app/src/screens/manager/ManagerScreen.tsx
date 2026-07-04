@@ -257,7 +257,7 @@ function SubRow({ name, sub, whatsapp, onDelete }: { name: string; sub: string; 
 }
 
 const styles = StyleSheet.create({
-  top: { paddingHorizontal: space.xl, paddingtop: space.lg, paddingTop: space.lg } as any,
+  top: { paddingHorizontal: space.xl, paddingTop: space.lg },
   body: { padding: space.xl, paddingBottom: 60 },
   label: { color: colors.textMuted, marginBottom: space.md, fontFamily: font.medium },
   chipRow: { flexDirection: "row", flexWrap: "wrap", gap: space.sm },

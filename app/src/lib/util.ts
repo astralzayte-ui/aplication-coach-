@@ -41,6 +41,23 @@ export function trendLabel(trend: number): string {
   return (trend > 0 ? "+" : "") + trend.toFixed(1);
 }
 
+// Génère un programme d'exemple selon le nb de jours et l'objectif.
+// Forme : tableau de jours, chaque jour = liste d'exercices {name, sets, reps}.
+export function buildProgram(days: number, objective: string): { name: string; sets: number; reps: string }[][] {
+  const pools: Record<string, string[]> = {
+    push: ["Développé couché", "Développé militaire", "Dips", "Élévations latérales"],
+    pull: ["Tractions", "Rowing", "Curl biceps", "Face pull"],
+    legs: ["Squat", "Fentes", "Soulevé de terre", "Mollets"],
+    full: ["Squat", "Développé couché", "Rowing", "Gainage"],
+  };
+  const order = ["push", "pull", "legs", "full", "push", "pull"];
+  const sets = objective === "perte" ? 3 : 4;
+  const reps = objective === "perte" ? "12-15" : objective === "muscle" ? "8-12" : "6-10";
+  return Array.from({ length: days }, (_, i) =>
+    (pools[order[i % order.length]] || pools.full).map((name) => ({ name, sets, reps })),
+  );
+}
+
 // Libellé d'abonnement : « X j restants » ou « Abonnement expiré ».
 export function daysLeftLabel(subEnd: string, t: (k: string, o?: any) => string): string {
   const end = new Date(subEnd + "T00:00:00");
