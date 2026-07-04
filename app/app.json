@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "FORMA",
+    "slug": "forma",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "forma",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0D0F13",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#0D0F13"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "app.forma.coaching",
+      "infoPlist": {
+        "CFBundleAllowMixedLocalizations": true,
+        "NSPhotoLibraryUsageDescription": "FORMA utilise vos photos pour votre suivi avant/après.",
+        "NSCameraUsageDescription": "FORMA utilise l'appareil photo pour vos photos de progression."
+      }
+    },
+    "android": {
+      "package": "app.forma.coaching",
+      "adaptiveIcon": {
+        "backgroundColor": "#0D0F13"
+      },
+      "permissions": ["NOTIFICATIONS"]
+    },
+    "plugins": [
+      "expo-router",
+      "expo-localization",
+      "expo-secure-store",
+      [
+        "expo-notifications",
+        { "color": "#4F7DD1" }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "supabaseUrl": "",
+      "supabaseAnonKey": ""
+    }
+  }
+}

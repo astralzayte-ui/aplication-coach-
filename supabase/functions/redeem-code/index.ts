@@ -32,9 +32,11 @@ Deno.serve(async (req) => {
   });
 
   let code = "";
+  let expectedRole = ""; // 'coach' | 'student' | 'manager' | '' (profil choisi dans l'app)
   try {
     const body = await req.json();
     code = String(body.code ?? "").trim();
+    expectedRole = String(body.role ?? "").trim();
   } catch {
     return json({ error: "bad_request" }, 400);
   }
@@ -57,6 +59,10 @@ Deno.serve(async (req) => {
     admin.from("login_attempts").insert({ ip, success, code_masked: masked ?? null });
 
   // ---- Cas MANAGER : code maître -------------------------------------------
+  if (expectedRole && expectedRole === "manager" && code !== MASTER_MANAGER_CODE) {
+    await logAttempt(false, "MANAGER");
+    return json({ error: "invalid_code" }, 400);
+  }
   if (code === MASTER_MANAGER_CODE) {
     const session = await signInOrCreateManager(admin);
     if (!session) {
@@ -73,9 +79,20 @@ Deno.serve(async (req) => {
   const info = Array.isArray(peek) ? peek[0] : peek;
 
   if (!info || !info.valid) {
-    await logAttempt(false, info?.code_id ? undefined : undefined);
+    await logAttempt(false);
     // reason: invalid_code | code_expired | revoked
     return json({ error: info?.reason ?? "invalid_code" }, 400);
+  }
+
+  // Le profil choisi dans l'app doit correspondre au type du code
+  // (un coach ne peut pas entrer avec un code élève, et inversement).
+  if (
+    expectedRole &&
+    (expectedRole === "coach" || expectedRole === "student") &&
+    info.role !== expectedRole
+  ) {
+    await logAttempt(false, info.code_masked);
+    return json({ error: "wrong_role_for_code" }, 400);
   }
 
   try {
