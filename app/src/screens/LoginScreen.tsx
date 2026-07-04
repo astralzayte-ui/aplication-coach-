@@ -14,6 +14,7 @@ import { Button, ErrorNote, Field } from "@/ui/kit";
 import { colors, font, radius, space } from "@/theme/tokens";
 import { useAuth } from "@/state/auth";
 import { ApiError, Role } from "@/lib/api";
+import { openSubscription } from "@/lib/util";
 import { changeLanguage } from "@/i18n";
 import { LANGS, LangCode } from "@/i18n/translations";
 
@@ -47,10 +48,14 @@ export default function LoginScreen() {
   const [role, setRole] = useState<Role | null>(null);
   const [code, setCode] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [showSubscribe, setShowSubscribe] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const subscribe = () => openSubscription(t("wa_subscribe_msg"));
 
   const onSubmit = async () => {
     setError(null);
+    setShowSubscribe(false);
     if (!role) {
       setError("login_pick");
       return;
@@ -64,9 +69,14 @@ export default function LoginScreen() {
       await login(code.trim(), role);
     } catch (e) {
       const c = e instanceof ApiError ? e.code : "server_error";
-      // Messages plus précis selon le profil choisi
-      if (c === "wrong_role_for_code" || c === "invalid_code") {
-        setError(role === "coach" ? "login_need_coach_code" : role === "student" ? "login_need_student_code" : "login_bad_mgr");
+      const badCode = c === "invalid_code" || c === "wrong_role_for_code" || c === "code_expired" || c === "revoked";
+      if (role === "manager") {
+        // Le manager n'a pas d'abonnement à prendre : message simple.
+        setError(c === "network" || c === "too_many_attempts" ? messageForError(c) : "login_bad_mgr");
+      } else if (badCode) {
+        // Coach/élève avec un code qui ne marche pas → proposer un abonnement.
+        setError("code_bad_subscribe");
+        setShowSubscribe(true);
       } else {
         setError(messageForError(c));
       }
@@ -146,7 +156,21 @@ export default function LoginScreen() {
 
         {error ? <ErrorNote code={t(error)} /> : null}
 
+        {/* Bouton d'abonnement affiché quand le code ne marche pas */}
+        {showSubscribe ? (
+          <View style={{ marginBottom: space.lg }}>
+            <Button label={t("subscribe")} onPress={subscribe} />
+          </View>
+        ) : null}
+
         <Button label={t("login_btn")} onPress={onSubmit} loading={loading} />
+
+        {/* Bouton d'abonnement toujours visible */}
+        <View style={styles.subscribeAlways}>
+          <Pressable onPress={subscribe} style={styles.subscribeBtn}>
+            <Text style={styles.subscribeText}>💬  {t("subscribe")}</Text>
+          </Pressable>
+        </View>
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -213,4 +237,18 @@ const styles = StyleSheet.create({
   checkboxOn: { borderColor: colors.good, backgroundColor: colors.good },
   checkmark: { color: colors.onAccent, fontWeight: "700", fontSize: 14 },
   rememberText: { color: colors.text, fontSize: 15, fontFamily: font.regular },
+  subscribeAlways: { marginTop: space.xl, alignItems: "center" },
+  subscribeBtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 14,
+    paddingHorizontal: space.xl,
+    borderRadius: radius.md,
+    borderWidth: 1.5,
+    borderColor: colors.accent,
+    backgroundColor: colors.accentSoft,
+    width: "100%",
+  },
+  subscribeText: { color: colors.accent, fontFamily: font.bold, fontSize: 15, fontWeight: "700" },
 });

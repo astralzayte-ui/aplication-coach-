@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/ui/kit";
 import { colors, font, space } from "@/theme/tokens";
 import { useAuth } from "@/state/auth";
+import { openSubscription } from "@/lib/util";
 
 export default function ExpiredScreen() {
   const { t } = useTranslation();
@@ -16,7 +17,11 @@ export default function ExpiredScreen() {
       <Text style={styles.title}>{t("expired_title")}</Text>
       <Text style={styles.body}>{t("expired_body")}</Text>
       <View style={{ height: space.xxl }} />
-      <Button label={t("logout")} onPress={logout} variant="ghost" />
+      <View style={{ alignSelf: "stretch", paddingHorizontal: space.xxl }}>
+        <Button label={t("subscribe")} onPress={() => openSubscription(t("wa_subscribe_msg"))} />
+        <View style={{ height: space.md }} />
+        <Button label={t("logout")} onPress={logout} variant="ghost" />
+      </View>
     </View>
   );
 }

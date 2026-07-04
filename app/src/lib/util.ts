@@ -6,12 +6,29 @@ export async function copyText(text: string): Promise<void> {
   await Clipboard.setStringAsync(text);
 }
 
-// Ouvre WhatsApp avec un message prérempli. Numéro optionnel (sinon choix du contact).
-export async function openWhatsApp(message: string, phone?: string): Promise<void> {
+// Numéro WhatsApp pour « Prendre un abonnement » (Maroc : 212, sans le 0, sans espaces).
+export const SUBSCRIPTION_PHONE = "212786496999";
+
+// Construit le lien WhatsApp (fonction pure → testable).
+export function buildWhatsAppUrl(message: string, phone?: string): string {
   const num = (phone ?? "").replace(/[^0-9]/g, "");
-  const url = `https://wa.me/${num}?text=${encodeURIComponent(message)}`;
-  const ok = await Linking.canOpenURL(url);
-  if (ok) await Linking.openURL(url);
+  return `https://wa.me/${num}?text=${encodeURIComponent(message)}`;
+}
+
+// Ouvre WhatsApp avec un message prérempli. Numéro optionnel (sinon choix du contact).
+// Ouvre l'app WhatsApp si installée, sinon WhatsApp Web (via le lien wa.me).
+export async function openWhatsApp(message: string, phone?: string): Promise<void> {
+  const url = buildWhatsAppUrl(message, phone);
+  try {
+    await Linking.openURL(url);
+  } catch {
+    // wa.me bascule automatiquement vers WhatsApp Web si l'app n'est pas là.
+  }
+}
+
+// Ouvre WhatsApp sur le numéro d'abonnement avec le message traduit.
+export async function openSubscription(message: string): Promise<void> {
+  await openWhatsApp(message, SUBSCRIPTION_PHONE);
 }
 
 export const DURATIONS = [7, 30, 90, 180, 365] as const;
