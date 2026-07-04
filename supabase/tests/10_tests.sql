@@ -204,6 +204,82 @@ begin;
   \endif
 rollback;
 
+-- =====================================================================
+-- BLOC 7 — Un code élève généré par un COACH rattache l'élève à CE coach
+--   (→ l'élève apparaît chez son coach). Et le manager le voit aussi.
+-- =====================================================================
+do $$
+declare
+  v_id uuid; v_new uuid := '00000000-0000-0000-0000-0000000000e7'; v_coach uuid := '00000000-0000-0000-0000-0000000000c1';
+begin
+  perform set_config('forma.uid', v_coach::text, false);            -- le coach c1
+  select code_id into v_id from public.forma_generate_code('student', 30) as g(code, masked, code_id);
+  insert into auth.users (id, email) values (v_new, 'e7@forma.local') on conflict do nothing;
+  perform public.forma_provision_account(v_id, v_new);
+
+  -- l'élève doit être rattaché au coach c1
+  perform 1 from public.students where id = v_new and coach_id = v_coach;
+  assert found, 'l''élève créé via un code coach doit être rattaché à ce coach';
+  raise notice '✅ BLOC 7 : élève rattaché à son coach OK';
+end $$;
+
+-- 7b : le manager voit ce nouvel élève (abonnements)
+begin;
+  set local role authenticated;
+  set local forma.uid = '00000000-0000-0000-0000-000000000001';
+  select (count(*) = 1) as ok from public.students where id = '00000000-0000-0000-0000-0000000000e7' \gset
+  \if :ok
+    \echo '✅ BLOC 7b : le manager voit le nouvel élève'
+  \else
+    \echo '❌ BLOC 7b ÉCHEC'
+    do $$ begin raise exception 'manager ne voit pas le nouvel élève'; end $$;
+  \endif
+rollback;
+
+-- =====================================================================
+-- BLOC 8 — Prolongation d'abonnement (+30 j) par le manager
+-- =====================================================================
+do $$
+declare v_before date; v_after date;
+begin
+  perform set_config('forma.uid', '00000000-0000-0000-0000-000000000001', false); -- manager
+  select subscription_end into v_before from public.coaches where id = '00000000-0000-0000-0000-0000000000c1';
+  perform public.forma_extend_subscription('00000000-0000-0000-0000-0000000000c1', 30);
+  select subscription_end into v_after from public.coaches where id = '00000000-0000-0000-0000-0000000000c1';
+  assert v_after = greatest(v_before, current_date) + 30, 'prolongation +30j incorrecte';
+  raise notice '✅ BLOC 8 : prolongation +30j OK';
+end $$;
+
+-- =====================================================================
+-- BLOC 9 — Abonnement expiré → statut « non actif » (écran expiré)
+-- =====================================================================
+do $$
+declare v jsonb;
+begin
+  update public.students set subscription_end = current_date - 5 where id = '00000000-0000-0000-0000-0000000000e1';
+  perform set_config('forma.uid', '00000000-0000-0000-0000-0000000000e1', false);
+  v := public.forma_my_status();
+  assert (v->>'active') = 'false', 'un abonnement expiré doit donner active=false';
+  raise notice '✅ BLOC 9 : abonnement expiré détecté OK';
+end $$;
+
+-- =====================================================================
+-- BLOC 10 — Un élève ne peut PAS voir les poids d'un autre élève (RLS)
+-- =====================================================================
+-- e1 a une mesure de poids ; e9 ne doit pas la voir.
+insert into public.weights (student_id, weight) values ('00000000-0000-0000-0000-0000000000e1', 72.0);
+begin;
+  set local role authenticated;
+  set local forma.uid = '00000000-0000-0000-0000-0000000000e9';
+  select (count(*) = 0) as ok from public.weights where student_id = '00000000-0000-0000-0000-0000000000e1' \gset
+  \if :ok
+    \echo '✅ BLOC 10 : un élève ne voit pas les poids des autres'
+  \else
+    \echo '❌ BLOC 10 ÉCHEC'
+    do $$ begin raise exception 'RLS: un élève voit les poids d''un autre'; end $$;
+  \endif
+rollback;
+
 \echo ''
 \echo '================================================'
 \echo '  ✅ TOUS LES TESTS CRITIQUES SONT PASSÉS'

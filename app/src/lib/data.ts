@@ -5,6 +5,7 @@
 // =====================================================================
 import { supabase } from "./supabase";
 import { run } from "./net";
+import { adminDeleteUser } from "./api";
 
 export type Coach = {
   id: string;
@@ -69,12 +70,13 @@ export async function listAllStudents(): Promise<Student[]> {
   return run(() => supabase.from("students").select("*").order("created_at", { ascending: false }));
 }
 
+// Suppression DÉFINITIVE du compte (via Edge Function sécurisée côté serveur).
 export async function deleteCoachAccount(id: string): Promise<void> {
-  await run(() => supabase.from("coaches").delete().eq("id", id).select());
+  await adminDeleteUser(id);
 }
 
 export async function deleteStudentAccount(id: string): Promise<void> {
-  await run(() => supabase.from("students").delete().eq("id", id).select());
+  await adminDeleteUser(id);
 }
 
 // ---- COACH : mes élèves --------------------------------------------------
@@ -287,16 +289,25 @@ export async function uploadProgressPhoto(uri: string, kind: "before" | "after")
 }
 
 export async function listMyPhotos(): Promise<Photo[]> {
-  const me = await uid();
-  const rows = (await run(() =>
-    supabase.from("photos").select("id, kind, storage_path, taken_at").eq("student_id", me).order("taken_at", { ascending: false }),
-  )) as Photo[];
-  // URL signée temporaire pour afficher chaque photo
-  for (const p of rows) {
-    const signed = await supabase.storage.from(PHOTO_BUCKET).createSignedUrl(p.storage_path, 3600);
-    p.url = signed.data?.signedUrl;
+  // Best-effort : si le stockage n'est pas prêt, on renvoie une liste vide
+  // plutôt que de casser tout l'écran Progrès.
+  try {
+    const me = await uid();
+    const { data, error } = await supabase
+      .from("photos")
+      .select("id, kind, storage_path, taken_at")
+      .eq("student_id", me)
+      .order("taken_at", { ascending: false });
+    if (error || !data) return [];
+    const rows = data as Photo[];
+    for (const p of rows) {
+      const signed = await supabase.storage.from(PHOTO_BUCKET).createSignedUrl(p.storage_path, 3600);
+      p.url = signed.data?.signedUrl;
+    }
+    return rows;
+  } catch {
+    return [];
   }
-  return rows;
 }
 
 // ---- Notifications push : enregistrer le jeton de l'appareil -------------

@@ -140,6 +140,13 @@ export async function deleteMyAccount(): Promise<void> {
   await supabase.auth.signOut();
 }
 
+// ---- Suppression d'un compte (coach/élève) par manager ou coach ----------
+export async function adminDeleteUser(targetId: string): Promise<void> {
+  const { data } = await supabase.auth.getSession();
+  const token = data.session?.access_token;
+  await callFunction("admin-delete-user", { target_id: targetId }, token);
+}
+
 // ---- « Qui suis-je » : tout ce dont l'app a besoin après connexion --------
 export type Me = {
   role: Role;

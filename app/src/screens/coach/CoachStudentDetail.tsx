@@ -10,8 +10,11 @@ import { useAsync } from "@/ui/useAsync";
 import { useConfirm, useToast } from "@/ui/feedback";
 import { colors, font, progressColor, radius, space } from "@/theme/tokens";
 import { extendSubscription } from "@/lib/api";
-import { deleteStudentAccount, getNote, getStudent, getStudentWeights, saveNote } from "@/lib/data";
+import { deleteStudentAccount, getNote, getStudent, getStudentWeights, saveNote, updateStudent } from "@/lib/data";
+import { Chip } from "@/ui/components";
 import { analyzeWeights, daysLeftLabel, openWhatsApp, trendLabel } from "@/lib/util";
+
+const OBJECTIVES = ["muscle", "masse", "perte", "poids"] as const;
 
 export default function CoachStudentDetail({
   studentId, visible, onClose, onChanged,
@@ -80,9 +83,24 @@ export default function CoachStudentDetail({
               <Card>
                 <InfoRow label={t("height_label")} value={student.height ? student.height + " cm" : "—"} />
                 <InfoRow label={t("whatsapp_label")} value={student.whatsapp || "—"} />
-                <InfoRow label={t("objective_label")} value={t("obj_" + student.objective)} />
                 <InfoRow label={t("subscription")} value={daysLeftLabel(student.subscription_end, t)} />
               </Card>
+
+              {/* Objectif (modifiable par le coach) */}
+              <Text style={styles.section}>{t("objective_label")}</Text>
+              <View style={styles.chipRow}>
+                {OBJECTIVES.map((o) => (
+                  <Chip
+                    key={o}
+                    label={t("obj_" + o)}
+                    active={student.objective === o}
+                    onPress={async () => {
+                      try { await updateStudent(studentId, { objective: o }); state.reload(); onChanged(); }
+                      catch { toast(t("err_generic")); }
+                    }}
+                  />
+                ))}
+              </View>
 
               {/* Courbe de poids */}
               <Text style={styles.section}>{t("weight_curve")}</Text>
@@ -146,6 +164,7 @@ const styles = StyleSheet.create({
   infoLabel: { color: colors.textMuted, fontFamily: font.regular },
   infoValue: { color: colors.text, fontFamily: font.medium },
   ia: { color: colors.text, fontFamily: font.regular, fontSize: 14, lineHeight: 21 },
+  chipRow: { flexDirection: "row", flexWrap: "wrap", gap: space.sm },
   notes: {
     backgroundColor: colors.surface, borderRadius: radius.md, borderWidth: 1, borderColor: colors.border,
     color: colors.text, padding: space.lg, minHeight: 90, textAlignVertical: "top", marginBottom: space.md, fontFamily: font.regular,

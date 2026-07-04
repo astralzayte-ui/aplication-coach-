@@ -23,3 +23,6 @@ verify_jwt = false             # accessible sans être connecté (c'est la porte
 
 [functions.delete-account]
 verify_jwt = false             # on vérifie le jeton nous-mêmes dans la fonction
+
+[functions.admin-delete-user]
+verify_jwt = false             # on vérifie le jeton + les droits nous-mêmes
