@@ -9,7 +9,10 @@ import LoginScreen from "./LoginScreen";
 import CoachSetupScreen from "./CoachSetupScreen";
 import StudentOnboardingScreen from "./StudentOnboardingScreen";
 import ExpiredScreen from "./ExpiredScreen";
-import RoleHomePlaceholder from "./RoleHomePlaceholder";
+import ConsentScreen from "./common/ConsentScreen";
+import ManagerScreen from "./manager/ManagerScreen";
+import CoachApp from "./coach/CoachApp";
+import StudentApp from "./student/StudentApp";
 
 export default function RootGate() {
   const { t } = useTranslation();
@@ -41,12 +44,15 @@ export default function RootGate() {
     return <LoginScreen />;
   }
 
-  // Connecté : gérer abonnement expiré, onboarding, puis l'accueil du rôle.
+  // Connecté : gérer abonnement expiré, consentement, onboarding, puis le rôle.
   if (!me.active) return <ExpiredScreen />;
   if (me.role === "coach" && !me.setupDone) return <CoachSetupScreen />;
   if (me.role === "student" && !me.onboardingDone) return <StudentOnboardingScreen />;
+  if (!me.consentGiven) return <ConsentScreen />;
 
-  return <RoleHomePlaceholder role={me.role} />;
+  if (me.role === "manager") return <ManagerScreen />;
+  if (me.role === "coach") return <CoachApp />;
+  return <StudentApp />;
 }
 
 const styles = StyleSheet.create({

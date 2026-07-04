@@ -12,6 +12,7 @@ import {
   SpaceGrotesk_700Bold,
 } from "@expo-google-fonts/space-grotesk";
 import { AuthProvider } from "@/state/auth";
+import { FeedbackProvider } from "@/ui/feedback";
 import { colors } from "@/theme/tokens";
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
@@ -32,16 +33,18 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <AuthProvider>
-        <StatusBar style="light" />
-        <SafeAreaView
-          style={{ flex: 1, backgroundColor: colors.bg }}
-          edges={["top", "bottom"]}
-          onLayout={onReady}
-        >
-          <View style={{ flex: 1, backgroundColor: colors.bg }}>
-            <Slot />
-          </View>
-        </SafeAreaView>
+        <FeedbackProvider>
+          <StatusBar style="light" />
+          <SafeAreaView
+            style={{ flex: 1, backgroundColor: colors.bg }}
+            edges={["top", "bottom"]}
+            onLayout={onReady}
+          >
+            <View style={{ flex: 1, backgroundColor: colors.bg }}>
+              <Slot />
+            </View>
+          </SafeAreaView>
+        </FeedbackProvider>
       </AuthProvider>
     </SafeAreaProvider>
   );

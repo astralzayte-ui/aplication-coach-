@@ -5,27 +5,11 @@
 // =====================================================================
 import { supabase } from "./supabase";
 import { SUPABASE_ANON_KEY, SUPABASE_URL } from "./config";
+import { ApiError, isNetworkError } from "./net";
 
+export { ApiError } from "./net";
 export type Role = "manager" | "coach" | "student";
 export type CodeRole = "coach" | "student";
-
-export class ApiError extends Error {
-  code: string;
-  constructor(code: string, message?: string) {
-    super(message ?? code);
-    this.code = code;
-  }
-}
-
-function isNetworkError(e: unknown): boolean {
-  const m = String((e as Error)?.message ?? e ?? "").toLowerCase();
-  return (
-    m.includes("network") ||
-    m.includes("failed to fetch") ||
-    m.includes("timeout") ||
-    m.includes("connection")
-  );
-}
 
 // Appel d'une Edge Function (redeem-code, delete-account).
 async function callFunction<T>(name: string, body: unknown, token?: string): Promise<T> {
