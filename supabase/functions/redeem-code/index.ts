@@ -8,7 +8,7 @@
 // La logique de règles est dans la base (forma_peek_code / forma_provision_account) :
 // même si quelqu'un bidouille l'app, il ne peut pas contourner ces règles.
 // =====================================================================
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { createClient } from "npm:@supabase/supabase-js@2";
 import { cors, json } from "../_shared/cors.ts";
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;

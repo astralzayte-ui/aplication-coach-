@@ -4,7 +4,7 @@
 // manager (n'importe qui) ou d'un coach (uniquement SES élèves).
 // L'autorisation est vérifiée CÔTÉ SERVEUR : on ne fait pas confiance à l'app.
 // =====================================================================
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { createClient } from "npm:@supabase/supabase-js@2";
 import { cors, json } from "../_shared/cors.ts";
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
