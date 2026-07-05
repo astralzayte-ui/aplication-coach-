@@ -397,10 +397,14 @@ create policy push_all on public.push_tokens for all
 -- ---------------------------------------------------------------------
 -- Normalisation + hachage d'un code
 -- ---------------------------------------------------------------------
+-- Note : `digest` vient de l'extension pgcrypto. Sur Supabase elle est installée
+-- dans le schéma `extensions` ; on l'inclut donc dans le search_path pour que la
+-- fonction la trouve aussi bien en local (public) que sur Supabase (extensions).
 create or replace function public.forma_hash_code(p_code text)
 returns text
 language sql
 immutable
+set search_path = public, extensions
 as $$
   select encode(digest(upper(trim(p_code)), 'sha256'), 'hex');
 $$;
