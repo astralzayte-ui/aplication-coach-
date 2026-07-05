@@ -38,7 +38,12 @@
       ]
     ],
     "experiments": {
-      "typedRoutes": true
+      "typedRoutes": true,
+      "baseUrl": "/aplication-coach-"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single"
     },
     "extra": {
       "supabaseUrl": "",

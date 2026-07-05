@@ -1,19 +1,35 @@
 // =====================================================================
 // Stockage de session pour « Se souvenir de moi ».
-//   - Si l'utilisateur COCHE « se souvenir de moi » : la session est écrite de
-//     façon SÉCURISÉE (expo-secure-store, chiffré par le système) → il reste
-//     connecté après fermeture/réouverture de l'app.
-//   - Si NON coché : la session ne vit qu'en mémoire → il devra se reconnecter
-//     au prochain démarrage.
-// Les jetons pouvant dépasser la taille max de SecureStore, on les découpe en
-// morceaux (« chunks »).
+//   - Natif : expo-secure-store (chiffré par le système).
+//   - Web (test navigateur) : localStorage.
+//   - Si « se souvenir » non coché : session en mémoire uniquement.
+// Les jetons pouvant dépasser la taille max de SecureStore, on les découpe.
 // =====================================================================
+import { Platform } from "react-native";
 import * as SecureStore from "expo-secure-store";
+
+const IS_WEB = Platform.OS === "web";
+
+// Backend de stockage persistant, adapté à la plateforme.
+const store = {
+  get: async (k: string): Promise<string | null> => {
+    if (IS_WEB) return globalThis.localStorage?.getItem(k) ?? null;
+    return SecureStore.getItemAsync(k);
+  },
+  set: async (k: string, v: string): Promise<void> => {
+    if (IS_WEB) { globalThis.localStorage?.setItem(k, v); return; }
+    await SecureStore.setItemAsync(k, v);
+  },
+  del: async (k: string): Promise<void> => {
+    if (IS_WEB) { globalThis.localStorage?.removeItem(k); return; }
+    await SecureStore.deleteItemAsync(k);
+  },
+};
 
 const CHUNK = 1800; // marge sous la limite ~2 Ko de SecureStore
 const REMEMBER_KEY = "forma_remember";
 
-let remember = true; // rechargé au démarrage depuis SecureStore
+let remember = true; // rechargé au démarrage
 const memory = new Map<string, string>();
 
 function safeKey(key: string): string {
@@ -25,20 +41,20 @@ async function setLarge(key: string, value: string): Promise<void> {
   await removeLarge(key);
   const k = safeKey(key);
   const n = Math.ceil(value.length / CHUNK);
-  await SecureStore.setItemAsync(`${k}__n`, String(n));
+  await store.set(`${k}__n`, String(n));
   for (let i = 0; i < n; i++) {
-    await SecureStore.setItemAsync(`${k}__${i}`, value.slice(i * CHUNK, (i + 1) * CHUNK));
+    await store.set(`${k}__${i}`, value.slice(i * CHUNK, (i + 1) * CHUNK));
   }
 }
 
 async function getLarge(key: string): Promise<string | null> {
   const k = safeKey(key);
-  const nStr = await SecureStore.getItemAsync(`${k}__n`);
+  const nStr = await store.get(`${k}__n`);
   if (!nStr) return null;
   const n = parseInt(nStr, 10);
   let out = "";
   for (let i = 0; i < n; i++) {
-    const part = await SecureStore.getItemAsync(`${k}__${i}`);
+    const part = await store.get(`${k}__${i}`);
     if (part == null) return null;
     out += part;
   }
@@ -47,17 +63,17 @@ async function getLarge(key: string): Promise<string | null> {
 
 async function removeLarge(key: string): Promise<void> {
   const k = safeKey(key);
-  const nStr = await SecureStore.getItemAsync(`${k}__n`);
+  const nStr = await store.get(`${k}__n`);
   if (nStr) {
     const n = parseInt(nStr, 10);
-    for (let i = 0; i < n; i++) await SecureStore.deleteItemAsync(`${k}__${i}`);
-    await SecureStore.deleteItemAsync(`${k}__n`);
+    for (let i = 0; i < n; i++) await store.del(`${k}__${i}`);
+    await store.del(`${k}__n`);
   }
 }
 
 // À appeler au démarrage pour connaître le choix précédent de l'utilisateur.
 export async function initRemember(): Promise<boolean> {
-  const v = await SecureStore.getItemAsync(REMEMBER_KEY);
+  const v = await store.get(REMEMBER_KEY);
   remember = v !== "0";
   return remember;
 }
@@ -65,10 +81,9 @@ export async function initRemember(): Promise<boolean> {
 // À appeler AVANT de se connecter, selon la case cochée ou non.
 export async function setRemember(value: boolean): Promise<void> {
   remember = value;
-  await SecureStore.setItemAsync(REMEMBER_KEY, value ? "1" : "0");
+  await store.set(REMEMBER_KEY, value ? "1" : "0");
   if (!value) {
-    // On efface toute session persistée pour ne rien laisser traîner.
-    await removeLarge("forma-session");
+    await removeLarge("forma-session"); // on n'en garde aucune trace persistée
   }
 }
 
@@ -83,10 +98,7 @@ export const sessionStore = {
     return getLarge(key);
   },
   setItem: async (key: string, value: string): Promise<void> => {
-    if (!remember) {
-      memory.set(key, value);
-      return;
-    }
+    if (!remember) { memory.set(key, value); return; }
     await setLarge(key, value);
   },
   removeItem: async (key: string): Promise<void> => {

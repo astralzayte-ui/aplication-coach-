@@ -5,15 +5,21 @@ import { Platform } from "react-native";
 import Constants from "expo-constants";
 import { registerPushToken } from "./data";
 
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: false,
-    shouldShowBanner: true,
-    shouldShowList: true,
-  }),
-});
+// Les notifications ne sont pas prises en charge de la même façon dans un
+// navigateur : sur le web, ces fonctions ne font rien (l'app reste utilisable).
+const IS_WEB = Platform.OS === "web";
+
+if (!IS_WEB) {
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: true,
+      shouldSetBadge: false,
+      shouldShowBanner: true,
+      shouldShowList: true,
+    }),
+  });
+}
 
 // Android exige un « canal » pour afficher les notifications (Android 8+).
 async function ensureAndroidChannel(): Promise<void> {
@@ -27,6 +33,7 @@ async function ensureAndroidChannel(): Promise<void> {
 }
 
 export async function ensurePermission(): Promise<boolean> {
+  if (IS_WEB) return false;
   await ensureAndroidChannel();
   const { status } = await Notifications.getPermissionsAsync();
   if (status === "granted") return true;
@@ -58,11 +65,13 @@ export async function scheduleDailyReminder(title: string, body: string, hour = 
 }
 
 export async function cancelDailyReminder(): Promise<void> {
+  if (IS_WEB) return;
   await Notifications.cancelAllScheduledNotificationsAsync();
 }
 
 // Enregistre le jeton push de l'appareil côté serveur (best effort).
 export async function registerForPush(): Promise<void> {
+  if (IS_WEB) return;
   try {
     const ok = await ensurePermission();
     if (!ok) return;
