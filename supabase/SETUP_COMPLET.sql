@@ -581,6 +581,10 @@ $$;
 --   Atomique : re-vérifie le code sous verrou, marque used = true (usage unique),
 --   crée profile + coach/student, fixe la fin d'abonnement = aujourd'hui + durée.
 -- ---------------------------------------------------------------------
+-- Le programme éventuellement configuré par le coach est stocké sur le code,
+-- puis recopié vers l'élève quand il utilise le code.
+alter table public.access_codes add column if not exists program jsonb;
+
 create or replace function public.forma_provision_account(p_code_id uuid, p_user_id uuid)
 returns jsonb
 language plpgsql
@@ -622,6 +626,12 @@ begin
         v_sub_end
       )
       on conflict (id) do nothing;
+    -- Programme configuré à la génération du code → assigné à l'élève.
+    if r.program is not null then
+      insert into public.student_programs (student_id, data)
+        values (p_user_id, r.program)
+        on conflict (student_id) do update set data = excluded.data;
+    end if;
   end if;
 
   update public.access_codes

@@ -148,6 +148,11 @@ export async function saveStudentProgram(studentId: string, programData: any): P
   );
 }
 
+// Enregistre le programme configuré sur un code élève (transmis à l'élève à sa connexion).
+export async function setCodeProgram(codeId: string, program: any): Promise<void> {
+  await run(() => supabase.from("access_codes").update({ program }).eq("id", codeId).select());
+}
+
 // ---- COACH : profil ------------------------------------------------------
 export async function getMyCoach(): Promise<Coach> {
   const me = await uid();

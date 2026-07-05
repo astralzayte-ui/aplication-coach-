@@ -1,13 +1,15 @@
 // Coach — Assistant « Nouvel élève » (5 étapes) : durée → jours d'entraînement
 // → objectif → aperçu du programme → génération du code élève à partager.
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Button, Card } from "@/ui/kit";
 import { Chip } from "@/ui/components";
+import { ProgramEditor, Program } from "@/ui/ProgramEditor";
 import { colors, font, space } from "@/theme/tokens";
 import { useToast } from "@/ui/feedback";
 import { generateCode, GeneratedCode } from "@/lib/api";
+import { setCodeProgram } from "@/lib/data";
 import { buildProgram, copyText, DURATIONS, openWhatsApp } from "@/lib/util";
 
 const OBJECTIVES = ["muscle", "masse", "perte", "poids"] as const;
@@ -24,24 +26,33 @@ export default function NewStudentWizard({
   const [duration, setDuration] = useState(90);
   const [trainingDays, setTrainingDays] = useState(4);
   const [objective, setObjective] = useState<string>("muscle");
+  const [program, setProgram] = useState<Program>([]);
   const [code, setCode] = useState<GeneratedCode | null>(null);
   const [busy, setBusy] = useState(false);
 
-  const reset = () => { setStep(0); setDuration(90); setTrainingDays(4); setObjective("muscle"); setCode(null); };
+  // Le programme est prérempli d'après les jours + l'objectif (le coach peut ensuite le modifier).
+  useEffect(() => {
+    setProgram(buildProgram(trainingDays, objective));
+  }, [trainingDays, objective]);
+
+  const reset = () => {
+    setStep(0); setDuration(90); setTrainingDays(4); setObjective("muscle");
+    setProgram(buildProgram(4, "muscle")); setCode(null);
+  };
   const close = () => { reset(); onClose(); };
 
   const doGenerate = async () => {
     setBusy(true);
     try {
       const c = await generateCode("student", duration);
+      // On attache le programme configuré au code : l'élève le recevra à sa connexion.
+      try { await setCodeProgram(c.code_id, program); } catch { /* non bloquant */ }
       setCode(c);
       setStep(4);
       onDone();
     } catch { toast(t("err_generic")); }
     finally { setBusy(false); }
   };
-
-  const program = buildProgram(trainingDays, objective);
 
   return (
     <Modal visible={visible} animationType="slide" onRequestClose={close} presentationStyle="pageSheet">
@@ -76,14 +87,7 @@ export default function NewStudentWizard({
           )}
           {step === 3 && (
             <Step title={t("wiz_program")}>
-              {program.map((day, i) => (
-                <Card key={i} style={{ marginBottom: space.sm }}>
-                  <Text style={styles.dayTitle}>{t("day_label")} {i + 1}</Text>
-                  {day.map((ex, j) => (
-                    <Text key={j} style={styles.exercise}>• {ex.name}  —  {t("series_reps", { s: ex.sets, r: ex.reps })}</Text>
-                  ))}
-                </Card>
-              ))}
+              <ProgramEditor value={program} onChange={setProgram} />
             </Step>
           )}
           {step === 4 && code && (
