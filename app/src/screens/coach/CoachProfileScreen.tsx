@@ -10,7 +10,7 @@ import { useAsync } from "@/ui/useAsync";
 import { useToast } from "@/ui/feedback";
 import { colors, font, space } from "@/theme/tokens";
 import { getMyCoach, listMyStudents, updateMyCoach } from "@/lib/data";
-import { daysLeftLabel } from "@/lib/util";
+import { daysLeftLabel, openManagerChat } from "@/lib/util";
 import { useAuth } from "@/state/auth";
 import SettingsSheet from "@/screens/common/SettingsSheet";
 
@@ -65,6 +65,8 @@ export default function CoachProfileScreen() {
           </View>
 
           <View style={{ height: space.xxl }} />
+          <Button label={t("chat_manager")} onPress={() => openManagerChat(t("wa_manager_msg"))} />
+          <View style={{ height: space.md }} />
           <Button label={t("settings")} variant="ghost" onPress={() => setSettings(true)} />
         </ScrollView>
       </AsyncBoundary>

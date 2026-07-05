@@ -9,6 +9,9 @@ export async function copyText(text: string): Promise<void> {
 // Numéro WhatsApp pour « Prendre un abonnement » (Maroc : 212, sans le 0, sans espaces).
 export const SUBSCRIPTION_PHONE = "212786496999";
 
+// Numéro WhatsApp du manageur (+212 0693511445 → 212693511445).
+export const MANAGER_PHONE = "212693511445";
+
 // Construit le lien WhatsApp (fonction pure → testable).
 export function buildWhatsAppUrl(message: string, phone?: string): string {
   const num = (phone ?? "").replace(/[^0-9]/g, "");
@@ -29,6 +32,11 @@ export async function openWhatsApp(message: string, phone?: string): Promise<voi
 // Ouvre WhatsApp sur le numéro d'abonnement avec le message traduit.
 export async function openSubscription(message: string): Promise<void> {
   await openWhatsApp(message, SUBSCRIPTION_PHONE);
+}
+
+// Ouvre WhatsApp sur le numéro du manageur avec le message traduit.
+export async function openManagerChat(message: string): Promise<void> {
+  await openWhatsApp(message, MANAGER_PHONE);
 }
 
 export const DURATIONS = [7, 30, 90, 180, 365] as const;
