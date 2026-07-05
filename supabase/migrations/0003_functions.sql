@@ -371,3 +371,132 @@ begin
   update public.profiles set consent_at = now() where id = auth.uid();
 end;
 $$;
+
+-- ---------------------------------------------------------------------
+-- Bibliothèque de repas de démarrage (100 repas) donnée à chaque coach
+-- ---------------------------------------------------------------------
+create or replace function public.forma_seed_coach_content(p_coach uuid)
+returns void language plpgsql security definer set search_path = public as $$
+begin
+  insert into public.meals (coach_id, name, kcal, protein, category, ingredients)
+  select p_coach, v.name, v.kcal, v.protein, v.category, v.ingredients
+  from (values
+    ('Blanc de poulet pates completes brocoli',890,56,'caloric','Blanc de poulet, pates completes, brocoli, huile d''olive'),
+    ('Dinde quinoa haricots verts',870,48,'caloric','Dinde, quinoa, haricots verts, huile d''olive'),
+    ('Oeufs riz complet brocoli',780,28,'caloric','Oeufs, riz complet, brocoli, huile d''olive'),
+    ('Dinde patate douce salade',860,47,'caloric','Dinde, patate douce, salade, huile d''olive'),
+    ('Agneau patate douce salade',820,44,'caloric','Agneau, patate douce, salade, huile d''olive'),
+    ('Porc lentilles poivrons',770,45,'caloric','Porc, lentilles, poivrons, huile d''olive'),
+    ('Cabillaud riz complet champignons',830,39,'caloric','Cabillaud, riz complet, champignons, huile d''olive'),
+    ('Dinde pommes de terre haricots verts',780,53,'caloric','Dinde, pommes de terre, haricots verts, huile d''olive'),
+    ('Boeuf pommes de terre champignons',850,53,'caloric','Boeuf, pommes de terre, champignons, huile d''olive'),
+    ('Filet de boeuf riz basmati ratatouille',890,52,'caloric','Filet de boeuf, riz basmati, ratatouille, huile d''olive'),
+    ('Tofu ferme riz complet haricots verts',850,35,'caloric','Tofu ferme, riz complet, haricots verts, huile d''olive'),
+    ('Escalope de veau boulgour tomates',840,48,'caloric','Escalope de veau, boulgour, tomates, huile d''olive'),
+    ('Cabillaud pates completes brocoli',850,41,'caloric','Cabillaud, pates completes, brocoli, huile d''olive'),
+    ('Boeuf patate douce haricots verts',830,53,'caloric','Boeuf, patate douce, haricots verts, huile d''olive'),
+    ('Porc boulgour champignons',810,48,'caloric','Porc, boulgour, champignons, huile d''olive'),
+    ('Thon patate douce poivrons',780,43,'caloric','Thon, patate douce, poivrons, huile d''olive'),
+    ('Agneau gnocchis courgettes',840,48,'caloric','Agneau, gnocchis, courgettes, huile d''olive'),
+    ('Crevettes semoule salade',820,42,'caloric','Crevettes, semoule, salade, huile d''olive'),
+    ('Escalope de veau riz basmati courgettes',810,50,'caloric','Escalope de veau, riz basmati, courgettes, huile d''olive'),
+    ('Crevettes semoule haricots verts',820,42,'caloric','Crevettes, semoule, haricots verts, huile d''olive'),
+    ('Dinde boulgour ratatouille',850,54,'caloric','Dinde, boulgour, ratatouille, huile d''olive'),
+    ('Steak hache semoule epinards',840,51,'caloric','Steak hache, semoule, epinards, huile d''olive'),
+    ('Cabillaud lentilles carottes',830,43,'caloric','Cabillaud, lentilles, carottes, huile d''olive'),
+    ('Thon patate douce epinards',830,48,'caloric','Thon, patate douce, epinards, huile d''olive'),
+    ('Boeuf riz basmati haricots verts',830,51,'caloric','Boeuf, riz basmati, haricots verts, huile d''olive'),
+    ('Filet de boeuf boulgour carottes',880,52,'caloric','Filet de boeuf, boulgour, carottes, huile d''olive'),
+    ('Crevettes riz complet tomates',850,41,'caloric','Crevettes, riz complet, tomates, huile d''olive'),
+    ('Agneau riz basmati haricots verts',870,45,'caloric','Agneau, riz basmati, haricots verts, huile d''olive'),
+    ('Filet de boeuf boulgour champignons',820,55,'caloric','Filet de boeuf, boulgour, champignons, huile d''olive'),
+    ('Crevettes quinoa ratatouille',780,41,'caloric','Crevettes, quinoa, ratatouille, huile d''olive'),
+    ('Agneau quinoa salade',800,45,'caloric','Agneau, quinoa, salade, huile d''olive'),
+    ('Escalope de veau boulgour salade',870,48,'caloric','Escalope de veau, boulgour, salade, huile d''olive'),
+    ('Steak hache pommes de terre epinards',840,47,'caloric','Steak hache, pommes de terre, epinards, huile d''olive'),
+    ('Oeufs pommes de terre ratatouille',730,28,'caloric','Oeufs, pommes de terre, ratatouille, huile d''olive'),
+    ('Tofu ferme pommes de terre poivrons',770,31,'caloric','Tofu ferme, pommes de terre, poivrons, huile d''olive'),
+    ('Dinde lentilles haricots verts',790,54,'caloric','Dinde, lentilles, haricots verts, huile d''olive'),
+    ('Escalope de veau pates completes salade',850,47,'caloric','Escalope de veau, pates completes, salade, huile d''olive'),
+    ('Blanc de poulet pain complet salade',830,57,'caloric','Blanc de poulet, pain complet, salade, huile d''olive'),
+    ('Agneau lentilles carottes',800,44,'caloric','Agneau, lentilles, carottes, huile d''olive'),
+    ('Cabillaud semoule carottes',840,44,'caloric','Cabillaud, semoule, carottes, huile d''olive'),
+    ('Tofu ferme flocons d''avoine ratatouille',770,34,'caloric','Tofu ferme, flocons d''avoine, ratatouille, huile d''olive'),
+    ('Dinde pates completes champignons',840,50,'caloric','Dinde, pates completes, champignons, huile d''olive'),
+    ('Oeufs patate douce brocoli',750,27,'caloric','Oeufs, patate douce, brocoli, huile d''olive'),
+    ('Dinde pates completes brocoli',880,48,'caloric','Dinde, pates completes, brocoli, huile d''olive'),
+    ('Agneau patate douce poivrons',830,44,'caloric','Agneau, patate douce, poivrons, huile d''olive'),
+    ('Agneau quinoa tomates',860,48,'caloric','Agneau, quinoa, tomates, huile d''olive'),
+    ('Dinde pain complet carottes',820,48,'caloric','Dinde, pain complet, carottes, huile d''olive'),
+    ('Boeuf boulgour carottes',850,55,'caloric','Boeuf, boulgour, carottes, huile d''olive'),
+    ('Crevettes pain complet brocoli',790,37,'caloric','Crevettes, pain complet, brocoli, huile d''olive'),
+    ('Crevettes gnocchis champignons',820,40,'caloric','Crevettes, gnocchis, champignons, huile d''olive'),
+    ('Porc quinoa carottes',820,47,'caloric','Porc, quinoa, carottes, huile d''olive'),
+    ('Porc patate douce haricots verts',830,44,'caloric','Porc, patate douce, haricots verts, huile d''olive'),
+    ('Poulet boulgour salade',810,53,'caloric','Poulet, boulgour, salade, huile d''olive'),
+    ('Tofu ferme patate douce epinards',800,38,'caloric','Tofu ferme, patate douce, epinards, huile d''olive'),
+    ('Porc patate douce carottes',780,45,'caloric','Porc, patate douce, carottes, huile d''olive'),
+    ('Salade cesar poulet',340,32,'light','Poulet grille, salade, parmesan, croutons legers'),
+    ('Poke bowl saumon',380,30,'light','Saumon, riz, edamame, avocat, concombre'),
+    ('Wrap dinde crudites',320,28,'light','Galette complete, dinde, salade, tomate'),
+    ('Omelette aux legumes',280,24,'light','3 oeufs, poivrons, epinards, oignons'),
+    ('Soupe de lentilles',250,18,'light','Lentilles corail, carottes, cumin'),
+    ('Skyr fruits rouges',220,20,'light','Skyr, myrtilles, framboises, amandes'),
+    ('Fromage blanc miel noix',260,22,'light','Fromage blanc 0%, miel, noix'),
+    ('Tofu saute legumes',300,26,'light','Tofu, brocoli, sauce soja, sesame'),
+    ('Salade thon mais',320,30,'light','Thon, salade, mais, tomate, oeuf'),
+    ('Buddha bowl legumes',350,20,'light','Pois chiches, quinoa, betterave, avocat'),
+    ('Crevettes courgettes',260,34,'light','Crevettes, courgettes, ail, citron'),
+    ('Blanc de dinde vapeur',240,38,'light','Dinde, haricots verts, riz complet'),
+    ('Salade grecque feta',300,16,'light','Concombre, tomate, feta, olives'),
+    ('Cabillaud legumes vapeur',250,36,'light','Cabillaud, brocoli, carottes'),
+    ('Salade quinoa avocat',330,18,'light','Quinoa, avocat, tomates, mais'),
+    ('Yaourt grec granola',290,20,'light','Yaourt grec, granola, banane'),
+    ('Soupe poulet nouilles',280,26,'light','Poulet, nouilles, carottes, celeri'),
+    ('Salade lentilles feta',310,22,'light','Lentilles, feta, tomates, oignon rouge'),
+    ('Tartare de saumon',300,28,'light','Saumon, citron vert, avocat, aneth'),
+    ('Galette sarrasin oeuf',290,22,'light','Galette sarrasin, oeuf, jambon, salade'),
+    ('Bowl leger oeuf salade verte',300,28,'light','Oeuf, salade verte, citron, huile d''olive'),
+    ('Bowl leger cabillaud epinards',310,35,'light','Cabillaud, epinards, citron, huile d''olive'),
+    ('Bowl leger thon roquette',280,26,'light','Thon, roquette, citron, huile d''olive'),
+    ('Bowl leger poulet courgettes',340,21,'light','Poulet, courgettes, citron, huile d''olive'),
+    ('Bowl leger tofu salade verte',210,35,'light','Tofu, salade verte, citron, huile d''olive'),
+    ('Bowl leger thon salade verte',330,22,'light','Thon, salade verte, citron, huile d''olive'),
+    ('Bowl leger dinde brocoli',260,32,'light','Dinde, brocoli, citron, huile d''olive'),
+    ('Bowl leger dinde courgettes',260,21,'light','Dinde, courgettes, citron, huile d''olive'),
+    ('Bowl leger dinde concombre',370,36,'light','Dinde, concombre, citron, huile d''olive'),
+    ('Bowl leger tofu epinards',250,30,'light','Tofu, epinards, citron, huile d''olive'),
+    ('Bowl leger saumon epinards',300,24,'light','Saumon, epinards, citron, huile d''olive'),
+    ('Bowl leger crevettes concombre',280,22,'light','Crevettes, concombre, citron, huile d''olive'),
+    ('Bowl leger poulet concombre',360,23,'light','Poulet, concombre, citron, huile d''olive'),
+    ('Bowl leger saumon courgettes',270,24,'light','Saumon, courgettes, citron, huile d''olive'),
+    ('Bowl leger crevettes roquette',310,29,'light','Crevettes, roquette, citron, huile d''olive'),
+    ('Bowl leger poulet brocoli',340,29,'light','Poulet, brocoli, citron, huile d''olive'),
+    ('Bowl leger dinde roquette',270,23,'light','Dinde, roquette, citron, huile d''olive'),
+    ('Bowl leger thon epinards',270,26,'light','Thon, epinards, citron, huile d''olive'),
+    ('Bowl leger tofu roquette',380,28,'light','Tofu, roquette, citron, huile d''olive'),
+    ('Bowl leger poulet salade verte',360,33,'light','Poulet, salade verte, citron, huile d''olive'),
+    ('Bowl leger crevettes salade verte',200,30,'light','Crevettes, salade verte, citron, huile d''olive'),
+    ('Bowl leger thon brocoli',270,25,'light','Thon, brocoli, citron, huile d''olive'),
+    ('Bowl leger cabillaud courgettes',380,33,'light','Cabillaud, courgettes, citron, huile d''olive'),
+    ('Bowl leger thon courgettes',210,31,'light','Thon, courgettes, citron, huile d''olive'),
+    ('Bowl leger thon concombre',230,21,'light','Thon, concombre, citron, huile d''olive')
+  ) as v(name, kcal, protein, category, ingredients)
+  where not exists (select 1 from public.meals m where m.coach_id = p_coach and m.name = v.name);
+
+  insert into public.templates (coach_id, name, duration, data)
+  select p_coach, t.name, t.duration, '{}'::jsonb
+  from (values ('Prise de muscle 4 jours',90),('Perte de poids 3 jours',90),('Full body 3 jours',90)) as t(name,duration)
+  where not exists (select 1 from public.templates tp where tp.coach_id = p_coach and tp.name = t.name);
+end $$;
+
+
+create or replace function public.forma_coach_after_insert()
+returns trigger language plpgsql security definer set search_path = public as $$
+begin
+  perform public.forma_seed_coach_content(new.id);
+  return new;
+end $$;
+drop trigger if exists coach_seed_content on public.coaches;
+create trigger coach_seed_content after insert on public.coaches
+  for each row execute function public.forma_coach_after_insert();

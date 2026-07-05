@@ -20,30 +20,37 @@ export default function SettingsSheet({ visible, onClose }: { visible: boolean; 
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [busy, setBusy] = useState(false);
 
-  const onLogout = () =>
-    confirm({
-      message: t("confirm_logout"), icon: "👋", yesLabel: t("confirm_logout_yes"), cancelLabel: t("cancel"), variant: "soft",
-      onYes: () => { onClose(); logout(); },
-    });
+  // On ferme d'abord la page Réglages, puis on affiche la confirmation :
+  // sinon la fenêtre de confirmation apparaît DERRIÈRE les Réglages.
+  const onLogout = () => {
+    onClose();
+    setTimeout(() => {
+      confirm({
+        message: t("confirm_logout"), icon: "👋", yesLabel: t("confirm_logout_yes"),
+        cancelLabel: t("cancel"), variant: "soft",
+        onYes: () => logout(),
+      });
+    }, 350);
+  };
 
-  const onDelete = () =>
-    confirm({
-      message: t("delete_account_q") + "\n\n" + t("delete_account_warning"),
-      icon: "⚠️", yesLabel: t("delete_account_yes"), cancelLabel: t("cancel"), variant: "danger",
-      onYes: async () => {
-        setBusy(true);
-        try {
-          await deleteMyAccount();
-          onClose();
-          toast(t("account_deleted"));
-          logout();
-        } catch {
-          toast(t("err_generic"));
-        } finally {
-          setBusy(false);
-        }
-      },
-    });
+  const onDelete = () => {
+    onClose();
+    setTimeout(() => {
+      confirm({
+        message: t("delete_account_q") + "\n\n" + t("delete_account_warning"),
+        icon: "⚠️", yesLabel: t("delete_account_yes"), cancelLabel: t("cancel"), variant: "danger",
+        onYes: async () => {
+          try {
+            await deleteMyAccount();
+            toast(t("account_deleted"));
+            logout();
+          } catch {
+            toast(t("err_generic"));
+          }
+        },
+      });
+    }, 350);
+  };
 
   const onExport = async () => {
     try {
