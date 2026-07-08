@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useLang } from "./providers";
 import Assurances from "@/components/Assurances";
 import ProductCard from "@/components/ProductCard";
+import WhyOnyx from "@/components/WhyOnyx";
+import Testimonials from "@/components/Testimonials";
 import { getFeatured, getByCategory } from "@/data/products";
 
 export default function Home() {
@@ -21,7 +23,7 @@ export default function Home() {
         <div className="rule" />
         <p className="lead">{t("hero_lead")}</p>
         <div className="cta-row">
-          <Link className="btn btn-primary" href="/bijoux">{t("cta_discover")}</Link>
+          <Link className="btn btn-primary" href="/montres">{t("cta_discover")}</Link>
           {featured && (
             <Link className="btn btn-ghost" href={`/produit/${featured.slug}`}>
               {t("cta_configure")}
@@ -77,6 +79,8 @@ export default function Home() {
       )}
 
       <Assurances />
+      <WhyOnyx />
+      <Testimonials />
     </>
   );
 }

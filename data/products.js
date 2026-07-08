@@ -35,6 +35,8 @@ export const PRODUCTS = [
     price: 89,
     currency: "EUR",
     featured: true,
+    rating: 4.8,
+    reviews: 127,
     colors: [
       { id: "or", label: { fr: "Or", en: "Gold", ar: "ذهبي" }, swatch: "#C6A15B", image: "/products/bague-onyx/or.svg" },
       { id: "or-rose", label: { fr: "Or rose", en: "Rose gold", ar: "ذهبي وردي" }, swatch: "#C98E77", image: "/products/bague-onyx/or-rose.svg" },
@@ -55,6 +57,8 @@ export const PRODUCTS = [
     price: 129,
     currency: "EUR",
     featured: false,
+    rating: 4.9,
+    reviews: 83,
     colors: [
       { id: "or", label: { fr: "Or", en: "Gold", ar: "ذهبي" }, swatch: "#C6A15B", image: "/products/montre-onyx-classic/or.svg" },
       { id: "argent", label: { fr: "Argent", en: "Silver", ar: "فضي" }, swatch: "#B9BEC6", image: "/products/montre-onyx-classic/argent.svg" },
