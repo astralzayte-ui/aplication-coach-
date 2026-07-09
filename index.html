@@ -188,14 +188,17 @@
   /* ---------- PRODUCT (scroll-linked) ---------- */
   .product{background:var(--onyx-2)}
   .prod-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
-  @media(max-width:900px){.prod-grid{grid-template-columns:1fr;gap:36px;text-align:center}}
+  .prod-grid.reverse .prod-stage{order:2}
+  .prod-sep{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:92px 0}
+  .sw-label{color:var(--gold);font-size:.8rem;letter-spacing:.15em;text-transform:uppercase}
+  @media(max-width:900px){.prod-grid{grid-template-columns:1fr;gap:36px;text-align:center}.prod-grid.reverse .prod-stage{order:0}}
   .prod-stage{
     position:relative;display:flex;align-items:center;justify-content:center;
     aspect-ratio:1;border:1px solid var(--line);border-radius:6px;
     background:radial-gradient(circle at 50% 40%,rgba(201,162,75,.10),transparent 60%),var(--onyx);
   }
   .prod-stage .ring{position:absolute;width:78%;height:78%;border:1px dashed rgba(201,162,75,.18);border-radius:50%}
-  .prod-watch{width:66%;will-change:transform}
+  .prod-visual{width:70%;will-change:transform}
   .prod-info h2{font-size:clamp(2rem,4.6vw,3.2rem)}
   .prod-info .price{font-family:var(--serif);font-size:2rem;color:var(--gold);margin:18px 0}
   .prod-info .price small{font-size:1rem;color:var(--muted);text-decoration:line-through;margin-left:12px}
@@ -271,7 +274,6 @@
       <a href="#collection" class="btn">Découvrir la collection <span class="arrow">→</span></a>
       <a href="#contact" class="btn btn-ghost">Commander sur WhatsApp</a>
     </div>
-    <div class="hero-visual"><img src="assets/img/products/hero.png" alt="Montre ONYX en or à cadran noir et bracelet chaîne doré" width="928" height="1152" loading="eager"></div>
   </div>
   <div class="scroll-cue"><span>Défiler</span><span class="bar"></span></div>
 </header>
@@ -325,22 +327,47 @@
 
 <div class="divider"></div>
 
-<!-- PRODUCT (scroll-linked) -->
+<!-- COLLECTION : Montres & Bijoux (scroll-linked) -->
 <section class="product section-pad" id="product">
   <div class="wrap">
-    <div class="prod-grid">
-      <div class="prod-stage reveal">
+    <div class="sec-head reveal" style="text-align:center;max-width:none;margin:0 auto 76px">
+      <span class="eyebrow">La collection</span>
+      <h2>Deux univers, une même exigence.</h2>
+    </div>
+
+    <!-- MONTRES -->
+    <div class="prod-grid reveal" data-product="watch">
+      <div class="prod-stage">
         <div class="ring"></div>
-        <div class="prod-watch" id="prodWatch"></div>
+        <div class="prod-visual" data-visual="watch"></div>
       </div>
-      <div class="prod-info reveal">
-        <span class="eyebrow">Pièce signature</span>
-        <h2>ONYX Chrono Noir</h2>
-        <div class="price" id="prodPrice">1 290 DH <small>1 890 DH</small></div>
+      <div class="prod-info">
+        <span class="eyebrow">Montres</span>
+        <h2 data-name="watch"></h2>
+        <div class="price" data-price="watch"></div>
         <p>Boîtier acier, verre saphir, mouvement précis. Une présence franche au poignet, pensée pour durer.</p>
-        <p style="color:var(--gold);font-size:.8rem;letter-spacing:.15em;text-transform:uppercase" id="swLabel">Finition : Or</p>
-        <div class="swatches" id="swatches"></div>
-        <button class="btn" id="addBtn">Ajouter au panier <span class="arrow">→</span></button>
+        <p class="sw-label" data-label="watch"></p>
+        <div class="swatches" data-swatches="watch"></div>
+        <button class="btn" data-add="watch">Ajouter au panier <span class="arrow">→</span></button>
+      </div>
+    </div>
+
+    <div class="prod-sep"></div>
+
+    <!-- BIJOUX -->
+    <div class="prod-grid reverse reveal" data-product="bracelet">
+      <div class="prod-stage">
+        <div class="ring"></div>
+        <div class="prod-visual" data-visual="bracelet"></div>
+      </div>
+      <div class="prod-info">
+        <span class="eyebrow">Bijoux</span>
+        <h2 data-name="bracelet"></h2>
+        <div class="price" data-price="bracelet"></div>
+        <p>Maille épaisse, fermoir sécurisé, éclat profond. Le bijou qui signe une allure — sans un mot.</p>
+        <p class="sw-label" data-label="bracelet"></p>
+        <div class="swatches" data-swatches="bracelet"></div>
+        <button class="btn" data-add="bracelet">Ajouter au panier <span class="arrow">→</span></button>
       </div>
     </div>
   </div>
@@ -386,61 +413,85 @@ const waURL = `https://wa.me/${WHATSAPP}?text=${WA_TEXT}`;
 ["waBtn","waLink2","waLink3"].forEach(id=>{const e=document.getElementById(id);if(e)e.href=waURL;e&&e.setAttribute("target","_blank");e&&e.setAttribute("rel","noopener");});
 
 /* ============ VISUELS SVG (placeholder — remplacés par les vraies photos ensuite) ============ */
-function watchSVG(m){ // m = [light, mid, dark]
-  return `<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="mt" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="${m[0]}"/><stop offset=".5" stop-color="${m[1]}"/><stop offset="1" stop-color="${m[2]}"/>
-      </linearGradient>
-      <radialGradient id="dl" cx=".5" cy=".4" r=".7"><stop offset="0" stop-color="#1c1c1c"/><stop offset="1" stop-color="#050505"/></radialGradient>
-    </defs>
-    <rect x="352" y="60" width="96" height="200" rx="24" fill="url(#mt)"/>
-    <rect x="352" y="540" width="96" height="200" rx="24" fill="url(#mt)"/>
-    <circle cx="400" cy="400" r="185" fill="url(#mt)"/>
-    <circle cx="400" cy="400" r="150" fill="url(#dl)"/>
-    <rect x="580" y="385" width="34" height="30" rx="6" fill="url(#mt)"/>
-    <g fill="url(#mt)"><rect x="394" y="272" width="12" height="34" rx="4"/><rect x="394" y="494" width="12" height="34" rx="4"/><rect x="272" y="394" width="34" height="12" rx="4"/><rect x="494" y="394" width="34" height="12" rx="4"/></g>
+function svgDefs(uid,m){
+  return `<defs>
+    <linearGradient id="mt${uid}" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="${m[0]}"/><stop offset=".5" stop-color="${m[1]}"/><stop offset="1" stop-color="${m[2]}"/>
+    </linearGradient>
+    <radialGradient id="dl${uid}" cx=".5" cy=".4" r=".7"><stop offset="0" stop-color="#1c1c1c"/><stop offset="1" stop-color="#050505"/></radialGradient>
+  </defs>`;
+}
+function watchSVG(m,uid){
+  return `<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">${svgDefs(uid,m)}
+    <rect x="352" y="60" width="96" height="200" rx="24" fill="url(#mt${uid})"/>
+    <rect x="352" y="540" width="96" height="200" rx="24" fill="url(#mt${uid})"/>
+    <circle cx="400" cy="400" r="185" fill="url(#mt${uid})"/>
+    <circle cx="400" cy="400" r="150" fill="url(#dl${uid})"/>
+    <rect x="580" y="385" width="34" height="30" rx="6" fill="url(#mt${uid})"/>
+    <g fill="url(#mt${uid})"><rect x="394" y="272" width="12" height="34" rx="4"/><rect x="394" y="494" width="12" height="34" rx="4"/><rect x="272" y="394" width="34" height="12" rx="4"/><rect x="494" y="394" width="34" height="12" rx="4"/></g>
     <rect x="395" y="300" width="10" height="110" rx="5" fill="${m[0]}" transform="rotate(35 400 400)"/>
     <rect x="395" y="330" width="8" height="80" rx="4" fill="${m[0]}" transform="rotate(-70 400 400)"/>
-    <circle cx="400" cy="400" r="12" fill="url(#mt)"/>
+    <circle cx="400" cy="400" r="12" fill="url(#mt${uid})"/>
   </svg>`;
 }
-const METALS = {
-  or:     {label:"Or",       sw:"linear-gradient(135deg,#f6e3a1,#d4af37,#8a6d1f)", m:["#f6e3a1","#d4af37","#8a6d1f"], price:"1 290 DH"},
-  argent: {label:"Argent",   sw:"linear-gradient(135deg,#f0f0f0,#b9bec4,#6f757c)", m:["#f0f0f0","#b9bec4","#6f757c"], price:"1 190 DH"},
-  rose:   {label:"Or rose",  sw:"linear-gradient(135deg,#f7d4c4,#d98a6a,#8a4a34)", m:["#f7d4c4","#d98a6a","#8a4a34"], price:"1 290 DH"},
-  noir:   {label:"Noir mat", sw:"linear-gradient(135deg,#5a5a5a,#2a2a2a,#0a0a0a)", m:["#5a5a5a","#2a2a2a","#0a0a0a"], price:"1 390 DH"},
+function braceletSVG(m,uid){
+  let links='';
+  for(let i=0;i<14;i++){
+    const a=Math.PI*(0.14+0.72*i/13);
+    const x=400+Math.cos(a)*212, y=400-Math.sin(a)*96+118;
+    links+=`<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="34" ry="23" fill="none" stroke="url(#mt${uid})" stroke-width="18" transform="rotate(${i%2?26:-26} ${x.toFixed(1)} ${y.toFixed(1)})"/>`;
+  }
+  return `<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">${svgDefs(uid,m)}${links}</svg>`;
+}
+const SHAPES = {watch:watchSVG, bracelet:braceletSVG};
+
+/* Finitions communes (les 4 couleurs) */
+const FINISHES = {
+  or:     {label:"Or",       sw:"linear-gradient(135deg,#f6e3a1,#d4af37,#8a6d1f)", m:["#f6e3a1","#d4af37","#8a6d1f"]},
+  argent: {label:"Argent",   sw:"linear-gradient(135deg,#f0f0f0,#b9bec4,#6f757c)", m:["#f0f0f0","#b9bec4","#6f757c"]},
+  rose:   {label:"Or rose",  sw:"linear-gradient(135deg,#f7d4c4,#d98a6a,#8a4a34)", m:["#f7d4c4","#d98a6a","#8a4a34"]},
+  noir:   {label:"Noir mat", sw:"linear-gradient(135deg,#5a5a5a,#2a2a2a,#0a0a0a)", m:["#5a5a5a","#2a2a2a","#0a0a0a"]},
 };
 
-const prodWatch = document.getElementById("prodWatch");
-const prodPrice = document.getElementById("prodPrice");
-const swLabel = document.getElementById("swLabel");
+/* Catalogue — pour ajouter un produit, ajoute une entrée ici (nom, forme, prix par couleur) */
+const PRODUCTS = {
+  watch:    {name:"ONYX Chrono Noir",   shape:"watch",    old:"1 890 DH", prices:{or:"1 290 DH",argent:"1 190 DH",rose:"1 290 DH",noir:"1 390 DH"}},
+  bracelet: {name:"ONYX Chaîne Royale", shape:"bracelet", old:"690 DH",   prices:{or:"490 DH",  argent:"450 DH",  rose:"490 DH",  noir:"520 DH"}},
+};
 
-/* swatches + changement de couleur (cœur de la démo) */
-const swWrap = document.getElementById("swatches");
-let current = "or";
-function renderProduct(key){
-  const v = METALS[key]; current = key;
-  prodWatch.innerHTML = watchSVG(v.m);
-  prodWatch.animate([{opacity:.3,transform:'scale(.96)'},{opacity:1,transform:'scale(1)'}],{duration:400,easing:'ease'});
-  prodPrice.innerHTML = `${v.price} <small>1 890 DH</small>`;
-  swLabel.textContent = `Finition : ${v.label}`;
-  [...swWrap.children].forEach(c=>c.classList.toggle("active",c.dataset.k===key));
-}
-Object.entries(METALS).forEach(([k,v])=>{
-  const b=document.createElement("button");
-  b.className="sw";b.dataset.k=k;b.style.background=v.sw;
-  b.setAttribute("aria-label",v.label);b.title=v.label;
-  b.onclick=()=>renderProduct(k);
-  swWrap.appendChild(b);
-});
-renderProduct("or");
-
-/* ============ TOAST + ajout panier ============ */
+/* ============ TOAST ============ */
 const toast=document.getElementById("toast");
 let tT;
 function showToast(msg){toast.textContent=msg;toast.classList.add("show");clearTimeout(tT);tT=setTimeout(()=>toast.classList.remove("show"),2200);}
-document.getElementById("addBtn").onclick=()=>showToast(`ONYX Chrono Noir · ${METALS[current].label} — ajouté au panier ✦`);
+
+/* ============ Rendu des produits + changement de couleur au clic (cœur de la démo) ============ */
+Object.entries(PRODUCTS).forEach(([key,p])=>{
+  const visual  = document.querySelector(`[data-visual="${key}"]`);
+  const priceEl = document.querySelector(`[data-price="${key}"]`);
+  const labelEl = document.querySelector(`[data-label="${key}"]`);
+  const nameEl  = document.querySelector(`[data-name="${key}"]`);
+  const swWrap  = document.querySelector(`[data-swatches="${key}"]`);
+  const addBtn  = document.querySelector(`[data-add="${key}"]`);
+  nameEl.textContent = p.name;
+  p.current = "or";
+  function render(fk){
+    const f = FINISHES[fk]; p.current = fk;
+    visual.innerHTML = SHAPES[p.shape](f.m, key);
+    visual.animate([{opacity:.3,transform:'scale(.96)'},{opacity:1,transform:'scale(1)'}],{duration:400,easing:'ease'});
+    priceEl.innerHTML = `${p.prices[fk]} <small>${p.old}</small>`;
+    labelEl.textContent = `Finition : ${f.label}`;
+    [...swWrap.children].forEach(c=>c.classList.toggle("active",c.dataset.k===fk));
+  }
+  Object.entries(FINISHES).forEach(([fk,f])=>{
+    const b=document.createElement("button");
+    b.className="sw";b.dataset.k=fk;b.style.background=f.sw;
+    b.setAttribute("aria-label",f.label);b.title=f.label;
+    b.onclick=()=>render(fk);
+    swWrap.appendChild(b);
+  });
+  addBtn.onclick=()=>showToast(`${p.name} · ${FINISHES[p.current].label} — ajouté au panier ✦`);
+  render("or");
+});
 
 /* ============ NAV scroll state ============ */
 const nav=document.getElementById("nav");
@@ -473,16 +524,17 @@ document.querySelectorAll("[data-count]").forEach(el=>countIO.observe(el));
 
 /* ============ SCROLL-LINKED : rotation continue de la montre + parallax lettre ============ */
 const prodSection=document.getElementById("product");
+const watchVisual=document.querySelector('[data-visual="watch"]');
 const storyMark=document.getElementById("storyMark");
 const reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
 let ticking=false;
 function onScroll(){
   if(reduce)return;
   const vh=innerHeight;
-  // montre : progression -1..1 dans le viewport → rotation continue
+  // montre : progression dans le viewport → rotation continue liée au scroll
   const r=prodSection.getBoundingClientRect();
   const prog=(vh - r.top)/(vh + r.height); // 0 quand la section entre, 1 quand elle sort
-  prodWatch.style.transform=`rotate(${(prog*300-40).toFixed(1)}deg)`;
+  if(watchVisual)watchVisual.style.transform=`rotate(${(prog*300-40).toFixed(1)}deg)`;
   // lettre O de la story : parallax
   if(storyMark){
     const sr=storyMark.parentElement.getBoundingClientRect();
