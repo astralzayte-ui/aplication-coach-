@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+  <defs>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f0f0f0"/>
+      <stop offset="0.5" stop-color="#b9bec4"/>
+      <stop offset="1" stop-color="#6f757c"/>
+    </linearGradient>
+    <radialGradient id="dial" cx="0.5" cy="0.4" r="0.7">
+      <stop offset="0" stop-color="#1c1c1c"/>
+      <stop offset="1" stop-color="#050505"/>
+    </radialGradient>
+    <radialGradient id="gem" cx="0.4" cy="0.35" r="0.7">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.4" stop-color="#dfe9f2"/>
+      <stop offset="1" stop-color="#6b7d8f"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="400" cy="470" rx="150" ry="160" fill="none" stroke="url(#metal)" stroke-width="52"/>
+  <path d="M320 340 L400 240 L480 340 L400 300 Z" fill="url(#metal)"/>
+  <circle cx="400" cy="300" r="60" fill="url(#metal)"/>
+  <circle cx="400" cy="300" r="40" fill="url(#gem)"/>
+</svg>
