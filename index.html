@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONYX — Montres & Bijoux d'exception pour homme</title>
+<meta name="description" content="ONYX — Montres et bijoux de luxe pour homme. Style premium à prix accessible. Livraison partout au Maroc, paiement carte, cash ou virement.">
+<style>
+  :root{
+    --onyx:#0a0908;
+    --onyx-2:#100e0b;
+    --panel:#16130d;
+    --line:rgba(201,162,75,0.22);
+    --gold:#c9a24b;
+    --gold-hi:#f0d78c;
+    --gold-deep:#8a6d1f;
+    --cream:#f4efe6;
+    --muted:rgba(244,239,230,0.56);
+    --muted-2:rgba(244,239,230,0.38);
+    --serif:'Didot','Bodoni MT','Playfair Display',Georgia,'Times New Roman',serif;
+    --sans:'Helvetica Neue','Segoe UI',system-ui,-apple-system,sans-serif;
+    --maxw:1180px;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--onyx);
+    color:var(--cream);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--gold);color:var(--onyx)}
+  a{color:inherit;text-decoration:none}
+  img,svg{max-width:100%;display:block}
+
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .eyebrow{
+    font-family:var(--sans);
+    text-transform:uppercase;
+    letter-spacing:.42em;
+    font-size:.68rem;
+    font-weight:600;
+    color:var(--gold);
+  }
+  .gold-text{
+    background:linear-gradient(120deg,var(--gold-deep),var(--gold),var(--gold-hi),var(--gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.05;text-wrap:balance}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 28px;
+    transition:background .4s ease,border-color .4s ease,padding .4s ease;
+    border-bottom:1px solid transparent;
+  }
+  .nav.scrolled{
+    background:rgba(10,9,8,.82);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+    padding:12px 28px;
+  }
+  .brand{
+    font-family:var(--serif);
+    font-size:1.5rem;letter-spacing:.5em;
+    padding-left:.5em;
+    font-weight:400;
+  }
+  .nav-links{display:flex;gap:34px;align-items:center}
+  .nav-links a{
+    font-size:.74rem;text-transform:uppercase;letter-spacing:.2em;
+    color:var(--muted);position:relative;padding:4px 0;transition:color .3s;
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:0;height:1px;width:0;
+    background:var(--gold);transition:width .35s ease;
+  }
+  .nav-links a:hover{color:var(--cream)}
+  .nav-links a:hover::after{width:100%}
+  .nav-links .lang{color:var(--gold);letter-spacing:.15em}
+  @media(max-width:720px){.nav-links a:not(.lang){display:none}}
+
+  /* ---------- BUTTONS ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:12px;
+    font-family:var(--sans);font-size:.78rem;font-weight:600;
+    text-transform:uppercase;letter-spacing:.18em;
+    padding:16px 30px;border-radius:2px;cursor:pointer;border:1px solid var(--gold);
+    background:linear-gradient(120deg,var(--gold),var(--gold-hi));
+    color:var(--onyx);position:relative;overflow:hidden;
+    transition:transform .3s ease,box-shadow .4s ease;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px -12px rgba(201,162,75,.6)}
+  .btn:active{transform:translateY(0)}
+  .btn .arrow{transition:transform .3s ease}
+  .btn:hover .arrow{transform:translateX(5px)}
+  .btn-ghost{
+    background:transparent;color:var(--gold);border:1px solid var(--line);
+  }
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold-hi);box-shadow:none}
+  .btn:focus-visible,.nav-links a:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    position:relative;padding:120px 0 60px;text-align:center;overflow:hidden;
+  }
+  .hero-glow{
+    position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);
+    width:min(760px,120vw);height:min(760px,120vw);
+    background:radial-gradient(circle,rgba(201,162,75,.16),rgba(201,162,75,.04) 42%,transparent 66%);
+    pointer-events:none;z-index:0;
+  }
+  .hero .wrap{position:relative;z-index:2}
+  .hero .eyebrow{opacity:0;transform:translateY(20px);animation:rise .9s .2s ease forwards}
+  .hero h1{
+    font-size:clamp(3rem,10vw,7.5rem);margin:22px 0 8px;letter-spacing:-.01em;
+    opacity:0;transform:translateY(30px);animation:rise 1s .35s ease forwards;
+  }
+  .hero .sub{
+    max-width:560px;margin:14px auto 40px;color:var(--muted);font-size:1.06rem;
+    opacity:0;transform:translateY(24px);animation:rise 1s .55s ease forwards;
+  }
+  .hero-cta{
+    display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+    opacity:0;transform:translateY(24px);animation:rise 1s .75s ease forwards;
+  }
+  .hero-visual{
+    margin:52px auto 0;width:clamp(220px,34vw,320px);
+    opacity:0;animation:fadeIn 1.4s 1s ease forwards;
+  }
+  .hero-visual svg{animation:float 6s ease-in-out infinite;filter:drop-shadow(0 30px 50px rgba(0,0,0,.6))}
+  .scroll-cue{
+    position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
+    font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted-2);
+    display:flex;flex-direction:column;align-items:center;gap:10px;z-index:2;
+  }
+  .scroll-cue .bar{width:1px;height:44px;background:linear-gradient(var(--gold),transparent);animation:cue 2s ease-in-out infinite}
+
+  @keyframes rise{to{opacity:1;transform:translateY(0)}}
+  @keyframes fadeIn{to{opacity:1}}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+  @keyframes cue{0%,100%{opacity:.2;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{position:relative}
+  .section-pad{padding:120px 0}
+  .sec-head{max-width:640px;margin-bottom:64px}
+  .sec-head h2{font-size:clamp(2rem,5vw,3.4rem);margin:18px 0 0}
+  .divider{height:1px;background:linear-gradient(90deg,var(--line),transparent);margin:0}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(38px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- FEATURES ---------- */
+  .features{background:var(--onyx-2)}
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media(max-width:820px){.feat-grid{grid-template-columns:1fr}}
+  .card{
+    background:linear-gradient(180deg,var(--panel),var(--onyx-2));
+    border:1px solid var(--line);border-radius:4px;padding:40px 32px;
+    transition:transform .5s ease,border-color .5s ease,box-shadow .5s ease;
+  }
+  .card:hover{transform:translateY(-8px);border-color:var(--gold);box-shadow:0 26px 50px -26px rgba(0,0,0,.8)}
+  .card .ic{width:46px;height:46px;color:var(--gold);margin-bottom:22px}
+  .card h3{font-size:1.5rem;margin-bottom:12px}
+  .card p{color:var(--muted);font-size:.98rem}
+  .card .num{font-family:var(--serif);font-size:.9rem;color:var(--gold);letter-spacing:.2em;display:block;margin-bottom:18px}
+
+  /* ---------- STORY ---------- */
+  .story{overflow:hidden}
+  .story .wrap{max-width:900px;text-align:center}
+  .story .mark{font-family:var(--serif);font-size:clamp(6rem,26vw,20rem);line-height:.8;color:rgba(201,162,75,.07);
+    position:absolute;top:8%;left:50%;transform:translateX(-50%);pointer-events:none;z-index:0;will-change:transform}
+  .story .wrap>*{position:relative;z-index:1}
+  .story h2{font-size:clamp(1.9rem,4.4vw,3rem);margin:20px 0 30px}
+  .story p{color:var(--muted);font-size:1.14rem;max-width:640px;margin:0 auto 22px}
+  .story .sig{font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--cream);margin-top:14px}
+
+  /* ---------- PRODUCT (scroll-linked) ---------- */
+  .product{background:var(--onyx-2)}
+  .prod-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+  @media(max-width:900px){.prod-grid{grid-template-columns:1fr;gap:36px;text-align:center}}
+  .prod-stage{
+    position:relative;display:flex;align-items:center;justify-content:center;
+    aspect-ratio:1;border:1px solid var(--line);border-radius:6px;
+    background:radial-gradient(circle at 50% 40%,rgba(201,162,75,.10),transparent 60%),var(--onyx);
+  }
+  .prod-stage .ring{position:absolute;width:78%;height:78%;border:1px dashed rgba(201,162,75,.18);border-radius:50%}
+  .prod-watch{width:66%;will-change:transform}
+  .prod-info h2{font-size:clamp(2rem,4.6vw,3.2rem)}
+  .prod-info .price{font-family:var(--serif);font-size:2rem;color:var(--gold);margin:18px 0}
+  .prod-info .price small{font-size:1rem;color:var(--muted);text-decoration:line-through;margin-left:12px}
+  .prod-info p{color:var(--muted);margin-bottom:14px}
+  .swatches{display:flex;gap:14px;margin:26px 0 32px;justify-content:flex-start}
+  @media(max-width:900px){.swatches{justify-content:center}}
+  .sw{width:34px;height:34px;border-radius:50%;cursor:pointer;border:2px solid transparent;
+    transition:transform .25s,border-color .25s;position:relative}
+  .sw:hover{transform:scale(1.12)}
+  .sw.active{border-color:var(--cream)}
+  .sw:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
+
+  /* ---------- STATS ---------- */
+  .stats .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;text-align:center}
+  @media(max-width:720px){.stats .wrap{grid-template-columns:1fr;gap:52px}}
+  .stat .val{font-family:var(--serif);font-size:clamp(3rem,8vw,5rem);line-height:1;
+    font-variant-numeric:tabular-nums}
+  .stat .lab{margin-top:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.2em;font-size:.72rem}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--onyx);border-top:1px solid var(--line);padding:100px 0 40px;text-align:center;position:relative;overflow:hidden}
+  footer .glow{position:absolute;bottom:-40%;left:50%;transform:translateX(-50%);width:800px;height:500px;
+    background:radial-gradient(circle,rgba(201,162,75,.12),transparent 62%);pointer-events:none}
+  footer .wrap{position:relative;z-index:1}
+  footer h2{font-size:clamp(2.2rem,6vw,4rem);margin-bottom:16px}
+  footer .sub{color:var(--muted);max-width:460px;margin:0 auto 38px}
+  .foot-links{display:flex;gap:30px;justify-content:center;flex-wrap:wrap;margin:56px 0 26px}
+  .foot-links a{font-size:.78rem;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);position:relative}
+  .foot-links a::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:0;background:var(--gold);transition:width .35s}
+  .foot-links a:hover{color:var(--cream)}
+  .foot-links a:hover::after{width:100%}
+  .copy{color:var(--muted-2);font-size:.74rem;letter-spacing:.1em}
+
+  /* ---------- TOAST ---------- */
+  .toast{
+    position:fixed;left:50%;bottom:34px;transform:translate(-50%,20px);
+    background:var(--panel);border:1px solid var(--gold);color:var(--cream);
+    padding:14px 26px;border-radius:3px;font-size:.85rem;letter-spacing:.05em;
+    opacity:0;pointer-events:none;transition:opacity .35s,transform .35s;z-index:80;
+    box-shadow:0 20px 40px -16px rgba(0,0,0,.8);
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .reveal{opacity:1;transform:none}
+    .hero .eyebrow,.hero h1,.hero .sub,.hero-cta,.hero-visual{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="brand">ONYX</div>
+  <div class="nav-links">
+    <a href="#collection">Collection</a>
+    <a href="#histoire">Histoire</a>
+    <a href="#contact">Contact</a>
+    <a href="#" class="lang" id="langBtn">FR</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <span class="eyebrow">Montres &amp; Bijoux — Homme</span>
+    <h1>L'élégance<br><span class="gold-text">n'attend pas.</span></h1>
+    <p class="sub">Des montres et bijoux d'exception pour l'homme qui n'a rien à prouver — et tout à affirmer. Le luxe, rendu accessible.</p>
+    <div class="hero-cta">
+      <a href="#collection" class="btn">Découvrir la collection <span class="arrow">→</span></a>
+      <a href="#contact" class="btn btn-ghost">Commander sur WhatsApp</a>
+    </div>
+    <div class="hero-visual" id="heroVisual"></div>
+  </div>
+  <div class="scroll-cue"><span>Défiler</span><span class="bar"></span></div>
+</header>
+
+<!-- FEATURES -->
+<section class="features section-pad" id="collection">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Pourquoi ONYX</span>
+      <h2>Le raffinement, sans le compromis.</h2>
+    </div>
+    <div class="feat-grid">
+      <article class="card reveal">
+        <div class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        </div>
+        <h3>Livraison partout au Maroc</h3>
+        <p>Commandé chez vous, livré chez vous. Expédition suivie, de Tanger à Dakhla, sous 10 à 15 jours.</p>
+      </article>
+      <article class="card reveal">
+        <div class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><path d="M2.5 9.5h19M6 14.5h4"/></svg>
+        </div>
+        <h3>Paiement à votre main</h3>
+        <p>Carte bancaire, cash à la livraison ou virement — vous payez comme vous voulez, en toute confiance.</p>
+      </article>
+      <article class="card reveal">
+        <div class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3 6 9l6 12 6-12-3-6"/></svg>
+        </div>
+        <h3>Luxe accessible</h3>
+        <p>Des pièces premium, sélectionnées pour leur finition et leur présence — sans le prix des grandes maisons.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STORY -->
+<section class="story section-pad" id="histoire">
+  <div class="mark" id="storyMark">O</div>
+  <div class="wrap reveal">
+    <span class="eyebrow">L'histoire</span>
+    <h2>ONYX, ce n'est pas un accessoire.<br>C'est une signature.</h2>
+    <p>Une pierre noire, rare et profonde, portée depuis l'Antiquité par ceux qui imposent le respect sans dire un mot. C'est cette idée qui fait naître ONYX.</p>
+    <p>Nous sélectionnons chaque pièce pour sa finition, son poids, sa présence au poignet — le détail qui distingue un accessoire d'un véritable signe distinctif. Pas de superflu, pas de prix gonflés : seulement le luxe, rendu accessible.</p>
+    <div class="sig">« L'homme moderne, taillé pour les grands soirs comme pour le quotidien. »</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRODUCT (scroll-linked) -->
+<section class="product section-pad" id="product">
+  <div class="wrap">
+    <div class="prod-grid">
+      <div class="prod-stage reveal">
+        <div class="ring"></div>
+        <div class="prod-watch" id="prodWatch"></div>
+      </div>
+      <div class="prod-info reveal">
+        <span class="eyebrow">Pièce signature</span>
+        <h2>ONYX Chrono Noir</h2>
+        <div class="price" id="prodPrice">1 290 DH <small>1 890 DH</small></div>
+        <p>Boîtier acier, verre saphir, mouvement précis. Une présence franche au poignet, pensée pour durer.</p>
+        <p style="color:var(--gold);font-size:.8rem;letter-spacing:.15em;text-transform:uppercase" id="swLabel">Finition : Or</p>
+        <div class="swatches" id="swatches"></div>
+        <button class="btn" id="addBtn">Ajouter au panier <span class="arrow">→</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STATS -->
+<section class="stats section-pad">
+  <div class="wrap">
+    <div class="stat reveal"><div class="val gold-text" data-count="2500" data-suffix="+">0</div><div class="lab">Clients comblés</div></div>
+    <div class="stat reveal"><div class="val gold-text" data-count="98" data-suffix="%">0</div><div class="lab">Taux de satisfaction</div></div>
+    <div class="stat reveal"><div class="val gold-text" data-count="10" data-suffix="-15 j">0</div><div class="lab">Délai de livraison</div></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="glow"></div>
+  <div class="wrap">
+    <span class="eyebrow">Prêt à passer commande ?</span>
+    <h2>Portez votre signature.</h2>
+    <p class="sub">Commandez en un message. On s'occupe du reste — livraison, paiement, suivi.</p>
+    <a href="#" class="btn" id="waBtn">Commander maintenant <span class="arrow">→</span></a>
+    <div class="foot-links">
+      <a href="#collection">Collection</a>
+      <a href="#histoire">Histoire</a>
+      <a href="#" id="waLink2">WhatsApp</a>
+      <a href="#" id="waLink3">Paiement cash / virement</a>
+    </div>
+    <div class="copy">© 2026 ONYX · Montres &amp; Bijoux · Maroc — Tous droits réservés</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">Ajouté au panier ✦</div>
+
+<script>
+/* ============ CONFIG (à personnaliser) ============ */
+const WHATSAPP = "212600000000"; // ← À REMPLACER par ton vrai numéro (format international sans +)
+const WA_TEXT = encodeURIComponent("Bonjour ONYX, je souhaite commander l'ONYX Chrono Noir. Merci de me préciser les modalités de paiement (carte / cash à la livraison / virement).");
+const waURL = `https://wa.me/${WHATSAPP}?text=${WA_TEXT}`;
+["waBtn","waLink2","waLink3"].forEach(id=>{const e=document.getElementById(id);if(e)e.href=waURL;e&&e.setAttribute("target","_blank");e&&e.setAttribute("rel","noopener");});
+
+/* ============ VISUELS SVG (placeholder — remplacés par les vraies photos ensuite) ============ */
+function watchSVG(m){ // m = [light, mid, dark]
+  return `<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="mt" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="${m[0]}"/><stop offset=".5" stop-color="${m[1]}"/><stop offset="1" stop-color="${m[2]}"/>
+      </linearGradient>
+      <radialGradient id="dl" cx=".5" cy=".4" r=".7"><stop offset="0" stop-color="#1c1c1c"/><stop offset="1" stop-color="#050505"/></radialGradient>
+    </defs>
+    <rect x="352" y="60" width="96" height="200" rx="24" fill="url(#mt)"/>
+    <rect x="352" y="540" width="96" height="200" rx="24" fill="url(#mt)"/>
+    <circle cx="400" cy="400" r="185" fill="url(#mt)"/>
+    <circle cx="400" cy="400" r="150" fill="url(#dl)"/>
+    <rect x="580" y="385" width="34" height="30" rx="6" fill="url(#mt)"/>
+    <g fill="url(#mt)"><rect x="394" y="272" width="12" height="34" rx="4"/><rect x="394" y="494" width="12" height="34" rx="4"/><rect x="272" y="394" width="34" height="12" rx="4"/><rect x="494" y="394" width="34" height="12" rx="4"/></g>
+    <rect x="395" y="300" width="10" height="110" rx="5" fill="${m[0]}" transform="rotate(35 400 400)"/>
+    <rect x="395" y="330" width="8" height="80" rx="4" fill="${m[0]}" transform="rotate(-70 400 400)"/>
+    <circle cx="400" cy="400" r="12" fill="url(#mt)"/>
+  </svg>`;
+}
+const METALS = {
+  or:     {label:"Or",       sw:"linear-gradient(135deg,#f6e3a1,#d4af37,#8a6d1f)", m:["#f6e3a1","#d4af37","#8a6d1f"], price:"1 290 DH"},
+  argent: {label:"Argent",   sw:"linear-gradient(135deg,#f0f0f0,#b9bec4,#6f757c)", m:["#f0f0f0","#b9bec4","#6f757c"], price:"1 190 DH"},
+  rose:   {label:"Or rose",  sw:"linear-gradient(135deg,#f7d4c4,#d98a6a,#8a4a34)", m:["#f7d4c4","#d98a6a","#8a4a34"], price:"1 290 DH"},
+  noir:   {label:"Noir mat", sw:"linear-gradient(135deg,#5a5a5a,#2a2a2a,#0a0a0a)", m:["#5a5a5a","#2a2a2a","#0a0a0a"], price:"1 390 DH"},
+};
+
+document.getElementById("heroVisual").innerHTML = watchSVG(METALS.or.m);
+const prodWatch = document.getElementById("prodWatch");
+const prodPrice = document.getElementById("prodPrice");
+const swLabel = document.getElementById("swLabel");
+
+/* swatches + changement de couleur (cœur de la démo) */
+const swWrap = document.getElementById("swatches");
+let current = "or";
+function renderProduct(key){
+  const v = METALS[key]; current = key;
+  prodWatch.innerHTML = watchSVG(v.m);
+  prodWatch.animate([{opacity:.3,transform:'scale(.96)'},{opacity:1,transform:'scale(1)'}],{duration:400,easing:'ease'});
+  prodPrice.innerHTML = `${v.price} <small>1 890 DH</small>`;
+  swLabel.textContent = `Finition : ${v.label}`;
+  [...swWrap.children].forEach(c=>c.classList.toggle("active",c.dataset.k===key));
+}
+Object.entries(METALS).forEach(([k,v])=>{
+  const b=document.createElement("button");
+  b.className="sw";b.dataset.k=k;b.style.background=v.sw;
+  b.setAttribute("aria-label",v.label);b.title=v.label;
+  b.onclick=()=>renderProduct(k);
+  swWrap.appendChild(b);
+});
+renderProduct("or");
+
+/* ============ TOAST + ajout panier ============ */
+const toast=document.getElementById("toast");
+let tT;
+function showToast(msg){toast.textContent=msg;toast.classList.add("show");clearTimeout(tT);tT=setTimeout(()=>toast.classList.remove("show"),2200);}
+document.getElementById("addBtn").onclick=()=>showToast(`ONYX Chrono Noir · ${METALS[current].label} — ajouté au panier ✦`);
+
+/* ============ NAV scroll state ============ */
+const nav=document.getElementById("nav");
+addEventListener("scroll",()=>nav.classList.toggle("scrolled",scrollY>40),{passive:true});
+
+/* ============ Lang (stub — FR/EN/AR à venir) ============ */
+document.getElementById("langBtn").onclick=(e)=>{e.preventDefault();showToast("Version multilingue (FR · AR · EN) — bientôt disponible");};
+
+/* ============ Reveal on scroll ============ */
+const io=new IntersectionObserver((ents)=>{
+  ents.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}});
+},{threshold:.18});
+document.querySelectorAll(".reveal").forEach((el,i)=>{el.style.transitionDelay=(i%3*90)+"ms";io.observe(el);});
+
+/* ============ Counters ============ */
+const countIO=new IntersectionObserver((ents)=>{
+  ents.forEach(en=>{
+    if(!en.isIntersecting)return;
+    const el=en.target,target=+el.dataset.count,suf=el.dataset.suffix||"";
+    const dur=1600,t0=performance.now();
+    (function step(t){
+      const p=Math.min((t-t0)/dur,1),e=1-Math.pow(1-p,3);
+      el.textContent=Math.round(target*e).toLocaleString("fr-FR")+suf;
+      if(p<1)requestAnimationFrame(step);
+    })(t0);
+    countIO.unobserve(el);
+  });
+},{threshold:.6});
+document.querySelectorAll("[data-count]").forEach(el=>countIO.observe(el));
+
+/* ============ SCROLL-LINKED : rotation continue de la montre + parallax lettre ============ */
+const prodSection=document.getElementById("product");
+const storyMark=document.getElementById("storyMark");
+const reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+let ticking=false;
+function onScroll(){
+  if(reduce)return;
+  const vh=innerHeight;
+  // montre : progression -1..1 dans le viewport → rotation continue
+  const r=prodSection.getBoundingClientRect();
+  const prog=(vh - r.top)/(vh + r.height); // 0 quand la section entre, 1 quand elle sort
+  prodWatch.style.transform=`rotate(${(prog*300-40).toFixed(1)}deg)`;
+  // lettre O de la story : parallax
+  if(storyMark){
+    const sr=storyMark.parentElement.getBoundingClientRect();
+    storyMark.style.transform=`translateX(-50%) translateY(${((vh-sr.top)*0.06).toFixed(1)}px)`;
+  }
+  ticking=false;
+}
+addEventListener("scroll",()=>{if(!ticking){requestAnimationFrame(onScroll);ticking=true;}},{passive:true});
+onScroll();
+</script>
+</body>
+</html>
