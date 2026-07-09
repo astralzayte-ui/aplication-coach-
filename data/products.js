@@ -4,65 +4,69 @@
 //
 //  Pour AJOUTER un produit :
 //   1. Mets ses photos dans  public/products/<slug>/  (une par couleur)
-//      ex : public/products/ma-montre/or.jpg , argent.jpg , noir.jpg
+//      ex : public/products/ma-montre/bleu.jpg , noir.jpg , blanc.jpg
 //   2. Copie un bloc ci-dessous, change les valeurs, et c'est en ligne.
 //
 //  Champs :
 //   - slug      : identifiant unique dans l'URL (sans espace ni accent)
 //   - category  : "montres" ou "bijoux"
 //   - name      : nom du produit dans les 3 langues
-//   - price     : prix (nombre)
-//   - currency  : "EUR" (ou "MAD", "USD"...)
-//   - featured  : true = mis en avant sur la page d'accueil
+//   - price     : prix (nombre) ; currency : "MAD" (DH), "EUR", "USD"...
+//   - featured  : true = mis en avant sur l'accueil ("Pièce du moment")
+//   - rating / reviews : note et nombre d'avis (facultatif)
 //   - colors    : liste des finitions. Chaque couleur a SA photo.
-//       - id     : identifiant court (sans espace)
-//       - label  : nom de la couleur dans les 3 langues
-//       - swatch : couleur de la pastille (code hex) — juste pour le rond cliquable
-//       - image  : chemin de la photo pour CETTE couleur
+//       - id / label / swatch (pastille) / image (chemin de la photo)
 //   - sizes     : liste des tailles (laisse [] s'il n'y a pas de taille)
 // =====================================================================
 
 export const PRODUCTS = [
   {
-    slug: "bague-onyx",
-    category: "bijoux",
-    name: { fr: "Bague ONYX", en: "ONYX Ring", ar: "خاتم ONYX" },
-    description: {
-      fr: "Bague homme au design épuré, portée par une pierre taillée. Acier inoxydable, finition premium.",
-      en: "Men's ring with a clean design, set with a cut stone. Stainless steel, premium finish.",
-      ar: "خاتم رجالي بتصميم أنيق مرصّع بحجر مصقول. فولاذ مقاوم للصدأ بلمسة فاخرة.",
+    slug: "montre-onyx-eclipse",
+    category: "montres",
+    name: {
+      fr: "Montre ONYX Éclipse",
+      en: "ONYX Eclipse Watch",
+      ar: "ساعة ONYX إكليبس",
     },
-    price: 89,
-    currency: "EUR",
+    description: {
+      fr: "La signature ONYX. Boîtier octogonal noir et cadran nacré noir & blanc à chiffres arabes. Mouvement à quartz, bracelet en acier noir. L'élégance dans le contraste.",
+      en: "The ONYX signature. Black octagonal case with a black-and-white mother-of-pearl dial and Eastern-Arabic numerals. Quartz movement, black steel bracelet. Elegance in contrast.",
+      ar: "توقيع ONYX. علبة مثمّنة سوداء ومينا صدفي أبيض وأسود بأرقام عربية. حركة كوارتز وسوار فولاذي أسود. الأناقة في التباين.",
+    },
+    price: 399,
+    currency: "MAD",
     featured: true,
-    rating: 4.8,
-    reviews: 127,
+    rating: 5.0,
+    reviews: 41,
     colors: [
-      { id: "or", label: { fr: "Or", en: "Gold", ar: "ذهبي" }, swatch: "#C6A15B", image: "/products/bague-onyx/or.svg" },
-      { id: "or-rose", label: { fr: "Or rose", en: "Rose gold", ar: "ذهبي وردي" }, swatch: "#C98E77", image: "/products/bague-onyx/or-rose.svg" },
-      { id: "argent", label: { fr: "Argent", en: "Silver", ar: "فضي" }, swatch: "#B9BEC6", image: "/products/bague-onyx/argent.svg" },
-      { id: "noir", label: { fr: "Noir", en: "Black", ar: "أسود" }, swatch: "#26262A", image: "/products/bague-onyx/noir.svg" },
+      { id: "noir", label: { fr: "Noir", en: "Black", ar: "أسود" }, swatch: "#141416", image: "/products/montre-onyx-eclipse/noir.svg" },
     ],
-    sizes: ["56", "58", "60", "62"],
+    sizes: [],
   },
   {
-    slug: "montre-onyx-classic",
+    slug: "montre-onyx-arabesque",
     category: "montres",
-    name: { fr: "Montre ONYX Classic", en: "ONYX Classic Watch", ar: "ساعة ONYX كلاسيك" },
-    description: {
-      fr: "Montre habillée aux lignes intemporelles. Mouvement à quartz, bracelet assorti à la finition.",
-      en: "A dress watch with timeless lines. Quartz movement, strap matched to the finish.",
-      ar: "ساعة أنيقة بخطوط خالدة. حركة كوارتز وسوار متناسق مع اللون.",
+    name: {
+      fr: "Montre ONYX Arabesque",
+      en: "ONYX Arabesque Watch",
+      ar: "ساعة ONYX أرابيسك",
     },
-    price: 129,
-    currency: "EUR",
+    description: {
+      fr: "Montre homme au boîtier octogonal et cadran à chiffres arabes, posé sur un motif marbré unique. Mouvement à quartz, bracelet assorti à la finition. Une pièce affirmée, portée avec caractère.",
+      en: "Men's watch with an octagonal case and an Eastern-Arabic numeral dial over a unique marbled pattern. Quartz movement, bracelet matched to the finish. A bold piece, worn with character.",
+      ar: "ساعة رجالية بعلبة مثمّنة ومينا بأرقام عربية على نقشٍ رخامي مميّز. حركة كوارتز وسوار متناسق مع اللون. قطعة جريئة تُلبس بشخصية.",
+    },
+    price: 399,
+    currency: "MAD",
     featured: false,
     rating: 4.9,
-    reviews: 83,
+    reviews: 58,
     colors: [
-      { id: "or", label: { fr: "Or", en: "Gold", ar: "ذهبي" }, swatch: "#C6A15B", image: "/products/montre-onyx-classic/or.svg" },
-      { id: "argent", label: { fr: "Argent", en: "Silver", ar: "فضي" }, swatch: "#B9BEC6", image: "/products/montre-onyx-classic/argent.svg" },
-      { id: "noir", label: { fr: "Noir", en: "Black", ar: "أسود" }, swatch: "#26262A", image: "/products/montre-onyx-classic/noir.svg" },
+      { id: "bleu", label: { fr: "Bleu", en: "Blue", ar: "أزرق" }, swatch: "#2E4A8B", image: "/products/montre-onyx-arabesque/bleu.svg" },
+      { id: "noir", label: { fr: "Noir", en: "Black", ar: "أسود" }, swatch: "#1A1A1D", image: "/products/montre-onyx-arabesque/noir.svg" },
+      { id: "turquoise", label: { fr: "Turquoise", en: "Turquoise", ar: "فيروزي" }, swatch: "#45C7B8", image: "/products/montre-onyx-arabesque/turquoise.svg" },
+      { id: "blanc", label: { fr: "Blanc", en: "White", ar: "أبيض" }, swatch: "#EDEDEA", image: "/products/montre-onyx-arabesque/blanc.svg" },
+      { id: "rose", label: { fr: "Rose", en: "Pink", ar: "وردي" }, swatch: "#F0348B", image: "/products/montre-onyx-arabesque/rose.svg" },
     ],
     sizes: [],
   },

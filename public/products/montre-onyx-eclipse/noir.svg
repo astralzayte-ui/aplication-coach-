@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <defs>
+    <linearGradient id="c" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#26262A"/><stop offset="1" stop-color="#141416"/></linearGradient>
+    <clipPath id="dial"><circle cx="300" cy="300" r="118"/></clipPath>
+  </defs>
+  <rect width="600" height="600" fill="#0E0D0C"/>
+  <g fill="url(#c)">
+    <rect x="250" y="46"  width="100" height="52" rx="12"/>
+    <rect x="252" y="104" width="96"  height="46" rx="10"/>
+    <rect x="250" y="502" width="100" height="52" rx="12"/>
+    <rect x="252" y="450" width="96"  height="46" rx="10"/>
+  </g>
+  <polygon points="300,140 407,183 450,300 407,417 300,460 193,417 150,300 193,183"
+    fill="url(#c)" stroke="rgba(255,255,255,.16)" stroke-width="3"/>
+  <g clip-path="url(#dial)">
+    <rect x="182" y="182" width="236" height="236" fill="#0B0B0D"/>
+    <path d="M182 300 Q250 210 300 250 Q360 300 300 360 Q250 410 182 372 Z" fill="#EDEEF0"/>
+    <path d="M300 182 Q330 250 300 250 Q270 250 300 182Z" fill="#F2F3F5" opacity=".8"/>
+    <ellipse cx="255" cy="300" rx="70" ry="95" fill="#F0F1F3" opacity=".92"/>
+  </g>
+  <circle cx="300" cy="300" r="118" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="2"/>
+  <g font-family="Arial" font-size="26" fill="#C9CBD0">
+    <text x="300" y="214" text-anchor="middle">١٢</text>
+    <text x="388" y="309" text-anchor="middle">٣</text>
+    <text x="300" y="398" text-anchor="middle">٦</text>
+    <text x="212" y="309" text-anchor="middle">٩</text>
+  </g>
+  <line x1="300" y1="300" x2="300" y2="232" stroke="#F5F5F5" stroke-width="6" stroke-linecap="round"/>
+  <line x1="300" y1="300" x2="346" y2="332" stroke="#F5F5F5" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="300" cy="300" r="7" fill="#F5F5F5"/>
+  <rect x="448" y="288" width="16" height="24" rx="4" fill="url(#c)"/>
+</svg>

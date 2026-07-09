@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <defs>
+    <linearGradient id="d" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#DFF6F1"/><stop offset="1" stop-color="#49C6B6"/></linearGradient>
+    <linearGradient id="c" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#49C6B6" stop-opacity=".82"/><stop offset="1" stop-color="#49C6B6"/></linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="#0E0D0C"/>
+  <!-- bracelet -->
+  <g fill="url(#c)">
+    <rect x="250" y="46"  width="100" height="52" rx="12"/>
+    <rect x="252" y="104" width="96"  height="46" rx="10"/>
+    <rect x="250" y="502" width="100" height="52" rx="12"/>
+    <rect x="252" y="450" width="96"  height="46" rx="10"/>
+  </g>
+  <!-- boîtier octogonal -->
+  <polygon points="300,140 407,183 450,300 407,417 300,460 193,417 150,300 193,183"
+    fill="url(#c)" stroke="rgba(255,255,255,.14)" stroke-width="3"/>
+  <circle cx="300" cy="300" r="118" fill="url(#d)"/>
+  <circle cx="300" cy="300" r="118" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="2"/>
+  <!-- index -->
+  <g stroke="#2E9488" stroke-width="5" stroke-linecap="round">
+    <line x1="300" y1="196" x2="300" y2="212"/>
+    <line x1="404" y1="300" x2="388" y2="300"/>
+    <line x1="300" y1="404" x2="300" y2="388"/>
+    <line x1="196" y1="300" x2="212" y2="300"/>
+  </g>
+  <!-- aiguilles -->
+  <line x1="300" y1="300" x2="300" y2="228" stroke="#0E5B52" stroke-width="7" stroke-linecap="round"/>
+  <line x1="300" y1="300" x2="352" y2="330" stroke="#0E5B52" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="300" cy="300" r="8" fill="#0E5B52"/>
+  <!-- couronne -->
+  <rect x="448" y="288" width="16" height="24" rx="4" fill="url(#c)"/>
+</svg>
