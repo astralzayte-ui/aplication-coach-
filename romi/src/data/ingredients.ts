@@ -162,6 +162,16 @@ export const INGREDIENTS: Ingredient[] = [
   { id: 'curcuma', name: { fr: 'curcuma (flacon)', ar: 'كركم' }, emoji: '🧂', category: 'epices', unit: 'g', basePrice: 55, soldBy: 'pack', packSize: 40, allergens: [] },
   { id: 'garam_masala', name: { fr: 'garam masala (flacon)', ar: 'غارام ماسالا' }, emoji: '🧂', category: 'epices', unit: 'g', basePrice: 70, soldBy: 'pack', packSize: 40, allergens: [] },
   { id: 'ras_el_hanout', name: { fr: 'ras el hanout (flacon)', ar: 'رأس الحانوت' }, emoji: '🧂', category: 'epices', unit: 'g', basePrice: 75, soldBy: 'pack', packSize: 40, allergens: [] },
+
+  // ===== Batch 2 pantry =====
+  { id: 'cabillaud', name: { fr: 'cabillaud', ar: 'سمك القد' }, emoji: '🐟', category: 'viande_poisson', unit: 'g', basePrice: 90, soldBy: 'weight', allergens: ['poisson'] },
+  { id: 'germes_soja', name: { fr: 'germes de soja', ar: 'براعم الصويا' }, emoji: '🌱', category: 'fruits_legumes', unit: 'g', basePrice: 20, soldBy: 'weight', allergens: ['soja'] },
+  { id: 'mascarpone', name: { fr: 'mascarpone', ar: 'ماسكاربوني' }, emoji: '🧀', category: 'cremerie', unit: 'g', basePrice: 90, soldBy: 'pack', packSize: 250, allergens: ['lactose'] },
+  { id: 'biscuits', name: { fr: 'biscuits (paquet)', ar: 'بسكويت' }, emoji: '🍪', category: 'epicerie', unit: 'g', basePrice: 100, soldBy: 'pack', packSize: 200, allergens: ['gluten'] },
+  { id: 'chapelure', name: { fr: 'chapelure (paquet)', ar: 'بقسماط' }, emoji: '🍞', category: 'epicerie', unit: 'g', basePrice: 60, soldBy: 'pack', packSize: 250, allergens: ['gluten'] },
+  { id: 'farine_sarrasin', name: { fr: 'farine de sarrasin (paquet)', ar: 'دقيق الحنطة السوداء' }, emoji: '🌾', category: 'epicerie', unit: 'g', basePrice: 25, soldBy: 'pack', packSize: 1000, allergens: [] },
+  { id: 'sesame', name: { fr: 'graines de sésame (paquet)', ar: 'سمسم' }, emoji: '🌰', category: 'epicerie', unit: 'g', basePrice: 60, soldBy: 'pack', packSize: 150, allergens: [] },
+  { id: 'feuille_riz', name: { fr: 'galettes de riz (x20)', ar: 'ورق الأرز' }, emoji: '🫓', category: 'boulangerie', unit: 'piece', basePrice: 0.9, gramsPerPiece: 10, soldBy: 'pack', packSize: 20, allergens: [] },
 ]
 
 export const getIngredient = (id: string): Ingredient | undefined =>
