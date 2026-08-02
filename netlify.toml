@@ -1,0 +1,13 @@
+# Netlify config for the Romi app (lives in the /romi subfolder).
+# When you connect this GitHub repo to Netlify, these settings are picked up
+# automatically — no manual configuration needed.
+[build]
+  base = "romi"
+  command = "npm run build"
+  publish = "dist"
+
+# Single-page app fallback (safe even though the app uses hash routing).
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
