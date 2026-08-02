@@ -109,6 +109,7 @@ export const STRINGS: Record<string, Loc> = {
   faits: { fr: 'faits', ar: 'مُنجز' },
   copy: { fr: 'Copier', ar: 'نسخ' },
   copied: { fr: 'Copié !', ar: 'تم النسخ !' },
+  share_short: { fr: 'Partager', ar: 'مشاركة' },
   share_list: { fr: 'Partager la liste', ar: 'مشاركة اللائحة' },
 
   // Fridge

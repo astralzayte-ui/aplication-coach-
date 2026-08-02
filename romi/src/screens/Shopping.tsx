@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 import { getStore } from '../data/stores'
@@ -12,7 +12,6 @@ export default function Shopping() {
   const nav = useNavigate()
   const store = getStore(state.onboarding.storeId)
   const meals = state.plan ?? []
-  const [copied, setCopied] = useState(false)
 
   const groups = useMemo(() => buildShoppingList(meals, state.onboarding), [meals, state.onboarding])
   const total = shoppingCount(groups)
@@ -24,12 +23,10 @@ export default function Shopping() {
 
   const text = () => shoppingListToText(groups, lang, store.name)
 
-  const copy = async () => {
-    try { await navigator.clipboard.writeText(text()); setCopied(true); setTimeout(() => setCopied(false), 1600) } catch { /* ignore */ }
-  }
   const share = async () => {
     const t2 = text()
     if (navigator.share) { try { await navigator.share({ title: 'Romi', text: t2 }); return } catch { /* ignore */ } }
+    if (navigator.clipboard) { try { await navigator.clipboard.writeText(t2) } catch { /* ignore */ } }
     window.open(`https://wa.me/?text=${encodeURIComponent(t2)}`, '_blank')
   }
 
@@ -48,7 +45,7 @@ export default function Shopping() {
       <div style={{ display: 'flex', gap: 10, marginTop: 16, flexWrap: 'wrap' }}>
         <span className="pill pill-green">🛒 {t('for_store')} {store.name}</span>
         <span className="pill" style={{ background: '#f4c33f', color: '#5a4410' }}>{done} / {total} {t('faits')}</span>
-        <button className="pill pill-amber" onClick={copy}><Icon name="copy" size={15} /> {copied ? t('copied') : t('copy')}</button>
+        <button className="pill pill-amber" onClick={share}><Icon name="share" size={15} /> {t('share_short')}</button>
       </div>
 
       <div style={{ marginTop: 18 }}>

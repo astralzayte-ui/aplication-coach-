@@ -123,7 +123,7 @@ export default function Plan() {
                   <RecipePhoto recipe={recipe} height={50} radius={12} />
                 </div>
                 <div style={{ flex: 1, padding: '10px 6px 10px 0', minWidth: 0 }}>
-                  <div style={{ fontWeight: 700, fontSize: 15, lineHeight: 1.15, overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as any }}>
+                  <div style={{ fontWeight: 700, fontSize: 15, lineHeight: 1.2, color: 'var(--ink)', wordBreak: 'break-word' }}>
                     {recipe.name[lang]}
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, color: 'var(--muted)', fontSize: 12, margin: '5px 0 7px' }}>
