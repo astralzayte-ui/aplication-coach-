@@ -30,12 +30,31 @@ export function currentPlanDays(start: Date): number {
   return 8 - dow // Mon → 7, Tue → 6
 }
 
+export const FULL_DAY_LABELS: Loc[] = [
+  { fr: 'Lundi', ar: 'الإثنين' },
+  { fr: 'Mardi', ar: 'الثلاثاء' },
+  { fr: 'Mercredi', ar: 'الأربعاء' },
+  { fr: 'Jeudi', ar: 'الخميس' },
+  { fr: 'Vendredi', ar: 'الجمعة' },
+  { fr: 'Samedi', ar: 'السبت' },
+  { fr: 'Dimanche', ar: 'الأحد' },
+]
+
 /** Day-of-week labels for `n` consecutive days starting at `startISO`. */
 export function dayLabelsFrom(startISO: string | null, n: number): Loc[] {
   if (!startISO || n <= 0) return []
   const startDow = isoDow(new Date(startISO)) // 1..7
   const out: Loc[] = []
   for (let i = 0; i < n; i++) out.push(DAY_LABELS[(startDow - 1 + i) % 7])
+  return out
+}
+
+/** Full day-of-week labels ("Lundi"…) for `n` days from `startISO`. */
+export function fullDayLabelsFrom(startISO: string | null, n: number): Loc[] {
+  if (!startISO || n <= 0) return []
+  const startDow = isoDow(new Date(startISO))
+  const out: Loc[] = []
+  for (let i = 0; i < n; i++) out.push(FULL_DAY_LABELS[(startDow - 1 + i) % 7])
   return out
 }
 

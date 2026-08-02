@@ -24,8 +24,7 @@ export default function Ambiance() {
         {AMBIANCE.map((a) => (
           <button
             key={a.id}
-            className={`tile ${sel.includes(a.id) ? 'selected' : ''}`}
-            style={{ background: a.bg }}
+            className={`option tall ${sel.includes(a.id) ? 'selected' : ''}`}
             onClick={() => toggle(a.id)}
           >
             <span className="emoji">{a.emoji}</span>

@@ -22,8 +22,8 @@ export default function Loading() {
   }, [])
 
   return (
-    <div className="screen" style={{ background: 'linear-gradient(180deg,#e7f1e6,#f4eee6 45%)', justifyContent: 'center' }}>
-      <h1 className="title" style={{ textAlign: 'center', color: 'var(--green-900)', fontSize: 32, whiteSpace: 'pre-line', marginTop: 10 }}>
+    <div className="screen" style={{ background: 'radial-gradient(120% 80% at 50% 0%, #16211b, var(--bg) 60%)', justifyContent: 'center' }}>
+      <h1 className="title" style={{ textAlign: 'center', color: 'var(--accent)', fontSize: 32, whiteSpace: 'pre-line', marginTop: 10 }}>
         {t('loading_title')}
       </h1>
       <p className="subtitle" style={{ textAlign: 'center', maxWidth: 300, margin: '4px auto 30px' }}>{t('loading_sub')}</p>
@@ -58,9 +58,9 @@ export default function Loading() {
               <div style={{
                 width: 30, height: 30, borderRadius: 999, flexShrink: 0,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: status === 'done' ? 'var(--green-500)' : '#fff',
-                border: status === 'done' ? 'none' : '3px solid ' + (status === 'progress' ? 'var(--green-500)' : '#e0d8cb'),
-                color: '#fff',
+                background: status === 'done' ? 'var(--accent)' : 'transparent',
+                border: status === 'done' ? 'none' : '3px solid ' + (status === 'progress' ? 'var(--accent)' : 'var(--line-2)'),
+                color: 'var(--accent-ink)',
               }}>
                 {status === 'done' && <Icon name="check" size={16} />}
               </div>

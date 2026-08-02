@@ -68,6 +68,26 @@ export const INGREDIENTS: Ingredient[] = [
   { id: 'curry', name: { fr: 'curry (flacon)', ar: 'كاري (علبة)' }, emoji: '🧂', category: 'epices', unit: 'g', basePrice: 80, soldBy: 'pack', packSize: 40, allergens: [] },
   { id: 'paprika', name: { fr: 'paprika (flacon)', ar: 'بابريكا (علبة)' }, emoji: '🧂', category: 'epices', unit: 'g', basePrice: 60, soldBy: 'pack', packSize: 40, allergens: [] },
   { id: 'cumin', name: { fr: 'cumin (flacon)', ar: 'كمون (علبة)' }, emoji: '🧂', category: 'epices', unit: 'g', basePrice: 70, soldBy: 'pack', packSize: 40, allergens: [] },
+
+  // --- Premium & extended range (price study, MAD) ---
+  { id: 'entrecote', name: { fr: 'entrecôte de bœuf', ar: 'شريحة لحم بقري' }, emoji: '🥩', category: 'viande_poisson', unit: 'g', basePrice: 150, soldBy: 'weight', allergens: [] },
+  { id: 'agneau', name: { fr: "épaule d'agneau", ar: 'لحم الضأن' }, emoji: '🍖', category: 'viande_poisson', unit: 'g', basePrice: 120, soldBy: 'weight', allergens: [] },
+  { id: 'dinde', name: { fr: 'escalope de dinde', ar: 'صدر ديك رومي' }, emoji: '🍗', category: 'viande_poisson', unit: 'g', basePrice: 65, soldBy: 'weight', allergens: [] },
+  { id: 'crevettes', name: { fr: 'crevettes', ar: 'قمرون' }, emoji: '🦐', category: 'viande_poisson', unit: 'g', basePrice: 140, soldBy: 'weight', allergens: ['crustace'] },
+  { id: 'dorade', name: { fr: 'dorade', ar: 'قرب' }, emoji: '🐟', category: 'viande_poisson', unit: 'g', basePrice: 75, soldBy: 'weight', allergens: ['poisson'] },
+  { id: 'saumon_fume', name: { fr: 'saumon fumé', ar: 'سلمون مدخن' }, emoji: '🍣', category: 'viande_poisson', unit: 'g', basePrice: 220, soldBy: 'pack', packSize: 100, allergens: ['poisson'] },
+  { id: 'champignon', name: { fr: 'champignons', ar: 'فطر' }, emoji: '🍄', category: 'fruits_legumes', unit: 'g', basePrice: 22, soldBy: 'weight', allergens: [] },
+  { id: 'patate_douce', name: { fr: 'patate douce', ar: 'بطاطا حلوة' }, emoji: '🍠', category: 'fruits_legumes', unit: 'g', basePrice: 10, soldBy: 'weight', allergens: [] },
+  { id: 'roquette', name: { fr: 'roquette (sachet)', ar: 'جرجير (كيس)' }, emoji: '🥬', category: 'fruits_legumes', unit: 'piece', basePrice: 6, gramsPerPiece: 125, soldBy: 'piece', allergens: [] },
+  { id: 'fruits_rouges', name: { fr: 'fruits rouges', ar: 'فواكه حمراء' }, emoji: '🍓', category: 'fruits_legumes', unit: 'g', basePrice: 60, soldBy: 'pack', packSize: 250, allergens: [] },
+  { id: 'mozzarella', name: { fr: 'mozzarella', ar: 'موزاريلا' }, emoji: '🧀', category: 'cremerie', unit: 'g', basePrice: 100, soldBy: 'pack', packSize: 125, allergens: ['lactose'] },
+  { id: 'feta', name: { fr: 'feta', ar: 'جبن فيتا' }, emoji: '🧀', category: 'cremerie', unit: 'g', basePrice: 90, soldBy: 'pack', packSize: 200, allergens: ['lactose'] },
+  { id: 'semoule', name: { fr: 'semoule (paquet)', ar: 'سميد (كيس)' }, emoji: '🌾', category: 'epicerie', unit: 'g', basePrice: 14, soldBy: 'pack', packSize: 500, allergens: ['gluten'] },
+  { id: 'farine', name: { fr: 'farine (paquet)', ar: 'دقيق (كيس)' }, emoji: '🌾', category: 'epicerie', unit: 'g', basePrice: 8, soldBy: 'pack', packSize: 1000, allergens: ['gluten'] },
+  { id: 'haricots_rouges', name: { fr: 'haricots rouges (boîte)', ar: 'لوبيا حمراء (علبة)' }, emoji: '🫘', category: 'epicerie', unit: 'g', basePrice: 18, soldBy: 'pack', packSize: 400, allergens: [] },
+  { id: 'dattes', name: { fr: 'dattes (paquet)', ar: 'تمر (كيس)' }, emoji: '🌴', category: 'epicerie', unit: 'g', basePrice: 45, soldBy: 'pack', packSize: 250, allergens: [] },
+  { id: 'pain_burger', name: { fr: 'pains burger (x4)', ar: 'خبز برغر (x4)' }, emoji: '🍔', category: 'boulangerie', unit: 'piece', basePrice: 2.5, gramsPerPiece: 70, soldBy: 'pack', packSize: 4, allergens: ['gluten'] },
+  { id: 'pate_pizza', name: { fr: 'pâte à pizza', ar: 'عجينة بيتزا' }, emoji: '🍕', category: 'boulangerie', unit: 'g', basePrice: 25, soldBy: 'pack', packSize: 260, allergens: ['gluten'] },
 ]
 
 export const getIngredient = (id: string): Ingredient | undefined =>

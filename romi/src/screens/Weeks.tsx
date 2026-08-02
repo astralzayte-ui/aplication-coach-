@@ -36,7 +36,7 @@ export default function Weeks() {
               <div style={{ fontWeight: 700, fontSize: 16 }}>{r.title}</div>
               <div style={{ fontSize: 13, color: 'var(--muted)' }}>{r.locked ? t('locked_hint') : t('week_current')}</div>
             </div>
-            {r.locked && <span className="tag" style={{ background: '#fff2d6', color: '#9a6b15' }}>🔒</span>}
+            {r.locked && <span className="tag" style={{ background: 'var(--accent-soft)', color: 'var(--accent)' }}>🔒</span>}
           </button>
         ))}
       </div>

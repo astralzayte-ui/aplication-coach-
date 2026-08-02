@@ -293,6 +293,251 @@ export const RECIPES: Recipe[] = [
     ],
     equipment: [], vegetarian: true, pescetarian: true, glutenFree: true, lactoseFree: true, pregnancySafe: true,
   },
+
+  // ===== Premium mains (for higher budgets) =====
+  {
+    id: 'entrecote_frites', name: { fr: 'Entrecôte grillée & frites', ar: 'شريحة لحم مشوية وبطاطس' },
+    emoji: '🥩', mealType: 'diner', tags: ['proteine', 'gourmand'], timeMin: 30,
+    kcal: 720, protein: 42, carbs: 45, fat: 38,
+    ingredients: [
+      { id: 'entrecote', qtyPerPerson: 180 }, { id: 'pomme_terre', qtyPerPerson: 220 },
+      { id: 'beurre', qtyPerPerson: 12 }, { id: 'huile_olive', qtyPerPerson: 8 },
+    ],
+    equipment: ['grill', 'four'], vegetarian: false, pescetarian: false, glutenFree: true, lactoseFree: false, pregnancySafe: true,
+  },
+  {
+    id: 'crevettes_ail', name: { fr: "Crevettes à l'ail & riz", ar: 'قمرون بالثوم والأرز' },
+    emoji: '🦐', mealType: 'diner', tags: ['du_monde', 'proteine', 'gourmand'], timeMin: 25,
+    kcal: 480, protein: 34, carbs: 55, fat: 12,
+    ingredients: [
+      { id: 'crevettes', qtyPerPerson: 150 }, { id: 'riz', qtyPerPerson: 70 },
+      { id: 'ail', qtyPerPerson: 2 }, { id: 'huile_olive', qtyPerPerson: 10 },
+      { id: 'citron', qtyPerPerson: 0.5 }, { id: 'coriandre', qtyPerPerson: 0.3 },
+    ],
+    equipment: ['plaque'], vegetarian: false, pescetarian: true, glutenFree: true, lactoseFree: true, pregnancySafe: true,
+  },
+  {
+    id: 'poke_saumon', name: { fr: 'Poke bowl saumon avocat', ar: 'بوكي بول بالسلمون والأفوكادو' },
+    emoji: '🍱', mealType: 'diner', tags: ['du_monde', 'healthy', 'proteine'], timeMin: 20,
+    kcal: 560, protein: 30, carbs: 55, fat: 22,
+    ingredients: [
+      { id: 'saumon', qtyPerPerson: 120 }, { id: 'riz', qtyPerPerson: 70 },
+      { id: 'avocat', qtyPerPerson: 0.5 }, { id: 'concombre', qtyPerPerson: 0.3 },
+      { id: 'sauce_soja', qtyPerPerson: 10 }, { id: 'chou_rouge', qtyPerPerson: 40 },
+    ],
+    equipment: [], vegetarian: false, pescetarian: true, glutenFree: false, lactoseFree: true, pregnancySafe: false,
+  },
+  {
+    id: 'dorade_four', name: { fr: 'Dorade rôtie & légumes', ar: 'قرب مشوي بالخضر' },
+    emoji: '🐟', mealType: 'diner', tags: ['healthy', 'proteine'], timeMin: 35,
+    kcal: 490, protein: 36, carbs: 30, fat: 22,
+    ingredients: [
+      { id: 'dorade', qtyPerPerson: 200 }, { id: 'courgette', qtyPerPerson: 1 },
+      { id: 'tomate', qtyPerPerson: 1 }, { id: 'pomme_terre', qtyPerPerson: 150 },
+      { id: 'huile_olive', qtyPerPerson: 10 }, { id: 'citron', qtyPerPerson: 0.5 },
+    ],
+    equipment: ['four'], vegetarian: false, pescetarian: true, glutenFree: true, lactoseFree: true, pregnancySafe: true,
+  },
+  {
+    id: 'tajine_agneau', name: { fr: "Tajine d'agneau aux amandes", ar: 'طاجين لحم باللوز' },
+    emoji: '🍲', mealType: 'diner', tags: ['du_monde', 'gourmand', 'famille'], timeMin: 70,
+    kcal: 640, protein: 34, carbs: 35, fat: 38,
+    ingredients: [
+      { id: 'agneau', qtyPerPerson: 160 }, { id: 'oignon', qtyPerPerson: 1 },
+      { id: 'carotte', qtyPerPerson: 1 }, { id: 'amandes', qtyPerPerson: 15 },
+      { id: 'miel', qtyPerPerson: 10 }, { id: 'huile_olive', qtyPerPerson: 10 },
+    ],
+    equipment: ['mijoteuse', 'plaque'], vegetarian: false, pescetarian: false, glutenFree: true, lactoseFree: true, pregnancySafe: true,
+  },
+  {
+    id: 'couscous_legumes', name: { fr: 'Couscous légumes & agneau', ar: 'كسكس بالخضر واللحم' },
+    emoji: '🍲', mealType: 'diner', tags: ['du_monde', 'famille', 'gourmand'], timeMin: 60,
+    kcal: 620, protein: 30, carbs: 70, fat: 22,
+    ingredients: [
+      { id: 'agneau', qtyPerPerson: 120 }, { id: 'semoule', qtyPerPerson: 90 },
+      { id: 'carotte', qtyPerPerson: 1 }, { id: 'courgette', qtyPerPerson: 1 },
+      { id: 'pois_chiche', qtyPerPerson: 40 }, { id: 'oignon', qtyPerPerson: 0.5 },
+    ],
+    equipment: ['plaque'], vegetarian: false, pescetarian: false, glutenFree: false, lactoseFree: true, pregnancySafe: true,
+  },
+  {
+    id: 'pates_saumon', name: { fr: 'Pâtes crémeuses au saumon', ar: 'معكرونة كريمية بالسلمون' },
+    emoji: '🍝', mealType: 'diner', tags: ['gourmand', 'proteine'], timeMin: 25,
+    kcal: 620, protein: 30, carbs: 65, fat: 24,
+    ingredients: [
+      { id: 'pates', qtyPerPerson: 90 }, { id: 'saumon', qtyPerPerson: 100 },
+      { id: 'creme', qtyPerPerson: 40 }, { id: 'epinard', qtyPerPerson: 40 },
+      { id: 'ail', qtyPerPerson: 1 }, { id: 'parmesan', qtyPerPerson: 10 },
+    ],
+    equipment: ['plaque'], vegetarian: false, pescetarian: true, glutenFree: false, lactoseFree: false, pregnancySafe: true,
+  },
+  {
+    id: 'risotto_champignons', name: { fr: 'Risotto aux champignons', ar: 'ريزوتو بالفطر' },
+    emoji: '🍚', mealType: 'diner', tags: ['gourmand', 'vegetarien'], timeMin: 40,
+    kcal: 560, protein: 14, carbs: 70, fat: 22,
+    ingredients: [
+      { id: 'riz', qtyPerPerson: 80 }, { id: 'champignon', qtyPerPerson: 120 },
+      { id: 'oignon', qtyPerPerson: 0.5 }, { id: 'parmesan', qtyPerPerson: 20 },
+      { id: 'creme', qtyPerPerson: 20 }, { id: 'beurre', qtyPerPerson: 10 },
+    ],
+    equipment: ['plaque'], vegetarian: true, pescetarian: true, glutenFree: true, lactoseFree: false, pregnancySafe: true,
+  },
+  {
+    id: 'dinde_creme', name: { fr: 'Escalope de dinde à la crème', ar: 'إسكالوب الديك الرومي بالكريمة' },
+    emoji: '🍗', mealType: 'diner', tags: ['proteine', 'rapide'], timeMin: 25,
+    kcal: 520, protein: 38, carbs: 45, fat: 18,
+    ingredients: [
+      { id: 'dinde', qtyPerPerson: 130 }, { id: 'creme', qtyPerPerson: 40 },
+      { id: 'champignon', qtyPerPerson: 80 }, { id: 'riz', qtyPerPerson: 70 },
+      { id: 'oignon', qtyPerPerson: 0.5 },
+    ],
+    equipment: ['plaque'], vegetarian: false, pescetarian: false, glutenFree: true, lactoseFree: false, pregnancySafe: true,
+  },
+  {
+    id: 'burger_maison', name: { fr: 'Burger maison & frites', ar: 'برغر منزلي وبطاطس' },
+    emoji: '🍔', mealType: 'diner', tags: ['gourmand', 'famille'], timeMin: 30,
+    kcal: 720, protein: 34, carbs: 60, fat: 38,
+    ingredients: [
+      { id: 'viande_hachee', qtyPerPerson: 125 }, { id: 'pain_burger', qtyPerPerson: 1 },
+      { id: 'tomate', qtyPerPerson: 0.5 }, { id: 'salade', qtyPerPerson: 0.2 },
+      { id: 'oignon', qtyPerPerson: 0.3 }, { id: 'pomme_terre', qtyPerPerson: 180 },
+    ],
+    equipment: ['plaque', 'four'], vegetarian: false, pescetarian: false, glutenFree: false, lactoseFree: true, pregnancySafe: true,
+  },
+  {
+    id: 'pizza_maison', name: { fr: 'Pizza maison légumes', ar: 'بيتزا منزلية بالخضر' },
+    emoji: '🍕', mealType: 'diner', tags: ['gourmand', 'famille', 'vegetarien'], timeMin: 30,
+    kcal: 620, protein: 22, carbs: 72, fat: 24,
+    ingredients: [
+      { id: 'pate_pizza', qtyPerPerson: 130 }, { id: 'tomate_concassee', qtyPerPerson: 80 },
+      { id: 'mozzarella', qtyPerPerson: 60 }, { id: 'champignon', qtyPerPerson: 50 },
+      { id: 'poivron', qtyPerPerson: 0.3 },
+    ],
+    equipment: ['four'], vegetarian: true, pescetarian: true, glutenFree: false, lactoseFree: false, pregnancySafe: true,
+  },
+  {
+    id: 'chili_con_carne', name: { fr: 'Chili con carne', ar: 'تشيلي كون كارني' },
+    emoji: '🌶️', mealType: 'diner', tags: ['du_monde', 'famille', 'proteine'], timeMin: 40,
+    kcal: 560, protein: 30, carbs: 62, fat: 18,
+    ingredients: [
+      { id: 'viande_hachee', qtyPerPerson: 100 }, { id: 'haricots_rouges', qtyPerPerson: 90 },
+      { id: 'tomate_concassee', qtyPerPerson: 100 }, { id: 'oignon', qtyPerPerson: 0.5 },
+      { id: 'poivron', qtyPerPerson: 0.3 }, { id: 'riz', qtyPerPerson: 60 }, { id: 'cumin', qtyPerPerson: 2 },
+    ],
+    equipment: ['plaque'], vegetarian: false, pescetarian: false, glutenFree: true, lactoseFree: true, pregnancySafe: true,
+  },
+  {
+    id: 'buddha_bowl', name: { fr: 'Buddha bowl patate douce', ar: 'بودا بول بالبطاطا الحلوة' },
+    emoji: '🥗', mealType: 'diner', tags: ['healthy', 'vegetarien'], timeMin: 35,
+    kcal: 520, protein: 18, carbs: 65, fat: 18,
+    ingredients: [
+      { id: 'quinoa', qtyPerPerson: 70 }, { id: 'patate_douce', qtyPerPerson: 150 },
+      { id: 'pois_chiche', qtyPerPerson: 60 }, { id: 'avocat', qtyPerPerson: 0.5 },
+      { id: 'epinard', qtyPerPerson: 40 }, { id: 'huile_olive', qtyPerPerson: 8 },
+    ],
+    equipment: ['four'], vegetarian: true, pescetarian: true, glutenFree: true, lactoseFree: true, pregnancySafe: true,
+  },
+
+  // ===== Lunches =====
+  {
+    id: 'salade_cesar', name: { fr: 'Salade César au poulet', ar: 'سلطة سيزر بالدجاج' },
+    emoji: '🥗', mealType: 'dejeuner', tags: ['proteine', 'gourmand'], timeMin: 20,
+    kcal: 480, protein: 34, carbs: 25, fat: 26,
+    ingredients: [
+      { id: 'poulet', qtyPerPerson: 100 }, { id: 'salade', qtyPerPerson: 0.5 },
+      { id: 'pain', qtyPerPerson: 1 }, { id: 'parmesan', qtyPerPerson: 15 },
+      { id: 'oeuf', qtyPerPerson: 1 }, { id: 'huile_olive', qtyPerPerson: 8 },
+    ],
+    equipment: ['plaque'], vegetarian: false, pescetarian: false, glutenFree: false, lactoseFree: false, pregnancySafe: true,
+  },
+  {
+    id: 'shakshuka', name: { fr: 'Shakshuka', ar: 'شكشوكة' },
+    emoji: '🍳', mealType: 'dejeuner', tags: ['du_monde', 'vegetarien', 'proteine'], timeMin: 25,
+    kcal: 380, protein: 20, carbs: 28, fat: 20,
+    ingredients: [
+      { id: 'oeuf', qtyPerPerson: 2 }, { id: 'tomate_concassee', qtyPerPerson: 120 },
+      { id: 'poivron', qtyPerPerson: 0.5 }, { id: 'oignon', qtyPerPerson: 0.5 },
+      { id: 'cumin', qtyPerPerson: 2 }, { id: 'pain', qtyPerPerson: 1 },
+    ],
+    equipment: ['plaque'], vegetarian: true, pescetarian: true, glutenFree: false, lactoseFree: true, pregnancySafe: true,
+  },
+  {
+    id: 'soupe_legumes', name: { fr: 'Soupe de légumes maison', ar: 'شوربة الخضر' },
+    emoji: '🥣', mealType: 'dejeuner', tags: ['healthy', 'vegetarien', 'famille'], timeMin: 30,
+    kcal: 260, protein: 8, carbs: 40, fat: 8,
+    ingredients: [
+      { id: 'carotte', qtyPerPerson: 2 }, { id: 'pomme_terre', qtyPerPerson: 150 },
+      { id: 'courgette', qtyPerPerson: 1 }, { id: 'oignon', qtyPerPerson: 1 },
+      { id: 'ail', qtyPerPerson: 1 }, { id: 'huile_olive', qtyPerPerson: 8 },
+    ],
+    equipment: ['plaque'], vegetarian: true, pescetarian: true, glutenFree: true, lactoseFree: true, pregnancySafe: true,
+  },
+  {
+    id: 'wrap_veggie', name: { fr: 'Wrap veggie houmous', ar: 'راب نباتي بالحمص' },
+    emoji: '🌯', mealType: 'dejeuner', tags: ['healthy', 'vegetarien', 'rapide'], timeMin: 15,
+    kcal: 440, protein: 16, carbs: 55, fat: 18,
+    ingredients: [
+      { id: 'tortilla', qtyPerPerson: 1.5 }, { id: 'pois_chiche', qtyPerPerson: 70 },
+      { id: 'avocat', qtyPerPerson: 0.3 }, { id: 'salade', qtyPerPerson: 0.3 },
+      { id: 'tomate', qtyPerPerson: 0.5 }, { id: 'carotte', qtyPerPerson: 1 },
+    ],
+    equipment: [], vegetarian: true, pescetarian: true, glutenFree: false, lactoseFree: true, pregnancySafe: true,
+  },
+
+  // ===== Breakfasts =====
+  {
+    id: 'pancakes_banane', name: { fr: 'Pancakes banane', ar: 'بانكيك بالموز' },
+    emoji: '🥞', mealType: 'petit_dejeuner', tags: ['gourmand', 'famille'], timeMin: 20,
+    kcal: 420, protein: 14, carbs: 62, fat: 12,
+    ingredients: [
+      { id: 'farine', qtyPerPerson: 60 }, { id: 'oeuf', qtyPerPerson: 1 },
+      { id: 'lait', qtyPerPerson: 120 }, { id: 'banane', qtyPerPerson: 1 },
+      { id: 'miel', qtyPerPerson: 10 },
+    ],
+    equipment: ['plaque'], vegetarian: true, pescetarian: true, glutenFree: false, lactoseFree: false, pregnancySafe: true,
+  },
+  {
+    id: 'smoothie_bowl', name: { fr: 'Smoothie bowl fruits rouges', ar: 'سموذي بول بالفواكه الحمراء' },
+    emoji: '🍓', mealType: 'petit_dejeuner', tags: ['healthy', 'gourmand'], timeMin: 10,
+    kcal: 360, protein: 12, carbs: 55, fat: 10,
+    ingredients: [
+      { id: 'fruits_rouges', qtyPerPerson: 100 }, { id: 'banane', qtyPerPerson: 1 },
+      { id: 'yaourt', qtyPerPerson: 1 }, { id: 'flocons_avoine', qtyPerPerson: 30 },
+      { id: 'miel', qtyPerPerson: 10 }, { id: 'amandes', qtyPerPerson: 15 },
+    ],
+    equipment: [], vegetarian: true, pescetarian: true, glutenFree: false, lactoseFree: false, pregnancySafe: true,
+  },
+  {
+    id: 'toast_saumon', name: { fr: 'Toast saumon fumé & avocat', ar: 'توست بالسلمون المدخن والأفوكادو' },
+    emoji: '🥑', mealType: 'petit_dejeuner', tags: ['gourmand', 'healthy'], timeMin: 10,
+    kcal: 420, protein: 22, carbs: 30, fat: 22,
+    ingredients: [
+      { id: 'pain', qtyPerPerson: 2 }, { id: 'saumon_fume', qtyPerPerson: 40 },
+      { id: 'avocat', qtyPerPerson: 0.5 }, { id: 'citron', qtyPerPerson: 0.2 },
+    ],
+    equipment: [], vegetarian: false, pescetarian: true, glutenFree: false, lactoseFree: true, pregnancySafe: false,
+  },
+
+  // ===== Snacks =====
+  {
+    id: 'fromage_blanc_miel', name: { fr: 'Fromage blanc, miel & amandes', ar: 'جبن أبيض بالعسل واللوز' },
+    emoji: '🍶', mealType: 'gouter', tags: ['healthy', 'proteine'], timeMin: 3,
+    kcal: 260, protein: 16, carbs: 22, fat: 12,
+    ingredients: [
+      { id: 'fromage_frais', qtyPerPerson: 100 }, { id: 'miel', qtyPerPerson: 10 },
+      { id: 'amandes', qtyPerPerson: 15 },
+    ],
+    equipment: [], vegetarian: true, pescetarian: true, glutenFree: true, lactoseFree: false, pregnancySafe: true,
+  },
+  {
+    id: 'dattes_amandes', name: { fr: 'Dattes & amandes', ar: 'تمر ولوز' },
+    emoji: '🌴', mealType: 'gouter', tags: ['healthy', 'rapide'], timeMin: 2,
+    kcal: 240, protein: 6, carbs: 38, fat: 10,
+    ingredients: [
+      { id: 'dattes', qtyPerPerson: 40 }, { id: 'amandes', qtyPerPerson: 20 },
+    ],
+    equipment: [], vegetarian: true, pescetarian: true, glutenFree: true, lactoseFree: true, pregnancySafe: true,
+  },
 ]
 
 export const recipeMap: Record<string, Recipe> = Object.fromEntries(

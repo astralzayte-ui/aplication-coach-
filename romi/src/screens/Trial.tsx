@@ -27,7 +27,7 @@ export default function Trial() {
       </h1>
       <p className="subtitle" style={{ maxWidth: 320, margin: '4px auto 30px' }}>{t('trial_ended_sub')}</p>
 
-      <div style={{ background: '#fff', borderRadius: 18, padding: 18, boxShadow: 'var(--shadow)', textAlign: 'start', marginBottom: 24 }}>
+      <div className="card" style={{ borderRadius: 18, padding: 18, textAlign: 'start', marginBottom: 24 }}>
         {['✅ ' + (lang === 'ar' ? 'كل الأسابيع مفتوحة' : 'toutes les semaines débloquées'),
           '✅ ' + (lang === 'ar' ? 'لائحة مشتريات بالأثمنة' : 'listes de courses chiffrées'),
           '✅ ' + (lang === 'ar' ? 'تغيير الأطباق بلا حدود' : 'plats modifiables à volonté')].map((l, i) => (

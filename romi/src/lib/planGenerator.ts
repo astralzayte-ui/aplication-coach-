@@ -85,6 +85,7 @@ export function generatePlan(o: OnboardingState, planDays: number, opts: GenOpti
   const usage: Record<string, number> = {} // how many times each recipe is already used
 
   for (let day = 0; day < planDays; day++) {
+    const usedToday = new Set<string>() // never repeat a recipe within the same day
     for (const mealType of o.mealsPerDay) {
       const inPool = poolFor(mealType)
       let pool = eligible.filter((r) => inPool(r) && !avoid.has(r.id))
@@ -92,21 +93,23 @@ export function generatePlan(o: OnboardingState, planDays: number, opts: GenOpti
 
       const recent = recentByType[mealType] ?? []
       const scored = pool.map((r) => {
+        const dayPenalty = usedToday.has(r.id) ? -100 : 0
         const recentPenalty = recent.includes(r.id) ? -6 : 0
         // strong variety penalty so no single recipe dominates the week
-        const usagePenalty = -(usage[r.id] ?? 0) * 1.6
+        const usagePenalty = -(usage[r.id] ?? 0) * 2.4
         // small reward for reusing a PACK already in the basket (real saving),
         // never for pieces/weight (that would just repeat dishes)
         const packReuse = r.ingredients.filter(
           (ri) => chosenPacks.has(ri.id) && ingredientMap[ri.id]?.soldBy === 'pack',
         ).length * 0.18
         const jitter = rng() * 0.8
-        return { r, s: ambianceScore(r, o.ambiance) + packReuse + recentPenalty + usagePenalty + jitter }
+        return { r, s: ambianceScore(r, o.ambiance) + packReuse + dayPenalty + recentPenalty + usagePenalty + jitter }
       })
       scored.sort((a, b) => b.s - a.s)
       const pick = scored[0].r
 
       meals.push({ dayIndex: day, mealType, recipeId: pick.id, people: o.people })
+      usedToday.add(pick.id)
       usage[pick.id] = (usage[pick.id] ?? 0) + 1
       pick.ingredients.forEach((ri) => {
         if (ingredientMap[ri.id]?.soldBy === 'pack') chosenPacks.add(ri.id)
@@ -115,10 +118,49 @@ export function generatePlan(o: OnboardingState, planDays: number, opts: GenOpti
     }
   }
 
-  // budget pass on the REAL shopping total (whole packs)
+  // 1) bring it under budget, then 2) use the budget (upgrade to premium dishes)
   const balanced = rebalance(meals, o, () => false)
-  const totalCost = shoppingTotal(buildShoppingList(balanced, o))
-  return { meals: balanced, overBudget: totalCost > o.budget, totalCost }
+  const filled = fillBudget(balanced, o)
+  const totalCost = shoppingTotal(buildShoppingList(filled, o))
+  return { meals: filled, overBudget: totalCost > o.budget, totalCost }
+}
+
+/**
+ * Uses the available budget: while well under it, upgrades the cheapest main
+ * to a pricier eligible recipe (without exceeding budget and without creating
+ * duplicates), so a 2000 DH budget yields premium dishes and a tight budget
+ * stays modest.
+ */
+export function fillBudget(meals: PlannedMeal[], o: OnboardingState): PlannedMeal[] {
+  const store = getStore(o.storeId)
+  const target = o.budget
+  const eligible = RECIPES.filter((r) => isEligible(r, o))
+  const cost = (ms: PlannedMeal[]) => shoppingTotal(buildShoppingList(ms, o))
+  const cur = meals.slice()
+  let guard = 0
+  while (cost(cur) < target * 0.9 && guard < 40) {
+    guard++
+    const slots = cur
+      .map((m, i) => ({ m, i, r: recipeMap[m.recipeId] }))
+      .filter((x) => x.r && (x.r.mealType === 'diner' || x.r.mealType === 'dejeuner'))
+      .sort((a, b) => recipePricePerPerson(a.r!, store) - recipePricePerPerson(b.r!, store))
+    let applied = false
+    for (const slot of slots) {
+      const inPool = poolFor(slot.m.mealType)
+      const others = cur.filter((_, i) => i !== slot.i)
+      let bestId: string | null = null
+      let bestCost = cost(cur)
+      for (const r of eligible) {
+        if (!inPool(r) || r.id === slot.m.recipeId) continue
+        if (others.some((mm) => mm.recipeId === r.id)) continue // keep variety
+        const c = cost([...others, { ...slot.m, recipeId: r.id }])
+        if (c <= target && c > bestCost) { bestCost = c; bestId = r.id }
+      }
+      if (bestId) { cur[slot.i] = { ...slot.m, recipeId: bestId }; applied = true; break }
+    }
+    if (!applied) break
+  }
+  return cur
 }
 
 /**
@@ -151,6 +193,7 @@ export function rebalance(
     let bestCost = cost(cur)
     for (const r of eligible) {
       if (!inPool(r) || r.id === target.m.recipeId) continue
+      if (others.some((mm) => mm.recipeId === r.id)) continue // keep variety
       const c = cost([...others, { ...target.m, recipeId: r.id }])
       if (c < bestCost) { bestCost = c; bestId = r.id }
     }

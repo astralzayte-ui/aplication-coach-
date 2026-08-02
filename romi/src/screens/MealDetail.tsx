@@ -65,10 +65,10 @@ export default function MealDetail() {
       {/* hero */}
       <div style={{ position: 'relative' }}>
         <RecipePhoto recipe={recipe} height={300} radius={0} />
-        <button onClick={() => nav(-1)} className="back-btn" style={{ position: 'absolute', top: 16, insetInlineStart: 16, background: '#fff' }}>
+        <button onClick={() => nav(-1)} className="back-btn" style={{ position: 'absolute', top: 16, insetInlineStart: 16, background: 'rgba(10,12,13,.7)', backdropFilter: 'blur(6px)', color: '#fff' }}>
           <Icon name="back" size={20} />
         </button>
-        <button onClick={() => setShowSwap(true)} style={{ position: 'absolute', top: 16, insetInlineEnd: 16, background: '#fff', borderRadius: 999, padding: '9px 16px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6, boxShadow: 'var(--shadow-sm)' }}>
+        <button onClick={() => setShowSwap(true)} style={{ position: 'absolute', top: 16, insetInlineEnd: 16, background: 'rgba(10,12,13,.7)', backdropFilter: 'blur(6px)', color: '#fff', borderRadius: 999, padding: '9px 16px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>
           <Icon name="refresh" size={16} /> {t('change')}
         </button>
       </div>
@@ -92,7 +92,7 @@ export default function MealDetail() {
         <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--muted)', margin: '10px 0 4px' }}>{t('nutri_note')}</div>
 
         {allergens.length > 0 && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#9a6b15', fontSize: 14, fontWeight: 600, marginTop: 8 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--warn)', fontSize: 14, fontWeight: 600, marginTop: 8 }}>
             ⚠️ {allergens.map((a) => ALLERGEN_LABEL[a][lang]).join(', ')}
           </div>
         )}

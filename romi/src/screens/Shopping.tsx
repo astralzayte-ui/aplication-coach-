@@ -44,7 +44,7 @@ export default function Shopping() {
 
       <div style={{ display: 'flex', gap: 10, marginTop: 16, flexWrap: 'wrap' }}>
         <span className="pill pill-green">🛒 {t('for_store')} {store.name}</span>
-        <span className="pill" style={{ background: '#f4c33f', color: '#5a4410' }}>{done} / {total} {t('faits')}</span>
+        <span className="pill" style={{ background: 'var(--warn)', color: '#1a1400', fontWeight: 700 }}>{done} / {total} {t('faits')}</span>
         <button className="pill pill-amber" onClick={share}><Icon name="share" size={15} /> {t('share_short')}</button>
       </div>
 
@@ -68,7 +68,7 @@ export default function Shopping() {
                         ))}
                       </div>
                     </div>
-                    <div style={{ width: 26, height: 26, borderRadius: 999, border: on ? 'none' : '2px solid #d9d0c4', background: on ? 'var(--green-500)' : 'transparent', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <div style={{ width: 26, height: 26, borderRadius: 999, border: on ? 'none' : '2px solid var(--line-2)', background: on ? 'var(--accent)' : 'transparent', color: 'var(--accent-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                       {on && <Icon name="check" size={15} />}
                     </div>
                   </div>

@@ -27,7 +27,7 @@ export default function Settings() {
 
   const ActionRow = ({ icon, title, sub, onClick, danger }: { icon: string; title: string; sub: string; onClick: () => void; danger?: boolean }) => (
     <button onClick={onClick} className="card" style={{ display: 'flex', alignItems: 'center', gap: 14, padding: 16, width: '100%', textAlign: 'start', marginBottom: 10 }}>
-      <div style={{ width: 42, height: 42, borderRadius: 12, background: danger ? '#fdecea' : 'var(--green-soft)', color: danger ? '#c0392b' : 'var(--green-700)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ width: 42, height: 42, borderRadius: 12, background: danger ? 'var(--danger-soft)' : 'var(--accent-soft)', color: danger ? 'var(--danger)' : 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Icon name={icon} size={20} />
       </div>
       <div style={{ flex: 1 }}>
@@ -73,7 +73,7 @@ export default function Settings() {
       </button>
 
       <div className="spacer" />
-      <button onClick={() => { logout(); nav('/auth') }} style={{ width: '100%', margin: '20px 0 8px', color: '#c0392b', fontWeight: 700, fontSize: 15 }}>
+      <button onClick={() => { logout(); nav('/auth') }} style={{ width: '100%', margin: '20px 0 8px', color: 'var(--danger)', fontWeight: 700, fontSize: 15 }}>
         {t('logout')}
       </button>
 

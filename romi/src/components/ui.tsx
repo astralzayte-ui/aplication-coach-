@@ -10,6 +10,8 @@ export function Icon({ name, size = 22 }: { name: string; size?: number }) {
   switch (name) {
     case 'back': return <svg {...s}><path d="M15 18l-6-6 6-6" /></svg>
     case 'arrow-up': return <svg {...s}><path d="M12 19V5M5 12l7-7 7 7" /></svg>
+    case 'chevron-down': return <svg {...s}><path d="M6 9l6 6 6-6" /></svg>
+    case 'chevron-up': return <svg {...s}><path d="M6 15l6-6 6 6" /></svg>
     case 'check': return <svg {...s}><path d="M20 6L9 17l-5-5" /></svg>
     case 'plus': return <svg {...s}><path d="M12 5v14M5 12h14" /></svg>
     case 'minus': return <svg {...s}><path d="M5 12h14" /></svg>
