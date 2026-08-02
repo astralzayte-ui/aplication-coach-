@@ -12,7 +12,7 @@ export const STRINGS: Record<string, Loc> = {
   phone_label: { fr: 'numéro de téléphone', ar: 'رقم الهاتف' },
   phone_ph: { fr: '+212 6 12 34 56 78', ar: '+212 6 12 34 56 78' },
   password_label: { fr: 'mot de passe', ar: 'كلمة المرور' },
-  password_ph: { fr: '••••••••', ar: '••••••••' },
+  password_ph: { fr: '•••', ar: '•••' },
   auth_cta: { fr: 'commencer', ar: 'ابدأ' },
   auth_login_cta: { fr: 'se connecter', ar: 'تسجيل الدخول' },
   auth_have_account: { fr: "j'ai déjà un compte", ar: 'لدي حساب بالفعل' },

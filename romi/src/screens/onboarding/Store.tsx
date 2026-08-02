@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { STORES } from '../../data/stores'
 import { Button, TopBar } from '../../components/ui'
+import StoreLogo from '../../components/StoreLogo'
 
 export default function Store() {
   const { t, state, updateOnboarding } = useApp()
@@ -20,12 +21,14 @@ export default function Store() {
             key={s.id}
             onClick={() => updateOnboarding({ storeId: s.id })}
             style={{
-              borderRadius: 18, minHeight: 108, color: s.fg, background: s.bg, fontWeight: 800, fontSize: 18,
-              border: selected === s.id ? '4px solid var(--ink)' : '4px solid transparent',
-              transition: 'transform .08s', boxShadow: 'var(--shadow-sm)',
+              borderRadius: 18, minHeight: 118, background: '#fff',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 12,
+              border: selected === s.id ? '3px solid var(--green-500)' : '3px solid transparent',
+              boxShadow: selected === s.id ? '0 8px 18px rgba(20,83,45,.15)' : 'var(--shadow)',
+              transition: 'transform .08s, border-color .15s',
             }}
           >
-            {s.name}
+            <StoreLogo id={s.id} />
           </button>
         ))}
       </div>

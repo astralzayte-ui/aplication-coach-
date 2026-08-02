@@ -142,6 +142,7 @@ html[dir='rtl'] .back-btn svg { transform: scaleX(-1); }
   box-shadow: var(--shadow-sm);
 }
 .input:focus { border-color: var(--green-500); }
+.input::placeholder { color: #cdc5b9; opacity: 1; font-weight: 400; letter-spacing: 2px; }
 .input-err { color: #d0492f; font-size: 13px; margin: 6px 4px 0; }
 
 /* ---- Stepper / big number ---- */
