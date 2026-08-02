@@ -1,18 +1,22 @@
-import type { IngredientCategory, Lang, Loc, OnboardingState, PlannedMeal } from '../data/types'
+import type { IngredientCategory, Lang, Loc, OnboardingState, PlannedMeal, SoldBy } from '../data/types'
 import { ingredientMap } from '../data/ingredients'
 import { recipeMap } from '../data/recipes'
 import { getStore } from '../data/stores'
-import { ingredientCost, fmtMAD } from './pricing'
+import { priceLine, fmtMAD } from './pricing'
 
 export interface ShoppingItem {
   ingredientId: string
   name: Loc
   emoji: string
   category: IngredientCategory
-  qty: number
+  qty: number // total quantity the recipes need
   unit: 'g' | 'ml' | 'piece'
   gramsPerPiece?: number
-  price: number // MAD, store-adjusted
+  soldBy: SoldBy
+  packSize?: number
+  packs?: number
+  pieces?: number
+  price: number // MAD, store-adjusted, for whole packs/pieces/exact weight
   usedIn: Loc[] // recipe names that need this ingredient
 }
 
@@ -58,6 +62,8 @@ export function buildShoppingList(meals: PlannedMeal[], o: OnboardingState): Sho
           qty,
           unit: ing.unit,
           gramsPerPiece: ing.gramsPerPiece,
+          soldBy: ing.soldBy,
+          packSize: ing.packSize,
           price: 0,
           usedIn: [recipe.name],
         })
@@ -65,10 +71,13 @@ export function buildShoppingList(meals: PlannedMeal[], o: OnboardingState): Sho
     }
   }
 
-  // price each aggregated line
+  // price each aggregated line with pack/piece/weight rules
   for (const item of acc.values()) {
     const ing = ingredientMap[item.ingredientId]!
-    item.price = ingredientCost(ing, item.qty) * store.multiplier
+    const line = priceLine(ing, item.qty, store)
+    item.price = line.price
+    item.packs = line.packs
+    item.pieces = line.pieces
   }
 
   const groups: ShoppingGroup[] = CATEGORY_ORDER.map((category) => ({
@@ -89,22 +98,28 @@ export function shoppingCount(groups: ShoppingGroup[]): number {
   return groups.reduce((s, g) => s + g.items.length, 0)
 }
 
-/** Human quantity label, e.g. "496 g", "1 pièce · ~300 g", "0,2 L". */
-export function qtyLabel(item: ShoppingItem, lang: Lang): string {
+function fmtSize(unit: 'g' | 'ml' | 'piece', qty: number): string {
   const round1 = (n: number) => Math.round(n * 10) / 10
-  if (item.unit === 'piece') {
-    const pieces = round1(item.qty)
-    const grams = item.gramsPerPiece ? Math.round(item.qty * item.gramsPerPiece) : 0
-    const pieceWord = lang === 'ar' ? 'وحدة' : 'pièce'
+  if (unit === 'ml') return qty >= 1000 ? `${round1(qty / 1000)} L` : `${Math.round(qty)} ml`
+  if (unit === 'g') return qty >= 1000 ? `${round1(qty / 1000)} kg` : `${Math.round(qty)} g`
+  return `${round1(qty)}`
+}
+
+/**
+ * What to buy, e.g. "1 × 500 g" for a packet, "3 pièces · ~360 g" for produce,
+ * "480 g" for loose weight.
+ */
+export function qtyLabel(item: ShoppingItem, lang: Lang): string {
+  if (item.soldBy === 'pack' && item.packSize && item.packs) {
+    return `${item.packs} × ${fmtSize(item.unit, item.packSize)}`
+  }
+  if (item.soldBy === 'piece') {
+    const pieces = item.pieces ?? Math.ceil(item.qty)
+    const grams = item.gramsPerPiece ? Math.round(pieces * item.gramsPerPiece) : 0
+    const pieceWord = lang === 'ar' ? 'وحدة' : pieces > 1 ? 'pièces' : 'pièce'
     return grams ? `${pieces} ${pieceWord} · ~${grams} g` : `${pieces} ${pieceWord}`
   }
-  if (item.unit === 'ml') {
-    if (item.qty >= 1000) return `${round1(item.qty / 1000)} L`
-    return `${Math.round(item.qty)} ml`
-  }
-  // grams
-  if (item.qty >= 1000) return `${round1(item.qty / 1000)} kg`
-  return `${Math.round(item.qty)} g`
+  return fmtSize(item.unit, item.qty)
 }
 
 /** Plain-text version for sharing (WhatsApp, etc.). */

@@ -9,6 +9,7 @@ export function Icon({ name, size = 22 }: { name: string; size?: number }) {
   const s = { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const }
   switch (name) {
     case 'back': return <svg {...s}><path d="M15 18l-6-6 6-6" /></svg>
+    case 'arrow-up': return <svg {...s}><path d="M12 19V5M5 12l7-7 7 7" /></svg>
     case 'check': return <svg {...s}><path d="M20 6L9 17l-5-5" /></svg>
     case 'plus': return <svg {...s}><path d="M12 5v14M5 12h14" /></svg>
     case 'minus': return <svg {...s}><path d="M5 12h14" /></svg>

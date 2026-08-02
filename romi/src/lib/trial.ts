@@ -30,6 +30,15 @@ export function currentPlanDays(start: Date): number {
   return 8 - dow // Mon → 7, Tue → 6
 }
 
+/** Day-of-week labels for `n` consecutive days starting at `startISO`. */
+export function dayLabelsFrom(startISO: string | null, n: number): Loc[] {
+  if (!startISO || n <= 0) return []
+  const startDow = isoDow(new Date(startISO)) // 1..7
+  const out: Loc[] = []
+  for (let i = 0; i < n; i++) out.push(DAY_LABELS[(startDow - 1 + i) % 7])
+  return out
+}
+
 export interface TrialInfo {
   start: Date
   end: Date

@@ -1,9 +1,12 @@
 import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 import type { ReactNode } from 'react'
 import { useApp } from './context/AppContext'
+import ScrollAffordance from './components/ScrollAffordance'
 
 import Auth from './screens/Auth'
 import Store from './screens/onboarding/Store'
+import Duration from './screens/onboarding/Duration'
 import Budget from './screens/onboarding/Budget'
 import People from './screens/onboarding/People'
 import Ambiance from './screens/onboarding/Ambiance'
@@ -24,6 +27,9 @@ function Guard({ children }: { children: ReactNode }) {
   const loc = useLocation()
   const path = loc.pathname
 
+  // Always start a new screen at the top (avoids landing mid-scroll).
+  useEffect(() => { window.scrollTo(0, 0) }, [path])
+
   if (!state.loggedIn && path !== '/auth') return <Navigate to="/auth" replace />
   if (state.loggedIn && path === '/auth') {
     return <Navigate to={hasPlan ? '/plan' : '/ob/store'} replace />
@@ -39,10 +45,12 @@ export default function App() {
   return (
     <div className="app">
       <HashRouter>
+        <ScrollAffordance />
         <Guard>
           <Routes>
             <Route path="/auth" element={<Auth />} />
             <Route path="/ob/store" element={<Store />} />
+            <Route path="/ob/duration" element={<Duration />} />
             <Route path="/ob/budget" element={<Budget />} />
             <Route path="/ob/people" element={<People />} />
             <Route path="/ob/ambiance" element={<Ambiance />} />

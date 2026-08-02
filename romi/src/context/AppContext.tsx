@@ -2,7 +2,8 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 import type { ReactNode } from 'react'
 import type { Lang, OnboardingState, PlannedMeal } from '../data/types'
 import { BUDGET_DEFAULT } from '../config'
-import { generatePlan } from '../lib/planGenerator'
+import { generatePlan, rebalance } from '../lib/planGenerator'
+import { buildShoppingList, shoppingTotal } from '../lib/shoppingList'
 import { computeTrial } from '../lib/trial'
 import type { TrialInfo } from '../lib/trial'
 import { makeT } from '../i18n/strings'
@@ -14,6 +15,7 @@ const defaultOnboarding: OnboardingState = {
   password: '',
   storeId: null,
   budget: BUDGET_DEFAULT,
+  durationWeeks: 1,
   people: 2,
   ambiance: [],
   diets: ['aucun'],
@@ -28,6 +30,7 @@ interface AppState {
   loggedIn: boolean
   onboarding: OnboardingState
   plan: PlannedMeal[] | null
+  planDays: number
   planSeed: number
   trialStartISO: string | null
   checked: Record<string, boolean>
@@ -40,6 +43,7 @@ const defaultState: AppState = {
   loggedIn: false,
   onboarding: defaultOnboarding,
   plan: null,
+  planDays: 0,
   planSeed: 1,
   trialStartISO: null,
   checked: {},
@@ -65,6 +69,7 @@ interface AppContextValue {
   logout: () => void
   generate: () => void
   regenerate: () => void
+  resetAll: () => void
   swapMeal: (dayIndex: number, mealType: string, newRecipeId: string) => void
   toggleChecked: (ingredientId: string) => void
   resetChecked: () => void
@@ -139,30 +144,52 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const generate = useCallback(() => {
     setState((s) => {
+      const isFirst = !s.plan // very first plan → free-trial "current week" logic
       const startISO = s.trialStartISO ?? new Date().toISOString()
       const trial = computeTrial(startISO)
+      const weeks = Math.max(1, s.onboarding.durationWeeks || 1)
+      const planDays = isFirst ? trial.planDays : weeks * 7
       const seed = Math.floor(Math.random() * 1e9)
-      const { meals } = generatePlan(s.onboarding, trial.planDays, { seed })
-      return { ...s, plan: meals, planSeed: seed, trialStartISO: startISO, checked: {} }
+      const { meals } = generatePlan(s.onboarding, planDays, { seed })
+      return { ...s, plan: meals, planDays, planSeed: seed, trialStartISO: startISO, checked: {} }
     })
   }, [])
 
   const regenerate = useCallback(() => {
     setState((s) => {
-      if (!s.trialStartISO) return s
-      const trial = computeTrial(s.trialStartISO)
+      if (!s.plan) return s
+      const planDays = s.planDays || 7
       const seed = Math.floor(Math.random() * 1e9)
-      const { meals } = generatePlan(s.onboarding, trial.planDays, { seed })
+      const { meals } = generatePlan(s.onboarding, planDays, { seed })
       return { ...s, plan: meals, planSeed: seed, checked: {} }
     })
+  }, [])
+
+  // "Tout recommencer": wipe the plan and preferences, keep the account & trial,
+  // and send the user back through the questionnaire from the start.
+  const resetAll = useCallback(() => {
+    setState((s) => ({
+      ...s,
+      onboarding: { ...defaultOnboarding, phone: s.onboarding.phone, password: s.onboarding.password },
+      plan: null,
+      planDays: 0,
+      checked: {},
+      fridge: [],
+    }))
   }, [])
 
   const swapMeal = useCallback((dayIndex: number, mealType: string, newRecipeId: string) => {
     setState((s) => {
       if (!s.plan) return s
-      const plan = s.plan.map((m) =>
+      let plan = s.plan.map((m) =>
         m.dayIndex === dayIndex && m.mealType === mealType ? { ...m, recipeId: newRecipeId } : m,
       )
+      // Keep the shopping list coherent: if the swap pushes us over budget,
+      // adjust OTHER dishes (never the one the user just chose) to fit again.
+      const total = shoppingTotal(buildShoppingList(plan, s.onboarding))
+      if (total > s.onboarding.budget) {
+        plan = rebalance(plan, s.onboarding, (m) => m.dayIndex === dayIndex && m.mealType === mealType)
+      }
       return { ...s, plan }
     })
   }, [])
@@ -200,6 +227,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     logout,
     generate,
     regenerate,
+    resetAll,
     swapMeal,
     toggleChecked,
     resetChecked,

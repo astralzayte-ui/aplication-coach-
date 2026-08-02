@@ -24,6 +24,15 @@ export type Allergen =
 
 export type Unit = 'g' | 'piece' | 'ml'
 
+/**
+ * How the item is actually bought in store — drives realistic pricing:
+ *  - 'weight': sold loose by weight (meat, fresh fish, some veg) → pay for the exact grams
+ *  - 'piece' : sold per unit (eggs, most produce) → round up to whole pieces
+ *  - 'pack'  : sold in a fixed package/pot/can (oats, sauces, oil, spices…) →
+ *              you buy whole packs, so the full pack price counts in the budget
+ */
+export type SoldBy = 'weight' | 'piece' | 'pack'
+
 export interface Ingredient {
   id: string
   name: Loc
@@ -34,6 +43,9 @@ export interface Ingredient {
   basePrice: number
   /** ~grams per piece, for piece-based produce shown as "1 pièce · ~300 g". */
   gramsPerPiece?: number
+  soldBy: SoldBy
+  /** For soldBy 'pack': the package size in the ingredient's own unit (g/ml/piece). */
+  packSize?: number
   allergens: Allergen[]
 }
 
@@ -106,7 +118,8 @@ export interface OnboardingState {
   phone: string
   password: string
   storeId: string | null
-  budget: number // MAD per week
+  budget: number // MAD for the chosen duration
+  durationWeeks: number // 1..4 — length of the cycle the budget & plan cover
   people: number
   ambiance: Tag[] // up to 3
   diets: string[] // 'aucun' | 'vegetarien' | 'pescetarien' | 'sans_gluten' | 'sans_lactose' | 'enceinte'

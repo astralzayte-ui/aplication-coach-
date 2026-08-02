@@ -11,7 +11,7 @@ export default function Store() {
 
   return (
     <div className="screen">
-      <TopBar progress={0.14} onBack={() => nav('/auth')} />
+      <TopBar progress={0.14} />
       <h1 className="title">{t('store_title')}</h1>
       <p className="subtitle">{t('store_sub')}</p>
 

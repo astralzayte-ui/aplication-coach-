@@ -4,10 +4,11 @@ import { useApp } from '../context/AppContext'
 import { getStore } from '../data/stores'
 import { buildShoppingList, CATEGORY_LABELS, qtyLabel, shoppingCount, shoppingListToText, shoppingTotal } from '../lib/shoppingList'
 import { fmtMAD } from '../lib/pricing'
+import { dayLabelsFrom } from '../lib/trial'
 import { Icon, Button } from '../components/ui'
 
 export default function Shopping() {
-  const { t, lang, state, toggleChecked, trial } = useApp()
+  const { t, lang, state, toggleChecked } = useApp()
   const nav = useNavigate()
   const store = getStore(state.onboarding.storeId)
   const meals = state.plan ?? []
@@ -16,8 +17,9 @@ export default function Shopping() {
   const groups = useMemo(() => buildShoppingList(meals, state.onboarding), [meals, state.onboarding])
   const total = shoppingCount(groups)
   const done = useMemo(() => groups.reduce((s, g) => s + g.items.filter((i) => state.checked[i.ingredientId]).length, 0), [groups, state.checked])
-  const range = trial && trial.days.length
-    ? `${trial.days[0][lang]} – ${trial.days[trial.days.length - 1][lang]}`.toUpperCase()
+  const days = dayLabelsFrom(state.trialStartISO, state.planDays)
+  const range = days.length
+    ? `${days[0][lang]} – ${days[days.length - 1][lang]}`.toUpperCase()
     : ''
 
   const text = () => shoppingListToText(groups, lang, store.name)

@@ -5,12 +5,11 @@ import { getStore } from '../data/stores'
 import { recipeMap } from '../data/recipes'
 import { MEAL_EMOJI, MEAL_LABELS } from '../i18n/strings'
 import { recipePricePerPerson, fmtMAD, fmtMAD0 } from '../lib/pricing'
-import { totalPlanCost } from '../lib/planGenerator'
-import { buildShoppingList, shoppingCount } from '../lib/shoppingList'
+import { buildShoppingList, shoppingCount, shoppingTotal } from '../lib/shoppingList'
 import { RecipePhoto, Icon, TagChip } from '../components/ui'
 import BottomNav from '../components/BottomNav'
 import { SUPPORT_WHATSAPP } from '../config'
-import { whatsappUrl } from '../lib/trial'
+import { whatsappUrl, dayLabelsFrom } from '../lib/trial'
 import type { PlannedMeal } from '../data/types'
 
 export default function Plan() {
@@ -28,12 +27,12 @@ export default function Plan() {
     return [...m.entries()].sort((a, b) => a[0] - b[0])
   }, [meals])
 
-  const total = useMemo(() => totalPlanCost(meals, state.onboarding), [meals, state.onboarding])
   const groups = useMemo(() => buildShoppingList(meals, state.onboarding), [meals, state.onboarding])
+  const total = useMemo(() => shoppingTotal(groups), [groups])
   const articles = shoppingCount(groups)
   const budget = state.onboarding.budget
   const budgetPct = Math.min(100, (total / budget) * 100)
-  const days = trial?.days ?? []
+  const days = dayLabelsFrom(state.trialStartISO, state.planDays)
 
   // Fire the end-of-trial notification once when the trial has expired.
   useEffect(() => {
@@ -50,7 +49,14 @@ export default function Plan() {
         <div style={{ background: '#fff', borderRadius: 999, padding: '6px 12px', display: 'flex', alignItems: 'center', gap: 6, boxShadow: 'var(--shadow-sm)', fontWeight: 700 }}>
           <Icon name="person" size={16} /> {state.onboarding.people}
         </div>
-        <h1 className="title" style={{ margin: 0, fontSize: 28 }}>{t('plan_title')} 🎉</h1>
+        <h1 className="title" style={{ margin: 0, fontSize: 23, flex: 1 }}>{t('plan_title')} 🎉</h1>
+        <a
+          href={whatsappUrl(SUPPORT_WHATSAPP, lang === 'ar' ? 'مرحبا رومي !' : 'Bonjour Romi !')}
+          target="_blank" rel="noreferrer" aria-label="WhatsApp"
+          style={{ width: 42, height: 42, minWidth: 42, borderRadius: 999, background: 'var(--green-800)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'var(--shadow-sm)' }}
+        >
+          <Icon name="whatsapp" size={22} />
+        </a>
       </div>
 
       {/* trial badge / expired banner */}
@@ -75,10 +81,9 @@ export default function Plan() {
       <div className="grid2" style={{ marginTop: 14 }}>
         <div className="card" style={{ padding: 16 }}>
           <div className="section-label" style={{ margin: 0 }}>{t('plan_cost')}</div>
-          <div style={{ fontSize: 24, fontWeight: 800, marginTop: 6 }}>
-            {fmtMAD(total)} <span style={{ fontSize: 13, color: 'var(--muted)', fontWeight: 600 }}>/ {fmtMAD0(budget)}</span>
-          </div>
-          <div style={{ height: 8, background: '#eee6da', borderRadius: 999, marginTop: 12, overflow: 'hidden' }}>
+          <div style={{ fontSize: 22, fontWeight: 800, marginTop: 6, whiteSpace: 'nowrap' }}>{fmtMAD0(total)}</div>
+          <div style={{ fontSize: 13, color: budgetPct > 100 ? '#d0492f' : 'var(--muted)', fontWeight: 600 }}>/ {fmtMAD0(budget)}</div>
+          <div style={{ height: 8, background: '#eee6da', borderRadius: 999, marginTop: 10, overflow: 'hidden' }}>
             <div style={{ width: `${budgetPct}%`, height: '100%', background: budgetPct > 100 ? '#d0492f' : 'linear-gradient(90deg,#86c93f,#37a94a)' }} />
           </div>
         </div>
@@ -164,15 +169,6 @@ export default function Plan() {
           </button>
         ))}
       </div>
-
-      {/* WhatsApp FAB */}
-      <a
-        href={whatsappUrl(SUPPORT_WHATSAPP, lang === 'ar' ? 'مرحبا رومي !' : 'Bonjour Romi !')}
-        target="_blank" rel="noreferrer"
-        style={{ position: 'fixed', insetInlineEnd: 20, bottom: 96, width: 56, height: 56, borderRadius: 999, background: 'var(--green-800)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 10px 24px rgba(15,74,46,.4)' }}
-      >
-        <Icon name="whatsapp" size={26} />
-      </a>
 
       <BottomNav active="plan" />
     </div>

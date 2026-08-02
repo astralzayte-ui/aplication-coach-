@@ -7,6 +7,6 @@ export const SUPPORT_WHATSAPP = '212600000000'
 export const BUSINESS_NAME = 'Romi'
 
 // Fourchette du curseur de budget hebdomadaire, en dirham (MAD).
-export const BUDGET_MIN = 150
-export const BUDGET_MAX = 1500
-export const BUDGET_DEFAULT = 450
+export const BUDGET_MIN = 200
+export const BUDGET_MAX = 2000
+export const BUDGET_DEFAULT = 700

@@ -201,6 +201,27 @@ input[type='range']::-moz-range-thumb {
   padding: 6px 12px; border-radius: 999px; background: #fff2d6; color: #9a6b15;
 }
 
+/* ---- Scroll affordance (right rail + back-to-top) ---- */
+.scroll-rail {
+  position: fixed; top: 92px; bottom: 96px; width: 4px; z-index: 30; pointer-events: none;
+  right: max(4px, calc(50vw - 240px + 3px));
+  background: rgba(20, 83, 45, 0.09); border-radius: 999px;
+}
+html[dir='rtl'] .scroll-rail { right: auto; left: max(4px, calc(50vw - 240px + 3px)); }
+.scroll-rail > i {
+  position: absolute; left: 0; right: 0; height: 26%; border-radius: 999px;
+  background: var(--sage); display: block;
+}
+.scroll-top-btn {
+  position: fixed; z-index: 41; width: 44px; height: 44px; border-radius: 999px;
+  bottom: calc(94px + env(safe-area-inset-bottom));
+  right: max(14px, calc(50vw - 240px + 14px));
+  background: #fff; color: var(--green-800); box-shadow: var(--shadow);
+  display: flex; align-items: center; justify-content: center;
+  animation: fade .2s ease;
+}
+html[dir='rtl'] .scroll-top-btn { right: auto; left: max(14px, calc(50vw - 240px + 14px)); }
+
 /* ---- Misc ---- */
 .center-col { display: flex; flex-direction: column; align-items: center; }
 .spacer { flex: 1; }

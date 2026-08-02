@@ -14,7 +14,7 @@ export default function Trial() {
 
   return (
     <div className="screen" style={{ justifyContent: 'center', textAlign: 'center' }}>
-      <button onClick={() => nav('/plan')} className="back-btn" style={{ position: 'absolute', top: 18, insetInlineStart: 18 }}>
+      <button onClick={() => nav(-1)} className="back-btn" style={{ position: 'absolute', top: 18, insetInlineStart: 18 }}>
         <Icon name="back" size={20} />
       </button>
 
@@ -40,6 +40,9 @@ export default function Trial() {
           <Button><Icon name="whatsapp" size={20} /> {t('trial_whatsapp')}</Button>
         </a>
         <p style={{ color: 'var(--muted)', fontSize: 13, marginTop: 14 }}>{t('trial_whatsapp_note')}</p>
+        <button onClick={() => nav('/ob/duration')} style={{ width: '100%', marginTop: 10, color: 'var(--green-700)', fontWeight: 700, fontSize: 15 }}>
+          🗓️ {t('cycle_new_cta')}
+        </button>
       </div>
     </div>
   )

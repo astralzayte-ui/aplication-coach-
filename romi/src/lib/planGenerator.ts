@@ -1,7 +1,9 @@
 import type { MealType, OnboardingState, PlannedMeal, Recipe, Tag } from '../data/types'
-import { RECIPES } from '../data/recipes'
+import { RECIPES, recipeMap } from '../data/recipes'
+import { ingredientMap } from '../data/ingredients'
 import { getStore } from '../data/stores'
 import { recipePricePerPerson } from './pricing'
+import { buildShoppingList, shoppingTotal } from './shoppingList'
 
 // --- deterministic RNG so a given seed reproduces a plan ---
 function mulberry32(seed: number) {
@@ -79,6 +81,8 @@ export function generatePlan(o: OnboardingState, planDays: number, opts: GenOpti
 
   const meals: PlannedMeal[] = []
   const recentByType: Record<string, string[]> = {}
+  const chosenPacks = new Set<string>() // pack ingredient ids already needed → reuse the same packs
+  const usage: Record<string, number> = {} // how many times each recipe is already used
 
   for (let day = 0; day < planDays; day++) {
     for (const mealType of o.mealsPerDay) {
@@ -88,39 +92,72 @@ export function generatePlan(o: OnboardingState, planDays: number, opts: GenOpti
 
       const recent = recentByType[mealType] ?? []
       const scored = pool.map((r) => {
-        const repeatPenalty = recent.includes(r.id) ? -3 : 0
-        const jitter = rng() * 0.9
-        return { r, s: ambianceScore(r, o.ambiance) + repeatPenalty + jitter }
+        const recentPenalty = recent.includes(r.id) ? -6 : 0
+        // strong variety penalty so no single recipe dominates the week
+        const usagePenalty = -(usage[r.id] ?? 0) * 1.6
+        // small reward for reusing a PACK already in the basket (real saving),
+        // never for pieces/weight (that would just repeat dishes)
+        const packReuse = r.ingredients.filter(
+          (ri) => chosenPacks.has(ri.id) && ingredientMap[ri.id]?.soldBy === 'pack',
+        ).length * 0.18
+        const jitter = rng() * 0.8
+        return { r, s: ambianceScore(r, o.ambiance) + packReuse + recentPenalty + usagePenalty + jitter }
       })
       scored.sort((a, b) => b.s - a.s)
       const pick = scored[0].r
 
       meals.push({ dayIndex: day, mealType, recipeId: pick.id, people: o.people })
-      recentByType[mealType] = [pick.id, ...recent].slice(0, 2)
+      usage[pick.id] = (usage[pick.id] ?? 0) + 1
+      pick.ingredients.forEach((ri) => {
+        if (ingredientMap[ri.id]?.soldBy === 'pack') chosenPacks.add(ri.id)
+      })
+      recentByType[mealType] = [pick.id, ...recent].slice(0, 3)
     }
   }
 
-  // budget pass: while over budget, swap the priciest "main" for a cheaper eligible one
-  const cost = () => totalPlanCost(meals, o)
+  // budget pass on the REAL shopping total (whole packs)
+  const balanced = rebalance(meals, o, () => false)
+  const totalCost = shoppingTotal(buildShoppingList(balanced, o))
+  return { meals: balanced, overBudget: totalCost > o.budget, totalCost }
+}
+
+/**
+ * Brings a plan's real (pack-based) shopping total under budget by swapping
+ * the priciest non-kept main for the eligible recipe that minimises the total
+ * — which naturally favours reusing packs already in the basket. `keep`
+ * marks slots that must not change (e.g. a dish the user just picked).
+ */
+export function rebalance(
+  meals: PlannedMeal[],
+  o: OnboardingState,
+  keep: (m: PlannedMeal) => boolean,
+): PlannedMeal[] {
+  const store = getStore(o.storeId)
+  const eligible = RECIPES.filter((r) => isEligible(r, o))
+  const cost = (ms: PlannedMeal[]) => shoppingTotal(buildShoppingList(ms, o))
+  const cur = meals.slice()
   let guard = 0
-  while (cost() > o.budget && guard < 30) {
+  while (cost(cur) > o.budget && guard < 40) {
     guard++
-    const mains = meals
-      .map((m, i) => ({ m, i, r: RECIPES.find((x) => x.id === m.recipeId)! }))
-      .filter((x) => x.r.mealType === 'diner' || x.r.mealType === 'dejeuner')
-      .sort((a, b) => recipePricePerPerson(b.r, store) - recipePricePerPerson(a.r, store))
+    const mains = cur
+      .map((m, i) => ({ m, i, r: recipeMap[m.recipeId] }))
+      .filter((x) => x.r && !keep(x.m) && (x.r.mealType === 'diner' || x.r.mealType === 'dejeuner'))
+      .sort((a, b) => recipePricePerPerson(b.r!, store) - recipePricePerPerson(a.r!, store))
     if (!mains.length) break
     const target = mains[0]
     const inPool = poolFor(target.m.mealType)
-    const cheaper = eligible
-      .filter((r) => inPool(r) && r.id !== target.r.id)
-      .sort((a, b) => recipePricePerPerson(a, store) - recipePricePerPerson(b, store))[0]
-    if (!cheaper || recipePricePerPerson(cheaper, store) >= recipePricePerPerson(target.r, store)) break
-    meals[target.i] = { ...target.m, recipeId: cheaper.id }
+    const others = cur.filter((_, i) => i !== target.i)
+    let bestId: string | null = null
+    let bestCost = cost(cur)
+    for (const r of eligible) {
+      if (!inPool(r) || r.id === target.m.recipeId) continue
+      const c = cost([...others, { ...target.m, recipeId: r.id }])
+      if (c < bestCost) { bestCost = c; bestId = r.id }
+    }
+    if (!bestId) break
+    cur[target.i] = { ...target.m, recipeId: bestId }
   }
-
-  const totalCost = cost()
-  return { meals, overBudget: totalCost > o.budget, totalCost }
+  return cur
 }
 
 export function totalPlanCost(meals: PlannedMeal[], o: OnboardingState): number {

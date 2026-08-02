@@ -24,10 +24,20 @@ export const STRINGS: Record<string, Loc> = {
   store_title: { fr: 'choisis ton magasin', ar: 'اختر متجرك' },
   store_sub: { fr: "on s'occupe des dîners de ta semaine", ar: 'نتكفّل بعشاء أسبوعك' },
 
+  // Duration
+  duration_title: { fr: 'pour combien de temps ?', ar: 'لأي مدة ؟' },
+  duration_sub: { fr: 'on prépare tes repas et tes courses pour cette durée', ar: 'نحضّر وجباتك ومشترياتك لهذه المدة' },
+  duration_1: { fr: '1 semaine', ar: 'أسبوع' },
+  duration_n: { fr: 'semaines', ar: 'أسابيع' },
+  duration_free_note: { fr: 'essai gratuit — 1 semaine offerte', ar: 'تجربة مجانية — أسبوع مجاني' },
+
   // Budget
   budget_title: { fr: 'donne-nous ton budget', ar: 'حدّد ميزانيتك' },
   budget_sub: { fr: 'on gardera tes dîners en dessous', ar: 'سنبقي وجباتك تحت هذا الحد' },
   budget_week: { fr: 'cette semaine', ar: 'هذا الأسبوع' },
+  budget_for_1: { fr: 'budget pour 1 semaine', ar: 'ميزانية أسبوع واحد' },
+  budget_for_n: { fr: 'budget pour', ar: 'ميزانية' },
+  budget_trial_note: { fr: 'essai gratuit', ar: 'تجربة مجانية' },
 
   // People
   people_title: { fr: 'vous êtes combien ?', ar: 'كم عددكم ؟' },
@@ -125,17 +135,33 @@ export const STRINGS: Record<string, Loc> = {
   your_budget: { fr: 'Budget hebdo', ar: 'الميزانية الأسبوعية' },
   your_people: { fr: 'Personnes', ar: 'الأشخاص' },
   your_meals: { fr: 'Repas / jour', ar: 'وجبات / يوم' },
-  regenerate: { fr: 'Régénérer le plan', ar: 'إعادة إنشاء الخطة' },
+  regenerate: { fr: 'Régénérer (mêmes réglages)', ar: 'إعادة التوليد (نفس الإعدادات)' },
+  new_cycle: { fr: 'Nouveau cycle', ar: 'دورة جديدة' },
+  new_cycle_sub: { fr: 'choisir la durée & refaire le budget', ar: 'اختيار المدة وإعادة الميزانية' },
+  reset_all: { fr: 'Tout recommencer', ar: 'إعادة كل شيء' },
+  reset_all_sub: { fr: 'magasin, budget, préférences…', ar: 'المتجر، الميزانية، التفضيلات…' },
+  reset_confirm_title: { fr: 'Tout recommencer ?', ar: 'إعادة كل شيء ؟' },
+  reset_confirm_body: { fr: 'On efface ton plan actuel et tes réglages, puis on refait le questionnaire depuis le début. Ton compte est conservé.', ar: 'سنمسح خطتك وإعداداتك الحالية ونعيد الاستبيان من البداية. سيتم الاحتفاظ بحسابك.' },
+  cancel: { fr: 'Annuler', ar: 'إلغاء' },
+  confirm: { fr: 'Oui, recommencer', ar: 'نعم، إعادة' },
+  cycle_ended_title: { fr: 'ton cycle est terminé', ar: 'انتهت دورتك' },
+  cycle_new_cta: { fr: 'Commencer un nouveau cycle', ar: 'ابدأ دورة جديدة' },
   logout: { fr: 'Se déconnecter', ar: 'تسجيل الخروج' },
   save: { fr: 'Enregistrer', ar: 'حفظ' },
   max3: { fr: 'jusqu\'à 3', ar: 'حتى 3' },
+}
+
+/** "1 semaine" / "3 semaines" localized. */
+export function durationLabel(weeks: number, lang: Lang): string {
+  if (weeks <= 1) return STRINGS.duration_1[lang]
+  return `${weeks} ${STRINGS.duration_n[lang]}`
 }
 
 export const TAG_LABELS: Record<Tag, Loc> = {
   rapide: { fr: 'rapide', ar: 'سريع' },
   proteine: { fr: 'protéiné', ar: 'بروتيني' },
   healthy: { fr: 'healthy', ar: 'صحي' },
-  du_monde: { fr: 'du monde', ar: 'عالمي' },
+  du_monde: { fr: 'international', ar: 'عالمي' },
   gourmand: { fr: 'gourmand', ar: 'شهي' },
   famille: { fr: 'en famille', ar: 'عائلي' },
   vegetarien: { fr: 'végé', ar: 'نباتي' },
@@ -147,7 +173,7 @@ export const AMBIANCE: { id: Tag; label: Loc; emoji: string; bg: string }[] = [
   { id: 'famille', label: { fr: 'En famille', ar: 'مع العائلة' }, emoji: '👨‍👩‍👧', bg: '#c8dcf2' },
   { id: 'healthy', label: { fr: 'Healthy', ar: 'صحي' }, emoji: '🥗', bg: '#c8e6b6' },
   { id: 'gourmand', label: { fr: 'Gourmand', ar: 'شهي' }, emoji: '😋', bg: '#f7cadb' },
-  { id: 'du_monde', label: { fr: 'Saveurs du monde', ar: 'نكهات عالمية' }, emoji: '🌍', bg: '#d9cff0' },
+  { id: 'du_monde', label: { fr: 'International', ar: 'مأكولات عالمية' }, emoji: '🌍', bg: '#d9cff0' },
 ]
 
 export const MEAL_LABELS: Record<MealType, Loc> = {
