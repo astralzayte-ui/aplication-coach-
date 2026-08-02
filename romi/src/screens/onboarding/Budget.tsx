@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Button, TopBar } from '../../components/ui'
-import { BUDGET_MAX, BUDGET_MIN } from '../../config'
+import { BUDGET_MAX, BUDGET_MIN, BUDGET_STEP } from '../../config'
 import { durationLabel } from '../../i18n/strings'
 
 export default function Budget() {
@@ -32,13 +32,13 @@ export default function Budget() {
           </span>
         </div>
         <input
-          type="range" min={BUDGET_MIN} max={BUDGET_MAX} step={5} value={budget}
+          type="range" min={BUDGET_MIN} max={BUDGET_MAX} step={BUDGET_STEP} value={budget}
           style={{ ['--pct' as any]: `${pct}%` }}
           onChange={(e) => updateOnboarding({ budget: Number(e.target.value) })}
         />
         <div className="slider-ends">
           <span>{BUDGET_MIN} DH</span>
-          <span>{BUDGET_MAX} DH</span>
+          <span>{BUDGET_MAX.toLocaleString('fr-FR')} DH</span>
         </div>
       </div>
 

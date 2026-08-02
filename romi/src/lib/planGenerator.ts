@@ -138,11 +138,11 @@ export function fillBudget(meals: PlannedMeal[], o: OnboardingState): PlannedMea
   const cost = (ms: PlannedMeal[]) => shoppingTotal(buildShoppingList(ms, o))
   const cur = meals.slice()
   let guard = 0
-  while (cost(cur) < target * 0.9 && guard < 40) {
+  while (cost(cur) < target * 0.9 && guard < 120) {
     guard++
     const slots = cur
       .map((m, i) => ({ m, i, r: recipeMap[m.recipeId] }))
-      .filter((x) => x.r && (x.r.mealType === 'diner' || x.r.mealType === 'dejeuner'))
+      .filter((x) => x.r)
       .sort((a, b) => recipePricePerPerson(a.r!, store) - recipePricePerPerson(b.r!, store))
     let applied = false
     for (const slot of slots) {
@@ -152,7 +152,7 @@ export function fillBudget(meals: PlannedMeal[], o: OnboardingState): PlannedMea
       let bestCost = cost(cur)
       for (const r of eligible) {
         if (!inPool(r) || r.id === slot.m.recipeId) continue
-        if (others.some((mm) => mm.recipeId === r.id)) continue // keep variety
+        if (others.some((mm) => mm.dayIndex === slot.m.dayIndex && mm.recipeId === r.id)) continue // no same-day dup
         const c = cost([...others, { ...slot.m, recipeId: r.id }])
         if (c <= target && c > bestCost) { bestCost = c; bestId = r.id }
       }
@@ -179,26 +179,32 @@ export function rebalance(
   const cost = (ms: PlannedMeal[]) => shoppingTotal(buildShoppingList(ms, o))
   const cur = meals.slice()
   let guard = 0
-  while (cost(cur) > o.budget && guard < 40) {
+  while (cost(cur) > o.budget && guard < 120) {
     guard++
-    const mains = cur
+    // consider EVERY meal (breakfasts & snacks included) so we can always
+    // drive the total down; swap the priciest one for the cheapest option.
+    const swappable = cur
       .map((m, i) => ({ m, i, r: recipeMap[m.recipeId] }))
-      .filter((x) => x.r && !keep(x.m) && (x.r.mealType === 'diner' || x.r.mealType === 'dejeuner'))
+      .filter((x) => x.r && !keep(x.m))
       .sort((a, b) => recipePricePerPerson(b.r!, store) - recipePricePerPerson(a.r!, store))
-    if (!mains.length) break
-    const target = mains[0]
-    const inPool = poolFor(target.m.mealType)
-    const others = cur.filter((_, i) => i !== target.i)
-    let bestId: string | null = null
-    let bestCost = cost(cur)
-    for (const r of eligible) {
-      if (!inPool(r) || r.id === target.m.recipeId) continue
-      if (others.some((mm) => mm.recipeId === r.id)) continue // keep variety
-      const c = cost([...others, { ...target.m, recipeId: r.id }])
-      if (c < bestCost) { bestCost = c; bestId = r.id }
+    if (!swappable.length) break
+    let improved = false
+    for (const target of swappable) {
+      const inPool = poolFor(target.m.mealType)
+      const others = cur.filter((_, i) => i !== target.i)
+      let bestId: string | null = null
+      let bestCost = cost(cur)
+      for (const r of eligible) {
+        if (!inPool(r) || r.id === target.m.recipeId) continue
+        // only avoid duplicates within the SAME DAY (week-wide repeats are fine
+        // and often necessary to hit a tight budget)
+        if (others.some((mm) => mm.dayIndex === target.m.dayIndex && mm.recipeId === r.id)) continue
+        const c = cost([...others, { ...target.m, recipeId: r.id }])
+        if (c < bestCost) { bestCost = c; bestId = r.id }
+      }
+      if (bestId) { cur[target.i] = { ...target.m, recipeId: bestId }; improved = true; break }
     }
-    if (!bestId) break
-    cur[target.i] = { ...target.m, recipeId: bestId }
+    if (!improved) break
   }
   return cur
 }
