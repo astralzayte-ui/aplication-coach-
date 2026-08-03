@@ -101,6 +101,8 @@ export const STRINGS: Record<string, Loc> = {
   time: { fr: 'TEMPS', ar: 'المدة' },
   nutri_note: { fr: 'Valeurs nutritionnelles estimées', ar: 'قيم غذائية تقديرية' },
   ingredients: { fr: 'Ingrédients', ar: 'المكونات' },
+  preparation: { fr: 'Préparation', ar: 'طريقة التحضير' },
+  steps_soon: { fr: 'Étapes bientôt disponibles pour ce plat.', ar: 'الخطوات ستتوفر قريبا لهذا الطبق.' },
   choose_other: { fr: 'Choisir un autre plat', ar: 'اختر طبقا آخر' },
 
   // Shopping list

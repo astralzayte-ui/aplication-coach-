@@ -94,6 +94,11 @@ export interface Recipe {
   lactoseFree: boolean
   /** true when suitable for pregnancy (no raw fish / alcohol / high-mercury etc.) */
   pregnancySafe: boolean
+  /** Real cooking steps, shown under the ingredients (bilingual). */
+  steps?: Loc[]
+  /** Optional photo slug; when an image `public/plats/<image>.jpg` exists it is
+   *  used, otherwise the emoji tile is shown. Defaults to the recipe id. */
+  image?: string
 }
 
 export interface Store {

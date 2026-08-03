@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 import type { Recipe, Tag } from '../data/types'
@@ -80,12 +81,22 @@ function hash(s: string) { let h = 0; for (let i = 0; i < s.length; i++) h = (h 
 
 export function RecipePhoto({ recipe, height, radius = 16 }: { recipe: Recipe; height: number | string; radius?: number }) {
   const [a, b] = GRADIENTS[hash(recipe.id) % GRADIENTS.length]
+  const [imgOk, setImgOk] = useState(true)
+  // When a photo exists at public/plats/<id>.jpg it is shown; otherwise the
+  // emoji tile is the graceful fallback. Photos drop in later by filename.
+  const src = `./plats/${recipe.image ?? recipe.id}.jpg`
   return (
     <div style={{
       height, width: '100%', borderRadius: radius, position: 'relative', overflow: 'hidden',
       background: `radial-gradient(120% 120% at 30% 20%, ${a}, ${b})`,
       display: 'flex', alignItems: 'center', justifyContent: 'center',
     }}>
+      {imgOk && (
+        <img
+          src={src} alt="" loading="lazy" onError={() => setImgOk(false)}
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+      )}
       <span style={{ fontSize: typeof height === 'number' ? Math.min(height * 0.5, 90) : 46, filter: 'drop-shadow(0 4px 8px rgba(0,0,0,.15))' }}>
         {recipe.emoji}
       </span>
