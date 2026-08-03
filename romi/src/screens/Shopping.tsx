@@ -13,7 +13,7 @@ export default function Shopping() {
   const store = getStore(state.onboarding.storeId)
   const meals = state.plan ?? []
 
-  const groups = useMemo(() => buildShoppingList(meals, state.onboarding), [meals, state.onboarding])
+  const groups = useMemo(() => buildShoppingList(meals, state.onboarding, state.onboarding.reuseLeftovers ? state.pantry : undefined), [meals, state.onboarding, state.pantry])
   const total = shoppingCount(groups)
   const done = useMemo(() => groups.reduce((s, g) => s + g.items.filter((i) => state.checked[i.ingredientId]).length, 0), [groups, state.checked])
   const days = dayLabelsFrom(state.trialStartISO, state.planDays)

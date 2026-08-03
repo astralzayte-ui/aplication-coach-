@@ -38,7 +38,11 @@ const CATEGORY_ORDER: IngredientCategory[] = [
   'viande_poisson', 'fruits_legumes', 'cremerie', 'epicerie', 'boulangerie', 'epices',
 ]
 
-export function buildShoppingList(meals: PlannedMeal[], o: OnboardingState): ShoppingGroup[] {
+export function buildShoppingList(
+  meals: PlannedMeal[],
+  o: OnboardingState,
+  pantry?: Record<string, number>,
+): ShoppingGroup[] {
   const store = getStore(o.storeId)
   const acc = new Map<string, ShoppingItem>()
 
@@ -71,23 +75,59 @@ export function buildShoppingList(meals: PlannedMeal[], o: OnboardingState): Sho
     }
   }
 
-  // price each aggregated line with pack/piece/weight rules
+  // price each aggregated line with pack/piece/weight rules, subtracting any
+  // leftover stock carried over from a previous cycle (the "pantry").
+  const buyable: ShoppingItem[] = []
   for (const item of acc.values()) {
     const ing = ingredientMap[item.ingredientId]!
+    const available = pantry?.[item.ingredientId] ?? 0
+    const toBuy = Math.max(0, item.qty - available)
+    if (available > 0 && toBuy <= 0.0001) continue // fully covered by leftovers
+    item.qty = toBuy > 0 ? toBuy : item.qty
     const line = priceLine(ing, item.qty, store)
     item.price = line.price
     item.packs = line.packs
     item.pieces = line.pieces
+    buyable.push(item)
   }
 
   const groups: ShoppingGroup[] = CATEGORY_ORDER.map((category) => ({
     category,
-    items: [...acc.values()]
-      .filter((i) => i.category === category)
-      .sort((a, b) => b.price - a.price),
+    items: buyable.filter((i) => i.category === category).sort((a, b) => b.price - a.price),
   })).filter((g) => g.items.length)
 
   return groups
+}
+
+/**
+ * Leftover stock after a cycle: for each ingredient, whatever whole packs /
+ * pieces you had to buy beyond what the recipes used stays in the pantry for
+ * next time (e.g. buy a 500 g bag, use 200 g → 300 g carried over). Weight
+ * items are bought to the gram, so they leave nothing.
+ */
+export function computeLeftovers(
+  meals: PlannedMeal[],
+  o: OnboardingState,
+  prev: Record<string, number> = {},
+): Record<string, number> {
+  const need = new Map<string, number>()
+  for (const m of meals) {
+    const r = recipeMap[m.recipeId]
+    if (!r) continue
+    for (const ri of r.ingredients) need.set(ri.id, (need.get(ri.id) ?? 0) + ri.qtyPerPerson * m.people)
+  }
+  const next: Record<string, number> = { ...prev }
+  for (const [id, needed] of need) {
+    const ing = ingredientMap[id]
+    if (!ing) continue
+    const available = prev[id] ?? 0
+    const toBuy = Math.max(0, needed - available)
+    let bought = toBuy
+    if (ing.soldBy === 'pack' && ing.packSize) bought = Math.ceil(toBuy / ing.packSize - 1e-9) * ing.packSize
+    else if (ing.soldBy === 'piece') bought = Math.ceil(toBuy - 1e-9)
+    next[id] = Math.max(0, Math.round((available + bought - needed) * 100) / 100)
+  }
+  return next
 }
 
 export function shoppingTotal(groups: ShoppingGroup[]): number {

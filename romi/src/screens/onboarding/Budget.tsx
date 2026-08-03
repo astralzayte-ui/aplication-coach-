@@ -42,6 +42,29 @@ export default function Budget() {
         </div>
       </div>
 
+      {/* Reuse-leftovers option, clearly explained */}
+      <button
+        onClick={() => updateOnboarding({ reuseLeftovers: !state.onboarding.reuseLeftovers })}
+        className="card"
+        style={{ display: 'flex', alignItems: 'flex-start', gap: 12, padding: 16, width: '100%', textAlign: 'start', marginTop: 8 }}
+      >
+        <span style={{ fontSize: 22, lineHeight: 1 }}>♻️</span>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontWeight: 700 }}>{t('leftovers_title')}</div>
+          <div style={{ fontSize: 12.5, color: 'var(--muted)', marginTop: 3, lineHeight: 1.4 }}>{t('leftovers_desc')}</div>
+        </div>
+        <span style={{
+          flexShrink: 0, width: 46, height: 28, borderRadius: 999, position: 'relative',
+          background: state.onboarding.reuseLeftovers ? 'var(--accent)' : 'var(--card-2)',
+          border: '1px solid var(--line)', transition: 'background .15s',
+        }}>
+          <span style={{
+            position: 'absolute', top: 2, insetInlineStart: state.onboarding.reuseLeftovers ? 20 : 2,
+            width: 22, height: 22, borderRadius: 999, background: '#fff', transition: 'inset-inline-start .15s',
+          }} />
+        </span>
+      </button>
+
       <div className="spacer" />
       <div className="cta-wrap">
         <Button onClick={() => nav('/ob/people')}>{t('continue')}</Button>

@@ -28,7 +28,7 @@ export default function Plan() {
     return [...m.entries()].sort((a, b) => a[0] - b[0])
   }, [meals])
 
-  const groups = useMemo(() => buildShoppingList(meals, state.onboarding), [meals, state.onboarding])
+  const groups = useMemo(() => buildShoppingList(meals, state.onboarding, state.onboarding.reuseLeftovers ? state.pantry : undefined), [meals, state.onboarding, state.pantry])
   const total = useMemo(() => shoppingTotal(groups), [groups])
   const articles = shoppingCount(groups)
   const budget = state.onboarding.budget

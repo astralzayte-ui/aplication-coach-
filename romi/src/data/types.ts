@@ -125,6 +125,7 @@ export interface OnboardingState {
   storeId: string | null
   budget: number // MAD for the chosen duration
   durationWeeks: number // 1..4 — length of the cycle the budget & plan cover
+  reuseLeftovers: boolean // carry pack leftovers (e.g. 100 g of pasta) to the next cycle
   people: number
   ambiance: Tag[] // up to 3
   diets: string[] // 'aucun' | 'vegetarien' | 'pescetarien' | 'sans_gluten' | 'sans_lactose' | 'enceinte'

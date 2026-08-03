@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import type { Lang, OnboardingState, PlannedMeal } from '../data/types'
 import { BUDGET_DEFAULT } from '../config'
 import { generatePlan, rebalance } from '../lib/planGenerator'
-import { buildShoppingList, shoppingTotal } from '../lib/shoppingList'
+import { buildShoppingList, shoppingTotal, computeLeftovers } from '../lib/shoppingList'
 import { computeTrial } from '../lib/trial'
 import type { TrialInfo } from '../lib/trial'
 import { makeT } from '../i18n/strings'
@@ -16,6 +16,7 @@ const defaultOnboarding: OnboardingState = {
   storeId: null,
   budget: BUDGET_DEFAULT,
   durationWeeks: 1,
+  reuseLeftovers: true,
   people: 2,
   ambiance: [],
   diets: ['aucun'],
@@ -35,6 +36,7 @@ interface AppState {
   trialStartISO: string | null
   checked: Record<string, boolean>
   fridge: string[]
+  pantry: Record<string, number> // leftover stock carried from previous cycles
 }
 
 const defaultState: AppState = {
@@ -48,6 +50,7 @@ const defaultState: AppState = {
   trialStartISO: null,
   checked: {},
   fridge: [],
+  pantry: {},
 }
 
 function load(): AppState {
@@ -150,8 +153,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
       const weeks = Math.max(1, s.onboarding.durationWeeks || 1)
       const planDays = isFirst ? trial.planDays : weeks * 7
       const seed = Math.floor(Math.random() * 1e9)
+      // Starting a NEW cycle: carry over leftovers from the finished plan
+      // (if the option is on) so this cycle buys less. First plan starts empty.
+      const pantry = isFirst
+        ? {}
+        : s.onboarding.reuseLeftovers && s.plan
+          ? computeLeftovers(s.plan, s.onboarding, s.pantry)
+          : {}
       const { meals } = generatePlan(s.onboarding, planDays, { seed })
-      return { ...s, plan: meals, planDays, planSeed: seed, trialStartISO: startISO, checked: {} }
+      return { ...s, plan: meals, planDays, planSeed: seed, trialStartISO: startISO, checked: {}, pantry }
     })
   }, [])
 

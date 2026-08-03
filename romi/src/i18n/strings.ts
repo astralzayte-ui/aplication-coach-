@@ -38,6 +38,8 @@ export const STRINGS: Record<string, Loc> = {
   budget_for_1: { fr: 'budget pour 1 semaine', ar: 'ميزانية أسبوع واحد' },
   budget_for_n: { fr: 'budget pour', ar: 'ميزانية' },
   budget_trial_note: { fr: 'essai gratuit', ar: 'تجربة مجانية' },
+  leftovers_title: { fr: 'Réutiliser les restes', ar: 'إعادة استعمال البقايا' },
+  leftovers_desc: { fr: 'Ex : tu achètes un paquet de 500 g de pâtes, tu n’en utilises que 200 g → les 300 g restants sont gardés et déduits de ta prochaine liste de courses. Tu peux l’activer ou le désactiver.', ar: 'مثال: تشتري كيس معكرونة 500 غ وتستعمل 200 غ فقط → تُحتفظ الـ300 غ المتبقية وتُخصم من لائحة مشترياتك القادمة. يمكنك تفعيله أو تعطيله.' },
 
   // People
   people_title: { fr: 'vous êtes combien ?', ar: 'كم عددكم ؟' },
