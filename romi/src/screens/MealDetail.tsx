@@ -6,6 +6,7 @@ import { recipeMap } from '../data/recipes'
 import { ingredientMap } from '../data/ingredients'
 import { recipePricePerPerson, fmtMAD } from '../lib/pricing'
 import { alternativesFor } from '../lib/planGenerator'
+import { buildSteps } from '../lib/steps'
 import { RecipePhoto, Icon, TagChip } from '../components/ui'
 import type { Allergen, Recipe } from '../data/types'
 
@@ -115,20 +116,17 @@ export default function MealDetail() {
           })}
         </div>
 
-        {/* Préparation (steps) */}
+        {/* Préparation (steps) — hand-written when available, else derived from
+            the real ingredients & quantities so dosages are always exact */}
         <h2 style={{ fontSize: 20, fontWeight: 800, margin: '26px 0 12px' }}>{t('preparation')}</h2>
-        {recipe.steps && recipe.steps.length > 0 ? (
-          <ol style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {recipe.steps.map((s, i) => (
-              <li key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                <span style={{ flexShrink: 0, width: 26, height: 26, borderRadius: 999, background: 'var(--accent-soft)', color: 'var(--accent)', fontWeight: 800, fontSize: 13, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{i + 1}</span>
-                <span style={{ lineHeight: 1.45, color: 'var(--ink-2)' }}>{s[lang]}</span>
-              </li>
-            ))}
-          </ol>
-        ) : (
-          <div style={{ color: 'var(--muted)', fontSize: 14 }}>{t('steps_soon')}</div>
-        )}
+        <ol style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {(recipe.steps ? recipe.steps.map((s) => s[lang]) : buildSteps(recipe, lang)).map((s, i) => (
+            <li key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+              <span style={{ flexShrink: 0, width: 26, height: 26, borderRadius: 999, background: 'var(--accent-soft)', color: 'var(--accent)', fontWeight: 800, fontSize: 13, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{i + 1}</span>
+              <span style={{ lineHeight: 1.45, color: 'var(--ink-2)' }}>{s}</span>
+            </li>
+          ))}
+        </ol>
       </div>
 
       {/* swap sheet */}
