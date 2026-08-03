@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import type { Recipe, Tag } from '../data/types'
 import { TAG_LABELS } from '../i18n/strings'
 import type { Lang } from '../data/types'
+import { INLINE_PHOTOS } from '../data/photos'
 
 // ---------- Icons ----------
 export function Icon({ name, size = 22 }: { name: string; size?: number }) {
@@ -82,9 +83,11 @@ function hash(s: string) { let h = 0; for (let i = 0; i < s.length; i++) h = (h 
 export function RecipePhoto({ recipe, height, radius = 16 }: { recipe: Recipe; height: number | string; radius?: number }) {
   const [a, b] = GRADIENTS[hash(recipe.id) % GRADIENTS.length]
   const [imgOk, setImgOk] = useState(true)
-  // When a photo exists at public/plats/<id>.jpg it is shown; otherwise the
-  // emoji tile is the graceful fallback. Photos drop in later by filename.
-  const src = `./plats/${recipe.image ?? recipe.id}.jpg`
+  // Priority: an inlined data-URI photo (works everywhere, incl. the offline
+  // artifact preview) → a file at public/plats/<id>.jpg (dropped in for the
+  // web build) → the emoji tile as a graceful fallback.
+  const key = recipe.image ?? recipe.id
+  const src = INLINE_PHOTOS[key] ?? `./plats/${key}.jpg`
   return (
     <div style={{
       height, width: '100%', borderRadius: radius, position: 'relative', overflow: 'hidden',
