@@ -11,7 +11,7 @@ export const INGREDIENTS: Ingredient[] = [
   { id: 'viande_hachee', name: { fr: 'viande hachée', ar: 'لحم مفروم' }, emoji: '🥩', category: 'viande_poisson', unit: 'g', basePrice: 95, soldBy: 'weight', allergens: [] },
   { id: 'thon', name: { fr: 'thon (boîte)', ar: 'تونة (علبة)' }, emoji: '🐟', category: 'viande_poisson', unit: 'g', basePrice: 90, soldBy: 'pack', packSize: 140, allergens: ['poisson'] },
   { id: 'sardines', name: { fr: 'sardines (boîte)', ar: 'سردين (علبة)' }, emoji: '🐟', category: 'viande_poisson', unit: 'g', basePrice: 35, soldBy: 'pack', packSize: 120, allergens: ['poisson'] },
-  { id: 'saumon', name: { fr: 'saumon', ar: 'سلمون' }, emoji: '🍣', category: 'viande_poisson', unit: 'g', basePrice: 140, soldBy: 'weight', allergens: ['poisson'] },
+  { id: 'saumon', name: { fr: 'saumon', ar: 'سلمون' }, emoji: '🍣', category: 'viande_poisson', unit: 'g', basePrice: 180, soldBy: 'weight', allergens: ['poisson'] },
   { id: 'oeuf', name: { fr: 'œufs', ar: 'بيض' }, emoji: '🥚', category: 'cremerie', unit: 'piece', basePrice: 1.6, gramsPerPiece: 55, soldBy: 'piece', allergens: ['oeuf'] },
 
   // --- Fruits & légumes ---
@@ -75,7 +75,7 @@ export const INGREDIENTS: Ingredient[] = [
   { id: 'dinde', name: { fr: 'escalope de dinde', ar: 'صدر ديك رومي' }, emoji: '🍗', category: 'viande_poisson', unit: 'g', basePrice: 65, soldBy: 'weight', allergens: [] },
   { id: 'crevettes', name: { fr: 'crevettes', ar: 'قمرون' }, emoji: '🦐', category: 'viande_poisson', unit: 'g', basePrice: 140, soldBy: 'weight', allergens: ['crustace'] },
   { id: 'dorade', name: { fr: 'dorade', ar: 'قرب' }, emoji: '🐟', category: 'viande_poisson', unit: 'g', basePrice: 75, soldBy: 'weight', allergens: ['poisson'] },
-  { id: 'saumon_fume', name: { fr: 'saumon fumé', ar: 'سلمون مدخن' }, emoji: '🍣', category: 'viande_poisson', unit: 'g', basePrice: 220, soldBy: 'pack', packSize: 100, allergens: ['poisson'] },
+  { id: 'saumon_fume', name: { fr: 'saumon fumé', ar: 'سلمون مدخن' }, emoji: '🍣', category: 'viande_poisson', unit: 'g', basePrice: 600, soldBy: 'pack', packSize: 100, allergens: ['poisson'] },
   { id: 'champignon', name: { fr: 'champignons', ar: 'فطر' }, emoji: '🍄', category: 'fruits_legumes', unit: 'g', basePrice: 22, soldBy: 'weight', allergens: [] },
   { id: 'patate_douce', name: { fr: 'patate douce', ar: 'بطاطا حلوة' }, emoji: '🍠', category: 'fruits_legumes', unit: 'g', basePrice: 10, soldBy: 'weight', allergens: [] },
   { id: 'roquette', name: { fr: 'roquette (sachet)', ar: 'جرجير (كيس)' }, emoji: '🥬', category: 'fruits_legumes', unit: 'piece', basePrice: 6, gramsPerPiece: 125, soldBy: 'piece', allergens: [] },
@@ -93,15 +93,15 @@ export const INGREDIENTS: Ingredient[] = [
   // --- Viande & poisson ---
   { id: 'boeuf', name: { fr: 'bœuf à mijoter', ar: 'لحم بقري' }, emoji: '🥩', category: 'viande_poisson', unit: 'g', basePrice: 110, soldBy: 'weight', allergens: [] },
   { id: 'veau', name: { fr: 'veau', ar: 'لحم العجل' }, emoji: '🥩', category: 'viande_poisson', unit: 'g', basePrice: 130, soldBy: 'weight', allergens: [] },
-  { id: 'magret_canard', name: { fr: 'magret de canard', ar: 'صدر بط' }, emoji: '🦆', category: 'viande_poisson', unit: 'g', basePrice: 140, soldBy: 'weight', allergens: [] },
+  { id: 'magret_canard', name: { fr: 'magret de canard', ar: 'صدر بط' }, emoji: '🦆', category: 'viande_poisson', unit: 'g', basePrice: 160, soldBy: 'weight', allergens: [] },
   { id: 'merguez', name: { fr: 'merguez', ar: 'مرقاز' }, emoji: '🌭', category: 'viande_poisson', unit: 'g', basePrice: 80, soldBy: 'weight', allergens: [] },
   { id: 'jambon_dinde', name: { fr: 'blanc de dinde', ar: 'شرائح ديك رومي' }, emoji: '🍗', category: 'viande_poisson', unit: 'g', basePrice: 70, soldBy: 'pack', packSize: 200, allergens: [] },
   { id: 'thon_frais', name: { fr: 'thon frais', ar: 'تونة طازجة' }, emoji: '🐟', category: 'viande_poisson', unit: 'g', basePrice: 130, soldBy: 'weight', allergens: ['poisson'] },
-  { id: 'saint_jacques', name: { fr: 'noix de Saint-Jacques', ar: 'الإسكالوب' }, emoji: '🦪', category: 'viande_poisson', unit: 'g', basePrice: 260, soldBy: 'weight', allergens: ['crustace'] },
-  { id: 'gambas', name: { fr: 'gambas', ar: 'قمرون كبير' }, emoji: '🦐', category: 'viande_poisson', unit: 'g', basePrice: 150, soldBy: 'weight', allergens: ['crustace'] },
+  { id: 'saint_jacques', name: { fr: 'noix de Saint-Jacques', ar: 'الإسكالوب' }, emoji: '🦪', category: 'viande_poisson', unit: 'g', basePrice: 380, soldBy: 'weight', allergens: ['crustace'] },
+  { id: 'gambas', name: { fr: 'gambas', ar: 'قمرون كبير' }, emoji: '🦐', category: 'viande_poisson', unit: 'g', basePrice: 170, soldBy: 'weight', allergens: ['crustace'] },
   { id: 'moules', name: { fr: 'moules', ar: 'بوزروگ' }, emoji: '🦪', category: 'viande_poisson', unit: 'g', basePrice: 30, soldBy: 'weight', allergens: ['crustace'] },
   { id: 'calamar', name: { fr: 'calamars', ar: 'حبار' }, emoji: '🦑', category: 'viande_poisson', unit: 'g', basePrice: 60, soldBy: 'weight', allergens: ['crustace'] },
-  { id: 'homard', name: { fr: 'homard', ar: 'كركند' }, emoji: '🦞', category: 'viande_poisson', unit: 'piece', basePrice: 160, gramsPerPiece: 450, soldBy: 'piece', allergens: ['crustace'] },
+  { id: 'homard', name: { fr: 'homard', ar: 'كركند' }, emoji: '🦞', category: 'viande_poisson', unit: 'piece', basePrice: 190, gramsPerPiece: 450, soldBy: 'piece', allergens: ['crustace'] },
 
   // --- Fruits & légumes ---
   { id: 'aubergine', name: { fr: 'aubergine', ar: 'باذنجان' }, emoji: '🍆', category: 'fruits_legumes', unit: 'piece', basePrice: 3, gramsPerPiece: 250, soldBy: 'piece', allergens: [] },
