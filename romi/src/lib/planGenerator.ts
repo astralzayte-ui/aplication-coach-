@@ -83,12 +83,17 @@ export function generatePlan(o: OnboardingState, planDays: number, opts: GenOpti
   const recentByType: Record<string, string[]> = {}
   const chosenPacks = new Set<string>() // pack ingredient ids already needed → reuse the same packs
   const usage: Record<string, number> = {} // how many times each recipe is already used
+  const usedGlobal = new Set<string>() // every recipe already used in this plan (week/month)
 
   for (let day = 0; day < planDays; day++) {
     const usedToday = new Set<string>() // never repeat a recipe within the same day
     for (const mealType of o.mealsPerDay) {
       const inPool = poolFor(mealType)
-      let pool = eligible.filter((r) => inPool(r) && !avoid.has(r.id))
+      // Prefer recipes not yet used anywhere in the plan (no repeat in the
+      // week/month while the pool still has fresh options); only reuse once
+      // every eligible recipe of that meal has been used.
+      let pool = eligible.filter((r) => inPool(r) && !avoid.has(r.id) && !usedGlobal.has(r.id))
+      if (!pool.length) pool = eligible.filter((r) => inPool(r) && !avoid.has(r.id))
       if (!pool.length) pool = RECIPES.filter((r) => inPool(r)) // fallback so a slot is never empty
 
       const recent = recentByType[mealType] ?? []
@@ -110,6 +115,7 @@ export function generatePlan(o: OnboardingState, planDays: number, opts: GenOpti
 
       meals.push({ dayIndex: day, mealType, recipeId: pick.id, people: o.people })
       usedToday.add(pick.id)
+      usedGlobal.add(pick.id)
       usage[pick.id] = (usage[pick.id] ?? 0) + 1
       pick.ingredients.forEach((ri) => {
         if (ingredientMap[ri.id]?.soldBy === 'pack') chosenPacks.add(ri.id)
@@ -152,7 +158,7 @@ export function fillBudget(meals: PlannedMeal[], o: OnboardingState): PlannedMea
       let bestCost = cost(cur)
       for (const r of eligible) {
         if (!inPool(r) || r.id === slot.m.recipeId) continue
-        if (others.some((mm) => mm.dayIndex === slot.m.dayIndex && mm.recipeId === r.id)) continue // no same-day dup
+        if (others.some((mm) => mm.recipeId === r.id)) continue // no repeat anywhere in the plan
         const c = cost([...others, { ...slot.m, recipeId: r.id }])
         if (c <= target && c > bestCost) { bestCost = c; bestId = r.id }
       }
@@ -196,9 +202,8 @@ export function rebalance(
       let bestCost = cost(cur)
       for (const r of eligible) {
         if (!inPool(r) || r.id === target.m.recipeId) continue
-        // only avoid duplicates within the SAME DAY (week-wide repeats are fine
-        // and often necessary to hit a tight budget)
-        if (others.some((mm) => mm.dayIndex === target.m.dayIndex && mm.recipeId === r.id)) continue
+        // don't reintroduce a recipe already used anywhere in the plan
+        if (others.some((mm) => mm.recipeId === r.id)) continue
         const c = cost([...others, { ...target.m, recipeId: r.id }])
         if (c < bestCost) { bestCost = c; bestId = r.id }
       }

@@ -172,6 +172,10 @@ export const INGREDIENTS: Ingredient[] = [
   { id: 'farine_sarrasin', name: { fr: 'farine de sarrasin (paquet)', ar: 'دقيق الحنطة السوداء' }, emoji: '🌾', category: 'epicerie', unit: 'g', basePrice: 25, soldBy: 'pack', packSize: 1000, allergens: [] },
   { id: 'sesame', name: { fr: 'graines de sésame (paquet)', ar: 'سمسم' }, emoji: '🌰', category: 'epicerie', unit: 'g', basePrice: 60, soldBy: 'pack', packSize: 150, allergens: [] },
   { id: 'feuille_riz', name: { fr: 'galettes de riz (x20)', ar: 'ورق الأرز' }, emoji: '🫓', category: 'boulangerie', unit: 'piece', basePrice: 0.9, gramsPerPiece: 10, soldBy: 'pack', packSize: 20, allergens: [] },
+
+  // ===== Batch 3 pantry =====
+  { id: 'chevre', name: { fr: 'fromage de chèvre', ar: 'جبن الماعز' }, emoji: '🧀', category: 'cremerie', unit: 'g', basePrice: 100, soldBy: 'pack', packSize: 150, allergens: ['lactose'] },
+  { id: 'maquereau', name: { fr: 'maquereau', ar: 'ماكريل' }, emoji: '🐟', category: 'viande_poisson', unit: 'g', basePrice: 40, soldBy: 'weight', allergens: ['poisson'] },
 ]
 
 export const getIngredient = (id: string): Ingredient | undefined =>
