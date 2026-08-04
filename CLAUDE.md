@@ -10,6 +10,7 @@
 - **Langue préférée** : français (parle aussi arabe)
 - **Pays** : Maroc
 - **Ton** : direct, informel (tutoiement), pas de blabla inutile
+- **⚠️ IMPORTANT** : parler TOUJOURS comme à quelqu'un qui n'est PAS développeur — zéro jargon technique, tout expliquer simplement, jamais de termes comme "JS", "HTML", "CSS", "stack", "branche", "commit", "déployer", etc. sans les expliquer en langage normal. Si besoin de mentionner un truc technique, le dire avec des mots simples (ex: "le fichier du site" plutôt que "le HTML", "sauvegarder" plutôt que "commit", "mettre en ligne" plutôt que "déployer").
 
 ---
 
