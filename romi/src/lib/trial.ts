@@ -1,6 +1,7 @@
 import type { Loc } from '../data/types'
 
 const DAY_MS = 24 * 60 * 60 * 1000
+const HOUR_MS = 60 * 60 * 1000
 export const TRIAL_LENGTH_DAYS = 7
 
 export const DAY_LABELS: Loc[] = [
@@ -62,6 +63,8 @@ export interface TrialInfo {
   start: Date
   end: Date
   daysLeft: number
+  hoursLeft: number   // hours remaining within the current day (0–23)
+  msLeft: number      // raw ms left (negative if expired)
   expired: boolean
   planDays: number
   /** day labels for the plan, starting at `start` */
@@ -71,15 +74,16 @@ export interface TrialInfo {
 export function computeTrial(startISO: string, now: Date = new Date()): TrialInfo {
   const start = new Date(startISO)
   const end = new Date(start.getTime() + TRIAL_LENGTH_DAYS * DAY_MS)
-  const msLeft = end.getTime() - now.getTime()
-  const daysLeft = Math.max(0, Math.ceil(msLeft / DAY_MS))
+  const ms = end.getTime() - now.getTime()
+  const daysLeft = Math.max(0, Math.floor(ms / DAY_MS))
+  const hoursLeft = Math.max(0, Math.floor((ms % DAY_MS) / HOUR_MS))
   const planDays = currentPlanDays(start)
   const startDow = isoDow(start) // 1..7
   const days: Loc[] = []
   for (let i = 0; i < planDays; i++) {
     days.push(DAY_LABELS[(startDow - 1 + i) % 7])
   }
-  return { start, end, daysLeft, expired: msLeft <= 0, planDays, days }
+  return { start, end, daysLeft, hoursLeft, msLeft: ms, expired: ms <= 0, planDays, days }
 }
 
 /** WhatsApp deep link used when the trial ends. */

@@ -126,6 +126,12 @@ export const STRINGS: Record<string, Loc> = {
 
   // Trial
   trial_left: { fr: "j d'essai", ar: 'يوم تجربة' },
+  trial_left_days: { fr: 'jour', ar: 'يوم' },
+  trial_left_days_pl: { fr: 'jours', ar: 'أيام' },
+  trial_left_hours: { fr: 'heure', ar: 'ساعة' },
+  trial_left_hours_pl: { fr: 'heures', ar: 'ساعات' },
+  trial_left_prefix: { fr: 'il reste', ar: 'تبقّى' },
+  trial_left_suffix: { fr: "avant la fin de l'essai gratuit", ar: 'قبل انتهاء التجربة المجانية' },
   trial_ended_title: { fr: 'ton essai est terminé', ar: 'انتهت تجربتك' },
   trial_ended_sub: { fr: 'pour continuer à recevoir tes plats et ta liste de courses, active ton abonnement.', ar: 'لمواصلة استلام وجباتك ولائحة مشترياتك، فعّل اشتراكك.' },
   trial_whatsapp: { fr: 'Payer via WhatsApp', ar: 'ادفع عبر واتساب' },

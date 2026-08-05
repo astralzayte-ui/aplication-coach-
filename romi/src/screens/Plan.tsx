@@ -65,7 +65,21 @@ export default function Plan() {
 
       {trial && !trial.expired && (
         <div style={{ marginTop: 12 }}>
-          <span className="trial-badge">🎁 {trial.daysLeft} {t('trial_left')}</span>
+          <span className="trial-badge">
+            🎁 {(() => {
+              if (trial.daysLeft >= 2) {
+                return `${t('trial_left_prefix')} ${trial.daysLeft} ${t('trial_left_days_pl')} ${t('trial_left_suffix')}`
+              } else if (trial.daysLeft === 1) {
+                return `${t('trial_left_prefix')} 1 ${t('trial_left_days')} ${t('trial_left_suffix')}`
+              } else if (trial.hoursLeft >= 2) {
+                return `${t('trial_left_prefix')} ${trial.hoursLeft} ${t('trial_left_hours_pl')} ${t('trial_left_suffix')}`
+              } else if (trial.hoursLeft === 1) {
+                return `${t('trial_left_prefix')} 1 ${t('trial_left_hours')} ${t('trial_left_suffix')}`
+              } else {
+                return `${t('trial_left_prefix')} < 1 ${t('trial_left_hours')} ${t('trial_left_suffix')}`
+              }
+            })()}
+          </span>
         </div>
       )}
       {trial?.expired && (
