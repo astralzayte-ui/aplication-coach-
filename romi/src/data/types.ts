@@ -99,6 +99,8 @@ export interface Recipe {
   /** Optional photo slug; when an image `public/plats/<image>.jpg` exists it is
    *  used, otherwise the emoji tile is shown. Defaults to the recipe id. */
   image?: string
+  /** YouTube video ID for the cooking tutorial (e.g. "dQw4w9WgXcQ"). */
+  youtubeId?: string
 }
 
 export interface Store {

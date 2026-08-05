@@ -1,11 +1,12 @@
 import type { Recipe } from './types'
+import { MEALDB_RECIPES } from './recipes_mealdb'
 
 // Per-person quantities. Price & final macros are derived at runtime from
 // ingredients × servings × store multiplier. `mealType` buckets:
 //  - petit_dejeuner   → breakfast pool
 //  - dejeuner | diner → shared "mains" pool (lunch & dinner)
 //  - gouter           → snack pool (used for casse_croute / gouter / encas)
-export const RECIPES: Recipe[] = [
+const MOROCCAN_RECIPES: Recipe[] = [
   {
     id: 'poulet_creme_tomate',
     name: { fr: 'Poulet crémeux à la tomate', ar: 'دجاج كريمي بالطماطم' },
@@ -800,6 +801,9 @@ export const RECIPES: Recipe[] = [
   { id: 'flan_patissier', name: { fr: 'Flan pâtissier', ar: 'فلان' }, emoji: '🍮', mealType: 'gouter', tags: ['gourmand', 'famille'], timeMin: 50, kcal: 360, protein: 9, carbs: 55, fat: 11, ingredients: [{ id: 'lait', qtyPerPerson: 180 }, { id: 'oeuf', qtyPerPerson: 1 }, { id: 'farine', qtyPerPerson: 25 }, { id: 'sucre', qtyPerPerson: 20 }], equipment: ['four'], vegetarian: true, pescetarian: true, glutenFree: false, lactoseFree: false, pregnancySafe: true },
   { id: 'brochettes_fruits', name: { fr: 'Brochettes de fruits', ar: 'أسياخ الفواكه' }, emoji: '🍡', mealType: 'gouter', tags: ['healthy', 'rapide'], timeMin: 10, kcal: 180, protein: 3, carbs: 42, fat: 1, ingredients: [{ id: 'fruits_rouges', qtyPerPerson: 60 }, { id: 'banane', qtyPerPerson: 1 }, { id: 'mangue', qtyPerPerson: 0.5 }, { id: 'pomme', qtyPerPerson: 0.5 }], equipment: [], vegetarian: true, pescetarian: true, glutenFree: true, lactoseFree: true, pregnancySafe: true },
 ]
+
+// Combined pool: our hand-crafted Moroccan recipes + all TheMealDB recipes with tutorials
+export const RECIPES: Recipe[] = [...MOROCCAN_RECIPES, ...MEALDB_RECIPES]
 
 export const recipeMap: Record<string, Recipe> = Object.fromEntries(
   RECIPES.map((r) => [r.id, r]),

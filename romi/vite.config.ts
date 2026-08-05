@@ -42,7 +42,9 @@ export default defineConfig(({ mode }) => {
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
-        navigateFallback: 'index.html'
+        navigateFallback: 'index.html',
+        // 792 TheMealDB recipes push the bundle above 2 MB — increase the limit
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
       }
     })
   ]

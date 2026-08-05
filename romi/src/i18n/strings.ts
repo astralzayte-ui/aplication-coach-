@@ -105,6 +105,8 @@ export const STRINGS: Record<string, Loc> = {
   ingredients: { fr: 'Ingrédients', ar: 'المكونات' },
   preparation: { fr: 'Préparation', ar: 'طريقة التحضير' },
   steps_soon: { fr: 'Étapes bientôt disponibles pour ce plat.', ar: 'الخطوات ستتوفر قريبا لهذا الطبق.' },
+  video_tuto: { fr: '▶ Vidéo tutoriel', ar: '▶ فيديو الطريقة' },
+  watch_yt: { fr: 'Voir sur YouTube', ar: 'مشاهدة على يوتيوب' },
   choose_other: { fr: 'Choisir un autre plat', ar: 'اختر طبقا آخر' },
 
   // Shopping list
