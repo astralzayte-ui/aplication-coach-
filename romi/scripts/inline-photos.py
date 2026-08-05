@@ -11,10 +11,10 @@ from io import BytesIO
 PLATS_DIR = "public/plats"
 RECIPES_TS = "src/data/recipes_mealdb.ts"
 PHOTOS_TS  = "src/data/photos.ts"
-TARGET_W = 360
-JPEG_Q   = 62
-# How many to pick per meal type
-QUOTA = {"diner": 150, "dejeuner": 80, "gouter": 35, "petit_dejeuner": 18}
+TARGET_W = 320
+JPEG_Q   = 55
+# 9999 = tout prendre
+QUOTA = {"diner": 9999, "dejeuner": 9999, "gouter": 9999, "petit_dejeuner": 9999}
 
 # ── Parse recipe IDs ─────────────────────────────────────────────────────────
 raw = open(RECIPES_TS).read()
