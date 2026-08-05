@@ -1,10 +1,11 @@
 import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import { useApp } from './context/AppContext'
 import ScrollAffordance from './components/ScrollAffordance'
 
 import Auth from './screens/Auth'
+import LangPicker from './screens/LangPicker'
 import Store from './screens/onboarding/Store'
 import Duration from './screens/onboarding/Duration'
 import Budget from './screens/onboarding/Budget'
@@ -41,7 +42,26 @@ function Guard({ children }: { children: ReactNode }) {
   return <>{children}</>
 }
 
+const LANG_CHOSEN_KEY = 'romi_lang_chosen'
+
 export default function App() {
+  const [langPicked, setLangPicked] = useState<boolean>(() =>
+    localStorage.getItem(LANG_CHOSEN_KEY) === '1'
+  )
+
+  function onLangDone() {
+    localStorage.setItem(LANG_CHOSEN_KEY, '1')
+    setLangPicked(true)
+  }
+
+  if (!langPicked) {
+    return (
+      <div className="app">
+        <LangPicker onDone={onLangDone} />
+      </div>
+    )
+  }
+
   return (
     <div className="app">
       <HashRouter>

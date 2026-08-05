@@ -5,13 +5,13 @@ const HOUR_MS = 60 * 60 * 1000
 export const TRIAL_LENGTH_DAYS = 7
 
 export const DAY_LABELS: Loc[] = [
-  { fr: 'Lun', ar: 'إث' }, // Monday (index 0 here = ISO Monday)
-  { fr: 'Mar', ar: 'ثل' },
-  { fr: 'Mer', ar: 'أر' },
-  { fr: 'Jeu', ar: 'خم' },
-  { fr: 'Ven', ar: 'جم' },
-  { fr: 'Sam', ar: 'سب' },
-  { fr: 'Dim', ar: 'أح' },
+  { fr: 'Lun', ar: 'إث', en: 'Mon' }, // Monday (index 0 here = ISO Monday)
+  { fr: 'Mar', ar: 'ثل', en: 'Tue' },
+  { fr: 'Mer', ar: 'أر', en: 'Wed' },
+  { fr: 'Jeu', ar: 'خم', en: 'Thu' },
+  { fr: 'Ven', ar: 'جم', en: 'Fri' },
+  { fr: 'Sam', ar: 'سب', en: 'Sat' },
+  { fr: 'Dim', ar: 'أح', en: 'Sun' },
 ]
 
 /** ISO day of week, 1 = Monday … 7 = Sunday. */
@@ -32,13 +32,13 @@ export function currentPlanDays(start: Date): number {
 }
 
 export const FULL_DAY_LABELS: Loc[] = [
-  { fr: 'Lundi', ar: 'الإثنين' },
-  { fr: 'Mardi', ar: 'الثلاثاء' },
-  { fr: 'Mercredi', ar: 'الأربعاء' },
-  { fr: 'Jeudi', ar: 'الخميس' },
-  { fr: 'Vendredi', ar: 'الجمعة' },
-  { fr: 'Samedi', ar: 'السبت' },
-  { fr: 'Dimanche', ar: 'الأحد' },
+  { fr: 'Lundi', ar: 'الإثنين', en: 'Monday' },
+  { fr: 'Mardi', ar: 'الثلاثاء', en: 'Tuesday' },
+  { fr: 'Mercredi', ar: 'الأربعاء', en: 'Wednesday' },
+  { fr: 'Jeudi', ar: 'الخميس', en: 'Thursday' },
+  { fr: 'Vendredi', ar: 'الجمعة', en: 'Friday' },
+  { fr: 'Samedi', ar: 'السبت', en: 'Saturday' },
+  { fr: 'Dimanche', ar: 'الأحد', en: 'Sunday' },
 ]
 
 /** Day-of-week labels for `n` consecutive days starting at `startISO`. */

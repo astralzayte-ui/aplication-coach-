@@ -1,8 +1,14 @@
 // ---- Core domain types for Romi ----
 
-export type Lang = 'fr' | 'ar'
+export type Lang = 'fr' | 'ar' | 'en'
 
-export type Loc = { fr: string; ar: string }
+export type Loc = { fr: string; ar: string; en?: string }
+
+/** Safe Loc lookup — English falls back to French when no `en` key is present. */
+export function locStr(loc: Loc, lang: Lang): string {
+  if (lang === 'en') return loc.en ?? loc.fr
+  return loc[lang] ?? loc.fr
+}
 
 export type IngredientCategory =
   | 'viande_poisson'

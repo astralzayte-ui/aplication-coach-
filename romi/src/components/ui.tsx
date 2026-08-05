@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 import type { Recipe, Tag } from '../data/types'
+import { locStr } from '../data/types'
 import { TAG_LABELS } from '../i18n/strings'
 import type { Lang } from '../data/types'
 import { INLINE_PHOTOS } from '../data/photos'
@@ -83,11 +84,14 @@ function hash(s: string) { let h = 0; for (let i = 0; i < s.length; i++) h = (h 
 export function RecipePhoto({ recipe, height, radius = 16 }: { recipe: Recipe; height: number | string; radius?: number }) {
   const [a, b] = GRADIENTS[hash(recipe.id) % GRADIENTS.length]
   const [imgOk, setImgOk] = useState(true)
+  const [imgLoaded, setImgLoaded] = useState(false)
   // Priority: an inlined data-URI photo (works everywhere, incl. the offline
   // artifact preview) → a file at public/plats/<id>.jpg (dropped in for the
   // web build) → the emoji tile as a graceful fallback.
   const key = recipe.image ?? recipe.id
   const src = INLINE_PHOTOS[key] ?? `./plats/${key}.jpg`
+  // Show emoji only when no photo has loaded yet (fallback mode)
+  const showEmoji = !imgOk || !imgLoaded
   return (
     <div style={{
       height, width: '100%', borderRadius: radius, position: 'relative', overflow: 'hidden',
@@ -96,18 +100,22 @@ export function RecipePhoto({ recipe, height, radius = 16 }: { recipe: Recipe; h
     }}>
       {imgOk && (
         <img
-          src={src} alt="" loading="lazy" onError={() => setImgOk(false)}
+          src={src} alt="" loading="lazy"
+          onLoad={() => setImgLoaded(true)}
+          onError={() => { setImgOk(false); setImgLoaded(false) }}
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
         />
       )}
-      <span style={{ fontSize: typeof height === 'number' ? Math.min(height * 0.5, 90) : 46, filter: 'drop-shadow(0 4px 8px rgba(0,0,0,.15))' }}>
-        {recipe.emoji}
-      </span>
+      {showEmoji && (
+        <span style={{ fontSize: typeof height === 'number' ? Math.min(height * 0.5, 90) : 46, filter: 'drop-shadow(0 4px 8px rgba(0,0,0,.15))' }}>
+          {recipe.emoji}
+        </span>
+      )}
     </div>
   )
 }
 
 // ---------- Tags ----------
 export function TagChip({ tag, lang }: { tag: Tag; lang: Lang }) {
-  return <span className={`tag tag-${tag}`}>{TAG_LABELS[tag][lang]}</span>
+  return <span className={`tag tag-${tag}`}>{locStr(TAG_LABELS[tag], lang)}</span>
 }

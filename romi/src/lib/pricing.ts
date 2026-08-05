@@ -43,12 +43,24 @@ export function priceLine(ing: Ingredient, neededQty: number, store: Store): Pri
   return { price: ingredientCost(ing, neededQty) * m, boughtQty: neededQty }
 }
 
+/**
+ * Fallback cost in MAD for an ingredient not in our catalog.
+ * Uses 50 MAD/kg as a generic food average so prices never show 0.
+ */
+function fallbackCost(qty: number): number {
+  return (qty / 1000) * 50 // 50 MAD/kg average
+}
+
 /** Price per person for a recipe at a given store (portion estimate). */
 export function recipePricePerPerson(recipe: Recipe, store: Store): number {
   let total = 0
   for (const ri of recipe.ingredients) {
     const ing = ingredientMap[ri.id]
-    if (!ing) continue
+    if (!ing) {
+      // Unknown ingredient → use generic fallback so price is never 0
+      total += fallbackCost(ri.qtyPerPerson)
+      continue
+    }
     total += ingredientCost(ing, ri.qtyPerPerson)
   }
   return total * store.multiplier

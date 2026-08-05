@@ -11,9 +11,10 @@ import BottomNav from '../components/BottomNav'
 import { SUPPORT_WHATSAPP } from '../config'
 import { whatsappUrl, dayLabelsFrom, fullDayLabelsFrom } from '../lib/trial'
 import type { PlannedMeal } from '../data/types'
+import { locStr } from '../data/types'
 
 export default function Plan() {
-  const { t, lang, state, trial } = useApp()
+  const { t, lang, loc, state, trial } = useApp()
   const nav = useNavigate()
   const store = getStore(state.onboarding.storeId)
   const meals = state.plan ?? []
@@ -55,7 +56,7 @@ export default function Plan() {
         </div>
         <h1 className="title" style={{ margin: 0, fontSize: 24, flex: 1 }}>{t('plan_title')}</h1>
         <a
-          href={whatsappUrl(SUPPORT_WHATSAPP, lang === 'ar' ? 'مرحبا رومي !' : 'Bonjour Romi !')}
+          href={whatsappUrl(SUPPORT_WHATSAPP, lang === 'ar' ? 'مرحبا رومي !' : lang === 'en' ? 'Hello Romi!' : 'Bonjour Romi !')}
           target="_blank" rel="noreferrer" aria-label="WhatsApp"
           style={{ width: 42, height: 42, minWidth: 42, borderRadius: 999, background: 'var(--accent)', color: 'var(--accent-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         >
@@ -129,10 +130,10 @@ export default function Plan() {
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   background: open ? 'var(--accent)' : 'var(--card-2)', color: open ? 'var(--accent-ink)' : 'var(--accent)',
                 }}>
-                  {shortDays[dayIndex]?.[lang] ?? `J${dayIndex + 1}`}
+                  {shortDays[dayIndex] ? locStr(shortDays[dayIndex], lang) : `J${dayIndex + 1}`}
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontWeight: 700, fontSize: 16 }}>{fullDays[dayIndex]?.[lang] ?? `Jour ${dayIndex + 1}`}</div>
+                  <div style={{ fontWeight: 700, fontSize: 16 }}>{fullDays[dayIndex] ? locStr(fullDays[dayIndex], lang) : `Day ${dayIndex + 1}`}</div>
                   <div style={{ fontSize: 13, color: 'var(--muted)' }}>
                     {dayMeals.length} {dayMeals.length > 1 ? 'repas' : 'repas'} · {fmtMAD0(dayCost(dayMeals))}
                   </div>
@@ -155,8 +156,8 @@ export default function Plan() {
                       >
                         <div style={{ width: 54, flexShrink: 0 }}><RecipePhoto recipe={recipe} height={54} radius={12} /></div>
                         <div style={{ flex: 1, minWidth: 0 }}>
-                          <div style={{ fontSize: 11, color: 'var(--muted-2)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em' }}>{MEAL_LABELS[meal.mealType][lang]}</div>
-                          <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--ink)', margin: '1px 0 5px' }}>{recipe.name[lang]}</div>
+                          <div style={{ fontSize: 11, color: 'var(--muted-2)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em' }}>{locStr(MEAL_LABELS[meal.mealType], lang)}</div>
+                          <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--ink)', margin: '1px 0 5px' }}>{loc(recipe.name)}</div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
                             <span style={{ color: 'var(--muted)', fontSize: 12, display: 'inline-flex', alignItems: 'center', gap: 3 }}><Icon name="clock" size={12} />{recipe.timeMin}m</span>
                             {recipe.tags.slice(0, 2).map((tg) => <TagChip key={tg} tag={tg} lang={lang} />)}

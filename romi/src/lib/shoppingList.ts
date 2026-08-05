@@ -1,4 +1,5 @@
 import type { IngredientCategory, Lang, Loc, OnboardingState, PlannedMeal, SoldBy } from '../data/types'
+import { locStr } from '../data/types'
 import { ingredientMap } from '../data/ingredients'
 import { recipeMap } from '../data/recipes'
 import { getStore } from '../data/stores'
@@ -26,12 +27,12 @@ export interface ShoppingGroup {
 }
 
 export const CATEGORY_LABELS: Record<IngredientCategory, Loc> = {
-  viande_poisson: { fr: 'Viande & poisson', ar: 'لحوم وأسماك' },
-  fruits_legumes: { fr: 'Fruits & légumes', ar: 'خضر وفواكه' },
-  cremerie: { fr: 'Crèmerie', ar: 'مشتقات الحليب' },
-  epicerie: { fr: 'Épicerie', ar: 'بقالة' },
-  boulangerie: { fr: 'Boulangerie', ar: 'مخبزة' },
-  epices: { fr: 'Épices', ar: 'توابل' },
+  viande_poisson: { fr: 'Viande & poisson', ar: 'لحوم وأسماك', en: 'Meat & fish' },
+  fruits_legumes: { fr: 'Fruits & légumes', ar: 'خضر وفواكه', en: 'Fruit & veg' },
+  cremerie: { fr: 'Crèmerie', ar: 'مشتقات الحليب', en: 'Dairy' },
+  epicerie: { fr: 'Épicerie', ar: 'بقالة', en: 'Grocery' },
+  boulangerie: { fr: 'Boulangerie', ar: 'مخبزة', en: 'Bakery' },
+  epices: { fr: 'Épices', ar: 'توابل', en: 'Spices' },
 }
 
 const CATEGORY_ORDER: IngredientCategory[] = [
@@ -156,7 +157,7 @@ export function qtyLabel(item: ShoppingItem, lang: Lang): string {
   if (item.soldBy === 'piece') {
     const pieces = item.pieces ?? Math.ceil(item.qty)
     const grams = item.gramsPerPiece ? Math.round(pieces * item.gramsPerPiece) : 0
-    const pieceWord = lang === 'ar' ? 'وحدة' : pieces > 1 ? 'pièces' : 'pièce'
+    const pieceWord = lang === 'ar' ? 'وحدة' : lang === 'en' ? (pieces > 1 ? 'pcs' : 'pc') : (pieces > 1 ? 'pièces' : 'pièce')
     return grams ? `${pieces} ${pieceWord} · ~${grams} g` : `${pieces} ${pieceWord}`
   }
   return fmtSize(item.unit, item.qty)
@@ -165,12 +166,13 @@ export function qtyLabel(item: ShoppingItem, lang: Lang): string {
 /** Plain-text version for sharing (WhatsApp, etc.). */
 export function shoppingListToText(groups: ShoppingGroup[], lang: Lang, storeName: string): string {
   const lines: string[] = []
-  lines.push(lang === 'ar' ? `🛒 لائحة المشتريات — ${storeName}` : `🛒 Liste de courses — ${storeName}`)
+  const header = lang === 'ar' ? `🛒 لائحة المشتريات — ${storeName}` : `🛒 Shopping list — ${storeName}`
+  lines.push(header)
   lines.push('')
   for (const g of groups) {
-    lines.push(`— ${CATEGORY_LABELS[g.category][lang]} —`)
+    lines.push(`— ${locStr(CATEGORY_LABELS[g.category], lang)} —`)
     for (const i of g.items) {
-      lines.push(`• ${i.name[lang]} (${qtyLabel(i, lang)}) — ${fmtMAD(i.price)}`)
+      lines.push(`• ${locStr(i.name, lang)} (${qtyLabel(i, lang)}) — ${fmtMAD(i.price)}`)
     }
     lines.push('')
   }

@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
-import type { Lang, OnboardingState, PlannedMeal } from '../data/types'
+import type { Lang, Loc, OnboardingState, PlannedMeal } from '../data/types'
+import { locStr } from '../data/types'
 import { BUDGET_DEFAULT } from '../config'
 import { generatePlan, rebalance } from '../lib/planGenerator'
 import { buildShoppingList, shoppingTotal, computeLeftovers } from '../lib/shoppingList'
@@ -65,6 +66,8 @@ interface AppContextValue {
   state: AppState
   lang: Lang
   t: (key: string) => string
+  /** Safe Loc lookup for the current lang, with EN→FR fallback. */
+  loc: (l: Loc) => string
   setLang: (l: Lang) => void
   updateOnboarding: (patch: Partial<OnboardingState>) => void
   register: (phone: string, password: string) => void
@@ -109,6 +112,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     document.documentElement.lang = state.lang
     document.documentElement.dir = state.lang === 'ar' ? 'rtl' : 'ltr'
+    // Store lang in a meta tag so CSS can read it
+    document.documentElement.setAttribute('data-lang', state.lang)
   }, [state.lang])
 
   const setLang = useCallback((l: Lang) => setState((s) => ({ ...s, lang: l })), [])
@@ -225,11 +230,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
   )
 
   const t = useMemo(() => makeT(state.lang), [state.lang])
+  const loc = useMemo(() => (l: Loc) => locStr(l, state.lang), [state.lang])
 
   const value: AppContextValue = {
     state,
     lang: state.lang,
     t,
+    loc,
     setLang,
     updateOnboarding,
     register,

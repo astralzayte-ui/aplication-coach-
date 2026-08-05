@@ -8,13 +8,18 @@ import { recipePricePerPerson, fmtMAD } from '../lib/pricing'
 import { alternativesFor } from '../lib/planGenerator'
 import { buildSteps } from '../lib/steps'
 import { RecipePhoto, Icon, TagChip } from '../components/ui'
-import type { Allergen, Recipe } from '../data/types'
+import type { Allergen, Loc, Recipe } from '../data/types'
+import { locStr } from '../data/types'
 
-const ALLERGEN_LABEL: Record<Allergen, { fr: string; ar: string }> = {
-  gluten: { fr: 'gluten', ar: 'غلوتين' }, lactose: { fr: 'lait', ar: 'حليب' },
-  oeuf: { fr: 'œuf', ar: 'بيض' }, poisson: { fr: 'poisson', ar: 'سمك' },
-  crustace: { fr: 'crustacés', ar: 'قشريات' }, fruits_coque: { fr: 'fruits à coque', ar: 'مكسرات' },
-  soja: { fr: 'soja', ar: 'صويا' }, arachide: { fr: 'arachide', ar: 'فول سوداني' },
+const ALLERGEN_LABEL: Record<Allergen, Loc> = {
+  gluten: { fr: 'gluten', ar: 'غلوتين', en: 'gluten' },
+  lactose: { fr: 'lait', ar: 'حليب', en: 'dairy' },
+  oeuf: { fr: 'œuf', ar: 'بيض', en: 'egg' },
+  poisson: { fr: 'poisson', ar: 'سمك', en: 'fish' },
+  crustace: { fr: 'crustacés', ar: 'قشريات', en: 'shellfish' },
+  fruits_coque: { fr: 'fruits à coque', ar: 'مكسرات', en: 'tree nuts' },
+  soja: { fr: 'soja', ar: 'صويا', en: 'soy' },
+  arachide: { fr: 'arachide', ar: 'فول سوداني', en: 'peanut' },
 }
 
 function ingQtyLabel(unit: string, qty: number, lang: string) {
@@ -25,7 +30,7 @@ function ingQtyLabel(unit: string, qty: number, lang: string) {
 }
 
 export default function MealDetail() {
-  const { t, lang, state, swapMeal } = useApp()
+  const { t, lang, loc, state, swapMeal } = useApp()
   const nav = useNavigate()
   const { day, type } = useParams()
   const dayIndex = Number(day)
@@ -75,7 +80,7 @@ export default function MealDetail() {
       </div>
 
       <div style={{ padding: '20px 22px 30px' }}>
-        <h1 className="title" style={{ fontSize: 26 }}>{recipe.name[lang]}</h1>
+        <h1 className="title" style={{ fontSize: 26 }}>{loc(recipe.name)}</h1>
         <div style={{ display: 'flex', gap: 8, marginBottom: 18, flexWrap: 'wrap' }}>
           {recipe.tags.map((tg) => <TagChip key={tg} tag={tg} lang={lang} />)}
         </div>
@@ -94,7 +99,7 @@ export default function MealDetail() {
 
         {allergens.length > 0 && (
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--warn)', fontSize: 14, fontWeight: 600, marginTop: 8 }}>
-            ⚠️ {allergens.map((a) => ALLERGEN_LABEL[a][lang]).join(', ')}
+            ⚠️ {allergens.map((a) => locStr(ALLERGEN_LABEL[a], lang)).join(', ')}
           </div>
         )}
 
@@ -109,7 +114,7 @@ export default function MealDetail() {
             return (
               <div key={ri.id} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 0', borderBottom: '1px solid var(--line)' }}>
                 <div style={{ width: 38, height: 38, borderRadius: 999, background: 'var(--bg-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>{ing.emoji}</div>
-                <div style={{ flex: 1, fontWeight: 600 }}>{ing.name[lang]}</div>
+                <div style={{ flex: 1, fontWeight: 600 }}>{loc(ing.name)}</div>
                 <div style={{ color: 'var(--muted)', fontWeight: 600 }}>{ingQtyLabel(ing.unit, ri.qtyPerPerson * people, lang)}</div>
               </div>
             )
@@ -120,7 +125,7 @@ export default function MealDetail() {
             the real ingredients & quantities so dosages are always exact */}
         <h2 style={{ fontSize: 20, fontWeight: 800, margin: '26px 0 12px' }}>{t('preparation')}</h2>
         <ol style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12 }}>
-          {(recipe.steps ? recipe.steps.map((s) => s[lang]) : buildSteps(recipe, lang)).map((s, i) => (
+          {(recipe.steps ? recipe.steps.map((s) => locStr(s, lang)) : buildSteps(recipe, lang)).map((s, i) => (
             <li key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
               <span style={{ flexShrink: 0, width: 26, height: 26, borderRadius: 999, background: 'var(--accent-soft)', color: 'var(--accent)', fontWeight: 800, fontSize: 13, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{i + 1}</span>
               <span style={{ lineHeight: 1.45, color: 'var(--ink-2)' }}>{s}</span>
@@ -137,7 +142,7 @@ export default function MealDetail() {
               <iframe
                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
                 src={`https://www.youtube-nocookie.com/embed/${recipe.youtubeId}?rel=0&modestbranding=1`}
-                title={recipe.name[lang]}
+                title={loc(recipe.name)}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
@@ -168,7 +173,7 @@ export default function MealDetail() {
                 <button key={r.id} onClick={() => doSwap(r)} className="card" style={{ display: 'flex', alignItems: 'center', gap: 12, padding: 10, textAlign: 'start' }}>
                   <div style={{ width: 52 }}><RecipePhoto recipe={r} height={52} radius={12} /></div>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontWeight: 700, fontSize: 15 }}>{r.name[lang]}</div>
+                    <div style={{ fontWeight: 700, fontSize: 15 }}>{loc(r.name)}</div>
                     <div style={{ color: 'var(--muted)', fontSize: 12, display: 'flex', gap: 8, marginTop: 2 }}>
                       <span>⏱ {r.timeMin}m</span><span>🔥 {r.kcal}</span><span>{fmtMAD(recipePricePerPerson(r, store), 1)}</span>
                     </div>

@@ -176,6 +176,59 @@ export const INGREDIENTS: Ingredient[] = [
   // ===== Batch 3 pantry =====
   { id: 'chevre', name: { fr: 'fromage de chèvre', ar: 'جبن الماعز' }, emoji: '🧀', category: 'cremerie', unit: 'g', basePrice: 100, soldBy: 'pack', packSize: 150, allergens: ['lactose'] },
   { id: 'maquereau', name: { fr: 'maquereau', ar: 'ماكريل' }, emoji: '🐟', category: 'viande_poisson', unit: 'g', basePrice: 40, soldBy: 'weight', allergens: ['poisson'] },
+
+  // ===== TheMealDB unmapped commons =====
+  // Basiques cuisine
+  { id: 'sel', name: { fr: 'sel (paquet 1 kg)', ar: 'ملح' }, emoji: '🧂', category: 'epices', unit: 'g', basePrice: 4, soldBy: 'pack', packSize: 1000, allergens: [] },
+  { id: 'poivre', name: { fr: 'poivre noir (flacon)', ar: 'فلفل أسود' }, emoji: '🧂', category: 'epices', unit: 'g', basePrice: 110, soldBy: 'pack', packSize: 50, allergens: [] },
+  { id: 'eau', name: { fr: 'eau', ar: 'ماء' }, emoji: '💧', category: 'epicerie', unit: 'ml', basePrice: 1, soldBy: 'weight', allergens: [] },
+  { id: 'levure', name: { fr: 'levure chimique (sachet)', ar: 'مسحوق الخميرة' }, emoji: '🧂', category: 'epicerie', unit: 'g', basePrice: 90, soldBy: 'pack', packSize: 11, allergens: ['gluten'] },
+  { id: 'maizena', name: { fr: 'maïzena (paquet)', ar: 'نشا الذرة' }, emoji: '🌽', category: 'epicerie', unit: 'g', basePrice: 28, soldBy: 'pack', packSize: 250, allergens: [] },
+  { id: 'vinaigre', name: { fr: 'vinaigre (bouteille)', ar: 'خل' }, emoji: '🍶', category: 'epicerie', unit: 'ml', basePrice: 12, soldBy: 'pack', packSize: 500, allergens: [] },
+  { id: 'sucre_glace', name: { fr: 'sucre glace (paquet)', ar: 'سكر ناعم' }, emoji: '🧂', category: 'epicerie', unit: 'g', basePrice: 12, soldBy: 'pack', packSize: 250, allergens: [] },
+
+  // Légumes supplémentaires
+  { id: 'chou', name: { fr: 'chou blanc', ar: 'كرنب أبيض' }, emoji: '🥬', category: 'fruits_legumes', unit: 'g', basePrice: 5, soldBy: 'weight', allergens: [] },
+  { id: 'champignons', name: { fr: 'champignons (barquette)', ar: 'فطر' }, emoji: '🍄', category: 'fruits_legumes', unit: 'g', basePrice: 35, soldBy: 'pack', packSize: 250, allergens: [] },
+  { id: 'celeri', name: { fr: 'céleri branche', ar: 'كرفس' }, emoji: '🌿', category: 'fruits_legumes', unit: 'piece', basePrice: 8, gramsPerPiece: 200, soldBy: 'piece', allergens: [] },
+  { id: 'fenouil', name: { fr: 'fenouil', ar: 'شمر' }, emoji: '🌿', category: 'fruits_legumes', unit: 'piece', basePrice: 10, gramsPerPiece: 300, soldBy: 'piece', allergens: [] },
+  { id: 'citron_vert', name: { fr: 'citron vert', ar: 'ليمون أخضر' }, emoji: '🍋', category: 'fruits_legumes', unit: 'piece', basePrice: 1.5, gramsPerPiece: 70, soldBy: 'piece', allergens: [] },
+  { id: 'petits_pois', name: { fr: 'petits pois (boîte)', ar: 'بازلاء (علبة)' }, emoji: '🫛', category: 'epicerie', unit: 'g', basePrice: 22, soldBy: 'pack', packSize: 400, allergens: [] },
+  { id: 'noix_coco', name: { fr: 'noix de coco râpée (paquet)', ar: 'جوز هند مبروش' }, emoji: '🥥', category: 'epicerie', unit: 'g', basePrice: 45, soldBy: 'pack', packSize: 200, allergens: [] },
+  { id: 'piment', name: { fr: 'piment rouge', ar: 'فلفل حار' }, emoji: '🌶️', category: 'epices', unit: 'g', basePrice: 8, soldBy: 'pack', packSize: 30, allergens: [] },
+  { id: 'scotch_bonnet', name: { fr: 'piment scotch bonnet', ar: 'فلفل حار جداً' }, emoji: '🌶️', category: 'epices', unit: 'g', basePrice: 40, soldBy: 'pack', packSize: 5, allergens: [] },
+  { id: 'ciboulette', name: { fr: 'ciboulette (botte)', ar: 'ثوم معمر' }, emoji: '🌿', category: 'fruits_legumes', unit: 'g', basePrice: 40, soldBy: 'pack', packSize: 30, allergens: [] },
+
+  // Fromages
+  { id: 'fromage', name: { fr: 'fromage râpé (paquet)', ar: 'جبن مبروش' }, emoji: '🧀', category: 'cremerie', unit: 'g', basePrice: 150, soldBy: 'pack', packSize: 200, allergens: ['lactose'] },
+  { id: 'creme_fraiche', name: { fr: 'crème fraîche (pot)', ar: 'كريمة فرنسية' }, emoji: '🥛', category: 'cremerie', unit: 'ml', basePrice: 25, soldBy: 'pack', packSize: 200, allergens: ['lactose'] },
+
+  // Viandes supplémentaires
+  { id: 'porc', name: { fr: 'viande de porc', ar: 'لحم الخنزير' }, emoji: '🥩', category: 'viande_poisson', unit: 'g', basePrice: 80, soldBy: 'weight', allergens: [] },
+  { id: 'chorizo', name: { fr: 'chorizo (paquet)', ar: 'شوريثو' }, emoji: '🌭', category: 'viande_poisson', unit: 'g', basePrice: 120, soldBy: 'pack', packSize: 200, allergens: [] },
+
+  // Huiles & sauces
+  { id: 'sesame_seed_oil', name: { fr: 'huile de sésame (bouteille)', ar: 'زيت السمسم' }, emoji: '🍶', category: 'epicerie', unit: 'ml', basePrice: 80, soldBy: 'pack', packSize: 200, allergens: [] },
+  { id: 'hotsauce', name: { fr: 'sauce piquante', ar: 'صوص حار' }, emoji: '🌶️', category: 'epicerie', unit: 'ml', basePrice: 35, soldBy: 'pack', packSize: 100, allergens: [] },
+  { id: 'vin_blanc', name: { fr: 'vin blanc (bouteille)', ar: 'نبيذ أبيض' }, emoji: '🍷', category: 'epicerie', unit: 'ml', basePrice: 55, soldBy: 'pack', packSize: 750, allergens: [] },
+  { id: 'vin_rouge', name: { fr: 'vin rouge (bouteille)', ar: 'نبيذ أحمر' }, emoji: '🍷', category: 'epicerie', unit: 'ml', basePrice: 55, soldBy: 'pack', packSize: 750, allergens: [] },
+  { id: 'tinned_tomatos', name: { fr: 'tomates pelées (boîte)', ar: 'طماطم مقشرة' }, emoji: '🥫', category: 'epicerie', unit: 'g', basePrice: 18, soldBy: 'pack', packSize: 400, allergens: [] },
+  { id: 'puff_pastry', name: { fr: 'pâte feuilletée (rouleau)', ar: 'عجينة ورقية' }, emoji: '🥐', category: 'boulangerie', unit: 'g', basePrice: 60, soldBy: 'pack', packSize: 275, allergens: ['gluten', 'lactose'] },
+
+  // Épices supplémentaires
+  { id: 'vanille', name: { fr: 'vanille en poudre (sachet)', ar: 'فانيليا (كيس)' }, emoji: '🧂', category: 'epices', unit: 'g', basePrice: 250, soldBy: 'pack', packSize: 5, allergens: [] },
+  { id: 'thym', name: { fr: 'thym (flacon)', ar: 'زعتر جاف' }, emoji: '🌿', category: 'epices', unit: 'g', basePrice: 55, soldBy: 'pack', packSize: 15, allergens: [] },
+  { id: 'bay_leaf', name: { fr: 'feuilles de laurier (paquet)', ar: 'ورق الغار' }, emoji: '🌿', category: 'epices', unit: 'g', basePrice: 40, soldBy: 'pack', packSize: 10, allergens: [] },
+  { id: 'laurier', name: { fr: 'laurier (paquet)', ar: 'ورق الغار' }, emoji: '🌿', category: 'epices', unit: 'g', basePrice: 40, soldBy: 'pack', packSize: 10, allergens: [] },
+  { id: 'muscade', name: { fr: 'noix de muscade (flacon)', ar: 'جوزة الطيب' }, emoji: '🧂', category: 'epices', unit: 'g', basePrice: 160, soldBy: 'pack', packSize: 25, allergens: [] },
+  { id: 'origan', name: { fr: 'origan (flacon)', ar: 'أوريغانو' }, emoji: '🌿', category: 'epices', unit: 'g', basePrice: 55, soldBy: 'pack', packSize: 15, allergens: [] },
+  { id: 'aneth', name: { fr: 'aneth (flacon)', ar: 'شبت' }, emoji: '🌿', category: 'epices', unit: 'g', basePrice: 55, soldBy: 'pack', packSize: 15, allergens: [] },
+  { id: 'cardamome', name: { fr: 'cardamome (flacon)', ar: 'هيل' }, emoji: '🧂', category: 'epices', unit: 'g', basePrice: 450, soldBy: 'pack', packSize: 20, allergens: [] },
+  { id: 'romarin', name: { fr: 'romarin (flacon)', ar: 'إكليل الجبل' }, emoji: '🌿', category: 'epices', unit: 'g', basePrice: 55, soldBy: 'pack', packSize: 15, allergens: [] },
+  { id: 'clous_girofle', name: { fr: 'clous de girofle (flacon)', ar: 'قرنفل' }, emoji: '🧂', category: 'epices', unit: 'g', basePrice: 220, soldBy: 'pack', packSize: 15, allergens: [] },
+  { id: 'safran', name: { fr: 'safran (sachet)', ar: 'زعفران' }, emoji: '🌸', category: 'epices', unit: 'g', basePrice: 2200, soldBy: 'pack', packSize: 0.5, allergens: [] },
+  { id: 'cilantro', name: { fr: 'coriandre fraîche (botte)', ar: 'كزبرة طازجة' }, emoji: '🌿', category: 'fruits_legumes', unit: 'piece', basePrice: 2, gramsPerPiece: 30, soldBy: 'piece', allergens: [] },
+  { id: 'cacahuetes', name: { fr: 'cacahuètes (paquet)', ar: 'فول سوداني' }, emoji: '🥜', category: 'epicerie', unit: 'g', basePrice: 35, soldBy: 'pack', packSize: 200, allergens: ['arachide'] },
 ]
 
 export const getIngredient = (id: string): Ingredient | undefined =>

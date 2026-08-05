@@ -6,9 +6,10 @@ import { buildShoppingList, CATEGORY_LABELS, qtyLabel, shoppingCount, shoppingLi
 import { fmtMAD } from '../lib/pricing'
 import { dayLabelsFrom } from '../lib/trial'
 import { Icon, Button } from '../components/ui'
+import { locStr } from '../data/types'
 
 export default function Shopping() {
-  const { t, lang, state, toggleChecked } = useApp()
+  const { t, lang, loc, state, toggleChecked } = useApp()
   const nav = useNavigate()
   const store = getStore(state.onboarding.storeId)
   const meals = state.plan ?? []
@@ -18,7 +19,7 @@ export default function Shopping() {
   const done = useMemo(() => groups.reduce((s, g) => s + g.items.filter((i) => state.checked[i.ingredientId]).length, 0), [groups, state.checked])
   const days = dayLabelsFrom(state.trialStartISO, state.planDays)
   const range = days.length
-    ? `${days[0][lang]} – ${days[days.length - 1][lang]}`.toUpperCase()
+    ? `${locStr(days[0], lang)} – ${locStr(days[days.length - 1], lang)}`.toUpperCase()
     : ''
 
   const text = () => shoppingListToText(groups, lang, store.name)
@@ -51,7 +52,7 @@ export default function Shopping() {
       <div style={{ marginTop: 18 }}>
         {groups.map((g) => (
           <div key={g.category}>
-            <div className="section-label">{CATEGORY_LABELS[g.category][lang]}</div>
+            <div className="section-label">{locStr(CATEGORY_LABELS[g.category], lang)}</div>
             <div className="card" style={{ padding: '2px 14px' }}>
               {g.items.map((item, idx) => {
                 const on = !!state.checked[item.ingredientId]
@@ -60,11 +61,11 @@ export default function Shopping() {
                     style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 0', borderBottom: idx < g.items.length - 1 ? '1px solid var(--line)' : 'none', cursor: 'pointer', opacity: on ? 0.55 : 1 }}>
                     <div style={{ width: 40, height: 40, borderRadius: 999, background: 'var(--bg-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 19, flexShrink: 0 }}>{item.emoji}</div>
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontWeight: 700, textDecoration: on ? 'line-through' : 'none' }}>{item.name[lang]}</div>
+                      <div style={{ fontWeight: 700, textDecoration: on ? 'line-through' : 'none' }}>{loc(item.name)}</div>
                       <div style={{ fontSize: 13, color: 'var(--muted)' }}>{qtyLabel(item, lang)} · {fmtMAD(item.price)}</div>
                       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 5 }}>
                         {item.usedIn.slice(0, 2).map((u, i) => (
-                          <span key={i} style={{ fontSize: 11, background: 'var(--bg-soft)', color: 'var(--muted)', padding: '2px 8px', borderRadius: 999, maxWidth: 160, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{u[lang]}</span>
+                          <span key={i} style={{ fontSize: 11, background: 'var(--bg-soft)', color: 'var(--muted)', padding: '2px 8px', borderRadius: 999, maxWidth: 160, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{locStr(u, lang)}</span>
                         ))}
                       </div>
                     </div>

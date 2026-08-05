@@ -1,4 +1,5 @@
 import type { Lang, Loc, Recipe } from '../data/types'
+import { locStr } from '../data/types'
 import { ingredientMap } from '../data/ingredients'
 
 // Builds coherent, correctly-dosed cooking steps FROM a recipe's real
@@ -22,7 +23,7 @@ function qtyStr(unit: 'g' | 'ml' | 'piece', qpp: number, lang: Lang): string {
 }
 
 interface Grp { id: string; name: Loc; qpp: number; unit: 'g' | 'ml' | 'piece'; cat: string }
-const nm = (l: Loc, lang: Lang): string => l[lang].replace(/\s*\([^)]*\)\s*$/, '')
+const nm = (l: Loc, lang: Lang): string => locStr(l, lang).replace(/\s*\([^)]*\)\s*$/, '')
 
 export function buildSteps(recipe: Recipe, lang: Lang): string[] {
   const items = recipe.ingredients
@@ -61,7 +62,7 @@ export function buildSteps(recipe: Recipe, lang: Lang): string[] {
     push(`Épluchez et coupez ${list(fruits)} en morceaux.`, `قشّر وقطّع ${list(fruits)} إلى قطع.`)
     push(`Mixez ${list(items.filter((i) => i.id !== 'citron'), true)} jusqu’à texture lisse.`, `اخلط ${list(items.filter((i) => i.id !== 'citron'), true)} حتى يصبح ناعما.`)
     push('Versez dans un verre ou un bol et dégustez aussitôt.', 'اسكبه في كأس أو وعاء وتناوله فورا.')
-    return out.map((s) => s[lang])
+    return out.map((s) => locStr(s, lang))
   }
 
   // ---------- 2) Porridge / overnight oats ----------
@@ -75,7 +76,7 @@ export function buildSteps(recipe: Recipe, lang: Lang): string[] {
       push('Faites cuire 4–5 min à feu doux en remuant jusqu’à consistance crémeuse.', 'اطبخه 4–5 دقائق على نار هادئة مع التحريك حتى يصبح كريميا.')
     }
     if (fruits.length) push(`Garnissez de ${list(fruits)}${has('miel') ? ', d’un filet de miel' : ''}${has('amandes') || has('noix') ? ' et de fruits secs' : ''}.`, `زيّنه بـ ${list(fruits)}${has('miel') ? ' وقليل من العسل' : ''}.`)
-    return out.map((s) => s[lang])
+    return out.map((s) => locStr(s, lang))
   }
 
   // ---------- 3) Pâte : gaufres, pancakes, crêpes, msemen, harcha, cakes ----------
@@ -97,7 +98,7 @@ export function buildSteps(recipe: Recipe, lang: Lang): string[] {
       push(`Faites chauffer ${tool.fr} et faites cuire 2–4 min de chaque côté jusqu’à doré.`, `سخّن ${tool.ar} واطبخها 2–4 دقائق على كل جانب حتى تحمرّ.`)
     }
     push(`Servez tiède${has('miel') ? ', arrosé de miel' : has('chocolat') ? ', avec un peu de chocolat' : cheese.length ? '' : ', avec du sucre ou des fruits'}.`, `قدّمها دافئة${has('miel') ? ' مع العسل' : ''}.`)
-    return out.map((s) => s[lang])
+    return out.map((s) => locStr(s, lang))
   }
 
   // ---------- 4) Desserts crémeux (tiramisu, mousse, panna cotta, flan, riz au lait) ----------
@@ -106,19 +107,19 @@ export function buildSteps(recipe: Recipe, lang: Lang): string[] {
       push(`Rincez le riz (${q('riz')}), versez-le dans le lait (${q('lait')}) avec le sucre (${q('sucre')}).`, `اغسل الأرز (${q('riz')}) وضعه في الحليب (${q('lait')}) مع السكر (${q('sucre')}).`)
       push('Faites cuire 25–30 min à feu doux en remuant souvent, jusqu’à consistance crémeuse.', 'اطبخه 25–30 دقيقة على نار هادئة مع التحريك حتى يصبح كريميا.')
       if (has('cannelle')) push('Parfumez à la cannelle et servez tiède ou froid.', 'أضف القرفة وقدّمه دافئا أو باردا.')
-      return out.map((s) => s[lang])
+      return out.map((s) => locStr(s, lang))
     }
     if (has('mascarpone') || has('creme')) {
       push(`Fouettez ${has('mascarpone') ? `le mascarpone (${q('mascarpone')})` : `la crème (${q('creme')})`} avec le sucre (${q('sucre')})${has('oeuf') ? ' et les jaunes d’œufs' : ''} jusqu’à texture mousseuse.`, `اخفق ${has('mascarpone') ? `الماسكاربوني (${q('mascarpone')})` : `الكريمة (${q('creme')})`} مع السكر (${q('sucre')}) حتى يصبح رغويا.`)
       if (has('biscuits')) push(`Trempez rapidement les biscuits (${q('biscuits')}) et alternez avec la crème dans des verrines.`, `اغمس البسكويت (${q('biscuits')}) بسرعة وبدّله مع الكريمة في أكواب.`)
       if (has('cacao')) push('Saupoudrez de cacao.', 'رشّ الكاكاو فوقه.')
       push('Réservez au frais au moins 2 h avant de déguster.', 'ضعه في الثلاجة ساعتين على الأقل قبل التقديم.')
-      return out.map((s) => s[lang])
+      return out.map((s) => locStr(s, lang))
     }
     // sinon (fruits, dattes, etc.) : assemblage simple
     push(`Préparez ${list(items, true)}.`, `حضّر ${list(items, true)}.`)
     push('Assemblez, mélangez délicatement et réservez au frais avant de servir.', 'اجمع المكونات وامزجها برفق ثم ضعها في الثلاجة قبل التقديم.')
-    return out.map((s) => s[lang])
+    return out.map((s) => locStr(s, lang))
   }
 
   // ---------- 5) Soupes / veloutés ----------
@@ -126,14 +127,14 @@ export function buildSteps(recipe: Recipe, lang: Lang): string[] {
     if (method === 'aucun') { // gazpacho
       push(`Mixez ${list(veg, true)} avec l’ail et l’huile d’olive jusqu’à obtenir un velouté.`, `اخلط ${list(veg, true)} مع الثوم وزيت الزيتون حتى يصبح ناعما.`)
       push('Salez, ajoutez un peu d’eau si besoin et servez bien frais.', 'ملّح وأضف قليلا من الماء إن لزم وقدّمه باردا.')
-      return out.map((s) => s[lang])
+      return out.map((s) => locStr(s, lang))
     }
     push(`Émincez ${list(aromatics)} et faites-les revenir 3 min dans un filet d’huile.`, `قطّع ${list(aromatics)} وقلّبها 3 دقائق في قليل من الزيت.`)
     push(`Ajoutez ${list([...veg, ...potatoes], true)}${grains.length ? ` et ${list(grains, true)}` : ''}, couvrez d’eau (~250 ml/pers)${has('bouillon') ? ' avec le bouillon' : ''}.`, `أضف ${list([...veg, ...potatoes], true)}${grains.length ? ` و${list(grains, true)}` : ''} وغطِّها بالماء (~250 مل/شخص)${has('bouillon') ? ' مع المرقة' : ''}.`)
     push('Laissez mijoter 20–25 min à couvert.', 'اتركها على نار هادئة 20–25 دقيقة مغطاة.')
     if (/velout/.test(name)) push(`Mixez finement${has('creme') ? `, ajoutez la crème (${q('creme')})` : ''} et rectifiez l’assaisonnement.`, `اخلطها جيدا${has('creme') ? ` وأضف الكريمة (${q('creme')})` : ''} واضبط الملح.`)
     else push('Rectifiez l’assaisonnement et servez chaud.', 'اضبط النكهة وقدّمها ساخنة.')
-    return out.map((s) => s[lang])
+    return out.map((s) => locStr(s, lang))
   }
 
   // ---------- 6) Œufs (omelette, brouillés, shakshuka…) ----------
@@ -146,7 +147,7 @@ export function buildSteps(recipe: Recipe, lang: Lang): string[] {
       push('Versez dans une poêle beurrée et faites cuire 3–4 min à feu moyen.', 'اسكبه في مقلاة مدهونة بالزبدة واطبخه 3–4 دقائق على نار متوسطة.')
     }
     push(`Servez aussitôt${has('pain') ? ' avec du pain' : ''}.`, `قدّمه فورا${has('pain') ? ' مع الخبز' : ''}.`)
-    return out.map((s) => s[lang])
+    return out.map((s) => locStr(s, lang))
   }
 
   // ---------- 7) Salade / assemblage à froid ----------
@@ -155,7 +156,7 @@ export function buildSteps(recipe: Recipe, lang: Lang): string[] {
     if (proteins.length) push(`Préparez ${list(proteins, true)} (émincé/en dés selon la recette).`, `حضّر ${list(proteins, true)} (مقطّعا حسب الوصفة).`)
     push(`Coupez ${list([...veg, ...aromatics])}.`, `قطّع ${list([...veg, ...aromatics])}.`)
     push(`Assaisonnez avec ${has('huile_olive') ? `l’huile d’olive (${q('huile_olive')})` : 'un filet d’huile'}${has('citron') ? ', le jus de citron' : ''}${has('sauce_soja') ? ', la sauce soja' : ''}, mélangez et servez frais.`, `تبّل بـ ${has('huile_olive') ? `زيت الزيتون (${q('huile_olive')})` : 'قليل من الزيت'}${has('citron') ? ' وعصير الليمون' : ''}، امزج وقدّمه باردا.`)
-    return out.map((s) => s[lang])
+    return out.map((s) => locStr(s, lang))
   }
 
   // ---------- 8) Plat salé cuisiné (par défaut) ----------
@@ -174,5 +175,5 @@ export function buildSteps(recipe: Recipe, lang: Lang): string[] {
   if (veg.length && (proteins.length || grains.length)) push(`Ajoutez ${list(veg)} et faites revenir 5–8 min.`, `أضف ${list(veg)} وقلّبها 5–8 دقائق.`)
   if (sauces.length || cheese.length) push(`Incorporez ${list([...sauces, ...cheese], true)} et laissez mijoter 3–5 min.`, `أضف ${list([...sauces, ...cheese], true)} واتركها 3–5 دقائق.`)
   push(`Salez, poivrez et servez${grains.length ? ` avec ${nm(grains[0].name, 'fr')}` : potatoes.length ? ` avec ${nm(potatoes[0].name, 'fr')}` : ''}.`, `ملّح وبهّر وقدّم${grains.length ? ` مع ${nm(grains[0].name, 'ar')}` : ''}.`)
-  return out.map((s) => s[lang])
+  return out.map((s) => locStr(s, lang))
 }
