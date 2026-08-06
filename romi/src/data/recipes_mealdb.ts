@@ -297,7 +297,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "beef_and_broccoli_stir_fry",
-    name: { fr: "bœuf et Broccoli Stir-Fry", ar: "لحم بقري وبروكلي مقلي" },
+    name: { fr: "Bœuf et Broccoli Stir-Fry", ar: "لحم بقري وبروكلي مقلي" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -361,7 +361,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "beef_and_mustard_pie",
-    name: { fr: "bœuf et Mustard tourte", ar: "فطيرة لحم البقر والخردل" },
+    name: { fr: "Bœuf et Mustard tourte", ar: "فطيرة لحم البقر والخردل" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -426,7 +426,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "beef_and_oyster_pie",
-    name: { fr: "bœuf et Oyster tourte", ar: "فطيرة لحم البقر والمحار" },
+    name: { fr: "Bœuf et Oyster tourte", ar: "فطيرة لحم البقر والمحار" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -491,7 +491,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "beef_asado",
-    name: { fr: "bœuf Asado", ar: "أسادو لحم بقري" },
+    name: { fr: "Bœuf Asado", ar: "أسادو لحم بقري" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -620,7 +620,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "beef_brisket_pot_roast",
-    name: { fr: "bœuf Brisket Pot rôti", ar: "بيف بريسكت بوت مشوي" },
+    name: { fr: "Bœuf Brisket Pot rôti", ar: "بيف بريسكت بوت مشوي" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine", "famille"],
@@ -681,7 +681,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "beef_caldereta",
-    name: { fr: "bœuf Caldereta", ar: "لحم البقر كالدريتا" },
+    name: { fr: "Bœuf Caldereta", ar: "لحم البقر كالدريتا" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -745,7 +745,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "beef_dumpling_stew",
-    name: { fr: "bœuf Dumpling ragoût", ar: "حساء زلابية اللحم البقري" },
+    name: { fr: "Bœuf Dumpling ragoût", ar: "حساء زلابية اللحم البقري" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine", "famille"],
@@ -814,7 +814,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "beef_empanadas",
-    name: { fr: "bœuf Empanadas", ar: "بيف إمباناداس" },
+    name: { fr: "Bœuf Empanadas", ar: "بيف إمباناداس" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -882,7 +882,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "beef_lo_mein",
-    name: { fr: "bœuf Lo Mein", ar: "لو مين باللحم البقري" },
+    name: { fr: "Bœuf Lo Mein", ar: "لو مين باللحم البقري" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -949,7 +949,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "beef_lok_lak_lok_lak_sach_ko",
-    name: { fr: "bœuf LOK LAK (Lok Lak Sach Ko)", ar: "بيف لوك لاك (لوك لاك ساش كو)" },
+    name: { fr: "Bœuf LOK LAK (Lok Lak Sach Ko)", ar: "بيف لوك لاك (لوك لاك ساش كو)" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -1015,7 +1015,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "beef_mechado",
-    name: { fr: "bœuf Mechado", ar: "ميتشادو لحم بقري" },
+    name: { fr: "Bœuf Mechado", ar: "ميتشادو لحم بقري" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -1077,7 +1077,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "beef_pho",
-    name: { fr: "bœuf pho", ar: "بيف فو" },
+    name: { fr: "Bœuf pho", ar: "بيف فو" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -1144,7 +1144,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "beef_rendang",
-    name: { fr: "bœuf Rendang", ar: "بيف ريندانج" },
+    name: { fr: "Bœuf Rendang", ar: "بيف ريندانج" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -1206,7 +1206,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "beef_stroganoff",
-    name: { fr: "bœuf stroganoff", ar: "ستروجانوف اللحم" },
+    name: { fr: "Bœuf stroganoff", ar: "ستروجانوف اللحم" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -1267,7 +1267,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "beef_sunday_roast",
-    name: { fr: "bœuf Sunday rôti", ar: "مشاوي الأحد" },
+    name: { fr: "Bœuf Sunday rôti", ar: "مشاوي الأحد" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine", "famille"],
@@ -1325,7 +1325,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "beef_wellington",
-    name: { fr: "bœuf Wellington", ar: "لحم ويلينغتون" },
+    name: { fr: "Bœuf Wellington", ar: "لحم ويلينغتون" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -3162,7 +3162,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "matambre_a_la_pizza",
-    name: { fr: "Matambre a la Pizza", ar: "Matambre a la Pizza" },
+    name: { fr: "Matambre la Pizza", ar: "Matambre a la Pizza" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -3219,7 +3219,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "milanesa",
-    name: { fr: "Escalope milanaise ", ar: "<g id=\"1\">ميلانيسا</g><g id=\"2\">:</g>" },
+    name: { fr: "Escalope milanaise", ar: "<g id=\"1\">ميلانيسا</g><g id=\"2\">:</g>" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -3572,7 +3572,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "oxtail_with_broad_beans",
-    name: { fr: "Oxtail au broad beans", ar: "أوكستايل مع فاصوليا عريضة" },
+    name: { fr: "Queue de bœuf au broad haricots", ar: "أوكستايل مع فاصوليا عريضة" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -3757,7 +3757,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "portuguese_prego_with_green_piri_piri",
-    name: { fr: "Portuguese prego au green piri-piri", ar: "البرتغالي بريو مع بيري بيري الأخضر" },
+    name: { fr: "Portuguese prego au vert piri-piri", ar: "البرتغالي بريو مع بيري بيري الأخضر" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -3821,7 +3821,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "red_peas_soup",
-    name: { fr: "Red Peas soupe", ar: "حساء البازلاء الحمراء" },
+    name: { fr: "Rouge Petits pois soupe", ar: "حساء البازلاء الحمراء" },
     emoji: "🥩",
     mealType: "dejeuner",
     tags: ["proteine"],
@@ -4001,7 +4001,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "steak_vietnamese_noodle_salad",
-    name: { fr: "Steak & Vietnamese noodle salade", ar: "ستيك وسلطة نودلز فيتنامية" },
+    name: { fr: "Steak & Vietnamese nouille salade", ar: "ستيك وسلطة نودلز فيتنامية" },
     emoji: "🥩",
     mealType: "dejeuner",
     tags: ["du_monde", "proteine", "healthy"],
@@ -4745,7 +4745,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chick_fil_a_sandwich",
-    name: { fr: "Sandwich Chick-Fil-A", ar: "ساندويتش تشيك فيل إيه" },
+    name: { fr: "Sandwich Chick-Fil-", ar: "ساندويتش تشيك فيل إيه" },
     emoji: "🍗",
     mealType: "dejeuner",
     tags: ["proteine"],
@@ -4809,7 +4809,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chicken_chorizo_rice_pot",
-    name: { fr: "poulet & chorizo riz pot", ar: "وعاء أرز بالدجاج والكوريزو" },
+    name: { fr: "Poulet & chorizo riz pot", ar: "وعاء أرز بالدجاج والكوريزو" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -4871,7 +4871,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chicken_mushroom_hotpot",
-    name: { fr: "poulet & mushroom Hotpot", ar: "هوت بوت الدجاج والفطر" },
+    name: { fr: "Poulet & champignon Casserole", ar: "هوت بوت الدجاج والفطر" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["proteine"],
@@ -4932,7 +4932,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chicken_alfredo_primavera",
-    name: { fr: "poulet Alfredo Primavera", ar: "دجاج ألفريدو بريمافيرا" },
+    name: { fr: "Poulet Alfredo Primavera", ar: "دجاج ألفريدو بريمافيرا" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -5001,7 +5001,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chicken_and_potato_roti",
-    name: { fr: "poulet et Potato Roti", ar: "روتي الدجاج والبطاطس" },
+    name: { fr: "Poulet et Pomme de terre Roti", ar: "روتي الدجاج والبطاطس" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["proteine"],
@@ -5066,7 +5066,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chicken_basquaise",
-    name: { fr: "poulet Basquaise", ar: "باسكواز الدجاج" },
+    name: { fr: "Poulet Basquaise", ar: "باسكواز الدجاج" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["proteine"],
@@ -5135,7 +5135,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chicken_congee",
-    name: { fr: "poulet Congee", ar: "كونجي الدجاج" },
+    name: { fr: "Poulet Congee", ar: "كونجي الدجاج" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -5194,7 +5194,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chicken_couscous",
-    name: { fr: "poulet Couscous", ar: "كسكس" },
+    name: { fr: "Poulet Couscous", ar: "كسكس" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -5250,7 +5250,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chicken_enchilada_casserole",
-    name: { fr: "poulet Enchilada Casserole", ar: "طاجن دجاج إنتشيلادا" },
+    name: { fr: "Poulet Enchilada Casserole", ar: "طاجن دجاج إنتشيلادا" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["du_monde", "proteine", "famille"],
@@ -5304,7 +5304,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chicken_fajita_mac_and_cheese",
-    name: { fr: "poulet Fajita Mac et Cheese", ar: "ماك فاهيتا الدجاج والجبن" },
+    name: { fr: "Poulet Fajita Mac et Fromage", ar: "ماك فاهيتا الدجاج والجبن" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["proteine"],
@@ -5430,7 +5430,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chicken_ham_and_leek_pie",
-    name: { fr: "poulet Ham et Leek tourte", ar: "فطيرة لحم خنزير بالدجاج والكراث" },
+    name: { fr: "Poulet Ham et Poireau tourte", ar: "فطيرة لحم خنزير بالدجاج والكراث" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["proteine"],
@@ -5497,7 +5497,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chicken_handi",
-    name: { fr: "poulet Handi", ar: "دجاج هاندي" },
+    name: { fr: "Poulet Handi", ar: "دجاج هاندي" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["proteine"],
@@ -5563,7 +5563,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chicken_karaage",
-    name: { fr: "poulet Karaage", ar: "كاراج الدجاج" },
+    name: { fr: "Poulet Karaage", ar: "كاراج الدجاج" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -5621,7 +5621,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chicken_marengo",
-    name: { fr: "poulet Marengo", ar: "دجاج مارينجو" },
+    name: { fr: "Poulet Marengo", ar: "دجاج مارينجو" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["proteine"],
@@ -5670,7 +5670,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chicken_parmentier",
-    name: { fr: "poulet Parmentier", ar: "دجاج بارمينتير" },
+    name: { fr: "Poulet Parmentier", ar: "دجاج بارمينتير" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["proteine"],
@@ -5798,7 +5798,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chicken_shawarma_with_homemade_garlic_herb_yoghurt",
-    name: { fr: "poulet Shawarma au homemade garlic herb yoghurt sauce", ar: "شاورما دجاج مع صلصة زبادي بالثوم محلية الصنع" },
+    name: { fr: "Poulet Shawarma au fait maison ail herb yoghurt sauce", ar: "شاورما دجاج مع صلصة زبادي بالثوم محلية الصنع" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["proteine"],
@@ -5862,7 +5862,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chicken_wings_with_cumin_lemon_garlic",
-    name: { fr: "poulet wings au cumin, lemon & garlic", ar: "أجنحة الدجاج بالكمون والليمون والثوم" },
+    name: { fr: "Poulet ailes au cumin, citron & ail", ar: "أجنحة الدجاج بالكمون والليمون والثوم" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -5914,7 +5914,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chicken_with_saffron_raisins_pine_nuts",
-    name: { fr: "poulet au saffron, raisins & pine nuts", ar: "دجاج بالزعفران والزبيب والصنوبر" },
+    name: { fr: "Poulet au safran, raisins & pine nuts", ar: "دجاج بالزعفران والزبيب والصنوبر" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -6176,7 +6176,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "easy_spanish_chicken",
-    name: { fr: "Easy Spanish poulet", ar: "دجاج إسباني سهل" },
+    name: { fr: "Facile Spanish poulet", ar: "دجاج إسباني سهل" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["du_monde", "proteine", "rapide"],
@@ -6308,7 +6308,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "jerk_chicken_with_rice_peas",
-    name: { fr: "Jerk poulet au riz & peas", ar: "دجاج جيرك مع الأرز والبازلاء" },
+    name: { fr: "Jerk poulet au riz & petits pois", ar: "دجاج جيرك مع الأرز والبازلاء" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["proteine"],
@@ -6378,7 +6378,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "kabse",
-    name: { fr: "kabse", ar: "كابسي" },
+    name: { fr: "Kabse", ar: "كابسي" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["proteine"],
@@ -6935,7 +6935,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "potato_gratin_with_chicken",
-    name: { fr: "Potato Gratin au poulet", ar: "جراتان البطاطس مع الدجاج" },
+    name: { fr: "Pomme de terre Gratin au poulet", ar: "جراتان البطاطس مع الدجاج" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -7096,7 +7096,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "red_curry_chicken_kebabs",
-    name: { fr: "Red curry poulet kebabs", ar: "كباب دجاج بالكاري الأحمر" },
+    name: { fr: "Rouge curry poulet kebabs", ar: "كباب دجاج بالكاري الأحمر" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -7331,7 +7331,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "smoky_chicken_skewers",
-    name: { fr: "Smoky poulet skewers", ar: "أسياخ الدجاج المدخنة" },
+    name: { fr: "Fumé poulet skewers", ar: "أسياخ الدجاج المدخنة" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -7482,7 +7482,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "stir_fried_chicken_with_chillies_basil",
-    name: { fr: "Stir-frit poulet au chillies & basil", ar: "دجاج مقلي مع الفلفل الحار والريحان" },
+    name: { fr: "Sauté-frit poulet au chillies & basilic", ar: "دجاج مقلي مع الفلفل الحار والريحان" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -7541,7 +7541,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "sweet_and_sour_chicken",
-    name: { fr: "sucré et Sour poulet", ar: "الدجـاج الحلو والمر ( ربما يقصد يا إلهي )" },
+    name: { fr: "Sucré et Sour poulet", ar: "الدجـاج الحلو والمر ( ربما يقصد يا إلهي )" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -7946,7 +7946,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "thai_green_curry",
-    name: { fr: "Thai Green curry", ar: "الكاري الأخضر" },
+    name: { fr: "Thai Vert curry", ar: "الكاري الأخضر" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -8069,7 +8069,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "venezuelan_coconut_chicken",
-    name: { fr: "Venezuelan Coconut poulet", ar: "دجاج بجوز الهند الفنزويلي" },
+    name: { fr: "Venezuelan Noix de coco poulet", ar: "دجاج بجوز الهند الفنزويلي" },
     emoji: "🍗",
     mealType: "diner",
     tags: ["proteine"],
@@ -8480,7 +8480,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "apple_frangipan_tart",
-    name: { fr: "Apple Frangipan tarte", ar: "تارت فرانجيبان التفاح" },
+    name: { fr: "Pomme Frangipan tarte", ar: "تارت فرانجيبان التفاح" },
     emoji: "🍰",
     mealType: "gouter",
     tags: ["gourmand"],
@@ -8826,7 +8826,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "banana_pancakes",
-    name: { fr: "Banana pancakes", ar: "صنعت فطائر موز محلاة" },
+    name: { fr: "Banane pancakes", ar: "صنعت فطائر موز محلاة" },
     emoji: "🍰",
     mealType: "gouter",
     tags: ["gourmand"],
@@ -8945,7 +8945,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "beavertails",
-    name: { fr: "cocunut", ar: "BeaverTails" },
+    name: { fr: "Cocunut", ar: "BeaverTails" },
     emoji: "🍰",
     mealType: "gouter",
     tags: ["gourmand"],
@@ -9245,7 +9245,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "bread_and_butter_pudding",
-    name: { fr: "pain et Butter Pudding", ar: "بودينج الخبز والزبدة" },
+    name: { fr: "Pain et Beurre Pudding", ar: "بودينج الخبز والزبدة" },
     emoji: "🍰",
     mealType: "gouter",
     tags: ["gourmand"],
@@ -11989,7 +11989,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "key_lime_pie",
-    name: { fr: "Key Lime tourte", ar: "فطيرة الليمون الرئيسية" },
+    name: { fr: "Key Citron vert tourte", ar: "فطيرة الليمون الرئيسية" },
     emoji: "🍰",
     mealType: "gouter",
     tags: ["gourmand"],
@@ -12835,7 +12835,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "pancakes",
-    name: { fr: "pancakes", ar: "الفطائر المحلاة" },
+    name: { fr: "Pancakes", ar: "الفطائر المحلاة" },
     emoji: "🍰",
     mealType: "gouter",
     tags: ["gourmand"],
@@ -12943,7 +12943,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "passion_fruit_mousse",
-    name: { fr: "MOUSSE de fruits de LA PASSION ", ar: "حلوى بقشدة الباشون فروت" },
+    name: { fr: "MOUSSE de fruits de LA PASSION", ar: "حلوى بقشدة الباشون فروت" },
     emoji: "🍰",
     mealType: "gouter",
     tags: ["gourmand"],
@@ -13680,7 +13680,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "pumpkin_pie",
-    name: { fr: "Pumpkin tourte", ar: "فطيرة اليقطين" },
+    name: { fr: "Citrouille tourte", ar: "فطيرة اليقطين" },
     emoji: "🍰",
     mealType: "gouter",
     tags: ["gourmand"],
@@ -14511,7 +14511,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "strawberry_rhubarb_pie",
-    name: { fr: "Strawberry Rhubarb tourte", ar: "فطيرة راوند الفراولة" },
+    name: { fr: "Fraise Rhubarb tourte", ar: "فطيرة راوند الفراولة" },
     emoji: "🍰",
     mealType: "gouter",
     tags: ["gourmand"],
@@ -14575,7 +14575,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "sugar_pie",
-    name: { fr: "Sugar tourte", ar: "فطيرة السكر" },
+    name: { fr: "Sucre tourte", ar: "فطيرة السكر" },
     emoji: "🍰",
     mealType: "gouter",
     tags: ["gourmand"],
@@ -14920,7 +14920,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "traditional_dutch_rice_tart_rijstevlaai",
-    name: { fr: "Traditional Dutch riz tarte (rijstevlaai)", ar: "تارت الأرز الهولندي التقليدي (ريجستيفلاي)" },
+    name: { fr: "Traditionnel Dutch riz tarte (rijstevlaai)", ar: "تارت الأرز الهولندي التقليدي (ريجستيفلاي)" },
     emoji: "🍰",
     mealType: "gouter",
     tags: ["gourmand"],
@@ -15453,7 +15453,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chilli_ginger_lamb_chops",
-    name: { fr: "Chilli ginger agneau chops", ar: "قطع لحم ضأن بالزنجبيل والفلفل الحار" },
+    name: { fr: "Piment gingembre agneau côtelettes", ar: "قطع لحم ضأن بالزنجبيل والفلفل الحار" },
     emoji: "🍖",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -15498,7 +15498,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chorba_hamra_bel_frik_algerian_lamb_tomato_and_fre",
-    name: { fr: "Chorba Hamra bel Frik (Algerian agneau, Tomato, et Freekeh soupe)", ar: "شوربة حمرة الفريك (لحم ضأن جزائري، طماطم، وحساء الفريكة)" },
+    name: { fr: "Chorba Hamra bel Frik (Algerian agneau, Tomate, et Freekeh soupe)", ar: "شوربة حمرة الفريك (لحم ضأن جزائري، طماطم، وحساء الفريكة)" },
     emoji: "🍖",
     mealType: "dejeuner",
     tags: ["du_monde", "proteine"],
@@ -15742,7 +15742,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "lamb_apricot_meatballs",
-    name: { fr: "agneau & apricot meatballs", ar: "كرات لحم الضأن والمشمش" },
+    name: { fr: "Agneau & apricot boulettes de viande", ar: "كرات لحم الضأن والمشمش" },
     emoji: "🍖",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -15804,7 +15804,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "lamb_and_lemon_souvlaki",
-    name: { fr: "agneau et Lemon Souvlaki", ar: "لحم الضأن والليمون السوفلاكي" },
+    name: { fr: "Agneau et Citron Souvlaki", ar: "لحم الضأن والليمون السوفلاكي" },
     emoji: "🍖",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -15861,7 +15861,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "lamb_and_potato_pie",
-    name: { fr: "agneau et Potato tourte", ar: "فطيرة لحم الضأن والبطاطس" },
+    name: { fr: "Agneau et Pomme de terre tourte", ar: "فطيرة لحم الضأن والبطاطس" },
     emoji: "🍖",
     mealType: "diner",
     tags: ["proteine"],
@@ -15989,7 +15989,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "lamb_pilaf_plov",
-    name: { fr: "agneau Pilaf (Plov)", ar: "بيلاف الضأن (بلوف)" },
+    name: { fr: "Agneau Pilaf (Plov)", ar: "بيلاف الضأن (بلوف)" },
     emoji: "🍖",
     mealType: "diner",
     tags: ["proteine"],
@@ -16050,7 +16050,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "lamb_rogan_josh",
-    name: { fr: "agneau Rogan josh", ar: "لحم الضأن بصلصة روجان جوش" },
+    name: { fr: "Agneau Rogan josh", ar: "لحم الضأن بصلصة روجان جوش" },
     emoji: "🍖",
     mealType: "diner",
     tags: ["proteine"],
@@ -16179,7 +16179,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "lamb_tomato_and_sweet_spices",
-    name: { fr: "agneau tomato et sucré spices", ar: "طماطم ضأن وتوابل حلوة" },
+    name: { fr: "Agneau tomato et sucré spices", ar: "طماطم ضأن وتوابل حلوة" },
     emoji: "🍖",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -16247,7 +16247,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "lamb_tzatziki_burgers",
-    name: { fr: "agneau Tzatziki Burgers", ar: "تشاتزيكي برجر لحم الضأن" },
+    name: { fr: "Agneau Tzatziki Burgers", ar: "تشاتزيكي برجر لحم الضأن" },
     emoji: "🍖",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -16300,7 +16300,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "lancashire_hotpot",
-    name: { fr: "Hotpot Lancashire", ar: "طبق لانكشاير الساخن" },
+    name: { fr: "Casserole Lancashire", ar: "طبق لانكشاير الساخن" },
     emoji: "🍖",
     mealType: "diner",
     tags: ["proteine"],
@@ -16360,7 +16360,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "mcsinghs_scotch_pie",
-    name: { fr: "McSinghs Scotch tourte", ar: "McSinghs Scotch pie" },
+    name: { fr: "McSinghs Scotch tourte", ar: "McSinghs Scotch فطيرة" },
     emoji: "🍖",
     mealType: "diner",
     tags: ["proteine"],
@@ -16426,7 +16426,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "presh_me_oriz_leek_and_rice_bake",
-    name: { fr: "Presh me Oriz Leek et riz Bake", ar: "Presh me Oriz Leek and Rice Bake" },
+    name: { fr: "Presh me Oriz Poireau et riz Bake", ar: "Presh me Oriz Leek و أرز Bake" },
     emoji: "🍖",
     mealType: "diner",
     tags: ["proteine"],
@@ -16484,7 +16484,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "rigatoni_with_fennel_sausage_sauce",
-    name: { fr: "Rigatoni au fennel sausage sauce", ar: "ريجاتوني مع صلصة سجق الشمر" },
+    name: { fr: "Rigatoni au fennel saucisse sauce", ar: "ريجاتوني مع صلصة سجق الشمر" },
     emoji: "🍖",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -16608,7 +16608,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "spanish_style_slow_cooked_lamb_shoulder_beans",
-    name: { fr: "Spanish-style slow-cooked agneau shoulder & beans", ar: "كتف الضأن والفاصوليا المطبوخة ببطء على الطريقة الإسبانية" },
+    name: { fr: "Spanish-style lent-cooked agneau shoulder & haricots", ar: "كتف الضأن والفاصوليا المطبوخة ببطء على الطريقة الإسبانية" },
     emoji: "🍖",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -16672,7 +16672,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "stuffed_lamb_tomatoes",
-    name: { fr: "Stuffed agneau Tomatoes", ar: "طماطم ضأن محشوة" },
+    name: { fr: "Farci agneau Tomates", ar: "طماطم ضأن محشوة" },
     emoji: "🍖",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -16965,7 +16965,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "bean_sausage_hotpot",
-    name: { fr: "Hotpot haricots et saucisses", ar: "هوت بوت الفاصوليا والسجق" },
+    name: { fr: "Casserole haricots et saucisses", ar: "هوت بوت الفاصوليا والسجق" },
     emoji: "🍽️",
     mealType: "diner",
     tags: ["rapide"],
@@ -17231,7 +17231,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "french_lentils_with_garlic_and_thyme",
-    name: { fr: "French Lentils au Garlic et Thyme", ar: "عدس فرنسي مع الثوم والزعتر" },
+    name: { fr: "French Lentilles au Ail et Thym", ar: "عدس فرنسي مع الثوم والزعتر" },
     emoji: "🍽️",
     mealType: "diner",
     tags: ["rapide"],
@@ -17698,7 +17698,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "ramen_noodles_with_boiled_egg",
-    name: { fr: "Ramen nouilles au Boiled Egg", ar: "نودلز رامين مع بيض مسلوق" },
+    name: { fr: "Ramen nouilles au Bouilli Œuf", ar: "نودلز رامين مع بيض مسلوق" },
     emoji: "🍽️",
     mealType: "diner",
     tags: ["du_monde"],
@@ -18310,7 +18310,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "grilled_mac_and_cheese_sandwich",
-    name: { fr: "grillé Mac et Cheese Sandwich", ar: "ساندوتش مكرونة وجبن مشوي" },
+    name: { fr: "Grillé Mac et Cheese Sandwich", ar: "ساندوتش مكرونة وجبن مشوي" },
     emoji: "🍝",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -18377,7 +18377,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "lasagne",
-    name: { fr: "lasagne", ar: "لازانيا" },
+    name: { fr: "Lasagne", ar: "لازانيا" },
     emoji: "🍝",
     mealType: "diner",
     tags: ["du_monde"],
@@ -18556,7 +18556,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "spaghetti_alla_carbonara",
-    name: { fr: "spaghetti alla Carbonara", ar: "سباغيتي ألا كاربونارا" },
+    name: { fr: "Spaghetti alla Carbonara", ar: "سباغيتي ألا كاربونارا" },
     emoji: "🍝",
     mealType: "diner",
     tags: ["du_monde"],
@@ -18726,7 +18726,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "bubble_squeak",
-    name: { fr: "Bubble and Squeak", ar: "الفقاعات والصرير" },
+    name: { fr: "Bubble et Squeak", ar: "الفقاعات والصرير" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -19038,7 +19038,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "cambodian_stir_fried_morning_glory_with_pork_ferme",
-    name: { fr: "Cambodian Stir-frit Morning Glory au porc, Fermented Soybeans, et Garlic", ar: "المجد الصباحي الكمبودي المقلي مع لحم الخنزير وفول الصويا المخمر والثوم" },
+    name: { fr: "Cambodian Sauté-frit Morning Glory au porc, Fermented Soybeans, et Ail", ar: "المجد الصباحي الكمبودي المقلي مع لحم الخنزير وفول الصويا المخمر والثوم" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -19258,7 +19258,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chorizo_chickpea_soup",
-    name: { fr: "Chorizo & chickpea soupe", ar: "شوربة الكوريزو والحمص" },
+    name: { fr: "Chorizo & pois chiche soupe", ar: "شوربة الكوريزو والحمص" },
     emoji: "🥩",
     mealType: "dejeuner",
     tags: ["du_monde", "proteine"],
@@ -19302,7 +19302,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chorizo_soft_boiled_egg_salad",
-    name: { fr: "Chorizo & soft-boiled egg salade", ar: "سلطة الكوريزو والبيض المسلوق" },
+    name: { fr: "Chorizo & soft-bouilli œuf salade", ar: "سلطة الكوريزو والبيض المسلوق" },
     emoji: "🥩",
     mealType: "dejeuner",
     tags: ["du_monde", "proteine", "healthy"],
@@ -19355,7 +19355,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chorizo_tomato_salad",
-    name: { fr: "Chorizo & tomato salade", ar: "سلطة الكوريزو والطماطم" },
+    name: { fr: "Chorizo & tomate salade", ar: "سلطة الكوريزو والطماطم" },
     emoji: "🥩",
     mealType: "dejeuner",
     tags: ["du_monde", "proteine", "healthy"],
@@ -19627,7 +19627,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "hot_and_sour_soup",
-    name: { fr: "Hot et Sour soupe", ar: "شوربة ساخنة وحامضة" },
+    name: { fr: "Chaud et Sour soupe", ar: "شوربة ساخنة وحامضة" },
     emoji: "🥩",
     mealType: "dejeuner",
     tags: ["du_monde", "proteine"],
@@ -19862,7 +19862,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "pork_sauerkraut_goulash",
-    name: { fr: "porc & sauerkraut goulash", ar: "لحم الخنزير ومخلل الجولاش" },
+    name: { fr: "Porc & sauerkraut goulash", ar: "لحم الخنزير ومخلل الجولاش" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -19924,7 +19924,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "pork_cassoulet",
-    name: { fr: "porc Cassoulet", ar: "كاسوليه لحم الخنزير" },
+    name: { fr: "Porc Cassoulet", ar: "كاسوليه لحم الخنزير" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -19990,7 +19990,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "pork_rib_bortsch",
-    name: { fr: "porc rib bortsch", ar: "بورش ضلع لحم الخنزير" },
+    name: { fr: "Porc rib bortsch", ar: "بورش ضلع لحم الخنزير" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -20178,7 +20178,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "spaghetti_with_spanish_flavours",
-    name: { fr: "spaghetti au Spanish flavours", ar: "سباغيتي بنكهات إسبانية" },
+    name: { fr: "Spaghetti au Spanish flavours", ar: "سباغيتي بنكهات إسبانية" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -20234,7 +20234,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "spanish_tomato_bread_with_jamon_serrano",
-    name: { fr: "Spanish tomato pain au jamón Serrano", ar: "خبز الطماطم الإسباني مع جامون سيرانو" },
+    name: { fr: "Spanish tomate pain au jamón Serrano", ar: "خبز الطماطم الإسباني مع جامون سيرانو" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -20339,7 +20339,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "sweet_and_sour_pork",
-    name: { fr: "sucré et Sour porc", ar: "Sweet and sour pork..." },
+    name: { fr: "Sucré et Sour porc", ar: "Sweet و sour خنزير..." },
     emoji: "🥩",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -20461,7 +20461,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "toad_in_the_hole",
-    name: { fr: "Toad au The Hole", ar: "ضفدع في الحفرة" },
+    name: { fr: "Toad au Hole", ar: "ضفدع في الحفرة" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["proteine"],
@@ -20693,7 +20693,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "vietnamese_grilled_pork_bun_thit_nuong",
-    name: { fr: "Vietnamese grillé porc (bun-thit-nuong)", ar: "Vietnamese Grilled Pork (bun-thit-nuong)" },
+    name: { fr: "Vietnamese grillé porc (bun-thit-nuong)", ar: "Vietnamese مشوي خنزير (bun-thit-nuong)" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -20756,7 +20756,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "vietnamese_pork_salad",
-    name: { fr: "Vietnamese porc salade", ar: "Vietnamese pork salad" },
+    name: { fr: "Vietnamese porc salade", ar: "Vietnamese خنزير سلطة" },
     emoji: "🥩",
     mealType: "dejeuner",
     tags: ["du_monde", "proteine", "healthy"],
@@ -20824,7 +20824,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "vietnamese_style_caramel_pork",
-    name: { fr: "Vietnamese-style caramel porc", ar: "Vietnamese-style caramel pork" },
+    name: { fr: "Vietnamese-style caramel porc", ar: "Vietnamese-style caramel خنزير" },
     emoji: "🥩",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -20885,7 +20885,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "warm_roast_asparagus_salad",
-    name: { fr: "Warm rôti asparagus salade", ar: "Warm roast asparagus salad" },
+    name: { fr: "Warm rôti asparagus salade", ar: "Warm roast asparagus سلطة" },
     emoji: "🥩",
     mealType: "dejeuner",
     tags: ["proteine", "healthy", "famille"],
@@ -21130,7 +21130,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "baked_salmon_with_fennel_tomatoes",
-    name: { fr: "au four saumon au fennel & tomatoes", ar: "Baked salmon with fennel & tomatoes" },
+    name: { fr: "Au four saumon au fennel & tomates", ar: "مخبوز سلمون مع fennel & tomatoes" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["proteine"],
@@ -21187,7 +21187,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "bang_bang_prawn_salad",
-    name: { fr: "Bang bang prawn salade", ar: "Bang bang prawn salad" },
+    name: { fr: "Bang bang crevettes salade", ar: "Bang bang prawn سلطة" },
     emoji: "🐟",
     mealType: "dejeuner",
     tags: ["du_monde", "proteine", "healthy"],
@@ -21229,7 +21229,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "cajun_spiced_fish_tacos",
-    name: { fr: "Cajun spiced fish tacos", ar: "Cajun spiced fish tacos" },
+    name: { fr: "Cajun spiced poisson tacos", ar: "Cajun spiced سمك tacos" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -21291,7 +21291,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "clam_chorizo_white_bean_stew",
-    name: { fr: "Clam, chorizo & white bean ragoût", ar: "Clam, chorizo & white bean stew" },
+    name: { fr: "Clam, chorizo & white bean ragoût", ar: "Clam, chorizo & white bean يخنة" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine", "famille"],
@@ -21351,7 +21351,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "crispy_fried_fish_with_ginger_and_fermented_soybea",
-    name: { fr: "Crispy frit fish au ginger et fermented soybeans (trey chien chuon)", ar: "Crispy fried fish with ginger and fermented soybeans (trey chien chuon)" },
+    name: { fr: "Croustillant frit poisson au gingembre et fermented soybeans (trey chien chuon)", ar: "Crispy مقلي سمك مع ginger و fermented soybeans (trey chien chuon)" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["proteine"],
@@ -21410,7 +21410,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "egg_foo_young",
-    name: { fr: "Egg Foo Young", ar: "Egg Foo Young" },
+    name: { fr: "Œuf Foo Young", ar: "بيض Foo Young" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -21477,7 +21477,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "escovitch_fish",
-    name: { fr: "Escovitch Fish", ar: "Escovitch Fish" },
+    name: { fr: "Escovitch Poisson", ar: "Escovitch سمك" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["proteine"],
@@ -21544,7 +21544,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "fish_fofos",
-    name: { fr: "Fish fofos", ar: "Fish fofos" },
+    name: { fr: "Poisson fofos", ar: "سمك fofos" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["proteine"],
@@ -21606,7 +21606,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "fish_pie",
-    name: { fr: "Fish tourte", ar: "Fish pie" },
+    name: { fr: "Poisson tourte", ar: "سمك فطيرة" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["proteine"],
@@ -21670,7 +21670,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "fish_soup_ukha",
-    name: { fr: "Fish soupe (Ukha)", ar: "Fish Soup (Ukha)" },
+    name: { fr: "Poisson soupe (Ukha)", ar: "سمك شوربة (Ukha)" },
     emoji: "🐟",
     mealType: "dejeuner",
     tags: ["proteine"],
@@ -21729,7 +21729,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "fish_stew_with_rouille",
-    name: { fr: "Fish ragoût au Rouille", ar: "Fish Stew with Rouille" },
+    name: { fr: "Fish ragoût au Rouille", ar: "سمك يخنة مع Rouille" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["proteine", "famille"],
@@ -21797,7 +21797,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "fried_calamari",
-    name: { fr: "frit calamari", ar: "Fried calamari" },
+    name: { fr: "Frit calamari", ar: "مقلي calamari" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -21963,7 +21963,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "garlicky_prawns_with_sherry",
-    name: { fr: "Garlicky gambas au sherry", ar: "Garlicky prawns with sherry" },
+    name: { fr: "Garlicky gambas au sherry", ar: "Garlicky prawns مع sherry" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -22006,7 +22006,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "grilled_portuguese_sardines",
-    name: { fr: "grillé Portuguese sardines", ar: "Grilled Portuguese sardines" },
+    name: { fr: "Grillé Portuguese sardines", ar: "مشوي Portuguese sardines" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["proteine"],
@@ -22055,7 +22055,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "honey_teriyaki_salmon",
-    name: { fr: "Honey Teriyaki saumon", ar: "Honey Teriyaki Salmon" },
+    name: { fr: "Miel Teriyaki saumon", ar: "Honey Teriyaki سلمون" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -22102,7 +22102,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "jamaican_curry_shrimp_recipe",
-    name: { fr: "Jamaican curry crevettes Recipe", ar: "Jamaican Curry Shrimp Recipe" },
+    name: { fr: "Jamaican curry crevettes Recipe", ar: "Jamaican كاري روبيان Recipe" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["proteine"],
@@ -22166,7 +22166,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "jamaican_pepper_shrimp",
-    name: { fr: "Jamaican Pepper crevettes", ar: "Jamaican Pepper Shrimp" },
+    name: { fr: "Jamaican Poivron crevettes", ar: "Jamaican Pepper روبيان" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["proteine"],
@@ -22350,7 +22350,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "laksa_king_prawn_noodles",
-    name: { fr: "Laksa King Prawn nouilles", ar: "Laksa King Prawn Noodles" },
+    name: { fr: "Laksa King Crevettes nouilles", ar: "Laksa King Prawn شعرية" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["proteine"],
@@ -22409,7 +22409,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "mediterranean_pasta_salad",
-    name: { fr: "Mediterranean pâtes salade", ar: "Mediterranean Pasta Salad" },
+    name: { fr: "Mediterranean pâtes salade", ar: "Mediterranean مكرونة سلطة" },
     emoji: "🐟",
     mealType: "dejeuner",
     tags: ["du_monde", "proteine", "healthy"],
@@ -22533,7 +22533,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "napa_cabbage_with_dried_shrimp",
-    name: { fr: "Napa Cabbage au Dried crevettes", ar: "Napa Cabbage with Dried Shrimp" },
+    name: { fr: "Napa Chou au Séché crevettes", ar: "Napa Cabbage مع Dried روبيان" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -22662,7 +22662,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "noodle_bowl_salad",
-    name: { fr: "Noodle bowl salade", ar: "Noodle bowl salad" },
+    name: { fr: "Nouille bowl salade", ar: "Noodle bowl سلطة" },
     emoji: "🐟",
     mealType: "dejeuner",
     tags: ["du_monde", "proteine", "healthy"],
@@ -22848,7 +22848,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "pan_fried_hake_white_bean_chorizo_broth",
-    name: { fr: "Pan-frit hake, white bean & chorizo broth", ar: "Pan-fried hake, white bean & chorizo broth" },
+    name: { fr: "Pan-frit hake, blanc haricot & chorizo bouillon", ar: "Pan-مقلي hake, white bean & chorizo broth" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -22910,7 +22910,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "portuguese_fish_stew_caldeirada_de_peixe",
-    name: { fr: "Portuguese fish ragoût (Caldeirada de peixe)", ar: "Portuguese fish stew (Caldeirada de peixe)" },
+    name: { fr: "Portuguese fish ragoût (Caldeirada de peixe)", ar: "Portuguese سمك يخنة (Caldeirada de peixe)" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["proteine", "famille"],
@@ -22976,7 +22976,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "prawn_stir_fry",
-    name: { fr: "Prawn stir-fry", ar: "Prawn stir-fry" },
+    name: { fr: "Crevettes poêlée", ar: "Prawn stir-fry" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -23042,7 +23042,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "prawns_with_romesco_sauce",
-    name: { fr: "gambas au Romesco sauce", ar: "Prawns with Romesco sauce" },
+    name: { fr: "Gambas au Romesco sauce", ar: "Prawns مع Romesco صلصة" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -23103,7 +23103,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "quick_salt_pepper_squid",
-    name: { fr: "Quick salt & pepper calamar", ar: "Quick salt & pepper squid" },
+    name: { fr: "Rapide sel & poivron calamar", ar: "Quick salt & pepper squid" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["proteine", "rapide"],
@@ -23159,7 +23159,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "recheado_masala_fish",
-    name: { fr: "Recheado Masala Fish", ar: "Recheado Masala Fish" },
+    name: { fr: "Recheado Masala Poisson", ar: "Recheado Masala سمك" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["proteine"],
@@ -23223,7 +23223,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "salmon_avocado_salad",
-    name: { fr: "saumon Avocado salade", ar: "Salmon Avocado Salad" },
+    name: { fr: "Saumon Avocat salade", ar: "سلمون Avocado سلطة" },
     emoji: "🐟",
     mealType: "dejeuner",
     tags: ["proteine", "healthy"],
@@ -23281,7 +23281,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "salmon_noodle_soup",
-    name: { fr: "saumon noodle soupe", ar: "Salmon noodle soup" },
+    name: { fr: "Saumon nouille soupe", ar: "سلمون noodle شوربة" },
     emoji: "🐟",
     mealType: "dejeuner",
     tags: ["du_monde", "proteine"],
@@ -23333,7 +23333,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "salmon_noodle_wraps",
-    name: { fr: "saumon noodle wraps", ar: "Salmon noodle wraps" },
+    name: { fr: "Saumon nouille wraps", ar: "سلمون noodle wraps" },
     emoji: "🐟",
     mealType: "dejeuner",
     tags: ["du_monde", "proteine"],
@@ -23390,7 +23390,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "salmon_prawn_risotto",
-    name: { fr: "saumon Prawn Risotto", ar: "Salmon Prawn Risotto" },
+    name: { fr: "Saumon Crevettes Risotto", ar: "سلمون Prawn Risotto" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -23449,7 +23449,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "salt_pepper_squid",
-    name: { fr: "Salt & pepper calamar", ar: "Salt & pepper squid" },
+    name: { fr: "Sel & poivron calamar", ar: "Salt & pepper squid" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -23513,7 +23513,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "salt_cod_tortilla",
-    name: { fr: "Salt cabillaud tortilla", ar: "Salt cod tortilla" },
+    name: { fr: "Sel cabillaud tortilla", ar: "Salt cod tortilla" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -23570,7 +23570,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "saltfish_and_ackee",
-    name: { fr: "Saltfish et Ackee", ar: "Saltfish and Ackee" },
+    name: { fr: "Saltfish et Ackee", ar: "Saltfish و Ackee" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["proteine"],
@@ -23636,7 +23636,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "sea_bass_with_sizzled_ginger_chilli_spring_onions",
-    name: { fr: "Sea bass au sizzled ginger, chilli & spring onions", ar: "Sea bass with sizzled ginger, chilli & spring onions" },
+    name: { fr: "Mer bass au sizzled gingembre, piment & spring oignons", ar: "Sea bass مع sizzled ginger, chilli & spring onions" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -23757,7 +23757,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "seafood_rice",
-    name: { fr: "Seafood riz", ar: "Seafood rice" },
+    name: { fr: "Seafood riz", ar: "Seafood أرز" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -23807,7 +23807,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "shrimp_chow_fun",
-    name: { fr: "crevettes Chow Fun", ar: "Shrimp Chow Fun" },
+    name: { fr: "Crevettes Chow Fun", ar: "روبيان Chow Fun" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -23874,7 +23874,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "shrimp_with_snow_peas",
-    name: { fr: "crevettes au Snow Peas", ar: "Shrimp With Snow Peas" },
+    name: { fr: "Crevettes au Snow Petits pois", ar: "روبيان مع Snow Peas" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -23936,7 +23936,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "singapore_noodles_with_shrimp",
-    name: { fr: "Singapore nouilles au crevettes", ar: "Singapore Noodles with Shrimp" },
+    name: { fr: "Singapore nouilles au crevettes", ar: "Singapore شعرية مع روبيان" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -24056,7 +24056,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "spanish_rice_prawn_one_pot",
-    name: { fr: "Spanish riz & prawn one-pot", ar: "Spanish rice & prawn one-pot" },
+    name: { fr: "Spanish riz & crevettes one-pot", ar: "Spanish أرز & prawn one-pot" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -24103,7 +24103,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "spanish_seafood_rice",
-    name: { fr: "Spanish seafood riz", ar: "Spanish seafood rice" },
+    name: { fr: "Spanish seafood riz", ar: "Spanish seafood أرز" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -24156,7 +24156,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "spring_onion_and_prawn_empanadas",
-    name: { fr: "Spring onion et prawn empanadas", ar: "Spring onion and prawn empanadas" },
+    name: { fr: "Spring oignon et crevettes empanadas", ar: "Spring onion و prawn empanadas" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["proteine"],
@@ -24273,7 +24273,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "thai_curry_noodle_soup",
-    name: { fr: "Thai curry noodle soupe", ar: "Thai curry noodle soup" },
+    name: { fr: "Thai curry nouille soupe", ar: "Thai كاري noodle شوربة" },
     emoji: "🐟",
     mealType: "dejeuner",
     tags: ["du_monde", "proteine"],
@@ -24380,7 +24380,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "thai_prawn_curry",
-    name: { fr: "Thai prawn curry", ar: "Thai prawn curry" },
+    name: { fr: "Thai crevettes curry", ar: "Thai prawn كاري" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -24434,7 +24434,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "thai_style_fish_broth_with_greens",
-    name: { fr: "Thai-style fish broth au greens", ar: "Thai-style fish broth with greens" },
+    name: { fr: "Thai-style poisson bouillon au greens", ar: "Thai-style سمك broth مع greens" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -24493,7 +24493,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "thai_style_steamed_fish",
-    name: { fr: "Thai-style steamed fish", ar: "Thai-style steamed fish" },
+    name: { fr: "Thai-style à la vapeur poisson", ar: "Thai-style steamed سمك" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -24538,7 +24538,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "three_fish_pie",
-    name: { fr: "Three Fish tourte", ar: "Three Fish Pie" },
+    name: { fr: "Three Poisson tourte", ar: "Three سمك فطيرة" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["proteine"],
@@ -24602,7 +24602,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "tom_yum_hot_sour_soup_with_prawns",
-    name: { fr: "Tom yum (hot & sour) soupe au gambas", ar: "Tom yum (hot & sour) soup with prawns" },
+    name: { fr: "Tom yum (chaud & sour) soupe au gambas", ar: "Tom yum (hot & sour) شوربة مع prawns" },
     emoji: "🐟",
     mealType: "dejeuner",
     tags: ["du_monde", "proteine"],
@@ -24645,7 +24645,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "tom_yum_soup_with_prawns",
-    name: { fr: "Tom yum soupe au gambas", ar: "Tom yum soup with prawns" },
+    name: { fr: "Tom yum soupe au gambas", ar: "Tom yum شوربة مع prawns" },
     emoji: "🐟",
     mealType: "dejeuner",
     tags: ["du_monde", "proteine"],
@@ -24709,7 +24709,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "tuna_and_egg_briks",
-    name: { fr: "thon et Egg Briks", ar: "Tuna and Egg Briks" },
+    name: { fr: "Thon et Œuf Briks", ar: "Tuna و بيض Briks" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -24770,7 +24770,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "tuna_nicoise",
-    name: { fr: "thon Nicoise", ar: "Tuna Nicoise" },
+    name: { fr: "Thon Nicoise", ar: "Tuna Nicoise" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["proteine"],
@@ -24829,7 +24829,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "vietnamese_caramel_trout",
-    name: { fr: "Vietnamese caramel trout", ar: "Vietnamese caramel trout" },
+    name: { fr: "Vietnamese caramel truite", ar: "Vietnamese caramel trout" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -24888,7 +24888,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "vietnamese_prawn_spiralized_rolls",
-    name: { fr: "Vietnamese prawn spiralized rolls", ar: "Vietnamese prawn spiralized rolls" },
+    name: { fr: "Vietnamese crevettes spiralized roulés", ar: "Vietnamese prawn spiralized rolls" },
     emoji: "🐟",
     mealType: "diner",
     tags: ["du_monde", "proteine"],
@@ -24945,7 +24945,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "air_fryer_egg_rolls",
-    name: { fr: "Air Fryer Egg Rolls", ar: "Air Fryer Egg Rolls" },
+    name: { fr: "Air Fryer Œuf Roulés", ar: "Air Fryer بيض Rolls" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["du_monde"],
@@ -25009,7 +25009,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "algerian_carrots",
-    name: { fr: "Algerian Carrots", ar: "Algerian Carrots" },
+    name: { fr: "Algerian Carottes", ar: "Algerian Carrots" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["du_monde"],
@@ -25070,7 +25070,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "bajan_sweet_bread",
-    name: { fr: "Bajan sucré pain", ar: "Bajan Sweet Bread" },
+    name: { fr: "Bajan sucré pain", ar: "Bajan Sweet خبز" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -25188,7 +25188,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "bolani_with_potato_filling",
-    name: { fr: "Bolani au Potato Filling", ar: "Bolani with Potato Filling" },
+    name: { fr: "Bolani au Pomme de terre Filling", ar: "Bolani مع Potato Filling" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -25455,7 +25455,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "callaloo_and_saltfish",
-    name: { fr: "Callaloo et SaltFish", ar: "Callaloo and SaltFish" },
+    name: { fr: "Callaloo et SaltFish", ar: "Callaloo و SaltFish" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -25571,7 +25571,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "cheese_borek",
-    name: { fr: "Cheese Borek", ar: "Cheese Borek" },
+    name: { fr: "Fromage Borek", ar: "Cheese Borek" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["du_monde"],
@@ -25692,7 +25692,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "dolma_japrak_stuffed_vine_leaves",
-    name: { fr: "Dolma Japrak Stuffed Vine Leaves", ar: "Dolma Japrak Stuffed Vine Leaves" },
+    name: { fr: "Dolma Japrak Farci Vine Leaves", ar: "Dolma Japrak محشوّ Vine Leaves" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -25858,7 +25858,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "french_onion_soup",
-    name: { fr: "Soupe à l'oignon gratinée", ar: "French Onion Soup" },
+    name: { fr: "Soupe à l'oignon gratinée", ar: "French Onion شوربة" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -25918,7 +25918,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "fresh_sardines",
-    name: { fr: "Fresh sardines", ar: "Fresh sardines" },
+    name: { fr: "Frais sardines", ar: "Fresh sardines" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -26104,7 +26104,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "jamaican_boiled_dumplings",
-    name: { fr: "Jamaican Boiled Dumplings", ar: "Jamaican Boiled Dumplings" },
+    name: { fr: "Jamaican Bouilli Raviolis", ar: "Jamaican Boiled Dumplings" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -26217,7 +26217,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "jamaican_fried_dumplings",
-    name: { fr: "Jamaican frit Dumplings", ar: "Jamaican Fried Dumplings" },
+    name: { fr: "Jamaican frit Raviolis", ar: "Jamaican مقلي Dumplings" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -26272,7 +26272,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "jamaican_steamed_cabbage",
-    name: { fr: "Jamaican Steamed Cabbage", ar: "Jamaican Steamed Cabbage" },
+    name: { fr: "Jamaican À la vapeur Chou", ar: "Jamaican Steamed Cabbage" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -26319,7 +26319,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "japanese_gohan_rice",
-    name: { fr: "Japanese gohan riz", ar: "Japanese gohan rice" },
+    name: { fr: "Japanese gohan riz", ar: "Japanese gohan أرز" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["du_monde"],
@@ -26373,7 +26373,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "khobz_el_dar_algerian_semolina_bread",
-    name: { fr: "Khobz el Dar (Algerian Semolina pain)", ar: "Khobz el Dar (Algerian Semolina Bread)" },
+    name: { fr: "Khobz el Dar (Algerian Semolina pain)", ar: "Khobz el Dar (Algerian Semolina خبز)" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["du_monde"],
@@ -26436,7 +26436,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "kulac_soda_bread",
-    name: { fr: "Kulaç Soda pain", ar: "Kulaç Soda Bread" },
+    name: { fr: "Kulaç Soda pain", ar: "Kulaç Soda خبز" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -26535,7 +26535,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "lao_som_pak_pickled_cabbage",
-    name: { fr: "Lao Som Pak Pickled Cabbage", ar: "Lao Som Pak Pickled Cabbage" },
+    name: { fr: "Lao Som Pak Pickled Chou", ar: "Lao Som Pak Pickled Cabbage" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -26585,7 +26585,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "mushroom_soup_with_buckwheat",
-    name: { fr: "Mushroom soupe au buckwheat", ar: "Mushroom soup with buckwheat" },
+    name: { fr: "Champignon soupe au buckwheat", ar: "Mushroom شوربة مع buckwheat" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -26633,7 +26633,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "mustard_champ",
-    name: { fr: "Mustard champ", ar: "Mustard champ" },
+    name: { fr: "Moutarde champ", ar: "Mustard champ" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -26681,7 +26681,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "num_e_sticky_rice_balls_in_sugar_syrup_and_coconut",
-    name: { fr: "Num E (Sticky riz Balls au Sugar Syrup et Coconut Cream)", ar: "Num E (Sticky Rice Balls in Sugar Syrup and Coconut Cream)" },
+    name: { fr: "Num E (Sticky riz Balls au Sucre Syrup et Noix de coco Crème)", ar: "Num E (Sticky أرز Balls in Sugar Syrup و Coconut Cream)" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -26743,7 +26743,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "pierogi_polish_dumplings",
-    name: { fr: "Pierogi (Polish Dumplings)", ar: "Pierogi (Polish Dumplings)" },
+    name: { fr: "Pierogi (Polish Raviolis)", ar: "Pierogi (Polish Dumplings)" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -26804,7 +26804,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "prawn_fennel_bisque",
-    name: { fr: "Prawn & Fennel Bisque", ar: "Prawn & Fennel Bisque" },
+    name: { fr: "Crevettes & Fennel Bisque", ar: "Prawn & Fennel Bisque" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -26866,7 +26866,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "rye_bread",
-    name: { fr: "Rye pain", ar: "Rye bread" },
+    name: { fr: "Rye pain", ar: "Rye خبز" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -26922,7 +26922,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "sesame_cucumber_salad",
-    name: { fr: "Sesame Cucumber salade", ar: "Sesame Cucumber Salad" },
+    name: { fr: "Sesame Concombre salade", ar: "Sesame Cucumber سلطة" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["du_monde", "healthy"],
@@ -26979,7 +26979,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "shawarma_bread",
-    name: { fr: "Shawarma pain", ar: "Shawarma bread" },
+    name: { fr: "Shawarma pain", ar: "Shawarma خبز" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -27082,7 +27082,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "snert_dutch_split_pea_soup",
-    name: { fr: "Snert (Dutch Split Pea soupe)", ar: "Snert (Dutch Split Pea Soup)" },
+    name: { fr: "Snert (Dutch Split Petit pois soupe)", ar: "Snert (Dutch Split Pea شوربة)" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -27143,7 +27143,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "split_pea_soup",
-    name: { fr: "Split Pea soupe", ar: "Split Pea Soup" },
+    name: { fr: "Split Petit pois soupe", ar: "Split Pea شوربة" },
     emoji: "🥙",
     mealType: "dejeuner",
     tags: ["rapide"],
@@ -27415,7 +27415,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "broccoli_stilton_soup",
-    name: { fr: "Broccoli & Stilton soupe", ar: "Broccoli & Stilton soup" },
+    name: { fr: "Brocoli & Stilton soupe", ar: "Broccoli & Stilton شوربة" },
     emoji: "🥗",
     mealType: "petit_dejeuner",
     tags: ["rapide"],
@@ -27474,7 +27474,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "clam_chowder",
-    name: { fr: "Clam chowder", ar: "Clam chowder" },
+    name: { fr: "Palourde chowder", ar: "Clam chowder" },
     emoji: "🥗",
     mealType: "petit_dejeuner",
     tags: ["rapide"],
@@ -27535,7 +27535,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "cream_cheese_tart",
-    name: { fr: "Cream Cheese tarte", ar: "Cream Cheese Tart" },
+    name: { fr: "Crème Fromage tarte", ar: "Cream Cheese Tart" },
     emoji: "🥗",
     mealType: "petit_dejeuner",
     tags: ["rapide"],
@@ -27596,7 +27596,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "creamy_tomato_soup",
-    name: { fr: "Soupe à la tomate", ar: "Creamy Tomato Soup" },
+    name: { fr: "Soupe à la tomate", ar: "Creamy Tomato شوربة" },
     emoji: "🥗",
     mealType: "petit_dejeuner",
     tags: ["rapide"],
@@ -27659,7 +27659,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "paracuca_roasted_peanuts",
-    name: { fr: "Paracuca (Roasted Peanuts)", ar: "Paracuca (Roasted Peanuts)" },
+    name: { fr: "Paracuca (Rôti Peanuts)", ar: "Paracuca (محمّص Peanuts)" },
     emoji: "🥗",
     mealType: "petit_dejeuner",
     tags: ["famille"],
@@ -27709,7 +27709,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "quick_gazpacho",
-    name: { fr: "Quick gazpacho", ar: "Quick gazpacho" },
+    name: { fr: "Rapide gazpacho", ar: "Quick gazpacho" },
     emoji: "🥗",
     mealType: "petit_dejeuner",
     tags: ["du_monde", "rapide"],
@@ -27737,7 +27737,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "fasoliyyeh_bi_z_zayt_syrian_green_beans_with_olive",
-    name: { fr: "Fasoliyyeh Bi Z-Zayt (Syrian Green Beans au Olive Oil)", ar: "Fasoliyyeh Bi Z-Zayt (Syrian Green Beans with Olive Oil)" },
+    name: { fr: "Fasoliyyeh Bi Z-Zayt (Syrian Vert Haricots au Olive Huile)", ar: "Fasoliyyeh Bi Z-Zayt (Syrian Green Beans مع Olive Oil)" },
     emoji: "🌱",
     mealType: "diner",
     tags: ["du_monde", "vegetarien"],
@@ -27788,7 +27788,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "padron_peppers",
-    name: { fr: "Padron peppers", ar: "Padron peppers" },
+    name: { fr: "Padron poivrons", ar: "Padron peppers" },
     emoji: "🌱",
     mealType: "diner",
     tags: ["du_monde", "vegetarien"],
@@ -27828,7 +27828,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "red_onion_pickle",
-    name: { fr: "Red onion pickle", ar: "Red onion pickle" },
+    name: { fr: "Rouge oignon pickle", ar: "Red onion pickle" },
     emoji: "🌱",
     mealType: "diner",
     tags: ["vegetarien"],
@@ -27884,7 +27884,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "roast_fennel_and_aubergine_paella",
-    name: { fr: "rôti fennel et aubergine paella", ar: "Roast fennel and aubergine paella" },
+    name: { fr: "Rôti fennel et aubergine paella", ar: "Roast fennel و aubergine paella" },
     emoji: "🌱",
     mealType: "diner",
     tags: ["du_monde", "vegetarien", "famille"],
@@ -28004,7 +28004,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "vegan_chocolate_cake",
-    name: { fr: "Gâteau au chocolat", ar: "Vegan Chocolate Cake" },
+    name: { fr: "Gâteau au chocolat", ar: "Vegan Chocolate كعكة" },
     emoji: "🌱",
     mealType: "diner",
     tags: ["vegetarien"],
@@ -28158,7 +28158,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "algerian_flafla_bell_pepper_salad",
-    name: { fr: "Algerian Flafla (Bell Pepper salade)", ar: "Algerian Flafla (Bell Pepper Salad)" },
+    name: { fr: "Algerian Flafla (Bell Poivron salade)", ar: "Algerian Flafla (Bell Pepper سلطة)" },
     emoji: "🥗",
     mealType: "dejeuner",
     tags: ["du_monde", "vegetarien", "healthy"],
@@ -28333,7 +28333,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "beetroot_red_cabbage_sauerkraut",
-    name: { fr: "Beetroot & red cabbage sauerkraut", ar: "Beetroot & red cabbage sauerkraut" },
+    name: { fr: "Beetroot & rouge chou sauerkraut", ar: "Beetroot & red cabbage sauerkraut" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["vegetarien"],
@@ -28446,7 +28446,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "beetroot_soup_borscht",
-    name: { fr: "Beetroot soupe (Borscht)", ar: "Beetroot Soup (Borscht)" },
+    name: { fr: "Beetroot soupe (Borscht)", ar: "Beetroot شوربة (Borscht)" },
     emoji: "🥗",
     mealType: "dejeuner",
     tags: ["vegetarien"],
@@ -28487,7 +28487,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "braised_stuffed_cabbage",
-    name: { fr: "Braised stuffed cabbage", ar: "Braised stuffed cabbage" },
+    name: { fr: "Braisé farci chou", ar: "Braised محشوّ cabbage" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["vegetarien"],
@@ -28548,7 +28548,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "cabbage_soup_shchi",
-    name: { fr: "Cabbage soupe (Shchi)", ar: "Cabbage Soup (Shchi)" },
+    name: { fr: "Chou soupe (Shchi)", ar: "Cabbage شوربة (Shchi)" },
     emoji: "🥗",
     mealType: "dejeuner",
     tags: ["vegetarien"],
@@ -28609,7 +28609,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chickpea_fajitas",
-    name: { fr: "Chickpea Fajitas", ar: "Chickpea Fajitas" },
+    name: { fr: "Pois chiche Fajitas", ar: "Chickpea Fajitas" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["du_monde", "vegetarien"],
@@ -28672,7 +28672,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chinese_tomato_egg_stir_fry",
-    name: { fr: "Chinese Tomato Egg Stir Fry", ar: "Chinese Tomato Egg Stir Fry" },
+    name: { fr: "Chinese Tomate Œuf Sauté Poêlée", ar: "Chinese Tomato بيض Stir Fry" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["du_monde", "vegetarien"],
@@ -28732,7 +28732,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "chtitha_batata_algerian_potato_stew",
-    name: { fr: "Chtitha Batata (Algerian Potato ragoût)", ar: "Chtitha Batata (Algerian Potato Stew)" },
+    name: { fr: "Chtitha Batata (Algerian Potato ragoût)", ar: "Chtitha Batata (Algerian Potato يخنة)" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["du_monde", "vegetarien", "famille"],
@@ -28794,7 +28794,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "crispy_eggplant",
-    name: { fr: "Crispy Eggplant", ar: "Crispy Eggplant" },
+    name: { fr: "Croustillant Aubergine", ar: "Crispy Eggplant" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["vegetarien"],
@@ -28851,7 +28851,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "cucumber_fennel_salad",
-    name: { fr: "Cucumber & fennel salade", ar: "Cucumber & fennel salad" },
+    name: { fr: "Concombre & fennel salade", ar: "Cucumber & fennel سلطة" },
     emoji: "🥗",
     mealType: "dejeuner",
     tags: ["vegetarien", "healthy"],
@@ -28954,7 +28954,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "egg_drop_soup",
-    name: { fr: "Egg Drop soupe", ar: "Egg Drop Soup" },
+    name: { fr: "Œuf Drop soupe", ar: "بيض Drop شوربة" },
     emoji: "🥗",
     mealType: "dejeuner",
     tags: ["du_monde", "vegetarien"],
@@ -29006,7 +29006,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "eggplant_adobo",
-    name: { fr: "Eggplant Adobo", ar: "Eggplant Adobo" },
+    name: { fr: "Aubergine Adobo", ar: "Eggplant Adobo" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["vegetarien"],
@@ -29413,7 +29413,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "griddled_aubergines_with_sesame_dressing",
-    name: { fr: "Griddled aubergines au sesame dressing", ar: "Griddled aubergines with sesame dressing" },
+    name: { fr: "Griddled aubergines au sesame dressing", ar: "Griddled aubergines مع sesame dressing" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["du_monde", "vegetarien"],
@@ -29460,7 +29460,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "grilled_eggplant_with_coconut_milk",
-    name: { fr: "grillé eggplant au coconut milk", ar: "Grilled eggplant with coconut milk" },
+    name: { fr: "Grillé eggplant au coconut milk", ar: "مشوي eggplant مع coconut milk" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["vegetarien"],
@@ -29516,7 +29516,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "jamaican_instant_pot_rice_and_beans",
-    name: { fr: "Jamaican Instant Pot riz et Beans", ar: "Jamaican Instant Pot Rice and Beans" },
+    name: { fr: "Jamaican Instant Pot riz et Haricots", ar: "Jamaican Instant Pot أرز و Beans" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["vegetarien"],
@@ -29578,7 +29578,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "jamaican_rice_and_peas",
-    name: { fr: "Jamaican riz et Peas", ar: "Jamaican Rice and Peas" },
+    name: { fr: "Jamaican riz et Petits pois", ar: "Jamaican أرز و Peas" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["vegetarien"],
@@ -29697,7 +29697,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "kidney_bean_curry",
-    name: { fr: "Kidney Bean curry", ar: "Kidney Bean Curry" },
+    name: { fr: "Kidney Haricot curry", ar: "Kidney Bean كاري" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["vegetarien"],
@@ -29812,7 +29812,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "lakror_me_kungull_summer_squash_pie",
-    name: { fr: "Lakror me Kungull Summer Squash tourte", ar: "Lakror me Kungull Summer Squash Pie" },
+    name: { fr: "Lakror me Kungull Summer Courge tourte", ar: "Lakror me Kungull Summer Squash فطيرة" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["vegetarien"],
@@ -29867,7 +29867,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "leblebi_soup",
-    name: { fr: "Leblebi soupe", ar: "Leblebi Soup" },
+    name: { fr: "Leblebi soupe", ar: "Leblebi شوربة" },
     emoji: "🥗",
     mealType: "dejeuner",
     tags: ["du_monde", "vegetarien"],
@@ -29989,7 +29989,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "molasses_baked_beans",
-    name: { fr: "Molasses au four Beans", ar: "Molasses Baked Beans" },
+    name: { fr: "Molasses au four Haricots", ar: "Molasses مخبوز Beans" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["vegetarien"],
@@ -30048,7 +30048,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "moroccan_carrot_soup",
-    name: { fr: "Moroccan Carrot soupe", ar: "Moroccan Carrot Soup" },
+    name: { fr: "Moroccan Carotte soupe", ar: "Moroccan Carrot شوربة" },
     emoji: "🥗",
     mealType: "dejeuner",
     tags: ["du_monde", "vegetarien"],
@@ -30106,7 +30106,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "mushroom_chestnut_rotolo",
-    name: { fr: "Mushroom & Chestnut Rotolo", ar: "Mushroom & Chestnut Rotolo" },
+    name: { fr: "Champignon & Chestnut Rotolo", ar: "Mushroom & Chestnut Rotolo" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["vegetarien"],
@@ -30168,7 +30168,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "pa_amb_tomaquet_bread_with_tomato",
-    name: { fr: "Pa Amb Tomaquet (pain au Tomato)", ar: "Pa Amb Tomaquet (Bread with Tomato)" },
+    name: { fr: "Pa Amb Tomaquet (pain au Tomate)", ar: "Pa Amb Tomaquet (خبز مع Tomato)" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["vegetarien"],
@@ -30284,7 +30284,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "pomegranate_salad",
-    name: { fr: "Pomegranate salade", ar: "Pomegranate salad" },
+    name: { fr: "Pomegranate salade", ar: "Pomegranate سلطة" },
     emoji: "🥗",
     mealType: "dejeuner",
     tags: ["vegetarien", "healthy"],
@@ -30328,7 +30328,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "potato_salad_olivier_salad",
-    name: { fr: "Potato salade (Olivier salade)", ar: "Potato Salad (Olivier Salad)" },
+    name: { fr: "Pomme de terre salade (Olivier salade)", ar: "Potato سلطة (Olivier سلطة)" },
     emoji: "🥗",
     mealType: "dejeuner",
     tags: ["vegetarien", "healthy"],
@@ -30388,7 +30388,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "provencal_omelette_cake",
-    name: { fr: "Provençal omelette gâteau", ar: "Provençal Omelette Cake" },
+    name: { fr: "Provençal omelette gâteau", ar: "Provençal Omelette كعكة" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["vegetarien"],
@@ -30575,7 +30575,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "roasted_eggplant_with_tahini_pine_nuts_and_lentils",
-    name: { fr: "Roasted Eggplant au Tahini, Pine Nuts, et Lentils", ar: "Roasted Eggplant With Tahini, Pine Nuts, and Lentils" },
+    name: { fr: "Rôti Aubergine au Tahini, Pine Nuts, et Lentilles", ar: "محمّص Eggplant مع Tahini, Pine Nuts, و Lentils" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["vegetarien", "famille"],
@@ -30815,7 +30815,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "sichuan_eggplant",
-    name: { fr: "Sichuan Eggplant", ar: "Sichuan Eggplant" },
+    name: { fr: "Sichuan Aubergine", ar: "Sichuan Eggplant" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["du_monde", "vegetarien"],
@@ -30878,7 +30878,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "sichuan_style_stir_fried_chinese_long_beans",
-    name: { fr: "Sichuan Style Stir-frit Chinese Long Beans", ar: "Sichuan Style Stir-Fried Chinese Long Beans" },
+    name: { fr: "Sichuan Style Sauté-frit Chinese Long Haricots", ar: "Sichuan Style Stir-مقلي Chinese Long Beans" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["du_monde", "vegetarien"],
@@ -30916,7 +30916,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "smoky_lentil_chili_with_squash",
-    name: { fr: "Smoky Lentil Chili au Squash", ar: "Smoky Lentil Chili with Squash" },
+    name: { fr: "Fumé Lentille Piment au Courge", ar: "Smoky Lentil Chili مع Squash" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["vegetarien"],
@@ -31045,7 +31045,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "spicy_arrabiata_penne",
-    name: { fr: "épicé Arrabiata Penne", ar: "Spicy Arrabiata Penne" },
+    name: { fr: "Épicé Arrabiata Penne", ar: "Spicy Arrabiata Penne" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["du_monde", "vegetarien"],
@@ -31103,7 +31103,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "spicy_north_african_potato_salad",
-    name: { fr: "épicé North African Potato salade", ar: "Spicy North African Potato Salad" },
+    name: { fr: "Épicé North African Potato salade", ar: "Spicy North African Potato سلطة" },
     emoji: "🥗",
     mealType: "dejeuner",
     tags: ["du_monde", "vegetarien", "healthy"],
@@ -31161,7 +31161,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "spinach_ricotta_cannelloni",
-    name: { fr: "Spinach & Ricotta Cannelloni", ar: "Spinach & Ricotta Cannelloni" },
+    name: { fr: "Épinards & Ricotta Cannelloni", ar: "Spinach & Ricotta Cannelloni" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["du_monde", "vegetarien"],
@@ -31226,7 +31226,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "squash_linguine",
-    name: { fr: "Squash linguine", ar: "Squash linguine" },
+    name: { fr: "Courge linguine", ar: "Squash linguine" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["du_monde", "vegetarien"],
@@ -31281,7 +31281,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "stovetop_eggplant_with_harissa_chickpeas_and_cumin",
-    name: { fr: "Stovetop Eggplant au Harissa, Chickpeas, et Cumin Yogurt", ar: "Stovetop Eggplant With Harissa, Chickpeas, and Cumin Yogurt" },
+    name: { fr: "Stovetop Aubergine au Harissa, Pois chiches, et Cumin Yaourt", ar: "Stovetop Eggplant مع Harissa, Chickpeas, و Cumin Yogurt" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["vegetarien"],
@@ -31446,7 +31446,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "sweet_potato_salad",
-    name: { fr: "sucré potato salade", ar: "Sweet potato salad" },
+    name: { fr: "Sucré potato salade", ar: "Sweet potato سلطة" },
     emoji: "🥗",
     mealType: "dejeuner",
     tags: ["du_monde", "vegetarien", "healthy"],
@@ -31492,7 +31492,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "tahini_lentils",
-    name: { fr: "Tahini Lentils", ar: "Tahini Lentils" },
+    name: { fr: "Tahini Lentilles", ar: "Tahini Lentils" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["du_monde", "vegetarien"],
@@ -31605,7 +31605,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "tangy_cabbage_slaw",
-    name: { fr: "Tangy cabbage slaw", ar: "Tangy cabbage slaw" },
+    name: { fr: "Tangy chou slaw", ar: "Tangy cabbage slaw" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["vegetarien"],
@@ -31649,7 +31649,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "tangy_carrot_cabbage_onion_salad",
-    name: { fr: "Tangy carrot, cabbage & onion salade", ar: "Tangy carrot, cabbage & onion salad" },
+    name: { fr: "Tangy carotte, chou & oignon salade", ar: "Tangy carrot, cabbage & onion سلطة" },
     emoji: "🥗",
     mealType: "dejeuner",
     tags: ["du_monde", "vegetarien", "healthy"],
@@ -31755,7 +31755,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "thai_coconut_veg_broth",
-    name: { fr: "Thai coconut & veg broth", ar: "Thai coconut & veg broth" },
+    name: { fr: "Thai noix de coco & veg bouillon", ar: "Thai coconut & veg broth" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["du_monde", "vegetarien"],
@@ -31818,7 +31818,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "thai_pumpkin_soup",
-    name: { fr: "Thai pumpkin soupe", ar: "Thai pumpkin soup" },
+    name: { fr: "Thai citrouille soupe", ar: "Thai pumpkin شوربة" },
     emoji: "🥗",
     mealType: "dejeuner",
     tags: ["du_monde", "vegetarien"],
@@ -31879,7 +31879,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "tofu_greens_cashew_stir_fry",
-    name: { fr: "Tofu, greens & cashew stir-fry", ar: "Tofu, greens & cashew stir-fry" },
+    name: { fr: "Tofu, greens & cashew poêlée", ar: "Tofu, greens & cashew stir-fry" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["du_monde", "vegetarien"],
@@ -32043,7 +32043,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "vegetarian_chilli",
-    name: { fr: "Vegetarian Chilli", ar: "Vegetarian Chilli" },
+    name: { fr: "Vegetarian Piment", ar: "Vegetarian Chilli" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["vegetarien"],
@@ -32193,7 +32193,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "vietnamese_style_veggie_hotpot",
-    name: { fr: "Vietnamese-style veggie hotpot", ar: "Vietnamese-style veggie hotpot" },
+    name: { fr: "Vietnamese-style veggie casserole", ar: "Vietnamese-style veggie hotpot" },
     emoji: "🥗",
     mealType: "diner",
     tags: ["du_monde", "vegetarien"],
@@ -32305,7 +32305,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "breakfast_potatoes",
-    name: { fr: "Breakfast Potatoes", ar: "Breakfast Potatoes" },
+    name: { fr: "Breakfast Pommes de terre", ar: "Breakfast Potatoes" },
     emoji: "🍳",
     mealType: "petit_dejeuner",
     tags: ["rapide", "healthy"],
@@ -32710,7 +32710,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "r_mmegr_t_norwegian_sour_cream_porridge",
-    name: { fr: "Rømmegrøt – Norwegian Sour Cream Porridge", ar: "Rømmegrøt – Norwegian Sour Cream Porridge" },
+    name: { fr: "Rømmegrøt – Norwegian Sour Crème Porridge", ar: "Rømmegrøt – Norwegian Sour Cream Porridge" },
     emoji: "🍳",
     mealType: "petit_dejeuner",
     tags: ["rapide", "healthy"],
@@ -32767,7 +32767,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "salmon_eggs_eggs_benedict",
-    name: { fr: "saumon Eggs Eggs Benedict", ar: "Salmon Eggs Eggs Benedict" },
+    name: { fr: "Saumon Œufs Œufs Benedict", ar: "سلمون بيض بيض Benedict" },
     emoji: "🍳",
     mealType: "petit_dejeuner",
     tags: ["rapide", "healthy"],
@@ -32826,7 +32826,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "smoked_haddock_kedgeree",
-    name: { fr: "Smoked Haddock Kedgeree", ar: "Smoked Haddock Kedgeree" },
+    name: { fr: "Fumé Aiglefin Kedgeree", ar: "Smoked Haddock Kedgeree" },
     emoji: "🍳",
     mealType: "petit_dejeuner",
     tags: ["rapide", "healthy"],
@@ -32948,7 +32948,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "torrijas_with_sherry",
-    name: { fr: "Torrijas au sherry", ar: "Torrijas with sherry" },
+    name: { fr: "Torrijas au sherry", ar: "Torrijas مع sherry" },
     emoji: "🍳",
     mealType: "petit_dejeuner",
     tags: ["du_monde", "rapide", "healthy"],
@@ -33051,7 +33051,7 @@ export const MEALDB_RECIPES: Recipe[] = [
   },
   {
     id: "jamaican_curry_goat",
-    name: { fr: "Jamaican curry Goat", ar: "Jamaican Curry Goat" },
+    name: { fr: "Jamaican curry Chèvre", ar: "Jamaican كاري Goat" },
     emoji: "🍖",
     mealType: "diner",
     tags: ["rapide"],

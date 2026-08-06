@@ -133,25 +133,72 @@ export default function MealDetail() {
           ))}
         </ol>
 
-        {/* YouTube tutorial */}
+        {/* YouTube tutorial — iframe bloqué par le CSP de l'artifact, carte cliquable à la place */}
         {recipe.youtubeId && (
           <div style={{ marginTop: 32 }}>
             <h2 style={{ fontSize: 20, fontWeight: 800, margin: '0 0 14px' }}>{t('video_tuto')}</h2>
-            {/* Responsive 16:9 iframe embed */}
-            <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, borderRadius: 18, overflow: 'hidden', background: '#000' }}>
-              <iframe
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-                src={`https://www.youtube-nocookie.com/embed/${recipe.youtubeId}?rel=0&modestbranding=1`}
-                title={loc(recipe.name)}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
             <a
               href={`https://www.youtube.com/watch?v=${recipe.youtubeId}`}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 10, padding: '8px 16px', background: '#FF0000', color: '#fff', borderRadius: 999, fontWeight: 700, fontSize: 13, textDecoration: 'none' }}
+              style={{ display: 'block', textDecoration: 'none' }}
+            >
+              <div style={{
+                position: 'relative',
+                paddingBottom: '56.25%',
+                height: 0,
+                borderRadius: 18,
+                overflow: 'hidden',
+                background: 'linear-gradient(135deg, #0d0d0d 0%, #1c1c2e 60%, #0f0f1a 100%)',
+                cursor: 'pointer',
+                boxShadow: '0 4px 20px rgba(0,0,0,.35)',
+              }}>
+                {/* Motif décoratif */}
+                <div style={{ position: 'absolute', inset: 0, opacity: .07, background: 'repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)' }} />
+                {/* Bouton play */}
+                <div style={{
+                  position: 'absolute',
+                  top: '50%', left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  width: 72, height: 72,
+                  borderRadius: '50%',
+                  background: '#FF0000',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  boxShadow: '0 0 0 8px rgba(255,0,0,.18), 0 6px 28px rgba(255,0,0,.45)',
+                }}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="white" style={{ marginLeft: 4 }}>
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+                {/* Nom de la recette */}
+                <div style={{
+                  position: 'absolute', bottom: 0, left: 0, right: 0,
+                  padding: '32px 16px 14px',
+                  background: 'linear-gradient(to top, rgba(0,0,0,.9) 0%, transparent 100%)',
+                  color: '#fff', fontWeight: 700, fontSize: 15,
+                }}>
+                  {loc(recipe.name)}
+                </div>
+                {/* Badge YouTube */}
+                <div style={{
+                  position: 'absolute', top: 12, right: 14,
+                  background: '#FF0000', borderRadius: 4,
+                  padding: '2px 7px',
+                  display: 'flex', alignItems: 'center', gap: 5,
+                  fontSize: 11, fontWeight: 800, color: '#fff', letterSpacing: '.04em',
+                }}>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="white">
+                    <path d="M23.5 6.9c-.3-1-1.1-1.8-2.1-2.1C19.5 4.3 12 4.3 12 4.3s-7.5 0-9.4.5C1.6 5.1.8 5.9.5 6.9 0 8.8 0 12 0 12s0 3.2.5 5.1c.3 1 1.1 1.8 2.1 2.1 1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5c1-.3 1.8-1.1 2.1-2.1.5-1.9.5-5.1.5-5.1s0-3.2-.5-5.1zM9.8 15.5V8.5l6.3 3.5-6.3 3.5z"/>
+                  </svg>
+                  YouTube
+                </div>
+              </div>
+            </a>
+            <a
+              href={`https://www.youtube.com/watch?v=${recipe.youtubeId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 10, padding: '9px 18px', background: '#FF0000', color: '#fff', borderRadius: 999, fontWeight: 700, fontSize: 13, textDecoration: 'none' }}
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M23.5 6.9c-.3-1-1.1-1.8-2.1-2.1C19.5 4.3 12 4.3 12 4.3s-7.5 0-9.4.5C1.6 5.1.8 5.9.5 6.9 0 8.8 0 12 0 12s0 3.2.5 5.1c.3 1 1.1 1.8 2.1 2.1 1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5c1-.3 1.8-1.1 2.1-2.1.5-1.9.5-5.1.5-5.1s0-3.2-.5-5.1zM9.8 15.5V8.5l6.3 3.5-6.3 3.5z"/>
