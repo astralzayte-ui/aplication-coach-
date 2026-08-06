@@ -138,12 +138,72 @@ const KEEP_AS_IS = new Set([
   'chick-fil-a', 'steak diane', 'beef wellington', 'eggs benedict',
 ])
 
+// ── Traductions manuelles pour les 37 cas résistants ────────────────────────
+const MANUAL_TRANSLATIONS = {
+  // Bœuf
+  'bœuf brisket pot rôti': 'Bœuf Brisket à la cocotte',
+  'braised bœuf chilli': 'Bœuf braisé au chili',
+  'corned bœuf et cabbage – jamaican style': 'Corned-beef et chou à la jamaïcaine',
+  'steak & vietnamese nouille salade': 'Steak & salade de nouilles vietnamiennes',
+  'steak et kidney tourte': 'Tourte au steak et aux rognons',
+  'steak diane': 'Steak Diane',
+  // Poulet
+  'poulet & chorizo riz pot': 'Poulet au chorizo et riz en cocotte',
+  'poulet shawarma au fait maison ail herb yoghurt sauce': 'Shawarma de poulet, sauce yaourt à l\'ail et aux herbes',
+  'crock pot poulet au four tacos': 'Tacos de poulet à la mijoteuse',
+  'roasted poulet au crémeux walnut sauce': 'Poulet rôti, sauce crémeuse aux noix',
+  'thai poulet cakes au sucré chilli sauce': 'Galettes de poulet thaï, sauce sucrée au piment',
+  'sandwich chick-fil-': 'Sandwich Chick-Fil-A',
+  // Agneau
+  'slow-rôti agneau au cinnamon, fennel & citrus': 'Agneau lentement rôti à la cannelle, fenouil & agrumes',
+  'spanish-style lent-cooked agneau shoulder & haricots': 'Épaule d\'agneau à l\'espagnole & haricots',
+  'turkish-style agneau': 'Agneau à la turque',
+  // Porc
+  'porc rib bortsch': 'Bortsch aux travers de porc',
+  'vietnamese-style caramel porc': 'Porc caramélisé à la vietnamienne',
+  // Poisson & fruits de mer
+  'fish ragoût au rouille': 'Ragoût de poisson à la rouille',
+  'pan-frit hake, blanc haricot & chorizo bouillon': 'Colin poêlé, bouillon de haricots blancs & chorizo',
+  'portuguese fish ragoût (caldeirada de peixe)': 'Ragoût de poisson portugais (Caldeirada de Peixe)',
+  'gambas au romesco sauce': 'Gambas à la sauce romesco',
+  'mer bass au sizzled gingembre, piment & spring oignons': 'Bar de mer au gingembre, piment & oignons nouveaux',
+  'spanish riz & crevettes one-pot': 'Riz espagnol aux crevettes en cocotte',
+  'spring oignon et crevettes empanadas': 'Empanadas aux crevettes et oignons nouveaux',
+  'thai-style poisson bouillon au greens': 'Bouillon de poisson thaï aux légumes verts',
+  'thai-style à la vapeur poisson': 'Poisson à la vapeur à la thaï',
+  // Desserts & divers
+  'chocolate churros au chocolate & salted caramel sauce': 'Churros au chocolat & caramel salé',
+  'rigatoni au fennel saucisse sauce': 'Rigatoni à la sauce saucisse et fenouil',
+  'grillé mac et cheese sandwich': 'Sandwich grillé Mac & Cheese',
+  'nouille bowl salade': 'Bol de salade de nouilles',
+  'smoked aubergine purée': 'Purée d\'aubergine fumée',
+  'jamaican instant pot riz et haricots': 'Riz et haricots jamaïcains en cocotte',
+  'sichuan style sauté-frit chinese long haricots': 'Haricots longs chinois sautés à la sichuanaise',
+  'vietnamese-style veggie casserole': 'Casserole de légumes à la vietnamienne',
+  // Divers
+  'pot de poivre de la barbade': 'Ragoût de poivrons de la Barbade',
+  'style jamaïcain callaloo': 'Callaloo à la jamaïcaine',
+  'sandwich chivito': 'Sandwich Chivito',
+  // Noms avec fennel / walnut / greens non traduits par le dict
+  'au four saumon au fennel & tomates': 'Saumon au four, fenouil & tomates',
+  'fennel dauphinoise': 'Gratin de fenouil dauphinois',
+  'crevettes & fennel bisque': 'Bisque de crevettes au fenouil',
+  'rôti fennel et aubergine paella': 'Paella de fenouil rôti et aubergine',
+  'concombre & fennel salade': 'Salade concombre & fenouil',
+  'rigatoni à la sauce saucisse et fenouil': 'Rigatoni à la saucisse & fenouil',
+  'walnut, date & honey gâteau': 'Gâteau aux noix, dattes & miel',
+  'tofu, greens & cashew poêlée': 'Tofu, légumes verts & noix de cajou poêlés',
+}
+
 // ── Traduction par substitution ──────────────────────────────────────────────
 function translateName(name) {
   const lower = name.toLowerCase().trim()
 
   // Noms à garder tels quels
   if (KEEP_AS_IS.has(lower)) return name
+
+  // Traductions manuelles exactes (priorité maximale)
+  if (MANUAL_TRANSLATIONS[lower]) return MANUAL_TRANSLATIONS[lower]
 
   // Si le nom contient déjà des accents français → capitaliser et retourner
   if (/[éèêëàâäîïôöùûüçœæ]/i.test(name)) {
