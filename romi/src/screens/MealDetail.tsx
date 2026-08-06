@@ -49,6 +49,25 @@ export default function MealDetail() {
 
   const alts = useMemo(() => (recipe ? alternativesFor(recipe.id, state.onboarding) : []), [recipe, state.onboarding])
 
+  // Étapes à afficher : les étapes TheMealDB sont stockées en anglais dans les deux champs.
+  // → Pour EN : on affiche les étapes originales anglaises (stockées dans .fr)
+  // → Pour FR/AR : si les étapes sont en anglais (pas d'accent français), on génère via buildSteps
+  const steps = useMemo(() => {
+    if (!recipe) return []
+    if (!recipe.steps) return buildSteps(recipe, lang)
+    const firstFr = recipe.steps[0]?.fr ?? ''
+    const stepsAreEnglish = !/[éèêëàâäîïôöùûüçœæ]/i.test(firstFr)
+    if (lang === 'en') {
+      // Étapes originales anglaises
+      return recipe.steps.map(s => s.fr)
+    }
+    if (stepsAreEnglish) {
+      // Générer des étapes dans la bonne langue (FR ou AR)
+      return buildSteps(recipe, lang)
+    }
+    return recipe.steps.map(s => locStr(s, lang))
+  }, [recipe, lang])
+
   if (!meal || !recipe) {
     return <div className="screen"><button onClick={() => nav('/plan')} className="back-btn"><Icon name="back" /></button></div>
   }
@@ -125,7 +144,7 @@ export default function MealDetail() {
             the real ingredients & quantities so dosages are always exact */}
         <h2 style={{ fontSize: 20, fontWeight: 800, margin: '26px 0 12px' }}>{t('preparation')}</h2>
         <ol style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12 }}>
-          {(recipe.steps ? recipe.steps.map((s) => locStr(s, lang)) : buildSteps(recipe, lang)).map((s, i) => (
+          {steps.map((s, i) => (
             <li key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
               <span style={{ flexShrink: 0, width: 26, height: 26, borderRadius: 999, background: 'var(--accent-soft)', color: 'var(--accent)', fontWeight: 800, fontSize: 13, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{i + 1}</span>
               <span style={{ lineHeight: 1.45, color: 'var(--ink-2)' }}>{s}</span>
