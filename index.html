@@ -169,6 +169,10 @@
     .dep-item-name { flex:1; font-size:12px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .dep-item-amt  { font-size:13px; font-weight:800; font-variant-numeric:tabular-nums; color:var(--rose); flex-shrink:0; }
     .dep-divider   { height:1px; background:var(--border); margin:16px 16px 0; }
+    .dep-del-btn   { background:none; border:none; color:var(--text-muted); font-size:14px; cursor:pointer; padding:2px 4px; flex-shrink:0; transition:color .15s; }
+    .dep-del-btn:active { color:var(--rose); }
+    .dep-add-btn   { width:24px; height:24px; border-radius:50%; border:none; background:var(--surf2); color:var(--text-dim); font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background .15s,color .15s; -webkit-tap-highlight-color:transparent; }
+    .dep-add-btn:active { background:var(--gold-dim); color:var(--gold); }
 
     /* CAL HERO */
     .cal-hero { position:relative; padding:44px 24px 24px; overflow:hidden; background:var(--surf); }
@@ -526,6 +530,27 @@
   <p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;line-height:1.6">L'événement sera supprimé du calendrier. Si un montant est associé, il sera déduit de la catégorie automatiquement.</p>
   <button class="submit-btn danger" onclick="doComplete()">✅ Confirmer la clôture</button>
   <button class="cancel-btn" onclick="closeModal('m-confirm')">Non, garder l'événement</button>
+</div></div>
+
+<!-- MODAL: Ajouter dépense (depuis onglet Dépenses) -->
+<div class="overlay" id="m-adddep" onclick="overlayClick(event,'m-adddep')"><div class="sheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-title">💸 Nouvelle dépense</div>
+  <div style="display:inline-flex;align-items:center;gap:6px;background:var(--surf2);border:1px solid var(--border2);border-radius:999px;padding:5px 14px;font-size:12px;font-weight:700;color:var(--text-dim);margin-bottom:16px" id="adep-cat-label">–</div>
+  <div class="form-group">
+    <label class="form-lbl">Montant (DH)</label>
+    <input type="number" class="form-input" id="adep-amount" placeholder="0" min="0" style="font-size:22px;font-weight:800">
+  </div>
+  <div class="form-group">
+    <label class="form-lbl">Description</label>
+    <input type="text" class="form-input" id="adep-desc" placeholder="Soirée vendredi, sortie, resto…">
+  </div>
+  <div class="form-group">
+    <label class="form-lbl">Date</label>
+    <input type="date" class="form-input" id="adep-date">
+  </div>
+  <button class="submit-btn" onclick="saveAddDep()">Enregistrer la dépense</button>
+  <button class="cancel-btn" onclick="closeModal('m-adddep')">Annuler</button>
 </div></div>
 
 <!-- MODAL: Détail catégorie -->
@@ -938,43 +963,61 @@ function renderDepenses(){
     let rows='', catTotal=0;
 
     if(cat==='abonnements'){
-      // show subscription items
-      if(S.abonnements.length){
-        S.abonnements.forEach(a=>{
-          catTotal+=a.prix;
-          rows+=`<div class="dep-item-row"><span class="dep-item-icon">${a.emoji||'📋'}</span><span class="dep-item-date">fixe</span><span class="dep-item-name">${a.nom}</span><span class="dep-item-amt">−${fmt(a.prix)} DH</span></div>`;
-        });
-      }
-      // also any quick-logged expenses to abonnements
-      const depAbo=S.depenses.filter(d=>d.cat==='abonnements').sort((a,b)=>new Date(b.date)-new Date(a.date));
-      depAbo.forEach(d=>{
+      S.abonnements.forEach(a=>{
+        catTotal+=a.prix;
+        rows+=`<div class="dep-item-row">
+          <span class="dep-item-icon">${a.emoji||'📋'}</span>
+          <span class="dep-item-date">fixe</span>
+          <span class="dep-item-name">${a.nom}</span>
+          <span class="dep-item-amt">−${fmt(a.prix)} DH</span>
+          <button class="dep-del-btn" onclick="delFixedDep('abo','${a.id}')">✕</button>
+        </div>`;
+      });
+      S.depenses.filter(d=>d.cat==='abonnements').sort((a,b)=>new Date(b.date)-new Date(a.date)).forEach(d=>{
         catTotal+=d.montant;
-        rows+=`<div class="dep-item-row"><span class="dep-item-icon">📋</span><span class="dep-item-date">${shortD(d.date)}</span><span class="dep-item-name">${d.desc||'Abonnement'}</span><span class="dep-item-amt">−${fmt(d.montant)} DH</span></div>`;
+        rows+=`<div class="dep-item-row">
+          <span class="dep-item-icon">📋</span>
+          <span class="dep-item-date">${shortD(d.date)}</span>
+          <span class="dep-item-name">${d.desc||'Abonnement'}</span>
+          <span class="dep-item-amt">−${fmt(d.montant)} DH</span>
+          <button class="dep-del-btn" onclick="delQuickDep('${d.id}')">✕</button>
+        </div>`;
       });
     } else if(cat==='investissements'){
-      // show investment items
-      if(S.investissements.length){
-        S.investissements.forEach(i=>{
-          catTotal+=i.montant;
-          rows+=`<div class="dep-item-row"><span class="dep-item-icon">${i.emoji||'💹'}</span><span class="dep-item-date">fixe</span><span class="dep-item-name">${i.nom}</span><span class="dep-item-amt">−${fmt(i.montant)} DH</span></div>`;
-        });
-      }
-      const depInv=S.depenses.filter(d=>d.cat==='investissements').sort((a,b)=>new Date(b.date)-new Date(a.date));
-      depInv.forEach(d=>{
+      S.investissements.forEach(i=>{
+        catTotal+=i.montant;
+        rows+=`<div class="dep-item-row">
+          <span class="dep-item-icon">${i.emoji||'💹'}</span>
+          <span class="dep-item-date">fixe</span>
+          <span class="dep-item-name">${i.nom}</span>
+          <span class="dep-item-amt">−${fmt(i.montant)} DH</span>
+          <button class="dep-del-btn" onclick="delFixedDep('inv','${i.id}')">✕</button>
+        </div>`;
+      });
+      S.depenses.filter(d=>d.cat==='investissements').sort((a,b)=>new Date(b.date)-new Date(a.date)).forEach(d=>{
         catTotal+=d.montant;
-        rows+=`<div class="dep-item-row"><span class="dep-item-icon">💹</span><span class="dep-item-date">${shortD(d.date)}</span><span class="dep-item-name">${d.desc||'Investissement'}</span><span class="dep-item-amt">−${fmt(d.montant)} DH</span></div>`;
+        rows+=`<div class="dep-item-row">
+          <span class="dep-item-icon">💹</span>
+          <span class="dep-item-date">${shortD(d.date)}</span>
+          <span class="dep-item-name">${d.desc||'Investissement'}</span>
+          <span class="dep-item-amt">−${fmt(d.montant)} DH</span>
+          <button class="dep-del-btn" onclick="delQuickDep('${d.id}')">✕</button>
+        </div>`;
       });
     } else {
-      const deps=S.depenses.filter(d=>d.cat===cat).sort((a,b)=>new Date(b.date)-new Date(a.date));
-      deps.forEach(d=>{
+      S.depenses.filter(d=>d.cat===cat).sort((a,b)=>new Date(b.date)-new Date(a.date)).forEach(d=>{
         catTotal+=d.montant;
-        rows+=`<div class="dep-item-row"><span class="dep-item-icon">${cfg.icon}</span><span class="dep-item-date">${shortD(d.date)}</span><span class="dep-item-name">${d.desc||cfg.name}</span><span class="dep-item-amt">−${fmt(d.montant)} DH</span></div>`;
+        rows+=`<div class="dep-item-row">
+          <span class="dep-item-icon">${cfg.icon}</span>
+          <span class="dep-item-date">${shortD(d.date)}</span>
+          <span class="dep-item-name">${d.desc||cfg.name}</span>
+          <span class="dep-item-amt">−${fmt(d.montant)} DH</span>
+          <button class="dep-del-btn" onclick="delQuickDep('${d.id}')">✕</button>
+        </div>`;
       });
     }
 
-    if(!rows){
-      rows=`<div class="dep-cat-empty">Aucune dépense</div>`;
-    }
+    if(!rows) rows=`<div class="dep-cat-empty">Aucune dépense</div>`;
 
     html+=`
       ${idx>0?'<div class="dep-divider"></div>':''}
@@ -983,12 +1026,46 @@ function renderDepenses(){
           <span class="dep-cat-icon">${cfg.icon}</span>
           <span class="dep-cat-name">${cfg.name}</span>
           <span class="dep-cat-total">−${fmt(catTotal)} DH</span>
+          <button class="dep-add-btn" onclick="openAddDepCat('${cat}')" title="Ajouter une dépense">+</button>
         </div>
         ${rows}
       </div>`;
   });
 
   document.getElementById('dep-cat-list').innerHTML=html;
+}
+
+// DEP TAB — delete & add
+function delQuickDep(id){
+  S.depenses=S.depenses.filter(d=>d.id!==id);
+  save();renderDepenses();renderHome();
+  toast('🗑️ Dépense supprimée');
+}
+function delFixedDep(type,id){
+  if(type==='abo')S.abonnements=S.abonnements.filter(a=>a.id!==id);
+  else            S.investissements=S.investissements.filter(i=>i.id!==id);
+  save();renderDepenses();renderHome();
+  toast('🗑️ Supprimé');
+}
+let addDepCat=null;
+function openAddDepCat(cat){
+  addDepCat=cat;
+  const cfg=CATS[cat];
+  document.getElementById('adep-cat-label').textContent=cfg.icon+' '+cfg.name;
+  document.getElementById('adep-amount').value='';
+  document.getElementById('adep-desc').value='';
+  document.getElementById('adep-date').value=new Date().toISOString().slice(0,10);
+  openModal('m-adddep');
+}
+function saveAddDep(){
+  const amt=parseFloat(document.getElementById('adep-amount').value);
+  const desc=document.getElementById('adep-desc').value.trim();
+  const date=document.getElementById('adep-date').value||new Date().toISOString().slice(0,10);
+  if(!amt||amt<=0){toast('⚠️ Entre un montant !');return;}
+  S.depenses.push({id:uid(),montant:amt,cat:addDepCat,desc:desc||CATS[addDepCat]?.name||addDepCat,date});
+  save();closeModal('m-adddep');
+  toast(`✅ ${fmt(amt)} DH → ${CATS[addDepCat]?.name||addDepCat}`);
+  renderDepenses();renderHome();
 }
 
 // RENDER CALENDAR
