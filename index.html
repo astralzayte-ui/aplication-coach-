@@ -970,7 +970,7 @@ function renderDepenses(){
           <span class="dep-item-date">fixe</span>
           <span class="dep-item-name">${a.nom}</span>
           <span class="dep-item-amt">−${fmt(a.prix)} DH</span>
-          <button class="dep-del-btn" onclick="delFixedDep('abo','${a.id}')">✕</button>
+          <button class="dep-del-btn" data-type="abo" data-id="${a.id}">✕</button>
         </div>`;
       });
       S.depenses.filter(d=>d.cat==='abonnements').sort((a,b)=>new Date(b.date)-new Date(a.date)).forEach(d=>{
@@ -980,7 +980,7 @@ function renderDepenses(){
           <span class="dep-item-date">${shortD(d.date)}</span>
           <span class="dep-item-name">${d.desc||'Abonnement'}</span>
           <span class="dep-item-amt">−${fmt(d.montant)} DH</span>
-          <button class="dep-del-btn" onclick="delQuickDep('${d.id}')">✕</button>
+          <button class="dep-del-btn" data-type="dep" data-id="${d.id}">✕</button>
         </div>`;
       });
     } else if(cat==='investissements'){
@@ -991,7 +991,7 @@ function renderDepenses(){
           <span class="dep-item-date">fixe</span>
           <span class="dep-item-name">${i.nom}</span>
           <span class="dep-item-amt">−${fmt(i.montant)} DH</span>
-          <button class="dep-del-btn" onclick="delFixedDep('inv','${i.id}')">✕</button>
+          <button class="dep-del-btn" data-type="inv" data-id="${i.id}">✕</button>
         </div>`;
       });
       S.depenses.filter(d=>d.cat==='investissements').sort((a,b)=>new Date(b.date)-new Date(a.date)).forEach(d=>{
@@ -1001,7 +1001,7 @@ function renderDepenses(){
           <span class="dep-item-date">${shortD(d.date)}</span>
           <span class="dep-item-name">${d.desc||'Investissement'}</span>
           <span class="dep-item-amt">−${fmt(d.montant)} DH</span>
-          <button class="dep-del-btn" onclick="delQuickDep('${d.id}')">✕</button>
+          <button class="dep-del-btn" data-type="dep" data-id="${d.id}">✕</button>
         </div>`;
       });
     } else {
@@ -1012,7 +1012,7 @@ function renderDepenses(){
           <span class="dep-item-date">${shortD(d.date)}</span>
           <span class="dep-item-name">${d.desc||cfg.name}</span>
           <span class="dep-item-amt">−${fmt(d.montant)} DH</span>
-          <button class="dep-del-btn" onclick="delQuickDep('${d.id}')">✕</button>
+          <button class="dep-del-btn" data-type="dep" data-id="${d.id}">✕</button>
         </div>`;
       });
     }
@@ -1026,7 +1026,7 @@ function renderDepenses(){
           <span class="dep-cat-icon">${cfg.icon}</span>
           <span class="dep-cat-name">${cfg.name}</span>
           <span class="dep-cat-total">−${fmt(catTotal)} DH</span>
-          <button class="dep-add-btn" onclick="openAddDepCat('${cat}')" title="Ajouter une dépense">+</button>
+          <button class="dep-add-btn" data-add-cat="${cat}" title="Ajouter">+</button>
         </div>
         ${rows}
       </div>`;
@@ -1035,18 +1035,43 @@ function renderDepenses(){
   document.getElementById('dep-cat-list').innerHTML=html;
 }
 
-// DEP TAB — delete & add
-function delQuickDep(id){
-  S.depenses=S.depenses.filter(d=>d.id!==id);
-  save();renderDepenses();renderHome();
-  toast('🗑️ Dépense supprimée');
-}
-function delFixedDep(type,id){
-  if(type==='abo')S.abonnements=S.abonnements.filter(a=>a.id!==id);
-  else            S.investissements=S.investissements.filter(i=>i.id!==id);
-  save();renderDepenses();renderHome();
-  toast('🗑️ Supprimé');
-}
+// DEP TAB — event delegation (one listener handles all delete + add clicks)
+(function setupDepListeners(){
+  function onDepClick(e){
+    // delete button
+    const delBtn=e.target.closest('.dep-del-btn');
+    if(delBtn){
+      const id=delBtn.dataset.id;
+      const type=delBtn.dataset.type;
+      if(type==='dep'){
+        S.depenses=S.depenses.filter(d=>String(d.id)!==String(id));
+      } else if(type==='abo'){
+        S.abonnements=S.abonnements.filter(a=>String(a.id)!==String(id));
+      } else if(type==='inv'){
+        S.investissements=S.investissements.filter(i=>String(i.id)!==String(id));
+      }
+      try{save();}catch(err){}
+      renderDepenses();
+      renderHome();
+      toast('🗑️ Supprimé');
+      return;
+    }
+    // add button
+    const addBtn=e.target.closest('.dep-add-btn');
+    if(addBtn && addBtn.dataset.addCat){
+      openAddDepCat(addBtn.dataset.addCat);
+    }
+  }
+  // attach once DOM is ready; re-attach is safe since listener is on stable container
+  document.addEventListener('DOMContentLoaded',function(){
+    const el=document.getElementById('dep-cat-list');
+    if(el)el.addEventListener('click',onDepClick);
+  });
+  // also attach immediately in case DOMContentLoaded already fired
+  const el=document.getElementById('dep-cat-list');
+  if(el)el.addEventListener('click',onDepClick);
+})();
+
 let addDepCat=null;
 function openAddDepCat(cat){
   addDepCat=cat;
@@ -1119,7 +1144,9 @@ function evCard(ev){
 
 function renderAll(){
   const p=document.querySelector('.section.active');
-  if(p?.id==='s-calendrier')renderCal();else renderHome();
+  if(p?.id==='s-calendrier')renderCal();
+  else if(p?.id==='s-depenses')renderDepenses();
+  else renderHome();
 }
 
 let _tt=null;
