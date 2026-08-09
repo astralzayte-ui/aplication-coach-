@@ -97,8 +97,23 @@
     .q-save { width:100%; padding:12px; border-radius:var(--rs); border:none; background:var(--gold); color:#070b16; font-size:14px; font-weight:800; cursor:pointer; transition:opacity .15s,transform .15s; }
     .q-save:active { opacity:.85; transform:scale(.98); }
 
+    /* DUAL BUDGET */
+    .dual-bud { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:12px 16px 0; }
+    .dbud-card { background:var(--card); border:1px solid var(--border); border-radius:var(--rs); padding:14px 12px; position:relative; overflow:hidden; }
+    .dbud-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+    .dbud-card.restant::before { background:linear-gradient(90deg,var(--gold),var(--orange)); }
+    .dbud-card.libre::before   { background:linear-gradient(90deg,var(--blue),var(--purple)); }
+    .dbud-eyebrow { font-size:9px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--text-muted); margin-bottom:5px; }
+    .dbud-amount  { font-size:22px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-.5px; line-height:1.1; }
+    .dbud-amount.gold { color:var(--gold); }
+    .dbud-amount.blue { color:var(--blue); }
+    .dbud-amount.warn { color:var(--orange); }
+    .dbud-amount.danger { color:var(--rose); }
+    .dbud-unit { font-size:11px; font-weight:600; margin-left:2px; vertical-align:middle; }
+    .dbud-sub { font-size:10px; color:var(--text-muted); margin-top:4px; line-height:1.4; }
+
     /* STATS */
-    .stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:14px 16px 0; }
+    .stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:12px 16px 0; }
     .stat-card { background:var(--card); border:1px solid var(--border); border-radius:var(--rs); padding:13px 10px; text-align:center; }
     .stat-val { font-size:16px; font-weight:700; font-variant-numeric:tabular-nums; }
     .stat-lbl { font-size:10px; letter-spacing:.6px; text-transform:uppercase; color:var(--text-dim); margin-top:2px; }
@@ -130,6 +145,30 @@
     .mini-ev-countdown { font-size:11px; font-weight:700; color:var(--orange); white-space:nowrap; min-width:72px; }
     .mini-ev-name { flex:1; font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .mini-ev-jour { font-size:11px; color:var(--text-dim); white-space:nowrap; }
+
+    /* DEP TAB HERO */
+    .dep-tab-hero { position:relative; padding:44px 24px 24px; overflow:hidden; background:var(--surf); }
+    .dep-tab-hero::before { content:''; position:absolute; inset:0;
+      background-image:repeating-linear-gradient(45deg,rgba(91,164,245,.03) 0,rgba(91,164,245,.03) 1px,transparent 0,transparent 50%),repeating-linear-gradient(-45deg,rgba(91,164,245,.03) 0,rgba(91,164,245,.03) 1px,transparent 0,transparent 50%);
+      background-size:24px 24px; pointer-events:none; }
+    .dep-tab-hero::after { content:''; position:absolute; bottom:0; left:0; right:0; height:50px; background:linear-gradient(to bottom,transparent,var(--bg)); pointer-events:none; }
+    .dep-tab-lbl   { font-size:10px; font-weight:600; letter-spacing:1.8px; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px; position:relative; }
+    .dep-tab-total { font-size:38px; font-weight:800; letter-spacing:-.8px; color:var(--rose); position:relative; font-variant-numeric:tabular-nums; }
+    .dep-tab-sub   { font-size:12px; color:var(--text-muted); margin-top:5px; position:relative; }
+
+    /* DEP CATEGORY BLOCKS */
+    .dep-cat-block { margin:14px 16px 0; }
+    .dep-cat-header { display:flex; align-items:center; gap:10px; margin-bottom:8px; padding:0 2px; }
+    .dep-cat-icon  { font-size:20px; }
+    .dep-cat-name  { flex:1; font-size:14px; font-weight:700; }
+    .dep-cat-total { font-size:13px; font-weight:800; font-variant-numeric:tabular-nums; color:var(--rose); }
+    .dep-cat-empty { font-size:12px; color:var(--text-muted); text-align:center; padding:12px 0; background:var(--card); border:1px solid var(--border); border-radius:var(--rx); }
+    .dep-item-row  { display:flex; align-items:center; gap:8px; padding:9px 12px; background:var(--card); border:1px solid var(--border); border-radius:var(--rx); margin-bottom:5px; }
+    .dep-item-icon { font-size:16px; flex-shrink:0; }
+    .dep-item-date { font-size:10px; color:var(--text-dim); min-width:44px; flex-shrink:0; }
+    .dep-item-name { flex:1; font-size:12px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .dep-item-amt  { font-size:13px; font-weight:800; font-variant-numeric:tabular-nums; color:var(--rose); flex-shrink:0; }
+    .dep-divider   { height:1px; background:var(--border); margin:16px 16px 0; }
 
     /* CAL HERO */
     .cal-hero { position:relative; padding:44px 24px 24px; overflow:hidden; background:var(--surf); }
@@ -355,6 +394,19 @@
       <div class="prog-track"><div class="prog-fill" id="h-prog" style="width:0%"></div></div>
     </div>
 
+    <div class="dual-bud">
+      <div class="dbud-card restant">
+        <div class="dbud-eyebrow">Budget restant</div>
+        <div class="dbud-amount gold" id="db-restant">– <span class="dbud-unit">DH</span></div>
+        <div class="dbud-sub">Après tes dépenses du moment</div>
+      </div>
+      <div class="dbud-card libre">
+        <div class="dbud-eyebrow">Après charges</div>
+        <div class="dbud-amount blue" id="db-libre">– <span class="dbud-unit">DH</span></div>
+        <div class="dbud-sub">Si toutes les catégories sont épuisées</div>
+      </div>
+    </div>
+
     <div class="quick-card">
       <div class="quick-title">💸 Dépense du jour</div>
       <div class="quick-row">
@@ -404,10 +456,21 @@
     <div id="cal-events-wrap"></div>
   </section>
 
+  <!-- DÉPENSES -->
+  <section class="section" id="s-depenses">
+    <div class="dep-tab-hero">
+      <div class="dep-tab-lbl">Total dépensé</div>
+      <div class="dep-tab-total" id="dt-total">– DH</div>
+      <div class="dep-tab-sub"  id="dt-sub"></div>
+    </div>
+    <div id="dep-cat-list"></div>
+  </section>
+
 </div><!-- #app -->
 
 <nav class="nav-bar">
   <div class="nav-item active" id="nav-home"      onclick="navigate('home')"      role="button"><span class="nav-icon">🏠</span><span class="nav-lbl">Accueil</span><span class="nav-dot"></span></div>
+  <div class="nav-item"       id="nav-depenses"   onclick="navigate('depenses')"  role="button"><span class="nav-icon">💸</span><span class="nav-lbl">Dépenses</span><span class="nav-dot"></span></div>
   <div class="nav-item"       id="nav-calendrier" onclick="navigate('calendrier')" role="button"><span class="nav-icon">📅</span><span class="nav-lbl">Calendrier</span><span class="nav-dot"></span></div>
 </nav>
 
@@ -782,7 +845,7 @@ function delDep(id){
 
 // NAVIGATION
 function navigate(page){
-  ['home','calendrier'].forEach(p=>{
+  ['home','depenses','calendrier'].forEach(p=>{
     document.getElementById('s-'+p)?.classList.remove('active');
     document.getElementById('nav-'+p)?.classList.remove('active');
   });
@@ -790,6 +853,7 @@ function navigate(page){
   document.getElementById('nav-'+page).classList.add('active');
   window.scrollTo(0,0);
   if(page==='home')renderHome();
+  if(page==='depenses')renderDepenses();
   if(page==='calendrier')renderCal();
 }
 
@@ -809,6 +873,18 @@ function renderHome(){
   document.getElementById('h-period').textContent=`Jour ${dayNum()} / ${S.duree_jours} · ${dl} jour${dl!==1?'s':''} restant${dl!==1?'s':''}`;
   document.getElementById('h-spent').textContent=fmt(sp);
   document.getElementById('h-budget').textContent=fmt(S.budget);
+
+  // Dual budget cards
+  const dbRestEl=document.getElementById('db-restant');
+  const remCls=pct>=100?'danger':pct>=80?'warn':'gold';
+  dbRestEl.innerHTML=`${fmt(Math.max(0,rem))}<span class="dbud-unit">DH</span>`;
+  dbRestEl.className='dbud-amount '+remCls;
+
+  const sumCats=Object.values(S.cat_budgets).reduce((a,b)=>a+b,0);
+  const libre=S.budget-sumCats;
+  const dbLibEl=document.getElementById('db-libre');
+  dbLibEl.innerHTML=`${fmt(Math.max(0,libre))}<span class="dbud-unit">DH</span>`;
+  dbLibEl.className='dbud-amount '+(libre<=0?'danger':libre<S.budget*.15?'warn':'blue');
   const pg=document.getElementById('h-prog');
   pg.style.width=pct+'%';pg.className='prog-fill'+(pct>=100?' danger':pct>=80?' warn':'');
   const arc=document.getElementById('arc-fg');
@@ -847,6 +923,72 @@ function renderHome(){
         <div class="mini-ev-jour">${m.jour}</div></div>`;
     }).join('');
   }
+}
+
+// RENDER DÉPENSES
+const DEP_ORDER=['investissements','plaisirs','nourriture','sorties','divers','abonnements'];
+function renderDepenses(){
+  const sp=totalSpent();
+  document.getElementById('dt-total').textContent=fmt(sp)+' DH';
+  document.getElementById('dt-sub').textContent=`Sur un budget de ${fmt(S.budget)} DH · ${Math.round(sp/S.budget*100)||0}% utilisé`;
+
+  let html='';
+  DEP_ORDER.forEach((cat,idx)=>{
+    const cfg=CATS[cat];
+    let rows='', catTotal=0;
+
+    if(cat==='abonnements'){
+      // show subscription items
+      if(S.abonnements.length){
+        S.abonnements.forEach(a=>{
+          catTotal+=a.prix;
+          rows+=`<div class="dep-item-row"><span class="dep-item-icon">${a.emoji||'📋'}</span><span class="dep-item-date">fixe</span><span class="dep-item-name">${a.nom}</span><span class="dep-item-amt">−${fmt(a.prix)} DH</span></div>`;
+        });
+      }
+      // also any quick-logged expenses to abonnements
+      const depAbo=S.depenses.filter(d=>d.cat==='abonnements').sort((a,b)=>new Date(b.date)-new Date(a.date));
+      depAbo.forEach(d=>{
+        catTotal+=d.montant;
+        rows+=`<div class="dep-item-row"><span class="dep-item-icon">📋</span><span class="dep-item-date">${shortD(d.date)}</span><span class="dep-item-name">${d.desc||'Abonnement'}</span><span class="dep-item-amt">−${fmt(d.montant)} DH</span></div>`;
+      });
+    } else if(cat==='investissements'){
+      // show investment items
+      if(S.investissements.length){
+        S.investissements.forEach(i=>{
+          catTotal+=i.montant;
+          rows+=`<div class="dep-item-row"><span class="dep-item-icon">${i.emoji||'💹'}</span><span class="dep-item-date">fixe</span><span class="dep-item-name">${i.nom}</span><span class="dep-item-amt">−${fmt(i.montant)} DH</span></div>`;
+        });
+      }
+      const depInv=S.depenses.filter(d=>d.cat==='investissements').sort((a,b)=>new Date(b.date)-new Date(a.date));
+      depInv.forEach(d=>{
+        catTotal+=d.montant;
+        rows+=`<div class="dep-item-row"><span class="dep-item-icon">💹</span><span class="dep-item-date">${shortD(d.date)}</span><span class="dep-item-name">${d.desc||'Investissement'}</span><span class="dep-item-amt">−${fmt(d.montant)} DH</span></div>`;
+      });
+    } else {
+      const deps=S.depenses.filter(d=>d.cat===cat).sort((a,b)=>new Date(b.date)-new Date(a.date));
+      deps.forEach(d=>{
+        catTotal+=d.montant;
+        rows+=`<div class="dep-item-row"><span class="dep-item-icon">${cfg.icon}</span><span class="dep-item-date">${shortD(d.date)}</span><span class="dep-item-name">${d.desc||cfg.name}</span><span class="dep-item-amt">−${fmt(d.montant)} DH</span></div>`;
+      });
+    }
+
+    if(!rows){
+      rows=`<div class="dep-cat-empty">Aucune dépense</div>`;
+    }
+
+    html+=`
+      ${idx>0?'<div class="dep-divider"></div>':''}
+      <div class="dep-cat-block">
+        <div class="dep-cat-header">
+          <span class="dep-cat-icon">${cfg.icon}</span>
+          <span class="dep-cat-name">${cfg.name}</span>
+          <span class="dep-cat-total">−${fmt(catTotal)} DH</span>
+        </div>
+        ${rows}
+      </div>`;
+  });
+
+  document.getElementById('dep-cat-list').innerHTML=html;
 }
 
 // RENDER CALENDAR
