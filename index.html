@@ -330,6 +330,34 @@
     .abo-check-btn { width:28px; height:28px; border-radius:50%; border:2px solid var(--border2); background:none; color:var(--text-muted); cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all .2s; -webkit-tap-highlight-color:transparent; }
     .abo-check-btn.paid { border-color:var(--green); background:var(--green-dim); color:var(--green); }
 
+    /* AUTH / CONFIG SCREENS */
+    .fullscreen { position:fixed; inset:0; background:var(--bg); z-index:600; overflow-y:auto; display:flex; flex-direction:column; }
+    .fullscreen.hidden { display:none; }
+    .auth-inner { max-width:390px; margin:0 auto; width:100%; padding:56px 24px calc(48px + env(safe-area-inset-bottom,0px)); min-height:100dvh; display:flex; flex-direction:column; }
+    .auth-logo { color:var(--gold); margin-bottom:14px; }
+    .auth-title { font-size:26px; font-weight:800; letter-spacing:-.5px; margin-bottom:6px; font-family:Georgia,'Times New Roman',serif; }
+    .auth-sub { font-size:14px; color:var(--text-dim); margin-bottom:32px; }
+    .auth-input { width:100%; background:var(--surf); border:1px solid var(--border2); border-radius:var(--rs); padding:14px 16px; color:var(--text); font-size:16px; outline:none; margin-bottom:12px; transition:border-color .2s; appearance:none; -webkit-appearance:none; }
+    .auth-input:focus { border-color:var(--gold); }
+    .auth-btn { width:100%; padding:16px; border-radius:var(--rs); border:none; background:var(--gold); color:#0c0b14; font-size:16px; font-weight:800; cursor:pointer; margin-top:6px; transition:opacity .15s; }
+    .auth-btn:disabled { opacity:.45; cursor:not-allowed; }
+    .auth-btn.sec { background:var(--surf2); color:var(--text-dim); font-weight:600; font-size:14px; margin-top:8px; }
+    .auth-err { font-size:13px; min-height:20px; margin-bottom:8px; font-weight:600; }
+    .auth-switch { text-align:center; font-size:13px; color:var(--text-dim); margin-top:18px; }
+    .auth-link { color:var(--gold); cursor:pointer; font-weight:700; }
+    .auth-link:hover { text-decoration:underline; }
+    .cfg-info { background:var(--surf2); border:1px solid var(--border2); border-radius:var(--rs); padding:14px 16px; margin-bottom:20px; }
+    .cfg-info-title { font-size:12px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:var(--text-dim); margin-bottom:8px; }
+    .cfg-step { font-size:13px; color:var(--text-dim); margin-bottom:6px; line-height:1.5; display:flex; gap:8px; }
+    .cfg-step-num { width:20px; height:20px; border-radius:50%; background:var(--gold-dim); color:var(--gold); font-size:11px; font-weight:800; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+    .cfg-sql { background:var(--bg); border:1px solid var(--border2); border-radius:var(--rx); padding:12px; font-size:11px; color:var(--text-dim); font-family:monospace; white-space:pre; overflow-x:auto; margin-top:10px; line-height:1.6; }
+    /* USER AVATAR */
+    .user-avatar { position:absolute; top:12px; left:18px; width:30px; height:30px; border-radius:50%; background:var(--gold-dim); border:1px solid rgba(196,162,74,.35); color:var(--gold); font-size:12px; font-weight:800; cursor:pointer; display:none; align-items:center; justify-content:center; z-index:2; -webkit-tap-highlight-color:transparent; }
+    .cloud-btn { position:absolute; top:12px; left:18px; width:30px; height:30px; border-radius:50%; background:var(--surf2); border:1px solid var(--border2); color:var(--text-muted); cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:2; -webkit-tap-highlight-color:transparent; }
+    /* SYNC BADGE */
+    .sync-badge { position:absolute; top:12px; right:92px; font-size:10px; font-weight:700; color:var(--text-muted); display:none; align-items:center; gap:4px; }
+    .sync-dot { width:6px; height:6px; border-radius:50%; background:var(--green); }
+
     /* UTILS */
     .empty { text-align:center; padding:32px 20px; color:var(--text-muted); }
     .empty-icon { display:flex; align-items:center; justify-content:center; width:44px; height:44px; margin:0 auto 12px; opacity:.35; }
@@ -345,6 +373,65 @@
   </style>
 </head>
 <body>
+
+<!-- CONFIG SCREEN -->
+<div class="fullscreen hidden" id="cfg-screen">
+  <div class="auth-inner">
+    <div class="auth-logo">
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M2 9h20M12 3l4 6-4 7-4-7z"/></svg>
+    </div>
+    <div class="auth-title">Configuration cloud</div>
+    <div class="auth-sub">Pour avoir un compte personnel, connecte un projet Supabase gratuit.</div>
+    <div class="cfg-info">
+      <div class="cfg-info-title">Comment faire (5 min)</div>
+      <div class="cfg-step"><span class="cfg-step-num">1</span><span>Crée un compte sur <b style="color:var(--gold)">supabase.com</b> (gratuit, pas de carte)</span></div>
+      <div class="cfg-step"><span class="cfg-step-num">2</span><span>Crée un nouveau projet — note le mot de passe</span></div>
+      <div class="cfg-step"><span class="cfg-step-num">3</span><span>Va dans <b>Project Settings → API</b> — copie l'URL et la clé anon/public</span></div>
+      <div class="cfg-step"><span class="cfg-step-num">4</span><span>Va dans <b>SQL Editor</b> et exécute ce code :</span></div>
+      <div class="cfg-sql">CREATE TABLE budget_data (
+  user_id UUID REFERENCES auth.users PRIMARY KEY,
+  data JSONB DEFAULT '{}',
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE budget_data ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "own" ON budget_data
+  FOR ALL USING (auth.uid() = user_id);
+</div>
+      <div class="cfg-step" style="margin-top:8px"><span class="cfg-step-num">5</span><span>Dans <b>Authentication → Settings</b>, désactive "Enable email confirmations"</span></div>
+    </div>
+    <div class="form-group" style="margin-bottom:10px">
+      <label class="form-lbl">Project URL</label>
+      <input type="url" class="auth-input" id="cfg-url" placeholder="https://xxxxx.supabase.co" autocomplete="off">
+    </div>
+    <div class="form-group" style="margin-bottom:16px">
+      <label class="form-lbl">Anon Key (public)</label>
+      <input type="text" class="auth-input" id="cfg-key" placeholder="eyJhbGci…" autocomplete="off">
+    </div>
+    <div class="auth-err c-rose" id="cfg-err"></div>
+    <button class="auth-btn" onclick="saveCfgAndContinue()">Continuer →</button>
+    <button class="auth-btn sec" onclick="skipCfg()">Utiliser sans compte (données locales)</button>
+  </div>
+</div>
+
+<!-- AUTH SCREEN -->
+<div class="fullscreen hidden" id="auth-screen">
+  <div class="auth-inner">
+    <div class="auth-logo">
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M2 9h20M12 3l4 6-4 7-4-7z"/></svg>
+    </div>
+    <div class="auth-title" id="auth-title">Connexion</div>
+    <div class="auth-sub">BudgetFlow · Tes finances, partout</div>
+    <input type="email"    class="auth-input" id="auth-email"   placeholder="ton@email.com" autocomplete="email">
+    <input type="password" class="auth-input" id="auth-pass"    placeholder="Mot de passe" autocomplete="current-password">
+    <input type="password" class="auth-input" id="auth-confirm" placeholder="Confirmer le mot de passe" autocomplete="new-password" style="display:none">
+    <div class="auth-err" id="auth-err"></div>
+    <button class="auth-btn" id="auth-submit" onclick="submitAuth()">Se connecter →</button>
+    <div class="auth-switch" id="auth-switch">
+      Pas encore de compte ? <span class="auth-link" onclick="setAuthMode('signup')">Créer un compte</span>
+    </div>
+    <button class="auth-btn sec" style="margin-top:24px" onclick="showCfgScreen()">Modifier la configuration Supabase</button>
+  </div>
+</div>
 
 <!-- WIZARD -->
 <div class="wizard hidden" id="wizard">
@@ -395,7 +482,13 @@
   <!-- ACCUEIL -->
   <section class="section active" id="s-home">
     <div class="hero">
-      <div class="hero-eyebrow">Budget restant</div>
+      <!-- User avatar (visible when logged in) -->
+      <button class="user-avatar" id="user-avatar" onclick="openUserMenu()" title="Mon compte"></button>
+      <!-- Cloud setup button (visible in local mode) -->
+      <button class="cloud-btn" id="cloud-btn" onclick="showCfgScreen()" title="Configurer le cloud" style="display:none">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
+      </button>
+      <div class="hero-eyebrow" style="padding-left:2px">Budget restant</div>
       <div class="hero-amount" id="h-remaining">– DH</div>
       <div class="hero-period" id="h-period"></div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;position:relative">
@@ -520,6 +613,23 @@
 </nav>
 
 <div class="toast" id="toast"></div>
+
+<!-- MODAL: User menu -->
+<div class="overlay" id="m-user" onclick="overlayClick(event,'m-user')"><div class="sheet">
+  <div class="sheet-handle"></div>
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;padding:2px 0">
+    <div style="width:48px;height:48px;border-radius:50%;background:var(--gold-dim);border:1px solid rgba(196,162,74,.3);color:var(--gold);font-size:20px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0" id="um-initial">?</div>
+    <div>
+      <div style="font-size:14px;font-weight:700" id="um-email">—</div>
+      <div style="font-size:11px;color:var(--green);font-weight:600;margin-top:3px">● Synchronisé avec le cloud</div>
+    </div>
+  </div>
+  <button class="submit-btn" style="background:var(--surf2);color:var(--text);font-weight:600;font-size:14px;margin-bottom:8px" onclick="closeModal('m-user');showCfgScreen()">
+    Modifier la configuration Supabase
+  </button>
+  <button class="submit-btn danger" onclick="cloudLogout()">Se déconnecter</button>
+  <button class="cancel-btn" onclick="closeModal('m-user')">Fermer</button>
+</div></div>
 
 <!-- MODAL: Ajouter événement -->
 <div class="overlay" id="m-event" onclick="overlayClick(event,'m-event')"><div class="sheet">
@@ -680,7 +790,180 @@ let _uid=0; const uid=()=>String(Date.now())+String(_uid++);
 function load(){
   try{const r=localStorage.getItem('bf-v2');if(r){const p=JSON.parse(r);S={...JSON.parse(JSON.stringify(DEF)),...p};['cat_budgets','depenses','abonnements','investissements','evenements'].forEach(k=>{if(!S[k])S[k]=DEF[k];});}}catch(e){}
 }
-const save=()=>localStorage.setItem('bf-v2',JSON.stringify(S));
+// ── SUPABASE CLOUD SYNC ──────────────────────────────────────────────────
+const CFG_KEY='bf_supa_cfg',TOK_KEY='bf_token',USR_KEY='bf_user';
+let supaUrl='',supaKey='',authToken=null,authUser=null,_cloudTimer=null;
+
+function loadSupaConfig(){try{const c=JSON.parse(localStorage.getItem(CFG_KEY)||'{}');supaUrl=c.url||'';supaKey=c.key||'';}catch(e){}}
+function loadAuthState(){authToken=localStorage.getItem(TOK_KEY)||null;try{authUser=JSON.parse(localStorage.getItem(USR_KEY)||'null');}catch(e){authUser=null;}}
+function clearAuth(){authToken=null;authUser=null;localStorage.removeItem(TOK_KEY);localStorage.removeItem(USR_KEY);}
+
+async function supaFetch(path,opts={}){
+  if(!supaUrl||!supaKey)return null;
+  const r=await fetch(supaUrl+path,{...opts,headers:{
+    'apikey':supaKey,'Content-Type':'application/json',
+    ...(authToken?{'Authorization':'Bearer '+authToken}:{}),
+    ...(opts.headers||{})
+  }});
+  if(r.status===401){clearAuth();showAuthScreen();throw new Error('Session expirée — reconnecte-toi');}
+  if(!r.ok){const t=await r.text();throw new Error(t);}
+  return r.status===204?null:r.json().catch(()=>null);
+}
+
+async function cloudSignIn(email,pass){
+  const d=await supaFetch('/auth/v1/token?grant_type=password',{method:'POST',body:JSON.stringify({email,password:pass})});
+  if(!d)throw new Error('Impossible de contacter le serveur — vérifie l\'URL et la clé');
+  authToken=d.access_token;authUser=d.user;
+  localStorage.setItem(TOK_KEY,authToken);localStorage.setItem(USR_KEY,JSON.stringify(authUser));
+  return d;
+}
+async function cloudSignUp(email,pass){
+  const d=await supaFetch('/auth/v1/signup',{method:'POST',body:JSON.stringify({email,password:pass})});
+  if(!d)throw new Error('Impossible de contacter le serveur');
+  if(d.access_token){authToken=d.access_token;authUser=d.user;localStorage.setItem(TOK_KEY,authToken);localStorage.setItem(USR_KEY,JSON.stringify(authUser));}
+  return d;
+}
+async function loadFromCloud(){
+  if(!authToken||!authUser)return;
+  try{
+    const rows=await supaFetch('/rest/v1/budget_data?user_id=eq.'+authUser.id+'&select=data');
+    if(rows&&rows.length&&rows[0].data){
+      const p=rows[0].data;
+      S={...JSON.parse(JSON.stringify(DEF)),...p};
+      ['cat_budgets','depenses','abonnements','investissements','evenements'].forEach(k=>{if(!S[k])S[k]=DEF[k];});
+      S.abonnements=S.abonnements.map(a=>({payé:false,...a}));
+      localStorage.setItem('bf-v2',JSON.stringify(S));
+    }
+  }catch(e){console.warn('Cloud load:',e.message);}
+}
+async function saveToCloud(){
+  if(!authToken||!authUser||!supaUrl)return;
+  try{
+    await supaFetch('/rest/v1/budget_data',{
+      method:'POST',
+      headers:{'Prefer':'resolution=merge-duplicates'},
+      body:JSON.stringify({user_id:authUser.id,data:S,updated_at:new Date().toISOString()})
+    });
+  }catch(e){console.warn('Cloud save:',e.message);}
+}
+async function cloudLogout(){
+  try{await supaFetch('/auth/v1/logout',{method:'POST'});}catch(e){}
+  clearAuth();
+  S=JSON.parse(JSON.stringify(DEF));
+  localStorage.removeItem('bf-v2');
+  closeModal('m-user');
+  showAuthScreen();
+}
+
+// ── AUTH UI ───────────────────────────────────────────────────────────────
+let _authMode='login';
+function setAuthMode(mode){
+  _authMode=mode;
+  const isL=mode==='login';
+  document.getElementById('auth-title').textContent=isL?'Connexion':'Créer un compte';
+  document.getElementById('auth-confirm').style.display=isL?'none':'block';
+  document.getElementById('auth-submit').textContent=isL?'Se connecter →':'Créer mon compte →';
+  document.getElementById('auth-switch').innerHTML=isL?
+    'Pas encore de compte ? <span class="auth-link" onclick="setAuthMode(\'signup\')">Créer un compte</span>':
+    'Déjà un compte ? <span class="auth-link" onclick="setAuthMode(\'login\')">Se connecter</span>';
+  document.getElementById('auth-err').textContent='';
+  document.getElementById('auth-err').style.color='var(--rose)';
+}
+function showAuthScreen(){
+  document.getElementById('auth-screen').classList.remove('hidden');
+  document.getElementById('cfg-screen').classList.add('hidden');
+  document.getElementById('app').style.visibility='hidden';
+  document.getElementById('wizard').classList.add('hidden');
+  setAuthMode('login');
+}
+function showCfgScreen(){
+  document.getElementById('cfg-screen').classList.remove('hidden');
+  document.getElementById('auth-screen').classList.add('hidden');
+  document.getElementById('app').style.visibility='hidden';
+  document.getElementById('wizard').classList.add('hidden');
+  if(supaUrl)document.getElementById('cfg-url').value=supaUrl;
+  if(supaKey)document.getElementById('cfg-key').value=supaKey;
+}
+function showAppUI(){
+  document.getElementById('auth-screen').classList.add('hidden');
+  document.getElementById('cfg-screen').classList.add('hidden');
+  document.getElementById('app').style.visibility='';
+  renderUserBadge();
+}
+function renderUserBadge(){
+  const av=document.getElementById('user-avatar');
+  const cb=document.getElementById('cloud-btn');
+  if(authUser&&av){
+    av.style.display='flex';
+    av.textContent=(authUser.email||'?')[0].toUpperCase();
+    if(cb)cb.style.display='none';
+  } else if(av){
+    av.style.display='none';
+    if(cb)cb.style.display='flex';
+  }
+}
+function openUserMenu(){
+  const em=authUser?.email||'';
+  document.getElementById('um-email').textContent=em;
+  document.getElementById('um-initial').textContent=(em[0]||'?').toUpperCase();
+  openModal('m-user');
+}
+async function submitAuth(){
+  const email=document.getElementById('auth-email').value.trim();
+  const pass=document.getElementById('auth-pass').value;
+  const conf=document.getElementById('auth-confirm').value;
+  const btn=document.getElementById('auth-submit');
+  const err=document.getElementById('auth-err');
+  err.textContent='';err.style.color='var(--rose)';
+  if(!email||!pass){err.textContent='Remplis tous les champs';return;}
+  if(_authMode==='signup'&&pass!==conf){err.textContent='Les mots de passe ne correspondent pas';return;}
+  if(_authMode==='signup'&&pass.length<6){err.textContent='Mot de passe : 6 caractères minimum';return;}
+  btn.disabled=true;btn.textContent='…';
+  try{
+    if(_authMode==='login'){
+      await cloudSignIn(email,pass);
+    } else {
+      const r=await cloudSignUp(email,pass);
+      if(!r.access_token){
+        err.style.color='var(--green)';
+        err.textContent='Compte créé ! Vérifie ton email pour confirmer, puis connecte-toi. (Ou désactive la confirmation dans Supabase Auth Settings)';
+        setAuthMode('login');btn.disabled=false;return;
+      }
+    }
+    load();
+    await loadFromCloud();
+    showAppUI();
+    buildQuickCats();buildEvCatBtns();selQCat('nourriture');
+    if(!S.setup_done)openWizard(true);else renderAll();
+  }catch(e){
+    let m=e.message;
+    try{const j=JSON.parse(m);m=j.error_description||j.msg||j.message||m;}catch(x){}
+    if(m.includes('Invalid login')||m.includes('invalid_grant'))m='Email ou mot de passe incorrect';
+    else if(m.includes('already registered'))m='Cet email est déjà utilisé — connecte-toi';
+    err.textContent=m;
+  }
+  btn.disabled=false;btn.textContent=_authMode==='login'?'Se connecter →':'Créer mon compte →';
+}
+function saveCfgAndContinue(){
+  const url=(document.getElementById('cfg-url').value||'').trim().replace(/\/$/,'');
+  const key=(document.getElementById('cfg-key').value||'').trim();
+  const err=document.getElementById('cfg-err');err.textContent='';
+  if(!url||!key){err.textContent='Remplis les deux champs';return;}
+  if(!url.startsWith('https://')){err.textContent='URL invalide — commence par https://';return;}
+  supaUrl=url;supaKey=key;
+  localStorage.setItem(CFG_KEY,JSON.stringify({url,key}));
+  showAuthScreen();
+}
+function skipCfg(){
+  document.getElementById('cfg-screen').classList.add('hidden');
+  document.getElementById('app').style.visibility='';
+  renderUserBadge();
+  buildQuickCats();buildEvCatBtns();selQCat('nourriture');
+  if(!S.setup_done)openWizard(true);else renderAll();
+}
+
+// ── SAVE (local + cloud debounced) ────────────────────────────────────────
+const save=()=>{localStorage.setItem('bf-v2',JSON.stringify(S));clearTimeout(_cloudTimer);_cloudTimer=setTimeout(saveToCloud,2000);};
 
 // ── CALC ──────────────────────────────────────────────────────────────────
 const sumAbo  =()=>S.abonnements.reduce((a,i)=>a+i.prix,0);
@@ -1180,12 +1463,32 @@ let _tt=null;
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(_tt);_tt=setTimeout(()=>el.classList.remove('show'),2400);}
 
 // ── INIT ──────────────────────────────────────────────────────────────────
-load();
-buildQuickCats();
-buildEvCatBtns();
-selQCat('nourriture');
-if(!S.setup_done)openWizard(true);
-renderAll();
+(async function init(){
+  loadSupaConfig();
+  loadAuthState();
+  load(); // always load local cache first for instant display
+
+  if(!supaUrl){
+    // No cloud config — local mode
+    showAppUI();
+    buildQuickCats();buildEvCatBtns();selQCat('nourriture');
+    if(!S.setup_done)openWizard(true);else renderAll();
+    return;
+  }
+
+  if(authToken&&authUser){
+    // Already logged in — show app immediately, then sync from cloud
+    showAppUI();
+    buildQuickCats();buildEvCatBtns();selQCat('nourriture');
+    if(!S.setup_done)openWizard(true);else renderAll();
+    // Background cloud sync
+    loadFromCloud().then(()=>renderAll()).catch(()=>{});
+    return;
+  }
+
+  // Has Supabase config but not logged in
+  showAuthScreen();
+})();
 </script>
 </body>
 </html>
