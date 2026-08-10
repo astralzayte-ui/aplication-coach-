@@ -61,6 +61,7 @@
     .hero-amount.warn { color:var(--orange); }
     .hero-amount.danger { color:var(--rose); }
     .hero-currency { font-size:20px; font-weight:600; margin-left:3px; vertical-align:middle; }
+    .neg-sign { font-size:32px; vertical-align:middle; margin-right:1px; }
     .hero-period { font-size:11px; color:var(--text-muted); margin-top:8px; position:relative; }
     .new-period-btn { display:inline-flex; align-items:center; gap:6px; background:var(--gold-dim); border:1px solid rgba(196,162,74,.25); border-radius:999px; padding:6px 14px; font-size:11px; font-weight:600; color:var(--gold); cursor:pointer; margin-top:10px; position:relative; -webkit-tap-highlight-color:transparent; }
     .arc-wrap { position:absolute; top:20px; right:20px; width:68px; height:68px; }
@@ -198,7 +199,14 @@
     .ev-check { width:30px; height:30px; border-radius:50%; border:2px solid var(--border2); background:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--text-muted); flex-shrink:0; margin-top:1px; transition:border-color .2s,color .2s,background .2s; -webkit-tap-highlight-color:transparent; }
     .ev-check:active { border-color:var(--green); color:var(--green); background:var(--green-dim); }
     .ev-body { flex:1; min-width:0; }
-    .ev-name { font-size:14px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .ev-name { font-size:14px; font-weight:700; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; word-break:break-word; }
+    .ev-name.expanded { display:block; overflow:visible; -webkit-line-clamp:unset; }
+    .ev-expand-btn { background:none; border:none; color:var(--text-muted); font-size:11px; font-weight:600; padding:0; cursor:pointer; margin-top:2px; display:inline-flex; align-items:center; gap:2px; }
+    .ev-expand-btn:active { color:var(--gold); }
+    .ev-move-btns { display:flex; flex-direction:column; gap:2px; }
+    .ev-move-btn { background:var(--surf2); border:1px solid var(--border); color:var(--text-muted); width:22px; height:22px; border-radius:6px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:11px; line-height:1; padding:0; }
+    .ev-move-btn:active { background:var(--border2); color:var(--text); }
+    .ev-move-btn:disabled { opacity:.25; cursor:default; }
     .ev-countdown { font-size:12px; font-weight:700; margin-top:3px; }
     .ev-countdown.ok    { color:var(--text-dim); }
     .ev-countdown.today { color:var(--gold); }
@@ -1280,16 +1288,16 @@ function renderHome(){
   const pct=S.budget>0?Math.min(100,sp/S.budget*100):0;
   const dl=daysLeft();
   const amEl=document.getElementById('h-remaining');
-  amEl.innerHTML=`${fmt(Math.max(0,rem))}<span class="hero-currency">DH</span>`;
-  amEl.className='hero-amount'+(pct>=100?' danger':pct>=80?' warn':'');
+  amEl.innerHTML=`${rem<0?'<span class="neg-sign">−</span>':''}${fmt(Math.abs(rem))}<span class="hero-currency">DH</span>`;
+  amEl.className='hero-amount'+(rem<0?' danger':pct>=80?' warn':'');
   document.getElementById('h-period').textContent=`Jour ${dayNum()} / ${S.duree_jours} · ${dl} jour${dl!==1?'s':''} restant${dl!==1?'s':''}`;
   document.getElementById('h-spent').textContent=fmt(sp);
   document.getElementById('h-budget').textContent=fmt(S.budget);
 
   const dbRestEl=document.getElementById('db-restant');
   const remCls=pct>=100?'danger':pct>=80?'warn':'gold';
-  dbRestEl.innerHTML=`${fmt(Math.max(0,rem))}<span class="dbud-unit">DH</span>`;
-  dbRestEl.className='dbud-amount '+remCls;
+  dbRestEl.innerHTML=`${rem<0?'−':''}${fmt(Math.abs(rem))}<span class="dbud-unit">DH</span>`;
+  dbRestEl.className='dbud-amount '+(rem<0?'danger':remCls);
   const sumCats=sumAbo()+Object.entries(S.cat_budgets).filter(([k])=>k!=='abonnements').reduce((a,[,v])=>a+v,0);
   const libre=S.budget-sumCats;
   const dbLibEl=document.getElementById('db-libre');
@@ -1399,7 +1407,8 @@ function saveAddDep(){
 function renderCal(){
   const t0=new Date();t0.setHours(0,0,0,0);
   const all=sortedEvs();
-  const upcoming=all.filter(e=>new Date(e.date+'T00:00:00')>=t0);
+  // upcoming: preserve insertion/user order; past: newest first
+  const upcoming=S.evenements.filter(e=>new Date(e.date+'T00:00:00')>=t0);
   const past=[...all.filter(e=>new Date(e.date+'T00:00:00')<t0)].reverse();
   // Hero: prefer upcoming event, else show abo summary
   if(upcoming.length){const n=upcoming[0],m=evMeta(n.date);document.getElementById('cal-next-name').textContent=n.emoji+' '+n.nom;document.getElementById('cal-next-sub').textContent=m.label+' — '+m.jour+', '+m.date;}
@@ -1427,29 +1436,51 @@ function renderCal(){
   // ── Events sections ──────────────────────────────────────────────────────
   if(!all.length&&!S.abonnements.length){wrap.innerHTML=`<div class="empty"><div class="empty-icon">${icon('calendar',44)}</div><div class="empty-text">Aucun événement.<br>Appuie sur + pour commencer.</div></div>`;return;}
   const sep=S.abonnements.length||upcoming.length?' style="margin-top:8px"':'';
-  if(upcoming.length)html+=`<div class="ev-section-lbl"${S.abonnements.length?' style="margin-top:8px"':''}>À venir</div><div class="event-list">`+upcoming.map(evCard).join('')+'</div>';
-  if(past.length)html+=`<div class="ev-section-lbl" style="margin-top:8px">Passés</div><div class="event-list">`+past.map(evCard).join('')+'</div>';
+  if(upcoming.length)html+=`<div class="ev-section-lbl"${S.abonnements.length?' style="margin-top:8px"':''}>À venir</div><div class="event-list">`+upcoming.map((ev,i)=>evCard(ev,i,upcoming.length,true)).join('')+'</div>';
+  if(past.length)html+=`<div class="ev-section-lbl" style="margin-top:8px">Passés</div><div class="event-list">`+past.map(ev=>evCard(ev,0,0,false)).join('')+'</div>';
   wrap.innerHTML=html+'<div style="height:16px"></div>';
 }
 
-function evCard(ev){
+function evCard(ev,idx=0,total=0,canMove=false){
   const m=evMeta(ev.date);
   let cd;
   if(m.cls==='today')cd=`Aujourd'hui — ${m.jour}`;
   else if(m.cls==='past')cd=m.label;
   else cd=`${m.label} — ${m.jour}`;
   const chip=ev.cat?`<span class="ev-cat-chip">${icon(CATS[ev.cat]?.svgKey||'grid',11)} ${CATS[ev.cat]?.name||ev.cat}${ev.prix>0?' · '+fmt(ev.prix)+' DH':''}</span>`:'';
+  const longName=ev.nom.length>40;
+  const expandBtn=longName?`<button class="ev-expand-btn" onclick="toggleEvExpand(this)">voir plus ▾</button>`:'';
+  const moveHtml=canMove?`<div class="ev-move-btns">
+    <button class="ev-move-btn" onclick="moveEvent('${ev.id}',-1)" ${idx===0?'disabled':''} title="Monter">▲</button>
+    <button class="ev-move-btn" onclick="moveEvent('${ev.id}',1)" ${idx===total-1?'disabled':''} title="Descendre">▼</button>
+  </div>`:'';
   return`<div class="ev-card ev-${m.cls}">
     <button class="ev-check" onclick="promptComplete('${ev.id}')" title="Marquer comme effectué">${I.check}</button>
     <div class="ev-body">
-      <div class="ev-name">${ev.nom}</div>
+      <div class="ev-name" id="evn-${ev.id}">${ev.nom}</div>${expandBtn}
       <div class="ev-countdown ev-${m.cls}">${cd}</div>
       <div class="ev-date-line">${m.date}</div>${chip}
     </div>
     <div class="ev-right">
+      ${moveHtml}
       <span style="font-size:22px;line-height:1">${ev.emoji}</span>
       <button class="del-btn" onclick="deleteEvent('${ev.id}')">${I.x}</button>
     </div></div>`;
+}
+
+function toggleEvExpand(btn){
+  const nameEl=btn.previousElementSibling;
+  const expanded=nameEl.classList.toggle('expanded');
+  btn.textContent=expanded?'voir moins ▴':'voir plus ▾';
+}
+
+function moveEvent(id,dir){
+  const idx=S.evenements.findIndex(e=>String(e.id)===String(id));
+  if(idx<0)return;
+  const newIdx=idx+dir;
+  if(newIdx<0||newIdx>=S.evenements.length)return;
+  [S.evenements[idx],S.evenements[newIdx]]=[S.evenements[newIdx],S.evenements[idx]];
+  save();renderCal();
 }
 
 function renderAll(){
