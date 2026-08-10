@@ -699,11 +699,7 @@ CREATE POLICY "own" ON budget_data
     <div style="font-size:14px;font-weight:700;color:var(--rose);margin-bottom:6px">Cette action est irréversible</div>
     <div style="font-size:13px;color:var(--text-dim);line-height:1.6">Toutes les dépenses, abonnements, investissements et événements seront supprimés. Tu repartiras de zéro.</div>
   </div>
-  <div class="form-group">
-    <label class="form-lbl" style="color:var(--rose)">Tape « RESET » pour confirmer</label>
-    <input type="text" class="form-input" id="reset-confirm-input" placeholder="RESET" autocomplete="off" oninput="checkResetInput()" style="border-color:rgba(224,90,110,.3);letter-spacing:2px;font-weight:700">
-  </div>
-  <button class="submit-btn danger" id="reset-confirm-btn" onclick="doReset()" disabled style="opacity:.4;cursor:not-allowed">Réinitialiser</button>
+  <button class="submit-btn danger" onclick="doReset()">Réinitialiser</button>
   <button class="cancel-btn" onclick="closeModal('m-reset')">Annuler</button>
 </div></div>
 
@@ -1251,17 +1247,7 @@ function delDep(id){S.depenses=S.depenses.filter(d=>d.id!==id);save();openCatDet
 
 // ── RESET ─────────────────────────────────────────────────────────────────
 function openReset(){
-  const inp=document.getElementById('reset-confirm-input');
-  if(inp)inp.value='';
-  const btn=document.getElementById('reset-confirm-btn');
-  if(btn){btn.disabled=true;btn.style.opacity='.4';btn.style.cursor='not-allowed';}
   openModal('m-reset');
-}
-function checkResetInput(){
-  const val=document.getElementById('reset-confirm-input').value.trim().toUpperCase();
-  const btn=document.getElementById('reset-confirm-btn');
-  if(val==='RESET'){btn.disabled=false;btn.style.opacity='1';btn.style.cursor='pointer';}
-  else{btn.disabled=true;btn.style.opacity='.4';btn.style.cursor='not-allowed';}
 }
 function doReset(){
   S=JSON.parse(JSON.stringify(DEF));
