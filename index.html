@@ -308,6 +308,28 @@
     .toast { position:fixed; top:24px; left:50%; transform:translateX(-50%) translateY(-80px); background:var(--surf2); border:1px solid var(--gold-dim); border-radius:var(--rs); padding:11px 20px; font-size:13px; font-weight:600; color:var(--text); z-index:300; white-space:nowrap; box-shadow:0 8px 32px rgba(0,0,0,.5); transition:transform .3s cubic-bezier(.4,0,.2,1); pointer-events:none; }
     .toast.show { transform:translateX(-50%) translateY(0); }
 
+    /* ABO CARDS */
+    .ev-abo-paid    { opacity:.65; border-color:rgba(58,207,140,.3); background:rgba(58,207,140,.05); }
+    .ev-abo-pending { border-color:rgba(224,90,110,.2); background:rgba(224,90,110,.02); }
+    .ev-check-done  { border-color:var(--green) !important; color:var(--green) !important; background:var(--green-dim) !important; }
+    .ev-abo-prix    { font-size:15px; font-weight:800; font-variant-numeric:tabular-nums; }
+    /* WIZARD ABO */
+    .wiz-abo-section { background:var(--surf2); border:1px solid var(--border2); border-radius:var(--rs); padding:12px 14px; margin-bottom:10px; }
+    .wiz-abo-header  { display:flex; align-items:center; gap:8px; font-size:12px; font-weight:700; color:var(--text-dim); margin-bottom:8px; }
+    .wiz-abo-total   { margin-left:auto; color:var(--gold); font-size:13px; font-variant-numeric:tabular-nums; }
+    .wiz-abo-item    { display:flex; align-items:center; gap:8px; padding:7px 0; border-bottom:1px solid var(--border); font-size:13px; }
+    .wiz-abo-item:last-child { border-bottom:none; }
+    .wiz-abo-nom     { flex:1; font-weight:600; }
+    .wiz-abo-prix2   { color:var(--rose); font-weight:700; font-variant-numeric:tabular-nums; min-width:60px; text-align:right; }
+    .wiz-abo-add     { display:grid; grid-template-columns:46px 1fr 72px 36px; gap:6px; margin-top:10px; }
+    .wiz-abo-add input { background:var(--surf); border:1px solid var(--border2); border-radius:var(--rx); padding:8px 10px; color:var(--text); font-size:13px; outline:none; width:100%; appearance:none; -webkit-appearance:none; }
+    .wiz-abo-add input:focus { border-color:var(--gold); }
+    .wiz-abo-add input[type="number"]::-webkit-inner-spin-button { -webkit-appearance:none; }
+    .wiz-abo-add button { background:var(--gold); color:#0c0b14; border:none; border-radius:var(--rx); font-size:20px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+    /* ABO check btn */
+    .abo-check-btn { width:28px; height:28px; border-radius:50%; border:2px solid var(--border2); background:none; color:var(--text-muted); cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all .2s; -webkit-tap-highlight-color:transparent; }
+    .abo-check-btn.paid { border-color:var(--green); background:var(--green-dim); color:var(--green); }
+
     /* UTILS */
     .empty { text-align:center; padding:32px 20px; color:var(--text-muted); }
     .empty-icon { display:flex; align-items:center; justify-content:center; width:44px; height:44px; margin:0 auto 12px; opacity:.35; }
@@ -376,10 +398,16 @@
       <div class="hero-eyebrow">Budget restant</div>
       <div class="hero-amount" id="h-remaining">– DH</div>
       <div class="hero-period" id="h-period"></div>
-      <button class="new-period-btn" onclick="openWizard(false)">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
-        Nouvelle période
-      </button>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;position:relative">
+        <button class="new-period-btn" style="margin-top:0" onclick="openWizard(false)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+          Nouvelle période
+        </button>
+        <button class="new-period-btn" style="margin-top:0;background:var(--rose-dim);border-color:rgba(224,90,110,.3);color:var(--rose)" onclick="openReset()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6M9 6V4h6v2"/></svg>
+          Tout réinitialiser
+        </button>
+      </div>
       <div class="arc-wrap">
         <svg width="68" height="68" viewBox="0 0 68 68">
           <circle class="arc-bg" cx="34" cy="34" r="28"/>
@@ -542,6 +570,25 @@
   <button class="cancel-btn" onclick="closeModal('m-confirm')">Non, garder l'événement</button>
 </div></div>
 
+<!-- MODAL: Réinitialiser -->
+<div class="overlay" id="m-reset" onclick="overlayClick(event,'m-reset')"><div class="sheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-title" style="color:var(--rose)">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    Réinitialiser l'application
+  </div>
+  <div style="background:var(--rose-dim);border:1px solid rgba(224,90,110,.25);border-radius:var(--rs);padding:14px 16px;margin-bottom:16px">
+    <div style="font-size:14px;font-weight:700;color:var(--rose);margin-bottom:6px">Cette action est irréversible</div>
+    <div style="font-size:13px;color:var(--text-dim);line-height:1.6">Toutes les dépenses, abonnements, investissements et événements seront supprimés. Tu repartiras de zéro.</div>
+  </div>
+  <div class="form-group">
+    <label class="form-lbl" style="color:var(--rose)">Tape « RESET » pour confirmer</label>
+    <input type="text" class="form-input" id="reset-confirm-input" placeholder="RESET" autocomplete="off" oninput="checkResetInput()" style="border-color:rgba(224,90,110,.3);letter-spacing:2px;font-weight:700">
+  </div>
+  <button class="submit-btn danger" id="reset-confirm-btn" onclick="doReset()" disabled style="opacity:.4;cursor:not-allowed">Réinitialiser</button>
+  <button class="cancel-btn" onclick="closeModal('m-reset')">Annuler</button>
+</div></div>
+
 <!-- MODAL: Ajouter dépense -->
 <div class="overlay" id="m-adddep" onclick="overlayClick(event,'m-adddep')"><div class="sheet">
   <div class="sheet-handle"></div>
@@ -636,14 +683,15 @@ function load(){
 const save=()=>localStorage.setItem('bf-v2',JSON.stringify(S));
 
 // ── CALC ──────────────────────────────────────────────────────────────────
-const sumAbo =()=>S.abonnements.reduce((a,i)=>a+i.prix,0);
-const sumInv =()=>S.investissements.reduce((a,i)=>a+i.montant,0);
+const sumAbo  =()=>S.abonnements.reduce((a,i)=>a+i.prix,0);
+const aboPayé =()=>S.abonnements.filter(a=>a.payé).reduce((a,i)=>a+i.prix,0);
+const sumInv  =()=>S.investissements.reduce((a,i)=>a+i.montant,0);
 const logCat =(c)=>S.depenses.filter(d=>d.cat===c).reduce((a,d)=>a+d.montant,0);
 const totalLogged=()=>S.depenses.reduce((a,d)=>a+d.montant,0);
 const totalFixed =()=>sumAbo()+sumInv();
 const totalSpent =()=>totalFixed()+totalLogged();
-const catSpent  =(c)=>c==='abonnements'?sumAbo():c==='investissements'?sumInv():logCat(c);
-const catBudget =(c)=>S.cat_budgets[c]||0;
+const catSpent  =(c)=>c==='abonnements'?aboPayé():c==='investissements'?sumInv():logCat(c);
+const catBudget =(c)=>c==='abonnements'?sumAbo():(S.cat_budgets[c]||0);
 const catRest   =(c)=>catBudget(c)-catSpent(c);
 
 function daysLeft(){const s=new Date(S.period_start+'T00:00:00'),e=new Date(s);e.setDate(e.getDate()+S.duree_jours);const t=new Date();t.setHours(0,0,0,0);return Math.max(0,Math.round((e-t)/86400000));}
@@ -680,17 +728,47 @@ function buildEvCatBtns(){
     .join('');
 }
 function buildWizCatRows(){
-  document.getElementById('wiz-cat-rows').innerHTML=Object.entries(CATS)
+  const aboSection=`<div class="wiz-abo-section">
+    <div class="wiz-abo-header">${icon('repeat',16)} Abonnements <span class="wiz-abo-total" id="wiz-abo-total">0 DH/mois</span></div>
+    <div id="wiz-abo-list"></div>
+    <div class="wiz-abo-add">
+      <input type="text" id="wiz-abo-emoji" placeholder="🎵" maxlength="4">
+      <input type="text" id="wiz-abo-nom" placeholder="Spotify, Netflix…">
+      <input type="number" id="wiz-abo-prix" placeholder="DH" min="0">
+      <button onclick="addWizAbo()">+</button>
+    </div>
+  </div>`;
+  const catRows=Object.entries(CATS).filter(([k])=>k!=='abonnements')
     .map(([k,v])=>`<div class="cat-bud-row"><span class="cat-bud-icon">${icon(v.svgKey,22)}</span><span class="cat-bud-name">${v.name}</span><input type="number" class="cat-bud-inp" id="cb-${k}" value="0" min="0" oninput="updateRem()"><span class="cat-bud-unit">DH</span></div>`)
     .join('');
+  document.getElementById('wiz-cat-rows').innerHTML=aboSection+catRows;
+  renderWizAboList();
 }
+function renderWizAboList(){
+  const el=document.getElementById('wiz-abo-list');if(!el)return;
+  const tot=document.getElementById('wiz-abo-total');if(tot)tot.textContent=fmt(sumAbo())+' DH/mois';
+  el.innerHTML=S.abonnements.length?S.abonnements.map(a=>`<div class="wiz-abo-item"><span style="font-size:15px;flex-shrink:0">${a.emoji||'📋'}</span><span class="wiz-abo-nom">${a.nom}</span><span class="wiz-abo-prix2">−${fmt(a.prix)} DH</span><button class="x-btn" onclick="delWizAbo('${a.id}')">${I.x}</button></div>`).join(''):`<div style="font-size:12px;color:var(--text-muted);padding:4px 0">Aucun abonnement — ajoute-les ci-dessous</div>`;
+  updateRem();
+}
+function addWizAbo(){
+  const emoji=document.getElementById('wiz-abo-emoji').value.trim()||'📋';
+  const nom=document.getElementById('wiz-abo-nom').value.trim();
+  const prix=parseFloat(document.getElementById('wiz-abo-prix').value)||0;
+  if(!nom){toast('Entre le nom de l\'abonnement');return;}
+  S.abonnements.push({id:uid(),nom,emoji,prix,payé:false});
+  document.getElementById('wiz-abo-emoji').value='';
+  document.getElementById('wiz-abo-nom').value='';
+  document.getElementById('wiz-abo-prix').value='';
+  renderWizAboList();
+}
+function delWizAbo(id){S.abonnements=S.abonnements.filter(a=>a.id!==id);renderWizAboList();}
 
 // ── WIZARD ────────────────────────────────────────────────────────────────
 function openWizard(first){
   document.getElementById('wiz-sub').textContent=first?'Configure ta première période':'Nouvelle période';
   document.getElementById('wiz-budget').value=S.budget;
   buildWizCatRows();
-  Object.keys(S.cat_budgets).forEach(c=>{const el=document.getElementById('cb-'+c);if(el)el.value=S.cat_budgets[c]||0;});
+  Object.keys(S.cat_budgets).filter(c=>c!=='abonnements').forEach(c=>{const el=document.getElementById('cb-'+c);if(el)el.value=S.cat_budgets[c]||0;});
   wizDur=S.duree_jours||30;
   document.querySelectorAll('.dur-pill').forEach(p=>p.classList.remove('active'));
   const ki=[7,15,30],idx=ki.indexOf(wizDur);
@@ -719,7 +797,7 @@ function wizStep2(){
 function wizBack(){document.getElementById('wiz-step2').classList.remove('active');document.getElementById('wiz-step1').classList.add('active');}
 function updateRem(){
   const total=parseFloat(document.getElementById('wiz-budget').value)||0;
-  const alloc=Object.keys(CATS).reduce((a,c)=>a+(parseFloat(document.getElementById('cb-'+c)?.value)||0),0);
+  const alloc=Object.keys(CATS).filter(c=>c!=='abonnements').reduce((a,c)=>a+(parseFloat(document.getElementById('cb-'+c)?.value)||0),0)+sumAbo();
   const rem=total-alloc;
   const el=document.getElementById('wiz-rem-val');
   if(el){el.textContent=fmtDH(rem)+' DH';el.className='wiz-rem-val'+(rem<0?' over':'');}
@@ -728,7 +806,8 @@ function finishWizard(){
   const b=parseFloat(document.getElementById('wiz-budget').value)||0;
   if(b<=0){toast('Budget invalide');return;}
   S.budget=b;S.duree_jours=wizDur;S.period_start=new Date().toISOString().slice(0,10);S.setup_done=true;
-  Object.keys(CATS).forEach(c=>{S.cat_budgets[c]=parseFloat(document.getElementById('cb-'+c)?.value)||0;});
+  Object.keys(CATS).filter(c=>c!=='abonnements').forEach(c=>{S.cat_budgets[c]=parseFloat(document.getElementById('cb-'+c)?.value)||0;});
+  S.abonnements=S.abonnements.map(a=>({...a,payé:false}));
   S.depenses=[];save();
   document.getElementById('wizard').classList.add('hidden');
   toast('Nouvelle période démarrée');renderAll();
@@ -801,6 +880,26 @@ function doComplete(){
 }
 function deleteEvent(id){if(!confirm('Supprimer cet événement ?'))return;S.evenements=S.evenements.filter(e=>e.id!==id);save();renderAll();}
 
+// ── ABO PAYMENT ──────────────────────────────────────────────────────────
+function toggleAboPayé(id){
+  const a=S.abonnements.find(a=>a.id===id);if(!a)return;
+  a.payé=!a.payé;save();
+  renderCal();renderHome();
+  toast(a.payé?a.nom+' payé ✓':a.nom+' remis en attente');
+}
+function aboCard(a){
+  return`<div class="ev-card ${a.payé?'ev-abo-paid':'ev-abo-pending'}">
+    <button class="ev-check${a.payé?' ev-check-done':''}" onclick="toggleAboPayé('${a.id}')" title="${a.payé?'Annuler':'Marquer payé'}">${I.check}</button>
+    <div class="ev-body">
+      <div class="ev-name"><span style="font-size:18px;margin-right:4px">${a.emoji||'📋'}</span>${a.nom}</div>
+      <div class="ev-countdown ${a.payé?'ok':'soon'}">${a.payé?'Payé ce mois ✓':'En attente de paiement'}</div>
+    </div>
+    <div class="ev-right">
+      <span class="ev-abo-prix ${a.payé?'c-green':'c-rose'}">−${fmt(a.prix)} DH</span>
+    </div>
+  </div>`;
+}
+
 // ── CAT DETAIL ────────────────────────────────────────────────────────────
 function openCatDetail(cat){
   cdCat=cat;
@@ -810,14 +909,22 @@ function openCatDetail(cat){
   const bud=catBudget(cat),sp=catSpent(cat),rest=bud-sp;
   const pct=bud>0?Math.min(100,sp/bud*100):0;
   const cls=pct>=100?'over':pct>=80?'warn':'ok';
-  const rcls=rest<0?'c-rose':rest<bud*.2&&bud>0?'c-orange':'c-green';
+  const rcls=cat==='abonnements'?(rest<=0?'c-green':'c-rose'):(rest<0?'c-rose':rest<bud*.2&&bud>0?'c-orange':'c-green');
   document.getElementById('cd-budget').textContent=fmt(bud)+' DH';
   document.getElementById('cd-spent').textContent=fmt(sp)+' DH';
   const rel=document.getElementById('cd-rest');
-  rel.textContent=(rest<0?'−':'')+fmt(Math.abs(rest))+' DH';rel.className='cdn-val '+rcls;
+  rel.textContent=fmt(Math.abs(rest))+' DH';rel.className='cdn-val '+rcls;
   const pf=document.getElementById('cd-prog');pf.style.width=pct+'%';pf.className='cdn-prog-fill '+cls;
+  // Reset labels to default first
+  const lbls=document.querySelectorAll('#m-cat .cdn-lbl');
+  if(lbls[0])lbls[0].textContent='Alloué';if(lbls[1])lbls[1].textContent='Dépensé';if(lbls[2])lbls[2].textContent='Restant';
   let html='';
-  if(cat==='abonnements'){html=mkItemRows(S.abonnements,'abo','prix')+mkAddForm('abo');}
+  if(cat==='abonnements'){
+    const lbls=document.querySelectorAll('#m-cat .cdn-lbl');
+    if(lbls[0])lbls[0].textContent='Total';if(lbls[1])lbls[1].textContent='Payé';if(lbls[2])lbls[2].textContent='À payer';
+    html=S.abonnements.length?[...S.abonnements].sort((a,b)=>a.payé-b.payé||a.nom.localeCompare(b.nom)).map(a=>`<div class="item-row"><button class="abo-check-btn${a.payé?' paid':''}" onclick="toggleAboPayé('${a.id}');openCatDetail('abonnements')">${icon('check',14)}</button><span style="font-size:15px;flex-shrink:0">${a.emoji||'📋'}</span><span class="item-row-name">${a.nom}</span><span class="item-row-price${a.payé?' c-green':''}">−${fmt(a.prix)} DH</span><button class="x-btn" onclick="delItem('abo','${a.id}')">${I.x}</button></div>`).join(''):`<div class="empty"><div class="empty-icon">${icon('repeat',40)}</div><div class="empty-text">Aucun abonnement.<br>Ajoute-en ci-dessous.</div></div>`;
+    html+=mkAddForm('abo');
+  }
   else if(cat==='investissements'){html=mkItemRows(S.investissements,'inv','montant')+mkAddForm('inv');}
   else{
     const deps=S.depenses.filter(d=>d.cat===cat).sort((a,b)=>new Date(b.date)-new Date(a.date));
@@ -840,7 +947,7 @@ function addItemInline(type){
   const emoji=document.getElementById(`if-${type}-emoji`)?.value.trim()||(isAbo?'📋':'💹');
   const val=parseFloat(document.getElementById(`if-${type}-val`)?.value)||0;
   if(!nom){toast('Entre un nom');return;}
-  if(isAbo)S.abonnements.push({id:uid(),nom,emoji,prix:val});
+  if(isAbo)S.abonnements.push({id:uid(),nom,emoji,prix:val,payé:false});
   else S.investissements.push({id:uid(),nom,emoji,montant:val});
   save();toast(nom+' ajouté');openCatDetail(isAbo?'abonnements':'investissements');renderHome();
 }
@@ -850,6 +957,28 @@ function delItem(type,id){
   save();openCatDetail(type==='abo'?'abonnements':'investissements');renderHome();
 }
 function delDep(id){S.depenses=S.depenses.filter(d=>d.id!==id);save();openCatDetail(cdCat);renderHome();}
+
+// ── RESET ─────────────────────────────────────────────────────────────────
+function openReset(){
+  const inp=document.getElementById('reset-confirm-input');
+  if(inp)inp.value='';
+  const btn=document.getElementById('reset-confirm-btn');
+  if(btn){btn.disabled=true;btn.style.opacity='.4';btn.style.cursor='not-allowed';}
+  openModal('m-reset');
+}
+function checkResetInput(){
+  const val=document.getElementById('reset-confirm-input').value.trim().toUpperCase();
+  const btn=document.getElementById('reset-confirm-btn');
+  if(val==='RESET'){btn.disabled=false;btn.style.opacity='1';btn.style.cursor='pointer';}
+  else{btn.disabled=true;btn.style.opacity='.4';btn.style.cursor='not-allowed';}
+}
+function doReset(){
+  S=JSON.parse(JSON.stringify(DEF));
+  save();
+  closeModal('m-reset');
+  toast('Application réinitialisée');
+  openWizard(true);
+}
 
 // ── NAVIGATION ────────────────────────────────────────────────────────────
 function navigate(page){
@@ -878,7 +1007,7 @@ function renderHome(){
   const remCls=pct>=100?'danger':pct>=80?'warn':'gold';
   dbRestEl.innerHTML=`${fmt(Math.max(0,rem))}<span class="dbud-unit">DH</span>`;
   dbRestEl.className='dbud-amount '+remCls;
-  const sumCats=Object.values(S.cat_budgets).reduce((a,b)=>a+b,0);
+  const sumCats=sumAbo()+Object.entries(S.cat_budgets).filter(([k])=>k!=='abonnements').reduce((a,[,v])=>a+v,0);
   const libre=S.budget-sumCats;
   const dbLibEl=document.getElementById('db-libre');
   dbLibEl.innerHTML=`${fmt(Math.max(0,libre))}<span class="dbud-unit">DH</span>`;
@@ -989,13 +1118,34 @@ function renderCal(){
   const all=sortedEvs();
   const upcoming=all.filter(e=>new Date(e.date+'T00:00:00')>=t0);
   const past=[...all.filter(e=>new Date(e.date+'T00:00:00')<t0)].reverse();
+  // Hero: prefer upcoming event, else show abo summary
   if(upcoming.length){const n=upcoming[0],m=evMeta(n.date);document.getElementById('cal-next-name').textContent=n.emoji+' '+n.nom;document.getElementById('cal-next-sub').textContent=m.label+' — '+m.jour+', '+m.date;}
-  else{document.getElementById('cal-next-name').textContent='Aucun événement à venir';document.getElementById('cal-next-sub').textContent='';}
+  else if(S.abonnements.length){
+    const pending=S.abonnements.filter(a=>!a.payé).length;
+    document.getElementById('cal-next-name').textContent=S.abonnements.length+' abonnement'+(S.abonnements.length>1?'s':'');
+    document.getElementById('cal-next-sub').textContent=pending?pending+' en attente de paiement':'Tous payés ce mois ✓';
+  } else{document.getElementById('cal-next-name').textContent='Aucun événement à venir';document.getElementById('cal-next-sub').textContent='';}
+
   const wrap=document.getElementById('cal-events-wrap');
-  if(!all.length){wrap.innerHTML=`<div class="empty"><div class="empty-icon">${icon('calendar',44)}</div><div class="empty-text">Aucun événement.<br>Appuie sur + pour commencer.</div></div>`;return;}
   let html='';
-  if(upcoming.length)html+='<div class="ev-section-lbl">À venir</div><div class="event-list">'+upcoming.map(evCard).join('')+'</div>';
-  if(past.length)html+='<div class="ev-section-lbl" style="margin-top:8px">Passés</div><div class="event-list">'+past.map(evCard).join('')+'</div>';
+
+  // ── Abonnements section ──────────────────────────────────────────────────
+  if(S.abonnements.length){
+    const paid=S.abonnements.filter(a=>a.payé).length;
+    const tot=S.abonnements.length;
+    const paidAmt=aboPayé();const totalAmt=sumAbo();
+    html+=`<div class="ev-section-lbl" style="display:flex;align-items:center;gap:8px">
+      ${icon('repeat',13)} Abonnements du mois
+      <span style="margin-left:auto;font-size:11px;color:${paid===tot?'var(--green)':'var(--gold)'};font-weight:700">${paid}/${tot} payés · ${fmt(paidAmt)}/${fmt(totalAmt)} DH</span>
+    </div>`;
+    html+='<div class="event-list">'+[...S.abonnements].sort((a,b)=>a.payé-b.payé||a.nom.localeCompare(b.nom)).map(aboCard).join('')+'</div>';
+  }
+
+  // ── Events sections ──────────────────────────────────────────────────────
+  if(!all.length&&!S.abonnements.length){wrap.innerHTML=`<div class="empty"><div class="empty-icon">${icon('calendar',44)}</div><div class="empty-text">Aucun événement.<br>Appuie sur + pour commencer.</div></div>`;return;}
+  const sep=S.abonnements.length||upcoming.length?' style="margin-top:8px"':'';
+  if(upcoming.length)html+=`<div class="ev-section-lbl"${S.abonnements.length?' style="margin-top:8px"':''}>À venir</div><div class="event-list">`+upcoming.map(evCard).join('')+'</div>';
+  if(past.length)html+=`<div class="ev-section-lbl" style="margin-top:8px">Passés</div><div class="event-list">`+past.map(evCard).join('')+'</div>';
   wrap.innerHTML=html+'<div style="height:16px"></div>';
 }
 
