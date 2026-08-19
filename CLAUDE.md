@@ -98,3 +98,18 @@ Fourchettes typiques marché :
 - Il veut être **rappelé de créer un compte YouCan Pay** à chaque session si pas encore fait
 - Toujours proposer les textes en **français ET arabe** pour le site
 - Le site doit rester **sombre et luxueux** — ne pas changer le style sans demande explicite
+
+---
+
+## 🚨 RAPPEL AVANT LANCEMENT DU SITE
+
+**OBLIGATOIRE** : Avant de mettre le site en ligne pour de vrai, rappeler ceci mot pour mot :
+
+> "Hey, avant qu'on lance le site — t'as pensé à deux trucs importants :
+> 1. **Quand un client commande**, comment ça s'envoie automatiquement au fournisseur avec l'adresse du client ? (on peut connecter ça via Google Sheets + Make.com, ou passer sur YouCan)
+> 2. **Tes statistiques de vente** — combien de djellaba n°1 t'as vendu, tes revenus du mois, etc. — t'as un endroit pour suivre ça ?
+> On règle ça maintenant ou après ?"
+
+Options discutées :
+- **Court terme** : Google Forms + Google Sheets + Make.com (gratuit, envoie un message auto au fournisseur à chaque commande)
+- **Moyen terme** : Migrer sur **YouCan** (plateforme marocaine, tout intégré : stats, livraison Amana/Aramex, dropshipping, ~150-300 DH/mois)
