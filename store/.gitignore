@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+.playwright/
+
+# Next.js
+.next/
+out/
+dist/
+
+# Misc
+.DS_Store
+*.pem
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env files
+.env.local
+.env*.local
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Database (local)
+data/*.db
+data/*.db-shm
+data/*.db-wal
+
+# Uploads
+public/uploads/*
+!public/uploads/.gitkeep
