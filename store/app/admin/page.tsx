@@ -5,9 +5,10 @@ import { Product, Order } from '@/lib/types';
 import Image from 'next/image';
 import {
   Plus, Pencil, Trash2, Package, ShoppingBag, Eye, EyeOff,
-  RefreshCw, CheckCircle, XCircle, AlertCircle, Loader2, ExternalLink,
-  Upload
+  RefreshCw, CheckCircle, XCircle, Loader2, ExternalLink,
+  Upload, LogOut
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 type Tab = 'products' | 'orders';
 
@@ -49,6 +50,7 @@ const defaultForm: ProductFormData = {
 };
 
 export default function AdminPage() {
+  const router = useRouter();
   const [tab, setTab] = useState<Tab>('products');
   const [products, setProducts] = useState<Product[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
@@ -63,25 +65,16 @@ export default function AdminPage() {
   const [fulfillingOrder, setFulfillingOrder] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
-  // Simple admin auth
-  const [authed, setAuthed] = useState(false);
-  const [password, setPassword] = useState('');
-  const [authError, setAuthError] = useState('');
-
-  function handleAuth() {
-    if (password === 'admin123') {
-      setAuthed(true);
-    } else {
-      setAuthError('Mot de passe incorrect');
-    }
-  }
-
+  // Auth is handled server-side by middleware — page only loads if logged in
   useEffect(() => {
-    if (authed) {
-      fetchProducts();
-      fetchOrders();
-    }
-  }, [authed]);
+    fetchProducts();
+    fetchOrders();
+  }, []);
+
+  async function handleLogout() {
+    await fetch('/api/admin/logout', { method: 'POST' });
+    router.push('/admin-login');
+  }
 
   async function fetchProducts() {
     setLoading(true);
@@ -206,38 +199,6 @@ export default function AdminPage() {
     }
   }
 
-  if (!authed) {
-    return (
-      <div className="min-h-screen pt-20 flex items-center justify-center px-4">
-        <div className="w-full max-w-sm">
-          <div className="bg-zinc-900 border border-white/5 rounded-2xl p-8">
-            <div className="text-center mb-8">
-              <div className="text-3xl font-black text-white mb-1">DRIP<span className="text-amber-400">.</span></div>
-              <p className="text-gray-500 text-sm">Panneau Administration</p>
-            </div>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-gray-400 text-xs uppercase tracking-wider mb-2">Mot de passe</label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  onKeyDown={e => e.key === 'Enter' && handleAuth()}
-                  className="input-dark"
-                  placeholder="••••••••"
-                />
-              </div>
-              {authError && <p className="text-red-400 text-sm">{authError}</p>}
-              <button onClick={handleAuth} className="btn-primary w-full">
-                Accéder
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen pt-20 bg-black">
       <div className="max-w-7xl mx-auto px-4 py-8">
@@ -247,6 +208,13 @@ export default function AdminPage() {
             <h1 className="text-3xl font-black text-white">Admin <span className="text-amber-400">Panel</span></h1>
             <p className="text-gray-500 text-sm mt-1">{products.length} produits · {orders.length} commandes</p>
           </div>
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 text-gray-500 hover:text-red-400 text-sm transition-colors px-4 py-2 rounded-xl border border-white/5 hover:border-red-400/20"
+          >
+            <LogOut size={14} />
+            Déconnexion
+          </button>
         </div>
 
         {/* Tabs */}
