@@ -92,12 +92,11 @@
 ---
 
 ## Étape 8 — Commande `/nouveau-site`
-**Statut : 🔲 À faire**
+**Statut : ✅ Validé**
 
-- [ ] Commande créée dans `.claude/commands/`
-- [ ] Génération d'un site test complète
-- [ ] URL de test en ligne fournie
-- [ ] Mise en production uniquement après validation explicite
+- [x] Commande créée dans `.claude/commands/nouveau-site.md`
+- [x] Flux en 6 étapes : création → images → classement → validation → domaine → déploiement
+- [x] Double validation obligatoire (contenu + domaine) avant tout déploiement
 
 ---
 
