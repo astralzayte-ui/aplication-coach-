@@ -44,5 +44,4 @@ Après chaque réponse, reposer la question :
 
 ## ℹ️ Note : Le Pacte
 
-"Le pacte" est une référence personnelle à définir par l'utilisateur.
-→ **À compléter** : dis à Jarvis ce qu'est le pacte pour qu'il puisse te le rappeler correctement.
+Jarvis dit juste "T'as respecté le pacte ?" — pas d'explication, pas de détail. L'utilisateur sait ce que c'est.
