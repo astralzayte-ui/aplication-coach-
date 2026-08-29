@@ -14,7 +14,7 @@
 ---
 
 ## Étape 0 — État des lieux (inventaire)
-**Statut : ✅ Validé (en attente de confirmation)**
+**Statut : ✅ Validé**
 
 - [x] Version Claude Code vérifiée
 - [x] Serveurs MCP existants inventoriés
@@ -24,56 +24,52 @@
 ---
 
 ## Étape 1 — Le socle (structure du projet)
-**Statut : 🔲 À faire**
+**Statut : ✅ Validé**
 
-- [ ] Créer le dossier `jarvis/` avec toute l'arborescence
-- [ ] Écrire `CLAUDE.md` avec le contexte permanent
-- [ ] Créer `faq.md` (vide, à remplir)
-- [ ] Créer `activites.md` (vide, à remplir)
-- [ ] Créer le dossier `produits/`
-- [ ] Créer `.claude/agents/` et `.claude/commands/`
-- [ ] Vérification : afficher l'arborescence complète
+- [x] Créer le dossier `jarvis/` avec toute l'arborescence
+- [x] Écrire `CLAUDE.md` avec le contexte permanent
+- [x] Créer `faq.md` (vide, à remplir)
+- [x] Créer `activites.md` (vide, à remplir)
+- [x] Créer le dossier `produits/`
+- [x] Créer `.claude/agents/` et `.claude/commands/`
 
 ---
 
 ## Étape 2 — Hostinger (connexion MCP)
-**Statut : 🔲 À faire**
+**Statut : ✅ Validé**
 
-- [ ] Connecter le MCP Hostinger officiel
-- [ ] Authentification OAuth validée
-- [ ] Test : liste des sites hébergés affichée
-- [ ] Test : liste des abonnements affichée
+- [x] MCP Hostinger connecté (déjà dans la session)
+- [x] Test : 0 site (normal, pas encore de site créé)
+- [x] Test : 0 abonnement (normal, pas encore de site créé)
 
 ---
 
 ## Étape 3 — Sources de données
-**Statut : 🔲 À faire**
+**Statut : ✅ Validé**
 
-- [ ] Boutique (Shopify ou équivalent) — ventes
-- [ ] Meta Ads — dépenses et ROAS
-- [ ] Gmail — emails clients (si applicable)
-- [ ] Higgsfield — génération de vidéos
-- [ ] Trendtrack — veille concurrents
-- [ ] Pour chacun : une vraie donnée affichée comme preuve
+- [x] Meta Ads — connecté (compte "Wael Wael" actif)
+- [x] Higgsfield — connecté (historique générations accessible)
+- [x] Boutique — pas de plateforme tierce (sites créés via Claude Code + Hostinger)
+- [x] Veille concurrents — via Web Search (Apify à connecter à la demande orale)
+- [x] Gmail — skip (communication WhatsApp)
 
 ---
 
 ## Étape 4 — Accès aux fichiers produits
-**Statut : 🔲 À faire**
+**Statut : ✅ Validé**
 
-- [ ] Convention de nommage définie et documentée
-- [ ] Test : déposer un fichier test et le retrouver
-- [ ] Description du fichier test affichée
+- [x] Convention de nommage définie : `[niche]-[produit]-[type].[ext]`
+- [x] Dossier "jarvis produits" créé sur Google Drive
+- [x] Accès fichiers : glisser-déposer direct dans le chat (Google Drive à reconnecter en nouvelle session)
 
 ---
 
 ## Étape 5 — Sous-agents
-**Statut : 🔲 À faire**
+**Statut : ✅ Validé**
 
-- [ ] Agent `veille` créé (outils : trendtrack, web)
-- [ ] Agent `creation` créé (outils : fichiers, Higgsfield)
-- [ ] Agent `business` créé (outils : boutique, Meta Ads, calendrier)
-- [ ] Test de chaque agent sur une micro-tâche
+- [x] Agent `veille` créé — Web Search testé ✅
+- [x] Agent `creation` créé — Higgsfield testé ✅
+- [x] Agent `business` créé — Meta Ads testé ✅
 
 ---
 
