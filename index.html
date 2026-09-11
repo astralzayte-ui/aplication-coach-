@@ -1222,7 +1222,7 @@ function logDepense(){
   const amt=parseFloat(document.getElementById('q-amount').value);
   const desc=document.getElementById('q-desc').value.trim();
   if(!amt||amt<=0){toast('Entre un montant');return;}
-  S.depenses.push({id:uid(),montant:amt,cat:selCat,desc:desc||CATS[selCat]?.name||selCat,date:new Date().toISOString().slice(0,10)});
+  const _now=new Date();S.depenses.push({id:uid(),montant:amt,cat:selCat,desc:desc||CATS[selCat]?.name||selCat,date:_now.toISOString().slice(0,10),ts:_now.toISOString()});
   save();
   document.getElementById('q-amount').value='';
   document.getElementById('q-desc').value='';
@@ -1270,7 +1270,7 @@ function promptComplete(id){
 }
 function doComplete(){
   const ev=S.evenements.find(e=>e.id===pendingId);
-  if(ev){if(ev.cat&&ev.prix>0)S.depenses.push({id:uid(),montant:ev.prix,cat:ev.cat,desc:ev.nom,date:new Date().toISOString().slice(0,10)});S.evenements=S.evenements.filter(e=>e.id!==pendingId);}
+  if(ev){const _t=new Date();if(ev.cat&&ev.prix>0)S.depenses.push({id:uid(),montant:ev.prix,cat:ev.cat,desc:ev.nom,date:_t.toISOString().slice(0,10),ts:_t.toISOString()});S.evenements=S.evenements.filter(e=>e.id!==pendingId);}
   pendingId=null;save();closeModal('m-confirm');
   toast(ev?.prix>0?fmt(ev.prix)+' DH déduits':'Événement clôturé');renderAll();
 }
@@ -1441,12 +1441,14 @@ function renderDepenses(){
   let html='';
   let sectionIdx=0;
 
-  // ── Charges fixes (abonnements + investissements) ─────────────────────────
+  // ── Charges fixes (abonnements + investissements, only non-zero) ──────────
+  const aboItems=S.abonnements.filter(a=>a.prix>0);
+  const invItems=S.investissements.filter(i=>i.montant>0);
   const fixedTotal=sumAbo()+sumInv();
-  if(S.abonnements.length||S.investissements.length){
+  if(aboItems.length||invItems.length){
     let rows='';
-    S.abonnements.forEach(a=>{rows+=`<div class="dep-item-row"><span style="font-size:15px;flex-shrink:0">${a.emoji||'📋'}</span><span class="dep-item-date">fixe</span><span class="dep-item-name">${a.nom}</span><span class="dep-item-amt">−${fmt(a.prix)} DH</span>${delBtn('abo',a.id)}</div>`;});
-    S.investissements.forEach(i=>{rows+=`<div class="dep-item-row"><span style="font-size:15px;flex-shrink:0">${i.emoji||'💹'}</span><span class="dep-item-date">fixe</span><span class="dep-item-name">${i.nom}</span><span class="dep-item-amt">−${fmt(i.montant)} DH</span>${delBtn('inv',i.id)}</div>`;});
+    aboItems.forEach(a=>{rows+=`<div class="dep-item-row"><span style="font-size:15px;flex-shrink:0">${a.emoji||'📋'}</span><span class="dep-item-date">fixe</span><span class="dep-item-name">${a.nom}</span><span class="dep-item-amt">−${fmt(a.prix)} DH</span>${delBtn('abo',a.id)}</div>`;});
+    invItems.forEach(i=>{rows+=`<div class="dep-item-row"><span style="font-size:15px;flex-shrink:0">${i.emoji||'💹'}</span><span class="dep-item-date">fixe</span><span class="dep-item-name">${i.nom}</span><span class="dep-item-amt">−${fmt(i.montant)} DH</span>${delBtn('inv',i.id)}</div>`;});
     html+=`<div class="dep-cat-block">
       <div class="dep-cat-header">
         <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;color:var(--text-dim)">${I.repeat}</span>
@@ -1465,13 +1467,17 @@ function renderDepenses(){
 
   if(dates.length){
     dates.forEach(date=>{
-      const dayDeps=allDeps.filter(d=>d.date===date); // insertion order preserved
+      const dayDeps=[...allDeps.filter(d=>d.date===date)].sort((a,b)=>{
+        if(a.ts&&b.ts)return new Date(a.ts)-new Date(b.ts);
+        return 0;
+      });
       const dayTotal=dayDeps.reduce((a,d)=>a+d.montant,0);
       const dObj=new Date(date+'T00:00:00');
       const dayLabel=DAYS[dObj.getDay()]+' '+dObj.getDate()+' '+MONTHS[dObj.getMonth()];
+      const fmtTime=(d)=>{if(!d.ts)return'';const t=new Date(d.ts);return t.getHours().toString().padStart(2,'0')+':'+t.getMinutes().toString().padStart(2,'0');};
       let rows=dayDeps.map(d=>`<div class="dep-item-row">
         ${icon(CATS[d.cat]?.svgKey||'grid',15)}
-        <span class="dep-item-date" style="color:var(--text-dim);font-size:10px;white-space:nowrap">${CATS[d.cat]?.name||d.cat}</span>
+        <span class="dep-item-date" style="color:var(--text-dim);font-size:10px;white-space:nowrap;min-width:36px">${fmtTime(d)||'—'}</span>
         <span class="dep-item-name">${d.desc||CATS[d.cat]?.name||d.cat}</span>
         <span class="dep-item-amt">−${fmt(d.montant)} DH</span>
         ${editBtn(d.id)}${delBtn('dep',d.id)}
@@ -1526,7 +1532,7 @@ function saveAddDep(){
   const desc=document.getElementById('adep-desc').value.trim();
   const date=document.getElementById('adep-date').value||new Date().toISOString().slice(0,10);
   if(!amt||amt<=0){toast('Entre un montant');return;}
-  S.depenses.push({id:uid(),montant:amt,cat:addDepCat,desc:desc||CATS[addDepCat]?.name||addDepCat,date});
+  S.depenses.push({id:uid(),montant:amt,cat:addDepCat,desc:desc||CATS[addDepCat]?.name||addDepCat,date,ts:new Date().toISOString()});
   save();closeModal('m-adddep');toast(fmt(amt)+' DH enregistré');renderDepenses();renderHome();
 }
 
