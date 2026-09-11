@@ -1462,13 +1462,13 @@ function renderDepenses(){
   // Collect all logged depenses, group by date, preserve insertion order within a day
   const allDeps=S.depenses;
   const dateSet=new Set(allDeps.map(d=>d.date));
-  // Sort dates from period start → present (ascending)
-  const dates=[...dateSet].sort((a,b)=>new Date(a+'T00:00:00')-new Date(b+'T00:00:00'));
+  // Sort dates descending (most recent first)
+  const dates=[...dateSet].sort((a,b)=>new Date(b+'T00:00:00')-new Date(a+'T00:00:00'));
 
   if(dates.length){
     dates.forEach(date=>{
       const dayDeps=[...allDeps.filter(d=>d.date===date)].sort((a,b)=>{
-        if(a.ts&&b.ts)return new Date(a.ts)-new Date(b.ts);
+        if(a.ts&&b.ts)return new Date(b.ts)-new Date(a.ts);
         return 0;
       });
       const dayTotal=dayDeps.reduce((a,d)=>a+d.montant,0);
