@@ -1430,39 +1430,65 @@ function renderHome(){
 }
 
 // ── RENDER DÉPENSES ───────────────────────────────────────────────────────
-const DEP_ORDER=['investissements','plaisirs','nourriture','sorties','divers','abonnements'];
 function renderDepenses(){
   const sp=totalSpent();
   document.getElementById('dt-total').textContent=fmt(sp)+' DH';
   document.getElementById('dt-sub').textContent=`Sur un budget de ${fmt(S.budget)} DH · ${Math.round(sp/S.budget*100)||0}% utilisé`;
 
-  let html='';
-  DEP_ORDER.forEach((cat,idx)=>{
-    const cfg=CATS[cat];
-    let rows='',catTotal=0;
-    const delBtn=(type,id)=>`<button class="dep-del-btn" data-type="${type}" data-id="${id}">${I.x}</button>`;
-    const editBtn=(id)=>`<button class="dep-edit-cat-btn" data-type="editcat" data-id="${id}" title="Changer catégorie"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>`;
-    const addBtn=`<button class="dep-add-btn" data-add-cat="${cat}">${I.plus}</button>`;
+  const delBtn=(type,id)=>`<button class="dep-del-btn" data-type="${type}" data-id="${id}">${I.x}</button>`;
+  const editBtn=(id)=>`<button class="dep-edit-cat-btn" data-type="editcat" data-id="${id}" title="Changer catégorie"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>`;
 
-    if(cat==='abonnements'){
-      S.abonnements.forEach(a=>{catTotal+=a.prix;rows+=`<div class="dep-item-row"><span style="font-size:15px;flex-shrink:0">${a.emoji||'📋'}</span><span class="dep-item-date">fixe</span><span class="dep-item-name">${a.nom}</span><span class="dep-item-amt">−${fmt(a.prix)} DH</span>${delBtn('abo',a.id)}</div>`;});
-      S.depenses.filter(d=>d.cat==='abonnements').sort((a,b)=>new Date(b.date)-new Date(a.date)).forEach(d=>{catTotal+=d.montant;rows+=`<div class="dep-item-row">${icon('repeat',15)}<span class="dep-item-date">${shortD(d.date)}</span><span class="dep-item-name">${d.desc||'Abonnement'}</span><span class="dep-item-amt">−${fmt(d.montant)} DH</span>${delBtn('dep',d.id)}</div>`;});
-    } else if(cat==='investissements'){
-      S.investissements.forEach(i=>{catTotal+=i.montant;rows+=`<div class="dep-item-row"><span style="font-size:15px;flex-shrink:0">${i.emoji||'💹'}</span><span class="dep-item-date">fixe</span><span class="dep-item-name">${i.nom}</span><span class="dep-item-amt">−${fmt(i.montant)} DH</span>${delBtn('inv',i.id)}</div>`;});
-      S.depenses.filter(d=>d.cat==='investissements').sort((a,b)=>new Date(b.date)-new Date(a.date)).forEach(d=>{catTotal+=d.montant;rows+=`<div class="dep-item-row">${icon('trending',15)}<span class="dep-item-date">${shortD(d.date)}</span><span class="dep-item-name">${d.desc||'Investissement'}</span><span class="dep-item-amt">−${fmt(d.montant)} DH</span>${delBtn('dep',d.id)}</div>`;});
-    } else {
-      S.depenses.filter(d=>d.cat===cat).sort((a,b)=>new Date(b.date)-new Date(a.date)).forEach(d=>{catTotal+=d.montant;rows+=`<div class="dep-item-row">${icon(cfg.svgKey,15)}<span class="dep-item-date">${shortD(d.date)}</span><span class="dep-item-name">${d.desc||cfg.name}</span><span class="dep-item-amt">−${fmt(d.montant)} DH</span>${editBtn(d.id)}${delBtn('dep',d.id)}</div>`;});
-    }
-    if(!rows)rows=`<div class="dep-cat-empty">Aucune dépense</div>`;
-    html+=`${idx>0?'<div class="dep-divider"></div>':''}
-      <div class="dep-cat-block">
-        <div class="dep-cat-header">
-          <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;color:var(--text-dim)">${I[cfg.svgKey]}</span>
-          <span class="dep-cat-name">${cfg.name}</span>
-          <span class="dep-cat-total">−${fmt(catTotal)} DH</span>
-          ${addBtn}
-        </div>${rows}</div>`;
-  });
+  let html='';
+  let sectionIdx=0;
+
+  // ── Charges fixes (abonnements + investissements) ─────────────────────────
+  const fixedTotal=sumAbo()+sumInv();
+  if(S.abonnements.length||S.investissements.length){
+    let rows='';
+    S.abonnements.forEach(a=>{rows+=`<div class="dep-item-row"><span style="font-size:15px;flex-shrink:0">${a.emoji||'📋'}</span><span class="dep-item-date">fixe</span><span class="dep-item-name">${a.nom}</span><span class="dep-item-amt">−${fmt(a.prix)} DH</span>${delBtn('abo',a.id)}</div>`;});
+    S.investissements.forEach(i=>{rows+=`<div class="dep-item-row"><span style="font-size:15px;flex-shrink:0">${i.emoji||'💹'}</span><span class="dep-item-date">fixe</span><span class="dep-item-name">${i.nom}</span><span class="dep-item-amt">−${fmt(i.montant)} DH</span>${delBtn('inv',i.id)}</div>`;});
+    html+=`<div class="dep-cat-block">
+      <div class="dep-cat-header">
+        <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;color:var(--text-dim)">${I.repeat}</span>
+        <span class="dep-cat-name">Charges fixes</span>
+        <span class="dep-cat-total">−${fmt(fixedTotal)} DH</span>
+      </div>${rows}</div>`;
+    sectionIdx++;
+  }
+
+  // ── Dépenses groupées par jour (ordre chronologique) ──────────────────────
+  // Collect all logged depenses, group by date, preserve insertion order within a day
+  const allDeps=S.depenses;
+  const dateSet=new Set(allDeps.map(d=>d.date));
+  // Sort dates from period start → present (ascending)
+  const dates=[...dateSet].sort((a,b)=>new Date(a+'T00:00:00')-new Date(b+'T00:00:00'));
+
+  if(dates.length){
+    dates.forEach(date=>{
+      const dayDeps=allDeps.filter(d=>d.date===date); // insertion order preserved
+      const dayTotal=dayDeps.reduce((a,d)=>a+d.montant,0);
+      const dObj=new Date(date+'T00:00:00');
+      const dayLabel=DAYS[dObj.getDay()]+' '+dObj.getDate()+' '+MONTHS[dObj.getMonth()];
+      let rows=dayDeps.map(d=>`<div class="dep-item-row">
+        ${icon(CATS[d.cat]?.svgKey||'grid',15)}
+        <span class="dep-item-date" style="color:var(--text-dim);font-size:10px;white-space:nowrap">${CATS[d.cat]?.name||d.cat}</span>
+        <span class="dep-item-name">${d.desc||CATS[d.cat]?.name||d.cat}</span>
+        <span class="dep-item-amt">−${fmt(d.montant)} DH</span>
+        ${editBtn(d.id)}${delBtn('dep',d.id)}
+      </div>`).join('');
+      html+=`${sectionIdx>0?'<div class="dep-divider"></div>':''}
+        <div class="dep-cat-block">
+          <div class="dep-cat-header">
+            <span class="dep-cat-name">${dayLabel}</span>
+            <span class="dep-cat-total">−${fmt(dayTotal)} DH</span>
+            <button class="dep-add-btn" data-add-cat="nourriture" data-add-date="${date}">${I.plus}</button>
+          </div>${rows}</div>`;
+      sectionIdx++;
+    });
+  } else if(!S.abonnements.length&&!S.investissements.length){
+    html+=`<div class="empty"><div class="empty-icon">${icon('wallet',40)}</div><div class="empty-text">Aucune dépense enregistrée.<br>Utilise la saisie rapide sur l'accueil.</div></div>`;
+  }
+
   document.getElementById('dep-cat-list').innerHTML=html;
 }
 
@@ -1481,18 +1507,18 @@ function renderDepenses(){
     const editCatBtn=e.target.closest('.dep-edit-cat-btn,[data-type="editcat"]');
     if(editCatBtn){openEditDepCat(editCatBtn.dataset.id);return;}
     const addBtn=e.target.closest('.dep-add-btn');
-    if(addBtn&&addBtn.dataset.addCat)openAddDepCat(addBtn.dataset.addCat);
+    if(addBtn&&addBtn.dataset.addCat)openAddDepCat(addBtn.dataset.addCat,addBtn.dataset.addDate||'');
   }
   document.addEventListener('DOMContentLoaded',function(){const el=document.getElementById('dep-cat-list');if(el)el.addEventListener('click',onDepClick);});
   const el=document.getElementById('dep-cat-list');if(el)el.addEventListener('click',onDepClick);
 })();
 
 let addDepCat=null;
-function openAddDepCat(cat){
+function openAddDepCat(cat,date=''){
   addDepCat=cat;const cfg=CATS[cat];
   document.getElementById('adep-cat-label').innerHTML=icon(cfg.svgKey,14)+' '+cfg.name;
   document.getElementById('adep-amount').value='';document.getElementById('adep-desc').value='';
-  document.getElementById('adep-date').value=new Date().toISOString().slice(0,10);
+  document.getElementById('adep-date').value=date||new Date().toISOString().slice(0,10);
   openModal('m-adddep');
 }
 function saveAddDep(){
