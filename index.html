@@ -480,6 +480,7 @@ CREATE POLICY "own" ON budget_data
     <div class="wiz-sub" id="wiz-sub">Configure ta première période</div>
 
     <div class="wiz-step active" id="wiz-step1">
+      <div id="wiz-carry" style="display:none;background:var(--green-dim);border:1px solid var(--green);border-radius:var(--rx);padding:10px 14px;margin-bottom:18px;font-size:13px;color:var(--green);text-align:center"></div>
       <div class="wiz-label">Budget total</div>
       <div style="position:relative">
         <input type="number" class="wiz-input" id="wiz-budget" value="6000" min="0">
@@ -890,14 +891,14 @@ const DEF = {
   period_start:new Date().toISOString().slice(0,10),
   cat_budgets:{abonnements:0,investissements:0,plaisirs:0,nourriture:0,sorties:0,divers:0},
   depenses:[], abonnements:[], investissements:[], evenements:[],
-  chargesFixes:[], haramGoals:[]
+  chargesFixes:[], haramGoals:[], carryOver:0
 };
 let S=JSON.parse(JSON.stringify(DEF));
 let wizDur=30,selCat='nourriture',evSelCat=null,pendingId=null,cdCat=null;
 let _uid=0; const uid=()=>String(Date.now())+String(_uid++);
 
 function load(){
-  try{const r=localStorage.getItem('bf-v2');if(r){const p=JSON.parse(r);S={...JSON.parse(JSON.stringify(DEF)),...p};['cat_budgets','depenses','abonnements','investissements','evenements','chargesFixes','haramGoals'].forEach(k=>{if(!S[k])S[k]=DEF[k];});}}catch(e){}
+  try{const r=localStorage.getItem('bf-v2');if(r){const p=JSON.parse(r);S={...JSON.parse(JSON.stringify(DEF)),...p};['cat_budgets','depenses','abonnements','investissements','evenements','chargesFixes','haramGoals'].forEach(k=>{if(!S[k])S[k]=DEF[k];});if(S.carryOver===undefined)S.carryOver=0;}}catch(e){}
 }
 // ── SUPABASE CLOUD SYNC ──────────────────────────────────────────────────
 const CFG_KEY='bf_supa_cfg',TOK_KEY='bf_token',USR_KEY='bf_user';
@@ -940,6 +941,7 @@ async function loadFromCloud(){
       const p=rows[0].data;
       S={...JSON.parse(JSON.stringify(DEF)),...p};
       ['cat_budgets','depenses','abonnements','investissements','evenements','chargesFixes','haramGoals'].forEach(k=>{if(!S[k])S[k]=DEF[k];});
+      if(S.carryOver===undefined)S.carryOver=0;
       S.abonnements=S.abonnements.map(a=>({payé:false,...a}));
       localStorage.setItem('bf-v2',JSON.stringify(S));
     }
@@ -1043,7 +1045,7 @@ async function submitAuth(){
     await loadFromCloud();
     showAppUI();
     buildQuickCats();buildEvCatBtns();selQCat('nourriture');
-    if(!S.setup_done)openWizard(true);else renderAll();
+    startupCheck(!S.setup_done);
   }catch(e){
     let m=e.message;
     try{const j=JSON.parse(m);m=j.error_description||j.msg||j.message||m;}catch(x){}
@@ -1068,7 +1070,7 @@ function skipCfg(){
   document.getElementById('app').style.visibility='';
   renderUserBadge();
   buildQuickCats();buildEvCatBtns();selQCat('nourriture');
-  if(!S.setup_done)openWizard(true);else renderAll();
+  startupCheck(!S.setup_done);
 }
 
 // ── SAVE (local + cloud debounced) ────────────────────────────────────────
@@ -1158,8 +1160,36 @@ function addWizAbo(){
 function delWizAbo(id){S.abonnements=S.abonnements.filter(a=>a.id!==id);renderWizAboList();}
 
 // ── WIZARD ────────────────────────────────────────────────────────────────
+// ── SUNDAY AUTO-RESET ─────────────────────────────────────────────────────
+function lastSundayDate(){
+  const now=new Date();now.setHours(0,0,0,0);
+  const day=now.getDay(); // 0=dim
+  const d=new Date(now);d.setDate(d.getDate()-day);
+  return d.toISOString().slice(0,10);
+}
+function shouldAutoReset(){
+  if(!S.setup_done)return false;
+  return S.period_start<lastSundayDate();
+}
+function maybeAutoReset(){
+  if(!shouldAutoReset())return false;
+  const remaining=Math.max(0,S.budget-totalSpent());
+  S.carryOver=remaining;
+  return true;
+}
+function startupCheck(isFirst){
+  if(isFirst||maybeAutoReset()){openWizard(isFirst);}else{renderAll();}
+}
+
 function openWizard(first){
-  document.getElementById('wiz-sub').textContent=first?'Configure ta première période':'Nouvelle période';
+  const carry=S.carryOver||0;
+  const sub=first?'Configure ta première période':carry>0?`Nouveau cycle dimanche 🎉`:'Nouvelle période';
+  document.getElementById('wiz-sub').textContent=sub;
+  const carryEl=document.getElementById('wiz-carry');
+  if(carryEl){
+    if(carry>0){carryEl.style.display='block';carryEl.innerHTML=`💰 Report de la semaine passée : <strong>+${fmt(carry)} DH</strong> seront ajoutés à ton budget`;}
+    else carryEl.style.display='none';
+  }
   document.getElementById('wiz-budget').value=S.budget;
   buildWizCatRows();
   Object.keys(S.cat_budgets).filter(c=>c!=='abonnements').forEach(c=>{const el=document.getElementById('cb-'+c);if(el)el.value=S.cat_budgets[c]||0;});
@@ -1185,12 +1215,13 @@ function wizStep2(){
   if(b<=0){toast('Entre un budget valide');return;}
   document.getElementById('wiz-step1').classList.remove('active');
   document.getElementById('wiz-step2').classList.add('active');
-  document.getElementById('wiz-total-lbl').textContent=fmtDH(b);
+  const carry=S.carryOver||0;
+  document.getElementById('wiz-total-lbl').textContent=fmtDH(b+carry);
   updateRem();
 }
 function wizBack(){document.getElementById('wiz-step2').classList.remove('active');document.getElementById('wiz-step1').classList.add('active');}
 function updateRem(){
-  const total=parseFloat(document.getElementById('wiz-budget').value)||0;
+  const total=(parseFloat(document.getElementById('wiz-budget').value)||0)+(S.carryOver||0);
   const alloc=Object.keys(CATS).filter(c=>c!=='abonnements').reduce((a,c)=>a+(parseFloat(document.getElementById('cb-'+c)?.value)||0),0)+sumAbo();
   const rem=total-alloc;
   const el=document.getElementById('wiz-rem-val');
@@ -1199,14 +1230,16 @@ function updateRem(){
 function finishWizard(){
   const b=parseFloat(document.getElementById('wiz-budget').value)||0;
   if(b<=0){toast('Budget invalide');return;}
-  S.budget=b;S.duree_jours=wizDur;S.period_start=new Date().toISOString().slice(0,10);S.setup_done=true;
+  const carry=S.carryOver||0;
+  S.budget=b+carry;S.carryOver=0;
+  S.duree_jours=wizDur;S.period_start=new Date().toISOString().slice(0,10);S.setup_done=true;
   Object.keys(CATS).filter(c=>c!=='abonnements').forEach(c=>{S.cat_budgets[c]=parseFloat(document.getElementById('cb-'+c)?.value)||0;});
   S.abonnements=S.abonnements.map(a=>({...a,payé:false}));
   S.chargesFixes=(S.chargesFixes||[]).map(c=>({...c,payé:false}));
   S.haramGoals=(S.haramGoals||[]).map(h=>({...h,acheté:false}));
   S.depenses=[];save();
   document.getElementById('wizard').classList.add('hidden');
-  toast('Nouvelle période démarrée');renderAll();
+  toast(carry>0?`Nouveau cycle démarré · +${fmt(carry)} DH reportés 🎉`:'Nouvelle période démarrée');renderAll();
 }
 
 // ── QUICK LOG ─────────────────────────────────────────────────────────────
@@ -1771,7 +1804,7 @@ function saveEditDepCat(){
     // No cloud config — local mode
     showAppUI();
     buildQuickCats();buildEvCatBtns();selQCat('nourriture');
-    if(!S.setup_done)openWizard(true);else renderAll();
+    startupCheck(!S.setup_done);
     return;
   }
 
@@ -1779,7 +1812,7 @@ function saveEditDepCat(){
     // Already logged in — show app immediately, then sync from cloud
     showAppUI();
     buildQuickCats();buildEvCatBtns();selQCat('nourriture');
-    if(!S.setup_done)openWizard(true);else renderAll();
+    startupCheck(!S.setup_done);
     // Background cloud sync
     loadFromCloud().then(()=>renderAll()).catch(()=>{});
     return;
