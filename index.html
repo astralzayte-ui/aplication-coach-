@@ -40,7 +40,10 @@
       --safe:       env(safe-area-inset-bottom, 0px);
       --r: 18px; --rs: 12px; --rx: 8px;
     }
-    html,body { height:100%; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif; font-size:15px; line-height:1.5; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+    /* overflow-x uniquement sur <html> : sinon <body> devient le conteneur de
+       défilement et window.scrollTo / scrollBy n'ont plus aucun effet. */
+    html { height:100%; overflow-x:hidden; }
+    body { min-height:100%; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif; font-size:15px; line-height:1.5; -webkit-font-smoothing:antialiased; }
     #app { max-width:430px; margin:0 auto; min-height:100dvh; touch-action:pan-y; }
     .section { display:none; padding-bottom:calc(var(--nav-h) + var(--safe) + 16px); }
     .section.active { display:block; animation:fadeUp .24s ease; }
@@ -180,6 +183,17 @@
     .icon-btn.edit:active { color:var(--mint); }
     .dep-add-btn   { width:24px; height:24px; border-radius:50%; border:none; background:var(--surf2); color:var(--text-dim); cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; -webkit-tap-highlight-color:transparent; }
     .dep-add-btn:active { background:var(--mint-dim); color:var(--mint); }
+
+    /* DRAG & DROP */
+    .drag-grip { display:flex; align-items:center; justify-content:center; width:22px; height:26px; flex-shrink:0; color:var(--text-muted); cursor:grab; background:none; border:none; padding:0; touch-action:none; -webkit-tap-highlight-color:transparent; }
+    .drag-grip:active { color:var(--mint); cursor:grabbing; }
+    .dep-item-row[data-dep] { transition:transform .16s ease, opacity .16s ease; }
+    .dep-item-row.dragging { border-color:var(--mint); background:var(--surf2); box-shadow:0 14px 36px rgba(0,0,0,.65), 0 0 0 1px rgba(126,231,169,.35); transform:scale(1.03); opacity:.97; pointer-events:none; transition:none; }
+    .dep-item-row.lift-hint { border-color:var(--border2); background:var(--surf2); }
+    .dep-drop-ph { border:1.5px dashed var(--border2); background:rgba(126,231,169,.06); border-radius:var(--rx); margin-bottom:5px; }
+    body.drag-on { user-select:none; -webkit-user-select:none; }
+    body.drag-on #app, body.drag-on .section { touch-action:none; }
+    .drag-tip { font-size:11px; color:var(--text-muted); padding:2px 18px 10px; display:flex; align-items:center; gap:6px; }
 
     /* ── CALENDRIER ─────────────────────────────────────── */
     .cal-hero { position:relative; padding:44px 24px 24px; overflow:hidden; background:var(--surf); box-shadow:var(--shadow); }
@@ -459,7 +473,7 @@ CREATE POLICY "own" ON budget_data
   <section class="section active" id="s-home">
     <div class="hero">
       <div class="user-avatar" id="user-avatar" onclick="openUserMenu()">?</div>
-      <button class="cloud-btn" id="cloud-btn" onclick="showCfgScreen()" title="Activer le cloud">
+      <button class="cloud-btn" id="cloud-btn" onclick="openUserMenu()" title="Mes données">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
       </button>
       <div class="arc-wrap">
@@ -596,14 +610,15 @@ CREATE POLICY "own" ON budget_data
 
 <div class="overlay" id="m-user" onclick="overlayClick(event,'m-user')"><div class="sheet">
   <div class="sheet-handle"></div>
-  <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
-    <div style="width:48px;height:48px;border-radius:50%;background:var(--mint-dim);border:1px solid var(--border2);color:var(--mint);font-size:20px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0" id="um-initial">?</div>
-    <div>
-      <div style="font-size:14px;font-weight:700" id="um-email">—</div>
-      <div style="font-size:11px;color:var(--mint);font-weight:600;margin-top:3px">● Synchronisé avec le cloud</div>
-    </div>
+  <div id="um-account"></div>
+  <div style="font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px">Sauvegarde</div>
+  <button class="submit-btn" style="background:var(--surf2);color:var(--text);margin-top:0" onclick="exportData()">⬇️  Sauvegarder mes données</button>
+  <button class="submit-btn" style="background:var(--surf2);color:var(--text);margin-top:8px" onclick="document.getElementById('import-file').click()">⬆️  Restaurer une sauvegarde</button>
+  <input type="file" id="import-file" accept="application/json,.json" style="display:none" onchange="importData(this)">
+  <div style="font-size:11px;color:var(--text-muted);margin-top:10px;line-height:1.6">
+    Tes données vivent dans ce navigateur. Elles restent en place quand tu mets l'app à jour sur la même adresse. Fais une sauvegarde avant de changer de téléphone ou de vider ton cache.
   </div>
-  <button class="submit-btn danger" onclick="cloudLogout()">Se déconnecter</button>
+  <div id="um-actions"></div>
   <button class="cancel-btn" onclick="closeModal('m-user')">Fermer</button>
 </div></div>
 
@@ -723,7 +738,8 @@ const I = {
   plus:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>',
   x:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
   check:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
-  pencil: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>'
+  pencil: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>',
+  grip:   '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="6" r="1.55"/><circle cx="15" cy="6" r="1.55"/><circle cx="9" cy="12" r="1.55"/><circle cx="15" cy="12" r="1.55"/><circle cx="9" cy="18" r="1.55"/><circle cx="15" cy="18" r="1.55"/></svg>'
 };
 const icon = (k,px=18)=>`<span class="svg-icon" style="width:${px}px;height:${px}px">${I[k]||I.grid}</span>`;
 
@@ -776,6 +792,13 @@ function normalize(){
   if(typeof S.carryOver!=='number') S.carryOver=0;
   if(typeof S.budget!=='number') S.budget=DEF.budget;
   if(!S.period_start) S.period_start=today();
+  // Ordre manuel des dépenses — ajouté à la volée sur les anciennes données,
+  // calé sur l'horodatage pour que l'ordre affiché reste identique.
+  S.depenses.forEach(d=>{
+    if(typeof d.ord!=='number'||!isFinite(d.ord)){
+      d.ord = d.ts ? new Date(d.ts).getTime() : (d.date ? new Date(d.date+'T12:00:00').getTime() : 0);
+    }
+  });
 }
 function load(){
   try{
@@ -886,10 +909,50 @@ function renderUserBadge(){
   else if(av){av.style.display='none';if(cb)cb.style.display='flex';}
 }
 function openUserMenu(){
-  const em=(authUser&&authUser.email)||'';
-  document.getElementById('um-email').textContent=em;
-  document.getElementById('um-initial').textContent=(em[0]||'?').toUpperCase();
+  const acc=document.getElementById('um-account'),act=document.getElementById('um-actions');
+  if(authUser){
+    const em=authUser.email||'';
+    acc.innerHTML=`<div style="display:flex;align-items:center;gap:12px;margin-bottom:22px">
+      <div style="width:48px;height:48px;border-radius:50%;background:var(--mint-dim);border:1px solid var(--border2);color:var(--mint);font-size:20px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0">${esc((em[0]||'?').toUpperCase())}</div>
+      <div><div style="font-size:14px;font-weight:700">${esc(em)}</div>
+        <div style="font-size:11px;color:var(--mint);font-weight:600;margin-top:3px">● Synchronisé avec le cloud</div></div>
+    </div>`;
+    act.innerHTML=`<button class="submit-btn danger" style="margin-top:18px" onclick="cloudLogout()">Se déconnecter</button>`;
+  } else {
+    acc.innerHTML=`<div class="sheet-title" style="margin-bottom:6px">⚙️ Mes données</div>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:20px;line-height:1.6">Mode local — tout est enregistré dans ce navigateur, sur cet appareil.</div>`;
+    act.innerHTML=`<button class="submit-btn" style="background:var(--surf2);color:var(--text-dim);font-size:13px;margin-top:18px" onclick="closeModal('m-user');showCfgScreen()">Activer la synchro cloud</button>`;
+  }
   openModal('m-user');
+}
+function exportData(){
+  try{
+    const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download='budgetflow-'+today()+'.json';
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1500);
+    toast('Sauvegarde téléchargée ✓');
+  }catch(e){ toast('Sauvegarde impossible'); }
+}
+function importData(input){
+  const f=input.files&&input.files[0];
+  if(!f){return;}
+  const rd=new FileReader();
+  rd.onload=()=>{
+    try{
+      const p=JSON.parse(rd.result);
+      if(!p||typeof p!=='object'||Array.isArray(p))throw new Error('format');
+      S={...JSON.parse(JSON.stringify(DEF)),...p};
+      normalize();save();
+      closeModal('m-user');
+      toast('Données restaurées ✓');
+      renderAll();
+    }catch(e){ toast('Fichier de sauvegarde invalide'); }
+    input.value='';
+  };
+  rd.onerror=()=>{ toast('Lecture impossible'); input.value=''; };
+  rd.readAsText(f);
 }
 async function submitAuth(){
   const email=document.getElementById('auth-email').value.trim();
@@ -1009,6 +1072,17 @@ function toast(msg){
   t.textContent=msg;t.classList.add('show');
   clearTimeout(_toastT);_toastT=setTimeout(()=>t.classList.remove('show'),2200);
 }
+// Défilement fiable quel que soit l'élément qui scrolle réellement.
+function pageScrollBy(dy){
+  const de=document.documentElement;
+  if(de.scrollHeight>de.clientHeight+1) window.scrollBy(0,dy);
+  else document.body.scrollTop+=dy;
+}
+function pageScrollTop(){
+  window.scrollTo(0,0);
+  document.body.scrollTop=0;
+  document.documentElement.scrollTop=0;
+}
 function openModal(id){document.getElementById(id).classList.add('open');}
 function closeModal(id){document.getElementById(id).classList.remove('open');}
 function overlayClick(e,id){if(e.target.id===id)closeModal(id);}
@@ -1030,7 +1104,7 @@ function navigate(page,dir){
   if(dir==='l')sec.classList.add('sl'); else if(dir==='r')sec.classList.add('sr');
   else if(next>prev)sec.classList.add('sl'); else if(next<prev)sec.classList.add('sr');
   document.getElementById('nav-'+page).classList.add('active');
-  window.scrollTo(0,0);
+  pageScrollTop();
   if(page==='home')renderHome();
   else if(page==='depenses')renderDepenses();
   else renderCal();
@@ -1164,7 +1238,7 @@ function logDepense(){
   const desc=document.getElementById('q-desc').value.trim();
   if(!amt||amt<=0){toast('Entre un montant');return;}
   const n=new Date();
-  S.depenses.push({id:uid(),montant:amt,cat:selCat,desc:desc||CATS[selCat].name,date:ymd(n),ts:n.toISOString()});
+  S.depenses.push({id:uid(),montant:amt,cat:selCat,desc:desc||CATS[selCat].name,date:ymd(n),ts:n.toISOString(),ord:n.getTime()});
   save();
   document.getElementById('q-amount').value='';
   document.getElementById('q-desc').value='';
@@ -1307,7 +1381,7 @@ function renderDepenses(){
 
   dates.forEach((date,i)=>{
     const dayDeps=S.depenses.filter(d=>d.date===date)
-      .sort((a,b)=>(a.ts&&b.ts)?new Date(b.ts)-new Date(a.ts):0);
+      .sort((a,b)=>(b.ord||0)-(a.ord||0));
     const dayTotal=dayDeps.reduce((a,d)=>a+d.montant,0);
     const dObj=new Date(date+'T00:00:00');
     const isToday=date===today();
@@ -1316,17 +1390,18 @@ function renderDepenses(){
       const t=d.ts?new Date(d.ts):null;
       const hm=t?String(t.getHours()).padStart(2,'0')+':'+String(t.getMinutes()).padStart(2,'0'):'—';
       const c=CATS[d.cat]||CATS.divers;
-      return `<div class="dep-item-row">
+      return `<div class="dep-item-row" data-dep="${d.id}">
         <span class="svg-icon" style="width:15px;height:15px;color:${c.col}">${I[c.k]}</span>
         <span class="dep-item-time">${hm}</span>
         <span class="dep-item-name">${esc(d.desc||c.name)}</span>
         <span class="dep-item-amt">−${fmt(d.montant)} DH</span>
         <button class="icon-btn edit" data-edit="${d.id}" title="Modifier">${I.pencil}</button>
         <button class="icon-btn del"  data-del="${d.id}"  title="Supprimer">${I.x}</button>
+        <button class="drag-grip" data-grip="${d.id}" title="Glisser pour déplacer" aria-label="Déplacer">${I.grip}</button>
       </div>`;
     }).join('');
     html+=`${(i>0||paid.length)?'<div class="dep-divider"></div>':''}
-      <div class="dep-cat-block">
+      <div class="dep-cat-block" data-date="${date}">
         <div class="dep-cat-header">
           <span class="dep-cat-name" ${isToday?'style="color:var(--mint)"':''}>${label}</span>
           <span class="dep-cat-total">−${fmt(dayTotal)} DH</span>
@@ -1334,8 +1409,124 @@ function renderDepenses(){
         </div>${rows}</div>`;
   });
 
+  if(S.depenses.length>1){
+    html+=`<div class="drag-tip"><span class="svg-icon" style="width:13px;height:13px">${I.grip}</span>
+      Glisse par la poignée (ou appuie 1 s sur une ligne) pour réordonner.</div>`;
+  }
+
   document.getElementById('dep-list').innerHTML=html;
 }
+
+// ═══ GLISSER-DÉPOSER : réordonner les dépenses ═══
+(function(){
+  const HOLD=450, SLOP=9, EDGE=95, STEP=11;
+  let d=null, press=null, scrollTimer=null;
+
+  const listEl = ()=>document.getElementById('dep-list');
+
+  function beginPress(e){
+    if(d)return;
+    const grip=e.target.closest('[data-grip]');
+    const row=e.target.closest('.dep-item-row[data-dep]');
+    if(!row)return;
+    if(!grip && e.target.closest('button'))return;   // laisse edit/suppr cliquables
+    if(grip){ e.preventDefault(); start(row,e.clientY); return; }
+    press={row,x:e.clientX,y:e.clientY,
+      t:setTimeout(()=>{ if(press){ const r=press.row,y=press.y; press=null; start(r,y); } },HOLD)};
+    row.classList.add('lift-hint');
+  }
+  function cancelPress(){
+    if(!press)return;
+    clearTimeout(press.t); press.row.classList.remove('lift-hint'); press=null;
+  }
+  function start(row,clientY){
+    cancelPress();
+    row.classList.remove('lift-hint');
+    const rect=row.getBoundingClientRect();
+    const ph=document.createElement('div');
+    ph.className='dep-drop-ph';
+    ph.style.height=rect.height+'px';
+    row.parentNode.insertBefore(ph,row);
+    Object.assign(row.style,{position:'fixed',left:rect.left+'px',top:rect.top+'px',
+      width:rect.width+'px',margin:'0',zIndex:'500'});
+    row.classList.add('dragging');
+    document.body.appendChild(row);
+    document.body.classList.add('drag-on');
+    d={row,ph,grabDY:clientY-rect.top};
+    if(navigator.vibrate){try{navigator.vibrate(14);}catch(err){}}
+    move(clientY);
+  }
+  function move(clientY){
+    if(!d)return;
+    d.row.style.top=(clientY-d.grabDY)+'px';
+    const blocks=[...listEl().querySelectorAll('.dep-cat-block[data-date]')];
+    if(blocks.length){
+      // Journée visée : celle sous le doigt, sinon la plus proche.
+      let target=null,best=Infinity;
+      for(const b of blocks){
+        const r=b.getBoundingClientRect();
+        if(clientY>=r.top&&clientY<=r.bottom){ target=b; break; }
+        const dist=clientY<r.top ? r.top-clientY : clientY-r.bottom;
+        if(dist<best){ best=dist; target=b; }
+      }
+      // Position à l'intérieur de cette journée uniquement.
+      const rows=[...target.querySelectorAll('.dep-item-row[data-dep]')];
+      let placed=false;
+      for(const r of rows){
+        const b=r.getBoundingClientRect();
+        if(clientY < b.top + b.height/2){ target.insertBefore(d.ph,r); placed=true; break; }
+      }
+      if(!placed) target.appendChild(d.ph);
+    }
+    // défilement auto près des bords
+    clearInterval(scrollTimer); scrollTimer=null;
+    const h=window.innerHeight;
+    if(clientY<EDGE)        scrollTimer=setInterval(()=>pageScrollBy(-STEP),16);
+    else if(clientY>h-EDGE) scrollTimer=setInterval(()=>pageScrollBy( STEP),16);
+  }
+  function end(){
+    if(!d)return;
+    clearInterval(scrollTimer); scrollTimer=null;
+    const {row,ph}=d; d=null;
+    row.classList.remove('dragging');
+    row.removeAttribute('style');
+    ph.parentNode.insertBefore(row,ph);
+    ph.remove();
+    document.body.classList.remove('drag-on');
+    commit(row);
+  }
+  function commit(row){
+    const id=row.getAttribute('data-dep');
+    const dep=S.depenses.find(x=>String(x.id)===String(id));
+    const block=row.closest('.dep-cat-block[data-date]');
+    let moved=false;
+    if(dep && block){
+      const nd=block.getAttribute('data-date');
+      if(nd && dep.date!==nd){ dep.date=nd; moved=true; }
+    }
+    // réécrit l'ordre de chaque journée d'après le DOM (le 1er a le plus grand ord)
+    listEl().querySelectorAll('.dep-cat-block[data-date]').forEach(b=>{
+      const ids=[...b.querySelectorAll('.dep-item-row[data-dep]')].map(r=>r.getAttribute('data-dep'));
+      ids.forEach((did,i)=>{
+        const x=S.depenses.find(y=>String(y.id)===String(did));
+        if(x) x.ord=(ids.length-i)*1000;
+      });
+    });
+    save();
+    renderDepenses(); renderHome();
+    toast(moved?'Dépense déplacée ✓':'Ordre modifié ✓');
+  }
+
+  document.addEventListener('pointerdown',beginPress);
+  document.addEventListener('pointermove',e=>{
+    if(d){ e.preventDefault(); move(e.clientY); return; }
+    if(press && (Math.abs(e.clientY-press.y)>SLOP||Math.abs(e.clientX-press.x)>SLOP)) cancelPress();
+  },{passive:false});
+  document.addEventListener('pointerup',()=>{ cancelPress(); end(); });
+  document.addEventListener('pointercancel',()=>{ cancelPress(); end(); });
+  // bloque le défilement tactile pendant le glissement
+  document.addEventListener('touchmove',e=>{ if(d) e.preventDefault(); },{passive:false});
+})();
 
 // délégation de clics (dépenses + revenus)
 document.addEventListener('click',function(e){
@@ -1372,7 +1563,7 @@ function saveAddDep(){
   const date=document.getElementById('adep-date').value||today();
   const desc=document.getElementById('adep-desc').value.trim();
   const base=new Date(date+'T12:00:00');
-  S.depenses.push({id:uid(),montant:amt,cat:addDepCat,desc:desc||CATS[addDepCat].name,date,ts:base.toISOString()});
+  S.depenses.push({id:uid(),montant:amt,cat:addDepCat,desc:desc||CATS[addDepCat].name,date,ts:base.toISOString(),ord:Date.now()});
   save();closeModal('m-adddep');toast(fmt(amt)+' DH ajouté');
   renderDepenses();renderHome();
 }
@@ -1491,7 +1682,7 @@ function doComplete(){
   ev.done=true;
   if(ev.prix>0){
     const n=new Date();
-    S.depenses.push({id:uid(),montant:ev.prix,cat:ev.cat||'divers',desc:ev.nom,date:ymd(n),ts:n.toISOString()});
+    S.depenses.push({id:uid(),montant:ev.prix,cat:ev.cat||'divers',desc:ev.nom,date:ymd(n),ts:n.toISOString(),ord:n.getTime()});
   }
   save();closeModal('m-confirm');
   toast(ev.prix>0?`${ev.nom} · −${fmt(ev.prix)} DH`:`${ev.nom} fait ✓`);
