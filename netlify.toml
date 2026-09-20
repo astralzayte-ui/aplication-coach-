@@ -6,7 +6,18 @@
   [headers.values]
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
-    Cache-Control = "public, max-age=3600"
+
+# La page est tout le programme : on la revalide à chaque ouverture pour
+# qu'une mise à jour soit visible tout de suite au lieu d'attendre une heure.
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/sw.js"

@@ -1914,6 +1914,21 @@ function openCatDetail(cat){
 }
 
 // ═══ INIT ═══
+// Une ancienne version du site installait un service worker qui servait
+// la page depuis son cache sans jamais revalider. S'il en reste un, il
+// figerait l'app sur une version périmée : on le retire.
+(function(){
+  if(!('serviceWorker' in navigator))return;
+  try{
+    navigator.serviceWorker.getRegistrations()
+      .then(rs=>{ rs.forEach(r=>{ try{r.unregister();}catch(e){} }); })
+      .catch(()=>{});
+    if(window.caches&&caches.keys){
+      caches.keys().then(ks=>ks.forEach(k=>{ if(/^bf-/.test(k)) caches.delete(k); })).catch(()=>{});
+    }
+  }catch(e){}
+})();
+
 (async function init(){
   loadSupaConfig();
   loadAuthState();
