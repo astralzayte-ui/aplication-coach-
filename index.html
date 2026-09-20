@@ -362,6 +362,33 @@
     .user-avatar { position:absolute; top:12px; left:18px; width:30px; height:30px; border-radius:50%; background:var(--mint-dim); border:1px solid var(--border2); color:var(--mint); font-size:12px; font-weight:800; cursor:pointer; display:none; align-items:center; justify-content:center; z-index:2; -webkit-tap-highlight-color:transparent; }
     .cloud-btn { position:absolute; top:12px; left:18px; width:30px; height:30px; border-radius:50%; background:var(--surf2); border:1px solid var(--border); color:var(--text-muted); cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:2; -webkit-tap-highlight-color:transparent; }
 
+    /* NOTES */
+    .notes-bar { position:sticky; top:0; z-index:30; display:flex; align-items:center; gap:7px;
+      padding:11px 14px; background:rgba(7,11,9,.97); backdrop-filter:blur(20px) saturate(1.5);
+      -webkit-backdrop-filter:blur(20px) saturate(1.5); border-bottom:1px solid var(--border);
+      overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+    .notes-bar::-webkit-scrollbar { display:none; }
+    .nb-btn { min-width:32px; height:32px; border-radius:var(--rx); border:1px solid var(--border);
+      background:var(--surf2); color:var(--text-dim); font-size:14px; cursor:pointer; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center; -webkit-tap-highlight-color:transparent; }
+    .nb-btn:active, .nb-btn.on { background:var(--mint-dim); border-color:var(--border2); color:var(--mint); }
+    .nb-sel { height:32px; border-radius:var(--rx); border:1px solid var(--border); background:var(--surf2);
+      color:var(--text-dim); font-size:12px; padding:0 6px; cursor:pointer; flex-shrink:0; outline:none;
+      appearance:none; -webkit-appearance:none; }
+    .nb-sel:focus { border-color:var(--mint); }
+    .nb-div { width:1px; height:20px; background:var(--border); flex-shrink:0; }
+    .nb-colors { display:flex; gap:6px; flex-shrink:0; }
+    .nb-sw { width:23px; height:23px; border-radius:50%; border:2px solid transparent; cursor:pointer;
+      flex-shrink:0; padding:0; -webkit-tap-highlight-color:transparent; box-shadow:0 0 0 1px var(--border) inset; }
+    .nb-sw:active { transform:scale(.88); }
+    #note-editor { min-height:calc(100dvh - 230px); padding:18px 18px 60px; outline:none; white-space:pre-wrap;
+      font-size:16px; line-height:1.75; color:var(--text); caret-color:var(--mint);
+      -webkit-user-select:text; user-select:text; word-break:break-word; }
+    #note-editor:empty:before { content:attr(data-ph); color:var(--text-muted); pointer-events:none; }
+    #note-editor:focus { outline:none; }
+    .notes-foot { font-size:11px; color:var(--text-muted); text-align:center;
+      padding:0 18px calc(var(--nav-h) + var(--safe) + 14px); }
+
     .empty { text-align:center; padding:32px 20px; color:var(--text-muted); }
     .empty-icon { display:flex; align-items:center; justify-content:center; width:44px; height:44px; margin:0 auto 12px; opacity:.35; }
     .empty-text { font-size:13px; line-height:1.7; }
@@ -600,6 +627,34 @@ CREATE POLICY "own" ON budget_data
     <div id="dep-list"></div>
   </section>
 
+  <!-- ── NOTES ── -->
+  <section class="section" id="s-notes">
+    <div class="notes-bar">
+      <button class="nb-btn" data-cmd="bold" title="Gras"><b>B</b></button>
+      <button class="nb-btn" data-cmd="italic" title="Italique"><i>I</i></button>
+      <button class="nb-btn" data-cmd="underline" title="Souligné"><u>U</u></button>
+      <span class="nb-div"></span>
+      <select class="nb-sel" id="nb-font" title="Police">
+        <option value="-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif">Système</option>
+        <option value="Georgia,'Times New Roman',serif">Serif</option>
+        <option value="'Courier New',monospace">Mono</option>
+        <option value="'Bradley Hand','Segoe Script','Comic Sans MS',cursive">Manuscrite</option>
+        <option value="'Arial Black','Arial Bold',Gadget,sans-serif">Épaisse</option>
+      </select>
+      <select class="nb-sel" id="nb-size" title="Taille">
+        <option value="3">Normal</option>
+        <option value="2">Petit</option>
+        <option value="5">Grand</option>
+        <option value="6">Titre</option>
+      </select>
+      <span class="nb-div"></span>
+      <span class="nb-colors" id="nb-colors"></span>
+    </div>
+    <div id="note-editor" contenteditable="true" spellcheck="false"
+         data-ph="Écris ce que tu veux ici…"></div>
+    <div class="notes-foot" id="notes-foot">Enregistré automatiquement</div>
+  </section>
+
 </div><!-- #app -->
 
 <nav class="nav-bar">
@@ -610,6 +665,10 @@ CREATE POLICY "own" ON budget_data
   <div class="nav-item" id="nav-depenses" onclick="navigate('depenses')" role="button">
     <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><circle cx="7" cy="15" r="1" fill="currentColor" stroke="none"/></svg></span>
     <span class="nav-lbl">Dépenses</span><span class="nav-dot"></span>
+  </div>
+  <div class="nav-item" id="nav-notes" onclick="navigate('notes')" role="button">
+    <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14a1 1 0 011 1v16a1 1 0 01-1 1H5a1 1 0 01-1-1V4a1 1 0 011-1z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
+    <span class="nav-lbl">Notes</span><span class="nav-dot"></span>
   </div>
 </nav>
 
@@ -761,7 +820,8 @@ const DEF = {
   depenses:[],      // {id,montant,cat,desc,date,ts}
   chargesRec:[],    // {id,nom,emoji,montantMensuel,payé}
   revenus:[],       // {id,montant,desc,ts}
-  evenements:[],    // {id,nom,emoji,prix,date,cat,done}
+  evenements:[],    // conservé pour ne rien perdre des anciennes données
+  notes:'',         // bloc-notes libre (HTML mis en forme)
   carryOver:0
 };
 let S = JSON.parse(JSON.stringify(DEF));
@@ -776,6 +836,7 @@ function normalize(){
   if(S.mode!=='mois'&&S.mode!=='semaine') S.mode='semaine';
   if(typeof S.carryOver!=='number') S.carryOver=0;
   if(typeof S.budget!=='number') S.budget=DEF.budget;
+  if(typeof S.notes!=='string') S.notes='';
   if(!S.period_start) S.period_start=today();
   // Ordre manuel des dépenses — ajouté à la volée sur les anciennes données,
   // calé sur l'horodatage pour que l'ordre affiché reste identique.
@@ -1082,7 +1143,7 @@ function closeModal(id){document.getElementById(id).classList.remove('open');}
 function overlayClick(e,id){if(e.target.id===id)closeModal(id);}
 
 // ═══ NAVIGATION + SWIPE ═══
-const PAGES=['home','depenses'];
+const PAGES=['home','depenses','notes'];
 let curPage='home';
 function navigate(page,dir){
   if(!PAGES.includes(page))return;
@@ -1100,13 +1161,16 @@ function navigate(page,dir){
   document.getElementById('nav-'+page).classList.add('active');
   pageScrollTop();
   if(page==='home')renderHome();
-  else renderDepenses();
+  else if(page==='depenses')renderDepenses();
+  else renderNotes();
 }
 function initSwipe(){
   const app=document.getElementById('app');
   let x0=null,y0=null,t0=0;
   app.addEventListener('touchstart',e=>{
     if(e.touches.length!==1){x0=null;return;}
+    // Dans le bloc-notes on laisse la sélection de texte tranquille.
+    if(e.target.closest('#note-editor,.notes-bar')){x0=null;return;}
     x0=e.touches[0].clientX;y0=e.touches[0].clientY;t0=Date.now();
   },{passive:true});
   app.addEventListener('touchend',e=>{
@@ -1658,6 +1722,166 @@ function renderCharges(){
     </div>`;
   }).join('');
 }
+
+// ═══ NOTES ═══
+const NOTE_COLORS=[
+  {c:'#e6efe9',n:'Blanc'},{c:'#7ee7a9',n:'Vert'},{c:'#ff6b81',n:'Rouge'},
+  {c:'#ffb46b',n:'Orange'},{c:'#6fc3e8',n:'Bleu'},{c:'#b49cf5',n:'Violet'},
+  {c:'#ffe066',n:'Jaune'},{c:'#8ba396',n:'Gris'}
+];
+// Le contenu vient d'un champ éditable : on retire tout ce qui pourrait
+// s'exécuter avant de le réinjecter dans la page.
+function cleanNote(html){
+  const tpl=document.createElement('template');
+  tpl.innerHTML=String(html||'');
+  tpl.content.querySelectorAll('script,style,iframe,object,embed,link,meta,form,input,button,svg').forEach(n=>n.remove());
+  tpl.content.querySelectorAll('*').forEach(el=>{
+    [...el.attributes].forEach(at=>{
+      const n=at.name.toLowerCase();
+      if(n==='style'||n==='color'||n==='face'||n==='size') return;
+      el.removeAttribute(at.name);
+    });
+  });
+  return tpl.innerHTML;
+}
+let _noteTimer=null,_noteLoaded=false;
+const dayHead=(d)=>`${DAYSL[d.getDay()]} ${d.getDate()} ${MONTHS[d.getMonth()]}`;
+// Première ouverture : le jour d'aujourd'hui et celui de demain, chacun
+// avec une puce prête. La suite, l'utilisateur l'ajoute lui-même.
+function seedNotes(){
+  const a=new Date(),b=new Date();b.setDate(b.getDate()+1);
+  const h=(d)=>`<div><b><span style="color:#7ee7a9">${dayHead(d)}</span></b></div>`;
+  return h(a)+'<div>- </div><div><br></div>'+h(b)+'<div>- </div><div><br></div>';
+}
+function caretTo(el,atEnd){
+  try{
+    const r=document.createRange();r.selectNodeContents(el);r.collapse(!atEnd);
+    const s=window.getSelection();s.removeAllRanges();s.addRange(r);
+  }catch(e){}
+}
+function renderNotes(){
+  const ed=document.getElementById('note-editor');
+  if(!ed)return;
+  let seeded=false;
+  if(!_noteLoaded){
+    buildNoteColors();
+    const clean=cleanNote(S.notes);
+    if(!clean.replace(/<[^>]*>/g,'').replace(/ /g,' ').trim()){
+      ed.innerHTML=seedNotes();
+      S.notes=ed.innerHTML; save(); seeded=true;
+    } else ed.innerHTML=clean;
+    _noteLoaded=true;
+  }
+  // On arrive sur l'onglet : le curseur est déjà posé, prêt à écrire.
+  setTimeout(()=>{
+    try{
+      ed.focus({preventScroll:true});
+      const bullet=seeded
+        ? [...ed.children].find(c=>/^\s*-\s*$/.test(c.textContent))
+        : null;
+      caretTo(bullet||ed,true);
+    }catch(e){}
+  },60);
+}
+function buildNoteColors(){
+  const box=document.getElementById('nb-colors');
+  if(!box||box.children.length)return;
+  box.innerHTML=NOTE_COLORS.map(x=>
+    `<button class="nb-sw" data-color="${x.c}" title="${x.n}" aria-label="${x.n}" style="background:${x.c}"></button>`).join('');
+}
+function saveNotes(){
+  const ed=document.getElementById('note-editor');
+  if(!ed)return;
+  S.notes=cleanNote(ed.innerHTML);
+  save();
+  const f=document.getElementById('notes-foot');
+  if(f){ f.textContent='Enregistré ✓'; clearTimeout(f._t);
+    f._t=setTimeout(()=>{f.textContent='Enregistré automatiquement';},1400); }
+}
+(function(){
+  const ed=()=>document.getElementById('note-editor');
+  const bar=()=>document.querySelector('.notes-bar');
+  // Garde le focus dans la feuille quand on touche la barre d'outils,
+  // sinon la sélection est perdue et la mise en forme ne s'applique à rien.
+  document.addEventListener('pointerdown',e=>{
+    if(e.target.closest('.notes-bar') && !e.target.closest('.nb-sel')) e.preventDefault();
+  });
+  function exec(cmd,val){
+    const e=ed(); if(!e)return;
+    e.focus({preventScroll:true});
+    try{document.execCommand('styleWithCSS',false,true);}catch(err){}
+    try{document.execCommand(cmd,false,val==null?undefined:val);}catch(err){}
+    saveNotes(); refreshBar();
+  }
+  function refreshBar(){
+    const b=bar(); if(!b)return;
+    b.querySelectorAll('.nb-btn[data-cmd]').forEach(btn=>{
+      let on=false;
+      try{on=document.queryCommandState(btn.dataset.cmd);}catch(e){}
+      btn.classList.toggle('on',!!on);
+    });
+  }
+  document.addEventListener('click',e=>{
+    const btn=e.target.closest('.notes-bar .nb-btn[data-cmd]');
+    if(btn){ exec(btn.dataset.cmd); return; }
+    const sw=e.target.closest('.notes-bar .nb-sw[data-color]');
+    if(sw){ exec('foreColor',sw.dataset.color); return; }
+  });
+  document.addEventListener('change',e=>{
+    if(e.target.id==='nb-font') exec('fontName',e.target.value);
+    else if(e.target.id==='nb-size') exec('fontSize',e.target.value);
+  });
+  document.addEventListener('input',e=>{
+    if(e.target.id!=='note-editor')return;
+    clearTimeout(_noteTimer);
+    _noteTimer=setTimeout(saveNotes,600);
+  });
+  // Ligne courante = enfant direct de l'éditeur contenant le curseur.
+  function curLine(e){
+    const sel=window.getSelection();
+    if(!sel.rangeCount)return null;
+    let n=sel.getRangeAt(0).startContainer;
+    if(n===e)return null;
+    while(n&&n.parentNode!==e)n=n.parentNode;
+    return (n&&n.nodeType===1)?n:null;
+  }
+  const BULLET=/^\s*[-–—•]\s*/;
+  // Entrée sur une puce remplie -> nouvelle puce.
+  // Entrée sur une puce vide    -> on sort de la liste (texte normal).
+  document.addEventListener('keydown',ev=>{
+    if(ev.key!=='Enter'||ev.shiftKey)return;
+    const e=ed(); if(!e||!e.contains(ev.target))return;
+    const line=curLine(e); if(!line)return;
+    const txt=line.textContent.replace(/ /g,' ');
+    if(!BULLET.test(txt))return;
+    ev.preventDefault();
+    if(!txt.replace(BULLET,'').trim()){
+      line.innerHTML='<br>';       // puce vide : on la vide
+      caretTo(line,false);
+    } else {
+      const nd=document.createElement('div');
+      nd.textContent='- ';
+      line.after(nd);
+      caretTo(nd,true);
+      nd.scrollIntoView({block:'nearest'});
+    }
+    clearTimeout(_noteTimer);_noteTimer=setTimeout(saveNotes,300);
+  });
+  // Colle en texte brut : évite d'importer la mise en forme d'ailleurs.
+  document.addEventListener('paste',e=>{
+    if(!e.target.closest || !e.target.closest('#note-editor'))return;
+    e.preventDefault();
+    const t=(e.clipboardData||window.clipboardData).getData('text/plain');
+    try{document.execCommand('insertText',false,t);}catch(err){}
+    clearTimeout(_noteTimer);_noteTimer=setTimeout(saveNotes,300);
+  });
+  document.addEventListener('selectionchange',()=>{
+    if(curPage==='notes')refreshBar();
+  });
+  document.addEventListener('blur',e=>{
+    if(e.target&&e.target.id==='note-editor')saveNotes();
+  },true);
+})();
 
 // ═══ DÉTAIL CATÉGORIE ═══
 function openCatDetail(cat){
