@@ -168,7 +168,24 @@
     .dep-tab-hero::after { content:''; position:absolute; bottom:0; left:0; right:0; height:50px; background:linear-gradient(to bottom,transparent,var(--bg)); pointer-events:none; }
     .dep-tab-lbl   { font-size:10px; font-weight:600; letter-spacing:1.8px; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px; position:relative; }
     .dep-tab-total { font-size:38px; font-weight:800; letter-spacing:-.8px; color:var(--rose); position:relative; font-variant-numeric:tabular-nums; font-family:Georgia,'Times New Roman',serif; }
-    .dep-tab-sub   { font-size:12px; color:var(--text-muted); margin-top:5px; position:relative; }
+    .dep-tab-sub   { font-size:12px; color:var(--text-muted); margin-top:10px; position:relative; }
+    .dt-duo   { display:flex; align-items:flex-start; gap:16px; position:relative; }
+    .dt-sep   { width:1px; align-self:stretch; background:var(--border); flex-shrink:0; }
+    .dt-lbl   { font-size:10px; font-weight:600; letter-spacing:1.4px; text-transform:uppercase; color:var(--text-dim); margin-bottom:3px; white-space:nowrap; }
+    .dt-big   { font-size:29px; font-weight:800; letter-spacing:-.8px; font-variant-numeric:tabular-nums; font-family:Georgia,'Times New Roman',serif; line-height:1.1; }
+    .dt-big.paid { color:var(--rose); }
+    .dt-big.wait { color:var(--orange); }
+    .dt-big.wait.zero { color:var(--text-muted); }
+    .dt-unit  { font-size:13px; font-weight:600; margin-left:3px; vertical-align:middle; }
+
+    /* CASE À COCHER SUR LES DÉPENSES */
+    .dep-tick { width:23px; height:23px; border-radius:7px; border:2px solid rgba(255,255,255,.16); background:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:transparent; flex-shrink:0; padding:0; transition:all .18s; -webkit-tap-highlight-color:transparent; }
+    .dep-tick svg { width:13px; height:13px; }
+    .dep-tick.on { border-color:var(--rose); background:var(--rose-dim); color:var(--rose); }
+    .dep-item-row.wait { border-style:dashed; border-color:rgba(255,180,107,.35); background:rgba(255,180,107,.04); }
+    .dep-item-row.wait .dep-item-amt { color:var(--orange); }
+    .dep-item-row.wait .dep-item-name { color:var(--text-dim); }
+    .day-wait { font-size:11px; font-weight:700; color:var(--orange); font-variant-numeric:tabular-nums; }
     .dep-cat-block { margin:14px 16px 0; }
     .dep-cat-header { display:flex; align-items:center; gap:10px; margin-bottom:8px; padding:0 2px; }
     .dep-cat-name  { flex:1; font-size:14px; font-weight:700; }
@@ -555,36 +572,30 @@ CREATE POLICY "own" ON budget_data
   <!-- ── DÉPENSES ── -->
   <section class="section" id="s-depenses">
     <div class="dep-tab-hero">
-      <div class="dep-tab-lbl">Total dépensé</div>
-      <div class="dep-tab-total" id="dt-total">0 DH</div>
+      <div class="dt-duo">
+        <div>
+          <div class="dt-lbl">Dépensé</div>
+          <div class="dt-big paid" id="dt-total">0<span class="dt-unit">DH</span></div>
+        </div>
+        <div class="dt-sep"></div>
+        <div>
+          <div class="dt-lbl">En attente</div>
+          <div class="dt-big wait" id="dt-wait">0<span class="dt-unit">DH</span></div>
+        </div>
+      </div>
       <div class="dep-tab-sub" id="dt-sub">—</div>
     </div>
-    <div id="dep-list"></div>
-  </section>
 
-  <!-- ── CALENDRIER ── -->
-  <section class="section" id="s-calendrier">
-    <div class="cal-hero">
-      <div class="cal-hero-lbl" id="cal-lbl">Charges à payer</div>
-      <div class="cal-hero-next" id="cal-total">0 DH</div>
-      <div class="cal-hero-sub" id="cal-sub">—</div>
-    </div>
     <div class="sec-head">
-      <div class="sec-title"><span>🔁</span> Mes charges</div>
+      <div class="sec-title"><span>🔁</span> Charges fixes</div>
       <button class="add-btn" onclick="openAddCharge()">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
       </button>
     </div>
-    <div class="sec-sub" id="cf-hint">Coche une charge quand tu l'as payée — elle se déduit du budget.</div>
+    <div class="sec-sub" id="cf-hint">Coche quand c'est payé — ça se déduit du budget.</div>
     <div style="padding:0 16px" id="charges-list"></div>
 
-    <div class="sec-head">
-      <div class="sec-title"><span>📌</span> Événements</div>
-      <button class="add-btn" onclick="openAddEvent()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </button>
-    </div>
-    <div style="padding:0 16px 16px" id="events-list"></div>
+    <div id="dep-list"></div>
   </section>
 
 </div><!-- #app -->
@@ -597,10 +608,6 @@ CREATE POLICY "own" ON budget_data
   <div class="nav-item" id="nav-depenses" onclick="navigate('depenses')" role="button">
     <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><circle cx="7" cy="15" r="1" fill="currentColor" stroke="none"/></svg></span>
     <span class="nav-lbl">Dépenses</span><span class="nav-dot"></span>
-  </div>
-  <div class="nav-item" id="nav-calendrier" onclick="navigate('calendrier')" role="button">
-    <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><circle cx="8" cy="15" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="15" r="1" fill="currentColor" stroke="none"/></svg></span>
-    <span class="nav-lbl">Calendrier</span><span class="nav-dot"></span>
   </div>
 </nav>
 
@@ -653,38 +660,6 @@ CREATE POLICY "own" ON budget_data
   <button class="submit-btn" onclick="saveCharge()">Ajouter la charge</button>
   <button class="cancel-btn" onclick="closeModal('m-addcharge')">Annuler</button>
 </div></div>
-
-<div class="overlay" id="m-addevent" onclick="overlayClick(event,'m-addevent')"><div class="sheet">
-  <div class="sheet-handle"></div>
-  <div class="sheet-title">📌 Nouvel événement</div>
-  <div class="two-col">
-    <div class="form-group"><label class="form-lbl">Emoji</label><input type="text" class="form-input" id="ev-emoji" placeholder="🎂" maxlength="4"></div>
-    <div class="form-group"><label class="form-lbl">Nom</label><input type="text" class="form-input" id="ev-nom" placeholder="Anniversaire…"></div>
-  </div>
-  <div class="two-col">
-    <div class="form-group"><label class="form-lbl">Date</label><input type="date" class="form-input" id="ev-date"></div>
-    <div class="form-group"><label class="form-lbl">Prix (DH)</label><input type="number" class="form-input" id="ev-prix" placeholder="0" min="0"></div>
-  </div>
-  <div class="form-group">
-    <label class="form-lbl">Catégorie</label>
-    <div class="cat-btns" id="ev-cat-btns"></div>
-  </div>
-  <button class="submit-btn" onclick="saveEvent()">Ajouter l'événement</button>
-  <button class="cancel-btn" onclick="closeModal('m-addevent')">Annuler</button>
-</div></div>
-
-<div class="overlay" id="m-confirm" onclick="overlayClick(event,'m-confirm')"><div class="sheet">
-  <div class="sheet-handle"></div>
-  <div class="sheet-title">Confirmer la dépense</div>
-  <div class="confirm-box">
-    <div class="confirm-name" id="cf-ev-name">—</div>
-    <div class="confirm-meta" id="cf-ev-meta">—</div>
-    <div class="confirm-impact" id="cf-ev-impact">—</div>
-  </div>
-  <button class="submit-btn" onclick="doComplete()">Oui, c'est payé</button>
-  <button class="cancel-btn" onclick="closeModal('m-confirm')">Annuler</button>
-</div></div>
-
 <div class="overlay" id="m-adddep" onclick="overlayClick(event,'m-adddep')"><div class="sheet">
   <div class="sheet-handle"></div>
   <div class="sheet-title" id="adep-title">Ajouter une dépense</div>
@@ -739,24 +714,32 @@ const I = {
   x:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
   check:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
   pencil: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>',
-  grip:   '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="6" r="1.55"/><circle cx="15" cy="6" r="1.55"/><circle cx="9" cy="12" r="1.55"/><circle cx="15" cy="12" r="1.55"/><circle cx="9" cy="18" r="1.55"/><circle cx="15" cy="18" r="1.55"/></svg>'
+  grip:   '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="6" r="1.55"/><circle cx="15" cy="6" r="1.55"/><circle cx="9" cy="12" r="1.55"/><circle cx="15" cy="12" r="1.55"/><circle cx="9" cy="18" r="1.55"/><circle cx="15" cy="18" r="1.55"/></svg>',
+  cup:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 010 8h-1"/><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4z"/><path d="M6 2v3M10 2v3M14 2v3"/></svg>',
+  refund: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h12a5 5 0 010 10h-3"/><polyline points="7 6 3 10 7 14"/></svg>'
 };
 const icon = (k,px=18)=>`<span class="svg-icon" style="width:${px}px;height:${px}px">${I[k]||I.grid}</span>`;
 
 // ═══ CATEGORIES ═══
+// Les CLÉS ne changent jamais (nourriture, sorties, divers…) : les dépenses
+// déjà enregistrées y font référence. Seuls les libellés affichés évoluent.
 const CATS = {
-  nourriture:{name:'Nourriture', k:'food',  col:'var(--mint)'},
-  transport: {name:'Transport',  k:'car',   col:'var(--blue)'},
-  sorties:   {name:'Sorties',    k:'party', col:'var(--purple)'},
-  plaisirs:  {name:'Plaisirs',   k:'heart', col:'var(--orange)'},
-  divers:    {name:'Divers',     k:'grid',  col:'var(--rose)'}
+  nourriture:   {name:'Nourriture',      k:'food',   col:'var(--mint)'},
+  boisson:      {name:'Boisson',         k:'cup',    col:'var(--blue)'},
+  plaisirs:     {name:'Plaisir',         k:'heart',  col:'var(--orange)'},
+  sorties:      {name:'Activité',        k:'party',  col:'var(--purple)'},
+  transport:    {name:'Transport',       k:'car',    col:'var(--blue)'},
+  divers:       {name:'Choses de la vie',k:'grid',   col:'var(--rose)'},
+  remboursement:{name:'Remboursement',   k:'refund', col:'var(--mint-deep)'}
 };
 const KEYWORDS = {
-  nourriture:['resto','restaurant','manger','course','courses','marché','pizza','burger','café','cafe','pain','snack','tacos','sandwich','epicerie','épicerie','boulangerie'],
-  transport: ['taxi','essence','bus','train','tram','uber','carburant','péage','parking','métro','metro','voiture'],
-  sorties:   ['ciné','cinema','cinéma','sortie','bar','club','concert','soirée','soiree','boite','boîte','match'],
-  plaisirs:  ['cadeau','shopping','vêtement','vetement','habit','jeu','jeux','cosmétique','coiffeur','parfum','sneakers','nike'],
-  divers:    ['divers','autre','imprévu','imprevu','pharmacie','médecin','medecin']
+  nourriture:   ['resto','restaurant','manger','course','courses','marché','pizza','burger','pain','snack','tacos','sandwich','epicerie','épicerie','boulangerie','tajine','couscous'],
+  boisson:      ['boisson','café','cafe','thé','the','jus','soda','coca','eau','bouteille','smoothie','cappuccino','latte','biere','bière'],
+  plaisirs:     ['cadeau','shopping','vêtement','vetement','habit','jeu','jeux','cosmétique','coiffeur','parfum','sneakers','nike','plaisir'],
+  sorties:      ['ciné','cinema','cinéma','sortie','bar','club','concert','soirée','soiree','boite','boîte','match','activité','activite','sport','piscine'],
+  transport:    ['taxi','essence','bus','train','tram','uber','carburant','péage','parking','métro','metro','voiture'],
+  divers:       ['divers','autre','imprévu','imprevu','pharmacie','médecin','medecin','facture','courses maison','menage','ménage'],
+  remboursement:['remboursement','rembourse','rembourser','dette','dois','pret','prêt','credit','crédit','avance']
 };
 
 const DAYS   = ['dim','lun','mar','mer','jeu','ven','sam'];
@@ -772,7 +755,7 @@ const DEF = {
   mode:'semaine',
   budget:1400,
   period_start:today(),
-  cat_budgets:{nourriture:0,transport:0,sorties:0,plaisirs:0,divers:0},
+  cat_budgets:{nourriture:0,boisson:0,plaisirs:0,sorties:0,transport:0,divers:0,remboursement:0},
   depenses:[],      // {id,montant,cat,desc,date,ts}
   chargesRec:[],    // {id,nom,emoji,montantMensuel,payé}
   revenus:[],       // {id,montant,desc,ts}
@@ -798,14 +781,21 @@ function normalize(){
     if(typeof d.ord!=='number'||!isFinite(d.ord)){
       d.ord = d.ts ? new Date(d.ts).getTime() : (d.date ? new Date(d.date+'T12:00:00').getTime() : 0);
     }
+    // Dépenses d'avant la case à cocher : déjà payées, donc cochées.
+    // Les totaux du budget restent ainsi strictement identiques.
+    if(typeof d.coche!=='boolean') d.coche=true;
   });
 }
 function load(){
+  let had=false;
   try{
     const r=localStorage.getItem('bf-v3')||localStorage.getItem('bf-v2');
-    if(r){ S={...JSON.parse(JSON.stringify(DEF)),...JSON.parse(r)}; }
+    if(r){ S={...JSON.parse(JSON.stringify(DEF)),...JSON.parse(r)}; had=true; }
   }catch(e){}
   normalize();
+  // Réécrit le format normalisé (champs ord/coche ajoutés) pour ne pas
+  // remigrer à chaque ouverture. Écriture locale seule : pas de synchro cloud.
+  if(had){ try{ localStorage.setItem('bf-v3',JSON.stringify(S)); }catch(e){} }
 }
 
 // ═══ SUPABASE ═══
@@ -1018,11 +1008,13 @@ const chargesDue  = ()=>chargesTotal()-chargesPaid();
 
 const totalRevenus= ()=>S.revenus.reduce((a,r)=>a+r.montant,0);
 const budgetTotal = ()=>S.budget+totalRevenus();
-const totalLogged = ()=>S.depenses.reduce((a,d)=>a+d.montant,0);
+const totalLogged = ()=>S.depenses.filter(d=>d.coche).reduce((a,d)=>a+d.montant,0);
+const depAttente  = ()=>S.depenses.filter(d=>!d.coche).reduce((a,d)=>a+d.montant,0);
 const totalSpent  = ()=>totalLogged()+chargesPaid();
+const totalAttente= ()=>depAttente()+chargesDue();
 const restant     = ()=>budgetTotal()-totalSpent();
 
-const logCat    = (c)=>S.depenses.filter(d=>d.cat===c).reduce((a,d)=>a+d.montant,0);
+const logCat    = (c)=>S.depenses.filter(d=>d.cat===c&&d.coche).reduce((a,d)=>a+d.montant,0);
 const catBudget = (c)=>S.cat_budgets[c]||0;
 const catRest   = (c)=>catBudget(c)-logCat(c);
 
@@ -1059,7 +1051,7 @@ function shouldReset(){
   return S.period_start < (isMois()?firstOfMonthStr():lastSundayStr());
 }
 function bootUI(){
-  buildQuickCats();buildEvCatBtns();selQCat('nourriture');
+  buildQuickCats();selQCat('nourriture');
   if(!S.setup_done){ S.carryOver=0; openWizard(true); return; }
   if(shouldReset()){ S.carryOver=Math.max(0,restant()); openWizard(false,true); return; }
   renderAll();
@@ -1088,7 +1080,7 @@ function closeModal(id){document.getElementById(id).classList.remove('open');}
 function overlayClick(e,id){if(e.target.id===id)closeModal(id);}
 
 // ═══ NAVIGATION + SWIPE ═══
-const PAGES=['home','depenses','calendrier'];
+const PAGES=['home','depenses'];
 let curPage='home';
 function navigate(page,dir){
   if(!PAGES.includes(page))return;
@@ -1106,8 +1098,7 @@ function navigate(page,dir){
   document.getElementById('nav-'+page).classList.add('active');
   pageScrollTop();
   if(page==='home')renderHome();
-  else if(page==='depenses')renderDepenses();
-  else renderCal();
+  else renderDepenses();
 }
 function initSwipe(){
   const app=document.getElementById('app');
@@ -1132,7 +1123,7 @@ function initSwipe(){
 }
 
 function renderAll(){
-  renderHome();renderDepenses();renderCal();
+  renderHome();renderDepenses();
 }
 
 // ═══ WIZARD ═══
@@ -1238,7 +1229,7 @@ function logDepense(){
   const desc=document.getElementById('q-desc').value.trim();
   if(!amt||amt<=0){toast('Entre un montant');return;}
   const n=new Date();
-  S.depenses.push({id:uid(),montant:amt,cat:selCat,desc:desc||CATS[selCat].name,date:ymd(n),ts:n.toISOString(),ord:n.getTime()});
+  S.depenses.push({id:uid(),montant:amt,cat:selCat,desc:desc||CATS[selCat].name,date:ymd(n),ts:n.toISOString(),ord:n.getTime(),coche:true});
   save();
   document.getElementById('q-amount').value='';
   document.getElementById('q-desc').value='';
@@ -1347,34 +1338,23 @@ function delRevenu(id){
 
 // ═══ DÉPENSES TAB ═══
 function renderDepenses(){
-  const sp=totalSpent(),bt=budgetTotal();
-  document.getElementById('dt-total').textContent=fmt(sp)+' DH';
-  document.getElementById('dt-sub').textContent=`Sur ${fmt(bt)} DH · ${bt>0?Math.round(sp/bt*100):0}% utilisé`;
+  const sp=totalSpent(),wait=totalAttente(),bt=budgetTotal();
+  document.getElementById('dt-total').innerHTML=fmt(sp)+'<span class="dt-unit">DH</span>';
+  const wEl=document.getElementById('dt-wait');
+  wEl.innerHTML=fmt(wait)+'<span class="dt-unit">DH</span>';
+  wEl.className='dt-big wait'+(wait===0?' zero':'');
+  document.getElementById('dt-sub').textContent=
+    `Sur ${fmt(bt)} DH · ${bt>0?Math.round(sp/bt*100):0}% utilisé`+(wait>0?` · ${fmt(bt-sp-wait)} DH si tout est payé`:'');
+
+  renderCharges();
 
   let html='';
-
-  // Charges cochées (payées ce cycle)
-  const paid=S.chargesRec.filter(c=>c.payé);
-  if(paid.length){
-    const rows=paid.map(c=>`<div class="dep-item-row">
-      <span style="font-size:15px;flex-shrink:0">${esc(c.emoji||'🔁')}</span>
-      <span class="dep-item-time">charge</span>
-      <span class="dep-item-name">${esc(c.nom)}</span>
-      <span class="dep-item-amt">−${fmt(chargeAmt(c))} DH</span>
-    </div>`).join('');
-    html+=`<div class="dep-cat-block">
-      <div class="dep-cat-header">
-        <span class="svg-icon" style="width:20px;height:20px;color:var(--text-dim)">${I.repeat}</span>
-        <span class="dep-cat-name">Charges payées</span>
-        <span class="dep-cat-total">−${fmt(chargesPaid())} DH</span>
-      </div>${rows}</div>`;
-  }
 
   // Dépenses par jour — plus récent en haut
   const dates=[...new Set(S.depenses.map(d=>d.date))]
     .sort((a,b)=>new Date(b+'T00:00:00')-new Date(a+'T00:00:00'));
 
-  if(!dates.length&&!paid.length){
+  if(!dates.length){
     html+=`<div class="empty"><div class="empty-icon">${icon('wallet',44)}</div>
       <div class="empty-text">Aucune dépense enregistrée.<br>Utilise la saisie rapide sur l'accueil.</div></div>`;
   }
@@ -1382,7 +1362,8 @@ function renderDepenses(){
   dates.forEach((date,i)=>{
     const dayDeps=S.depenses.filter(d=>d.date===date)
       .sort((a,b)=>(b.ord||0)-(a.ord||0));
-    const dayTotal=dayDeps.reduce((a,d)=>a+d.montant,0);
+    const dayPaid=dayDeps.filter(d=>d.coche).reduce((a,d)=>a+d.montant,0);
+    const dayWait=dayDeps.filter(d=>!d.coche).reduce((a,d)=>a+d.montant,0);
     const dObj=new Date(date+'T00:00:00');
     const isToday=date===today();
     const label=(isToday?"Aujourd'hui":DAYSL[dObj.getDay()])+' '+dObj.getDate()+' '+MONTHS[dObj.getMonth()];
@@ -1390,7 +1371,9 @@ function renderDepenses(){
       const t=d.ts?new Date(d.ts):null;
       const hm=t?String(t.getHours()).padStart(2,'0')+':'+String(t.getMinutes()).padStart(2,'0'):'—';
       const c=CATS[d.cat]||CATS.divers;
-      return `<div class="dep-item-row" data-dep="${d.id}">
+      return `<div class="dep-item-row${d.coche?'':' wait'}" data-dep="${d.id}">
+        <button class="dep-tick${d.coche?' on':''}" data-tick="${d.id}"
+          title="${d.coche?'Payé — décocher pour remettre en attente':'En attente — cocher quand c\'est payé'}">${I.check}</button>
         <span class="svg-icon" style="width:15px;height:15px;color:${c.col}">${I[c.k]}</span>
         <span class="dep-item-time">${hm}</span>
         <span class="dep-item-name">${esc(d.desc||c.name)}</span>
@@ -1400,11 +1383,12 @@ function renderDepenses(){
         <button class="drag-grip" data-grip="${d.id}" title="Glisser pour déplacer" aria-label="Déplacer">${I.grip}</button>
       </div>`;
     }).join('');
-    html+=`${(i>0||paid.length)?'<div class="dep-divider"></div>':''}
+    html+=`${i>0?'<div class="dep-divider"></div>':''}
       <div class="dep-cat-block" data-date="${date}">
         <div class="dep-cat-header">
           <span class="dep-cat-name" ${isToday?'style="color:var(--mint)"':''}>${label}</span>
-          <span class="dep-cat-total">−${fmt(dayTotal)} DH</span>
+          ${dayWait>0?`<span class="day-wait">${fmt(dayWait)} en attente</span>`:''}
+          <span class="dep-cat-total">−${fmt(dayPaid)} DH</span>
           <button class="dep-add-btn" data-adddate="${date}">${I.plus}</button>
         </div>${rows}</div>`;
   });
@@ -1530,6 +1514,16 @@ function renderDepenses(){
 
 // délégation de clics (dépenses + revenus)
 document.addEventListener('click',function(e){
+  const tick=e.target.closest('[data-tick]');
+  if(tick){
+    const d=S.depenses.find(x=>String(x.id)===String(tick.dataset.tick));
+    if(d){
+      d.coche=!d.coche; save();
+      renderDepenses(); renderHome();
+      toast(d.coche?`Payé · −${fmt(d.montant)} DH`:`En attente · +${fmt(d.montant)} DH`);
+    }
+    return;
+  }
   const del=e.target.closest('[data-del]');
   if(del){ const id=del.dataset.del;
     S.depenses=S.depenses.filter(d=>String(d.id)!==String(id));
@@ -1563,7 +1557,7 @@ function saveAddDep(){
   const date=document.getElementById('adep-date').value||today();
   const desc=document.getElementById('adep-desc').value.trim();
   const base=new Date(date+'T12:00:00');
-  S.depenses.push({id:uid(),montant:amt,cat:addDepCat,desc:desc||CATS[addDepCat].name,date,ts:base.toISOString(),ord:Date.now()});
+  S.depenses.push({id:uid(),montant:amt,cat:addDepCat,desc:desc||CATS[addDepCat].name,date,ts:base.toISOString(),ord:Date.now(),coche:true});
   save();closeModal('m-adddep');toast(fmt(amt)+' DH ajouté');
   renderDepenses();renderHome();
 }
@@ -1621,138 +1615,46 @@ function saveCharge(){
   const emoji=document.getElementById('cf-emoji').value.trim()||'🔁';
   S.chargesRec.push({id:uid(),nom,emoji,montantMensuel:m,payé:false});
   save();closeModal('m-addcharge');toast('Charge ajoutée');
-  renderCal();renderHome();
+  renderHome();
 }
 function toggleCharge(id){
   const c=S.chargesRec.find(x=>String(x.id)===String(id));if(!c)return;
   c.payé=!c.payé;save();
   toast(c.payé?`${c.nom} payé · −${fmt(chargeAmt(c))} DH`:`${c.nom} décoché · +${fmt(chargeAmt(c))} DH`);
-  renderCal();renderHome();renderDepenses();
+  renderHome();renderDepenses();
 }
 function delCharge(id){
   S.chargesRec=S.chargesRec.filter(x=>String(x.id)!==String(id));
-  save();renderCal();renderHome();renderDepenses();toast('Charge supprimée');
+  save();renderHome();renderDepenses();toast('Charge supprimée');
 }
 
-// ═══ CALENDRIER — ÉVÉNEMENTS ═══
-let evCat=null;
-function buildEvCatBtns(){
-  document.getElementById('ev-cat-btns').innerHTML=Object.entries(CATS)
-    .map(([k,v])=>`<button class="cat-opt" data-c="${k}" onclick="selEvCat('${k}')">${icon(v.k,13)} ${v.name}</button>`).join('');
-}
-function selEvCat(c){
-  evCat=c;
-  document.querySelectorAll('#ev-cat-btns .cat-opt').forEach(b=>b.classList.toggle('sel',b.dataset.c===c));
-}
-function openAddEvent(){
-  evCat=null;
-  ['ev-nom','ev-emoji','ev-prix'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('ev-date').value=today();
-  document.querySelectorAll('#ev-cat-btns .cat-opt').forEach(b=>b.classList.remove('sel'));
-  openModal('m-addevent');
-}
-function saveEvent(){
-  const nom=document.getElementById('ev-nom').value.trim();
-  if(!nom){toast('Donne un nom');return;}
-  const date=document.getElementById('ev-date').value||today();
-  const prix=parseFloat(document.getElementById('ev-prix').value)||0;
-  const emoji=document.getElementById('ev-emoji').value.trim()||'📌';
-  S.evenements.push({id:uid(),nom,emoji,prix,date,cat:evCat||'divers',done:false});
-  save();closeModal('m-addevent');toast('Événement ajouté');
-  renderCal();
-}
-function delEvent(id){
-  S.evenements=S.evenements.filter(e=>String(e.id)!==String(id));
-  save();renderCal();renderHome();toast('Événement supprimé');
-}
-let pendingEv=null;
-function askComplete(id){
-  const ev=S.evenements.find(e=>String(e.id)===String(id));if(!ev)return;
-  pendingEv=id;
-  document.getElementById('cf-ev-name').textContent=`${ev.emoji} ${ev.nom}`;
-  const d=new Date(ev.date+'T00:00:00');
-  document.getElementById('cf-ev-meta').textContent=`${DAYSL[d.getDay()]} ${d.getDate()} ${MONTHS[d.getMonth()]} · ${fmt(ev.prix)} DH`;
-  document.getElementById('cf-ev-impact').textContent=ev.prix>0
-    ? `−${fmt(ev.prix)} DH · il restera ${fmt(restant()-ev.prix)} DH`
-    : 'Aucun impact sur le budget';
-  openModal('m-confirm');
-}
-function doComplete(){
-  const ev=S.evenements.find(e=>String(e.id)===String(pendingEv));if(!ev)return;
-  ev.done=true;
-  if(ev.prix>0){
-    const n=new Date();
-    S.depenses.push({id:uid(),montant:ev.prix,cat:ev.cat||'divers',desc:ev.nom,date:ymd(n),ts:n.toISOString(),ord:n.getTime()});
-  }
-  save();closeModal('m-confirm');
-  toast(ev.prix>0?`${ev.nom} · −${fmt(ev.prix)} DH`:`${ev.nom} fait ✓`);
-  renderCal();renderHome();renderDepenses();
-}
-
-function renderCal(){
-  const due=chargesDue(),tot=chargesTotal();
-  document.getElementById('cal-lbl').textContent=isMois()?'Charges restantes ce mois':'Charges restantes cette semaine';
-  document.getElementById('cal-total').textContent=fmt(due)+' DH';
-  document.getElementById('cal-sub').textContent=S.chargesRec.length
-    ? `${S.chargesRec.filter(c=>c.payé).length}/${S.chargesRec.length} cochées · ${fmt(tot)} DH au total`
-    : 'Ajoute tes charges récurrentes ci-dessous';
-  document.getElementById('cf-hint').innerHTML=isMois()
-    ? "Coche une charge quand tu l'as payée — elle se déduit du budget du mois."
-    : "Coche une charge quand tu l'as payée — montant mensuel ÷ 4, déduit du budget de la semaine.";
-
-  // charges
+function renderCharges(){
   const cl=document.getElementById('charges-list');
+  if(!cl)return;
+  document.getElementById('cf-hint').innerHTML=isMois()
+    ? "Coche quand c'est payé — ça se déduit du budget du mois."
+    : "Coche quand c'est payé — montant mensuel ÷ 4, déduit du budget de la semaine.";
   if(!S.chargesRec.length){
-    cl.innerHTML=`<div class="empty" style="padding:20px"><div class="empty-text">
-      Aucune charge.<br>Ajoute loyer, abonnements, crédits…<br>
+    cl.innerHTML=`<div class="empty" style="padding:16px 20px"><div class="empty-text">
+      Aucune charge fixe.<br>Ajoute loyer, abonnements, crédits…<br>
       <span style="color:var(--text-dim);font-size:12px">Rentre le montant <b>mensuel</b>, l'app l'adapte au mode.</span>
     </div></div>`;
-  } else {
-    cl.innerHTML=[...S.chargesRec].sort((a,b)=>(a.payé?1:0)-(b.payé?1:0)).map(c=>{
-      const amt=chargeAmt(c);
-      return `<div class="cf-card${c.payé?' paid':''}">
-        <button class="cf-check${c.payé?' on':''}" onclick="toggleCharge('${c.id}')">${I.check}</button>
-        <div class="cf-body">
-          <div class="cf-name"><span style="font-size:17px">${esc(c.emoji)}</span>${esc(c.nom)}</div>
-          <div class="cf-sub">${c.payé?'Payé — déduit du budget':(isMois()?'À payer ce mois':`${fmt(c.montantMensuel)} DH/mois ÷ 4`)}</div>
-        </div>
-        <div class="cf-right">
-          <span class="cf-amt" style="color:${c.payé?'var(--mint)':'var(--rose)'}">−${fmt(amt)} DH</span>
-          <button class="del-btn" onclick="delCharge('${c.id}')">${I.x}</button>
-        </div>
-      </div>`;
-    }).join('');
+    return;
   }
-
-  // événements
-  const el=document.getElementById('events-list');
-  const t=new Date();t.setHours(0,0,0,0);
-  const evs=[...S.evenements].sort((a,b)=>new Date(a.date+'T00:00:00')-new Date(b.date+'T00:00:00'));
-  if(!evs.length){
-    el.innerHTML=`<div class="empty" style="padding:20px"><div class="empty-text">Aucun événement prévu.</div></div>`;
-  } else {
-    el.innerHTML=evs.map(e=>{
-      const d=new Date(e.date+'T00:00:00');
-      const days=Math.round((d-t)/86400000);
-      let cls='ok',txt;
-      if(e.done){cls='past';txt='✓ Fait';}
-      else if(days<0){cls='past';txt='Passé';}
-      else if(days===0){cls='today';txt="Aujourd'hui";}
-      else if(days<=3){cls='soon';txt=`Dans ${days} jour${days>1?'s':''}`;}
-      else txt=`Dans ${days} jours`;
-      return `<div class="ev-card${e.done||days<0?' past':days===0?' today':''}">
-        <button class="cf-check${e.done?' on':''}" onclick="${e.done?'':`askComplete('${e.id}')`}">${I.check}</button>
-        <div class="ev-body">
-          <div class="ev-name"><span style="font-size:16px;margin-right:5px">${esc(e.emoji)}</span>${esc(e.nom)}</div>
-          <div class="ev-countdown ${cls}">${txt} · ${DAYS[d.getDay()]} ${d.getDate()} ${MONTHS[d.getMonth()]}</div>
-        </div>
-        <div class="ev-right">
-          ${e.prix>0?`<span class="ev-prix">−${fmt(e.prix)} DH</span>`:''}
-          <button class="del-btn" onclick="delEvent('${e.id}')">${I.x}</button>
-        </div>
-      </div>`;
-    }).join('');
-  }
+  cl.innerHTML=[...S.chargesRec].sort((a,b)=>(a.payé?1:0)-(b.payé?1:0)).map(c=>{
+    const amt=chargeAmt(c);
+    return `<div class="cf-card${c.payé?' paid':''}">
+      <button class="cf-check${c.payé?' on':''}" onclick="toggleCharge('${c.id}')">${I.check}</button>
+      <div class="cf-body">
+        <div class="cf-name"><span style="font-size:17px">${esc(c.emoji)}</span>${esc(c.nom)}</div>
+        <div class="cf-sub">${c.payé?'Payé — déduit du budget':(isMois()?'À payer ce mois':`${fmt(c.montantMensuel)} DH/mois ÷ 4`)}</div>
+      </div>
+      <div class="cf-right">
+        <span class="cf-amt" style="color:${c.payé?'var(--mint)':'var(--orange)'}">−${fmt(amt)} DH</span>
+        <button class="del-btn" onclick="delCharge('${c.id}')">${I.x}</button>
+      </div>
+    </div>`;
+  }).join('');
 }
 
 // ═══ DÉTAIL CATÉGORIE ═══
