@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FORMA — Système de marque</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#07080B; --app:#0D0F13; --surface:#15181E; --surface-2:#1A1E24;
+    --paper:#F2F4EE; --mute:rgba(242,244,238,.62); --faint:rgba(242,244,238,.38);
+    --accent:#4F7DD1; --accent-deep:#3A5EA3;
+    --red:#FF5938; --amber:#FFB43C; --green:#7BD957;
+    --line:rgba(255,255,255,.08);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ink);color:var(--paper);
+       font-family:'Space Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px 96px}
+  header{padding:88px 0 56px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
+  h1{font-size:clamp(34px,6vw,58px);line-height:1.02;letter-spacing:-.02em;margin:0 0 20px;font-weight:700}
+  .lede{font-size:17px;line-height:1.6;color:var(--mute);max-width:62ch;margin:0}
+  h2{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);
+     font-weight:500;margin:0 0 20px}
+  section{padding:64px 0;border-bottom:1px solid var(--line)}
+  .concept-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .concept-head .n{font-size:12px;color:var(--accent);letter-spacing:.14em}
+  .concept-head h3{font-size:28px;letter-spacing:-.01em;margin:0;font-weight:700}
+  .concept-head .tag{font-size:12px;color:var(--faint);border:1px solid var(--line);
+     border-radius:999px;padding:4px 10px}
+  .why{color:var(--mute);line-height:1.65;max-width:64ch;margin:0 0 28px;font-size:15px}
+  .why b{color:var(--paper);font-weight:500}
+  .stage{background:var(--app);border:1px solid var(--line);border-radius:22px;
+     padding:44px 36px;display:flex;align-items:center;justify-content:center;min-height:180px}
+  .grid{display:grid;gap:14px;margin-top:14px}
+  .g3{grid-template-columns:1.6fr 1fr 1fr}
+  .g2{grid-template-columns:1fr 1fr}
+  .cell{background:var(--surface);border:1px solid var(--line);border-radius:18px;
+     padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;min-height:150px}
+  .cell.light{background:var(--paper);border-color:rgba(0,0,0,.08)}
+  .cell .lab{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+  .cell.light .lab{color:rgba(13,15,19,.45)}
+  .sizes{display:flex;align-items:flex-end;gap:26px}
+  .sizes figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:10px}
+  .sizes figcaption{font-size:10px;color:var(--faint)}
+  .tile{width:76px;height:76px;border-radius:17px;overflow:hidden;
+     box-shadow:0 10px 30px rgba(0,0,0,.5)}
+  .tile img{display:block;width:100%;height:100%}
+  .swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .sw{border-radius:16px;border:1px solid var(--line);overflow:hidden;background:var(--surface)}
+  .sw .chip{height:72px}
+  .sw .meta{padding:12px 14px}
+  .sw .name{font-size:13px}
+  .sw .hex{font-size:11px;color:var(--faint);letter-spacing:.06em}
+  .rules{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+  .rule{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+  .rule h4{margin:0 0 8px;font-size:14px;font-weight:500}
+  .rule p{margin:0;font-size:13px;line-height:1.6;color:var(--mute)}
+  .rule.no{border-color:rgba(255,89,56,.28)}
+  .rule.no h4{color:var(--red)}
+  .rule.yes{border-color:rgba(123,217,87,.28)}
+  .rule.yes h4{color:var(--green)}
+  ul.files{list-style:none;padding:0;margin:0;font-size:13px;color:var(--mute);line-height:1.9}
+  ul.files code{color:var(--paper);background:var(--surface);border:1px solid var(--line);
+     border-radius:6px;padding:2px 7px;font-size:12px}
+  footer{padding:48px 0 0;color:var(--faint);font-size:13px;line-height:1.7}
+  @media(max-width:820px){.g3,.g2,.rules,.swatches{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.g3,.g2,.rules,.swatches{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">FORMA · Identité visuelle</p>
+  <h1>Quatre pistes de logo,<br>construites sur le produit.</h1>
+  <p class="lede">Pas de dessin décoratif : chaque marque part d'un mécanisme réel de l'application —
+  le cycle de suivi, la relation coach&nbsp;/&nbsp;élève, la salle, la coche quotidienne. Toutes sont
+  vectorielles, dessinées sur une grille de 64&nbsp;px, alignées sur les tokens du prototype
+  (accent <b>#4F7DD1</b>, Space&nbsp;Grotesk) et lisibles jusqu'à 16&nbsp;px dans la barre d'onglets.</p>
+</header>
+
+<!-- 1 -->
+<section>
+  <div class="concept-head"><span class="n">PISTE 01</span><h3>ORBE</h3>
+    <span class="tag">Monogramme</span><span class="tag">Le cycle de suivi</span></div>
+  <p class="why">Un anneau de progression ouvert à <b>290°</b> — jamais tout à fait refermé, parce que la
+  semaine suivante recommence — serré autour du <b>F</b> de Space Grotesk, la police de l'app.
+  Le point vert au bout de l'arc est le relevé du jour, exactement comme le dernier nœud d'une courbe de poids.
+  C'est la piste la plus « produit » : elle raconte le suivi, pas la musculation.</p>
+  <div class="stage"><img src="lockups/forma-orbe-lockup-h.svg" height="64" alt="Logo horizontal ORBE"></div>
+  <div class="grid g3">
+    <div class="cell"><img src="marks/forma-orbe.svg" width="96" height="96" alt=""><span class="lab">Marque</span></div>
+    <div class="cell"><img src="marks/forma-orbe-mono-light.svg" width="72" height="72" alt=""><span class="lab">Mono clair</span></div>
+    <div class="cell light"><img src="marks/forma-orbe-mono-dark.svg" width="72" height="72" alt=""><span class="lab">Mono sombre</span></div>
+  </div>
+  <div class="grid g2">
+    <div class="cell"><div class="tile"><img src="app-icons/forma-orbe-1024.svg" alt=""></div><span class="lab">Icône d'app</span></div>
+    <div class="cell"><div class="sizes">
+      <figure><img src="marks/forma-orbe.svg" width="48" height="48" alt=""><figcaption>48</figcaption></figure>
+      <figure><img src="marks/forma-orbe.svg" width="32" height="32" alt=""><figcaption>32</figcaption></figure>
+      <figure><img src="marks/forma-orbe.svg" width="24" height="24" alt=""><figcaption>24</figcaption></figure>
+      <figure><img src="marks/forma-orbe.svg" width="16" height="16" alt=""><figcaption>16</figcaption></figure>
+    </div><span class="lab">Tenue en petit</span></div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section>
+  <div class="concept-head"><span class="n">PISTE 02</span><h3>ÉLAN</h3>
+    <span class="tag">Abstrait</span><span class="tag">Coach &amp; élève</span></div>
+  <p class="why">Deux chevrons : le coach devant, l'élève dans sa foulée, même geste, même direction.
+  De loin c'est une <b>flèche vers le haut</b> ; de près, le <b>A</b> de FORMA. C'est la seule piste qui
+  dit ce que vend l'app — une relation, pas un tracker. Elle survit à tout : 16&nbsp;px, gravure,
+  fond photo, une seule couleur.</p>
+  <div class="stage"><img src="lockups/forma-elan-lockup-h.svg" height="64" alt="Logo horizontal ÉLAN"></div>
+  <div class="grid g3">
+    <div class="cell"><img src="marks/forma-elan.svg" width="96" height="96" alt=""><span class="lab">Marque</span></div>
+    <div class="cell"><img src="marks/forma-elan-mono-light.svg" width="72" height="72" alt=""><span class="lab">Mono clair</span></div>
+    <div class="cell light"><img src="marks/forma-elan-mono-dark.svg" width="72" height="72" alt=""><span class="lab">Mono sombre</span></div>
+  </div>
+  <div class="grid g2">
+    <div class="cell"><div class="tile"><img src="app-icons/forma-elan-1024.svg" alt=""></div><span class="lab">Icône d'app</span></div>
+    <div class="cell"><div class="sizes">
+      <figure><img src="marks/forma-elan.svg" width="48" height="48" alt=""><figcaption>48</figcaption></figure>
+      <figure><img src="marks/forma-elan.svg" width="32" height="32" alt=""><figcaption>32</figcaption></figure>
+      <figure><img src="marks/forma-elan.svg" width="24" height="24" alt=""><figcaption>24</figcaption></figure>
+      <figure><img src="marks/forma-elan.svg" width="16" height="16" alt=""><figcaption>16</figcaption></figure>
+    </div><span class="lab">Tenue en petit</span></div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section>
+  <div class="concept-head"><span class="n">PISTE 03</span><h3>BARRE</h3>
+    <span class="tag">Monogramme</span><span class="tag">La salle</span></div>
+  <p class="why">Le <b>F</b> dont la barre médiane s'est chargée : un haltère complet — barre, deux disques,
+  manchons — d'un seul aplat, soudé au fût de la lettre. La seule piste explicitement « salle » :
+  immédiatement classée par quelqu'un qui découvre l'icône, au prix d'un registre plus commun.
+  C'est aussi la plus fragile en très petit — <b>en dessous de 24&nbsp;px, la lecture se brouille</b> :
+  prévoir le logotype ou une autre piste pour la barre d'onglets.</p>
+  <div class="stage"><img src="lockups/forma-barre-lockup-h.svg" height="64" alt="Logo horizontal BARRE"></div>
+  <div class="grid g3">
+    <div class="cell"><img src="marks/forma-barre.svg" width="96" height="96" alt=""><span class="lab">Marque</span></div>
+    <div class="cell"><img src="marks/forma-barre-mono-light.svg" width="72" height="72" alt=""><span class="lab">Mono clair</span></div>
+    <div class="cell light"><img src="marks/forma-barre-mono-dark.svg" width="72" height="72" alt=""><span class="lab">Mono sombre</span></div>
+  </div>
+  <div class="grid g2">
+    <div class="cell"><div class="tile"><img src="app-icons/forma-barre-1024.svg" alt=""></div><span class="lab">Icône d'app</span></div>
+    <div class="cell"><div class="sizes">
+      <figure><img src="marks/forma-barre.svg" width="48" height="48" alt=""><figcaption>48</figcaption></figure>
+      <figure><img src="marks/forma-barre.svg" width="32" height="32" alt=""><figcaption>32</figcaption></figure>
+      <figure><img src="marks/forma-barre.svg" width="24" height="24" alt=""><figcaption>24</figcaption></figure>
+      <figure><img src="marks/forma-barre.svg" width="16" height="16" alt=""><figcaption>16</figcaption></figure>
+    </div><span class="lab">Tenue en petit</span></div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section>
+  <div class="concept-head"><span class="n">PISTE 04</span><h3>CAP</h3>
+    <span class="tag">Abstrait</span><span class="tag">La coche du jour</span></div>
+  <p class="why">La coche quotidienne de l'écran Élève (<i>entraînement&nbsp;: oui — repas&nbsp;: oui</i>)
+  ne s'arrête pas : son montant continue et devient une flèche. C'est l'argument central du coaching —
+  <b>la trajectoire n'est que l'accumulation des jours cochés</b> — dessiné en un seul trait.
+  Le clair est la coche telle qu'on la valide le soir ; l'accent prend le relais au point où
+  un signe ordinaire se serait arrêté.</p>
+  <div class="stage"><img src="lockups/forma-cap-lockup-h.svg" height="64" alt="Logo horizontal CAP"></div>
+  <div class="grid g3">
+    <div class="cell"><img src="marks/forma-cap.svg" width="96" height="96" alt=""><span class="lab">Marque</span></div>
+    <div class="cell"><img src="marks/forma-cap-mono-light.svg" width="72" height="72" alt=""><span class="lab">Mono clair</span></div>
+    <div class="cell light"><img src="marks/forma-cap-mono-dark.svg" width="72" height="72" alt=""><span class="lab">Mono sombre</span></div>
+  </div>
+  <div class="grid g2">
+    <div class="cell"><div class="tile"><img src="app-icons/forma-cap-1024.svg" alt=""></div><span class="lab">Icône d'app</span></div>
+    <div class="cell"><div class="sizes">
+      <figure><img src="marks/forma-cap.svg" width="48" height="48" alt=""><figcaption>48</figcaption></figure>
+      <figure><img src="marks/forma-cap.svg" width="32" height="32" alt=""><figcaption>32</figcaption></figure>
+      <figure><img src="marks/forma-cap.svg" width="24" height="24" alt=""><figcaption>24</figcaption></figure>
+      <figure><img src="marks/forma-cap.svg" width="16" height="16" alt=""><figcaption>16</figcaption></figure>
+    </div><span class="lab">Tenue en petit</span></div>
+  </div>
+</section>
+
+<!-- Logotype -->
+<section>
+  <h2>Logotype</h2>
+  <p class="why">Space Grotesk Bold, interlettrage <b>+4&nbsp;%</b> pour tenir en petit, tracés
+  <b>vectorisés</b> : aucun SVG ne dépend d'une webfont installée. Variante de droite réservée à la
+  piste ORBE — le O devient l'anneau, le mot porte alors la marque à lui seul.</p>
+  <div class="grid g2">
+    <div class="cell"><img src="lockups/forma-wordmark.svg" height="46" alt="FORMA"><span class="lab">Standard</span></div>
+    <div class="cell"><img src="lockups/forma-wordmark-orbe.svg" height="46" alt="FORMA, O ouvert"><span class="lab">O ouvert</span></div>
+  </div>
+  <div class="grid g2">
+    <div class="cell"><img src="lockups/forma-elan-lockup-v.svg" height="118" alt=""><span class="lab">Lockup vertical</span></div>
+    <div class="cell light"><img src="lockups/forma-orbe-lockup-h-mono-dark.svg" height="46" alt=""><span class="lab">Fond clair — lockup monochrome</span></div>
+  </div>
+</section>
+
+<!-- Palette -->
+<section>
+  <h2>Palette</h2>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#4F7DD1"></div><div class="meta"><div class="name">Accent</div><div class="hex">#4F7DD1</div></div></div>
+    <div class="sw"><div class="chip" style="background:#3A5EA3"></div><div class="meta"><div class="name">Accent profond</div><div class="hex">#3A5EA3</div></div></div>
+    <div class="sw"><div class="chip" style="background:#F2F4EE"></div><div class="meta"><div class="name">Papier</div><div class="hex">#F2F4EE</div></div></div>
+    <div class="sw"><div class="chip" style="background:#0D0F13"></div><div class="meta"><div class="name">Encre</div><div class="hex">#0D0F13</div></div></div>
+    <div class="sw"><div class="chip" style="background:#7BD957"></div><div class="meta"><div class="name">Progression</div><div class="hex">#7BD957</div></div></div>
+    <div class="sw"><div class="chip" style="background:#FFB43C"></div><div class="meta"><div class="name">Vigilance</div><div class="hex">#FFB43C</div></div></div>
+    <div class="sw"><div class="chip" style="background:#FF5938"></div><div class="meta"><div class="name">Alerte</div><div class="hex">#FF5938</div></div></div>
+    <div class="sw"><div class="chip" style="background:#15181E"></div><div class="meta"><div class="name">Surface</div><div class="hex">#15181E</div></div></div>
+  </div>
+</section>
+
+<!-- Règles -->
+<section>
+  <h2>Règles d'usage</h2>
+  <div class="rules">
+    <div class="rule yes"><h4>Air minimum</h4><p>Réserver autour du logo une marge égale à la hauteur
+      de la capitale du mot (34&nbsp;px pour un lockup de 64&nbsp;px). Rien n'entre dedans.</p></div>
+    <div class="rule yes"><h4>Taille plancher</h4><p>Marque seule&nbsp;: 16&nbsp;px. Lockup horizontal&nbsp;:
+      24&nbsp;px de hauteur de marque. En dessous, passer à la marque seule.</p></div>
+    <div class="rule no"><h4>Ne pas recolorier</h4><p>Le vert et l'ambre sont <b>sémantiques</b> dans
+      l'app (progression, vigilance). Hors du point de progression, le logo ne les utilise pas.</p></div>
+    <div class="rule no"><h4>Ne pas déformer</h4><p>Pas d'étirement, de rotation, d'ombre portée, de contour
+      ajouté. Sur fond photo ou clair&nbsp;: version monochrome, jamais la version couleur.</p></div>
+  </div>
+</section>
+
+<!-- Fichiers -->
+<section style="border:0">
+  <h2>Fichiers</h2>
+  <ul class="files">
+    <li><code>brand/marks/</code> — les 4 marques, en couleur + mono clair + mono sombre (<code>currentColor</code>, donc colorables en CSS)</li>
+    <li><code>brand/lockups/</code> — lockups horizontaux (couleur + mono clair + mono sombre) et verticaux, logotype seul, logotype à O ouvert</li>
+    <li><code>brand/app-icons/</code> — dalles 1024 px prêtes pour l'export iOS / Android</li>
+    <li><code>brand/favicons/</code> — 32 px</li>
+    <li><code>brand/tools/build_logos.py</code> — le générateur : toute la géométrie et la vectorisation du texte vivent là, les SVG sont des sorties</li>
+  </ul>
+  <footer>Tracés sur une grille de 64&nbsp;px · Space Grotesk (SIL OFL 1.1) vectorisée ·
+  Tokens repris du prototype <i>FORMA — Appli Coach</i>.</footer>
+</section>
+
+</div>
+</body>
+</html>
