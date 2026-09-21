@@ -42,3 +42,17 @@ Réflexes :
 Si aucun skill ne couvre le sujet, dis-le en une ligne et réponds directement.
 
 Quand tu utilises un skill, **annonce-le en une ligne** au début de ta réponse.
+
+## Toujours afficher ce que tu produis (obligatoire)
+
+Quand tu crées ou modifies un artefact (site, page, schéma, visuel), tu ne te
+contentes jamais de donner le lien :
+
+1. **Tu l'ouvres** — `Artifact( action: "open", url: ... )`, à chaque publication
+   et à chaque mise à jour.
+2. **Tu envoies un aperçu image** — capture Playwright en `file://`, puis
+   `SendUserFile` avec `display: "render"`. Reste sous 5 Mo par image
+   (`jpeg`, `quality: 72`, `deviceScaleFactor: 1` pour les pages longues).
+3. **Tu dis en une ligne ce qui a changé**, pas ce qui existe.
+
+Voir le skill `montre-moi`.
