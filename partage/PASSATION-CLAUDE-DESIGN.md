@@ -139,6 +139,37 @@ la garantie « pas comme prévu ? on reprend », et l'absence totale de faux avi
 
 ---
 
+## 6 bis. Exigence explicite du propriétaire — attribution des clics
+
+Demandée nommément, à intégrer au site dès la reconstruction.
+
+**Le besoin** : savoir de quelle vidéo vient chaque clic, et lequel a fini en commande.
+Le lien en bio Instagram est unique, donc rien ne distingue les sources par défaut.
+
+**Ce que le site doit faire :**
+
+1. Accepter des paramètres dans l'URL — au minimum `?v=<numéro de vidéo>` et
+   `?p=<code produit>`, ou des UTM standard (`utm_source`, `utm_medium`, `utm_content`).
+2. **Mémoriser la source dès la première visite** et la conserver jusqu'à la commande.
+   Un clic attribué qui se perd au bout de deux pages ne sert à rien.
+3. **Rattacher la source à la commande**, pas seulement à la visite. C'est la seule
+   façon de savoir quelle vidéo a fait vendre, et pas juste quelle vidéo a fait cliquer.
+4. Exposer une page de relevé : clics et commandes par vidéo, par produit, par jour.
+
+**Côté Instagram** : une page bio avec **un bouton par produit**, chaque bouton
+portant ses paramètres. Ça attribue le produit sans dépendre d'un reel précis — et
+c'est exactement ce que le clic est censé mesurer dans la méthode (les clics jugent
+le produit, la rétention juge le hook).
+
+Pour descendre à la vidéo près, il faut faire tourner le lien en bio à chaque
+publication. À arbitrer avec le propriétaire : gain réel contre charge quotidienne.
+
+**Ce qui existe déjà et ne suffit pas** : Metricool donne les clics dans le temps.
+Avec deux publications par jour à heure fixe, la courbe sépare correctement midi
+du soir — mais ça reste une déduction, pas une attribution.
+
+---
+
 ## 7. La grille de prix (figée)
 
 Validée. Ne pas modifier sans accord explicite.
