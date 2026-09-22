@@ -56,3 +56,22 @@ contentes jamais de donner le lien :
 3. **Tu dis en une ligne ce qui a changé**, pas ce qui existe.
 
 Voir le skill `montre-moi`.
+
+## Un plan avant d'agir (obligatoire)
+
+Ne lance **jamais** une action qui consomme des crédits, de l'argent, ou qui
+produit un effet extérieur, avant d'avoir présenté un plan et obtenu un oui.
+
+Concerné : scraping (Apify, ScrapeCreators), génération d'images ou de vidéos
+(Higgs Field), publication, achats, appels d'API payants.
+
+Le plan tient en quelques lignes et dit toujours :
+1. Les étapes, dans l'ordre
+2. **Ce que ça coûte** — crédits, argent, temps
+3. Où se trouve le point de validation avant la première dépense
+4. Ce qu'on obtient à la fin
+
+Une étape gratuite et réversible (lire un fichier, chercher dans le repo,
+écrire un brouillon local) ne demande pas de plan.
+
+Ne crée aucun fichier sans demander d'abord. Attends le oui.
