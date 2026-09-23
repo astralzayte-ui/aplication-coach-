@@ -22,7 +22,7 @@ Guide pas à pas : `guides/etape-1-outils.md`
 
 ## Étape 3 — Prospection (toi)
 - ✅ Accès Google Drive testé (compte astralzayte@gmail.com)
-- ✅ Lien client (relu sur capture, à confirmer) : https://docs.google.com/forms/d/e/1FAIpQLSdi8TdPCkn8NXu9gUG9mdvEtbMgEiSgeX3q3PuiUMrK3mrKTQ/viewform
+- ✅ Lien client (vérifié, version V3) : https://docs.google.com/forms/d/e/1FAIpQLSdi8TdPCkn8NXu9gUG9mdvEtbMgEiSgeX3q3PuiUMrK3mrKTQ/viewform
 - ✅ Google Form créé : https://docs.google.com/forms/d/1ldDv-l5HZtRyAnomwYz6TWRs56snThL90FLpsl73_jQ/edit · Réponses : Google Sheet id 1bL_39qJ3cPVC8J0j0wiW8Wm4OXotvLpkU6s91tEtioE
 - ✅ Nom : **Sahir Digital** (ساهر ديجيتال) — ⬜ vérifier dispo (OMPIC, nom de domaine, Instagram)
 - ✅ Prix validés (questionnaire `clients/_modele/message-client.md`)
