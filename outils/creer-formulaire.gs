@@ -12,7 +12,11 @@ function creerFormulaireSahir() {
 
   // Section 1 — Services
   form.addTextItem().setTitle('Nom du commerce').setRequired(true);
-  form.addTextItem().setTitle('Votre numéro WhatsApp').setRequired(true);
+  form.addTextItem().setTitle('Votre numéro WhatsApp').setRequired(true)
+    .setHelpText('Le numéro sur lequel vous avez WhatsApp : c\'est là qu\'on vous contactera.')
+    .setValidation(FormApp.createTextValidation()
+      .setHelpText('Entrez le numéro sur lequel vous avez WhatsApp (ex. 06 12 34 56 78 ou +212 6 12 34 56 78).')
+      .requireTextMatchesPattern('^ *(\\+212|\\+33|00212|0033|0) *[67]([ .-]?[0-9]){8} *$').build());
   form.addMultipleChoiceItem().setTitle('⭐ Packs (prix réduits)').setChoiceValues([
     'Aucun pack (je choisis à la carte)',
     'Pack Essentiel : 7 vidéos + 7 stories + IA WhatsApp — 450 DH / semaine',
@@ -52,7 +56,7 @@ function creerFormulaireSahir() {
   form.addTextItem().setTitle('Nom de site souhaité (ex. spaserenite.com)');
 
   form.setConfirmationMessage(
-    'Merci ! Envoyez-nous maintenant sur WhatsApp votre logo (si vous en avez un), 5 à 10 photos du lieu et l\'acompte de 400 DH. — Sahir Digital');
+    'Merci ! Nous vous contacterons d\'ici peu sur WhatsApp. Si vous avez des questions, écrivez-nous directement sur WhatsApp. — Sahir Digital');
 
   var ss = SpreadsheetApp.create('Sahir Digital — Réponses clients');
   form.setDestination(FormApp.DestinationType.SPREADSHEET, ss.getId());
