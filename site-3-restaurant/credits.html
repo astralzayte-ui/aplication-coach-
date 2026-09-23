@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mentions légales et crédits — Dar Zaafran</title>
+  <meta name="description" content="Projet de démonstration : restaurant fictif. Crédits des photos utilisées sous licence Creative Commons.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#16100c">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@400;500&family=Amiri&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="credits">
+  <a class="lien-passer" href="#contenu" data-i18n="lien.passer">Aller au contenu</a>
+  <header id="entete" class="entete"></header>
+
+  <main id="contenu" class="conteneur page-texte">
+    <div class="tete-page">
+      <h1 data-i18n="credits.titre">Mentions légales et crédits</h1>
+    </div>
+    <p class="intro" data-i18n="credits.demo">Ce site est un projet de démonstration.</p>
+
+    <h2 data-i18n="credits.donnees" style="margin-top:48px">Données personnelles</h2>
+    <p data-i18n="credits.donnees.texte">Aucune donnée n'est envoyée à un serveur.</p>
+
+    <h2 data-i18n="credits.photos" style="margin-top:48px">Photos</h2>
+    <p data-i18n="credits.photos.texte">Les photos sont utilisées à titre d'illustration.</p>
+    <!-- Tableau généré depuis la liste CREDITS de donnees.js -->
+    <div class="defile-x">
+      <table class="credits">
+        <thead><tr><th data-i18n="credits.photo">Photo</th><th data-i18n="credits.auteur">Auteur</th><th data-i18n="credits.licence">Licence</th></tr></thead>
+        <tbody id="liste-credits"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer id="pied" class="pied"></footer>
+
+  <script src="js/horaires.js"></script>
+  <script src="js/donnees.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/commun.js"></script>
+  <script>
+    // Une ligne par photo : miniature, auteur (lien vers la source), licence.
+    document.getElementById('liste-credits').innerHTML = CREDITS.map(function (c) {
+      return '<tr><td><img src="images/' + c[0] + '-560.webp" alt="" loading="lazy" width="64" height="48"></td>' +
+        '<td><a href="' + echapper(c[3]) + '" target="_blank" rel="noopener">' + echapper(c[1]) + '</a></td><td>' + echapper(c[2]) + '</td></tr>';
+    }).join('');
+  </script>
+</body>
+</html>

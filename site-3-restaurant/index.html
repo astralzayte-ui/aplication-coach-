@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Dar Zaafran — Restaurant marocain, médina de Marrakech</title>
+  <meta name="description" content="Dar Zaafran : cuisine marocaine de famille dans un riad de la médina de Marrakech, à 3 minutes de Jemaa el-Fna. Tajines, couscous du vendredi, terrasse face à l'Atlas. Réservation en ligne.">
+  <meta name="theme-color" content="#16100c">
+  <meta property="og:type" content="restaurant">
+  <meta property="og:title" content="Dar Zaafran — Restaurant marocain à Marrakech">
+  <meta property="og:description" content="Cuisine de famille dans un riad de la médina. Réservation en ligne, confirmation sur WhatsApp.">
+  <meta property="og:image" content="images/koutoubia.webp">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@400;500&family=Amiri&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preload" as="image" href="images/koutoubia.webp" imagesrcset="images/koutoubia-560.webp 560w, images/koutoubia.webp 1024w" imagesizes="100vw">
+
+  <!-- Données structurées (schema.org) : Google comprend que c'est un restaurant,
+       avec ses horaires, son adresse et sa cuisine (affichage enrichi dans les résultats). -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Dar Zaafran",
+    "servesCuisine": "Marocaine",
+    "priceRange": "DH 100–200",
+    "telephone": "+212693511445",
+    "address": { "@type": "PostalAddress", "streetAddress": "12 Derb Zaafran, Médina", "addressLocality": "Marrakech", "addressCountry": "MA" },
+    "geo": { "@type": "GeoCoordinates", "latitude": 31.6258, "longitude": -7.9891 },
+    "acceptsReservations": "True",
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "12:30", "closes": "15:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "19:00", "closes": "23:30" }
+    ]
+  }
+  </script>
+</head>
+<body data-page="accueil" class="avec-hero">
+  <a class="lien-passer" href="#contenu" data-i18n="lien.passer">Aller au contenu</a>
+  <header id="entete" class="entete"></header>
+
+  <main id="contenu">
+    <!-- 1. Héro : la photo de la Koutoubia défile plus lentement que le texte (parallaxe) -->
+    <section class="hero sur-photo" data-parallaxe="0.35">
+      <img class="parallaxe-image" src="images/koutoubia.webp" srcset="images/koutoubia-560.webp 560w, images/koutoubia.webp 1024w" sizes="100vw"
+           alt="Le minaret de la Koutoubia au crépuscule, vu depuis une terrasse de la médina" fetchpriority="high">
+      <div class="voile"></div>
+      <div class="conteneur">
+        <p class="surtitre" data-i18n="hero.surtitre">Cuisine marocaine · Médina de Marrakech</p>
+        <h1 data-i18n="hero.titre">Le goût du safran, <em>au cœur de la médina.</em></h1>
+        <div class="hero-bas">
+          <div>
+            <p class="intro" data-i18n="hero.texte">Un riad du XVIIIe siècle, une cuisine de marché et des recettes transmises de mère en fille.</p>
+            <div class="actions">
+              <a class="btn btn-principal" href="reservation.html" data-i18n="hero.reserver">Réserver une table</a>
+              <a class="btn btn-contour" href="menu.html" data-i18n="hero.carte">Découvrir la carte</a>
+            </div>
+          </div>
+          <p class="hero-arabe" lang="ar" aria-hidden="true">دار الزعفران</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. La maison -->
+    <section class="section">
+      <div class="conteneur maison">
+        <div class="maison-photos" data-apparition>
+          <img class="photo-principale" src="images/riad-patio.webp" srcset="images/riad-patio-560.webp 560w, images/riad-patio.webp 1024w" sizes="(min-width: 900px) 45vw, 100vw" alt="Le patio du riad, sa fontaine et son sol en terre cuite" loading="lazy">
+          <img class="photo-secondaire" src="images/the-menthe-560.webp" alt="Thé à la menthe servi sur un plateau en argent" loading="lazy" width="560" height="373">
+        </div>
+        <div data-apparition>
+          <p class="surtitre" data-i18n="maison.surtitre">Notre maison</p>
+          <h2 data-i18n="maison.titre">Une cuisine de famille, dans un riad de famille</h2>
+          <p class="intro" data-i18n="maison.texte1"></p>
+          <p class="texte-doux" data-i18n="maison.texte2"></p>
+          <div class="chiffres">
+            <div><strong>40</strong><span data-i18n="maison.chiffre1">ans de recettes familiales</span></div>
+            <div><strong>3 min</strong><span data-i18n="maison.chiffre2">de la place Jemaa el-Fna</span></div>
+            <div><strong>36</strong><span data-i18n="maison.chiffre3">couverts, pas un de plus</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Plats signatures (remplis par js/accueil.js à partir de la carte) -->
+    <section class="section" style="padding-top:0">
+      <div class="conteneur">
+        <div class="entete-section">
+          <div><p class="surtitre" data-i18n="signatures.surtitre">Les signatures</p><h2 data-i18n="signatures.titre">Trois plats pour une première visite</h2></div>
+          <a class="lien-fleche" href="menu.html"><span data-i18n="signatures.lien">Voir toute la carte</span><span id="icone-fleche"></span></a>
+        </div>
+        <div class="signatures" id="signatures"></div>
+      </div>
+    </section>
+
+    <!-- 4. Bande pleine largeur en parallaxe -->
+    <section class="bande sur-photo" data-parallaxe="0.45" aria-label="Citation">
+      <img class="parallaxe-image" src="images/lanterne-lumiere.webp" srcset="images/lanterne-lumiere-560.webp 560w, images/lanterne-lumiere.webp 1024w" sizes="100vw" alt="" loading="lazy">
+      <div class="voile"></div>
+      <div class="conteneur">
+        <p class="citation" data-i18n="citation">« On ne sert pas un repas, on reçoit des invités. »</p>
+        <p class="citation-auteur" data-i18n="citation.auteur">Lalla Khadija, en cuisine depuis 1987</p>
+      </div>
+    </section>
+
+    <!-- 5. L'expérience -->
+    <section class="section">
+      <div class="conteneur">
+        <div class="entete-section"><div><p class="surtitre" data-i18n="expe.surtitre">L'expérience</p><h2 data-i18n="expe.titre">Trois façons de vivre Dar Zaafran</h2></div></div>
+        <div class="experiences">
+          <article class="experience" data-apparition>
+            <img src="images/riad-zellige-560.webp" srcset="images/riad-zellige-560.webp 560w, images/riad-zellige.webp 1024w" sizes="(min-width: 900px) 33vw, 100vw" alt="Escalier de zellige et fontaine dans le patio" loading="lazy">
+            <h3 data-i18n="expe.patio.titre">Le patio</h3><p class="texte-doux" data-i18n="expe.patio.texte"></p>
+          </article>
+          <article class="experience" data-apparition>
+            <img src="images/terrasse-atlas-560.webp" srcset="images/terrasse-atlas-560.webp 560w, images/terrasse-atlas.webp 1024w" sizes="(min-width: 900px) 33vw, 100vw" alt="Vue de la terrasse sur les toits et les montagnes de l'Atlas" loading="lazy">
+            <h3 data-i18n="expe.terrasse.titre">La terrasse</h3><p class="texte-doux" data-i18n="expe.terrasse.texte"></p>
+          </article>
+          <article class="experience" data-apparition>
+            <img src="images/salon-rouge-560.webp" srcset="images/salon-rouge-560.webp 560w, images/salon-rouge.webp 1024w" sizes="(min-width: 900px) 33vw, 100vw" alt="Le salon rouge dressé pour un dîner" loading="lazy">
+            <h3 data-i18n="expe.salon.titre">Le salon rouge</h3><p class="texte-doux" data-i18n="expe.salon.texte"></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Avis (fictifs) -->
+    <section class="section" style="padding-top:0">
+      <div class="conteneur">
+        <div class="entete-section"><div><p class="surtitre" data-i18n="avis.surtitre">Ils sont venus</p><h2 data-i18n="avis.titre">Ce qu'en disent nos invités</h2></div></div>
+        <div class="avis" id="avis"></div>
+      </div>
+    </section>
+
+    <!-- 7. Appel à réserver, sur photo en parallaxe -->
+    <section class="appel sur-photo" data-parallaxe="0.3">
+      <img class="parallaxe-image" src="images/table-lanterne.webp" srcset="images/table-lanterne-560.webp 560w, images/table-lanterne.webp 1024w" sizes="100vw" alt="" loading="lazy">
+      <div class="voile"></div>
+      <div class="conteneur">
+        <h2 data-i18n="cta.titre">Une table vous attend ce soir</h2>
+        <p class="intro" data-i18n="cta.texte"></p>
+        <div class="actions"><a class="btn btn-principal" href="reservation.html" data-i18n="hero.reserver">Réserver une table</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="pied" class="pied"></footer>
+
+  <script src="js/horaires.js"></script>
+  <script src="js/donnees.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/commun.js"></script>
+  <script src="js/accueil.js"></script>
+</body>
+</html>

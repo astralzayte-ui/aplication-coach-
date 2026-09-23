@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Page introuvable — Dar Zaafran</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#16100c">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@400;500&family=Amiri&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="erreur" class="avec-hero">
+  <a class="lien-passer" href="#contenu" data-i18n="lien.passer">Aller au contenu</a>
+  <header id="entete" class="entete"></header>
+
+  <main id="contenu">
+    <section class="bandeau-page sur-photo" style="min-height:100vh;align-items:center" data-parallaxe="0.3">
+      <img class="parallaxe-image" src="images/lanterne-lumiere.webp" srcset="images/lanterne-lumiere-560.webp 560w, images/lanterne-lumiere.webp 1024w" sizes="100vw" alt="" fetchpriority="high">
+      <div class="voile"></div>
+      <div class="conteneur">
+        <p class="surtitre">404</p>
+        <h1 data-i18n="erreur.titre">Cette page n'existe pas</h1>
+        <p class="intro" data-i18n="erreur.texte">Le lien est peut-être ancien.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px">
+          <a class="btn btn-principal" href="index.html" data-i18n="erreur.retour">Retour à l'accueil</a>
+          <a class="btn btn-contour" href="menu.html" data-i18n="nav.menu">La carte</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="pied" class="pied"></footer>
+
+  <script src="js/horaires.js"></script>
+  <script src="js/donnees.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/commun.js"></script>
+</body>
+</html>

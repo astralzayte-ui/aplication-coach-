@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Réserver une table — Dar Zaafran, Marrakech</title>
+  <meta name="description" content="Réservez votre table chez Dar Zaafran : choisissez la date, l'heure et le nombre de personnes, confirmation sur WhatsApp.">
+  <meta name="theme-color" content="#16100c">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@400;500&family=Amiri&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="reservation">
+  <a class="lien-passer" href="#contenu" data-i18n="lien.passer">Aller au contenu</a>
+  <header id="entete" class="entete"></header>
+
+  <main id="contenu" class="conteneur">
+    <div class="tete-page">
+      <p class="surtitre" data-i18n="resa.surtitre">Réservation</p>
+      <h1 data-i18n="resa.titre">Réserver une table</h1>
+      <p class="intro" data-i18n="resa.texte">Choisissez votre date et votre heure : nous confirmons sur WhatsApp dans l'heure.</p>
+    </div>
+
+    <div class="reservation">
+      <!-- Formulaire : tous les contrôles sont dessinés sur mesure (calendrier, créneaux, compteur, liste) -->
+      <form class="formulaire" id="formulaire" novalidate>
+        <div class="groupe">
+          <span class="etiquette-champ" id="etiquette-date" data-i18n="resa.date">Date</span>
+          <div class="calendrier" id="calendrier" aria-labelledby="etiquette-date"></div>
+          <p class="erreur" id="erreur-date" aria-live="polite"></p>
+        </div>
+
+        <div class="groupe">
+          <span class="etiquette-champ" data-i18n="resa.heure">Heure</span>
+          <div class="creneaux" id="creneaux"></div>
+          <p class="erreur" id="erreur-heure" aria-live="polite"></p>
+        </div>
+
+        <div class="groupe">
+          <span class="etiquette-champ" id="etiquette-couverts" data-i18n="resa.couverts">Nombre de personnes</span>
+          <div class="compteur" role="group" aria-labelledby="etiquette-couverts">
+            <button type="button" id="moins" aria-label="−1">−</button>
+            <output id="couverts" aria-live="polite">2</output>
+            <button type="button" id="plus" aria-label="+1">+</button>
+          </div>
+          <p class="aide" id="aide-groupe"></p>
+          <p class="erreur" id="erreur-couverts" aria-live="polite"></p>
+        </div>
+
+        <div class="deux-colonnes">
+          <div class="groupe">
+            <label for="nom" data-i18n="resa.nom">Votre nom</label>
+            <input class="champ" id="nom" name="nom" autocomplete="name" maxlength="60" aria-describedby="erreur-nom">
+            <p class="erreur" id="erreur-nom" aria-live="polite"></p>
+          </div>
+          <div class="groupe">
+            <label for="telephone" data-i18n="resa.telephone">Téléphone (WhatsApp)</label>
+            <input class="champ" id="telephone" name="telephone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="06 12 34 56 78" aria-describedby="erreur-telephone">
+            <p class="erreur" id="erreur-telephone" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <div class="groupe">
+          <span class="etiquette-champ" id="etiquette-occasion" data-i18n="resa.occasion">Une occasion particulière ?</span>
+          <div class="liste" id="liste-occasion"></div>
+        </div>
+
+        <div class="groupe">
+          <label for="message" data-i18n="resa.message">Allergies, demande particulière (facultatif)</label>
+          <textarea class="champ" id="message" name="message" maxlength="300"></textarea>
+        </div>
+
+        <div>
+          <button type="submit" class="btn btn-principal" data-i18n="resa.envoyer">Continuer</button>
+          <p class="aide" style="margin-top:12px" data-i18n="resa.memoriser">Nom et téléphone gardés sur cet appareil pour la prochaine fois.</p>
+        </div>
+      </form>
+
+      <!-- Étape 2 : la demande est prête, on l'envoie sur WhatsApp -->
+      <section class="confirmation" id="confirmation" hidden tabindex="-1" aria-labelledby="titre-confirmation">
+        <p class="surtitre" data-i18n="resa.surtitre">Réservation</p>
+        <h2 id="titre-confirmation" data-i18n="resa.ok.titre">Dernière étape : envoyez-nous votre demande</h2>
+        <p data-i18n="resa.ok.texte">Votre demande est prête.</p>
+        <div class="boutons" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px">
+          <a class="btn btn-principal" id="lien-whatsapp" href="#" target="_blank" rel="noopener"></a>
+          <button type="button" class="btn btn-contour" id="modifier" data-i18n="resa.ok.modifier">Modifier ma demande</button>
+        </div>
+      </section>
+
+      <!-- Récapitulatif, mis à jour à chaque choix -->
+      <aside class="recap" aria-labelledby="titre-recap">
+        <img src="images/table-lanterne-560.webp" alt="" loading="lazy" decoding="async" width="560" height="315">
+        <div class="recap-corps">
+          <h2 id="titre-recap" data-i18n="resa.recap">Votre demande</h2>
+          <dl id="recap-liste"></dl>
+          <p class="aide" data-i18n="resa.envoi">Réponse sous une heure, entre 11h et 23h.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer id="pied" class="pied"></footer>
+
+  <script src="js/horaires.js"></script>
+  <script src="js/donnees.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/commun.js"></script>
+  <script src="js/reservation.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Galerie — Dar Zaafran, Marrakech</title>
+  <meta name="description" content="Le riad, les plats et la lumière de Dar Zaafran, en photos.">
+  <meta name="theme-color" content="#16100c">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@400;500&family=Amiri&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="galerie">
+  <a class="lien-passer" href="#contenu" data-i18n="lien.passer">Aller au contenu</a>
+  <header id="entete" class="entete"></header>
+
+  <main id="contenu" class="conteneur" style="padding-bottom:96px">
+    <div class="tete-page">
+      <p class="surtitre" data-i18n="galerie.surtitre">Galerie</p>
+      <h1 data-i18n="galerie.titre">Le riad, les plats, la lumière</h1>
+    </div>
+    <div class="filtres" role="group" aria-label="Filtres" style="margin-bottom:28px" id="filtres-galerie">
+      <button type="button" class="puce" data-type="tout" aria-pressed="true" data-i18n="galerie.tout">Tout</button>
+      <button type="button" class="puce" data-type="plats" aria-pressed="false" data-i18n="galerie.plats">Les plats</button>
+      <button type="button" class="puce" data-type="lieu" aria-pressed="false" data-i18n="galerie.lieu">Le lieu</button>
+    </div>
+    <div class="mosaique" id="mosaique"></div>
+  </main>
+
+  <!-- Visionneuse plein écran : flèches du clavier, Échap, glisser du doigt sur mobile -->
+  <dialog class="visionneuse" id="visionneuse" aria-label="Photo">
+    <div class="visionneuse-haut"><span id="compteur-photo"></span>
+      <button type="button" class="bouton-rond" id="fermer-visionneuse" data-i18n-attr="aria-label:galerie.fermer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
+    <div class="visionneuse-image" id="visionneuse-image"></div>
+    <div class="visionneuse-bas">
+      <button type="button" class="bouton-rond" id="photo-precedente" data-i18n-attr="aria-label:galerie.precedente">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+      <p id="legende-photo"></p>
+      <button type="button" class="bouton-rond" id="photo-suivante" data-i18n-attr="aria-label:galerie.suivante">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    </div>
+  </dialog>
+
+  <footer id="pied" class="pied"></footer>
+
+  <script src="js/horaires.js"></script>
+  <script src="js/donnees.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/commun.js"></script>
+  <script src="js/galerie.js"></script>
+</body>
+</html>

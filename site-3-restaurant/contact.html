@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Contact et accès — Dar Zaafran, Marrakech</title>
+  <meta name="description" content="Adresse, horaires, téléphone et WhatsApp de Dar Zaafran, dans la médina de Marrakech. Plan et itinéraire.">
+  <meta name="theme-color" content="#16100c">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@400;500&family=Amiri&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="contact">
+  <a class="lien-passer" href="#contenu" data-i18n="lien.passer">Aller au contenu</a>
+  <header id="entete" class="entete"></header>
+
+  <main id="contenu" class="conteneur">
+    <div class="tete-page">
+      <p class="surtitre" data-i18n="contact.surtitre">Contact</p>
+      <h1 data-i18n="contact.titre">Nous trouver</h1>
+    </div>
+
+    <div class="contact">
+      <div>
+        <section class="bloc-info">
+          <h2 data-i18n="contact.adresse">Adresse</h2>
+          <p class="grand" id="adresse"></p>
+          <p class="texte-doux" data-i18n="contact.acces">Depuis la place Jemaa el-Fna…</p>
+          <a class="btn btn-contour btn-petit" id="itineraire" target="_blank" rel="noopener" data-i18n="contact.itineraire">Itinéraire</a>
+        </section>
+
+        <section class="bloc-info">
+          <h2 data-i18n="contact.horaires">Horaires</h2>
+          <p id="etat-contact"></p>
+          <table class="tableau-horaires"><tbody id="horaires"></tbody></table>
+        </section>
+
+        <section class="bloc-info">
+          <h2 data-i18n="contact.telephone">Téléphone et WhatsApp</h2>
+          <p class="grand" id="telephone"></p>
+          <div style="display:flex;flex-wrap:wrap;gap:12px">
+            <a class="btn btn-principal btn-petit" id="contact-whatsapp" target="_blank" rel="noopener"></a>
+            <a class="btn btn-contour btn-petit" href="reservation.html" data-i18n="nav.reservation">Réserver</a>
+          </div>
+        </section>
+      </div>
+
+      <!-- La carte Google n'est chargée qu'au clic : page plus rapide, et rien n'est envoyé à Google sans l'accord du visiteur. -->
+      <div class="carte-lieu" id="carte-lieu">
+        <img class="apercu-carte" src="images/marchand-560.webp" srcset="images/marchand-560.webp 560w, images/marchand.webp 1024w" sizes="(min-width: 960px) 55vw, 100vw" alt="" loading="lazy" decoding="async">
+        <div class="carte-contenu">
+          <button type="button" class="btn btn-principal" id="afficher-carte" data-i18n="contact.carte">Afficher la carte</button>
+          <p data-i18n="contact.carte.info">La carte est chargée depuis Google Maps seulement si vous le demandez.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="pied" class="pied"></footer>
+
+  <script src="js/horaires.js"></script>
+  <script src="js/donnees.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/commun.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>

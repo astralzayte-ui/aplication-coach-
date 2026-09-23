@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>La carte — Dar Zaafran, Marrakech</title>
+  <meta name="description" content="La carte de Dar Zaafran : harira, tajines, couscous du vendredi, m'hencha et thé à la menthe. Plats végétariens signalés, prix en dirhams.">
+  <meta name="theme-color" content="#16100c">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@400;500&family=Amiri&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="menu" class="avec-hero">
+  <a class="lien-passer" href="#contenu" data-i18n="lien.passer">Aller au contenu</a>
+  <header id="entete" class="entete"></header>
+
+  <main id="contenu">
+    <section class="bandeau-page sur-photo" data-parallaxe="0.3">
+      <img class="parallaxe-image" src="images/salades-variees.webp" srcset="images/salades-variees-560.webp 560w, images/salades-variees.webp 1024w" sizes="100vw" alt="" fetchpriority="high">
+      <div class="voile"></div>
+      <div class="conteneur">
+        <p class="surtitre" data-i18n="menu.surtitre">La carte</p>
+        <h1 data-i18n="menu.titre">Cuisine du marché, recettes de famille</h1>
+        <p class="intro" data-i18n="menu.texte">Carte de saison. Prix en dirhams, service compris.</p>
+      </div>
+    </section>
+
+    <!-- Barre collante : catégories (liens vers les sections) + filtres -->
+    <div class="barre-carte">
+      <div class="conteneur barre-carte-interieur">
+        <nav class="onglets" id="onglets" aria-label="Catégories"></nav>
+        <div class="filtres" role="group" aria-label="Filtres">
+          <button type="button" class="puce" data-filtre="vegetarien" aria-pressed="false" data-i18n="menu.filtre.vegetarien">Végétarien</button>
+          <button type="button" class="puce" data-filtre="signature" aria-pressed="false" data-i18n="menu.filtre.signature">Nos signatures</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="conteneur">
+      <div id="carte" aria-live="polite"></div>
+      <p class="note-carte" data-i18n="menu.allergies">Une allergie ? Dites-le-nous en réservant.</p>
+    </div>
+  </main>
+
+  <footer id="pied" class="pied"></footer>
+
+  <script src="js/horaires.js"></script>
+  <script src="js/donnees.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/commun.js"></script>
+  <script src="js/menu.js"></script>
+</body>
+</html>
