@@ -4,7 +4,6 @@
 
 // Prix de la pièce phare, affiché sur la photo du héro (lu dans les données, jamais écrit en dur).
 document.getElementById('hero-prix').textContent = formaterPrix(trouverProduit('atlas-automatique').prix);
-document.getElementById('chiffre-modeles').textContent = PRODUITS.length;
 
 // Liens WhatsApp de l'accueil.
 document.getElementById('hero-whatsapp').href =

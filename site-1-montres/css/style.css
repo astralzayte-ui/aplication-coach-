@@ -365,7 +365,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 @keyframes tourner { to { transform: rotate(360deg); } }
 
 .hero-chiffres {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
   margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--bordure-neutre);
   text-align: center;
 }
