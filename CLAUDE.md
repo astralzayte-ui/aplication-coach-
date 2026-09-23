@@ -1,5 +1,7 @@
 # Préférences de l'utilisateur (à respecter dans toutes les sessions)
 
+- **Charger le skill `preferences-portfolio` (`.claude/skills/preferences-portfolio/SKILL.md`) avant tout travail sur un site**, et y ajouter chaque nouvelle correction ou leçon de l'utilisateur.
+
 - **Ne jamais montrer le code à l'utilisateur.** Pas de blocs de code, pas d'extraits, pas de diffs dans les réponses.
 - **Toujours montrer le résultat sous forme d'artifact** (aperçu visuel publié) après chaque étape de travail sur un site.
 - Répondre en français, simplement, pour un développeur web junior (Marrakech) qui prépare son portfolio.
@@ -10,7 +12,7 @@
 - Rendu haut de gamme et soigné partout : vérifier chaque détail visuel (menus, listes, états survol/sélection) avant de montrer.
 
 # Projet portfolio : 3 sites (HTML, CSS, JavaScript sans framework, commentés en français, un README et un dossier par site)
-- `site-1-montres/` : boutique de montres « Aurel » (bordeaux et or, choisi par l'utilisateur). WhatsApp : +212 693 511 445.
+- `site-1-montres/` : boutique de montres « Aurel » (bordeaux et or, choisi par l'utilisateur). WhatsApp : +212 693 511 445. En ligne : https://dulcet-sfogliatella-fbc1ba.netlify.app/
 - Hébergement choisi par l'utilisateur : **Netlify** (pas Vercel).
 - **Dossier de passation pour le CV : `DOSSIER-CV.md`** (lu par Claude Design). À mettre à jour à la fin de chaque site. Toujours préciser : sites vitrines de démonstration, marques fictives, aucun client réel, rubrique « Projets personnels », pas de chiffres inventés.
 - Site 2 (à venir) : restaurant à Marrakech, FR/EN, Google Maps.

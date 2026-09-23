@@ -30,18 +30,22 @@
 - **HTML5 sémantique** : structure des pages, formulaires, accessibilité (ARIA, navigation au clavier, lecteurs d'écran).
 - **CSS3** : responsive « mobile first », Flexbox, Grid, variables CSS, animations, composants de formulaire entièrement personnalisés.
 - **JavaScript sans framework** : manipulation du DOM, événements (dont délégation d'événements), état de l'application, localStorage, paramètres d'URL, validation de formulaires, expressions régulières.
-- **Performance** : images WebP optimisées, images adaptées à la taille de l'écran (srcset), chargement différé, préchargement de l'image principale.
+- **Performance** : moins de 100 Ko de photos à l'ouverture de la page sur mobile, images WebP optimisées, images adaptées à la taille de l'écran (srcset), chargement différé, préchargement de l'image principale.
 - **Référencement (SEO)** : titres et descriptions par page, aperçu de partage (Open Graph).
 - **Sécurité front-end** : protection contre l'injection de code (XSS).
 - **Qualité** : tests automatisés dans un vrai navigateur (Playwright) sur mobile et ordinateur, correction des bugs trouvés.
 - **Outils** : Git, GitHub, Netlify (mise en ligne).
+
+## Liens
+
+- **Projet 1 (Aurel, boutique de montres) :** https://dulcet-sfogliatella-fbc1ba.netlify.app/
 
 ---
 
 ## Projet 1 — « Aurel », boutique de montres en ligne *(terminé)*
 
 **Type :** site vitrine e-commerce de démonstration. Marque fictive, aucun client réel.
-**Lien en ligne :** *à compléter après la mise en ligne sur Netlify*
+**Lien en ligne :** https://dulcet-sfogliatella-fbc1ba.netlify.app/
 **Technologies :** HTML, CSS, JavaScript (sans framework ni librairie).
 
 **Ce que fait le site :**
@@ -54,7 +58,7 @@
 - Design haut de gamme bordeaux et or, menus et cases à cocher dessinés sur mesure, parfait sur mobile.
 
 **Phrase courte pour le CV :**
-*Aurel — boutique de montres fictive (projet de démonstration). E-commerce responsive en HTML, CSS et JavaScript : catalogue filtrable, panier persistant, commande avec paiement simulé et commande WhatsApp.*
+*Aurel — boutique de montres fictive (projet de démonstration). E-commerce responsive en HTML, CSS et JavaScript : catalogue filtrable, panier persistant, commande avec paiement simulé et commande WhatsApp. En ligne : https://dulcet-sfogliatella-fbc1ba.netlify.app/*
 
 ---
 

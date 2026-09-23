@@ -3,7 +3,7 @@
 Site e-commerce de démonstration d'une horlogerie fictive à Marrakech, réalisé pour mon portfolio de développeur web.
 Style bordeaux et or, haut de gamme, pensé d'abord pour le mobile.
 
-**Démo en ligne :** _(lien Netlify à ajouter après la mise en ligne)_
+**Démo en ligne :** https://dulcet-sfogliatella-fbc1ba.netlify.app/
 
 > **Projet de démonstration** pour mon portfolio : la marque « Aurel », les produits, les prix, les avis et les paiements sont fictifs. Ce site n'a pas été réalisé pour un client.
 
