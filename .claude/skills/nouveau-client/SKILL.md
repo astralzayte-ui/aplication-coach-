@@ -41,3 +41,13 @@ Claude ne peut pas créer les comptes lui-même (vérification SMS + captchas).
 ## Étape 5 — Récap (1 message)
 Envoyer à l'utilisateur : ce qui est en ligne (liens), ce qui reste à faire de son côté (idéalement rien),
 et un message prêt à transférer au client (« votre site est en ligne, testez votre WhatsApp : … »).
+
+## Contenu hebdomadaire (routine automatique)
+Une fois le client lancé, créer une routine (scheduled trigger) : chaque dimanche 20h (heure du Maroc) :
+1. Lire `profil.md`, le skill du secteur, et les stats de la semaine passée.
+2. Remplir la semaine suivante dans `clients/<slug>/calendrier.md` (depuis `clients/_modele/calendrier.md`).
+3. Générer les vidéos UGC (Higgsfield) + légendes + hashtags par réseau.
+4. Si le client est en mode « validation » : envoyer l'aperçu à l'utilisateur et attendre « OK ».
+   Sinon : programmer directement dans Buffer à l'heure prévue (stories comprises si Buffer les publie
+   pour ce compte, sinon rappel de publication).
+5. Commit + push, puis un récap court à l'utilisateur.
