@@ -1,6 +1,7 @@
 # <Nom du commerce>
 
 ## Services souscrits
+- [ ] Étude de marché
 - [ ] Création des réseaux
 - [ ] Site internet
 - [ ] 7 vidéos / semaine

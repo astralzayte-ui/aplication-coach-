@@ -25,7 +25,7 @@ L'utilisateur colle les réponses (texte, ou capture d'écran) dans la conversat
    accroches, formats, horaires, hashtags, 5 scripts UGC types).
 3. Commit + push.
 
-## Étape 2 bis — Étude de marché (Claude, dès l'acompte reçu)
+## Étape 2 bis — Étude de marché (Claude, dès l'acompte reçu, seulement si le service 1 ou 7 est coché)
 Livrable : une page courte et visuelle (Artifact), prête à envoyer au client, + `clients/<slug>/etude-de-marche.md`.
 1. Concurrents : 5-8 commerces du même secteur dans la même ville / quartier (recherche web + Google),
    plus ceux cités par le client.
