@@ -7,7 +7,7 @@ Bonjour 👋 Merci pour votre confiance !
 ☐ 2. Création de vos réseaux (Instagram, Facebook, TikTok) — 300 DH
 ☐ 3. Création de votre site internet + nom de domaine — 1 500 DH
 
-☐ 4. Vidéos publicitaires créées et publiées pour vous (Instagram, TikTok, Facebook)
+☐ 4. Gestion de vos réseaux : vidéos créées et publiées pour vous (Instagram, TikTok, Facebook)
    4a. 3 vidéos / semaine — 150 DH / semaine
    4b. 5 vidéos / semaine — 225 DH / semaine
    4c. 7 vidéos / semaine — 300 DH / semaine
@@ -19,6 +19,8 @@ Bonjour 👋 Merci pour votre confiance !
    5c. 14 stories / semaine — 180 DH / semaine
    5d. 21 stories / semaine — 250 DH / semaine
 ☐ 6. Réponses automatiques WhatsApp 24h/24 (prix, horaires, questions — écrit et vocal, français et arabe) — 100 DH / semaine
+☐ 6b. Réponses automatiques Instagram (messages privés) 24h/24 — 100 DH / semaine
+☐ 6c. Gestion de vos publicités payantes (Facebook, Instagram, TikTok) — 250 DH / semaine (budget pub payé par vous directement à Meta / TikTok)
 
 ⭐ *PACKS*
 ☐ 7. Pack Essentiel : 7 vidéos + 7 stories + WhatsApp automatique — 450 DH / semaine (au lieu de 500)

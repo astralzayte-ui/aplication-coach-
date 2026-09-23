@@ -2,21 +2,56 @@
   "_note": "Prix de vente (DH) et coûts estimés (DH). Mettre à jour ici si un prix change. 1 $ ≈ 10 DH.",
   "semaines_par_mois": 4.33,
   "vente": {
-    "etude": 300, "reseaux": 300, "site": 1500, "whatsapp_semaine": 100,
-    "videos_semaine": {"0": 0, "3": 150, "5": 225, "7": 300, "10": 400, "15": 550},
-    "stories_semaine": {"0": 0, "3": 50, "7": 100, "14": 180, "21": 250},
+    "etude": 300,
+    "reseaux": 300,
+    "site": 1500,
+    "whatsapp_semaine": 100,
+    "videos_semaine": {
+      "0": 0,
+      "3": 150,
+      "5": 225,
+      "7": 300,
+      "10": 400,
+      "15": 550
+    },
+    "stories_semaine": {
+      "0": 0,
+      "3": 50,
+      "7": 100,
+      "14": 180,
+      "21": 250
+    },
     "packs": {
-      "essentiel": {"semaine": 450, "videos": 7, "stories": 7, "whatsapp": true},
-      "premium": {"semaine": 800, "videos": 15, "stories": 21, "whatsapp": true},
-      "lancement": {"une_fois": 1800, "etude": true, "reseaux": true, "site": true}
-    }
+      "essentiel": {
+        "semaine": 450,
+        "videos": 7,
+        "stories": 7,
+        "whatsapp": true
+      },
+      "premium": {
+        "semaine": 800,
+        "videos": 15,
+        "stories": 21,
+        "whatsapp": true
+      },
+      "lancement": {
+        "une_fois": 1800,
+        "etude": true,
+        "reseaux": true,
+        "site": true
+      }
+    },
+    "instagram_ia_semaine": 100,
+    "gestion_pub_semaine": 250
   },
   "couts": {
     "video_unite": 12,
-    "buffer_mois_par_reseau": 60, "buffer_reseaux": 2,
+    "buffer_mois_par_reseau": 60,
+    "buffer_reseaux": 2,
     "whatsapp_ia_mois": 20,
     "puce_achat": 20,
     "domaine_an": 100,
-    "etude_credits": 5
+    "etude_credits": 5,
+    "instagram_ia_mois": 10
   }
 }

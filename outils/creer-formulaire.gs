@@ -17,9 +17,11 @@ function creerFormulaireSahir() {
     'Étude de marché : voir si vous êtes bien placé face à vos concurrents ou s\'il y a des modifications à faire — 300 DH',
     'Création de vos réseaux (Instagram, Facebook, TikTok) — 300 DH',
     'Site internet + nom de domaine — 1 500 DH',
-    'Réponses automatiques WhatsApp 24h/24 (écrit et vocal, français et arabe) — 100 DH / semaine'
+    'Réponses automatiques WhatsApp 24h/24 (écrit et vocal, français et arabe) — 100 DH / semaine',
+    'Réponses automatiques Instagram (messages privés) 24h/24 — 100 DH / semaine',
+    'Gestion de vos publicités payantes (Facebook, Instagram, TikTok) — 250 DH / semaine (budget pub payé par vous directement à Meta / TikTok)'
   ]);
-  form.addMultipleChoiceItem().setTitle('Vidéos publicitaires par semaine (créées et publiées pour vous)').setChoiceValues([
+  form.addMultipleChoiceItem().setTitle('Gestion de vos réseaux : vidéos publiées par semaine').setChoiceValues([
     'Aucune', '3 vidéos — 150 DH / semaine', '5 vidéos — 225 DH / semaine', '7 vidéos — 300 DH / semaine',
     '10 vidéos — 400 DH / semaine', '15 vidéos — 550 DH / semaine'
   ]);

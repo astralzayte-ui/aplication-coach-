@@ -6,7 +6,7 @@ Usage :
   python3 outils/calcul_client.py --bilan                      → écrit finances.md (tous les clients)
 
 choix.json : {"nom": "Spa Serenite", "pack": "premium" | "essentiel" | null, "lancement": false,
-              "etude": false, "reseaux": false, "site": false, "whatsapp": false, "videos": 0, "stories": 0}
+              "etude": false, "reseaux": false, "site": false, "whatsapp": false, "instagram_ia": false, "gestion_pub": false, "videos": 0, "stories": 0}
 """
 import glob, json, os, sys
 
@@ -24,11 +24,14 @@ def calcul(ch):
     videos = pack["videos"] if pack else int(ch.get("videos", 0))
     stories = pack["stories"] if pack else int(ch.get("stories", 0))
     whatsapp = (pack and pack["whatsapp"]) or ch.get("whatsapp", False)
+    insta_ia = ch.get("instagram_ia", False)
+    pub = ch.get("gestion_pub", False)
 
     # Chiffre d'affaires
     ca_sem = pack["semaine"] if pack else (
         V["videos_semaine"][str(videos)] + V["stories_semaine"][str(stories)]
         + (V["whatsapp_semaine"] if whatsapp else 0))
+    ca_sem += (V["instagram_ia_semaine"] if insta_ia else 0) + (V["gestion_pub_semaine"] if pub else 0)
     ca_once = V["packs"]["lancement"]["une_fois"] if lanc else (
         (V["etude"] if etude else 0) + (V["reseaux"] if reseaux else 0) + (V["site"] if site else 0))
 
@@ -42,6 +45,8 @@ def calcul(ch):
         lignes.append(("Buffer (%d réseaux)" % C["buffer_reseaux"], m, "mois", m / S))
     if whatsapp:
         lignes.append(("IA WhatsApp", C["whatsapp_ia_mois"], "mois", C["whatsapp_ia_mois"] / S))
+    if insta_ia:
+        lignes.append(("IA Instagram (messages privés)", C["instagram_ia_mois"], "mois", C["instagram_ia_mois"] / S))
     if whatsapp or reseaux:
         once.append(("Achat puce", C["puce_achat"]))
     if site:
@@ -53,7 +58,7 @@ def calcul(ch):
     cout_sem = sum(l[3] for l in lignes)
     return dict(nom=ch.get("nom", "?"), ca_sem=ca_sem, ca_once=ca_once, lignes=lignes, once=once,
                 cout_sem=cout_sem, videos=videos, stories=stories, whatsapp=whatsapp,
-                etude=etude, reseaux=reseaux, site=site, pack=ch.get("pack"), lanc=lanc)
+                etude=etude, reseaux=reseaux, site=site, insta_ia=insta_ia, pub=pub, pack=ch.get("pack"), lanc=lanc)
 
 
 def dh(x):
@@ -62,7 +67,8 @@ def dh(x):
 
 def fiche(r):
     services = [s for s, ok in [("Étude de marché", r["etude"]), ("Création réseaux", r["reseaux"]),
-                                ("Site", r["site"]), ("WhatsApp IA", r["whatsapp"])] if ok]
+                                ("Site", r["site"]), ("WhatsApp IA", r["whatsapp"]),
+                                ("IA Instagram", r["insta_ia"]), ("Gestion pub payante", r["pub"])] if ok]
     if r["videos"]: services.append(f"{r['videos']} vidéos/sem")
     if r["stories"]: services.append(f"{r['stories']} stories/sem")
     ben_sem = r["ca_sem"] - r["cout_sem"]
@@ -82,6 +88,8 @@ def fiche(r):
             "| Dépense | Montant | À payer par | Équivalent / semaine |", "|---|---|---|---|"]
     out += [f"| {n} | {dh(m)} | {f} | {dh(s)} |" for n, m, f, s in r["lignes"]]
     out += [f"| {n} | {dh(m)} | une fois | — |" for n, m in r["once"] if m]
+    if r["pub"]:
+        out += ["", "Budget publicitaire : payé par le client directement à Meta / TikTok (pas dans tes coûts)."]
     out += ["", "Aucune de ces dépenses ne se paie à la semaine : mets de côté l'équivalent / semaine "
             "à chaque paiement du client.", ""]
     return "\n".join(out)

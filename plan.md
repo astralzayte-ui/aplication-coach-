@@ -24,7 +24,6 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - ✅ Accès Google Drive testé (compte astralzayte@gmail.com)
 - 🔄 Créer le Google Form + Google Sheet « Sahir Digital — Réponses clients » — avec le compte astralzayte@gmail.com → lancer le script `outils/creer-formulaire.gs` sur script.google.com (~3 min)
 - ✅ Nom : **Sahir Digital** (ساهر ديجيتال) — ⬜ vérifier dispo (OMPIC, nom de domaine, Instagram)
-- ⬜ Statut légal (auto-entrepreneur) pour les factures
 - ✅ Prix validés (questionnaire `clients/_modele/message-client.md`)
 - ⬜ Pitch appris (`prospection/pitch.md`)
 - ⬜ 1er commerce démarché
@@ -35,6 +34,14 @@ Guide pas à pas : `guides/etape-1-outils.md`
 
 ## Étape 5 — Pilote automatique
 - ⬜ Routine du dimanche 20h activée · test & learn en place
+
+## À rappeler à l'utilisateur (à chaque « on en est où »)
+- Brancher Gemini (lecture native des vidéos + recherche web) — il a des vidéos tuto
+- Installer un connecteur de lecture native TikTok / Instagram (pour mieux scraper)
+- Faire scraper Internet (outil à ajouter, vidéos tuto)
+- Site du faux spa (validé : on le fait)
+- Vidéos de présentation FR + arabe classique
+- IA messages privés : Instagram ✅ possible (API Meta, même serveur que WhatsApp) · TikTok : à vérifier
 
 ## Décisions en attente
 - Vérifier la disponibilité du nom Sahir Digital
