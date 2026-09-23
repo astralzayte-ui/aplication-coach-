@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Qalam — Devis et factures</title>
+  <meta name="description" content="Qalam : créez vos devis et factures en quelques secondes. Calcul automatique de la TVA, montant en toutes lettres, numérotation continue, PDF et envoi WhatsApp. Fonctionne hors connexion.">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Application installable (PWA) : manifeste + icônes -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icones/icone.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icones/icone-192.png">
+
+  <!-- Aperçu de partage (WhatsApp, LinkedIn…) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Qalam — Devis et factures">
+  <meta property="og:description" content="Application de devis et factures : TVA, montant en lettres, PDF, WhatsApp, hors connexion.">
+  <meta property="og:image" content="icones/apercu.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <a class="visuellement-cache" href="#vue">Aller au contenu</a>
+
+  <div class="appli">
+    <!-- Barre latérale (ordinateur) -->
+    <aside class="barre-laterale" aria-label="Menu principal">
+      <a class="logo" href="#/"><span class="logo-marque" aria-hidden="true">Q</span>Qalam</a>
+      <nav class="navigation" id="navigation" aria-label="Navigation principale"></nav>
+      <div class="barre-bas-pied">
+        <button type="button" class="btn btn-discret" data-ouvrir="dialogue-raccourcis" style="justify-content:flex-start">
+          <span id="icone-clavier"></span>Raccourcis clavier <kbd style="margin-left:auto">?</kbd></button>
+        <button type="button" class="btn btn-discret" id="installer" hidden style="justify-content:flex-start"><span id="icone-installer"></span>Installer l'application</button>
+      </div>
+    </aside>
+
+    <div>
+      <!-- Barre du haut (mobile) -->
+      <header class="barre-haut">
+        <a class="logo" href="#/"><span class="logo-marque" aria-hidden="true">Q</span>Qalam</a>
+        <a class="btn btn-principal" href="#/nouveau/facture" id="bouton-nouveau-mobile"></a>
+      </header>
+
+      <!-- Le contenu de chaque écran est inséré ici par js/vues.js -->
+      <main class="contenu" id="vue" tabindex="-1"></main>
+    </div>
+
+    <!-- Barre de navigation du bas (mobile) -->
+    <nav class="navigation-bas" id="navigation-bas" aria-label="Navigation principale"></nav>
+  </div>
+
+  <!-- Fenêtres de dialogue -->
+  <dialog id="dialogue-client" aria-label="Fiche client"></dialog>
+
+  <dialog id="dialogue-raccourcis" aria-labelledby="titre-raccourcis">
+    <div class="dialogue-entete"><h2 id="titre-raccourcis">Raccourcis clavier</h2>
+      <button type="button" class="bouton-icone" data-fermer aria-label="Fermer" id="fermer-raccourcis"></button></div>
+    <div class="dialogue-corps">
+      <dl class="raccourcis">
+        <div><dt>Nouveau document</dt><dd><kbd>N</kbd></dd></div>
+        <div><dt>Rechercher</dt><dd><kbd>/</kbd></dd></div>
+        <div><dt>Aller au tableau de bord</dt><dd><kbd>G</kbd><kbd>T</kbd></dd></div>
+        <div><dt>Aller aux devis</dt><dd><kbd>G</kbd><kbd>D</kbd></dd></div>
+        <div><dt>Aller aux factures</dt><dd><kbd>G</kbd><kbd>F</kbd></dd></div>
+        <div><dt>Aller aux clients</dt><dd><kbd>G</kbd><kbd>C</kbd></dd></div>
+        <div><dt>Aller aux réglages</dt><dd><kbd>G</kbd><kbd>R</kbd></dd></div>
+        <div><dt>Afficher cette aide</dt><dd><kbd>?</kbd></dd></div>
+        <div><dt>Fermer une fenêtre ou une liste</dt><dd><kbd>Échap</kbd></dd></div>
+      </dl>
+    </div>
+  </dialog>
+
+  <!-- L'ordre compte : chaque fichier utilise ceux chargés avant lui. -->
+  <script src="js/calculs.js"></script>
+  <script src="js/donnees.js"></script>
+  <script src="js/composants.js"></script>
+  <script src="js/vues.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

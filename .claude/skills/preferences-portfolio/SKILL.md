@@ -47,6 +47,13 @@ Ce skill est vivant. **Règle n° 1 : chaque fois que l'utilisateur corrige quel
 - **Paramètres d'URL** : valider chaque valeur ; une valeur inconnue ne doit rien casser.
 - **Stock / limites** : toujours dire à l'utilisateur ce qui s'est vraiment passé (« Stock maximum atteint ») au lieu d'un faux « ajouté ».
 - Échapper tout texte inséré avec `innerHTML` (protection XSS).
+- **Attribut `hidden`** : ajouter `[hidden] { display: none !important; }` dans chaque feuille de style. Sinon une classe avec `display: grid` ré-affiche l'élément caché (bug de l'onglet Aperçu, site 2).
+- **Grilles CSS** : écrire `grid-template-columns: minmax(0, 1fr)` (et `min-width: 0` sur les enfants) quand un enfant peut être large (document A4, tableau) : sinon la colonne s'élargit et la page déborde.
+- **Store avec abonnements** : un abonné qui redessine l'écran ne doit jamais relancer une action qui sauvegarde (boucle infinie à la création d'un document, site 2). Ne pas redessiner un formulaire en cours de saisie (on perd le curseur) : mettre à jour seulement l'aperçu.
+- **Écouteurs d'événements** : les poser sur un conteneur recréé à chaque affichage, jamais sur un conteneur permanent (sinon l'action se déclenche plusieurs fois).
+- **Fenêtres (dialog)** : fermer la fenêtre AVANT d'enregistrer, pour que l'écran derrière puisse se redessiner.
+- **Tester aussi les onglets et états alternatifs** (onglet Aperçu mobile, thème sombre, document verrouillé…), pas seulement l'écran par défaut. Et **regarder les captures** : les tests ne voient pas tout (textes coupés, chevauchements).
+- **Tests unitaires** : les calculs dans un fichier « pur » testé avec `node --test` (rien à installer) + GitHub Actions (`.github/workflows/tests.yml`) pour le badge vert du README.
 - Les messages et textes doivent rester vrais quand les données changent (ex. « livraison offerte dès 2000 DH » est devenu faux quand les prix ont baissé : relire les textes après chaque changement de données).
 
 ## 4. Contenu et honnêteté
@@ -67,11 +74,13 @@ Ce skill est vivant. **Règle n° 1 : chaque fois que l'utilisateur corrige quel
 
 - Numéro WhatsApp des sites : +212 693 511 445 (format lien : 212693511445).
 - Site 1 « Aurel » (montres, bordeaux et or) : https://dulcet-sfogliatella-fbc1ba.netlify.app/
-- Site 2 : **application de devis et factures** (dossier `site-2-factures/`), sans photos, pleine de vraie logique, avec les « trucs pro » dès le départ.
+- Site 2 : **Qalam, application de devis et factures** (dossier `site-2-factures/`, bleu encre, clair/sombre), installable hors connexion, tests automatiques avec badge GitHub. Lien Netlify : à ajouter.
 - Site 3 : **restaurant à Marrakech** (FR/EN, carte, WhatsApp). Photos : l'utilisateur veut les prendre sur Pinterest (c'est son choix, prévenu une fois ; ajouter la mention « photos à titre d'illustration »). Pas d'iframe de carte dans l'aperçu artifact : prévoir un lien ou une image de repli.
 - Site 4 : tableau de bord de commandes, statuts, statistiques, graphiques, export Excel, données fictives.
 
 ## Journal des leçons (ajouter en haut, avec la date)
+
+- **Site 2 (Qalam, devis et factures)** — Couleurs choisies : blanc et bleu encre (#2446A8), mode clair et sombre. Bugs trouvés par les tests et les captures : boucle infinie à la création, onglet Aperçu mobile, débordement de la grille, client non affiché après ajout, texte trop long dans les réglages mobiles, lignes de prestations écrasées (corrigé avec les container queries). Toutes les règles générales sont dans la section 3.
 
 - **Choix du site 2** — Il ne veut pas de projet où les photos sont difficiles à trouver (restaurant). Il veut un projet qui **fait pro** et qui **prouve qu'il sait coder**. Il demande aussi d'ajouter partout des « petits trucs professionnels » qui montrent le niveau technique (mode sombre, installable hors ligne, tests automatiques, score Lighthouse, API, raccourcis clavier…). Toujours proposer ce genre d'ajouts.
 

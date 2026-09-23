@@ -1,0 +1,20 @@
+# Intégration continue : GitHub relance les tests automatiquement
+# à chaque envoi de code (push) et à chaque demande de fusion (pull request).
+# Le résultat s'affiche en badge vert ou rouge dans le README.
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # Tests des calculs de l'application de factures (aucune dépendance à installer)
+      - name: Tests unitaires — site 2 (devis et factures)
+        run: node --test site-2-factures/tests/*.test.js

@@ -33,7 +33,8 @@
 - **Performance** : moins de 100 Ko de photos à l'ouverture de la page sur mobile, images WebP optimisées, images adaptées à la taille de l'écran (srcset), chargement différé, préchargement de l'image principale.
 - **Référencement (SEO)** : titres et descriptions par page, aperçu de partage (Open Graph).
 - **Sécurité front-end** : protection contre l'injection de code (XSS).
-- **Qualité** : tests automatisés dans un vrai navigateur (Playwright) sur mobile et ordinateur, correction des bugs trouvés.
+- **Qualité** : tests unitaires (node:test) relancés automatiquement par GitHub Actions, tests dans un vrai navigateur (Playwright) sur mobile et ordinateur, correction des bugs trouvés.
+- **Application web progressive (PWA)** : installable, fonctionne hors connexion (service worker), mode clair / sombre.
 - **Outils** : Git, GitHub, Netlify (mise en ligne).
 
 ## Liens
@@ -62,10 +63,24 @@
 
 ---
 
-## Projet 2 — Application de devis et factures *(en cours)*
+## Projet 2 — « Qalam », application de devis et factures *(terminé)*
 
-**Type :** application web de démonstration. Entreprise fictive, aucun client réel.
-**Prévu :** création de devis et de factures, calcul automatique (TVA, remises), numérotation automatique, fichier clients, export PDF, mode sombre, utilisable hors connexion.
+**Type :** application web de démonstration. Entreprise et clients fictifs, aucun client réel.
+**Lien en ligne :** *à compléter après la mise en ligne sur Netlify*
+**Technologies :** HTML, CSS, JavaScript (sans framework), PWA (service worker), tests automatiques avec Node.js et GitHub Actions.
+
+**Ce que fait l'application :**
+- Création de devis et de factures avec aperçu A4 en direct, export PDF et envoi par WhatsApp.
+- Calcul automatique de la TVA marocaine taux par taux, remise globale, montant en toutes lettres.
+- Numérotation continue par année ; une facture émise est figée et ne peut plus être supprimée, comme l'exige la loi.
+- Transformation d'un devis en facture, statuts (payée, en retard calculé automatiquement), tableau de bord et liste « À faire ».
+- Fichier clients avec vérification de l'ICE, du téléphone et de l'e-mail.
+- Mode clair / sombre, raccourcis clavier, application installable et utilisable hors connexion, sauvegarde et restauration.
+
+**Points techniques à mettre en avant :** montants calculés en centimes (aucune erreur d'arrondi), calculs isolés et couverts par des tests automatiques relancés par GitHub à chaque envoi de code, composants accessibles faits sur mesure, container queries.
+
+**Phrase courte pour le CV :**
+*Qalam — application de devis et factures (projet de démonstration). HTML, CSS et JavaScript sans framework : TVA et montant en lettres, numérotation légale, PDF, mode hors connexion (PWA), tests automatisés avec intégration continue.*
 
 ## Projet 3 — Restaurant à Marrakech *(à venir)*
 
@@ -79,4 +94,4 @@
 
 ---
 
-*Document tenu à jour au fil des projets. Dernière mise à jour : projet 1 terminé.*
+*Document tenu à jour au fil des projets. Dernière mise à jour : projets 1 et 2 terminés.*
