@@ -11,9 +11,10 @@
 - **Jamais d'élément de formulaire avec le style par défaut du navigateur** : pas de <select> natif (surlignage bleu), pas de case à cocher, bouton radio ou curseur (range) natifs. Toujours des composants dessinés sur mesure, aux couleurs du site, accessibles au clavier.
 - Rendu haut de gamme et soigné partout : vérifier chaque détail visuel (menus, listes, états survol/sélection) avant de montrer.
 
-# Projet portfolio : 3 sites (HTML, CSS, JavaScript sans framework, commentés en français, un README et un dossier par site)
+# Projet portfolio : 4 sites (HTML, CSS, JavaScript sans framework, commentés en français, un README et un dossier par site)
 - `site-1-montres/` : boutique de montres « Aurel » (bordeaux et or, choisi par l'utilisateur). WhatsApp : +212 693 511 445. En ligne : https://dulcet-sfogliatella-fbc1ba.netlify.app/
 - Hébergement choisi par l'utilisateur : **Netlify** (pas Vercel).
 - **Dossier de passation pour le CV : `DOSSIER-CV.md`** (lu par Claude Design). À mettre à jour à la fin de chaque site. Toujours préciser : sites vitrines de démonstration, marques fictives, aucun client réel, rubrique « Projets personnels », pas de chiffres inventés.
-- Site 2 (à venir) : à redéfinir (le restaurant est abandonné : photos trop difficiles à trouver ; privilégier un projet qui prouve qu'il sait coder).
-- Site 3 (à venir) : tableau de bord de commandes, export Excel.
+- Site 2 (en cours) : application de devis et factures (`site-2-factures/`).
+- Site 3 (à venir) : restaurant à Marrakech, FR/EN, carte, WhatsApp (photos Pinterest, choix de l'utilisateur).
+- Site 4 (à venir) : tableau de bord de commandes, export Excel.

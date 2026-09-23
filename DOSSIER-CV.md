@@ -62,12 +62,17 @@
 
 ---
 
-## Projet 2 — Restaurant à Marrakech *(en cours)*
+## Projet 2 — Application de devis et factures *(en cours)*
+
+**Type :** application web de démonstration. Entreprise fictive, aucun client réel.
+**Prévu :** création de devis et de factures, calcul automatique (TVA, remises), numérotation automatique, fichier clients, export PDF, mode sombre, utilisable hors connexion.
+
+## Projet 3 — Restaurant à Marrakech *(à venir)*
 
 **Type :** site vitrine de démonstration. Restaurant fictif, aucun client réel.
-**Prévu :** accueil, menu, galerie, réservation, contact avec carte, site bilingue français / anglais, bouton WhatsApp.
+**Prévu :** accueil, menu, galerie, réservation, contact avec carte, français / anglais, WhatsApp.
 
-## Projet 3 — Tableau de bord de commandes *(à venir)*
+## Projet 4 — Tableau de bord de commandes *(à venir)*
 
 **Type :** outil de démonstration avec des données fictives. Aucun client réel.
 **Prévu :** liste des commandes, statuts, statistiques du jour, graphiques, export Excel.

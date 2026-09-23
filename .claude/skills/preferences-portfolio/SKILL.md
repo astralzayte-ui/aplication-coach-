@@ -1,6 +1,6 @@
 ---
 name: preferences-portfolio
-description: Préférences et leçons apprises de l'utilisateur (développeur web junior à Marrakech) pour ses sites de portfolio. À charger AVANT tout travail sur un site de ce dépôt (site 1 montres, site 2 restaurant, site 3 tableau de bord, ou tout nouveau site), et à METTRE À JOUR chaque fois que l'utilisateur corrige, critique ou demande d'améliorer quelque chose, ou qu'une erreur est découverte.
+description: Préférences et leçons apprises de l'utilisateur (développeur web junior à Marrakech) pour ses sites de portfolio. À charger AVANT tout travail sur un site de ce dépôt (site 1 montres, site 2 devis et factures, site 3 restaurant, site 4 tableau de bord, ou tout nouveau site), et à METTRE À JOUR chaque fois que l'utilisateur corrige, critique ou demande d'améliorer quelque chose, ou qu'une erreur est découverte.
 ---
 
 # Préférences portfolio — comment travailler avec cet utilisateur
@@ -67,8 +67,9 @@ Ce skill est vivant. **Règle n° 1 : chaque fois que l'utilisateur corrige quel
 
 - Numéro WhatsApp des sites : +212 693 511 445 (format lien : 212693511445).
 - Site 1 « Aurel » (montres, bordeaux et or) : https://dulcet-sfogliatella-fbc1ba.netlify.app/
-- Site 2 : **à redéfinir** (le restaurant est abandonné : photos trop difficiles à trouver). Privilégier un projet sans photos qui montre du vrai code.
-- Site 3 : tableau de bord de commandes, statuts, statistiques, graphiques, export Excel, données fictives.
+- Site 2 : **application de devis et factures** (dossier `site-2-factures/`), sans photos, pleine de vraie logique, avec les « trucs pro » dès le départ.
+- Site 3 : **restaurant à Marrakech** (FR/EN, carte, WhatsApp). Photos : l'utilisateur veut les prendre sur Pinterest (c'est son choix, prévenu une fois ; ajouter la mention « photos à titre d'illustration »). Pas d'iframe de carte dans l'aperçu artifact : prévoir un lien ou une image de repli.
+- Site 4 : tableau de bord de commandes, statuts, statistiques, graphiques, export Excel, données fictives.
 
 ## Journal des leçons (ajouter en haut, avec la date)
 
