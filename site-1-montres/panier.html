@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mon panier — Aurel</title>
+  <meta name="description" content="Votre panier Aurel : vérifiez vos montres et passez commande en ligne ou sur WhatsApp.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0a0a0b">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="panier">
+  <a class="visuellement-cache" href="#contenu">Aller au contenu</a>
+  <header id="entete" class="entete"></header>
+
+  <main id="contenu" class="conteneur">
+    <div class="titre-page">
+      <p class="surtitre">Votre sélection</p>
+      <h1>Mon panier</h1>
+    </div>
+    <!-- Rempli par js/page-panier.js, et redessiné à chaque modification -->
+    <div id="contenu-panier"></div>
+  </main>
+
+  <footer id="pied" class="pied"></footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/produits.js"></script>
+  <script src="js/montre-svg.js"></script>
+  <script src="js/panier.js"></script>
+  <script src="js/commun.js"></script>
+  <script src="js/page-panier.js"></script>
+</body>
+</html>

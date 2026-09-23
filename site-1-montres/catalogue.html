@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Collection — Aurel, montres à Marrakech</title>
+  <meta name="description" content="Toute la collection Aurel : montres automatiques et chronographes, bracelet cuir ou acier. Filtrez par prix, mouvement et style.">
+  <meta name="theme-color" content="#0a0a0b">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="catalogue">
+  <a class="visuellement-cache" href="#contenu">Aller au contenu</a>
+  <header id="entete" class="entete"></header>
+
+  <main id="contenu" class="conteneur">
+    <div class="titre-page">
+      <p class="surtitre">Collection</p>
+      <h1>Toutes nos montres</h1>
+    </div>
+
+    <!-- Barre du haut : recherche, bouton filtres (mobile) et tri -->
+    <div class="barre-catalogue">
+      <label class="visuellement-cache" for="recherche">Rechercher une montre</label>
+      <input class="champ champ-recherche" type="search" id="recherche" placeholder="Rechercher : chrono, cuir, bleu…" autocomplete="off">
+      <button class="btn btn-contour btn-filtres" id="btn-filtres" aria-expanded="false" aria-controls="filtres">Filtres</button>
+      <label class="visuellement-cache" for="tri">Trier les montres</label>
+      <select class="selection" id="tri">
+        <option value="pertinence">Trier : nos coups de cœur</option>
+        <option value="prix-croissant">Prix croissant</option>
+        <option value="prix-decroissant">Prix décroissant</option>
+        <option value="nouveautes">Nouveautés d'abord</option>
+        <option value="nom">Nom (A → Z)</option>
+      </select>
+    </div>
+
+    <div class="catalogue">
+      <!-- Panneau de filtres. Les cases ont un "name" et une "value" :
+           le JavaScript lit simplement les cases cochées. -->
+      <aside class="filtres" id="filtres" aria-label="Filtres">
+        <fieldset>
+          <legend>Collection</legend>
+          <label class="case"><input type="checkbox" name="collection" value="heritage"> Héritage</label>
+          <label class="case"><input type="checkbox" name="collection" value="sport"> Sport</label>
+          <label class="case"><input type="checkbox" name="collection" value="elegance"> Élégance</label>
+        </fieldset>
+        <fieldset>
+          <legend>Mouvement</legend>
+          <label class="case"><input type="checkbox" name="mouvement" value="automatique"> Automatique</label>
+          <label class="case"><input type="checkbox" name="mouvement" value="quartz"> Quartz</label>
+        </fieldset>
+        <fieldset>
+          <legend>Bracelet</legend>
+          <label class="case"><input type="checkbox" name="matiereBracelet" value="cuir"> Cuir</label>
+          <label class="case"><input type="checkbox" name="matiereBracelet" value="acier"> Acier</label>
+        </fieldset>
+        <fieldset>
+          <legend>Prix maximum</legend>
+          <label class="visuellement-cache" for="prix-max">Prix maximum</label>
+          <input class="curseur-prix" type="range" id="prix-max" step="100">
+          <output class="valeur-prix" id="valeur-prix" for="prix-max"></output>
+        </fieldset>
+        <button class="btn-lien" id="reinitialiser" type="button">Réinitialiser les filtres</button>
+      </aside>
+
+      <section aria-label="Résultats">
+        <!-- aria-live : le lecteur d'écran annonce le nouveau nombre de résultats -->
+        <p class="compteur-resultats" id="compteur" aria-live="polite"></p>
+        <div class="grille-produits" id="grille"></div>
+      </section>
+    </div>
+    <div style="height:80px"></div>
+  </main>
+
+  <footer id="pied" class="pied"></footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/produits.js"></script>
+  <script src="js/montre-svg.js"></script>
+  <script src="js/panier.js"></script>
+  <script src="js/commun.js"></script>
+  <script src="js/catalogue.js"></script>
+</body>
+</html>

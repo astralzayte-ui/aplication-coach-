@@ -1,0 +1,684 @@
+/* =========================================================
+   AUREL — Feuille de style
+   ---------------------------------------------------------
+   Approche "mobile first" : les règles de base sont pensées
+   pour un téléphone, puis des @media (min-width: …) ajoutent
+   des colonnes quand l'écran s'agrandit.
+
+   Sommaire
+   1. Variables (couleurs, polices, espacements)
+   2. Base
+   3. Mise en page commune (conteneur, en-tête, pied)
+   4. Composants (boutons, cartes, étiquettes, toast…)
+   5. Accueil (landing page)
+   6. Catalogue
+   7. Fiche produit
+   8. Panier et commande
+   9. Pages simples (mentions légales, 404)
+   10. Préférences d'accessibilité
+   ========================================================= */
+
+/* ---------- 1. Variables ---------- */
+/* On définit les couleurs une seule fois : pour changer tout le thème,
+   il suffit de modifier ces lignes. */
+:root {
+  --noir: #0a0a0b;
+  --noir-2: #121214;
+  --noir-3: #1a1a1d;
+  --noir-4: #242428;
+  --or: #c9a45c;
+  --or-clair: #e6c98a;
+  --or-fonce: #9c7a3c;
+  --texte: #f3efe6;
+  --texte-doux: rgba(243, 239, 230, 0.66);
+  --texte-faible: rgba(243, 239, 230, 0.45);
+  --bordure: rgba(201, 164, 92, 0.22);
+  --bordure-neutre: rgba(243, 239, 230, 0.1);
+  --vert-whatsapp: #1fa855;
+  --rouge: #e5484d;
+  --succes: #58c27d;
+
+  --police-titre: 'Cormorant Garamond', Georgia, serif;
+  --police-texte: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --rayon: 14px;
+  --gouttiere: 16px;           /* marge sur les côtés en mobile */
+  --largeur-max: 1200px;
+  --hauteur-entete: 64px;
+  --transition: 0.25s ease;
+}
+
+/* ---------- 2. Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--hauteur-entete) + 16px); }
+
+body {
+  margin: 0;
+  background: var(--noir);
+  color: var(--texte);
+  font-family: var(--police-texte);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: var(--police-titre);
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+  letter-spacing: 0.01em;
+}
+h1 { font-size: clamp(2.3rem, 7vw, 4.2rem); }   /* clamp = taille fluide entre un min et un max */
+h2 { font-size: clamp(1.8rem, 4.5vw, 2.8rem); }
+h3 { font-size: 1.35rem; }
+
+p { margin: 0 0 1em; }
+a { color: var(--or-clair); text-decoration: none; }
+a:hover { color: var(--or); }
+img, svg { display: block; max-width: 100%; }
+button, input, select, textarea { font: inherit; color: inherit; }
+
+/* Contour visible quand on navigue au clavier (accessibilité). */
+:focus-visible { outline: 2px solid var(--or); outline-offset: 3px; border-radius: 4px; }
+
+.texte-doux { color: var(--texte-doux); }
+.surtitre {
+  font-size: 0.75rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: 0.8em;
+}
+.visuellement-cache {  /* caché à l'écran mais lu par les lecteurs d'écran */
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---------- 3. Mise en page commune ---------- */
+.conteneur {
+  width: 100%;
+  max-width: var(--largeur-max);
+  margin: 0 auto;
+  padding: 0 var(--gouttiere);
+}
+@media (min-width: 768px) { :root { --gouttiere: 32px; } }
+
+.section { padding: 72px 0; }
+@media (min-width: 900px) { .section { padding: 110px 0; } }
+
+.titre-section { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+
+/* En-tête collant, légèrement transparent avec un flou derrière. */
+.entete {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(10, 10, 11, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--bordure);
+}
+.entete-interieur {
+  height: var(--hauteur-entete);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.logo { color: var(--or-clair); display: inline-flex; }
+.logo:hover { color: var(--or-clair); }
+.logo-svg { width: 140px; height: 34px; }
+
+.bouton-icone {
+  position: relative;
+  width: 44px; height: 44px;           /* 44px = taille minimale confortable au doigt */
+  display: inline-grid; place-items: center;
+  background: none; border: 0; cursor: pointer;
+  color: var(--texte);
+}
+.bouton-icone svg { width: 24px; height: 24px; }
+
+.badge-panier {
+  position: absolute; top: 4px; right: 2px;
+  min-width: 18px; height: 18px; padding: 0 5px;
+  border-radius: 9px;
+  background: var(--or); color: var(--noir);
+  font-size: 0.7rem; font-weight: 700; line-height: 18px; text-align: center;
+}
+
+/* Menu : en mobile, c'est un panneau plein écran caché par défaut. */
+.navigation {
+  position: fixed;
+  inset: var(--hauteur-entete) 0 0 0;
+  background: var(--noir);
+  transform: translateX(-100%);
+  transition: transform var(--transition);
+  visibility: hidden;
+}
+.navigation.ouvert { transform: none; visibility: visible; }
+.navigation ul { list-style: none; margin: 0; padding: 32px var(--gouttiere); }
+.navigation a {
+  display: block; padding: 16px 0;
+  font-family: var(--police-titre); font-size: 1.9rem;
+  color: var(--texte);
+  border-bottom: 1px solid var(--bordure-neutre);
+}
+.navigation a[aria-current="page"] { color: var(--or); }
+
+/* À partir de 900px : menu horizontal classique, bouton burger caché. */
+@media (min-width: 900px) {
+  .bouton-menu { display: none; }
+  .entete-interieur { justify-content: flex-start; }
+  .navigation {
+    position: static; transform: none; visibility: visible;
+    background: none; margin-left: auto;
+  }
+  .navigation ul { display: flex; gap: 36px; padding: 0; }
+  .navigation a {
+    padding: 6px 0; border: 0;
+    font-family: var(--police-texte); font-size: 0.8rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--texte-doux);
+  }
+  .navigation a:hover, .navigation a[aria-current="page"] { color: var(--or-clair); }
+  .lien-panier { margin-left: 24px; }
+}
+
+/* Pied de page */
+.pied { border-top: 1px solid var(--bordure); background: var(--noir-2); padding-top: 56px; }
+.pied-grille { display: grid; gap: 36px; grid-template-columns: 1fr 1fr; }
+.pied-grille > div:first-child { grid-column: 1 / -1; }
+.pied-titre {
+  font-family: var(--police-texte); font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--or);
+  margin-bottom: 14px;
+}
+.pied-liens { list-style: none; margin: 0; padding: 0; color: var(--texte-doux); font-size: 0.92rem; }
+.pied-liens li { margin-bottom: 8px; }
+.pied-liens a { color: var(--texte-doux); }
+.pied-liens a:hover { color: var(--or-clair); }
+.pied-bas {
+  margin-top: 48px; padding-top: 20px; padding-bottom: 28px;
+  border-top: 1px solid var(--bordure-neutre);
+  font-size: 0.8rem; color: var(--texte-faible);
+}
+@media (min-width: 900px) {
+  .pied-grille { grid-template-columns: 2fr 1fr 1fr 1fr; }
+  .pied-grille > div:first-child { grid-column: auto; }
+}
+
+/* ---------- 4. Composants ---------- */
+
+/* Boutons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 48px; padding: 0 26px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition), transform var(--transition);
+  white-space: nowrap;
+}
+.btn:active { transform: scale(0.98); }
+.btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+.btn-or {
+  background: linear-gradient(135deg, var(--or-clair), var(--or) 55%, var(--or-fonce));
+  color: var(--noir);
+}
+.btn-or:hover { color: var(--noir); filter: brightness(1.08); }
+.btn-contour { background: transparent; border-color: var(--or); color: var(--or-clair); }
+.btn-contour:hover { background: rgba(201, 164, 92, 0.1); color: var(--or-clair); }
+.btn-whatsapp { background: var(--vert-whatsapp); color: #fff; }
+.btn-whatsapp:hover { background: #1b964b; color: #fff; }
+.btn-lien { background: none; border: 0; color: var(--texte-doux); text-decoration: underline; padding: 0; min-height: 44px; cursor: pointer; }
+.btn-lien:hover { color: var(--or-clair); }
+.btn-petit { min-height: 40px; padding: 0 14px; font-size: 0.7rem; letter-spacing: 0.1em; }
+.btn-large { width: 100%; }
+.btn[disabled] { opacity: 0.5; cursor: not-allowed; }
+
+/* Grille de produits : 2 colonnes sur mobile, puis 3 et 4. */
+.grille-produits {
+  display: grid;
+  gap: 28px 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (min-width: 700px) { .grille-produits { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 24px; } }
+@media (min-width: 1100px) { .grille-produits.grille-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+/* Carte produit */
+.carte-produit { display: flex; flex-direction: column; }
+.carte-lien { color: inherit; display: block; flex: 1; }
+.carte-lien:hover { color: inherit; }
+.carte-visuel {
+  position: relative;
+  aspect-ratio: 4 / 5;                    /* toujours le même format d'image */
+  display: grid; place-items: center;
+  padding: 12% 18%;
+  border-radius: var(--rayon);
+  background: radial-gradient(circle at 50% 40%, var(--noir-4), var(--noir-2) 70%);
+  border: 1px solid var(--bordure-neutre);
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+.carte-visuel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.carte-visuel .montre-svg { width: 100%; height: 100%; transition: transform 0.5s ease; }
+.carte-produit:hover .carte-visuel { border-color: var(--bordure); }
+.carte-produit:hover .montre-svg { transform: scale(1.05) rotate(-2deg); }
+.carte-collection {
+  margin: 14px 0 2px; font-size: 0.68rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--texte-faible);
+}
+.carte-nom { font-size: 1.3rem; margin: 0 0 4px; }
+.carte-prix { color: var(--or-clair); font-weight: 500; margin: 0 0 12px; font-size: 0.95rem; }
+.carte-prix s, .fiche-prix s { color: var(--texte-faible); font-weight: 400; margin-left: 6px; font-size: 0.85em; }
+.carte-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+/* Sur téléphone (2 cartes par ligne), on n'affiche que l'icône WhatsApp pour gagner de la place.
+   Le texte reste lu par les lecteurs d'écran grâce à l'aria-label du lien. */
+.carte-actions .btn { min-width: 0; }
+@media (max-width: 699px) {
+  .carte-actions { grid-template-columns: 1fr 40px; }
+  .carte-actions .btn-whatsapp span { display: none; }
+  .carte-actions .btn-whatsapp { padding: 0; }
+}
+
+/* Étiquettes "Nouveauté" / "-15 %" */
+.etiquette {
+  position: absolute; top: 12px; left: 12px; z-index: 1;
+  padding: 4px 10px; border-radius: 999px;
+  background: rgba(10, 10, 11, 0.75); border: 1px solid var(--bordure);
+  font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--or-clair);
+}
+.etiquette-promo { left: auto; right: 12px; background: var(--or); color: var(--noir); border: 0; font-weight: 700; }
+
+/* Notification "toast" */
+.toast {
+  position: fixed; left: 50%; bottom: 24px; z-index: 100;
+  width: calc(100% - 2 * var(--gouttiere)); max-width: 440px;
+  transform: translate(-50%, 140%);
+  padding: 14px 18px; border-radius: 12px;
+  background: var(--noir-3); border: 1px solid var(--bordure);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  font-size: 0.9rem;
+  transition: transform 0.35s ease;
+}
+.toast.visible { transform: translate(-50%, 0); }
+.toast a { text-decoration: underline; }
+
+/* Bouton WhatsApp flottant, en bas à droite de toutes les pages. */
+.whatsapp-flottant {
+  position: fixed; right: 18px; bottom: 18px; z-index: 60;
+  width: 56px; height: 56px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--vert-whatsapp); color: #fff;
+  box-shadow: 0 10px 30px rgba(31, 168, 85, 0.35);
+  transition: transform var(--transition);
+}
+.whatsapp-flottant:hover { color: #fff; transform: scale(1.08); }
+.whatsapp-flottant svg { width: 28px; height: 28px; }
+
+/* Petit fil d'Ariane (Accueil / Collection / Produit) */
+.fil-ariane { font-size: 0.8rem; color: var(--texte-faible); padding: 20px 0 0; }
+.fil-ariane a { color: var(--texte-doux); }
+.fil-ariane span { margin: 0 8px; }
+
+.titre-page { padding: 40px 0 28px; }
+.titre-page h1 { margin: 0; }
+
+/* État vide (panier vide, aucun résultat…) */
+.etat-vide {
+  text-align: center; padding: 64px 20px;
+  border: 1px dashed var(--bordure); border-radius: var(--rayon);
+}
+.etat-vide h2 { font-size: 1.8rem; }
+
+/* ---------- 5. Accueil ---------- */
+.hero { position: relative; overflow: hidden; padding: 40px 0 64px; }
+/* Halo doré en arrière-plan, fait uniquement en CSS. */
+.hero::before {
+  content: ''; position: absolute; z-index: -1;
+  width: 900px; height: 900px; right: -300px; top: -200px;
+  background: radial-gradient(circle, rgba(201, 164, 92, 0.16), transparent 60%);
+}
+.hero-grille { display: grid; gap: 32px; align-items: center; }
+.hero-texte { text-align: center; }
+.hero-texte h1 em { font-style: italic; color: var(--or-clair); }
+.hero-texte p { color: var(--texte-doux); font-size: 1.05rem; max-width: 480px; margin: 0 auto 28px; }
+.hero-boutons { display: flex; flex-direction: column; gap: 12px; }
+.hero-visuel { position: relative; max-width: 300px; margin: 0 auto; width: 70%; }
+.hero-visuel .montre-svg { position: relative; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.7)); animation: flotter 6s ease-in-out infinite; }
+/* Anneau doré qui tourne lentement derrière la montre. */
+.hero-anneau {
+  position: absolute; inset: 8% -18%;
+  border: 1px solid var(--bordure); border-radius: 50%;
+  animation: tourner 40s linear infinite;
+}
+.hero-anneau::after {
+  content: ''; position: absolute; top: -4px; left: 50%;
+  width: 8px; height: 8px; border-radius: 50%; background: var(--or);
+}
+@keyframes flotter { 50% { transform: translateY(-12px); } }
+@keyframes tourner { to { transform: rotate(360deg); } }
+
+.hero-chiffres {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--bordure-neutre);
+  text-align: center;
+}
+.hero-chiffres strong { display: block; font-family: var(--police-titre); font-size: 1.9rem; font-weight: 500; color: var(--or-clair); line-height: 1.1; }
+.hero-chiffres span { font-size: 0.72rem; color: var(--texte-faible); letter-spacing: 0.06em; }
+
+@media (min-width: 600px) {
+  .hero-boutons { flex-direction: row; justify-content: center; }
+}
+@media (min-width: 900px) {
+  .hero { padding: 72px 0 96px; }
+  .hero-grille { grid-template-columns: 1.1fr 0.9fr; gap: 64px; }
+  .hero-texte { text-align: left; }
+  .hero-texte p { margin-left: 0; }
+  .hero-boutons { justify-content: flex-start; }
+  .hero-chiffres { text-align: left; }
+  .hero-visuel { width: 100%; max-width: 360px; }
+}
+
+/* Bandeau des engagements (livraison, garantie…) */
+.engagements { border-top: 1px solid var(--bordure-neutre); border-bottom: 1px solid var(--bordure-neutre); background: var(--noir-2); }
+.engagements-grille { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 16px; padding: 40px 0; }
+.engagement { text-align: center; }
+.engagement svg { width: 30px; height: 30px; margin: 0 auto 10px; color: var(--or); }
+.engagement h3 { font-family: var(--police-texte); font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; letter-spacing: 0.04em; }
+.engagement p { font-size: 0.8rem; color: var(--texte-faible); margin: 0; }
+@media (min-width: 900px) { .engagements-grille { grid-template-columns: repeat(4, 1fr); } }
+
+/* Cartes des collections */
+.collections-grille { display: grid; gap: 16px; }
+.carte-collection-lien {
+  position: relative; display: flex; flex-direction: column; justify-content: flex-end;
+  min-height: 220px; padding: 28px; border-radius: var(--rayon); overflow: hidden;
+  border: 1px solid var(--bordure-neutre);
+  background: var(--noir-2);
+  color: var(--texte);
+  transition: border-color var(--transition);
+}
+.carte-collection-lien:hover { color: var(--texte); border-color: var(--or); }
+.carte-collection-lien .montre-svg {
+  position: absolute; right: -10px; top: -30px; width: 150px; opacity: 0.9;
+  transform: rotate(18deg); transition: transform 0.5s ease;
+}
+.carte-collection-lien:hover .montre-svg { transform: rotate(8deg) scale(1.05); }
+.carte-collection-lien h3 { font-size: 1.9rem; margin: 0; position: relative; }
+.carte-collection-lien p { color: var(--texte-doux); margin: 0; font-size: 0.9rem; position: relative; max-width: 60%; }
+.carte-collection-lien .fleche { color: var(--or); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; margin-top: 14px; position: relative; }
+@media (min-width: 800px) { .collections-grille { grid-template-columns: repeat(3, 1fr); } .carte-collection-lien { min-height: 300px; } }
+
+/* Section "La maison" : texte + chiffres */
+.maison-grille { display: grid; gap: 40px; align-items: center; }
+.maison-citation {
+  font-family: var(--police-titre); font-size: clamp(1.5rem, 4vw, 2.1rem); font-style: italic;
+  line-height: 1.35; color: var(--or-clair);
+  border-left: 2px solid var(--or); padding-left: 22px; margin: 0;
+}
+.etapes { list-style: none; margin: 0; padding: 0; counter-reset: etape; }
+.etapes li { counter-increment: etape; position: relative; padding: 0 0 26px 58px; }
+.etapes li::before {
+  content: counter(etape, decimal-leading-zero);
+  position: absolute; left: 0; top: -2px;
+  font-family: var(--police-titre); font-size: 1.7rem; color: var(--or);
+}
+.etapes h3 { font-size: 1.25rem; margin-bottom: 2px; }
+.etapes p { color: var(--texte-doux); font-size: 0.93rem; margin: 0; }
+@media (min-width: 900px) { .maison-grille { grid-template-columns: 1fr 1fr; gap: 80px; } }
+
+/* Avis clients : défilement horizontal au doigt sur mobile. */
+.avis-liste {
+  display: grid; grid-auto-flow: column; grid-auto-columns: 85%;
+  gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding-bottom: 12px; margin: 0 calc(-1 * var(--gouttiere)); padding-left: var(--gouttiere); padding-right: var(--gouttiere);
+  scrollbar-width: thin;
+}
+.avis {
+  scroll-snap-align: start;
+  margin: 0; padding: 28px; border-radius: var(--rayon);
+  background: var(--noir-2); border: 1px solid var(--bordure-neutre);
+}
+.avis-etoiles { display: flex; gap: 3px; color: var(--or); margin-bottom: 14px; }
+.avis-etoiles svg { width: 16px; height: 16px; }
+.avis blockquote { margin: 0 0 18px; font-size: 0.97rem; }
+.avis figcaption { font-size: 0.82rem; color: var(--texte-faible); }
+.avis figcaption strong { color: var(--texte); font-weight: 600; }
+@media (min-width: 900px) {
+  .avis-liste { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; margin: 0; padding: 0; }
+}
+
+/* FAQ : balises <details>/<summary> natives, ouvrables sans JavaScript. */
+.faq { max-width: 780px; margin: 0 auto; }
+.faq details { border-bottom: 1px solid var(--bordure-neutre); }
+.faq summary {
+  list-style: none; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 22px 0; font-size: 1.02rem; font-weight: 500;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: '+'; color: var(--or); font-size: 1.5rem; line-height: 1; transition: transform var(--transition); }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { color: var(--texte-doux); padding-bottom: 20px; margin: 0; }
+
+/* Appel à l'action final */
+.cta-final {
+  text-align: center; padding: 56px 24px; border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(201, 164, 92, 0.22), transparent 70%),
+    var(--noir-2);
+  border: 1px solid var(--bordure);
+}
+.cta-final p { color: var(--texte-doux); max-width: 520px; margin: 0 auto 28px; }
+.cta-final .hero-boutons { justify-content: center; }
+
+/* ---------- 6. Catalogue ---------- */
+.barre-catalogue { display: grid; grid-template-columns: 1fr auto; gap: 10px; margin-bottom: 24px; }
+.champ, .selection {
+  width: 100%; min-height: 48px; padding: 0 16px;
+  background: var(--noir-2); border: 1px solid var(--bordure-neutre); border-radius: 12px;
+}
+.champ:focus, .selection:focus { border-color: var(--or); outline: none; }
+.selection { grid-column: 1 / -1; cursor: pointer; }
+.champ-recherche { grid-column: 1 / 2; }
+
+.catalogue { display: grid; gap: 24px; }
+
+/* Panneau de filtres : replié sur mobile, ouvert par le bouton "Filtres". */
+.filtres { display: none; padding: 20px; background: var(--noir-2); border: 1px solid var(--bordure-neutre); border-radius: var(--rayon); }
+.filtres.ouvert { display: block; }
+.filtres fieldset { border: 0; margin: 0 0 22px; padding: 0; }
+.filtres legend { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--or); margin-bottom: 10px; }
+.case { display: flex; align-items: center; gap: 10px; padding: 7px 0; cursor: pointer; font-size: 0.95rem; }
+.case input { width: 18px; height: 18px; accent-color: var(--or); }
+.curseur-prix { width: 100%; accent-color: var(--or); }
+.valeur-prix { display: block; font-size: 0.9rem; color: var(--or-clair); margin-top: 6px; }
+.compteur-resultats { color: var(--texte-faible); font-size: 0.85rem; margin-bottom: 20px; }
+
+@media (min-width: 900px) {
+  .barre-catalogue { grid-template-columns: 1fr 240px; }
+  .btn-filtres { display: none; }
+  .selection { grid-column: auto; }
+  .catalogue { grid-template-columns: 240px 1fr; gap: 40px; align-items: start; }
+  .filtres { display: block; position: sticky; top: calc(var(--hauteur-entete) + 20px); }
+}
+
+/* ---------- 7. Fiche produit ---------- */
+.fiche { display: grid; gap: 32px; padding: 24px 0 40px; }
+.fiche-visuel {
+  position: relative; aspect-ratio: 4 / 5;
+  display: grid; place-items: center; padding: 10% 20%;
+  border-radius: 20px; overflow: hidden;
+  background: radial-gradient(circle at 50% 40%, var(--noir-4), var(--noir-2) 70%);
+  border: 1px solid var(--bordure-neutre);
+}
+.fiche-visuel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.fiche-visuel .montre-svg { width: 100%; height: 100%; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.6)); }
+.fiche-infos h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); margin-bottom: 6px; }
+.fiche-ref { font-size: 0.78rem; color: var(--texte-faible); letter-spacing: 0.1em; }
+.fiche-prix { font-size: 1.6rem; color: var(--or-clair); margin: 16px 0; font-family: var(--police-titre); }
+.fiche-description { color: var(--texte-doux); }
+.stock { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--succes); margin-bottom: 20px; }
+.stock::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.stock.stock-faible { color: var(--or); }
+
+.fiche-achat { display: grid; grid-template-columns: auto 1fr; gap: 10px; margin-bottom: 10px; }
+.fiche-achat .btn-whatsapp { grid-column: 1 / -1; }
+
+/* Sélecteur de quantité  [ − 1 + ] */
+.quantite {
+  display: inline-flex; align-items: center;
+  border: 1px solid var(--bordure-neutre); border-radius: 999px; height: 48px;
+}
+.quantite button {
+  width: 44px; height: 100%; background: none; border: 0; cursor: pointer;
+  color: var(--texte); font-size: 1.2rem;
+}
+.quantite button:disabled { opacity: 0.3; cursor: not-allowed; }
+.quantite output { min-width: 28px; text-align: center; font-weight: 600; }
+.quantite.petite { height: 38px; }
+.quantite.petite button { width: 34px; }
+
+.caracteristiques { width: 100%; border-collapse: collapse; margin-top: 28px; font-size: 0.9rem; }
+.caracteristiques th, .caracteristiques td { text-align: left; padding: 12px 0; border-bottom: 1px solid var(--bordure-neutre); vertical-align: top; }
+.caracteristiques th { color: var(--texte-faible); font-weight: 400; width: 42%; }
+
+.rassurance { display: grid; gap: 10px; margin-top: 24px; padding: 18px; border-radius: 12px; background: var(--noir-2); font-size: 0.85rem; color: var(--texte-doux); }
+.rassurance span::before { content: '✦ '; color: var(--or); }
+
+@media (min-width: 900px) {
+  .fiche { grid-template-columns: 1fr 1fr; gap: 64px; padding-top: 32px; }
+  .fiche-visuel { position: sticky; top: calc(var(--hauteur-entete) + 24px); }
+}
+
+/* ---------- 8. Panier et commande ---------- */
+.mise-en-page-panier { display: grid; gap: 28px; padding-bottom: 72px; }
+@media (min-width: 900px) { .mise-en-page-panier { grid-template-columns: 1fr 380px; gap: 48px; align-items: start; } }
+
+.ligne-panier {
+  display: grid; grid-template-columns: 84px 1fr; gap: 16px;
+  padding: 18px 0; border-bottom: 1px solid var(--bordure-neutre);
+}
+.ligne-panier:first-child { border-top: 1px solid var(--bordure-neutre); }
+.ligne-visuel {
+  position: relative; aspect-ratio: 4 / 5; display: grid; place-items: center; padding: 8px 14px;
+  border-radius: 10px; background: var(--noir-2); overflow: hidden;
+}
+.ligne-visuel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ligne-visuel .montre-svg { width: 100%; height: 100%; }
+.ligne-infos h3 { font-size: 1.2rem; margin: 0; }
+.ligne-infos h3 a { color: var(--texte); }
+.ligne-infos .fiche-ref { display: block; margin-bottom: 10px; }
+.ligne-bas { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.ligne-prix { color: var(--or-clair); font-weight: 500; }
+.ligne-retirer { font-size: 0.8rem; min-height: 32px; }
+
+.recap {
+  padding: 24px; border-radius: 18px;
+  background: var(--noir-2); border: 1px solid var(--bordure);
+}
+@media (min-width: 900px) { .recap { position: sticky; top: calc(var(--hauteur-entete) + 24px); } }
+.recap h2 { font-size: 1.7rem; }
+.recap-ligne { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; font-size: 0.93rem; color: var(--texte-doux); }
+.recap-ligne.total { border-top: 1px solid var(--bordure-neutre); margin-top: 8px; padding-top: 16px; color: var(--texte); font-size: 1.1rem; font-weight: 600; }
+.recap-ligne.total span:last-child { color: var(--or-clair); }
+.recap .btn { margin-top: 12px; }
+.recap-note { font-size: 0.78rem; color: var(--texte-faible); margin: 14px 0 0; text-align: center; }
+.recap-articles { list-style: none; padding: 0; margin: 0 0 12px; }
+.recap-articles li { display: flex; justify-content: space-between; gap: 12px; font-size: 0.88rem; padding: 6px 0; color: var(--texte-doux); }
+
+/* Formulaire de commande */
+.formulaire fieldset { border: 0; padding: 0; margin: 0 0 32px; }
+.formulaire legend { font-family: var(--police-titre); font-size: 1.6rem; margin-bottom: 16px; padding: 0; }
+.grille-champs { display: grid; gap: 16px; }
+@media (min-width: 600px) { .grille-champs.deux { grid-template-columns: 1fr 1fr; } }
+.groupe-champ label { display: block; font-size: 0.82rem; color: var(--texte-doux); margin-bottom: 6px; }
+.groupe-champ .champ { font-size: 16px; }              /* 16px évite le zoom auto sur iPhone */
+textarea.champ { padding: 12px 16px; min-height: 90px; resize: vertical; }
+.groupe-champ.erreur .champ { border-color: var(--rouge); }
+.message-erreur { display: none; color: var(--rouge); font-size: 0.8rem; margin-top: 6px; }
+.groupe-champ.erreur .message-erreur { display: block; }
+
+/* Choix du mode de paiement sous forme de cartes cliquables */
+.choix-paiement { display: grid; gap: 10px; }
+.option-paiement {
+  display: flex; align-items: center; gap: 12px; padding: 16px;
+  border: 1px solid var(--bordure-neutre); border-radius: 12px; cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+}
+.option-paiement:has(input:checked) { border-color: var(--or); background: rgba(201, 164, 92, 0.06); }
+.option-paiement input { accent-color: var(--or); width: 18px; height: 18px; }
+.option-paiement small { display: block; color: var(--texte-faible); }
+.bloc-carte { margin-top: 16px; padding: 18px; border-radius: 12px; background: var(--noir-2); }
+.aide-test { font-size: 0.8rem; color: var(--or-clair); margin: 0 0 14px; }
+
+/* Écran de confirmation */
+.confirmation { max-width: 620px; margin: 0 auto; text-align: center; padding: 64px 0 96px; }
+.coche {
+  width: 76px; height: 76px; margin: 0 auto 24px; border-radius: 50%;
+  display: grid; place-items: center; border: 1px solid var(--or); color: var(--or);
+}
+.coche svg { width: 34px; height: 34px; }
+.numero-commande { display: inline-block; padding: 8px 18px; border-radius: 999px; background: var(--noir-3); color: var(--or-clair); letter-spacing: 0.12em; margin-bottom: 24px; }
+
+/* Indicateur de chargement (paiement en cours) */
+.chargement { width: 18px; height: 18px; border-radius: 50%; border: 2px solid rgba(10, 10, 11, 0.3); border-top-color: var(--noir); animation: tourner 0.8s linear infinite; }
+
+/* ---------- 9. Pages simples ---------- */
+.page-texte { max-width: 780px; padding-bottom: 80px; }
+.page-texte h2 { font-size: 1.7rem; margin-top: 40px; }
+.page-texte p, .page-texte li { color: var(--texte-doux); }
+
+.page-404 { min-height: 60vh; display: grid; place-items: center; text-align: center; padding: 60px 0; }
+.page-404 .montre-svg { width: 130px; margin: 0 auto 24px; }
+
+/* ---------- 10. Accessibilité ---------- */
+/* Si l'utilisateur a demandé de réduire les animations dans son système, on les coupe. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ---------- 11. Photos ---------- */
+/* Zoom doux sur la photo au survol d'une carte produit. */
+.carte-visuel img, .carte-collection-lien img { transition: transform 0.6s ease; }
+.carte-produit:hover .carte-visuel img { transform: scale(1.05); }
+
+/* Photo du héro en forme d'arche, avec un filet doré. */
+.hero-photo {
+  position: relative;
+  width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 60%;
+  border-radius: 200px 200px 20px 20px;
+  border: 1px solid var(--bordure);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+}
+/* Petite étiquette posée sur la photo : nom + prix de la pièce phare. */
+.hero-etiquette {
+  position: absolute; left: -14px; bottom: 28px;
+  display: flex; flex-direction: column; padding: 12px 18px; border-radius: 14px;
+  background: rgba(10, 10, 11, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--bordure); color: var(--texte);
+  font-size: 0.78rem; letter-spacing: 0.06em;
+}
+.hero-etiquette strong { color: var(--or-clair); font-family: var(--police-titre); font-size: 1.25rem; font-weight: 500; }
+.hero-etiquette:hover { color: var(--texte); border-color: var(--or); }
+@media (max-width: 899px) { .hero-visuel { width: 78%; max-width: 340px; } .hero-etiquette { left: -8px; } }
+
+/* Cartes des collections : la photo remplit la carte, un dégradé sombre garde le texte lisible. */
+.carte-collection-lien img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+.carte-collection-lien::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(to top, rgba(10, 10, 11, 0.95) 15%, rgba(10, 10, 11, 0.35) 65%, rgba(10, 10, 11, 0.15));
+}
+.carte-collection-lien:has(img)::before { z-index: 1; }
+.carte-collection-lien h3, .carte-collection-lien p, .carte-collection-lien .fleche { z-index: 2; }
+.carte-collection-lien:hover img { transform: scale(1.05); }
+.carte-collection-lien p { max-width: 90%; }
+@media (min-width: 800px) { .carte-collection-lien { min-height: 380px; } }

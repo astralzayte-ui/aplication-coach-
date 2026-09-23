@@ -1,0 +1,11 @@
+# Préférences de l'utilisateur (à respecter dans toutes les sessions)
+
+- **Ne jamais montrer le code à l'utilisateur.** Pas de blocs de code, pas d'extraits, pas de diffs dans les réponses.
+- **Toujours montrer le résultat sous forme d'artifact** (aperçu visuel publié) après chaque étape de travail sur un site.
+- Répondre en français, simplement, pour un développeur web junior (Marrakech) qui prépare son portfolio.
+- Expliquer ce que fait le code avec des mots (pour pouvoir le raconter en entretien), sans coller le code.
+
+# Projet portfolio : 3 sites (HTML, CSS, JavaScript sans framework, commentés en français, un README et un dossier par site)
+- `site-1-montres/` : boutique de montres « Aurel » (noir et doré). WhatsApp : +212 693 511 445.
+- Site 2 (à venir) : restaurant à Marrakech, FR/EN, Google Maps.
+- Site 3 (à venir) : tableau de bord de commandes, export Excel.

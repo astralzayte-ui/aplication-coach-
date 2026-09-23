@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commande — Aurel</title>
+  <meta name="description" content="Finalisez votre commande Aurel : livraison offerte au Maroc, paiement par carte ou à la livraison.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0a0a0b">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="commande">
+  <a class="visuellement-cache" href="#contenu">Aller au contenu</a>
+  <header id="entete" class="entete"></header>
+
+  <main id="contenu" class="conteneur">
+    <div id="zone-commande">
+      <div class="titre-page">
+        <p class="surtitre">Dernière étape</p>
+        <h1>Commande</h1>
+      </div>
+
+      <div class="mise-en-page-panier">
+        <!-- novalidate : on désactive les bulles d'erreur du navigateur
+             pour afficher nos propres messages, en français et au bon endroit. -->
+        <form class="formulaire" id="formulaire" novalidate>
+          <fieldset>
+            <legend>Vos coordonnées</legend>
+            <div class="grille-champs deux">
+              <div class="groupe-champ">
+                <label for="nom">Nom complet</label>
+                <input class="champ" id="nom" name="nom" autocomplete="name" required>
+                <p class="message-erreur">Indiquez votre nom et prénom.</p>
+              </div>
+              <div class="groupe-champ">
+                <label for="telephone">Téléphone</label>
+                <input class="champ" id="telephone" name="telephone" type="tel" inputmode="tel" autocomplete="tel" placeholder="06 12 34 56 78" required>
+                <p class="message-erreur">Numéro marocain attendu, par ex. 06 12 34 56 78.</p>
+              </div>
+              <div class="groupe-champ" style="grid-column:1/-1">
+                <label for="email">E-mail (pour la confirmation)</label>
+                <input class="champ" id="email" name="email" type="email" autocomplete="email" placeholder="vous@exemple.ma" required>
+                <p class="message-erreur">Adresse e-mail invalide.</p>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Livraison</legend>
+            <div class="grille-champs deux">
+              <div class="groupe-champ" style="grid-column:1/-1">
+                <label for="adresse">Adresse</label>
+                <input class="champ" id="adresse" name="adresse" autocomplete="street-address" required>
+                <p class="message-erreur">Indiquez votre adresse de livraison.</p>
+              </div>
+              <div class="groupe-champ">
+                <label for="ville">Ville</label>
+                <select class="champ" id="ville" name="ville" required>
+                  <option value="">Choisir…</option>
+                  <option>Marrakech</option><option>Casablanca</option><option>Rabat</option>
+                  <option>Fès</option><option>Tanger</option><option>Agadir</option>
+                  <option>Meknès</option><option>Oujda</option><option>Tétouan</option>
+                  <option>Essaouira</option><option>Autre ville</option>
+                </select>
+                <p class="message-erreur">Choisissez une ville.</p>
+              </div>
+              <div class="groupe-champ">
+                <label for="note">Tour de poignet (facultatif)</label>
+                <input class="champ" id="note" name="note" placeholder="ex. 17 cm">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Paiement</legend>
+            <div class="choix-paiement">
+              <label class="option-paiement">
+                <input type="radio" name="paiement" value="carte" checked>
+                <span>Carte bancaire<small>Paiement simulé : aucun débit réel</small></span>
+              </label>
+              <label class="option-paiement">
+                <input type="radio" name="paiement" value="livraison">
+                <span>Paiement à la livraison<small>En espèces, à la réception</small></span>
+              </label>
+            </div>
+
+            <!-- Champs de carte : affichés seulement si "Carte bancaire" est choisi -->
+            <div class="bloc-carte" id="bloc-carte">
+              <p class="aide-test">Démo : utilisez la carte de test 4242 4242 4242 4242, une date future et n'importe quel code à 3 chiffres.</p>
+              <div class="grille-champs deux">
+                <div class="groupe-champ" style="grid-column:1/-1">
+                  <label for="carte">Numéro de carte</label>
+                  <input class="champ" id="carte" name="carte" inputmode="numeric" autocomplete="cc-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                  <p class="message-erreur">Numéro de carte invalide.</p>
+                </div>
+                <div class="groupe-champ">
+                  <label for="expiration">Expiration (MM/AA)</label>
+                  <input class="champ" id="expiration" name="expiration" inputmode="numeric" autocomplete="cc-exp" placeholder="08/28" maxlength="5">
+                  <p class="message-erreur">Date invalide ou expirée.</p>
+                </div>
+                <div class="groupe-champ">
+                  <label for="cvc">Code de sécurité</label>
+                  <input class="champ" id="cvc" name="cvc" inputmode="numeric" autocomplete="cc-csc" placeholder="123" maxlength="4">
+                  <p class="message-erreur">3 ou 4 chiffres.</p>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <button class="btn btn-or btn-large" type="submit" id="bouton-payer">Confirmer la commande</button>
+        </form>
+
+        <aside class="recap" id="recap" aria-label="Récapitulatif de la commande"></aside>
+      </div>
+      <div style="height:72px"></div>
+    </div>
+  </main>
+
+  <footer id="pied" class="pied"></footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/produits.js"></script>
+  <script src="js/montre-svg.js"></script>
+  <script src="js/panier.js"></script>
+  <script src="js/commun.js"></script>
+  <script src="js/commande.js"></script>
+</body>
+</html>

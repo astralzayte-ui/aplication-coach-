@@ -12,8 +12,7 @@ const CONFIG = {
 
   // Numéro WhatsApp au format international, SANS le "+" ni les espaces.
   // Exemple : +212 6 00 00 00 00  →  '212600000000'
-  // ⚠️ Remplace-le par ton vrai numéro avant de mettre en ligne.
-  whatsapp: '212600000000',
+  whatsapp: '212693511445',
 
   devise: 'DH',
 
