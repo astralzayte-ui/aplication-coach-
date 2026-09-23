@@ -4,8 +4,9 @@
 - [ ] Étude de marché
 - [ ] Création des réseaux
 - [ ] Site internet
-- [ ] 7 vidéos / semaine
-- [ ] 7 stories / semaine
+- [ ] Vidéos : … / semaine
+- [ ] Stories : … / semaine
+- [ ] Pack : Essentiel / Premium / Lancement
 - [ ] WhatsApp automatique
 - Acompte reçu : ☐ 400 DH (date : )
 

@@ -61,7 +61,7 @@ et un message prêt à transférer au client (« votre site est en ligne, testez
 ## Contenu hebdomadaire (routine automatique)
 Une fois le client lancé, créer une routine (scheduled trigger) : chaque dimanche 20h (heure du Maroc) :
 1. Lire `profil.md`, le skill du secteur, et les stats de la semaine passée.
-2. Remplir la semaine suivante dans `clients/<slug>/calendrier.md` (depuis `clients/_modele/calendrier.md`).
+2. Selon le palier souscrit (3 à 15 reels, 3 à 21 stories / semaine ; max ~2-3 reels/jour par compte), remplir la semaine suivante dans `clients/<slug>/calendrier.md` (depuis `clients/_modele/calendrier.md`).
 3. Générer les vidéos UGC (Higgsfield) + légendes + hashtags par réseau.
 4. Si le client est en mode « validation » : envoyer l'aperçu à l'utilisateur et attendre « OK ».
    Sinon : programmer directement dans Buffer à l'heure prévue (stories comprises si Buffer les publie

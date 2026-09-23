@@ -16,11 +16,16 @@ Taux utilisé : 1 $ ≈ 10 DH (arrondi). Prix publics relevés en septembre 2026
 Une seule fois par client : puce 20 DH + 1re année de domaine 100 DH + étude de marché (~15-25 crédits scrape_reseaux)
 → couvert par l'acompte de 400 DH (reste ≈ 280 DH de marge sur l'acompte).
 
+## Pack Premium (15 vidéos + 21 stories + WhatsApp)
+Coût ≈ 65 vidéos/mois × ~12 DH ≈ 780 DH/mois + Buffer, WhatsApp, puce ≈ 950 DH/mois ≈ 220 DH/semaine.
+Prix : 800 DH/semaine → marge ≈ 580 DH/semaine. Higgsfield Ultra (3 000 crédits) ≈ 1 à 1,5 client Premium.
+Pas plus de ~2-3 reels/jour par compte : au-delà, Instagram et TikTok réduisent la portée.
+
 ## Charges fixes (quel que soit le nombre de clients)
 - Higgsfield : un abonnement mensuel. Starter 19 $ (270 crédits, ~1 client) · Plus 59 $ ou 47 $ en annuel
   (1 200 crédits, ~1-2 clients à 7 vidéos/semaine) · Ultra 129 $ ou 99 $ en annuel (3 000 crédits, ~3-4 clients à 7 vidéos/semaine).
 - Buffer : l'offre gratuite (3 réseaux, 10 posts programmés par réseau) suffit pour tester avec 1 client.
 - Abonnement Claude.
 
-## Prix minimum conseillé
-Facturer au moins 3 × les coûts : ≥ 400 DH/semaine par client pour le pack complet (7 vidéos + 7 stories + WhatsApp IA), site en plus.
+## Grille de prix (validée)
+Voir `clients/_modele/message-client.md`. Essentiel 450 DH/semaine · Premium 800 DH/semaine · Lancement 1 800 DH une fois.
