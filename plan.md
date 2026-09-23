@@ -22,7 +22,7 @@ Guide pas à pas : `guides/etape-1-outils.md`
 
 ## Étape 3 — Prospection (toi)
 - ✅ Accès Google Drive testé (compte astralzayte@gmail.com)
-- 🔄 Créer le Google Form + Google Sheet « Sahir Digital — Réponses clients » — avec le compte astralzayte@gmail.com → lancer le script `outils/creer-formulaire.gs` sur script.google.com (~3 min)
+- ✅ Google Form créé : https://docs.google.com/forms/d/1ldDv-l5HZtRyAnomwYz6TWRs56snThL90FLpsl73_jQ/edit · Réponses : Google Sheet id 1bL_39qJ3cPVC8J0j0wiW8Wm4OXotvLpkU6s91tEtioE
 - ✅ Nom : **Sahir Digital** (ساهر ديجيتال) — ⬜ vérifier dispo (OMPIC, nom de domaine, Instagram)
 - ✅ Prix validés (questionnaire `clients/_modele/message-client.md`)
 - ⬜ Pitch appris (`prospection/pitch.md`)

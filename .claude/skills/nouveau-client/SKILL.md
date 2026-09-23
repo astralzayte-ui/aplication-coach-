@@ -14,7 +14,7 @@ adapté si on connaît déjà le nom / le secteur. Il l'envoie au client sur Wha
 
 ## Étape 1 bis — Services choisis + acompte de 400 DH
 Le client remplit le Google Form (`clients/_modele/formulaire-google.md`). Lire sa réponse dans la Google Sheet
-« Sahir Digital — Réponses clients » via le connecteur Google Drive. Plan B : il répond au message texte
+« Sahir Digital — Réponses clients » (id 1bL_39qJ3cPVC8J0j0wiW8Wm4OXotvLpkU6s91tEtioE) via le connecteur Google Drive. Plan B : il répond au message texte
 (`clients/_modele/message-client.md`) avec les codes, et l'utilisateur colle sa réponse.
 Ensuite, TOUJOURS :
 1. Écrire `clients/<slug>/choix.json` (format de `clients/_modele/choix.json`).
