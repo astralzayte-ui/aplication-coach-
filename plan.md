@@ -19,6 +19,7 @@ Statuts : ✅ fait · 🔄 en cours · ⬜ à faire · ⏸ en attente
 - ⬜ Vidéo de présentation arabe classique
 
 ## Étape 3 — Prospection (toi)
+- ⬜ Créer le Google Form + Google Sheet « Sahir Digital — Réponses clients » (questions : `clients/_modele/formulaire-google.md`, ~10 min)
 - ✅ Nom : **Sahir Digital** (ساهر ديجيتال) — ⬜ vérifier dispo (OMPIC, nom de domaine, Instagram)
 - ⬜ Statut légal (auto-entrepreneur) pour les factures
 - ✅ Prix validés (questionnaire `clients/_modele/message-client.md`)

@@ -15,4 +15,5 @@ Quand l'utilisateur envoie un lien YouTube avec « assimile cette vidéo » (ou 
 Avant de répondre à une question sur le coaching ou l'appli, consulter les fiches de `knowledge/`.
 
 ## Coûts
-Les coûts par client et les charges fixes sont dans `couts.md`. Le mettre à jour si un prix change ou si un outil est ajouté.
+Prix et coûts de référence : `outils/tarifs.json`. Calcul par client : `outils/calcul_client.py` (voir skill nouveau-client).
+Les coûts par client et les charges fixes sont expliqués dans `couts.md`. Le mettre à jour si un prix change ou si un outil est ajouté.

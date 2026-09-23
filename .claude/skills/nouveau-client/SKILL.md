@@ -16,6 +16,13 @@ adapté si on connaît déjà le nom / le secteur. Il l'envoie au client sur Wha
 Le client remplit le Google Form (`clients/_modele/formulaire-google.md`). Lire sa réponse dans la Google Sheet
 « Sahir Digital — Réponses clients » via le connecteur Google Drive. Plan B : il répond au message texte
 (`clients/_modele/message-client.md`) avec les codes, et l'utilisateur colle sa réponse.
+Ensuite, TOUJOURS :
+1. Écrire `clients/<slug>/choix.json` (format de `clients/_modele/choix.json`).
+2. Lancer `python3 outils/calcul_client.py clients/<slug>/choix.json` → `clients/<slug>/finances.md`,
+   puis `python3 outils/calcul_client.py --bilan` → `finances.md` (tous les clients).
+3. Montrer à l'utilisateur : bénéfice / semaine et / mois, dépenses et quand les payer (mois / an / une fois),
+   et l'abonnement Higgsfield conseillé vu le total de vidéos.
+Si un prix change : modifier uniquement `outils/tarifs.json`.
 Noter les services cochés dans `profil.md` (section « Services souscrits ») : seules ces parties sont lancées ensuite.
 
 ## Étape 2 — Réponses du client (utilisateur : 1 min)
