@@ -6,6 +6,7 @@ Statuts : ✅ fait · 🔄 en cours · ⬜ à faire · ⏸ en attente
 - ✅ Dépôt, fiches clients, skills, stratégie de test, coûts (`couts.md`)
 
 ## Étape 1 — Outils de l'agence (toi, ~15 min, une fois — servent à tous les clients)
+Guide pas à pas : `guides/etape-1-outils.md`
 - ⬜ Meta Business
 - ⬜ Cloudflare
 - ⬜ Clé Gemini API (ne jamais la coller dans la conversation)
