@@ -25,7 +25,7 @@ const PRODUITS = [
   {
     id: 'atlas-automatique', ref: 'AUR-001', nom: 'Atlas Automatique',
     collection: 'heritage', genre: 'homme', mouvement: 'automatique', matiereBracelet: 'cuir',
-    prix: 4890, ancienPrix: null, nouveaute: true, stock: 8,
+    prix: 1590, ancienPrix: null, nouveaute: true, stock: 8,
     diametre: 40, boitier: 'Acier plaqué or rose', bracelet: 'Cuir de veau brun', etancheite: 50,
     description: "Inspirée des sommets de l'Atlas, cette automatique marie un boîtier or rose à un cadran bleu nuit d'une grande profondeur. Une montre de caractère, qui accompagne aussi bien un costume qu'une chemise ouverte.",
     photo: 'images/produits/atlas-automatique.webp', cadrage: '50% 62%',
@@ -35,7 +35,7 @@ const PRODUITS = [
   {
     id: 'tichka-pilote', ref: 'AUR-002', nom: 'Tichka Pilote',
     collection: 'sport', genre: 'homme', mouvement: 'automatique', matiereBracelet: 'acier',
-    prix: 3690, ancienPrix: null, nouveaute: false, stock: 9,
+    prix: 690, ancienPrix: null, nouveaute: false, stock: 9,
     diametre: 42, boitier: 'Acier inoxydable 316L', bracelet: 'Acier maillons pleins', etancheite: 100,
     description: "Nommée d'après le col du Tichka, la route la plus mythique du Maroc. Grands chiffres lisibles, cadran bleu et bracelet acier : une montre de pilote faite pour les longs trajets.",
     photo: 'images/produits/tichka-pilote.webp', cadrage: '50% 50%',
@@ -45,7 +45,7 @@ const PRODUITS = [
   {
     id: 'koutoubia-chrono', ref: 'AUR-003', nom: 'Koutoubia Chrono',
     collection: 'sport', genre: 'homme', mouvement: 'quartz', matiereBracelet: 'acier',
-    prix: 3290, ancienPrix: null, nouveaute: false, stock: 12,
+    prix: 620, ancienPrix: null, nouveaute: false, stock: 12,
     diametre: 44, boitier: 'Acier inoxydable poli', bracelet: 'Acier maillons pleins', etancheite: 100,
     description: "Un chronographe imposant au cadran noir, avec trois compteurs et une lunette tachymétrique. Robuste et précis, il s'impose au poignet comme la Koutoubia sur Marrakech.",
     photo: 'images/produits/koutoubia-chrono.webp', cadrage: '50% 40%',
@@ -55,7 +55,7 @@ const PRODUITS = [
   {
     id: 'medina-classique', ref: 'AUR-004', nom: 'Médina Classique',
     collection: 'elegance', genre: 'mixte', mouvement: 'automatique', matiereBracelet: 'acier',
-    prix: 2890, ancienPrix: 3390, nouveaute: false, stock: 15,
+    prix: 520, ancienPrix: 590, nouveaute: false, stock: 15,
     diametre: 39, boitier: 'Acier inoxydable brossé', bracelet: 'Acier maillons pleins', etancheite: 50,
     description: "La montre de tous les jours : un cadran noir sobre, un boîtier de taille parfaite et un bracelet acier confortable. Du café du matin au dîner, elle ne vous quitte plus.",
     photo: 'images/produits/medina-classique.webp', cadrage: '70% 45%',
@@ -65,7 +65,7 @@ const PRODUITS = [
   {
     id: 'tensift-chrono', ref: 'AUR-005', nom: 'Tensift Chrono',
     collection: 'heritage', genre: 'homme', mouvement: 'quartz', matiereBracelet: 'cuir',
-    prix: 2790, ancienPrix: 3190, nouveaute: false, stock: 11,
+    prix: 550, ancienPrix: 620, nouveaute: false, stock: 11,
     diametre: 40, boitier: 'Acier inoxydable poli', bracelet: 'Cuir brun surpiqué', etancheite: 100,
     description: "Le fameux cadran « panda » : fond blanc et compteurs noirs, inspiré des chronographes de course des années 60. Sur son bracelet en cuir brun, c'est un classique instantané.",
     photo: 'images/produits/tensift-chrono.webp', cadrage: '50% 58%',
@@ -75,7 +75,7 @@ const PRODUITS = [
   {
     id: 'bahia-chrono', ref: 'AUR-006', nom: 'Bahia Chrono',
     collection: 'elegance', genre: 'homme', mouvement: 'automatique', matiereBracelet: 'acier',
-    prix: 5990, ancienPrix: null, nouveaute: false, stock: 4,
+    prix: 1790, ancienPrix: null, nouveaute: false, stock: 4,
     diametre: 42, boitier: 'Acier inoxydable poli-brossé', bracelet: 'Acier maillons pleins', etancheite: 100,
     description: "Un chronographe automatique au cadran noir, fin et raffiné, pensé pour se glisser sous une manchette. L'élégance des salons du palais de la Bahia, avec la précision d'un mouvement mécanique.",
     photo: 'images/produits/bahia-chrono.webp', cadrage: '50% 55%',
@@ -85,7 +85,7 @@ const PRODUITS = [
   {
     id: 'nuit-agafay', ref: 'AUR-007', nom: "Nuit d'Agafay",
     collection: 'heritage', genre: 'homme', mouvement: 'automatique', matiereBracelet: 'acier',
-    prix: 7490, ancienPrix: null, nouveaute: true, stock: 3,
+    prix: 1990, ancienPrix: null, nouveaute: true, stock: 3,
     diametre: 43, boitier: 'Acier et or rose', bracelet: 'Acier bicolore acier / or rose', etancheite: 100,
     description: "Notre pièce d'exception. Un bracelet bicolore acier et or rose, un cadran noir profond comme le ciel du désert d'Agafay, et un chronographe automatique en série limitée.",
     photo: 'images/produits/nuit-agafay.webp', cadrage: '50% 58%',
@@ -95,7 +95,7 @@ const PRODUITS = [
   {
     id: 'agdal-automatique', ref: 'AUR-008', nom: 'Agdal Automatique',
     collection: 'elegance', genre: 'mixte', mouvement: 'automatique', matiereBracelet: 'acier',
-    prix: 4290, ancienPrix: null, nouveaute: true, stock: 6,
+    prix: 1550, ancienPrix: null, nouveaute: true, stock: 6,
     diametre: 40, boitier: 'Acier inoxydable 316L', bracelet: 'Acier maillons pleins', etancheite: 100,
     description: "Discrète et sûre d'elle, l'Agdal associe un cadran noir soleillé à un bracelet acier parfaitement ajusté. La montre des rendez-vous importants.",
     photo: 'images/produits/agdal-automatique.webp', cadrage: '70% 50%',

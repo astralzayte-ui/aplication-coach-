@@ -17,7 +17,7 @@ const CONFIG = {
   devise: 'DH',
 
   // Livraison offerte à partir de ce montant, sinon on applique les frais.
-  livraisonOfferteDes: 2000,
+  livraisonOfferteDes: 0,      // 0 = livraison toujours offerte
   fraisLivraison: 50,
 
   // Clé utilisée pour enregistrer le panier dans le navigateur (localStorage).

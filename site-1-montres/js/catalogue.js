@@ -70,7 +70,8 @@ function remplirFormulaire() {
   elRecherche.value = filtres.recherche;
   elTri.value = filtres.tri;
   elTri.dispatchEvent(new Event('rafraichir'));   // met à jour le menu de tri doré (menu-deroulant.js)
-  elPrix.min = 2000;
+  // Minimum du curseur : prix le plus bas du catalogue, arrondi à la centaine inférieure.
+  elPrix.min = Math.floor(Math.min.apply(null, PRODUITS.map(function (p) { return p.prix; })) / 100) * 100;
   elPrix.max = PRIX_PLAFOND;
   elPrix.value = filtres.prixMax;
   elFiltres.querySelectorAll('input[type=checkbox]').forEach(function (caseACocher) {
