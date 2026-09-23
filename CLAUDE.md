@@ -8,3 +8,6 @@ Quand l'utilisateur envoie un lien YouTube avec « assimile cette vidéo » (ou 
 4. Commiter et pousser.
 
 Avant de répondre à une question sur le coaching ou l'appli, consulter les fiches de `knowledge/`.
+
+## Coûts
+Les coûts par client et les charges fixes sont dans `couts.md`. Le mettre à jour si un prix change ou si un outil est ajouté.
