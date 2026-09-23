@@ -37,6 +37,8 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - ⬜ Routine du dimanche 20h activée · test & learn en place
 
 ## À rappeler à l'utilisateur (à chaque « on en est où »)
+- Positionnement : Sahir Digital cherche des CLIENTS (prestataire), pas un employeur. À développer plus tard.
+- Plus tard : liste des sites où poster ses annonces + publication automatique
 - Brancher Gemini (lecture native des vidéos + recherche web) — il a des vidéos tuto
 - Installer un connecteur de lecture native TikTok / Instagram (pour mieux scraper)
 - Faire scraper Internet (outil à ajouter, vidéos tuto)
