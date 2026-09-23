@@ -69,6 +69,7 @@ function ecrireURL() {
 function remplirFormulaire() {
   elRecherche.value = filtres.recherche;
   elTri.value = filtres.tri;
+  elTri.dispatchEvent(new Event('rafraichir'));   // met à jour le menu de tri doré (menu-deroulant.js)
   elPrix.min = 2000;
   elPrix.max = PRIX_PLAFOND;
   elPrix.value = filtres.prixMax;

@@ -5,6 +5,10 @@
 - Répondre en français, simplement, pour un développeur web junior (Marrakech) qui prépare son portfolio.
 - Expliquer ce que fait le code avec des mots (pour pouvoir le raconter en entretien), sans coller le code.
 
+# Règles de design (exigence ferme de l'utilisateur)
+- **Jamais d'élément de formulaire avec le style par défaut du navigateur** : pas de <select> natif (surlignage bleu), pas de case à cocher, bouton radio ou curseur (range) natifs. Toujours des composants dessinés sur mesure, aux couleurs du site, accessibles au clavier.
+- Rendu haut de gamme et soigné partout : vérifier chaque détail visuel (menus, listes, états survol/sélection) avant de montrer.
+
 # Projet portfolio : 3 sites (HTML, CSS, JavaScript sans framework, commentés en français, un README et un dossier par site)
 - `site-1-montres/` : boutique de montres « Aurel » (noir et doré). WhatsApp : +212 693 511 445.
 - Hébergement choisi par l'utilisateur : **Netlify** (pas Vercel).

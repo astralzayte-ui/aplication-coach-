@@ -683,3 +683,94 @@ textarea.champ { padding: 12px 16px; min-height: 90px; resize: vertical; }
 .carte-collection-lien:hover img { transform: scale(1.05); }
 .carte-collection-lien p { max-width: 90%; }
 @media (min-width: 800px) { .carte-collection-lien { min-height: 380px; } }
+
+/* ---------- 12. Menu déroulant sur mesure (tri du catalogue) ---------- */
+.menu-deroulant { position: relative; grid-column: 1 / -1; }
+@media (min-width: 900px) { .menu-deroulant { grid-column: auto; } }
+
+.menu-bouton {
+  width: 100%; min-height: 48px; padding: 0 16px;
+  display: flex; align-items: center; gap: 12px;
+  background: var(--noir-2); color: var(--texte);
+  border: 1px solid var(--bordure); border-radius: 12px;
+  cursor: pointer; text-align: left;
+  transition: border-color var(--transition), background var(--transition);
+}
+.menu-bouton:hover, .menu-deroulant.ouvert .menu-bouton { border-color: var(--or); background: var(--noir-3); }
+.menu-etiquette {
+  font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--or);
+  padding-right: 12px; border-right: 1px solid var(--bordure);
+}
+.menu-valeur { flex: 1; font-family: var(--police-titre); font-size: 1.15rem; }
+.menu-chevron { width: 18px; height: 18px; color: var(--or); transition: transform var(--transition); }
+.menu-deroulant.ouvert .menu-chevron { transform: rotate(180deg); }
+
+.menu-liste {
+  position: absolute; z-index: 30; top: calc(100% + 8px); left: 0; right: 0;
+  margin: 0; padding: 8px; list-style: none;
+  background: linear-gradient(180deg, var(--noir-3), var(--noir-2));
+  border: 1px solid var(--bordure); border-radius: 14px;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(230, 201, 138, 0.08);
+  animation: apparaitre 0.18s ease;
+}
+.menu-liste:focus { outline: none; }
+@keyframes apparaitre { from { opacity: 0; transform: translateY(-6px); } }
+.menu-liste li {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 12px 14px; border-radius: 9px; cursor: pointer;
+  font-family: var(--police-titre); font-size: 1.12rem; color: var(--texte-doux);
+  transition: background var(--transition), color var(--transition);
+}
+.menu-liste li.actif { background: rgba(201, 164, 92, 0.1); color: var(--texte); }
+.menu-liste li[aria-selected="true"] { color: var(--or-clair); }
+.menu-coche { width: 16px; height: 16px; color: var(--or); opacity: 0; }
+.menu-liste li[aria-selected="true"] .menu-coche { opacity: 1; }
+.menu-liste li + li { margin-top: 2px; }
+.menu-liste { max-height: 300px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--or-fonce) transparent; }
+.menu-liste li.menu-invite { display: none; }          /* "Choisir…" n'est pas une vraie option */
+.groupe-champ .menu-bouton { font-size: 16px; }
+.groupe-champ .menu-valeur { font-family: var(--police-texte); font-size: 1rem; }
+.groupe-champ.erreur .menu-bouton { border-color: var(--rouge); }
+
+/* ---------- 13. Cases à cocher, boutons radio et curseur sur mesure ---------- */
+/* appearance: none efface le style du navigateur ; on redessine tout nous-mêmes. */
+.case input[type="checkbox"], .option-paiement input[type="radio"] {
+  appearance: none; -webkit-appearance: none;
+  flex-shrink: 0; width: 20px; height: 20px; margin: 0;
+  display: inline-grid; place-items: center;
+  border: 1px solid var(--bordure); background: var(--noir);
+  cursor: pointer; transition: border-color var(--transition), background var(--transition);
+}
+.case input[type="checkbox"] { border-radius: 5px; }
+.case input[type="checkbox"]::after {
+  content: ''; width: 10px; height: 6px; margin-top: -2px;
+  border-left: 1.8px solid var(--noir); border-bottom: 1.8px solid var(--noir);
+  transform: rotate(-45deg) scale(0); transition: transform 0.15s ease;
+}
+.case input[type="checkbox"]:checked { background: linear-gradient(135deg, var(--or-clair), var(--or)); border-color: var(--or); }
+.case input[type="checkbox"]:checked::after { transform: rotate(-45deg) scale(1); }
+.case:hover input[type="checkbox"] { border-color: var(--or); }
+
+.option-paiement input[type="radio"] { border-radius: 50%; }
+.option-paiement input[type="radio"]::after {
+  content: ''; width: 10px; height: 10px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--or-clair), var(--or)); transform: scale(0); transition: transform 0.15s ease;
+}
+.option-paiement input[type="radio"]:checked { border-color: var(--or); }
+.option-paiement input[type="radio"]:checked::after { transform: scale(1); }
+
+.curseur-prix { appearance: none; -webkit-appearance: none; height: 24px; background: transparent; cursor: pointer; }
+.curseur-prix::-webkit-slider-runnable-track { height: 2px; background: var(--bordure); border-radius: 2px; }
+.curseur-prix::-moz-range-track { height: 2px; background: var(--bordure); border-radius: 2px; }
+.curseur-prix::-moz-range-progress { height: 2px; background: var(--or); }
+.curseur-prix::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 18px; height: 18px; margin-top: -8px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--or-clair), var(--or)); border: 2px solid var(--noir);
+  box-shadow: 0 0 0 1px var(--or);
+}
+.curseur-prix::-moz-range-thumb {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--or-clair), var(--or)); border: 2px solid var(--noir);
+  box-shadow: 0 0 0 1px var(--or);
+}
+.menu-bouton.vide .menu-valeur { color: var(--texte-faible); }
