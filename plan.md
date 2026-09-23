@@ -40,6 +40,8 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - Positionnement : Sahir Digital cherche des CLIENTS (prestataire), pas un employeur. À développer plus tard.
 - Plus tard : liste des sites où poster ses annonces + publication automatique
 - Prospection en ligne : `prospection/approche-en-ligne.md` (fiche prospects + lien WhatsApp 1 clic)
+- 🔄 Fiche prospects : script dans le Google Doc id 1rUSkOXy2YpVWoe2pocgf5-KuMRNXFPn3exg_CQYoWvw (jeton privé dedans) → l'utilisateur installe + déploie en appli Web → URL à donner à Claude → 30 prospects / jour
+- ⚠️ Le dépôt GitHub est PUBLIC : le passer en privé avant d'y mettre des données clients
 - Brancher Gemini (lecture native des vidéos + recherche web) — il a des vidéos tuto
 - Installer un connecteur de lecture native TikTok / Instagram (pour mieux scraper)
 - Faire scraper Internet (outil à ajouter, vidéos tuto)
