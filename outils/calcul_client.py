@@ -43,7 +43,6 @@ def calcul(ch):
     if whatsapp:
         lignes.append(("IA WhatsApp", C["whatsapp_ia_mois"], "mois", C["whatsapp_ia_mois"] / S))
     if whatsapp or reseaux:
-        lignes.append(("Recharge puce", C["puce_recharge_mois"], "mois", C["puce_recharge_mois"] / S))
         once.append(("Achat puce", C["puce_achat"]))
     if site:
         lignes.append(("Renouvellement du domaine", C["domaine_an"], "an", C["domaine_an"] / 52))

@@ -15,7 +15,7 @@
     "video_unite": 12,
     "buffer_mois_par_reseau": 60, "buffer_reseaux": 2,
     "whatsapp_ia_mois": 20,
-    "puce_achat": 20, "puce_recharge_mois": 15,
+    "puce_achat": 20,
     "domaine_an": 100,
     "etude_credits": 5
   }
