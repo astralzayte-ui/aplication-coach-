@@ -154,12 +154,20 @@ function dessinerMontre(produit) {
 
 // Choisit ce qu'on affiche pour un produit : la vraie photo si elle existe,
 // sinon le dessin SVG. Le reste du site n'a pas besoin de savoir lequel.
-function visuelProduit(produit, chargementDiffere) {
+// "tailles" indique au navigateur la largeur d'affichage de l'image, pour qu'il
+// choisisse lui-même le bon fichier (voir srcset ci-dessous).
+const TAILLES_CARTE = '(max-width: 699px) 50vw, (max-width: 1099px) 33vw, 25vw';
+function visuelProduit(produit, chargementDiffere, tailles) {
   if (produit.photo) {
+    // srcset : deux versions de la même photo (480 px et grande taille).
+    //   Un téléphone qui affiche 2 cartes par ligne charge la petite (~2 fois plus légère).
     // loading="lazy" : l'image ne se charge que lorsqu'elle approche de l'écran.
     // object-position : garde la montre au centre du recadrage.
-    return '<img src="' + produit.photo + '" alt="Montre ' + echapperHTML(produit.nom) + ' portée au poignet"' +
-           (chargementDiffere ? ' loading="lazy"' : '') +
+    const petite = produit.photo.replace('.webp', '-480.webp');
+    return '<img src="' + produit.photo + '" srcset="' + petite + ' 480w, ' + produit.photo + ' 736w"' +
+           ' sizes="' + (tailles || TAILLES_CARTE) + '"' +
+           ' alt="Montre ' + echapperHTML(produit.nom) + ' portée au poignet"' +
+           (chargementDiffere ? ' loading="lazy"' : ' fetchpriority="high"') +
            ' decoding="async" style="object-position:' + (produit.cadrage || '50% 50%') + '">';
   }
   return dessinerMontre(produit);

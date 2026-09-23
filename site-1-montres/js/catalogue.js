@@ -14,6 +14,8 @@
 
 // Prix le plus élevé du catalogue, arrondi à la centaine supérieure.
 const PRIX_PLAFOND = Math.ceil(Math.max.apply(null, PRODUITS.map(function (p) { return p.prix; })) / 100) * 100;
+// Prix le plus bas, arrondi à la centaine inférieure (minimum du curseur).
+const PRIX_PLANCHER = Math.floor(Math.min.apply(null, PRODUITS.map(function (p) { return p.prix; })) / 100) * 100;
 
 // État des filtres (valeurs par défaut = aucun filtre).
 const filtres = {
@@ -45,9 +47,11 @@ function lireURL() {
     if (params.get(cle)) filtres[cle] = params.get(cle).split(',');
   });
   if (params.get('q')) filtres.recherche = params.get('q');
-  if (params.get('tri')) filtres.tri = params.get('tri');
+  // Un tri inconnu (adresse modifiée à la main) est ignoré au lieu de casser la page.
+  const trisValides = Array.from(elTri.options).map(function (o) { return o.value; });
+  if (trisValides.indexOf(params.get('tri')) !== -1) filtres.tri = params.get('tri');
   const prix = parseInt(params.get('prix'), 10);
-  if (prix > 0) filtres.prixMax = Math.min(prix, PRIX_PLAFOND);
+  if (prix > 0) filtres.prixMax = Math.max(PRIX_PLANCHER, Math.min(prix, PRIX_PLAFOND));
 }
 
 function ecrireURL() {
@@ -70,8 +74,7 @@ function remplirFormulaire() {
   elRecherche.value = filtres.recherche;
   elTri.value = filtres.tri;
   elTri.dispatchEvent(new Event('rafraichir'));   // met à jour le menu de tri doré (menu-deroulant.js)
-  // Minimum du curseur : prix le plus bas du catalogue, arrondi à la centaine inférieure.
-  elPrix.min = Math.floor(Math.min.apply(null, PRODUITS.map(function (p) { return p.prix; })) / 100) * 100;
+  elPrix.min = PRIX_PLANCHER;
   elPrix.max = PRIX_PLAFOND;
   elPrix.value = filtres.prixMax;
   elFiltres.querySelectorAll('input[type=checkbox]').forEach(function (caseACocher) {

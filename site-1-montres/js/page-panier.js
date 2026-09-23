@@ -26,7 +26,7 @@ function afficherPanier() {
   const lignes = d.lignes.map(function (l) {
     const p = l.produit;
     return '<article class="ligne-panier">' +
-      '<a class="ligne-visuel" href="produit.html?id=' + p.id + '" tabindex="-1" aria-hidden="true">' + visuelProduit(p, true) + '</a>' +
+      '<a class="ligne-visuel" href="produit.html?id=' + p.id + '" tabindex="-1" aria-hidden="true">' + visuelProduit(p, true, '84px') + '</a>' +
       '<div class="ligne-infos">' +
         '<h3><a href="produit.html?id=' + p.id + '">' + echapperHTML(p.nom) + '</a></h3>' +
         '<span class="fiche-ref">Réf. ' + p.ref + ' · ' + formaterPrix(p.prix) + ' l\'unité</span>' +
@@ -67,6 +67,11 @@ elPanier.addEventListener('click', function (e) {
   if (!bouton) return;
   const id = bouton.dataset.id;
   const ligne = lirePanier().find(function (l) { return l.id === id; });
+  // La ligne a pu disparaître entre-temps (panier vidé dans un autre onglet) : on redessine.
+  if (!ligne && (bouton.dataset.action === 'plus' || bouton.dataset.action === 'moins')) {
+    afficherPanier();
+    return;
+  }
 
   switch (bouton.dataset.action) {
     case 'plus': changerQuantite(id, ligne.quantite + 1); break;

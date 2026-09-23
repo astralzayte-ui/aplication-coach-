@@ -27,7 +27,7 @@ const collections = [
 document.getElementById('collections').innerHTML = collections.map(function (c) {
   const nombre = PRODUITS.filter(function (p) { return p.collection === c.cle; }).length;
   return '<a class="carte-collection-lien" href="catalogue.html?collection=' + c.cle + '">' +
-    visuelProduit(trouverProduit(c.vitrine), true) +
+    visuelProduit(trouverProduit(c.vitrine), true, '(max-width: 799px) 100vw, 33vw') +
     '<h3>' + LIBELLES.collection[c.cle] + '</h3>' +
     '<p>' + c.texte + '</p>' +
     '<span class="fleche">' + nombre + ' modèles →</span>' +

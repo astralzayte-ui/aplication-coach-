@@ -1,9 +1,11 @@
 # Aurel — Boutique de montres en ligne
 
-Site e-commerce fictif d'une horlogerie à Marrakech, réalisé pour mon portfolio de développeur web.
-Style noir et doré, haut de gamme, pensé d'abord pour le mobile.
+Site e-commerce de démonstration d'une horlogerie fictive à Marrakech, réalisé pour mon portfolio de développeur web.
+Style bordeaux et or, haut de gamme, pensé d'abord pour le mobile.
 
 **Démo en ligne :** _(lien Netlify à ajouter après la mise en ligne)_
+
+> **Projet de démonstration** pour mon portfolio : la marque « Aurel », les produits, les prix, les avis et les paiements sont fictifs. Ce site n'a pas été réalisé pour un client.
 
 ![Aperçu mobile de l'accueil](../apercus/1-accueil-mobile.png)
 
@@ -15,6 +17,7 @@ Style noir et doré, haut de gamme, pensé d'abord pour le mobile.
 - **Panier** : sauvegardé dans le navigateur (localStorage), synchronisé entre plusieurs onglets, compteur dans le menu.
 - **Commande** : formulaire vérifié champ par champ (téléphone marocain, e-mail…), paiement par carte **simulé** avec la vraie vérification des numéros de carte (algorithme de Luhn), ou paiement à la livraison.
 - **WhatsApp** : bouton « Commander sur WhatsApp » sur chaque montre, avec un message déjà rédigé (modèle, référence, quantité, prix).
+- **Rapidité** : photos WebP en deux tailles (le téléphone charge la petite version), chargement différé, préchargement de la photo principale.
 - **Pro** : référencement (titres et descriptions), accessibilité (navigation au clavier, lecteurs d'écran), images WebP chargées au besoin, page 404, mentions légales.
 
 ## Technologies

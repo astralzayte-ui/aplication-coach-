@@ -12,5 +12,6 @@
 # Projet portfolio : 3 sites (HTML, CSS, JavaScript sans framework, commentés en français, un README et un dossier par site)
 - `site-1-montres/` : boutique de montres « Aurel » (bordeaux et or, choisi par l'utilisateur). WhatsApp : +212 693 511 445.
 - Hébergement choisi par l'utilisateur : **Netlify** (pas Vercel).
+- **Dossier de passation pour le CV : `DOSSIER-CV.md`** (lu par Claude Design). À mettre à jour à la fin de chaque site. Toujours préciser : sites vitrines de démonstration, marques fictives, aucun client réel, rubrique « Projets personnels », pas de chiffres inventés.
 - Site 2 (à venir) : restaurant à Marrakech, FR/EN, Google Maps.
 - Site 3 (à venir) : tableau de bord de commandes, export Excel.

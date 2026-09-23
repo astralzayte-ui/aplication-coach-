@@ -21,6 +21,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
+  <!-- preload : le navigateur commence à télécharger la photo principale tout de suite,
+       avant même d'avoir lu le reste de la page. -->
+  <link rel="preload" as="image" href="images/produits/atlas-automatique.webp"
+        imagesrcset="images/produits/atlas-automatique-480.webp 480w, images/produits/atlas-automatique.webp 736w"
+        imagesizes="(max-width: 899px) 78vw, 360px">
 </head>
 
 <!-- data-page indique au JavaScript quelle page est affichée (pour surligner le menu). -->
@@ -52,7 +57,10 @@
              car c'est la plus grande image visible dès l'ouverture de la page. -->
         <div class="hero-visuel">
           <div class="hero-anneau" aria-hidden="true"></div>
-          <img class="hero-photo" src="images/produits/atlas-automatique.webp" alt="Montre Atlas Automatique au cadran bleu, portée avec un costume"
+          <img class="hero-photo" src="images/produits/atlas-automatique.webp"
+               srcset="images/produits/atlas-automatique-480.webp 480w, images/produits/atlas-automatique.webp 736w"
+               sizes="(max-width: 899px) 78vw, 360px"
+               alt="Montre Atlas Automatique au cadran bleu, portée avec un costume"
                width="736" height="1288" fetchpriority="high">
           <a class="hero-etiquette" href="produit.html?id=atlas-automatique">
             <span>Atlas Automatique</span><strong id="hero-prix"></strong>

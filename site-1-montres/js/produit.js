@@ -42,7 +42,7 @@ function afficherFiche() {
     '<article class="fiche">' +
       '<div class="fiche-visuel">' +
         (produit.nouveaute ? '<span class="etiquette">Nouveauté</span>' : '') +
-        visuelProduit(produit, false) +
+        visuelProduit(produit, false, '(max-width: 899px) 100vw, 50vw') +
       '</div>' +
       '<div class="fiche-infos">' +
         '<p class="surtitre">Collection ' + LIBELLES.collection[produit.collection] + '</p>' +
@@ -86,8 +86,7 @@ function afficherFiche() {
   document.getElementById('moins').addEventListener('click', function () { changerQuantiteFiche(-1); });
   document.getElementById('plus').addEventListener('click', function () { changerQuantiteFiche(1); });
   document.getElementById('ajouter').addEventListener('click', function () {
-    ajouterAuPanier(produit.id, quantite);
-    afficherToast('<strong>' + echapperHTML(produit.nom) + '</strong> × ' + quantite + ' ajoutée au panier · <a href="panier.html">Voir le panier</a>');
+    signalerAjout(produit, quantite, ajouterAuPanier(produit.id, quantite));
   });
   changerQuantiteFiche(0);   // met à jour l'affichage et le lien WhatsApp
 }

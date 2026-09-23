@@ -68,6 +68,7 @@ function creerMenuDeroulant(select) {
 
   // 2) Afficher la valeur actuelle du <select> dans le bouton et cocher la bonne option.
   function synchroniser() {
+    if (select.selectedIndex < 0) select.selectedIndex = 0;   // valeur inconnue : on revient à la 1re option
     const choisie = select.selectedIndex;
     bouton.querySelector('.menu-valeur').textContent = elements[choisie].textContent;
     bouton.classList.toggle('vide', select.value === '');   // "Choisir…" affiché en gris

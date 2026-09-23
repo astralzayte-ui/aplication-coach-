@@ -21,7 +21,18 @@ function lirePanier() {
     const brut = localStorage.getItem(CONFIG.clePanier);
     const panier = brut ? JSON.parse(brut) : [];
     if (!Array.isArray(panier)) return [];
-    return panier.filter(function (ligne) { return trouverProduit(ligne.id) && ligne.quantite > 0; });
+    // On ne fait jamais confiance aux données enregistrées (elles ont pu être abîmées) :
+    // produit existant, quantité entière entre 1 et le stock, une seule ligne par produit.
+    const propre = [];
+    panier.forEach(function (ligne) {
+      const produit = ligne && trouverProduit(ligne.id);
+      const quantite = Math.min(parseInt(ligne && ligne.quantite, 10) || 0, produit ? produit.stock : 0);
+      if (!produit || quantite <= 0) return;
+      const existante = propre.find(function (l) { return l.id === ligne.id; });
+      if (existante) existante.quantite = Math.min(existante.quantite + quantite, produit.stock);
+      else propre.push({ id: ligne.id, quantite: quantite });
+    });
+    return propre;
   } catch (erreur) {
     return panierMemoire;
   }
@@ -38,18 +49,23 @@ function sauverPanier(panier) {
   window.dispatchEvent(new CustomEvent('panier:change'));
 }
 
-// Ajoute une quantité d'un produit (sans dépasser le stock disponible).
+// Ajoute une quantité d'un produit sans dépasser le stock disponible.
+// Renvoie le nombre d'articles réellement ajoutés (0 si le stock est déjà atteint),
+// pour que la page puisse afficher le bon message.
 function ajouterAuPanier(id, quantite) {
   const produit = trouverProduit(id);
-  if (!produit) return;
+  if (!produit) return 0;
   const panier = lirePanier();
-  const ligne = panier.find(function (l) { return l.id === id; });
-  if (ligne) {
-    ligne.quantite = Math.min(ligne.quantite + quantite, produit.stock);
-  } else {
-    panier.push({ id: id, quantite: Math.min(quantite, produit.stock) });
+  let ligne = panier.find(function (l) { return l.id === id; });
+  if (!ligne) {
+    ligne = { id: id, quantite: 0 };
+    panier.push(ligne);
   }
-  sauverPanier(panier);
+  const avant = ligne.quantite;
+  ligne.quantite = Math.min(avant + quantite, produit.stock);
+  const ajoutes = ligne.quantite - avant;
+  if (ajoutes > 0) sauverPanier(panier.filter(function (l) { return l.quantite > 0; }));
+  return ajoutes;
 }
 
 // Fixe la quantité exacte d'une ligne. 0 ou moins = on retire le produit.

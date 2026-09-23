@@ -143,8 +143,16 @@ function brancherFormulaire() {
   formulaire.addEventListener('input', reverifierSiErreur);
   formulaire.addEventListener('change', reverifierSiErreur);   // pour la liste des villes
 
+  let envoiEnCours = false;
   formulaire.addEventListener('submit', function (e) {
     e.preventDefault();   // empêche le rechargement de la page
+    if (envoiEnCours) return;   // évite une double commande (double clic, touche Entrée…)
+
+    // Le panier a pu être vidé dans un autre onglet pendant qu'on remplissait le formulaire.
+    if (detailPanier().lignes.length === 0) {
+      afficherToast('Votre panier est vide. <a href="catalogue.html">Voir la collection</a>');
+      return;
+    }
 
     let aVerifier = ['nom', 'telephone', 'email', 'adresse', 'ville'];
     if (paiementParCarte()) aVerifier = aVerifier.concat(['carte', 'expiration', 'cvc']);
@@ -159,7 +167,13 @@ function brancherFormulaire() {
       return;
     }
 
+    envoiEnCours = true;
     simulerPaiement();
+  });
+
+  // Si le panier change dans un autre onglet, le récapitulatif se met à jour.
+  window.addEventListener('panier:change', function () {
+    if (!envoiEnCours && document.getElementById('recap')) afficherRecap();
   });
 }
 

@@ -216,9 +216,21 @@ document.addEventListener('click', function (e) {
   const bouton = e.target.closest('[data-ajouter]');
   if (!bouton) return;
   const produit = trouverProduit(bouton.dataset.ajouter);
-  ajouterAuPanier(produit.id, 1);
-  afficherToast('<strong>' + echapperHTML(produit.nom) + '</strong> ajoutée au panier · <a href="panier.html">Voir le panier</a>');
+  if (produit) signalerAjout(produit, 1, ajouterAuPanier(produit.id, 1));
 });
+
+// Affiche le bon message selon ce qui a vraiment été ajouté (le stock est limité).
+function signalerAjout(produit, demande, ajoutes) {
+  const nom = '<strong>' + echapperHTML(produit.nom) + '</strong>';
+  const lien = ' · <a href="panier.html">Voir le panier</a>';
+  if (ajoutes === 0) {
+    afficherToast('Stock maximum atteint pour ' + nom + ' (' + produit.stock + ' disponibles, déjà dans votre panier)' + lien);
+  } else if (ajoutes < demande) {
+    afficherToast('Seulement ' + ajoutes + ' ' + nom + ' ajoutée(s) : stock limité à ' + produit.stock + lien);
+  } else {
+    afficherToast(nom + (ajoutes > 1 ? ' × ' + ajoutes : '') + ' ajoutée au panier' + lien);
+  }
+}
 
 window.addEventListener('panier:change', mettreAJourBadgePanier);
 
