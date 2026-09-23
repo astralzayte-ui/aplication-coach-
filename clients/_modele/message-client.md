@@ -1,14 +1,25 @@
-Bonjour 👋 Pour lancer votre pack (réseaux sociaux + WhatsApp automatique + site web), j'ai besoin de quelques infos. Répondez simplement à la suite, même en vocal :
+Bonjour 👋 Merci pour votre confiance ! Pour démarrer, 2 petites choses :
 
-1. Nom exact du commerce + adresse
-2. Horaires d'ouverture
-3. Vos services / plats et leurs prix (une photo du menu ou de la carte des prix suffit)
-4. Les 5 questions que vos clients vous posent le plus souvent (et vos réponses)
-5. Vous avez déjà Instagram / Facebook / TikTok ? Si oui, lesquels et combien d'abonnés ?
-6. Le style que vous voulez : chic, chaleureux, fun… ?
-7. Votre logo + 5 à 10 belles photos du lieu
-8. Un nom de site qui vous plairait (ex. : spaserenite.com)
+*1) Les services qui vous intéressent* (répondez avec les numéros, ex. : 1, 3, 5)
+☐ 1. Création de vos réseaux (Instagram, Facebook, TikTok)
+☐ 2. Création de votre site internet (avec votre nom de domaine)
+☐ 3. 7 vidéos par semaine, créées et publiées pour vous
+☐ 4. 7 stories par semaine
+☐ 5. Réponses automatiques WhatsApp 24h/24 (prix, horaires, questions, écrit et vocal)
+☐ 6. Tout le pack
 
-Pour démarrer, un acompte de 120 DH (puce 20 DH + nom de domaine 100 DH) 🙏
+*2) Vos infos* (même en vocal, ou en photos)
+• Nom exact du commerce + adresse
+• Horaires d'ouverture
+• Vos services / plats et leurs prix (une photo de la carte suffit)
+• Les 5 questions que vos clients posent le plus (et vos réponses)
+• Vos réseaux actuels, s'il y en a
+• Le style voulu : chic, chaleureux, fun… ?
+• Votre logo + 5 à 10 belles photos du lieu
+• Vos 3 principaux concurrents (si vous les connaissez)
+
+On commence par une *étude de marché* de votre secteur et de votre quartier : vous saurez comment vous êtes placé face à la concurrence (prix, image, réseaux, avis clients).
+
+Acompte pour démarrer : *400 DH* 🙏
 
 Merci !

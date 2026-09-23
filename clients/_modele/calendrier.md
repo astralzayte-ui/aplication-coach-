@@ -1,6 +1,6 @@
 # Calendrier de contenu — <Nom du commerce>
 
-Rythme par défaut : 3 reels/semaine (Instagram + TikTok + Facebook) · 1 story/jour.
+Rythme : selon les services souscrits (pack complet : 7 reels/semaine sur Instagram + TikTok + Facebook · 7 stories/semaine).
 Statuts : 📝 script · 🎬 vidéo générée · ✅ validé · ⏰ programmé · 📤 publié
 
 ## Semaine du AAAA-MM-JJ

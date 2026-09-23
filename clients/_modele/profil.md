@@ -1,5 +1,13 @@
 # <Nom du commerce>
 
+## Services souscrits
+- [ ] Création des réseaux
+- [ ] Site internet
+- [ ] 7 vidéos / semaine
+- [ ] 7 stories / semaine
+- [ ] WhatsApp automatique
+- Acompte reçu : ☐ 400 DH (date : )
+
 ## Infos
 - **Secteur** :
 - **Ville / adresse** :

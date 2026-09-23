@@ -12,6 +12,10 @@ Donner des durées réalistes, jamais gonflées.
 Donner à l'utilisateur le message prêt à copier de `clients/_modele/message-client.md`,
 adapté si on connaît déjà le nom / le secteur. Il l'envoie au client sur WhatsApp.
 
+## Étape 1 bis — Services choisis + acompte de 400 DH
+Le client répond avec les numéros des services (message de `clients/_modele/message-client.md`).
+Noter les services cochés dans `profil.md` (section « Services souscrits ») : seules ces parties sont lancées ensuite.
+
 ## Étape 2 — Réponses du client (utilisateur : 1 min)
 L'utilisateur colle les réponses (texte, ou capture d'écran) dans la conversation. Claude :
 1. Crée `clients/<slug>/profil.md` depuis `clients/_modele/profil.md`. Laisser `À COMPLÉTER` pour ce qui manque
@@ -20,6 +24,18 @@ L'utilisateur colle les réponses (texte, ou capture d'écran) dans la conversat
    (recherche web, analyse de 5-10 comptes concurrents performants, vidéos YouTube d'experts → règles concrètes,
    accroches, formats, horaires, hashtags, 5 scripts UGC types).
 3. Commit + push.
+
+## Étape 2 bis — Étude de marché (Claude, dès l'acompte reçu)
+Livrable : une page courte et visuelle (Artifact), prête à envoyer au client, + `clients/<slug>/etude-de-marche.md`.
+1. Concurrents : 5-8 commerces du même secteur dans la même ville / quartier (recherche web + Google),
+   plus ceux cités par le client.
+2. Pour chacun : prix des services phares, note et nombre d'avis Google, réseaux (abonnés, rythme de publication,
+   ce qui marche), site oui/non, WhatsApp / réservation en ligne oui/non.
+3. Positionnement du client : où il se situe en prix et en image (tableau comparatif), ses points forts,
+   ce qui lui manque par rapport aux meilleurs.
+4. 3 recommandations concrètes (prix, offre, contenu) + les opportunités que nos services couvrent.
+Budget : ~15-25 crédits scrape_reseaux par étude. Vérifier le solde avant de commencer.
+Les enseignements sur le secteur alimentent le skill du secteur.
 
 ## Étape 3 — Actions de l'utilisateur (≈ 15 min, une fois l'acompte reçu)
 Lui donner cette checklist, pré-remplie avec le nom du client :
