@@ -53,7 +53,7 @@ function creerFormulaireSahir() {
   form.addTextItem().setTitle('Nom de site souhaité (ex. spaserenite.com)');
 
   form.setConfirmationMessage(
-    'Merci ! Envoyez-nous maintenant sur WhatsApp votre logo, 5 à 10 photos du lieu et l\'acompte de 400 DH. — Sahir Digital');
+    'Merci ! Envoyez-nous maintenant sur WhatsApp votre logo (si vous en avez un), 5 à 10 photos du lieu et l\'acompte de 400 DH. — Sahir Digital');
 
   var ss = SpreadsheetApp.create('Sahir Digital — Réponses clients');
   form.setDestination(FormApp.DestinationType.SPREADSHEET, ss.getId());
