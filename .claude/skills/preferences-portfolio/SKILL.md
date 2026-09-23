@@ -67,10 +67,12 @@ Ce skill est vivant. **Règle n° 1 : chaque fois que l'utilisateur corrige quel
 
 - Numéro WhatsApp des sites : +212 693 511 445 (format lien : 212693511445).
 - Site 1 « Aurel » (montres, bordeaux et or) : https://dulcet-sfogliatella-fbc1ba.netlify.app/
-- Site 2 : restaurant à Marrakech, FR/EN, Google Maps (attention : pas d'iframe de carte dans l'aperçu artifact, prévoir un lien ou une image de repli), WhatsApp.
+- Site 2 : **à redéfinir** (le restaurant est abandonné : photos trop difficiles à trouver). Privilégier un projet sans photos qui montre du vrai code.
 - Site 3 : tableau de bord de commandes, statuts, statistiques, graphiques, export Excel, données fictives.
 
 ## Journal des leçons (ajouter en haut, avec la date)
+
+- **Choix du site 2** — Il ne veut pas de projet où les photos sont difficiles à trouver (restaurant). Il veut un projet qui **fait pro** et qui **prouve qu'il sait coder**. Il demande aussi d'ajouter partout des « petits trucs professionnels » qui montrent le niveau technique (mode sombre, installable hors ligne, tests automatiques, score Lighthouse, API, raccourcis clavier…). Toujours proposer ce genre d'ajouts.
 
 - **Site 1** — Prix : il voulait des montres entre 500–700 DH ou 1500–2000 DH maximum. Adapter les textes liés (livraison offerte) et le curseur de prix.
 - **Site 1** — « Ça fait débutant » : coins arrondis, dégradés, boutons verts, compteur « 8 modèles ». Corrigé par coins nets, or uni, WhatsApp discret (voir section 2).
