@@ -26,7 +26,6 @@ def calcul(ch):
     stories = pack["stories"] if pack else int(ch.get("stories", 0))
     whatsapp = (pack and pack["whatsapp"]) or ch.get("whatsapp", False)
     insta_ia = (pack and pack.get("instagram_ia")) or ch.get("instagram_ia", False)
-    tiktok_ia = (pack and pack.get("tiktok_ia")) or ch.get("tiktok_ia", False)
     pub = ch.get("gestion_pub", False)
 
     # Chiffre d'affaires
@@ -34,7 +33,7 @@ def calcul(ch):
         V["videos_semaine"][str(videos)] + V["stories_semaine"][str(stories)]
         + (V["whatsapp_semaine"] if whatsapp else 0))
     if not pack:
-        ca_sem += (V["instagram_ia_semaine"] if insta_ia else 0) + (V["tiktok_ia_semaine"] if tiktok_ia else 0)
+        ca_sem += (V["instagram_ia_semaine"] if insta_ia else 0)
     ca_sem += V["gestion_pub_semaine"] if pub else 0
     ca_once = V["packs"]["lancement_pro"]["une_fois"] if lanc_pro else V["packs"]["lancement"]["une_fois"] if lanc else (
         (V["etude"] if etude else 0) + (V["reseaux"] if reseaux else 0) + (V["site"] if site else 0))
@@ -51,8 +50,6 @@ def calcul(ch):
         lignes.append(("IA WhatsApp", C["whatsapp_ia_mois"], "mois", C["whatsapp_ia_mois"] / S))
     if insta_ia:
         lignes.append(("IA Instagram (messages privés)", C["instagram_ia_mois"], "mois", C["instagram_ia_mois"] / S))
-    if tiktok_ia:
-        lignes.append(("IA TikTok (messages privés)", C["tiktok_ia_mois"], "mois", C["tiktok_ia_mois"] / S))
     if whatsapp or reseaux:
         once.append(("Achat puce", C["puce_achat"]))
     if site:
@@ -64,7 +61,7 @@ def calcul(ch):
     cout_sem = sum(l[3] for l in lignes)
     return dict(nom=ch.get("nom", "?"), ca_sem=ca_sem, ca_once=ca_once, lignes=lignes, once=once,
                 cout_sem=cout_sem, videos=videos, stories=stories, whatsapp=whatsapp,
-                etude=etude, reseaux=reseaux, site=site, insta_ia=insta_ia, tiktok_ia=tiktok_ia, pub=pub or bool(lanc_pro), lanc_pro=lanc_pro, pack=ch.get("pack"), lanc=lanc)
+                etude=etude, reseaux=reseaux, site=site, insta_ia=insta_ia, pub=pub or bool(lanc_pro), lanc_pro=lanc_pro, pack=ch.get("pack"), lanc=lanc)
 
 
 def dh(x):
@@ -74,7 +71,7 @@ def dh(x):
 def fiche(r):
     services = [s for s, ok in [("Étude de marché", r["etude"]), ("Création réseaux + logo", r["reseaux"]),
                                 ("Site", r["site"]), ("WhatsApp IA", r["whatsapp"]),
-                                ("IA Instagram", r["insta_ia"]), ("IA TikTok", r["tiktok_ia"]), ("Gestion pub payante", r["pub"])] if ok]
+                                ("IA Instagram", r["insta_ia"]), ("Gestion pub payante", r["pub"])] if ok]
     if r["videos"]: services.append(f"{r['videos']} vidéos/sem")
     if r["stories"]: services.append(f"{r['stories']} stories/sem")
     ben_sem = r["ca_sem"] - r["cout_sem"]

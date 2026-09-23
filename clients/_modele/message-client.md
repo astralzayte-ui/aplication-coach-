@@ -4,7 +4,7 @@ Bonjour 👋 Merci pour votre confiance !
 *1) Choisissez un pack* (répondez avec la lettre)
 A. Pack Essentiel : 7 vidéos + 7 stories + IA WhatsApp — 450 DH / semaine
 B. Pack Premium : 15 vidéos + 21 stories + IA WhatsApp — 800 DH / semaine
-C. Pack Ultra : 15 vidéos + 21 stories + IA WhatsApp + IA Instagram + IA TikTok — 950 DH / semaine
+C. Pack Ultra : 15 vidéos + 21 stories + IA WhatsApp + IA Instagram — 900 DH / semaine
 D. Pack Lancement : étude de marché + création des réseaux avec logo + site — 1 800 DH une fois
 E. Pack Lancement Pro : Pack Lancement + 1 mois de gestion pub — 2 600 DH une fois
 
@@ -16,8 +16,7 @@ E. Pack Lancement Pro : Pack Lancement + 1 mois de gestion pub — 2 600 DH une 
 5. Stories / semaine : 5a. 3 — 50 DH · 5b. 7 — 100 DH · 5c. 14 — 180 DH · 5d. 21 — 250 DH
 6. IA qui répond sur WhatsApp 24h/24 — 100 DH / semaine
 7. IA qui répond sur Instagram — 100 DH / semaine
-8. IA qui répond sur TikTok — 100 DH / semaine
-9. Gestion de vos pubs payantes — 250 DH / semaine (budget pub payé par vous à Meta / TikTok)
+8. Gestion de vos pubs payantes — 250 DH / semaine (budget pub payé par vous à Meta / TikTok)
 
 *2) Vos infos* (même en vocal, ou en photos)
 • Nom exact du commerce + adresse

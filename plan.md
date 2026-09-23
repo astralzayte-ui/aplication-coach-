@@ -43,7 +43,7 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - Vidéos de présentation FR + arabe classique
 - IA messages privés (vérifié le 2026-09-23) :
   - Instagram ✅ API officielle Meta, même serveur que WhatsApp. Compte pro relié à une Page Facebook. Le client doit écrire en premier, réponse sous 24 h. Validation de l'app par Meta (App Review) nécessaire pour gérer les comptes des clients.
-  - TikTok ⚠️ API Business Messaging en ligne, mais accès seulement via des partenaires agréés (SleekFlow, respond.io, ManyChat, MessageGate), donc payant. Disponibilité au Maroc à vérifier. Gratuit en natif : message de bienvenue + réponses par mots-clés (pas d'IA).
+  - TikTok ❌ abandonné (décision 2026-09-23 : on reste sur Instagram). Pour info : API Business Messaging en ligne, mais accès seulement via des partenaires agréés (SleekFlow, respond.io, ManyChat, MessageGate), donc payant. Disponibilité au Maroc à vérifier. Gratuit en natif : message de bienvenue + réponses par mots-clés (pas d'IA).
 
 ## Décisions en attente
 - Vérifier la disponibilité du nom Sahir Digital
