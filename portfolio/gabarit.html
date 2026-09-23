@@ -1,0 +1,40 @@
+<title>Mon portfolio web</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--fond:#f4f1ec;--carte:#fff;--texte:#1d1a17;--doux:#6b635b;--trait:#e2dcd3;--accent:#a3441f;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--fond:#14110f;--carte:#1e1a17;--texte:#f1ebe3;--doux:#a79d92;--trait:#2e2823;--accent:#e3a64a;color-scheme:dark}}
+:root[data-theme="dark"]{--fond:#14110f;--carte:#1e1a17;--texte:#f1ebe3;--doux:#a79d92;--trait:#2e2823;--accent:#e3a64a;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:var(--fond);color:var(--texte);font:16px/1.6 Jost,system-ui,sans-serif}
+main{max-width:1100px;margin:0 auto;padding-inline:16px;padding-block:48px 72px}
+h1{font:400 clamp(2.2rem,6vw,3.4rem)/1.1 "DM Serif Display",Georgia,serif;margin:0 0 10px;text-wrap:balance}
+.sous{color:var(--doux);max-width:60ch;margin:0 0 40px}
+.grille{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
+.carte{background:var(--carte);border:1px solid var(--trait);display:flex;flex-direction:column}
+.image{aspect-ratio:4/3;overflow:hidden;background:var(--trait)}.image img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.corps{padding:20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.num{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+h2{font:400 1.6rem/1.2 "DM Serif Display",Georgia,serif;margin:0}
+p{margin:0;color:var(--doux);font-size:.95rem}
+.liens{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:12px}
+a.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+a.btn.plein{background:var(--accent);color:var(--carte)}
+a.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.etat{font-size:.8rem;color:var(--doux)}
+</style>
+<main>
+<h1>Mon portfolio web</h1>
+<p class="sous">Trois projets de démonstration en HTML, CSS et JavaScript, sans framework. Touchez un bouton pour ouvrir le site.</p>
+<div class="grille">
+<article class="carte"><div class="image"><img src="@@IMG1@@" alt="Accueil de la boutique Aurel sur mobile"></div><div class="corps">
+<span class="num">Site 1 · E-commerce</span><h2>Aurel, montres</h2><p>Catalogue filtrable, panier, commande avec paiement simulé, WhatsApp. Bordeaux et or.</p>
+<div class="liens"><a class="btn plein" href="https://dulcet-sfogliatella-fbc1ba.netlify.app/" target="_blank" rel="noopener">Site en ligne</a><a class="btn" href="https://claude.ai/artifact/9DYkTbZUQicrrdfSxNhuMQ" target="_blank" rel="noopener">Aperçu</a></div></div></article>
+<article class="carte"><div class="image"><img src="@@IMG2@@" alt="Tableau de bord de l'application Qalam sur mobile"></div><div class="corps">
+<span class="num">Site 2 · Application</span><h2>Qalam, devis et factures</h2><p>TVA, montant en lettres, PDF, mode sombre, hors connexion, tests automatiques.</p>
+<div class="liens"><a class="btn plein" href="https://claude.ai/artifact/VQLPCcXu7NduqRQQRF9TRA" target="_blank" rel="noopener">Aperçu</a></div><span class="etat">Mise en ligne Netlify : à faire</span></div></article>
+<article class="carte"><div class="image"><img src="@@IMG3@@" alt="La Koutoubia au crépuscule, photo du site Dar Zaafran"></div><div class="corps">
+<span class="num">Site 3 · Vitrine</span><h2>Dar Zaafran, restaurant</h2><p>Carte bilingue, galerie, réservation avec créneaux, carte, parallaxe.</p>
+<div class="liens"><a class="btn plein" href="LIEN3" target="_blank" rel="noopener" ETAT3>Aperçu</a></div><span class="etat">ETAT3TXT</span></div></article>
+</div>
+</main>

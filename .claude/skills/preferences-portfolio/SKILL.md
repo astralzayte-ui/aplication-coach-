@@ -13,6 +13,7 @@ Ce skill est vivant. **Règle n° 1 : chaque fois que l'utilisateur corrige quel
 - **Ne jamais montrer de code** dans les réponses : ni blocs, ni extraits, ni diffs. Expliquer avec des mots ce que fait le code, pour qu'il puisse le raconter en entretien.
 - **Toujours montrer le résultat en artifact** (aperçu publié) après chaque étape, et rappeler le lien. S'il dit « je vois rien », rouvrir l'artifact (action open) et redonner le lien cliquable. Il peut regarder l'écran des diffs de l'application par erreur.
 - Envoyer aussi des **captures d'écran mobiles** (SendUserFile) quand c'est utile.
+- **Il se perd dans l'écran des fichiers modifiés** : il veut une page où il **clique pour voir les sites**. Page d'accueil du portfolio (artifact) : https://claude.ai/artifact/NWPmx6egBUL3NNuK3Su6zu — une carte par site (aperçu + site en ligne). Gabarit : `portfolio/gabarit.html` (repères @@IMG1@@…, à remplacer en une seule passe). **La mettre à jour et la rouvrir à chaque nouveau site ou nouveau lien**, et toujours lui redonner ce lien.
 - Quand un choix est vraiment une question de goût (couleurs, style), poser la question **avec 3 ou 4 options visuelles** (AskUserQuestion avec aperçus), et une option recommandée.
 - Être autonome pour le reste : il a dit « gère le côté pro, tu as tous les skills ».
 - Lui dire clairement ce qu'il est seul à pouvoir faire (compte Netlify, droits des photos…), sans jamais lui demander de coller un mot de passe ou une clé dans le chat.

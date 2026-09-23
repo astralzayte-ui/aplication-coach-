@@ -18,3 +18,6 @@ jobs:
       # Tests des calculs de l'application de factures (aucune dépendance à installer)
       - name: Tests unitaires — site 2 (devis et factures)
         run: node --test site-2-factures/tests/*.test.js
+      # Tests des horaires et des réservations du restaurant
+      - name: Tests unitaires — site 3 (restaurant)
+        run: node --test site-3-restaurant/tests/*.test.js
