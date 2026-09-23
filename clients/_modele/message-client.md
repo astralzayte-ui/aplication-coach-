@@ -1,32 +1,23 @@
 Bonjour 👋 Merci pour votre confiance !
 *Sahir Digital* — entreprise déclarée, facture fournie pour chaque paiement.
 
-*1) Choisissez vos services* (répondez avec les numéros, ex. : 1, 4b, 5a, 6)
+*1) Choisissez un pack* (répondez avec la lettre)
+A. Pack Essentiel : 7 vidéos + 7 stories + IA WhatsApp — 450 DH / semaine
+B. Pack Premium : 15 vidéos + 21 stories + IA WhatsApp — 800 DH / semaine
+C. Pack Ultra : 15 vidéos + 21 stories + IA WhatsApp + IA Instagram + IA TikTok — 950 DH / semaine
+D. Pack Lancement : étude de marché + création des réseaux avec logo + site — 1 800 DH une fois
+E. Pack Lancement Pro : Pack Lancement + 1 mois de gestion pub — 2 600 DH une fois
 
-☐ 1. Étude de marché : voir si vous êtes bien placé face à vos concurrents (prix, image, réseaux, avis clients) ou s'il y a des modifications à faire — 300 DH
-☐ 2. Création de vos réseaux (Instagram, Facebook, TikTok) — 300 DH
-☐ 3. Création de votre site internet + nom de domaine — 1 500 DH
-
-☐ 4. Gestion de vos réseaux : vidéos créées et publiées pour vous (Instagram, TikTok, Facebook)
-   4a. 3 vidéos / semaine — 150 DH / semaine
-   4b. 5 vidéos / semaine — 225 DH / semaine
-   4c. 7 vidéos / semaine — 300 DH / semaine
-   4d. 10 vidéos / semaine — 400 DH / semaine
-   4e. 15 vidéos / semaine — 550 DH / semaine
-☐ 5. Stories
-   5a. 3 stories / semaine — 50 DH / semaine
-   5b. 7 stories / semaine — 100 DH / semaine
-   5c. 14 stories / semaine — 180 DH / semaine
-   5d. 21 stories / semaine — 250 DH / semaine
-☐ 6. Réponses automatiques WhatsApp 24h/24 (prix, horaires, questions — écrit et vocal, français et arabe) — 100 DH / semaine
-☐ 6b. Réponses automatiques Instagram (messages privés) 24h/24 — 100 DH / semaine
-☐ 6c. Gestion de vos publicités payantes (Facebook, Instagram, TikTok) — 250 DH / semaine (budget pub payé par vous directement à Meta / TikTok)
-
-⭐ *PACKS*
-☐ 7. Pack Essentiel : 7 vidéos + 7 stories + WhatsApp automatique — 450 DH / semaine (au lieu de 500)
-☐ 8. Pack Premium 🔥 : 15 vidéos + 21 stories + WhatsApp automatique — 800 DH / semaine (au lieu de 900)
-   → pour toucher un maximum de clients
-☐ 9. Pack Lancement : étude de marché + création des réseaux + site — 1 800 DH une fois (au lieu de 2 100)
+*… et/ou des services à la carte* (répondez avec les numéros)
+1. Étude de marché (êtes-vous bien placé face aux concurrents ?) — 300 DH
+2. Création des réseaux (Instagram, Facebook, TikTok) avec logo — 300 DH
+3. Site internet + nom de domaine — 1 500 DH
+4. Vidéos / semaine : 4a. 3 — 150 DH · 4b. 5 — 225 DH · 4c. 7 — 300 DH · 4d. 10 — 400 DH · 4e. 15 — 550 DH
+5. Stories / semaine : 5a. 3 — 50 DH · 5b. 7 — 100 DH · 5c. 14 — 180 DH · 5d. 21 — 250 DH
+6. IA qui répond sur WhatsApp 24h/24 — 100 DH / semaine
+7. IA qui répond sur Instagram — 100 DH / semaine
+8. IA qui répond sur TikTok — 100 DH / semaine
+9. Gestion de vos pubs payantes — 250 DH / semaine (budget pub payé par vous à Meta / TikTok)
 
 *2) Vos infos* (même en vocal, ou en photos)
 • Nom exact du commerce + adresse

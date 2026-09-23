@@ -39,10 +39,26 @@
         "etude": true,
         "reseaux": true,
         "site": true
+      },
+      "ultra": {
+        "semaine": 950,
+        "videos": 15,
+        "stories": 21,
+        "whatsapp": true,
+        "instagram_ia": true,
+        "tiktok_ia": true
+      },
+      "lancement_pro": {
+        "une_fois": 2600,
+        "etude": true,
+        "reseaux": true,
+        "site": true,
+        "pub_semaines": 4
       }
     },
     "instagram_ia_semaine": 100,
-    "gestion_pub_semaine": 250
+    "gestion_pub_semaine": 250,
+    "tiktok_ia_semaine": 100
   },
   "couts": {
     "video_unite": 12,
@@ -52,6 +68,7 @@
     "puce_achat": 20,
     "domaine_an": 100,
     "etude_credits": 5,
-    "instagram_ia_mois": 10
+    "instagram_ia_mois": 10,
+    "tiktok_ia_mois": 10
   }
 }

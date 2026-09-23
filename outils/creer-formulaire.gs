@@ -13,26 +13,30 @@ function creerFormulaireSahir() {
   // Section 1 — Services
   form.addTextItem().setTitle('Nom du commerce').setRequired(true);
   form.addTextItem().setTitle('Votre numéro WhatsApp').setRequired(true);
-  form.addCheckboxItem().setTitle('Services à la carte').setChoiceValues([
-    'Étude de marché : voir si vous êtes bien placé face à vos concurrents ou s\'il y a des modifications à faire — 300 DH',
-    'Création de vos réseaux (Instagram, Facebook, TikTok) — 300 DH',
-    'Site internet + nom de domaine — 1 500 DH',
-    'Réponses automatiques WhatsApp 24h/24 (écrit et vocal, français et arabe) — 100 DH / semaine',
-    'Réponses automatiques Instagram (messages privés) 24h/24 — 100 DH / semaine',
-    'Gestion de vos publicités payantes (Facebook, Instagram, TikTok) — 250 DH / semaine (budget pub payé par vous directement à Meta / TikTok)'
+  form.addMultipleChoiceItem().setTitle('⭐ Packs (prix réduits)').setChoiceValues([
+    'Aucun pack (je choisis à la carte)',
+    'Pack Essentiel : 7 vidéos + 7 stories + IA WhatsApp — 450 DH / semaine',
+    'Pack Premium : 15 vidéos + 21 stories + IA WhatsApp — 800 DH / semaine',
+    'Pack Ultra : 15 vidéos + 21 stories + IA WhatsApp + IA Instagram + IA TikTok — 950 DH / semaine',
+    'Pack Lancement : étude de marché + création des réseaux avec logo + site — 1 800 DH une fois',
+    'Pack Lancement Pro : étude de marché + création des réseaux avec logo + site + 1 mois de gestion pub — 2 600 DH une fois'
   ]);
-  form.addMultipleChoiceItem().setTitle('Gestion de vos réseaux : vidéos publiées par semaine').setChoiceValues([
+  form.addCheckboxItem().setTitle('Services à la carte (à ajouter ou sans pack)').setChoiceValues([
+    'Étude de marché : voir si vous êtes bien placé face à vos concurrents ou s\'il y a des modifications à faire — 300 DH',
+    'Création de vos réseaux (Instagram, Facebook, TikTok) avec logo — 300 DH',
+    'Site internet + nom de domaine — 1 500 DH',
+    'IA qui répond sur WhatsApp 24h/24 (écrit et vocal, français et arabe) — 100 DH / semaine',
+    'IA qui répond sur Instagram (messages privés) 24h/24 — 100 DH / semaine',
+    'IA qui répond sur TikTok (messages privés) 24h/24 — 100 DH / semaine',
+    'Gestion de vos publicités payantes (Facebook, Instagram, TikTok) — 250 DH / semaine (budget pub payé par vous à Meta / TikTok)'
+  ]);
+  form.addMultipleChoiceItem().setTitle('Gestion de vos réseaux : vidéos publiées par semaine (si pas de pack)').setChoiceValues([
     'Aucune', '3 vidéos — 150 DH / semaine', '5 vidéos — 225 DH / semaine', '7 vidéos — 300 DH / semaine',
     '10 vidéos — 400 DH / semaine', '15 vidéos — 550 DH / semaine'
   ]);
-  form.addMultipleChoiceItem().setTitle('Stories par semaine').setChoiceValues([
+  form.addMultipleChoiceItem().setTitle('Stories par semaine (si pas de pack)').setChoiceValues([
     'Aucune', '3 stories — 50 DH / semaine', '7 stories — 100 DH / semaine',
     '14 stories — 180 DH / semaine', '21 stories — 250 DH / semaine'
-  ]);
-  form.addCheckboxItem().setTitle('⭐ Packs (prix réduits)').setChoiceValues([
-    'Pack Essentiel : 7 vidéos + 7 stories + WhatsApp automatique — 450 DH / semaine (au lieu de 500)',
-    'Pack Premium : 15 vidéos + 21 stories + WhatsApp automatique — 800 DH / semaine (au lieu de 900)',
-    'Pack Lancement : étude de marché + création des réseaux + site — 1 800 DH une fois (au lieu de 2 100)'
   ]);
 
   // Section 2 — Le commerce

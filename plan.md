@@ -41,7 +41,7 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - Faire scraper Internet (outil à ajouter, vidéos tuto)
 - Site du faux spa (validé : on le fait)
 - Vidéos de présentation FR + arabe classique
-- IA messages privés : Instagram ✅ possible (API Meta, même serveur que WhatsApp) · TikTok : à vérifier
+- IA messages privés : Instagram ✅ possible (API Meta, même serveur que WhatsApp) · TikTok : à vérifier AVANT de vendre le Pack Ultra
 
 ## Décisions en attente
 - Vérifier la disponibilité du nom Sahir Digital
