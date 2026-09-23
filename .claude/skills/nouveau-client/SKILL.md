@@ -13,7 +13,9 @@ Donner à l'utilisateur le message prêt à copier de `clients/_modele/message-c
 adapté si on connaît déjà le nom / le secteur. Il l'envoie au client sur WhatsApp.
 
 ## Étape 1 bis — Services choisis + acompte de 400 DH
-Le client répond avec les numéros des services (message de `clients/_modele/message-client.md`).
+Le client remplit le Google Form (`clients/_modele/formulaire-google.md`). Lire sa réponse dans la Google Sheet
+« Sahir Digital — Réponses clients » via le connecteur Google Drive. Plan B : il répond au message texte
+(`clients/_modele/message-client.md`) avec les codes, et l'utilisateur colle sa réponse.
 Noter les services cochés dans `profil.md` (section « Services souscrits ») : seules ces parties sont lancées ensuite.
 
 ## Étape 2 — Réponses du client (utilisateur : 1 min)
