@@ -1,7 +1,7 @@
 # Étape 1 — Créer les outils (une seule fois)
 
 ## A. Google Form (3 min)
-1. Ouvrir le script : https://docs.google.com/document/d/1ZGkrWgo9yjI8gtZF-CVBPehoAYXInBL8p_Wi6JCrR3k/edit
+1. Ouvrir le script : https://docs.google.com/document/d/1nrrg2jyN_mKa11slFQUsyqm1ZljpZ-aFhdAh8NLksvk/edit
 2. Sélectionner tout le code sous « CODE À COPIER » (de `/**` jusqu'au dernier `}`) → Copier.
 3. Ouvrir https://script.google.com/home/projects/create (compte astralzayte@gmail.com).
 4. Effacer `function myFunction() {}` → Coller.
