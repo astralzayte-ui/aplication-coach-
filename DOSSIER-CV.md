@@ -17,6 +17,15 @@
 
 ---
 
+## Prompt à coller dans Claude Design (avec ce dossier en pièce jointe)
+
+> Crée mon CV de **développeur web junior (front-end)**, basé à Marrakech, à partir du dossier joint. Format A4, une page, sobre et moderne, facile à lire par un recruteur et par un logiciel de tri de CV (ATS) : texte sélectionnable, pas de barres de niveau ni de pourcentages de compétences, une seule colonne ou deux colonnes simples.
+> Ordre : en-tête (nom, poste visé, ville, téléphone, e-mail, GitHub, lien du portfolio), courte accroche de 2 à 3 lignes, **Projets personnels** (les 4 projets avec leur phrase courte, les technologies et le lien en ligne quand il existe), compétences regroupées (HTML/CSS, JavaScript, qualité et tests, performance et SEO, outils), formation, langues.
+> Respecte strictement les « Règles de présentation » du dossier : ce sont des **projets de démonstration** avec des **marques fictives**, **aucun client réel**, jamais dans « Expérience professionnelle », **aucun chiffre inventé**. Laisse visibles les champs marqués « à compléter » au lieu d'inventer des informations.
+> Fais aussi une version en anglais.
+
+---
+
 ## Profil
 
 - **Poste visé :** développeur web junior (front-end).
@@ -31,7 +40,8 @@
 - **CSS3** : responsive « mobile first », Flexbox, Grid, variables CSS, animations, composants de formulaire entièrement personnalisés.
 - **JavaScript sans framework** : manipulation du DOM, événements (dont délégation d'événements), état de l'application, localStorage, paramètres d'URL, validation de formulaires, expressions régulières.
 - **Performance** : moins de 100 Ko de photos à l'ouverture de la page sur mobile, images WebP optimisées, images adaptées à la taille de l'écran (srcset), chargement différé, préchargement de l'image principale.
-- **Référencement (SEO)** : titres et descriptions par page, aperçu de partage (Open Graph).
+- **Référencement (SEO)** : titres et descriptions par page, aperçu de partage (Open Graph), données structurées schema.org.
+- **Internationalisation** : site bilingue français / anglais sans rechargement de page.
 - **Sécurité front-end** : protection contre l'injection de code (XSS).
 - **Qualité** : tests unitaires (node:test) relancés automatiquement par GitHub Actions, tests dans un vrai navigateur (Playwright) sur mobile et ordinateur, correction des bugs trouvés.
 - **Application web progressive (PWA)** : installable, fonctionne hors connexion (service worker), mode clair / sombre.
@@ -40,6 +50,9 @@
 ## Liens
 
 - **Projet 1 (Aurel, boutique de montres) :** https://dulcet-sfogliatella-fbc1ba.netlify.app/
+- **Projet 2 (Qalam) :** *à compléter*
+- **Projet 3 (Dar Zaafran) :** *à compléter*
+- **Code source (GitHub) :** *à compléter*
 
 ---
 
@@ -82,10 +95,26 @@
 **Phrase courte pour le CV :**
 *Qalam — application de devis et factures (projet de démonstration). HTML, CSS et JavaScript sans framework : TVA et montant en lettres, numérotation légale, PDF, mode hors connexion (PWA), tests automatisés avec intégration continue.*
 
-## Projet 3 — Restaurant à Marrakech *(à venir)*
+## Projet 3 — « Dar Zaafran », site de restaurant à Marrakech *(développé, en cours de vérification)*
 
-**Type :** site vitrine de démonstration. Restaurant fictif, aucun client réel.
-**Prévu :** accueil, menu, galerie, réservation, contact avec carte, français / anglais, WhatsApp.
+**Type :** site vitrine de démonstration. Restaurant fictif, aucun client réel. Adresse, prix et avis inventés ; photos sous licence Creative Commons, créditées.
+**Lien en ligne :** *à compléter après la mise en ligne sur Netlify*
+**Technologies :** HTML, CSS, JavaScript (sans framework), tests automatiques avec Node.js et GitHub Actions.
+
+**Ce que fait le site :**
+- Site **bilingue français / anglais** : changement de langue instantané, sans rechargement, langue mémorisée.
+- Indicateur « Ouvert maintenant / Fermé, ouvre à 19h » calculé en direct à l'heure de Marrakech, même si le visiteur est à l'étranger.
+- Grandes photos avec **effet parallaxe** au défilement et apparitions douces des blocs, désactivés si le visiteur préfère réduire les animations.
+- Carte du restaurant générée à partir des données : catégories avec barre collante qui suit la lecture, filtres « Végétarien » et « Signatures ».
+- Galerie en mosaïque avec filtres et visionneuse plein écran (flèches du clavier, glisser du doigt).
+- **Réservation** avec un calendrier fait sur mesure (jours passés, lundis de fermeture et dates trop lointaines désactivés), créneaux de 30 minutes, nombre de personnes, liste déroulante sur mesure, récapitulatif en direct, puis envoi de la demande rédigée sur WhatsApp.
+- Contact : horaires avec le jour actuel mis en valeur, carte Google Maps chargée seulement au clic (rapidité et vie privée), itinéraire.
+- Référencement : données structurées « Restaurant » (schema.org) pour Google.
+
+**Points techniques à mettre en avant :** règles d'horaires et de réservation isolées dans un fichier testé automatiquement (tests relancés par GitHub à chaque envoi de code), gestion des fuseaux horaires, images WebP en deux tailles, contrôles de formulaire accessibles au clavier.
+
+**Phrase courte pour le CV :**
+*Dar Zaafran — site de restaurant fictif à Marrakech (projet de démonstration). HTML, CSS et JavaScript sans framework : site bilingue FR/EN, effet parallaxe, carte filtrable, réservation avec calendrier sur mesure et envoi WhatsApp, horaires « ouvert maintenant » testés automatiquement.*
 
 ## Projet 4 — Tableau de bord de commandes *(à venir)*
 
@@ -94,4 +123,4 @@
 
 ---
 
-*Document tenu à jour au fil des projets. Dernière mise à jour : projets 1 et 2 terminés.*
+*Document tenu à jour au fil des projets. Dernière mise à jour : projets 1 et 2 terminés, projet 3 développé (en vérification), projet 4 à venir.*
