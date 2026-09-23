@@ -22,18 +22,20 @@
 /* On définit les couleurs une seule fois : pour changer tout le thème,
    il suffit de modifier ces lignes. */
 :root {
-  --noir: #0a0a0b;
-  --noir-2: #121214;
-  --noir-3: #1a1a1d;
-  --noir-4: #242428;
+  /* Palette "Bordeaux & or" : fond bordeaux très sombre, or, texte crème. */
+  --noir: #1a0a0d;             /* fond principal (bordeaux presque noir) */
+  --noir-2: #22100f;           /* surfaces : cartes, pied de page */
+  --noir-3: #2b1418;           /* surfaces en relief : menus, survols */
+  --noir-4: #3a1c22;           /* dégradés d'arrière-plan des visuels */
   --or: #c9a45c;
-  --or-clair: #e6c98a;
-  --or-fonce: #9c7a3c;
-  --texte: #f3efe6;
-  --texte-doux: rgba(243, 239, 230, 0.66);
-  --texte-faible: rgba(243, 239, 230, 0.45);
-  --bordure: rgba(201, 164, 92, 0.22);
-  --bordure-neutre: rgba(243, 239, 230, 0.1);
+  --or-clair: #e2c88f;
+  --or-fonce: #9a7a3e;
+  --texte: #f2e9df;            /* crème */
+  --texte-doux: rgba(242, 233, 223, 0.7);
+  --texte-faible: rgba(242, 233, 223, 0.48);
+  --bordure: rgba(201, 164, 92, 0.26);
+  --bordure-neutre: rgba(242, 233, 223, 0.1);
+  --voile: 26, 10, 13;         /* le fond en R, G, B : pour les voiles semi-transparents */
   --vert-whatsapp: #1fa855;
   --rouge: #e5484d;
   --succes: #58c27d;
@@ -41,7 +43,7 @@
   --police-titre: 'Cormorant Garamond', Georgia, serif;
   --police-texte: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
-  --rayon: 14px;
+  --rayon: 2px;                /* coins presque droits : plus sobre et plus "maison de luxe" */
   --gouttiere: 16px;           /* marge sur les côtés en mobile */
   --largeur-max: 1200px;
   --hauteur-entete: 64px;
@@ -116,7 +118,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(10, 10, 11, 0.82);
+  background: rgba(var(--voile), 0.82);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--bordure);
@@ -216,10 +218,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   min-height: 48px; padding: 0 26px;
-  border-radius: 999px;
+  border-radius: var(--rayon);
   border: 1px solid transparent;
-  font-size: 0.82rem; font-weight: 600;
-  letter-spacing: 0.14em; text-transform: uppercase;
+  font-size: 0.74rem; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
   cursor: pointer;
   transition: background var(--transition), color var(--transition), border-color var(--transition), transform var(--transition);
   white-space: nowrap;
@@ -227,14 +229,15 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .btn:active { transform: scale(0.98); }
 .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
 .btn-or {
-  background: linear-gradient(135deg, var(--or-clair), var(--or) 55%, var(--or-fonce));
+  background: var(--or);
   color: var(--noir);
 }
-.btn-or:hover { color: var(--noir); filter: brightness(1.08); }
+.btn-or:hover { color: var(--noir); background: var(--or-clair); }
 .btn-contour { background: transparent; border-color: var(--or); color: var(--or-clair); }
 .btn-contour:hover { background: rgba(201, 164, 92, 0.1); color: var(--or-clair); }
-.btn-whatsapp { background: var(--vert-whatsapp); color: #fff; }
-.btn-whatsapp:hover { background: #1b964b; color: #fff; }
+.btn-whatsapp { background: transparent; border-color: var(--bordure); color: var(--texte); }
+.btn-whatsapp svg { color: var(--or); }
+.btn-whatsapp:hover { border-color: var(--or); color: var(--or-clair); background: rgba(201, 164, 92, 0.06); }
 .btn-lien { background: none; border: 0; color: var(--texte-doux); text-decoration: underline; padding: 0; min-height: 44px; cursor: pointer; }
 .btn-lien:hover { color: var(--or-clair); }
 .btn-petit { min-height: 40px; padding: 0 14px; font-size: 0.7rem; letter-spacing: 0.1em; }
@@ -261,13 +264,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
   padding: 12% 18%;
   border-radius: var(--rayon);
   background: radial-gradient(circle at 50% 40%, var(--noir-4), var(--noir-2) 70%);
-  border: 1px solid var(--bordure-neutre);
   overflow: hidden;
-  transition: border-color var(--transition);
 }
 .carte-visuel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .carte-visuel .montre-svg { width: 100%; height: 100%; transition: transform 0.5s ease; }
-.carte-produit:hover .carte-visuel { border-color: var(--bordure); }
 .carte-produit:hover .montre-svg { transform: scale(1.05) rotate(-2deg); }
 .carte-collection {
   margin: 14px 0 2px; font-size: 0.68rem; letter-spacing: 0.16em;
@@ -276,21 +276,19 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .carte-nom { font-size: 1.3rem; margin: 0 0 4px; }
 .carte-prix { color: var(--or-clair); font-weight: 500; margin: 0 0 12px; font-size: 0.95rem; }
 .carte-prix s, .fiche-prix s { color: var(--texte-faible); font-weight: 400; margin-left: 6px; font-size: 0.85em; }
-.carte-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-/* Sur téléphone (2 cartes par ligne), on n'affiche que l'icône WhatsApp pour gagner de la place.
+.carte-actions { display: grid; gap: 8px; }
+/* WhatsApp en simple icône carrée à côté de "Ajouter" : plus épuré, sur tous les écrans.
    Le texte reste lu par les lecteurs d'écran grâce à l'aria-label du lien. */
+.carte-actions { grid-template-columns: 1fr 40px; }
 .carte-actions .btn { min-width: 0; }
-@media (max-width: 699px) {
-  .carte-actions { grid-template-columns: 1fr 40px; }
-  .carte-actions .btn-whatsapp span { display: none; }
-  .carte-actions .btn-whatsapp { padding: 0; }
-}
+.carte-actions .btn-whatsapp span { display: none; }
+.carte-actions .btn-whatsapp { padding: 0; }
 
 /* Étiquettes "Nouveauté" / "-15 %" */
 .etiquette {
   position: absolute; top: 12px; left: 12px; z-index: 1;
-  padding: 4px 10px; border-radius: 999px;
-  background: rgba(10, 10, 11, 0.75); border: 1px solid var(--bordure);
+  padding: 4px 10px; border-radius: var(--rayon);
+  background: rgba(var(--voile), 0.75); border: 1px solid var(--bordure);
   font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--or-clair);
 }
 .etiquette-promo { left: auto; right: 12px; background: var(--or); color: var(--noir); border: 0; font-weight: 700; }
@@ -300,7 +298,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   position: fixed; left: 50%; bottom: 24px; z-index: 100;
   width: calc(100% - 2 * var(--gouttiere)); max-width: 440px;
   transform: translate(-50%, 140%);
-  padding: 14px 18px; border-radius: 12px;
+  padding: 14px 18px; border-radius: var(--rayon);
   background: var(--noir-3); border: 1px solid var(--bordure);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
   font-size: 0.9rem;
@@ -314,11 +312,12 @@ button, input, select, textarea { font: inherit; color: inherit; }
   position: fixed; right: 18px; bottom: 18px; z-index: 60;
   width: 56px; height: 56px; border-radius: 50%;
   display: grid; place-items: center;
-  background: var(--vert-whatsapp); color: #fff;
-  box-shadow: 0 10px 30px rgba(31, 168, 85, 0.35);
+  background: var(--noir-3); color: var(--or);
+  border: 1px solid var(--or);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
   transition: transform var(--transition);
 }
-.whatsapp-flottant:hover { color: #fff; transform: scale(1.08); }
+.whatsapp-flottant:hover { color: var(--noir); background: var(--or); transform: translateY(-2px); }
 .whatsapp-flottant svg { width: 28px; height: 28px; }
 
 /* Petit fil d'Ariane (Accueil / Collection / Produit) */
@@ -469,7 +468,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* Appel à l'action final */
 .cta-final {
-  text-align: center; padding: 56px 24px; border-radius: 24px;
+  text-align: center; padding: 56px 24px; border-radius: var(--rayon);
   background:
     radial-gradient(circle at 50% 0%, rgba(201, 164, 92, 0.22), transparent 70%),
     var(--noir-2);
@@ -482,7 +481,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .barre-catalogue { display: grid; grid-template-columns: 1fr auto; gap: 10px; margin-bottom: 24px; }
 .champ, .selection {
   width: 100%; min-height: 48px; padding: 0 16px;
-  background: var(--noir-2); border: 1px solid var(--bordure-neutre); border-radius: 12px;
+  background: var(--noir-2); border: 1px solid var(--bordure-neutre); border-radius: var(--rayon);
 }
 .champ:focus, .selection:focus { border-color: var(--or); outline: none; }
 .selection { grid-column: 1 / -1; cursor: pointer; }
@@ -514,7 +513,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .fiche-visuel {
   position: relative; aspect-ratio: 4 / 5;
   display: grid; place-items: center; padding: 10% 20%;
-  border-radius: 20px; overflow: hidden;
+  border-radius: var(--rayon); overflow: hidden;
   background: radial-gradient(circle at 50% 40%, var(--noir-4), var(--noir-2) 70%);
   border: 1px solid var(--bordure-neutre);
 }
@@ -534,7 +533,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* Sélecteur de quantité  [ − 1 + ] */
 .quantite {
   display: inline-flex; align-items: center;
-  border: 1px solid var(--bordure-neutre); border-radius: 999px; height: 48px;
+  border: 1px solid var(--bordure-neutre); border-radius: var(--rayon); height: 48px;
 }
 .quantite button {
   width: 44px; height: 100%; background: none; border: 0; cursor: pointer;
@@ -549,7 +548,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .caracteristiques th, .caracteristiques td { text-align: left; padding: 12px 0; border-bottom: 1px solid var(--bordure-neutre); vertical-align: top; }
 .caracteristiques th { color: var(--texte-faible); font-weight: 400; width: 42%; }
 
-.rassurance { display: grid; gap: 10px; margin-top: 24px; padding: 18px; border-radius: 12px; background: var(--noir-2); font-size: 0.85rem; color: var(--texte-doux); }
+.rassurance { display: grid; gap: 10px; margin-top: 24px; padding: 18px; border-radius: var(--rayon); background: var(--noir-2); font-size: 0.85rem; color: var(--texte-doux); }
 .rassurance span::before { content: '✦ '; color: var(--or); }
 
 @media (min-width: 900px) {
@@ -568,7 +567,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .ligne-panier:first-child { border-top: 1px solid var(--bordure-neutre); }
 .ligne-visuel {
   position: relative; aspect-ratio: 4 / 5; display: grid; place-items: center; padding: 8px 14px;
-  border-radius: 10px; background: var(--noir-2); overflow: hidden;
+  border-radius: var(--rayon); background: var(--noir-2); overflow: hidden;
 }
 .ligne-visuel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .ligne-visuel .montre-svg { width: 100%; height: 100%; }
@@ -580,7 +579,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .ligne-retirer { font-size: 0.8rem; min-height: 32px; }
 
 .recap {
-  padding: 24px; border-radius: 18px;
+  padding: 24px; border-radius: var(--rayon);
   background: var(--noir-2); border: 1px solid var(--bordure);
 }
 @media (min-width: 900px) { .recap { position: sticky; top: calc(var(--hauteur-entete) + 24px); } }
@@ -609,13 +608,13 @@ textarea.champ { padding: 12px 16px; min-height: 90px; resize: vertical; }
 .choix-paiement { display: grid; gap: 10px; }
 .option-paiement {
   display: flex; align-items: center; gap: 12px; padding: 16px;
-  border: 1px solid var(--bordure-neutre); border-radius: 12px; cursor: pointer;
+  border: 1px solid var(--bordure-neutre); border-radius: var(--rayon); cursor: pointer;
   transition: border-color var(--transition), background var(--transition);
 }
 .option-paiement:has(input:checked) { border-color: var(--or); background: rgba(201, 164, 92, 0.06); }
 .option-paiement input { accent-color: var(--or); width: 18px; height: 18px; }
 .option-paiement small { display: block; color: var(--texte-faible); }
-.bloc-carte { margin-top: 16px; padding: 18px; border-radius: 12px; background: var(--noir-2); }
+.bloc-carte { margin-top: 16px; padding: 18px; border-radius: var(--rayon); background: var(--noir-2); }
 .aide-test { font-size: 0.8rem; color: var(--or-clair); margin: 0 0 14px; }
 
 /* Écran de confirmation */
@@ -625,10 +624,10 @@ textarea.champ { padding: 12px 16px; min-height: 90px; resize: vertical; }
   display: grid; place-items: center; border: 1px solid var(--or); color: var(--or);
 }
 .coche svg { width: 34px; height: 34px; }
-.numero-commande { display: inline-block; padding: 8px 18px; border-radius: 999px; background: var(--noir-3); color: var(--or-clair); letter-spacing: 0.12em; margin-bottom: 24px; }
+.numero-commande { display: inline-block; padding: 8px 18px; border-radius: var(--rayon); background: var(--noir-3); color: var(--or-clair); letter-spacing: 0.12em; margin-bottom: 24px; }
 
 /* Indicateur de chargement (paiement en cours) */
-.chargement { width: 18px; height: 18px; border-radius: 50%; border: 2px solid rgba(10, 10, 11, 0.3); border-top-color: var(--noir); animation: tourner 0.8s linear infinite; }
+.chargement { width: 18px; height: 18px; border-radius: 50%; border: 2px solid rgba(var(--voile), 0.3); border-top-color: var(--noir); animation: tourner 0.8s linear infinite; }
 
 /* ---------- 9. Pages simples ---------- */
 .page-texte { max-width: 780px; padding-bottom: 80px; }
@@ -654,15 +653,15 @@ textarea.champ { padding: 12px 16px; min-height: 90px; resize: vertical; }
   position: relative;
   width: 100%; height: auto;   /* sinon la hauteur écrite dans le HTML écrase le ratio 3/4 */
   aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 60%;
-  border-radius: 200px 200px 20px 20px;
+  border-radius: 200px 200px var(--rayon) var(--rayon);
   border: 1px solid var(--bordure);
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
 }
 /* Petite étiquette posée sur la photo : nom + prix de la pièce phare. */
 .hero-etiquette {
   position: absolute; left: -14px; bottom: 28px;
-  display: flex; flex-direction: column; padding: 12px 18px; border-radius: 14px;
-  background: rgba(10, 10, 11, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  display: flex; flex-direction: column; padding: 12px 18px; border-radius: var(--rayon);
+  background: rgba(var(--voile), 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--bordure); color: var(--texte);
   font-size: 0.78rem; letter-spacing: 0.06em;
 }
@@ -676,7 +675,7 @@ textarea.champ { padding: 12px 16px; min-height: 90px; resize: vertical; }
 }
 .carte-collection-lien::before {
   content: ''; position: absolute; inset: 0; z-index: 0;
-  background: linear-gradient(to top, rgba(10, 10, 11, 0.95) 15%, rgba(10, 10, 11, 0.35) 65%, rgba(10, 10, 11, 0.15));
+  background: linear-gradient(to top, rgba(var(--voile), 0.95) 15%, rgba(var(--voile), 0.35) 65%, rgba(var(--voile), 0.15));
 }
 .carte-collection-lien:has(img)::before { z-index: 1; }
 .carte-collection-lien h3, .carte-collection-lien p, .carte-collection-lien .fleche { z-index: 2; }
@@ -692,7 +691,7 @@ textarea.champ { padding: 12px 16px; min-height: 90px; resize: vertical; }
   width: 100%; min-height: 48px; padding: 0 16px;
   display: flex; align-items: center; gap: 12px;
   background: var(--noir-2); color: var(--texte);
-  border: 1px solid var(--bordure); border-radius: 12px;
+  border: 1px solid var(--bordure); border-radius: var(--rayon);
   cursor: pointer; text-align: left;
   transition: border-color var(--transition), background var(--transition);
 }
@@ -709,7 +708,7 @@ textarea.champ { padding: 12px 16px; min-height: 90px; resize: vertical; }
   position: absolute; z-index: 30; top: calc(100% + 8px); left: 0; right: 0;
   margin: 0; padding: 8px; list-style: none;
   background: linear-gradient(180deg, var(--noir-3), var(--noir-2));
-  border: 1px solid var(--bordure); border-radius: 14px;
+  border: 1px solid var(--bordure); border-radius: var(--rayon);
   box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(230, 201, 138, 0.08);
   animation: apparaitre 0.18s ease;
 }
@@ -717,7 +716,7 @@ textarea.champ { padding: 12px 16px; min-height: 90px; resize: vertical; }
 @keyframes apparaitre { from { opacity: 0; transform: translateY(-6px); } }
 .menu-liste li {
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  padding: 12px 14px; border-radius: 9px; cursor: pointer;
+  padding: 12px 14px; border-radius: var(--rayon); cursor: pointer;
   font-family: var(--police-titre); font-size: 1.12rem; color: var(--texte-doux);
   transition: background var(--transition), color var(--transition);
 }
@@ -741,20 +740,20 @@ textarea.champ { padding: 12px 16px; min-height: 90px; resize: vertical; }
   border: 1px solid var(--bordure); background: var(--noir);
   cursor: pointer; transition: border-color var(--transition), background var(--transition);
 }
-.case input[type="checkbox"] { border-radius: 5px; }
+.case input[type="checkbox"] { border-radius: var(--rayon); }
 .case input[type="checkbox"]::after {
   content: ''; width: 10px; height: 6px; margin-top: -2px;
   border-left: 1.8px solid var(--noir); border-bottom: 1.8px solid var(--noir);
   transform: rotate(-45deg) scale(0); transition: transform 0.15s ease;
 }
-.case input[type="checkbox"]:checked { background: linear-gradient(135deg, var(--or-clair), var(--or)); border-color: var(--or); }
+.case input[type="checkbox"]:checked { background: var(--or); border-color: var(--or); }
 .case input[type="checkbox"]:checked::after { transform: rotate(-45deg) scale(1); }
 .case:hover input[type="checkbox"] { border-color: var(--or); }
 
 .option-paiement input[type="radio"] { border-radius: 50%; }
 .option-paiement input[type="radio"]::after {
   content: ''; width: 10px; height: 10px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--or-clair), var(--or)); transform: scale(0); transition: transform 0.15s ease;
+  background: var(--or); transform: scale(0); transition: transform 0.15s ease;
 }
 .option-paiement input[type="radio"]:checked { border-color: var(--or); }
 .option-paiement input[type="radio"]:checked::after { transform: scale(1); }
@@ -765,12 +764,14 @@ textarea.champ { padding: 12px 16px; min-height: 90px; resize: vertical; }
 .curseur-prix::-moz-range-progress { height: 2px; background: var(--or); }
 .curseur-prix::-webkit-slider-thumb {
   -webkit-appearance: none; width: 18px; height: 18px; margin-top: -8px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--or-clair), var(--or)); border: 2px solid var(--noir);
+  background: var(--or); border: 2px solid var(--noir);
   box-shadow: 0 0 0 1px var(--or);
 }
 .curseur-prix::-moz-range-thumb {
   width: 16px; height: 16px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--or-clair), var(--or)); border: 2px solid var(--noir);
+  background: var(--or); border: 2px solid var(--noir);
   box-shadow: 0 0 0 1px var(--or);
 }
 .menu-bouton.vide .menu-valeur { color: var(--texte-faible); }
+/* Texte raccourci sur téléphone : "Ajouter au panier" → "Ajouter" */
+@media (max-width: 699px) { .texte-long { display: none; } }

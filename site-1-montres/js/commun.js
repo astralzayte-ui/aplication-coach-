@@ -174,7 +174,7 @@ function carteProduit(p) {
         (p.ancienPrix ? ' <s>' + formaterPrix(p.ancienPrix) + '</s>' : '') + '</p>' +
     '</a>' +
     '<div class="carte-actions">' +
-      '<button class="btn btn-or btn-petit" data-ajouter="' + p.id + '">Ajouter</button>' +
+      '<button class="btn btn-or btn-petit" data-ajouter="' + p.id + '">Ajouter<span class="texte-long"> au panier</span></button>' +
       '<a class="btn btn-whatsapp btn-petit" href="' + lienWhatsApp(messageProduit(p, 1)) + '" target="_blank" rel="noopener" aria-label="Commander ' + echapperHTML(p.nom) + ' sur WhatsApp">' + ICONES.whatsapp + '<span>WhatsApp</span></a>' +
     '</div>' +
   '</article>';
