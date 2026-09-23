@@ -29,7 +29,7 @@ function creerFormulaireSahir() {
   ]);
   form.addCheckboxItem().setTitle('⭐ Packs (prix réduits)').setChoiceValues([
     'Pack Essentiel : 7 vidéos + 7 stories + WhatsApp automatique — 450 DH / semaine (au lieu de 500)',
-    'Pack Premium 🔥 : 15 vidéos + 21 stories + WhatsApp automatique — 800 DH / semaine (au lieu de 900)',
+    'Pack Premium : 15 vidéos + 21 stories + WhatsApp automatique — 800 DH / semaine (au lieu de 900)',
     'Pack Lancement : étude de marché + création des réseaux + site — 1 800 DH une fois (au lieu de 2 100)'
   ]);
 
