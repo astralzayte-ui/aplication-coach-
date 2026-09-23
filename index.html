@@ -188,6 +188,16 @@
     .dep-item-row.wait .dep-item-amt { color:var(--orange); }
     .dep-item-row.wait .dep-item-name { color:var(--text-dim); }
     .day-wait { font-size:11px; font-weight:700; color:var(--orange); font-variant-numeric:tabular-nums; }
+
+    /* CONFIRMATION DE SUPPRESSION */
+    .row-confirm { border-color:var(--rose) !important; background:var(--rose-dim) !important; }
+    .rc-txt { flex:1; min-width:0; font-size:12px; font-weight:700; color:var(--rose);
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .rc-no, .rc-yes { flex-shrink:0; padding:7px 13px; border-radius:var(--rx); font-size:12px;
+      font-weight:800; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+    .rc-no  { border:1px solid var(--border2); background:var(--surf2); color:var(--text-dim); }
+    .rc-yes { border:none; background:var(--rose); color:#fff; }
+    .rc-no:active, .rc-yes:active { transform:scale(.94); }
     .dep-cat-block { margin:14px 16px 0; }
     .dep-cat-header { display:flex; align-items:center; gap:10px; margin-bottom:8px; padding:0 2px; }
     .dep-cat-name  { flex:1; font-size:14px; font-weight:700; }
@@ -1139,7 +1149,7 @@ function pageScrollTop(){
   document.documentElement.scrollTop=0;
 }
 function openModal(id){document.getElementById(id).classList.add('open');}
-function closeModal(id){document.getElementById(id).classList.remove('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');if(id==='m-catdetail'){pendingDel=null;renderDepenses();}}
 function overlayClick(e,id){if(e.target.id===id)closeModal(id);}
 
 // ═══ NAVIGATION + SWIPE ═══
@@ -1147,6 +1157,7 @@ const PAGES=['home','depenses','notes'];
 let curPage='home';
 function navigate(page,dir){
   if(!PAGES.includes(page))return;
+  pendingDel=null;   // changer d'onglet annule une confirmation en cours
   const prev=PAGES.indexOf(curPage),next=PAGES.indexOf(page);
   curPage=page;
   PAGES.forEach(p=>{
@@ -1437,6 +1448,13 @@ function renderDepenses(){
       const t=d.ts?new Date(d.ts):null;
       const hm=t?String(t.getHours()).padStart(2,'0')+':'+String(t.getMinutes()).padStart(2,'0'):'—';
       const c=CATS[d.cat]||CATS.divers;
+      if(String(pendingDel)===String(d.id)){
+        return `<div class="dep-item-row row-confirm">
+          <span class="rc-txt">Supprimer « ${esc(d.desc||c.name)} » ?</span>
+          <button class="rc-no"  data-del-no>Annuler</button>
+          <button class="rc-yes" data-del-ok="${d.id}">Confirmer</button>
+        </div>`;
+      }
       return `<div class="dep-item-row${d.coche?'':' wait'}" data-dep="${d.id}">
         <button class="dep-tick${d.coche?' on':''}" data-tick="${d.id}"
           title="${d.coche?'Payé — décocher pour remettre en attente':'En attente — cocher quand c\'est payé'}">${I.check}</button>
@@ -1578,6 +1596,14 @@ function renderDepenses(){
   document.addEventListener('touchmove',e=>{ if(d) e.preventDefault(); },{passive:false});
 })();
 
+// Dépense dont la suppression attend confirmation (une seule à la fois).
+let pendingDel=null;
+function refreshDelViews(){
+  renderDepenses(); renderHome();
+  const m=document.getElementById('m-catdetail');
+  if(m&&m.classList.contains('open')&&curCat)openCatDetail(curCat);
+}
+
 // délégation de clics (dépenses + revenus)
 document.addEventListener('click',function(e){
   const tick=e.target.closest('[data-tick]');
@@ -1590,10 +1616,20 @@ document.addEventListener('click',function(e){
     }
     return;
   }
+  // Suppression en deux temps : la croix arme la confirmation, elle ne
+  // supprime rien. Rien n'est perdu sur un appui malheureux.
   const del=e.target.closest('[data-del]');
-  if(del){ const id=del.dataset.del;
-    S.depenses=S.depenses.filter(d=>String(d.id)!==String(id));
-    save();renderDepenses();renderHome();toast('Dépense supprimée');return; }
+  if(del){ pendingDel=del.dataset.del; refreshDelViews(); return; }
+  if(e.target.closest('[data-del-no]')){ pendingDel=null; refreshDelViews(); return; }
+  const ok=e.target.closest('[data-del-ok]');
+  if(ok){
+    const id=ok.dataset.delOk;
+    const d=S.depenses.find(x=>String(x.id)===String(id));
+    S.depenses=S.depenses.filter(x=>String(x.id)!==String(id));
+    pendingDel=null; save(); refreshDelViews();
+    toast(d?`« ${d.desc||'Dépense'} » supprimée`:'Dépense supprimée');
+    return;
+  }
   const ed=e.target.closest('[data-edit]');
   if(ed){ openEditDep(ed.dataset.edit);return; }
   const ad=e.target.closest('[data-adddate]');
@@ -1884,8 +1920,10 @@ function saveNotes(){
 })();
 
 // ═══ DÉTAIL CATÉGORIE ═══
+let curCat=null;
 function openCatDetail(cat){
   const v=CATS[cat];if(!v)return;
+  curCat=cat;
   const bud=catBudget(cat),sp=logCat(cat),rst=bud-sp;
   const p=bud>0?Math.min(100,Math.round(sp/bud*100)):(sp>0?100:0);
   document.getElementById('cd-title').innerHTML=`<span class="svg-icon" style="width:20px;height:20px;color:${v.col}">${I[v.k]}</span> ${v.name}`;
@@ -1902,6 +1940,13 @@ function openCatDetail(cat){
   document.getElementById('cd-content').innerHTML=list.length
     ? list.map(d=>{
         const dt=new Date(d.date+'T00:00:00');
+        if(String(pendingDel)===String(d.id)){
+          return `<div class="dep-row row-confirm">
+            <span class="rc-txt">Supprimer « ${esc(d.desc||v.name)} » ?</span>
+            <button class="rc-no"  data-del-no>Annuler</button>
+            <button class="rc-yes" data-del-ok="${d.id}">Confirmer</button>
+          </div>`;
+        }
         return `<div class="dep-row">
           <span class="dep-date">${dt.getDate()} ${MONTHS[dt.getMonth()]}</span>
           <span class="dep-desc">${esc(d.desc)}</span>
