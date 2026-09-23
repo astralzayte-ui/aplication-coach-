@@ -3,6 +3,11 @@
 ## Règle
 1er message = accroche personnalisée + vidéo de démo + une question. Le Google Form seulement après un « oui, intéressé ».
 
+## Ordre (choix de l'utilisateur)
+1. Appeler.
+2. Pas de réponse → envoyer le message WhatsApp (lien 1 clic de la fiche).
+Quand l'utilisateur dit qu'il commence à appeler : lui renvoyer le script d'appel propre, bien ponctué, prêt à lire.
+
 ## Canal
 WhatsApp (1er choix) → message privé Instagram (si pas de WhatsApp) → e-mail (grosses enseignes seulement).
 Max 20-30 nouveaux contacts par jour, jamais le même texte à l'identique (risque de blocage).
