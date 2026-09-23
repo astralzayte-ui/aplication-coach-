@@ -51,3 +51,16 @@ Une fois le client lancé, créer une routine (scheduled trigger) : chaque diman
    Sinon : programmer directement dans Buffer à l'heure prévue (stories comprises si Buffer les publie
    pour ce compte, sinon rappel de publication).
 5. Commit + push, puis un récap court à l'utilisateur.
+
+## Stratégie de test (test & learn)
+Chaque semaine, le calendrier suit la règle 70 / 30 :
+- 70 % des posts reprennent ce qui a déjà gagné (meilleure accroche, format, heure).
+- 30 % testent UNE seule variable à la fois, pour savoir ce qui a fait la différence :
+  accroche (question / chiffre / avant-après / témoignage) · format (UGC face caméra, visite du lieu, coulisses, offre)
+  · durée (7-15 s vs 30-45 s) · heure de publication · musique tendance vs voix off.
+Semaines 1-2 (aucune donnée) : tester large, en partant des règles du skill du secteur.
+
+Mesure : 48 h après chaque post, relever vues, taux de visionnage complet, partages, enregistrements, messages reçus
+(stats publiques via scrape_reseaux + stats Buffer). Critère principal : messages WhatsApp / réservations, puis partages et enregistrements.
+Noter chaque test dans `clients/<slug>/tests.md` (hypothèse → résultat → décision). Une variante gagne si elle fait ≥ 30 % de mieux
+sur 2 posts minimum. Les enseignements valables pour tout le secteur remontent dans le skill du secteur.
