@@ -13,14 +13,15 @@ Statuts : ✅ fait · 🔄 en cours · ⬜ à faire · ⏸ en attente
 - ⏸ Higgsfield Plus (au 1er client payant)
 
 ## Étape 2 — Démos (moi, puis toi ~10 min pour brancher)
-- ⬜ Démo WhatsApp IA (faux spa, écrit + vocal, français + darija)
+- ⬜ Démo WhatsApp IA (faux spa, écrit + vocal, français + arabe)
 - ⬜ Démo site du faux spa
 - ⬜ Vidéo de présentation FR (script : `prospection/video-demo.md`)
-- ⬜ Vidéo de présentation arabe / darija
+- ⬜ Vidéo de présentation arabe classique
 
 ## Étape 3 — Prospection (toi)
-- ⬜ Nom de l'entreprise + statut légal (auto-entrepreneur) pour les factures
-- ⬜ Prix validés (questionnaire `clients/_modele/message-client.md`)
+- ✅ Nom : **Sahir Digital** (ساهر ديجيتال) — ⬜ vérifier dispo (OMPIC, nom de domaine, Instagram)
+- ⬜ Statut légal (auto-entrepreneur) pour les factures
+- ✅ Prix validés (questionnaire `clients/_modele/message-client.md`)
 - ⬜ Pitch appris (`prospection/pitch.md`)
 - ⬜ 1er commerce démarché
 
@@ -32,6 +33,4 @@ Statuts : ✅ fait · 🔄 en cours · ⬜ à faire · ⏸ en attente
 - ⬜ Routine du dimanche 20h activée · test & learn en place
 
 ## Décisions en attente
-- Nom de l'entreprise
-- Grille de prix (proposition dans le questionnaire)
-- Arabe des vidéos : darija ou arabe classique
+- Vérifier la disponibilité du nom Sahir Digital
