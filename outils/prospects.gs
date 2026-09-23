@@ -5,7 +5,7 @@
  * 3) Copier l'URL de l'application Web et l'envoyer à Claude.
  */
 var TOKEN = 'VOIR_DOC_DRIVE'; // le vrai jeton est dans le Google Doc « Sahir Digital — Script fiche prospects » (dépôt public)
-var COLONNES = ['📞 Appelé', '✅ A répondu', '💬 WhatsApp envoyé', '🔥 Intéressé',
+var COLONNES = ['☎ Appelé', '✔ A répondu', '✉ WhatsApp envoyé', '★ Intéressé',
   'Date ajout', 'Nom', 'Secteur', 'Ville', 'Téléphone', 'Note Google', 'Nb avis', 'Site',
   'Instagram', 'Point faible', 'Score', 'WhatsApp 1 clic', 'Notes'];
 
@@ -41,7 +41,7 @@ function doPost(e) {
   var valeurs = rows.map(function (r) {
     return [false, false, false, false, r.date, r.nom, r.secteur, r.ville, r.telephone, r.note, r.avis,
       r.site, r.instagram, r.point_faible, r.score,
-      r.whatsapp ? '=HYPERLINK("' + r.whatsapp + '","📲 Envoyer")' : '', ''];
+      r.whatsapp ? '=HYPERLINK("' + r.whatsapp + '","▶ Envoyer WhatsApp")' : '', ''];
   });
   sh.getRange(debut, 1, valeurs.length, COLONNES.length).setValues(valeurs);
   sh.getRange(debut, 1, valeurs.length, 4).insertCheckboxes();
