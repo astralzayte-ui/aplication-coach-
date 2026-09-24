@@ -16,7 +16,7 @@ KW_ATTENTE = re.compile(r"(attendu|attente|retard|rendez-vous|rdv)", re.I)
 
 def propre(texte):
     """Retire les emojis (non pris en charge à l'import Google Docs/Sheets) et les espaces en trop."""
-    return re.sub(r"\s+", " ", "".join(c for c in texte if ord(c) <= 0xFFFF and not 0xFE00 <= ord(c) <= 0xFE0F)).strip(" .")
+    return re.sub(r"\s+", " ", "".join(c for c in texte if ord(c) <= 0xFFFF and not 0xFE00 <= ord(c) <= 0xFE0F and not 0x2600 <= ord(c) <= 0x27BF)).strip(" .")
 
 
 def charger(fichiers):
