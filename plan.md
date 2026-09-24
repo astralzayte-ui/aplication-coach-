@@ -37,6 +37,8 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - ⬜ Routine du dimanche 20h activée · test & learn en place
 
 ## À rappeler à l'utilisateur (à chaque « on en est où »)
+- 👉 PROCHAINE ÉTAPE PRIORITAIRE : faire la vidéo de démo universelle (plus pro). Prompts : `prospection/prompts-video-demo.md`. Il faut des crédits Higgsfield.
+- Script d'appel universel (le même pour tous) : `prospection/script-appel-universel.md`
 - Positionnement : Sahir Digital cherche des CLIENTS (prestataire), pas un employeur. À développer plus tard.
 - Plus tard : liste des sites où poster ses annonces + publication automatique
 - Prospection en ligne : `prospection/approche-en-ligne.md` (fiche prospects + lien WhatsApp 1 clic)
