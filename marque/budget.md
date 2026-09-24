@@ -54,8 +54,30 @@ Ton usage réel : **2 à 5 $ par mois** *(estimation, à confirmer après un moi
 
 | | Combien | Quand |
 |---|---|---|
-| **La pub** | ❌ **tu fixes** | **jamais avant le jour 21**, et seulement sur un gagnant |
+| **La pub** | **800 MAD** | **jamais avant le jour 21**, et seulement sur un gagnant |
 | **Le contrôle qualité** | ❌ **à chiffrer** | quand tu le demandes à l'agent, avant une grosse commande |
+
+### La pub — 800 MAD
+
+```
+Étalé sur 5 semaines    →   23 MAD/jour   ≈ 2,10 €/jour
+Étalé sur 7 semaines    →   16 MAD/jour   ≈ 1,50 €/jour
+Concentré sur 2 semaines →  57 MAD/jour   ≈ 5,30 €/jour   ← recommandé
+```
+
+⚠️ **Étalé, c'est trop mince.** À 1,50-2 € par jour l'algorithme n'a pas assez
+de volume pour apprendre. Tu auras dépensé les 800 MAD sans rien savoir.
+
+**Concentré sur 2 semaines, sur UNE seule vidéo gagnante**, ça donne un vrai
+résultat. C'est la méthode : on paie ce qui a déjà gagné en gratuit.
+
+```
+800 MAD de pub  ÷  300 MAD de marge (veste 🇫🇷)  =  3 ventes
+```
+
+**Trois ventes en deux semaines et la pub est remboursée.**
+
+🟠 **Décision en attente :** concentré sur 2 semaines, ou étalé sur 5-7 ?
 
 ⚠️ **Le contrôle qualité :** c'est une inspection payée à l'agent ou à une société tierce avant l'expédition. Je n'ai pas de chiffre vérifié — **demande le prix à ton agent**, et on l'inscrit ici.
 

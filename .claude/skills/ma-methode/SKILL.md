@@ -179,6 +179,20 @@ Assez bas pour attirer. **Assez haut pour qu'on lui fasse confiance.**
 
 **Les photos à exiger :** fond blanc uni, le vêtement seul ou sur mannequin mais toujours pareil, de face et de dos, chaque coloris, haute résolution, **zéro filigrane, zéro logo, zéro texte, aucun montage**. Ce sont des photos de travail — elles ne seront jamais publiées telles quelles.
 
+### Le contrôle qualité — à demander, jamais à oublier
+
+**Tu lui poses systématiquement la question :**
+
+> « Le contrôle qualité avant expédition, ça coûte combien ? »
+
+C'est une inspection payée à l'agent ou à une société tierce **avant que la
+marchandise parte**. Sans elle, il découvre les défauts quand le client les
+découvre — c'est-à-dire trop tard, en avis 1 étoile.
+
+**Quand il le demande :** avant une grosse commande, jamais sur un échantillon.
+
+**Le prix n'est jamais inventé.** Tu demandes, tu l'inscris dans le budget.
+
 **Une fois ces chiffres connus, le coût total est vrai.** Avant, il se donne en fourchette.
 
 ---
@@ -330,6 +344,15 @@ La branche vaut plus que le hook : un hook gagnant donne une vidéo, **une branc
 **On ne met de l'argent que sur ce qui a déjà gagné en gratuit.**
 
 Le boost va sur les produits à forte marge uniquement. Ailleurs, la marge ne paie pas l'acquisition.
+
+**Et on concentre, on n'étale pas.** Un petit budget étalé sur 7 semaines ne fait
+rien apprendre : l'algorithme n'a pas assez de volume par jour pour apprendre.
+Le même budget sur 2 semaines, **sur une seule vidéo gagnante**, donne un vrai
+résultat.
+
+> **Le calcul à poser à chaque fois :** budget pub ÷ marge d'une vente
+> = le nombre de ventes qui rembourse la pub. S'il est atteignable en deux
+> semaines, on y va. Sinon le budget est trop gros pour le produit.
 
 ---
 
