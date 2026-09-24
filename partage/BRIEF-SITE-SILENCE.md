@@ -228,6 +228,35 @@ la peau et les cheveux. **Rien d'autre** — même carrure, même âge, même st
 
 ---
 
+## 6 bis. Le site doit répondre aux vidéos — le point le plus important
+
+Les vidéos sont écrites à partir des **plaintes réelles** des clients des concurrents.
+Chaque plainte devient une accroche de vidéo. **Le site doit tenir la promesse,
+visible, sans avoir à chercher.**
+
+Sinon : il clique sur une vidéo qui dit « ils répondent plus quand t'as payé »,
+il arrive sur un site sans contact visible, et **tu viens de prouver que tu es
+comme les autres.**
+
+| La vidéo dit | Le site doit montrer |
+|---|---|
+| **« 60 balles pour du tissu de marché »** | le **grammage en chiffres** + une photo de près sur la matière |
+| **« Remboursé… en bon d'achat »** | *« On te rend ton argent. Pas un bon. »* — **près du bouton d'achat** |
+| **« Ils répondent plus quand t'as payé »** | le **contact direct** + un **délai de réponse annoncé**, sur la fiche |
+| **« Livraison express. Trois semaines. »** | une **date de livraison précise**, affichée **avant** le paiement |
+| **« Rose pâle sur la photo. Fuchsia dans le colis. »** | une **vidéo du produit réel**, mention « filmé sans filtre » |
+| **« Retour gratuit ? Moins 5 € »** | *« Retour gratuit. Zéro frais. »* — en clair, **près du bouton** |
+
+**La règle :** aucune de ces six réponses ne se cache dans une FAQ, dans les
+mentions légales ou en bas de page. **Elles sont sur la fiche produit**, là où
+il décide.
+
+⚠️ **Si une promesse ne peut pas être tenue, elle ne va ni sur le site ni dans
+une vidéo.** Une promesse non tenue revient en avis 1 étoile — exactement ce
+qu'on reproche aux concurrents.
+
+---
+
 ## 7. L'ancrage — vrai, ou rien
 
 L'argument le plus fort est la comparaison honnête :
