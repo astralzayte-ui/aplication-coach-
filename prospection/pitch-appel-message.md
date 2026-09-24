@@ -11,7 +11,7 @@
 1. Bonjour, je suis bien au [Nom du commerce] ? Je suis [Prénom], de Sahir Digital, à Marrakech. Je vous prends 30 secondes, pas plus.
 2. En préparant mon appel, j'ai remarqué une chose : [ACCROCHE].
 3. Chaque jour, ça vous fait perdre des clients, qui partent chez un concurrent.
-4. Nous, on aide les [spas / restaurants] à régler ça : un WhatsApp qui répond à vos clients tout seul, même la nuit, et des vidéos publiées pour vous sur Instagram.
+4. Nous, on aide les [spas / restaurants] à régler ça : un WhatsApp qui répond à vos clients tout seul, même la nuit, et des vidéos UGC de qualité publiées pour vous sur Instagram.
 5. Je peux vous envoyer une vidéo de 30 secondes sur WhatsApp, pour vous montrer ? C'est bien ce numéro ?
 → Oui : envoyer la vidéo tout de suite, puis relancer le lendemain.
 → « Je n'ai pas le temps » : Pas de souci, je vous l'envoie, vous la regardez quand vous voulez. Bonne journée !
@@ -29,7 +29,7 @@ En regardant votre [fiche Google / Instagram / site], j'ai remarqué que [ACCROC
 
 On aide les [spas / restaurants] de Marrakech à avoir plus de clients, avec :
 ✅ un WhatsApp qui répond tout seul, même la nuit
-✅ des vidéos publiées pour vous sur Instagram et TikTok
+✅ des vidéos UGC de qualité publiées pour vous sur Instagram et TikTok
 
 Je vous montre en 30 secondes ? 👇
 [vidéo de démo]
