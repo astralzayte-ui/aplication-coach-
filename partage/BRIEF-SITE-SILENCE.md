@@ -1,0 +1,288 @@
+# SILENCE — brief pour construire la boutique
+
+> À coller en entier dans Claude Design. Tout ce qu'il faut est ici, rien à aller chercher ailleurs.
+> Écrit le 24/09/2026.
+
+---
+
+## 0. Ce qu'on te demande
+
+Construis la boutique en ligne de **SILENCE**, une marque de streetwear neuve qui vend en **France** et au **Maroc**.
+
+**Le trafic vient à 90 % d'un téléphone**, depuis des vidéos TikTok et Instagram. Chaque vidéo pointe vers **une fiche produit**, jamais vers l'accueil.
+
+Donc : **le téléphone d'abord, la fiche produit d'abord.** L'accueil est secondaire.
+
+**Tu n'as pas encore les photos.** Elles arrivent quand le colis du fournisseur arrive. Mets des emplacements clairs au bon format, pas des images bouche-trou.
+
+---
+
+## 1. La marque
+
+**Nom : SILENCE**
+
+**L'idée :** on ne parle pas, on porte. La discrétion comme signe extérieur.
+
+**Le logo** — deux morceaux :
+
+**Le sigil.** Quatre piques de glace de hauteur décroissante, puis une ligne plate.
+C'est de la glace qui fond, et c'est un son qui s'éteint. La ligne plate est la seule partie en couleur.
+
+```svg
+<svg viewBox="0 0 196 112">
+  <polygon points="6,106 18,4 30,106"    fill="#F4F2ED"/>
+  <polygon points="38,106 49,34 60,106"  fill="#F4F2ED"/>
+  <polygon points="68,106 78,60 88,106"  fill="#F4F2ED"/>
+  <polygon points="96,106 105,80 114,106" fill="#F4F2ED"/>
+  <rect x="122" y="100" width="68" height="6" fill="#E0A458"/>
+</svg>
+```
+
+**Le mot.** Lettres très espacées — `letter-spacing: 0.38em`, avec `text-indent` égal pour recentrer.
+**Les lettres ne se touchent pas : il y a du silence entre elles.** C'est l'idée du nom en typographie. Ne jamais resserrer.
+
+**Les couleurs — cinq, jamais une de plus :**
+
+| | Hex | Où |
+|---|---|---|
+| Noir | `#0B0B0C` | le fond, partout |
+| Blanc cassé | `#F4F2ED` | le texte, le sigil |
+| **Ambre** | `#E0A458` | la ligne du sigil, **le bouton d'achat — rien d'autre** |
+| Bleu nuit | `#16324F` | le froid, les détails ; remplace l'ambre sur fond clair |
+| Chrome | `#B8BEC8` | les petits textes |
+
+L'ambre et le bleu nuit sont **volontairement opposés** (un chaud, un froid). C'est ce qui évite le look « boutique noir et rouge » de tout le monde.
+
+**Interdits sur le logo :** aucun dégradé, aucune pointe arrondie, aucune ombre, aucun contour, jamais penché ni écrasé, jamais d'autre couleur.
+
+---
+
+## 2. Le design du site
+
+**Le site est un lampadaire dans le noir.**
+
+Ce n'est pas une image : les photos produit seront tournées **la nuit, dans une rue vide, sous un lampadaire orange**. Le site doit être le même monde. Si le site est clair et les photos sombres, ça fait deux marques.
+
+```
+FOND           noir #0B0B0C, partout, sans exception
+TEXTE          blanc cassé #F4F2ED
+UN HALO        ambre #E0A458, un seul, diffus, derrière le produit en vedette
+LE BOUTON      ambre plein — la seule tache de couleur saturée de la page
+LES DÉTAILS    bleu nuit #16324F
+PETIT TEXTE    chrome #B8BEC8
+```
+
+**Les règles de forme :**
+
+- **Tout droit.** Zéro coin arrondi mou — le logo n'a que des pointes, le site suit.
+- **Photos en portrait, plein écran.** Jamais de paysage.
+- **Beaucoup de noir vide** autour des éléments. C'est le silence, en image.
+- Les titres en lettres espacées, comme le logo.
+- Une seule police, sans-serif, coupée net. Pas d'Inter, pas de Roboto, pas d'Arial.
+
+---
+
+## 3. À qui on vend
+
+**Une seule personne. Tout s'écrit pour lui.**
+
+> **Yanis, 19 ans, Vitry-sur-Seine.** Apprenti, 800 €/mois, vit chez sa mère donc tout part en fringues. Scrolle TikTok 2 h par soir, dans son lit. Achète chez Shein et Zara, le dit à personne.
+>
+> **Ce qu'il veut vraiment :** qu'on lui demande *« c'est quoi ça ? »*
+>
+> **Ce qu'il lâche d'un coup : 40 à 60 €.**
+
+Au Maroc c'est **le même mec**, avec deux différences : il **paie à la livraison** (jamais mis sa carte en ligne) et il se méfie à mort des boutiques Instagram.
+
+**Ce que ça change pour le site :**
+
+- Il achète au **besoin social**, pas au besoin de se couvrir. Le site vend le moment où on le remarque, pas le tissu.
+- **Il ne lit pas.** Photos, prix, avis. Le texte, il le survole.
+- **Il n'achète pas du premier coup.** Il regarde, il ferme, il revient 2-3 jours après.
+- Carte jeune (Nickel, Revolut) → **prévoir Apple Pay et PayPal**, il évite de taper son numéro.
+- **Le paiement en 3 fois pèse lourd** sur cette tranche d'âge.
+
+---
+
+## 4. Le catalogue et les prix
+
+**Cinq produits. Pas un de plus.** Ne pas en inventer.
+
+| # | 🇲🇦 | Produit |
+|---|---|---|
+| 1 | A | Sweat à capuche + jogging *(velours, strass)* |
+| 2 | B | Survêtement imperméable *(nylon camo marine)* |
+| 3 | C | Veste *(zip-hoodie noir délavé)* |
+| 4 | D | Doudoune *(crème matelassée)* |
+| 5 | E | Ensemble tête aux pieds *(hoodie + jean baggy)* |
+
+### 🇫🇷 France — en euros
+
+| Produit | Prix |
+|---|---|
+| Veste | **34,90 €** |
+| Sweat + jogging | **39,90 €** |
+| Survêtement imperméable | **44,90 €** |
+| Doudoune | **59,90 €** |
+| Ensemble tête aux pieds | **89,90 €** |
+
+### 🇲🇦 Maroc — en dirhams, jamais en euros convertis
+
+| Produit | Prix |
+|---|---|
+| Veste | **249 MAD** |
+| Sweat + jogging | **299 MAD** |
+| Survêtement imperméable | **349 MAD** |
+| Doudoune | **449 MAD** |
+| Ensemble tête aux pieds | **699 MAD** |
+
+**Ces prix sont figés.** Ne pas les modifier, ne pas en déduire d'autres.
+
+### Le pack — il ne recrute pas, il multiplie
+
+Personne ne lâche 90 € sur une marque découverte dans une story.
+
+| Où | Quoi |
+|---|---|
+| L'accueil, le panier | le pack en vedette |
+| La fiche produit | le pack en complément — « complète la tenue » |
+| **En vedette sur l'accueil** | **le sweat + jogging à 39,90 €** — c'est sa fourchette |
+
+**L'économie du pack s'affiche ligne par ligne**, jamais assénée : les pièces séparées, le total, puis le prix du pack. Le lecteur fait la soustraction lui-même — c'est ça qui la rend crédible.
+
+**Le pack à 89,90 € dépasse son plafond d'achat.** Afficher **« ou 3 × 29,97 € »** juste à côté. 30 €, c'est dans sa poche.
+
+**Livraison offerte dès 2 articles.**
+
+---
+
+## 5. Les cinq peurs à tuer
+
+Classées par force. Chacune trouve sa réponse **sur la page**, jamais dans une FAQ que personne n'ouvre.
+
+| La peur | Ce qui la tue |
+|---|---|
+| **« C'est une arnaque »** | un visage récurrent, un contact visible, une page « qui on est » |
+| **« La taille ne va pas m'aller »** | les mensurations en cm par taille, **deux gabarits en photo** |
+| **« Ça va arriver dans six semaines »** | **une date précise**, affichée **avant** le paiement |
+| **« La matière va décevoir »** | grammage, composition, des chiffres — aucun adjectif |
+| **« Le SAV ne répondra jamais »** | un contact direct, avec un délai de réponse annoncé |
+
+**Une date, pas une fourchette.** « Livré entre le 28 et le 2 » bat « 3 à 10 jours ouvrés ».
+
+**Des chiffres, pas des adjectifs.** Une valeur qu'on n'a pas encore s'écrit **« à confirmer »** — jamais inventée.
+
+---
+
+## 6. La fiche produit
+
+C'est la page qui compte. Elle est construite comme une page de vente, mais le client peut circuler.
+
+Dedans, obligatoirement :
+
+- **Le prix et le bouton d'achat visibles sans scroller**
+- **Une barre d'achat fixe en bas** de l'écran
+- Une photo **de face**, le vêtement en entier
+- Une photo **de dos** — c'est là qu'est le print
+- Une photo **de près sur la matière** — il voit que c'est pas du Shein
+- Le même vêtement porté par **un mec et une meuf** → ça tue la peur de la taille
+- Les mensurations en cm par taille
+- La date de livraison
+- Le contact direct
+- Ce qui se passe si ça ne va pas, en clair, **près du bouton**
+- Le pack en complément
+
+### Les visages
+
+**Règle absolue, partout : zéro regard caméra.**
+
+Le cadre s'arrête **au nez ou au menton**. On voit le corps, le vêtement, la matière. On ne voit pas les yeux.
+
+Le client vient d'une vidéo où le mec est de dos sous un lampadaire. Il doit retrouver **le même monde**.
+
+**Une seule exception : la page « qui on est ».** Là, un vrai visage, une vraie personne, un vrai nom. C'est ce qui tue *« c'est une arnaque »* — et ça ne marche que si c'est réel.
+
+---
+
+## 7. L'ancrage — vrai, ou rien
+
+L'argument le plus fort est la comparaison honnête :
+
+> **« Cette coupe chez les marques : 90 à 130 € »**
+
+Vérifiable, donc crédible.
+
+⚠️ **Jamais de faux prix barré.** En France un prix de référence doit avoir été réellement pratiqué (DGCCRF). Et Yanis le repère immédiatement — c'est le premier signal d'arnaque qu'il cherche.
+
+⚠️ **Aucun avis inventé, jamais.** Une boutique neuve qui assume zéro avis inspire plus confiance qu'une boutique neuve avec quarante avis cinq étoiles datés du même jour.
+
+---
+
+## 8. Le Maroc a ses propres règles
+
+**Le paiement à la livraison domine.** La vente ne se termine pas au clic, elle se termine à la porte. Le client peut refuser le colis sans rien perdre — et c'est la boutique qui paie l'aller **et** le retour.
+
+- **Annoncer le délai honnêtement.** Un délai long annoncé ne fait pas fuir ; un délai long découvert fait refuser le colis.
+- **Prévoir une confirmation téléphonique** avant expédition → ça coupe une bonne partie des refus. Donc : **le numéro de téléphone est obligatoire** à la commande au Maroc.
+- **Pousser le produit d'appel** (249-299 MAD), pas le pack à 699. Un gros montant en espèces à la porte se refuse bien plus souvent.
+- **Prix en MAD**, jamais des euros convertis.
+
+🇫🇷 En France : **carte, Apple Pay, PayPal**, et le paiement en 3 fois si possible.
+
+---
+
+## 9. Compter les clics — exigence explicite du propriétaire
+
+Le lien en bio Instagram est unique. Sans ça, rien ne distingue les sources et les 62 vidéos n'apprennent rien.
+
+1. Accepter **`?v=<numéro de vidéo>`** et **`?p=<code produit>`** dans l'URL
+2. **Mémoriser la source dès la première visite**, et la garder
+3. **La rattacher à la commande**, pas seulement à la visite — sinon on sait qui a cliqué, jamais qui a acheté
+4. Une page de relevé : clics et commandes **par vidéo, par produit, par jour**
+
+Côté bio Instagram : **un bouton par produit.**
+
+---
+
+## 10. Les infos de contact
+
+```
+Email        astralzayte@gmail.com
+TikTok FR    @silence.worldwide
+TikTok MA    @silence.worldwide_maroc
+Insta MA     @silence.worldwide
+Insta FR     à créer
+```
+
+*(Les trois comptes existants ne s'écrivent pas encore tous pareil — ils seront uniformisés. Utilise l'orthographe ci-dessus.)*
+
+Pas encore de nom de domaine.
+
+---
+
+## 11. Ce qu'on ne fait pas
+
+- ❌ Pas de compte obligatoire pour commander
+- ❌ Pas de popup avant que la page ait été lue
+- ❌ Pas de faux compte à rebours
+- ❌ Pas de « plus que 2 en stock » si c'est faux
+- ❌ Pas de case pré-cochée, pas d'assurance glissée dans le panier
+- ❌ Pas de photo portant la marque d'un concurrent
+- ❌ Pas de sélecteur homme/femme — 5 produits unisexes, ça n'ajoute qu'une porte devant une pièce vide
+- ❌ Pas d'emoji, pas de dégradé, pas de carte à bordure colorée à gauche
+
+---
+
+## 12. Les photos — statut
+
+**Elles n'existent pas encore.** Le fournisseur est payé, le colis est en route.
+
+Ce qu'il enverra : des photos **fond blanc, le vêtement seul ou sur mannequin**, de face et de dos, chaque coloris. **Ce sont des photos de travail — elles ne seront jamais publiées telles quelles.** Elles servent à habiller un modèle.
+
+**Donc : prévois les emplacements au bon format (portrait), avec des zones grises légendées.** Pas d'images de remplacement prises ailleurs, jamais.
+
+---
+
+## 13. En une ligne
+
+> Une boutique **noire**, pensée **pour un téléphone**, où chaque fiche produit est une page de vente, où **la seule couleur est le bouton d'achat**, et où **personne ne regarde la caméra**.
