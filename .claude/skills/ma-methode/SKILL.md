@@ -281,6 +281,33 @@ Les mêmes couleurs
 
 Le reste des règles est dans le skill `site-qui-vend`.
 
+### La règle qui compte le plus : le site répond aux vidéos
+
+Les hooks viennent des plaintes réelles des clients des concurrents.
+**Chaque promesse faite dans une vidéo doit se voir sur la fiche produit**,
+tout de suite, sans qu'il ait à chercher.
+
+Sinon : il clique sur une vidéo qui dit « ils répondent plus quand t'as payé »,
+il arrive sur un site sans contact visible, et **tu viens de prouver que tu es
+comme les autres.**
+
+Pour chaque branche de hooks, tu écris **ce que le site doit montrer** :
+
+| La vidéo dit | Le site montre |
+|---|---|
+| « du tissu de marché » | le **grammage en chiffres** + une photo de près |
+| « remboursé en bon d'achat » | *« on te rend ton argent »* **près du bouton** |
+| « ils répondent plus » | le **contact** + un **délai de réponse annoncé** |
+| « trois semaines » | une **date précise**, **avant** le paiement |
+| « pas la couleur de la photo » | une **vidéo du vrai produit** |
+| « retour payant en douce » | *« retour gratuit »* **près du bouton** |
+
+**Jamais dans une FAQ, jamais en bas de page.** Sur la fiche produit, là où il décide.
+
+⚠️ **Et l'inverse :** une promesse qu'il ne peut pas tenir ne va **ni sur le site,
+ni dans une vidéo**. Une promesse non tenue revient en avis 1 étoile — exactement
+ce qu'on reproche aux concurrents.
+
 Deux choses qui s'oublient et qui coûtent :
 
 - **Compter les clics.** `?v=<vidéo>&p=<produit>` dans l'URL, mémorisé dès la première visite, **rattaché à la commande** — pas seulement à la visite. Sinon on sait qui a cliqué, jamais qui a acheté.
