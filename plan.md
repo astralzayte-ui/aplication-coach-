@@ -44,7 +44,10 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - Plus tard : liste des sites où poster ses annonces + publication automatique
 - Prospection en ligne : `prospection/approche-en-ligne.md` (fiche prospects + lien WhatsApp 1 clic)
 - Pitch appel + message : `prospection/pitch-appel-message.md`
-- 🔄 Fiche prospects : script dans le Google Doc id 1rUSkOXy2YpVWoe2pocgf5-KuMRNXFPn3exg_CQYoWvw (jeton privé dedans) → l'utilisateur installe + déploie en appli Web → URL à donner à Claude → 30 prospects / jour
+- ✅ Fiche prospects automatique : Google Sheet « Sahir Digital — Prospects » (id 187f0PiU5GdQGFvYSTjIFO_Q1Bw5XhPnalzhE2vHEyco), 58 prospects (lots 1+2, sans froids).
+  Ajout de lignes : POST JSON {token, rows:[…]} sur https://script.google.com/macros/s/AKfycbye2-0QXlh9jogL7HdK25HZ6OB_kPvBx8rJ-SNhXiYuxJa1ppwUz_kLjHsBMaZ6nQsUQg/exec (curl -L).
+  Le jeton est dans le Google Doc « Sahir Digital — Script fiche prospects » (id 1rUSkOXy2YpVWoe2pocgf5-KuMRNXFPn3exg_CQYoWvw), jamais dans le dépôt.
+  Lot quotidien : Apify compass/crawler-google-places (Marrakech, 15 avis, contacts) → outils/lot_prospects.py → POST.
 - ✅ Lot 1 (2026-09-24) : 30 salons de beauté Marrakech → Google Sheet id 1MD8DD3JzoKP715BueMNAPgetPDRcKfaMbJ2fApT_ezw (11 chauds, 16 tièdes, 3 froids). Données prospects hors du dépôt (public).
 - ✅ Lot 2 (2026-09-24) : 30 coiffure/onglerie/barbiers → Google Sheet id 1zPOd33juHGA8ZmpCNfX1nNZG2fKuqg7ckNt_jp_cicA (12 chauds, 18 tièdes). Les lots n'incluent plus les FROIDS.
 - ⚠️ Le dépôt GitHub est PUBLIC : le passer en privé avant d'y mettre des données clients
