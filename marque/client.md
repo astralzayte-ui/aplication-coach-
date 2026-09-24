@@ -97,27 +97,126 @@ Deux façons de le sauver :
 
 ---
 
-## Ses vraies phrases
+## Ses vraies phrases — RELEVÉES LE 24/09
 
-> 🔴 **VIDE. C'est le livrable le plus important de toute la méthode.**
+> ✅ **Fait.** Source : les avis **1 et 2 étoiles** de Brentiny Paris sur Trustpilot
+> (**2,8 / 5 sur 886 avis**), relevés avec Firecrawl. Mot pour mot, rien de reformulé.
 
-Les manques plus haut sont écrits **avec mes mots**. Ça sonne comme une pub.
-Les hooks ont besoin des **siens**.
+⚠️ **Réserve :** Brentiny vend surtout du féminin (robes, abayas). Mais les plaintes
+portent sur **le comportement de la boutique**, pas sur le type de vêtement. Elles valent
+pour nous. À compléter avec d'autres boutiques quand on aura le temps.
 
-La différence :
+---
 
-| Mes mots (nul) | Ses mots (ça marche) |
+### 6 plaintes = 6 branches = 18 hooks
+
+---
+
+### Branche 1 — « On paie cher, on reçoit du marché »
+
+**C'est la plus violente. Elle revient dans presque tous les avis.**
+
+> *« Les robes sont les mêmes qu'au marché mais en 10x plus cher »*
+> *« On dirait un rideau de très mauvaise qualité »*
+> *« Tissu fin, presque transparent »*
+> *« J'ai la haine, robe du marché à 44 € »*
+> *« Payer 70 € pour recevoir une qualité médiocre »*
+
+| | Le hook |
 |---|---|
-| « un tissu qui tient » | « deux lavages et c'est bouloché » |
-| « un délai honnête » | « ça fait 3 semaines, aucune nouvelle » |
-| « un ensemble assorti » | « les deux noirs sont pas les mêmes » |
+| 1 | **« 60 balles pour du tissu de marché »** |
+| 2 | **« Tu paies la photo, pas le vêtement »** |
+| 3 | **« Touche. C'est ça, 400 grammes. »** |
 
-À gauche c'est une marque qui parle. À droite c'est quelqu'un qui râle.
-**C'est la deuxième qui accroche à la 3ᵉ seconde.**
+---
 
-Ces phrases existent déjà : **dans les avis 1 étoile des concurrents.**
+### Branche 2 — Le remboursement en bon d'achat
 
-→ À remplir à l'étape suivante. **Un hook par phrase.**
+> *« Le remboursement n'est pas effectué sur le compte, mais un bon de réduction »*
+> *« Tout ça pour ralentir au max et pour que les gens abandonnent »*
+> *« Ils m'envoient un mail me disant qu'ils vont me rembourser en avoir »*
+
+| | Le hook |
+|---|---|
+| 4 | **« Remboursé… en bon d'achat »** |
+| 5 | **« Ils te rendent pas ton argent. Ils te rendent du crédit chez eux. »** |
+| 6 | **« Ça te va pas ? On te rend ton argent. Pas un bon. »** |
+
+---
+
+### Branche 3 — Le SAV qui répond pas
+
+> *« J'ai été obligé d'envoyer un mail en menaçant d'entamer des procédures pour qu'ils me répondent »*
+> *« 2 mois que j'attends et ils me répondent jamais »*
+> *« Ne répondent pas au téléphone ni aux mails »*
+
+| | Le hook |
+|---|---|
+| 7 | **« Ils répondent plus quand t'as payé »** |
+| 8 | **« Deux mois. Zéro réponse. »** |
+| 9 | **« Écris-moi. Je réponds. »** |
+
+---
+
+### Branche 4 — La livraison rapide payée qui arrive pas
+
+> *« J'ai payé la livraison rapide, censée arriver en 3j, plus de 3 semaines »*
+> *« La commande reste toujours au statut d'expédiée »*
+> *« Durant tout ce temps, je n'ai reçu aucune nouvelle »*
+
+| | Le hook |
+|---|---|
+| 10 | **« Livraison express. Trois semaines. »** |
+| 11 | **« T'as payé pour du rapide ? »** |
+| 12 | **« Commandé le 3. Reçu le 7. »** |
+
+---
+
+### Branche 5 — La couleur pas comme sur la photo
+
+> *« C'est un rose fuchsia alors que c'était, de base, un rose pâle »*
+> *« Les matières n'étaient pas du tout les mêmes que sur les photos »*
+> *« La jupe n'est même pas comme sur l'image »*
+
+| | Le hook |
+|---|---|
+| 13 | **« Rose pâle sur la photo. Fuchsia dans le colis. »** |
+| 14 | **« Le vrai. Pas la photo retouchée. »** |
+| 15 | **« Filmé sans filtre. »** |
+
+---
+
+### Branche 6 — Le retour payant en douce
+
+> *« Ils vous prennent 5 € sur les frais d'envoi »*
+> *« Le renvoi est payant, celui-ci est déduit du prix de remboursement »*
+> *« J'ai acheté l'ensemble à 35 €, on ne m'aurait remboursé que 30 € »*
+
+| | Le hook |
+|---|---|
+| 16 | **« Retour gratuit ? Moins 5 € »** |
+| 17 | **« Les 5 balles qu'ils te prennent en douce »** |
+| 18 | **« Ça va pas ? On reprend. Zéro frais. »** |
+
+---
+
+## ⚠️ LA RÈGLE QUI VA AVEC
+
+**Ces 18 hooks sont des promesses.** Si tu les dis et que tu les tiens pas,
+**tu deviens exactement la boutique que tu attaques** — et tes avis 1 étoile
+diront la même chose.
+
+Avant de sortir une vidéo, vérifie que tu peux tenir :
+
+| Le hook | Ce que tu dois tenir |
+|---|---|
+| « On te rend ton argent » | **remboursement réel**, pas un bon d'achat |
+| « Écris-moi, je réponds » | **une réponse en 24 h**, vraiment |
+| « Commandé le 3, reçu le 7 » | **la date annoncée tenue** |
+| « Zéro frais de retour » | **le retour réellement gratuit** |
+| « Touche, 400 grammes » | **le grammage réel**, à confirmer avec l'échantillon |
+
+**Ne sors pas un hook dont la promesse n'est pas déjà en place sur le site.**
 
 ---
 
