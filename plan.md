@@ -46,7 +46,7 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - Pitch appel + message : `prospection/pitch-appel-message.md`
 - ✅ Fiche prospects automatique : Google Sheet « Sahir Digital — Prospects » (id 187f0PiU5GdQGFvYSTjIFO_Q1Bw5XhPnalzhE2vHEyco), 58 prospects (lots 1+2, sans froids).
   Ajout de lignes : POST JSON {token, rows:[…]} sur https://script.google.com/macros/s/AKfycbye2-0QXlh9jogL7HdK25HZ6OB_kPvBx8rJ-SNhXiYuxJa1ppwUz_kLjHsBMaZ6nQsUQg/exec (curl -L).
-  Le jeton est dans le Google Doc « Sahir Digital — Script fiche prospects » (id 1ams5ugnayre4i6f1y-4CTF1KWFLvWRF39EWBMs5Y0o0), jamais dans le dépôt.
+  Le jeton est dans le Google Doc « Sahir Digital — Script fiche prospects » (id 1s69VElVoQkIcKPw72ppG76a0U82hmgUa86uuca0KoUA), jamais dans le dépôt.
   Lot quotidien : Apify compass/crawler-google-places (Marrakech, 15 avis, contacts) → outils/lot_prospects.py → POST.
   Routine : trig_015zQEr54xvSjHyenvT9m2xF, chaque jour 6h30 UTC (7h30 Maroc), dans cette session.
 - ✅ Lot 1 (2026-09-24) : 30 salons de beauté Marrakech → Google Sheet id 1MD8DD3JzoKP715BueMNAPgetPDRcKfaMbJ2fApT_ezw (11 chauds, 16 tièdes, 3 froids). Données prospects hors du dépôt (public).
