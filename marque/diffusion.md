@@ -253,11 +253,28 @@ Les clics jugent le produit, pas le hook. Ne pas confondre les deux.
 
 ---
 
+## 6 bis. Les comptes
+
+```
+TikTok France    @silence.worldwide          ✅ ouvert
+TikTok Maroc     @silence.worldwide_maroc    ✅ ouvert
+Insta Maroc      @silence.worldwide          ✅ ouvert
+Insta France     ❌ À CRÉER
+```
+
+⚠️ Les trois existants ne s'écrivent pas pareil aujourd'hui. **À uniformiser.**
+
+Email de la marque : **astralzayte@gmail.com**
+
+---
+
 ## 7. Ce qui reste à faire
 
 | | État |
 |---|---|
-| Les comptes TikTok / Insta | 🟠 en cours |
+| **Créer le compte Insta France** | ❌ **À FAIRE — rappel demandé** |
+| **Connecter Metricool à Insta** | ❌ **À FAIRE — rappel demandé** — c'est ce qui automatise les publications |
+| Uniformiser les noms des 3 comptes | ❌ `silence.worldwide` partout (+ `.maroc`) |
 | Le nom du compte | ❌ à inventer ensemble |
 | Les 3 premières vidéos | ❌ **un compte à 0 abonné ne diffuse pas une vidéo qui vend** |
 | Le personnage / la lumière / le lieu | ❌ 10 min, 0 € |
