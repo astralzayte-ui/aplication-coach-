@@ -93,13 +93,54 @@ def que(phrase):
 EXCLUS = re.compile(r"(vêtement|boutique de mode|pharmacie|parapharmacie|magasin)", re.I)
 
 
-def message(nom, accroche, barbier):
-    qui = "les barbiers de Marrakech à avoir plus de clients" if barbier else "les salons de beauté de Marrakech à avoir plus de clientes"
-    return (f"Bonjour {nom},\nJe suis {SIGNATURE}, de Sahir Digital, à Marrakech. J'ai essayé de vous appeler.\n\n"
-            f"En regardant votre fiche Google, j'ai remarqué {que(accroche)}.\n\n"
-            f"On aide {qui}, avec :\n- un WhatsApp qui répond tout seul, même la nuit\n"
-            "- des vidéos UGC de qualité publiées pour vous sur Instagram et TikTok\n\n"
-            f"Je peux vous envoyer un mini-audit gratuit de votre fiche Google : ce qui vous fait perdre des {'clients' if barbier else 'clientes'} et comment le corriger ?")
+def audit(nom, note, avis, site, point_faible, barbier):
+    """Message WhatsApp complet = audit personnalisé + solutions + proposition des packs."""
+    cl = "clients" if barbier else "clientes"
+    pf = point_faible.lower()
+    try:
+        note = float(str(note).replace(",", ".")) if note not in ("", None) else None
+    except ValueError:
+        note = None
+    avis = int(avis or 0)
+    n = lambda x: str(x).replace(".", ",").replace(",0", "")
+    pb = []
+    if note is not None and note < 4:
+        pb.append(f"votre note Google est à {n(note)} sur 5 : beaucoup de {cl} s'arrêtent là et vont ailleurs")
+    if "prix" in pf:
+        pb.append(f"des {cl} se plaignent dans vos avis de ne pas connaître les prix à l'avance")
+    if "attente" in pf:
+        pb.append(f"des {cl} se plaignent dans vos avis de l'attente et des rendez-vous")
+    if "négatif" in pf:
+        pb.append(f"un avis négatif récent est resté sans réponse, et vos futures {cl} le lisent")
+    elif "0 réponse" in pf:
+        pb.append(f"vous avez {avis} avis mais vous n'y répondez pas : on a l'impression qu'il n'y a personne derrière")
+    if site in ("Non", "Page Facebook", "Instagram seulement"):
+        pb.append(f"vous n'avez pas de vrai site : sur Google, on ne trouve ni vos prix ni vos prestations")
+    elif site == "Page gratuite":
+        pb.append("votre site est une page gratuite très simple, sans vos prix ni la prise de rendez-vous")
+    if avis < 20:
+        pb.append(f"vous n'avez que {avis} avis Google, alors que les salons autour de vous en ont plus de 100 : Google les montre avant vous")
+    if barbier:
+        pb.append("quand vous ne pouvez pas répondre à un message (pendant une coupe, le soir), le client va souvent chez un concurrent")
+    else:
+        pb.append("quand vous ne pouvez pas répondre à un message (pendant un soin, le soir), la cliente va souvent chez un concurrent")
+    pb = pb[:3]
+
+    sol = []
+    if site in ("Non", "Page Facebook", "Instagram seulement", "Page gratuite"):
+        sol.append("un site professionnel avec vos prix et la prise de rendez-vous")
+    sol.append("votre WhatsApp automatisé : il répond à vos " + cl + " 24h/24 (prix, disponibilités, rendez-vous)")
+    sol.append("votre Instagram automatisé : réponses automatiques aux messages privés")
+    sol.append("des vidéos et des stories de qualité publiées pour vous chaque semaine")
+    sol.append("des publicités ciblées pour faire venir de " + ("nouveaux clients" if barbier else "nouvelles clientes") + " de votre quartier")
+
+    txt = (f"Bonjour {nom},\nJe suis Julien, de Sahir Digital, à Marrakech. Je vous ai appelé, mais je n'ai pas réussi à vous joindre.\n\n"
+           "J'ai analysé votre présence en ligne, voici ce que j'ai vu :\n"
+           + "\n".join(f"{i}. {p[0].upper() + p[1:]}." for i, p in enumerate(pb, 1))
+           + "\n\nVoici ce que je peux faire pour vous :\n"
+           + "\n".join(f"- {x[0].upper() + x[1:]}" for x in sol)
+           + "\n\nSi ça vous intéresse, je vous envoie tous mes packs.")
+    return txt
 
 
 def main():
@@ -125,7 +166,8 @@ def main():
             continue
         nom = propre(it["title"])
         mobile = cle[0] in "67"
-        wa = ("https://wa.me/212" + cle + "?text=" + urllib.parse.quote(message(nom, acc, secteur(it) == "barbier"))) if mobile else "Fixe : appeler seulement"
+        site_txt = {None: "Non", "facebook": "Page Facebook", "instagram": "Instagram seulement", "site": "Oui", "site-basique": "Page gratuite"}[site_type(it)]
+        wa = ("https://wa.me/212" + cle + "?text=" + urllib.parse.quote(audit(nom, it.get("totalScore"), it.get("reviewsCount"), site_txt, pf, secteur(it) == "barbier"))) if mobile else "Fixe : appeler seulement"
         t = "0" + cle
         site = {None: "Non", "facebook": "Page Facebook", "instagram": "Instagram seulement", "site": "Oui", "site-basique": "Page gratuite"}[site_type(it)]
         insta = (it.get("instagrams") or [""])[0]
