@@ -95,10 +95,11 @@ EXCLUS = re.compile(r"(vêtement|boutique de mode|pharmacie|parapharmacie|magasi
 
 def message(nom, accroche, barbier):
     qui = "les barbiers de Marrakech à avoir plus de clients" if barbier else "les salons de beauté de Marrakech à avoir plus de clientes"
-    return (f"Bonjour {nom} 👋\nJe suis {SIGNATURE}, de Sahir Digital, à Marrakech. J'ai essayé de vous appeler.\n\n"
+    return (f"Bonjour {nom},\nJe suis {SIGNATURE}, de Sahir Digital, à Marrakech. J'ai essayé de vous appeler.\n\n"
             f"En regardant votre fiche Google, j'ai remarqué {que(accroche)}.\n\n"
-            f"On aide {qui}, avec :\n✅ un WhatsApp qui répond tout seul, même la nuit\n"
-            "✅ des vidéos UGC de qualité publiées pour vous sur Instagram et TikTok\n\nJe vous montre en 30 secondes ?")
+            f"On aide {qui}, avec :\n- un WhatsApp qui répond tout seul, même la nuit\n"
+            "- des vidéos UGC de qualité publiées pour vous sur Instagram et TikTok\n\n"
+            "Je peux vous envoyer un mini-audit gratuit de votre fiche Google : ce qui vous fait perdre des clients et comment le corriger ?")
 
 
 def main():

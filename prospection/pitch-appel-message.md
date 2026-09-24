@@ -22,17 +22,17 @@
 - « L'IA va dire n'importe quoi » → Elle répond uniquement avec vos prix et vos infos. Si elle ne sait pas, elle vous passe le client.
 
 ## Message WhatsApp (si pas de réponse à l'appel)
-Bonjour [Nom] 👋
+Bonjour [Nom],
 Je suis [Prénom], de Sahir Digital, à Marrakech. J'ai essayé de vous appeler.
 
 En regardant votre [fiche Google / Instagram / site], j'ai remarqué que [ACCROCHE].
 
 On aide les [spas / restaurants] de Marrakech à avoir plus de clients, avec :
-✅ un WhatsApp qui répond tout seul, même la nuit
-✅ des vidéos UGC de qualité publiées pour vous sur Instagram et TikTok
+- un WhatsApp qui répond tout seul, même la nuit
+- des vidéos UGC de qualité publiées pour vous sur Instagram et TikTok
 
-Je vous montre en 30 secondes ? 👇
-[vidéo de démo]
+Je peux vous envoyer un mini-audit gratuit de votre fiche Google : ce qui vous fait perdre des clients et comment le corriger ?
+(Pas d'emoji dans les liens WhatsApp : ils s'affichent en « � » sur certains téléphones.)
 
 ## Relance (3 jours après, une seule fois)
 Bonjour [Nom], petite relance 🙂 Vous avez pu regarder la vidéo ? Je peux vous faire une démo gratuite sur votre propre WhatsApp, ça prend 5 minutes.
