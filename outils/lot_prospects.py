@@ -99,7 +99,7 @@ def message(nom, accroche, barbier):
             f"En regardant votre fiche Google, j'ai remarqué {que(accroche)}.\n\n"
             f"On aide {qui}, avec :\n- un WhatsApp qui répond tout seul, même la nuit\n"
             "- des vidéos UGC de qualité publiées pour vous sur Instagram et TikTok\n\n"
-            "Je peux vous envoyer un mini-audit gratuit de votre fiche Google : ce qui vous fait perdre des clients et comment le corriger ?")
+            f"Je peux vous envoyer un mini-audit gratuit de votre fiche Google : ce qui vous fait perdre des {'clients' if barbier else 'clientes'} et comment le corriger ?")
 
 
 def main():
