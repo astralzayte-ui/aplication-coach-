@@ -167,7 +167,12 @@ L'agent fournisseur      variable — payé, montant pas communiqué
 
 **Pour être à zéro : 3 ventes en France, 6 au Maroc.**
 
+**Avec Firecrawl** (19 $/mois ≈ 185 MAD, pour relever les prix concurrents) : **1 270 MAD ≈ 118 €** → **5 ventes** en France.
+⚠️ Les 500 crédits gratuits de Firecrawl suffisent sûrement (≈ 180 pages nécessaires) — les 19 $ sont budgétés par précaution.
+
 **Pas encore compté :** l'agent, l'échantillon, le stock, **le colis refusé au Maroc** (~20 MAD par commande, le vrai trou).
+
+**Le détail complet est dans `marque/budget.md`.**
 
 ---
 
