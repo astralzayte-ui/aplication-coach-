@@ -52,6 +52,26 @@ Réassort en maritime : $0.80-1.20/kg au lieu de l'aérien.
 ⚠️ La tenue complète à $10.50 coûte plus cher que ses composants séparés
 ($3.00 + $6.50 = $9.50). Marge cachée à faire justifier par l'agent.
 
+## La livraison — validée le 24/09
+
+```
+🇫🇷  France     5,90 €  ·  offerte dès 59 €
+🇲🇦  Maroc      gratuite ou très basse
+```
+
+**Pourquoi 59 € :** c'est le prix de la doudoune. Quelqu'un qui regarde la veste
+à 34,90 € voit « plus que 24,10 € pour la livraison offerte » et monte d'un cran,
+au lieu d'ajouter un 2e article qui ferait 74,80 € — trop haut pour Yanis.
+
+**Elle rapporte :** ~4,50 € de coût réel *(estimation à confirmer)* pour 5,90 €
+facturés → **+1,40 € par commande.**
+
+⚠️ **Pas 7,50 €.** Sur une veste à 34,90 € ça fait 21 % du prix — ça sonne
+« frais cachés », exactement ce que les clients reprochent aux concurrents.
+
+⚠️ **Au Maroc elle reste basse.** Le client paie en espèces à la porte : chaque
+dirham ajouté augmente le risque de refus du colis.
+
 ## Les 4 leviers d'attractivité (sans toucher aux prix)
 
 1. **Ancrage vrai** — « Cette coupe chez les marques : 90 à 130 €. » Vérifiable.
