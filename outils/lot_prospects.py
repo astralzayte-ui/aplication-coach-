@@ -86,10 +86,17 @@ def analyser(it):
     return ("3-FROID", "Site OK", f"vous avez déjà un site ; on peut aller plus loin avec des vidéos chaque semaine et un WhatsApp qui répond à vos {cl} 24h/24")
 
 
+def que(phrase):
+    return ("qu'" if phrase[:1].lower() in "aeiouéèêh" else "que ") + phrase
+
+
+EXCLUS = re.compile(r"(vêtement|boutique de mode|pharmacie|parapharmacie|magasin)", re.I)
+
+
 def message(nom, accroche, barbier):
     qui = "les barbiers de Marrakech à avoir plus de clients" if barbier else "les salons de beauté de Marrakech à avoir plus de clientes"
     return (f"Bonjour {nom} 👋\nJe suis {SIGNATURE}, de Sahir Digital, à Marrakech. J'ai essayé de vous appeler.\n\n"
-            f"En regardant votre fiche Google, j'ai remarqué que {accroche}.\n\n"
+            f"En regardant votre fiche Google, j'ai remarqué {que(accroche)}.\n\n"
             f"On aide {qui}, avec :\n✅ un WhatsApp qui répond tout seul, même la nuit\n"
             "✅ des vidéos UGC de qualité publiées pour vous sur Instagram et TikTok\n\nJe vous montre en 30 secondes ?")
 
@@ -107,6 +114,8 @@ def main():
     for it in charger(a.fichiers):
         tel = it.get("phoneUnformatted") or ""
         cle = re.sub(r"\D", "", tel)[-9:]
+        if EXCLUS.search(it.get("categoryName") or ""):
+            continue
         if not cle or cle in deja or cle in vus or it.get("permanentlyClosed") or it.get("temporarilyClosed"):
             continue
         vus.add(cle)
@@ -118,7 +127,7 @@ def main():
         site = {None: "Non", "facebook": "Page Facebook", "instagram": "Instagram seulement", "site": "Oui", "site-basique": "Page gratuite"}[site_type(it)]
         insta = (it.get("instagrams") or [""])[0]
         insta = "@" + insta.rstrip("/").split("/")[-1].split("?")[0] if insta else ""
-        lignes.append([score, nom, " ".join([t[:2], t[2:4], t[4:6], t[6:8], t[8:10]]), "J'ai remarqué que " + acc + ".", wa, pf,
+        lignes.append([score, nom, " ".join([t[:2], t[2:4], t[4:6], t[6:8], t[8:10]]), "J'ai remarqué " + que(acc) + ".", wa, pf,
                        str(it.get("totalScore") or "").replace(".", ","), it.get("reviewsCount") or 0, site, insta, it.get("categoryName") or ""])
     lignes.sort(key=lambda l: (l[0], -int(l[7])))
     lignes = lignes[: a.max]
