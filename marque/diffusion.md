@@ -200,6 +200,34 @@ Une image générée **peut se voir**. Et une image qui sent l'IA, pour Yanis, d
 
 ⚠️ **Higgs Field est à 0 crédit.** Rien ne se lance tant que ce n'est pas rechargé.
 
+### Les personnages de référence — décidé le 24/09
+
+**Trois, pas un.**
+
+```
+1.  maghrébin
+2.  noir
+3.  blanc
+```
+
+**Pourquoi trois :** tu vends à Vitry et à Casablanca. Le client doit pouvoir
+se reconnaître. *(L'asiatique a été écarté — presque personne dans la cible.)*
+
+**Pourquoi ça casse pas l'univers :** on voit jamais les visages (capuche,
+de dos, coupé sous les yeux). Ce qui se répète, c'est **la rue, le lampadaire,
+le cadrage, la carrure, l'âge, le style autour**.
+
+> Avec des visages, 3 mecs = 3 marques.
+> **Sans visage, 3 mecs = 1 marque.**
+
+**Ce qui change :** la peau, les cheveux. **Rien d'autre.**
+
+Ils servent aussi sur la boutique : `site-qui-vend` demande deux gabarits en
+photo pour tuer la peur « la taille va pas m'aller ». Avec trois, c'est réglé.
+
+**Coût :** 3 personnages créés une fois dans Higgs Field, réutilisés partout.
+Le coût par vidéo ne bouge pas.
+
 ### Le personnage de référence
 
 Higgs Field garde un **personnage**. On le crée **une fois**, on le réutilise partout.
