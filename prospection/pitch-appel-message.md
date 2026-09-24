@@ -58,3 +58,15 @@ Ce qu'on peut faire pour vous :
 Vous voulez qu'on en parle 5 minutes ? Ou je vous envoie nos formules.
 
 → S'il est intéressé : envoyer le Google Form.
+
+## Qui reçoit quoi (déroulé complet)
+A. Appel décroché + « oui » → message « après appel » ci-dessous + mini-audit (+ vidéo quand elle existera).
+B. Pas de réponse → bouton « Envoyer WhatsApp » de la fiche (message déjà écrit, fin = proposition de mini-audit).
+C. Il répond « oui » sur WhatsApp → mini-audit (+ vidéo quand elle existera).
+D. Intéressé → Google Form.
+
+## Message « après appel » (WhatsApp)
+Bonjour [Nom], c'est Julien de Sahir Digital, suite à notre appel.
+Comme promis, voici votre mini-audit :
+[mini-audit préparé par Claude]
+Vous voulez qu'on en parle 5 minutes, ou je vous envoie nos formules ?
