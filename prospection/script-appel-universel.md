@@ -4,7 +4,7 @@
 2. « Je suis Julien, de Sahir Digital, à Marrakech. Je vous prends trente secondes, pas plus. »
 3. « On aide les salons de beauté de Marrakech à avoir plus de clientes, sans que vous ayez rien à faire. »
 4. « Concrètement : quand une cliente vous écrit sur WhatsApp, même à deux heures du matin, elle reçoit une réponse en cinq secondes : vos prix, vos disponibilités, et elle réserve. »
-5. « Et chaque semaine, on publie pour vous des vidéos de qualité sur Instagram et TikTok, pour faire venir de nouvelles clientes. »
+5. « Et chaque semaine, on publie pour vous des vidéos de qualité sur Instagram et TikTok. On teste plusieurs angles et plusieurs accroches, pour voir ce qui marche le mieux pour vous, et on garde ce qui ramène le plus de clientes. »
 6. « J'ai une petite vidéo de trente secondes qui montre tout ça. Je vous l'envoie sur WhatsApp ? C'est bien ce numéro ? »
 
 Si oui : « Parfait, je vous l'envoie tout de suite. Je vous rappelle demain pour avoir votre avis. Bonne journée ! »
