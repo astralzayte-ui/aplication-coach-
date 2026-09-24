@@ -32,3 +32,16 @@ Petite relance 🙂 Vous avez pu regarder la vidéo ? Je peux vous faire une dé
 3. « On règle ça avec des vidéos publiées pour vous et un WhatsApp qui répond 24h/24. »
 4. « Je vous envoie une vidéo de 30 secondes sur WhatsApp pour vous montrer ? »
 5. Oui → envoyer la vidéo, puis le formulaire s'il est intéressé.
+
+## Score des prospects (règles actuelles, à ajuster avec les résultats réels)
+- CHAUD : problème visible dans les avis (note < 4, plaintes, avis négatifs sans réponse)
+  OU salon qui tourne (50+ avis = clientèle et budget) mais sans vrai site / sans réponse aux avis.
+- TIÈDE : petit salon ou récent (< 50 avis), ou site très basique. Problème = visibilité, budget plus serré.
+- FROID : déjà équipé (vrai site + répond à ses avis). Plus dur à convaincre.
+Limite : seuls les 15 derniers avis sont lus.
+
+## Angle marketing
+« Vous perdez des clientes sans le savoir. On vous le prouve, et on les récupère pour vous. »
+1. Preuve : on parle de SES données (ses avis, sa note, son site), pas de marketing en général.
+2. Perte : ce qu'il perd chaque jour (messages sans réponse, invisible sur Google, pas de vidéos).
+3. Solution clé en main : on fait tout (WhatsApp IA, vidéos UGC, site), lui ne fait rien.
