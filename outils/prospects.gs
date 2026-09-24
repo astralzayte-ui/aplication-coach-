@@ -4,7 +4,7 @@
  * 2) Déployer → Nouveau déploiement → ⚙ Application Web → Exécuter en tant que : Moi → Accès : Tout le monde → Déployer.
  * 3) Copier l'URL de l'application Web et l'envoyer à Claude.
  */
-var TOKEN = 'VOIR_DOC_DRIVE'; // le vrai jeton est dans le Google Doc « Sahir Digital — Script fiche prospects » (dépôt public)
+var TOKEN = 'VOIR_DOC_DRIVE'; // le vrai jeton est dans le Google Doc « Sahir Digital — Script fiche prospects V2 » (dépôt public)
 var COLONNES = ['☎ Appelé', '✔ A répondu', '✉ WhatsApp envoyé', '★ Intéressé',
   'Score', 'Nom', 'Téléphone', 'WhatsApp 1 clic', 'Accroche (à lire au téléphone)', 'Point faible',
   'Note Google', 'Nb avis', 'Site', 'Instagram', 'Secteur', 'Date ajout', 'Notes'];
