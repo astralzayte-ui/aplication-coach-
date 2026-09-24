@@ -2,97 +2,127 @@
 
 > Mis à jour le 24/09/2026.
 > Règle : **aucun chiffre inventé.** Ce qui n'est pas connu est marqué « à chiffrer ».
+> Les prix marqués ✅ ont été relevés sur les sites officiels ce jour-là.
 
 ---
 
-## 1. Les dépenses obligatoires
+## 1. Ce que tu paies une fois
 
-Tu les paies même en vendant zéro.
-
-| | Combien | Rythme |
+| | Combien | Note |
 |---|---|---|
-| Le domaine | **100 MAD** | par an |
-| Les crédits IA *(visuels)* | **800 MAD** | pour 80 vidéos = **10 MAD la vidéo** |
-| **Firecrawl** *(relevé concurrents)* | **19 $/mois ≈ 185 MAD** | par mois, **si on dépasse le gratuit** |
-| Instagram *(Metricool)* | **0** | automatisé |
-| WhatsApp | **0** | automatisé |
-| Gemini | **0** | quota gratuit quotidien |
-| ScrapeCreators | **0** | 78 crédits déjà payés |
-
-### Le calcul
-
-```
-Le domaine                        100 MAD
-80 vidéos × 10 MAD                800 MAD
-─────────────────────────────────────────
-LE MINIMUM                        900 MAD    ≈ 83 €
-
-Firecrawl, 2 mois × 185 MAD       370 MAD
-─────────────────────────────────────────
-AVEC FIRECRAWL                  1 270 MAD    ≈ 118 €
-```
-
-### ⚠️ Firecrawl : le gratuit suffit sûrement
-
-**500 crédits offerts. 1 crédit ≈ 1 page relevée.**
-
-Le relevé de prix concurrents, c'est environ :
-
-```
-6 boutiques × 30 pages = 180 pages
-```
-
-→ **180 sur 500.** Largement dedans.
-
-**Les 19 $ ne se paient que si on scrape en continu.** Ils sont budgétés par précaution — pas forcément dépensés.
-
-À vérifier une fois le relevé lancé : combien de crédits il reste.
+| **Le domaine** | **100 MAD / an** | obligatoire |
+| **Les crédits IA (visuels)** | **800 MAD** | pour 80 vidéos = **10 MAD la vidéo** |
+| **L'échantillon fournisseur** | ❌ **à chiffrer** | |
+| **L'agent fournisseur** | ❌ **à chiffrer** | payé, montant pas communiqué |
 
 ---
 
-## 2. Les dépenses qui bougent
+## 2. Ce que tu paies tous les mois
 
-Par vente, ou dépendantes du fournisseur.
+| | Combien | Pourquoi |
+|---|---|---|
+| **Metricool Starter** ✅ | **16 €/mois ≈ 172 MAD** | publier tout seul sur **2 pays** |
+| **Gemini API** ✅ | **~3 $/mois ≈ 30 MAD** *(estimation)* | lire les vidéos, chercher sur le web |
+| **Firecrawl** | **0** | les 500 crédits gratuits suffisent |
+| **WhatsApp Business** | **0** | l'appli gratuite fait les réponses auto |
+| **Instagram / TikTok** | **0** | |
 
-| | État |
-|---|---|
-| **L'agent fournisseur** | payé — **montant à chiffrer** |
-| **Le prix d'achat** | l'agent cherche |
-| **Le fret DDP** | ~5 $/kg visé |
-| **L'échantillon** | à chiffrer |
-| **La commission de paiement** | à chiffrer |
-| **Le colis refusé au Maroc** | **~20 MAD par commande** — le vrai trou |
-| **La pub** | **jamais avant le jour 21** |
+### 💡 Metricool : tu peux commencer gratuit
+
+```
+Gratuit     1 marque     →  la France seule
+Starter     16 €/mois    →  jusqu'à 5 marques  →  France + Maroc
+```
+
+**Tant que tu lances que la France, tu paies rien.** Tu passes à 16 € le jour où le Maroc démarre.
+
+### Gemini : le détail du prix ✅
+
+```
+Entrée      0,75 $ / million de mots-machine
+Sortie      3,75 $ / million
+Vidéo       0,002 $ la minute
+            (tarifs valables jusqu'au 31/12/2026, ils doublent après)
+```
+
+→ **Une vidéo YouTube de 15 min coûte quelques centimes.**
+Ton usage réel : **2 à 5 $ par mois** *(estimation, à confirmer après un mois)*.
 
 ---
 
-## 3. Combien de ventes pour être à zéro
+## 3. Ce que tu paies quand tu le décides
 
-| | Marge par vente | À 900 MAD | À 1 270 MAD |
+| | Combien | Quand |
+|---|---|---|
+| **La pub** | ❌ **tu fixes** | **jamais avant le jour 21**, et seulement sur un gagnant |
+| **Le contrôle qualité** | ❌ **à chiffrer** | quand tu le demandes à l'agent, avant une grosse commande |
+
+⚠️ **Le contrôle qualité :** c'est une inspection payée à l'agent ou à une société tierce avant l'expédition. Je n'ai pas de chiffre vérifié — **demande le prix à ton agent**, et on l'inscrit ici.
+
+---
+
+## 4. Le total du lancement
+
+Sur **2 mois** (préparation + les 40 jours) :
+
+```
+Le domaine                       100 MAD
+80 vidéos × 10 MAD               800 MAD
+Metricool, 2 mois × 172          344 MAD
+Gemini, 2 mois × 30               60 MAD
+─────────────────────────────────────────
+                               1 304 MAD    ≈ 120 €
+```
+
+**Si tu démarres la France seule (Metricool gratuit) :**
+
+```
+                                 960 MAD    ≈ 89 €
+```
+
+---
+
+## 5. Combien de ventes pour être à zéro
+
+| | Marge / vente | À 960 MAD | À 1 304 MAD |
 |---|---|---|---|
-| 🇫🇷 Veste 34,90 € | 27,90 € | **3 ventes** | **5 ventes** |
+| 🇫🇷 Veste 34,90 € | 27,90 € | **4 ventes** | **5 ventes** |
 | 🇲🇦 Veste 249 MAD | 173 MAD | **6 ventes** | **8 ventes** |
 
-**Cinq ventes en France et tout le lancement est remboursé.**
+**Cinq ventes en France et tout ton lancement est remboursé.**
 
-*(Ne compte pas encore l'agent, l'échantillon, le stock et les colis refusés.)*
+*(Ne compte pas encore : l'agent, l'échantillon, le stock, le contrôle qualité, et les colis refusés au Maroc ~20 MAD par commande.)*
 
 ---
 
-## 4. Ce qui a été écarté, et pourquoi
+## 6. Les dépenses par vente
+
+| | |
+|---|---|
+| Le prix d'achat du produit | l'agent cherche |
+| Le fret DDP | ~5 $/kg visé |
+| La commission de l'agent | **2 %** → 14 centimes sur une veste, négligeable |
+| La livraison au client | **elle rapporte** : 5,90 € facturés, ~4,50 € réels → **+1,40 €** |
+| Le colis refusé 🇲🇦 | **~20 MAD** — le vrai trou |
+
+---
+
+## 7. Ce qui a été écarté, et pourquoi
 
 | | Pourquoi non |
 |---|---|
 | **Apify** | 5 $ offerts brûlés en 3 requêtes. ScrapeCreators fait déjà le job. |
-| **Une agence pour analyser les pubs** | Meta Ad Library est **publique et gratuite**. |
+| **Firecrawl payant** | 500 crédits gratuits suffisent pour le relevé concurrents |
+| **Une agence pour analyser les pubs** | Meta Ad Library est **publique et gratuite** |
 | **Zapier Pro** | essai qui **expire le 7 octobre**. Rien ne doit en dépendre. |
-| **Les transcriptions vidéo payantes** | la niche est muette — musique + texte. Testé, confirmé. *(250 crédits économisés.)* |
+| **L'API WhatsApp payante** | l'appli WhatsApp Business gratuite fait le travail |
+| **Les transcriptions vidéo payantes** | la niche est muette — testé, confirmé. *250 crédits économisés.* |
 
 ---
 
-## 5. Note pour le prochain projet
+## 8. Note pour le prochain projet
 
-Le propriétaire aura plus de crédits. **Ce qui a été écarté par manque de budget est à reposer :**
+Le propriétaire aura plus de crédits. **À reposer alors :**
 
 - Higgs Field rechargé → les visuels générés
 - Le scraping en continu → le relevé concurrents tous les mois
