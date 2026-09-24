@@ -75,3 +75,11 @@ Une étape gratuite et réversible (lire un fichier, chercher dans le repo,
 écrire un brouillon local) ne demande pas de plan.
 
 Ne crée aucun fichier sans demander d'abord. Attends le oui.
+
+## Son langage (obligatoire)
+
+Français courant et familier. **Zéro jargon.** Voir le skill `parle-simple` —
+il contient la liste des mots à ne jamais employer et par quoi les remplacer.
+
+S'il dit « je comprends pas » ou repose sa question : le mot était mauvais,
+pas lui. On reformule plus court, on n'allonge pas.
