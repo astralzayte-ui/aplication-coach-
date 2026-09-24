@@ -4,8 +4,8 @@
  * 2) Déployer → Nouveau déploiement → ⚙ Application Web → Exécuter en tant que : Moi → Accès : Tout le monde → Déployer.
  * 3) Copier l'URL de l'application Web et l'envoyer à Claude.
  */
-var TOKEN = 'VOIR_DOC_DRIVE'; // le vrai jeton est dans le Google Doc « Sahir Digital — Script fiche prospects V2 » (dépôt public)
-var COLONNES = ['☎ Appelé', '✔ A répondu', '✉ WhatsApp envoyé', '★ Intéressé',
+var TOKEN = 'VOIR_DOC_DRIVE'; // le vrai jeton est dans le Google Doc « Sahir Digital — Script fiche prospects V3 » (dépôt public)
+var COLONNES = ['Appelé', 'A répondu', 'WhatsApp envoyé', 'Intéressé',
   'Score', 'Nom', 'Téléphone', 'WhatsApp 1 clic', 'Accroche (à lire au téléphone)', 'Point faible',
   'Note Google', 'Nb avis', 'Site', 'Instagram', 'Secteur', 'Date ajout', 'Notes'];
 
@@ -27,7 +27,7 @@ function installerProspects() {
       .setStrikethrough(true).setFontColor('#9ca3af').setRanges([plage]).build()
   ]);
   PropertiesService.getScriptProperties().setProperty('SHEET_ID', ss.getId());
-  Logger.log('✅ Fiche prospects : ' + ss.getUrl());
+  Logger.log('OK - Fiche prospects : ' + ss.getUrl());
 }
 
 function doPost(e) {
@@ -45,7 +45,7 @@ function doPost(e) {
   var debut = sh.getLastRow() + 1;
   var valeurs = rows.map(function (r) {
     return [false, false, false, false, r.score, r.nom, r.telephone,
-      r.whatsapp ? '=HYPERLINK("' + r.whatsapp + '","▶ Envoyer WhatsApp")' : 'Fixe : appeler',
+      r.whatsapp ? '=HYPERLINK("' + r.whatsapp + '","Envoyer WhatsApp")' : 'Fixe : appeler',
       r.accroche || '', r.point_faible, r.note, r.avis, r.site, r.instagram, r.secteur, r.date, ''];
   });
   sh.getRange(debut, 1, valeurs.length, COLONNES.length).setValues(valeurs);
