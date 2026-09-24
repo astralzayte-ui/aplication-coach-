@@ -39,3 +39,22 @@ Bonjour [Nom], petite relance 🙂 Vous avez pu regarder la vidéo ? Je peux vou
 
 ## Quand il est intéressé
 Super ! Pour vous proposer exactement ce qu'il vous faut, remplissez ce petit formulaire (2 minutes) : [lien du formulaire]
+
+## Mini-audit (texte WhatsApp, pas de vidéo) — envoyé quand le prospect répond « oui »
+Claude le prépare pour chaque prospect à partir de sa fiche (note, avis, site, Instagram).
+
+Voici votre mini-audit, [Nom] :
+
+Ce qui vous fait perdre des clientes :
+1. [Point faible n°1, chiffré : ex. « 161 avis, 0 réponse : vos futures clientes pensent qu'il n'y a personne derrière »]
+2. [Point faible n°2 : ex. « pas de vrai site : sur Google, on ne trouve ni vos prix ni vos prestations »]
+3. [Point faible n°3 : ex. « les messages du soir restent sans réponse jusqu'au lendemain »]
+
+Ce qu'on peut faire pour vous :
+- un WhatsApp qui répond à vos clientes 24h/24 (prix, horaires, rendez-vous)
+- des vidéos UGC publiées chaque semaine sur Instagram et TikTok
+- un site simple avec vos prix et la prise de rendez-vous
+
+Vous voulez qu'on en parle 5 minutes ? Ou je vous envoie nos formules.
+
+→ S'il est intéressé : envoyer le Google Form.
