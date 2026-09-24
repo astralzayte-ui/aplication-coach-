@@ -9,14 +9,14 @@
 ## 1. Le plan en une image
 
 ```
-62 vidéos  ·  40 jours  ·  4 sources  ·  1 moule  ·  1 décision au milieu
+80 vidéos  ·  40 jours  ·  4 sources  ·  1 moule  ·  1 décision au milieu
 ```
 
 ```
 VAGUE 1 — jours 1 à 20
-  31 hooks, déjà écrits
-  19 dans le moule  (60 %)
-  12 hors moule     (40 %)  ← le témoin
+  40 vidéos — les 31 hooks écrits, dont 9 rejoués sur un 2e produit
+  24 dans le moule  (60 %)
+  16 hors moule     (40 %)  ← le témoin
 
         🛑 JOUR 21 — ON LIT
         quels hooks ont tenu à 3 secondes
@@ -25,15 +25,23 @@ VAGUE 1 — jours 1 à 20
         le moule aide ou freine ?
 
 VAGUE 2 — jours 21 à 40
-  31 vidéos
-  16 REJOUÉ   les gagnants de la vague 1, sur le 2e produit
-  15 NEUF     source 4 — les avis 1 étoile
+  40 vidéos
+  22 REJOUÉ   les gagnants de la vague 1, sur le 2e produit
+  18 NEUF     source 4 — les avis 1 étoile ✅ RELEVÉS, dans client.md
   toutes dans le format qui a gagné au jour 21
 ```
 
 **La date de départ flotte.** Pas forcément le 1er octobre.
 
-**Rythme : 3 vidéos tous les 2 jours.**
+**Une vidéo, deux versions.** On fabrique **80 vidéos**, on en publie **160**.
+Seul le **prix à l'écran** change : `34,90 €` pour la France, `249 MAD` pour le Maroc.
+Même mec, même rue, même hook, même montage. **Le budget ne bouge pas.**
+
+⚠️ **Deux hooks ne passent pas au Maroc** (paiement à la livraison) :
+« On te rend ton argent » et « Retour gratuit » — là-bas il n'a pas encore payé.
+**L'argument marocain, c'est : « Tu paies quand tu l'as dans les mains. »**
+
+**Rythme : 2 vidéos par jour.**
 Une toujours **le soir, 21h-1h** — c'est l'heure de Yanis. La deuxième le midi.
 
 ---
@@ -47,7 +55,7 @@ D'où viennent les mots. Une source, c'est pas un format — c'est un endroit o�
 | 1 | **Toi + moi** — tes objections | 40 % · 13 hooks | ✅ fait |
 | 2 | **Ad Library** — les pubs qui tournent | 30 % · 9 hooks | ✅ fait |
 | 3 | **Scraping UGC** — les vidéos qui font des vues | 30 % · 9 hooks | ✅ fait |
-| 4 | **Avis 1 étoile** — ce que les clients gueulent | vague 2 · 15 hooks | ❌ à faire |
+| 4 | **Avis 1 étoile** — ce que les clients gueulent | vague 2 · **18 hooks** | ✅ **fait** — `marque/client.md` |
 
 Les 31 hooks de la vague 1 sont ici : **https://claude.ai/artifact/Y72XXLkRLn3WeNwi9oZp9q**
 Chacun porte sa source. Coût total du scraping : **19 crédits.**
@@ -102,8 +110,8 @@ Preuve tirée du scraping : **`no.model.daily.fit` → 22,8 millions de vues.** 
 
 Trois raisons :
 1. Yanis te reconnaît en une demi-seconde
-2. L'algo comprend à qui te montrer — 62 vidéos qui se ressemblent = un signal clair
-3. Tu arrêtes de réinventer 62 fois
+2. L'algo comprend à qui te montrer — 80 vidéos qui se ressemblent = un signal clair
+3. Tu arrêtes de réinventer 80 fois
 
 ### Le témoin — 60/40
 
@@ -111,7 +119,7 @@ Trois raisons :
 
 Sans témoin, tu ne sauras jamais si le moule aide ou s'il te freine.
 
-⚠️ **19 contre 12, ce n'est pas une preuve scientifique.** Mais si le moule est franchement mauvais, ça se verra au jour 21 — avant d'avoir brûlé les 62.
+⚠️ **24 contre 16, ce n'est pas une preuve scientifique.** Mais si le moule est franchement mauvais, ça se verra au jour 21 — avant d'avoir brûlé les 80.
 
 ---
 
@@ -231,7 +239,7 @@ Le coût par vidéo ne bouge pas.
 ### Le personnage de référence
 
 Higgs Field garde un **personnage**. On le crée **une fois**, on le réutilise partout.
-Plus besoin de décrire le mec à chaque image : c'est le même sur les 62 vidéos.
+Plus besoin de les décrire à chaque image : ce sont les mêmes sur les 80 vidéos.
 
 Un visage qui revient, c'est déjà la moitié de la marque.
 
@@ -274,7 +282,7 @@ L'inverse → tu vends rien, il n'arrive jamais sur le site.
 | Les hooks morts | jetés |
 | La branche qui a tenu | on écrit de nouveaux hooks dedans |
 | La source qui gagne | on en fait plus le mois suivant |
-| Moule (19) vs témoin (12) | le gagnant prend 100 % de la vague 2 |
+| Moule (24) vs témoin (16) | le gagnant prend 100 % de la vague 2 |
 
 **Le chiffre qui compte : la rétention à 3 secondes.** C'est elle qui juge le hook.
 Les clics jugent le produit, pas le hook. Ne pas confondre les deux.
@@ -306,6 +314,6 @@ Email de la marque : **astralzayte@gmail.com**
 | Le nom du compte | ❌ à inventer ensemble |
 | Les 3 premières vidéos | ❌ **un compte à 0 abonné ne diffuse pas une vidéo qui vend** |
 | Le personnage / la lumière / le lieu | ❌ 10 min, 0 € |
-| Le découpage 31 hooks → 62 scripts | ❌ attend le catalogue |
+| Le découpage 49 hooks → 80 scripts | ❌ attend le catalogue |
 | Les avis 1 étoile | ❌ sert au jour 21 |
 | Recharger Higgs Field | ❌ |

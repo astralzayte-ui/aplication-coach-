@@ -219,6 +219,11 @@ Le cadre s'arrête **au nez ou au menton**. On voit le corps, le vêtement, la m
 
 Le client vient d'une vidéo où le mec est de dos sous un lampadaire. Il doit retrouver **le même monde**.
 
+**Trois personnages, pas un :** un **maghrébin**, un **noir**, un **blanc**.
+Les mêmes sur le site et dans les vidéos. Ils couvrent aussi l'exigence des
+« deux gabarits en photo » qui tue la peur de la taille. Ce qui change entre eux :
+la peau et les cheveux. **Rien d'autre** — même carrure, même âge, même style.
+
 **Une seule exception : la page « qui on est ».** Là, un vrai visage, une vraie personne, un vrai nom. C'est ce qui tue *« c'est une arnaque »* — et ça ne marche que si c'est réel.
 
 ---
