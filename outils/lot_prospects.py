@@ -120,6 +120,8 @@ def main():
             continue
         vus.add(cle)
         score, pf, acc = analyser(it)
+        if score == "3-FROID":
+            continue
         nom = propre(it["title"])
         mobile = cle[0] in "67"
         wa = ("https://wa.me/212" + cle + "?text=" + urllib.parse.quote(message(nom, acc, secteur(it) == "barbier"))) if mobile else "Fixe : appeler seulement"

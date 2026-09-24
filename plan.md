@@ -43,6 +43,7 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - Pitch appel + message : `prospection/pitch-appel-message.md`
 - 🔄 Fiche prospects : script dans le Google Doc id 1rUSkOXy2YpVWoe2pocgf5-KuMRNXFPn3exg_CQYoWvw (jeton privé dedans) → l'utilisateur installe + déploie en appli Web → URL à donner à Claude → 30 prospects / jour
 - ✅ Lot 1 (2026-09-24) : 30 salons de beauté Marrakech → Google Sheet id 1MD8DD3JzoKP715BueMNAPgetPDRcKfaMbJ2fApT_ezw (11 chauds, 16 tièdes, 3 froids). Données prospects hors du dépôt (public).
+- ✅ Lot 2 (2026-09-24) : 30 coiffure/onglerie/barbiers → Google Sheet id 1zPOd33juHGA8ZmpCNfX1nNZG2fKuqg7ckNt_jp_cicA (12 chauds, 18 tièdes). Les lots n'incluent plus les FROIDS.
 - ⚠️ Le dépôt GitHub est PUBLIC : le passer en privé avant d'y mettre des données clients
 - Brancher Gemini (lecture native des vidéos + recherche web) — il a des vidéos tuto
 - Installer un connecteur de lecture native TikTok / Instagram (pour mieux scraper)
