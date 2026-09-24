@@ -49,6 +49,7 @@ Guide pas à pas : `guides/etape-1-outils.md`
   Le jeton est dans le Google Doc « Sahir Digital — Script fiche prospects » (id 1s69VElVoQkIcKPw72ppG76a0U82hmgUa86uuca0KoUA), jamais dans le dépôt.
   Lot quotidien : Apify compass/crawler-google-places (Marrakech, 15 avis, contacts) → outils/lot_prospects.py → POST.
   Routine : trig_015zQEr54xvSjHyenvT9m2xF, chaque jour 6h30 UTC (7h30 Maroc), dans cette session.
+  Recherches déjà utilisées : salon de beauté, salon de coiffure, onglerie, barber shop (Marrakech) ; 2026-09-24 : salon de beauté Guéliz, institut de beauté Daoudiate, onglerie Targa (30 ajoutés : 22 chauds, 8 tièdes).
 - ✅ Lot 1 (2026-09-24) : 30 salons de beauté Marrakech → Google Sheet id 1MD8DD3JzoKP715BueMNAPgetPDRcKfaMbJ2fApT_ezw (11 chauds, 16 tièdes, 3 froids). Données prospects hors du dépôt (public).
 - ✅ Lot 2 (2026-09-24) : 30 coiffure/onglerie/barbiers → Google Sheet id 1zPOd33juHGA8ZmpCNfX1nNZG2fKuqg7ckNt_jp_cicA (12 chauds, 18 tièdes). Les lots n'incluent plus les FROIDS.
 - ⚠️ Le dépôt GitHub est PUBLIC : le passer en privé avant d'y mettre des données clients
