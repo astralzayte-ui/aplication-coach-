@@ -77,7 +77,39 @@ résultat. C'est la méthode : on paie ce qui a déjà gagné en gratuit.
 
 **Trois ventes en deux semaines et la pub est remboursée.**
 
-🟠 **Décision en attente :** concentré sur 2 semaines, ou étalé sur 5-7 ?
+### ✅ Décidé : 5 semaines
+
+```
+800 MAD  ÷  35 jours  =  23 MAD/jour  ≈  2,10 €/jour
+```
+
+**Ma réserve, gardée pour mémoire :** à 2 € par jour, l'algorithme a peu de
+volume pour apprendre. Le propriétaire a tranché pour 5 semaines — c'est son
+choix, il est assumé.
+
+### ⚠️ La règle qui rend les 5 semaines viables
+
+**À ce budget, tu ne divises rien.**
+
+```
+1 seule pub          ← la vidéo qui a gagné au jour 21
+1 seul produit       ← celui à la plus grosse marge
+1 seule audience     ← pas de découpage par ville, âge, centre d'intérêt
+0 test A/B           ← le budget est trop petit pour comparer
+```
+
+**Chaque découpage divise les 2 € par deux.** À 1 € par jour, tu n'apprends
+plus rien du tout.
+
+**Tout le budget sur une seule ligne, pendant 35 jours.** C'est la seule façon
+que 2 €/jour produise un signal lisible.
+
+```
+800 MAD de pub  ÷  300 MAD de marge (veste 🇫🇷)  =  3 ventes
+```
+
+**Trois ventes sur 5 semaines et la pub est remboursée.** Une vente toutes les
+12 jours. C'est atteignable.
 
 ⚠️ **Le contrôle qualité :** c'est une inspection payée à l'agent ou à une société tierce avant l'expédition. Je n'ai pas de chiffre vérifié — **demande le prix à ton agent**, et on l'inscrit ici.
 
