@@ -6,8 +6,8 @@
  */
 var TOKEN = 'VOIR_DOC_DRIVE'; // le vrai jeton est dans le Google Doc « Sahir Digital — Script fiche prospects » (dépôt public)
 var COLONNES = ['☎ Appelé', '✔ A répondu', '✉ WhatsApp envoyé', '★ Intéressé',
-  'Date ajout', 'Nom', 'Secteur', 'Ville', 'Téléphone', 'Note Google', 'Nb avis', 'Site',
-  'Instagram', 'Point faible', 'Score', 'WhatsApp 1 clic', 'Notes'];
+  'Score', 'Nom', 'Téléphone', 'WhatsApp 1 clic', 'Accroche (à lire au téléphone)', 'Point faible',
+  'Note Google', 'Nb avis', 'Site', 'Instagram', 'Secteur', 'Date ajout', 'Notes'];
 
 function installerProspects() {
   var ss = SpreadsheetApp.create('Sahir Digital — Prospects');
@@ -35,15 +35,22 @@ function doPost(e) {
   if (data.token !== TOKEN) return ContentService.createTextOutput('refusé');
   var sh = SpreadsheetApp.openById(PropertiesService.getScriptProperties().getProperty('SHEET_ID'))
     .getSheetByName('Prospects');
+  sh.getRange(1, 1, 1, COLONNES.length).setValues([COLONNES])
+    .setFontWeight('bold').setBackground('#1f2937').setFontColor('#ffffff');
+  if (data.action === 'reset' && sh.getLastRow() > 1) {
+    sh.getRange(2, 1, sh.getLastRow() - 1, sh.getMaxColumns()).clearContent().removeCheckboxes();
+  }
   var rows = data.rows || [];
   if (!rows.length) return ContentService.createTextOutput('0');
   var debut = sh.getLastRow() + 1;
   var valeurs = rows.map(function (r) {
-    return [false, false, false, false, r.date, r.nom, r.secteur, r.ville, r.telephone, r.note, r.avis,
-      r.site, r.instagram, r.point_faible, r.score,
-      r.whatsapp ? '=HYPERLINK("' + r.whatsapp + '","▶ Envoyer WhatsApp")' : '', ''];
+    return [false, false, false, false, r.score, r.nom, r.telephone,
+      r.whatsapp ? '=HYPERLINK("' + r.whatsapp + '","▶ Envoyer WhatsApp")' : 'Fixe : appeler',
+      r.accroche || '', r.point_faible, r.note, r.avis, r.site, r.instagram, r.secteur, r.date, ''];
   });
   sh.getRange(debut, 1, valeurs.length, COLONNES.length).setValues(valeurs);
   sh.getRange(debut, 1, valeurs.length, 4).insertCheckboxes();
+  sh.setColumnWidth(6, 220); sh.setColumnWidth(8, 150); sh.setColumnWidth(9, 420);
+  sh.getRange(debut, 9, valeurs.length, 1).setWrap(true);
   return ContentService.createTextOutput(String(valeurs.length));
 }
