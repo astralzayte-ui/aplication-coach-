@@ -154,6 +154,25 @@ Personne ne lâche 90 € sur une marque découverte dans une story.
 
 **Livraison offerte dès 2 articles.**
 
+### La livraison — elle rapporte, elle ne coûte pas
+
+**Décision du propriétaire :** la livraison est **facturée plus cher qu'elle ne coûte**, et elle sert de levier pour faire monter le panier.
+
+```
+Livraison          5,90 €
+Offerte dès        59 €
+```
+
+**Pourquoi 59 € :** c'est exactement le prix de la doudoune (59,90 €). Quelqu'un qui regarde la veste à 34,90 € voit qu'à 59 € la livraison est offerte → il monte d'un cran au lieu d'ajouter un 2e article qui ferait exploser son budget.
+
+**Affiche le manque, toujours, dans le panier :**
+
+> *« Plus que 19,10 € pour la livraison offerte »*
+
+**Le prix de la livraison est visible dès la fiche produit**, jamais découvert au paiement. Un frais découvert au dernier écran est le premier motif d'abandon — et la 1re plainte relevée chez les concurrents.
+
+⚠️ **Au Maroc, la livraison reste gratuite** ou très basse : le client paie en espèces à la porte, chaque euro ajouté augmente le risque de refus du colis.
+
 ---
 
 ## 5. Les cinq peurs à tuer
