@@ -165,6 +165,63 @@ C'est **le chiffre qui débloque**. Il ne risque pas sa vie, il risque 83 €.
 
 ### Étape 5 — Le prix
 
+## 🔴 RÈGLE ABSOLUE : on ne fixe JAMAIS un prix avant d'avoir relevé ceux des autres
+
+**L'étape 3 (les concurrents) passe avant celle-ci. Toujours. Sans exception.**
+
+Fixer un prix à partir du coût d'achat et du ressenti, c'est **se placer au
+hasard**. On peut se retrouver au prix du marché en croyant casser les prix —
+et découvrir l'erreur une fois le site fait et les vidéos écrites.
+
+**Ce qu'il faut avoir en main AVANT d'écrire le moindre prix :**
+
+```
+Pour CHAQUE produit du catalogue, pas seulement un ou deux :
+  le prix le plus bas du marché
+  le prix le plus courant       ← c'est celui qui compte
+  le prix le plus haut
+  ce que la livraison coûte chez eux
+```
+
+**Un produit sans relevé = un produit sans prix.** On ne le met pas en ligne,
+on ne l'écrit pas dans une vidéo. On le laisse vide et on va chercher le chiffre.
+
+## La position : casser, pas s'aligner
+
+Quand on peut acheter très bas, **on ne se place pas au prix du marché.**
+
+> **Le but n'est pas de gagner le maximum par vente.
+> Le but est que le client fasse une vraie affaire.**
+
+Une marque inconnue qui vend au prix des marques connues n'a **aucune raison
+d'être choisie**. Elle se place comme un géant alors que personne ne la connaît.
+
+**Le test, produit par produit :**
+
+```
+Mon prix total (livraison comprise) vs le prix le plus courant du marché
+
+−30 % ou plus   ✅  c'est une affaire, ça se voit
+−10 à −30 %     🟠  c'est moins cher, ça se remarque à peine
+0 à −10 %       ❌  on est au prix du marché, on n'a aucun argument
+```
+
+**Tout produit qui n'est pas au moins 20 % sous le prix courant doit être
+rebaissé ou retiré du catalogue.**
+
+## L'ancrage : seulement ce qui est vérifié
+
+La comparaison « chez les marques, c'est 90 à 130 € » ne s'écrit **que si le
+relevé la confirme**. Un chiffre gonflé, quelqu'un le vérifie en trois clics —
+et tu perds toute ta crédibilité, exactement comme le faux prix barré.
+
+**Si le relevé donne 50-75 €, on écrit 50-75 €.** Même si c'est moins
+impressionnant.
+
+## Les autres règles du prix
+
+
+
 Assez bas pour attirer. **Assez haut pour qu'on lui fasse confiance.**
 
 - En dessous d'un certain seuil, une boutique neuve **lit comme une arnaque**. Le prix bas ne sauve pas un inconnu, il l'enterre.
