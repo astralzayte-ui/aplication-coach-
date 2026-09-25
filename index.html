@@ -702,8 +702,9 @@ CREATE POLICY "own" ON budget_data
   <button class="submit-btn" style="background:var(--surf2);color:var(--text);margin-top:8px" onclick="document.getElementById('import-file').click()">⬆️  Restaurer une sauvegarde</button>
   <input type="file" id="import-file" accept="application/json,.json" style="display:none" onchange="importData(this)">
   <div style="font-size:11px;color:var(--text-muted);margin-top:10px;line-height:1.6">
-    Tes données vivent dans ce navigateur. Elles restent en place quand tu mets l'app à jour sur la même adresse. Fais une sauvegarde avant de changer de téléphone ou de vider ton cache.
+    Tes données vivent dans ce navigateur. Elles restent en place quand tu mets l'app à jour sur la même adresse. Fais une sauvegarde avant de changer de téléphone.
   </div>
+  <div id="um-snaps" style="margin-top:22px"></div>
   <div id="um-actions"></div>
   <button class="cancel-btn" onclick="closeModal('m-user')">Fermer</button>
 </div></div>
@@ -994,8 +995,54 @@ function openUserMenu(){
       <div style="font-size:12px;color:var(--text-dim);margin-bottom:20px;line-height:1.6">Mode local — tout est enregistré dans ce navigateur, sur cet appareil.</div>`;
     act.innerHTML=`<button class="submit-btn" style="background:var(--surf2);color:var(--text-dim);font-size:13px;margin-top:18px" onclick="closeModal('m-user');showCfgScreen()">Activer la synchro cloud</button>`;
   }
+  renderSnaps();
   openModal('m-user');
 }
+function renderSnaps(){
+  const box=document.getElementById('um-snaps');
+  if(!box)return;
+  const snaps=readSnaps();
+  if(!snaps.length){
+    box.innerHTML=`<div style="font-size:11px;color:var(--text-muted);line-height:1.6">
+      🛟 Sauvegardes automatiques : la première sera prise dès ta prochaine saisie.</div>`;
+    return;
+  }
+  box.innerHTML=`<div style="font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px">
+      🛟 Sauvegardes automatiques</div>
+    <div style="font-size:11px;color:var(--text-muted);margin-bottom:10px;line-height:1.6">
+      Prises toutes les 12 h. Reviens à un état précédent si quelque chose a mal tourné.</div>`
+    + [...snaps].reverse().map(s=>{
+        let n=0,bud=0;
+        try{const o=JSON.parse(s.d);n=(o.depenses||[]).length;bud=o.budget||0;}catch(e){}
+        const d=new Date(s.t);
+        const q=String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')
+               +' à '+String(d.getHours()).padStart(2,'0')+'h'+String(d.getMinutes()).padStart(2,'0');
+        return `<div class="rev-row" style="border-color:var(--border)">
+          <span class="rev-name" style="font-weight:600">${q}</span>
+          <span class="rev-date">${n} dépense${n>1?'s':''} · ${fmt(bud)} DH</span>
+          <button class="rc-yes" style="background:var(--surf2);color:var(--mint);border:1px solid var(--border2)"
+            data-snap="${s.t}">Restaurer</button>
+        </div>`;
+      }).join('');
+}
+function restoreSnap(t){
+  const s=readSnaps().find(x=>String(x.t)===String(t));
+  if(!s){toast('Sauvegarde introuvable');return;}
+  try{
+    const p=JSON.parse(s.d);
+    if(!p||typeof p!=='object')throw new Error('format');
+    S={...JSON.parse(JSON.stringify(DEF)),...p};
+    normalize();
+    localStorage.setItem('bf-v3',JSON.stringify(S));
+    closeModal('m-user');
+    toast('Sauvegarde restaurée ✓');
+    renderAll();
+  }catch(e){ toast('Sauvegarde illisible'); }
+}
+document.addEventListener('click',e=>{
+  const s=e.target.closest('[data-snap]');
+  if(s)restoreSnap(s.dataset.snap);
+});
 function exportData(){
   try{
     const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
@@ -1074,7 +1121,31 @@ function skipCfg(){
   renderUserBadge();bootUI();
 }
 
-const save = ()=>{ localStorage.setItem('bf-v3',JSON.stringify(S)); clearTimeout(_cloudTimer); _cloudTimer=setTimeout(saveToCloud,2000); };
+// ═══ SAUVEGARDES AUTOMATIQUES ═══
+// Une copie datée est gardée à part, au maximum une par 12 h, les 8 dernières
+// conservées. Filet contre une suppression massive, une migration ratée ou un
+// assistant relancé par erreur. Ne protège pas d'un téléphone perdu ou d'un
+// effacement des données de site : pour ça il faudrait la synchro cloud.
+const SNAP_KEY='bf-v3-snaps', SNAP_MAX=8, SNAP_EVERY=12*3600*1000;
+function readSnaps(){
+  try{ const a=JSON.parse(localStorage.getItem(SNAP_KEY)||'[]'); return Array.isArray(a)?a:[]; }
+  catch(e){ return []; }
+}
+function autoSnapshot(){
+  if(!S.setup_done)return;
+  try{
+    const snaps=readSnaps();
+    const last=snaps[snaps.length-1];
+    if(last&&Date.now()-last.t<SNAP_EVERY)return;
+    snaps.push({t:Date.now(),d:JSON.stringify(S)});
+    while(snaps.length>SNAP_MAX)snaps.shift();
+    try{ localStorage.setItem(SNAP_KEY,JSON.stringify(snaps)); }
+    catch(err){ // plus de place : on ne garde que les 3 plus récentes
+      try{ localStorage.setItem(SNAP_KEY,JSON.stringify(snaps.slice(-3))); }catch(e2){}
+    }
+  }catch(e){}
+}
+const save = ()=>{ localStorage.setItem('bf-v3',JSON.stringify(S)); autoSnapshot(); clearTimeout(_cloudTimer); _cloudTimer=setTimeout(saveToCloud,2000); };
 
 // ═══ CALCUL ═══
 const fmt   = (n)=>Math.round(n).toLocaleString('fr-FR').replace(/ | /g,' ');
@@ -1991,7 +2062,7 @@ function openCatDetail(cat){
 // recharge. Même origine, donc le localStorage — et donc les données — reste
 // intact. Évite d'avoir à rafraîchir à la main, manœuvre qui a déjà fait
 // croire à l'utilisateur qu'il avait tout perdu.
-const APP_VERSION='2026-09-25-02';
+const APP_VERSION='2026-09-25-03';
 (function(){
   const PAUSE=()=>
     !document.getElementById('wizard').classList.contains('hidden') ||

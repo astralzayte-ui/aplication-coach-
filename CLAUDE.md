@@ -110,6 +110,13 @@ Répondre **en français**, simplement, sans jargon. L'utilisateur n'est pas
 développeur : lui donner les clics à faire, pas les concepts. Quand une manipulation
 est irréversible (supprimer, débrancher, écraser), le prévenir **avant**, pas après.
 
+**Automatiser sans qu'il demande.** Consigne permanente de sa part : dès qu'une
+tâche peut lui être retirée des mains, la lui retirer, le faire tout de suite, et
+l'inscrire ici pour que ça tienne d'une session à l'autre. Déjà en place : le
+déploiement part d'un `git push`, l'application se met à jour d'elle-même, une
+sauvegarde datée est prise toute seule. Ne jamais lui proposer une manipulation
+récurrente qu'un bout de code pourrait faire à sa place.
+
 **Court.** Il l'a demandé explicitement. Faire le travail, puis annoncer le résultat
 en quelques lignes. Ne pas dérouler les étapes, les tests, les mesures ni le
 raisonnement : il ne les lit pas. Les détails techniques seulement s'il les demande.
