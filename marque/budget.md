@@ -161,6 +161,49 @@ Gemini, 2 mois × 30               60 MAD
 
 ---
 
+## 6 bis. Encaisser l'argent — Stripe, puis Shopify
+
+**Le propriétaire a une LLC américaine** et un compte Mercury / Wise / Payoneer.
+Stripe fonctionne donc sans problème.
+
+### Maintenant : Stripe ✅ *(prix relevés le 25/09)*
+
+```
+Abonnement              0
+Frais d'installation    0
+Commission              2,9 % + 0,30 $
+Carte étrangère        +1,5 %
+```
+
+⚠️ **Les clients sont français et marocains, le compte est américain → ce sont
+des cartes étrangères.** Donc en vrai :
+
+```
+4,4 % + 0,30 $  par vente     ≈ 1,80 € sur une veste à 34,90 €
+```
+
+**Stripe envoie le reçu au client et l'alerte de vente, tout seul.** Aucun
+serveur à tenir : le site reste statique, le bouton pointe vers un lien de
+paiement Stripe.
+
+### 🔔 RAPPEL — à 1 900 $ de ventes par mois, on passe à Shopify Payments
+
+```
+Stripe     0 $/mois  +  4,4 %
+Shopify   29 $/mois  +  2,9 %
+                            ↓
+        le point de bascule : ~1 900 $ de ventes par mois
+                             ≈ 55 vestes
+```
+
+**En dessous, Stripe coûte moins cher. Au-dessus, Shopify.**
+À surveiller au rapport mensuel — c'est un changement décidé d'avance.
+
+⚠️ **Pas vérifié :** les frais de conversion. Stripe paie en dollars, la vente
+se fait en euros et en dirhams. À regarder à l'ouverture du compte.
+
+---
+
 ## 7. Ce qui a été écarté, et pourquoi
 
 | | Pourquoi non |

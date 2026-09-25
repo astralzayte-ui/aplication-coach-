@@ -501,6 +501,28 @@ La branche vaut plus que le hook : un hook gagnant donne une vidéo, **une branc
 
 ---
 
+### La caisse : sans abonnement d'abord, abonnement ensuite
+
+**On ne paie jamais un abonnement de boutique avant d'avoir des ventes.**
+
+```
+Au depart   un lien de paiement (Stripe ou equivalent)
+            0 par mois, une commission par vente
+            le site reste statique, rien a tenir
+
+Plus tard   une vraie boutique avec abonnement
+            quand le volume rend l'abonnement moins cher que la commission
+```
+
+**Le calcul de bascule, à poser une fois et à surveiller chaque mois :**
+
+```
+abonnement mensuel ÷ (l'écart de commission entre les deux) = le chiffre d'affaires de bascule
+```
+
+En dessous, le sans-abonnement gagne. Au-dessus, l'abonnement gagne.
+**C'est un changement décidé d'avance, pas une décision à reprendre.**
+
 ### Étape 15 — On paie le gagnant
 
 **On ne met de l'argent que sur ce qui a déjà gagné en gratuit.**
