@@ -336,6 +336,20 @@ Ce qu'il enverra : des photos **fond blanc, le vêtement seul ou sur mannequin**
 
 ---
 
-## 13. En une ligne
+## 13. Quand c'est fini — publie-le
+
+**Publie le site en artefact**, comme tu le fais d'habitude. Rien à envoyer,
+rien à exporter : le propriétaire le retrouve dans ses artefacts, et Claude Code
+le lit directement de là pour le mettre dans le dépôt du projet.
+
+Ensuite c'est Claude Code qui le fait vivre : il mesure ce qui marche, il
+corrige, il améliore chaque semaine.
+
+**Donne-lui un titre clair** — par exemple *« SILENCE — la boutique »* — pour
+qu'il soit reconnaissable dans la liste.
+
+---
+
+## 14. En une ligne
 
 > Une boutique **noire**, pensée **pour un téléphone**, où chaque fiche produit est une page de vente, où **la seule couleur est le bouton d'achat**, et où **personne ne regarde la caméra**.

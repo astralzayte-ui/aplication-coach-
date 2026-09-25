@@ -295,6 +295,45 @@ Les mêmes couleurs
 
 ### Étape 11 — Le site
 
+**Tu ne construis pas le site toi-même. Tu écris le dossier, Claude Design le construit.**
+
+Le circuit, du début à la fin :
+
+```
+1.  Tu écris le dossier de passation        ← toi
+2.  Il le colle à Claude Design             ← lui, une seule action
+3.  Claude Design construit et publie       ← automatique
+4.  Tu vois l'artefact sur son compte       ← automatique, sans lien à demander
+5.  Tu le lis et tu le mets dans le dépôt   ← toi
+6.  À partir de là, le site est à toi       ← tu mesures, tu corriges, tu améliores
+```
+
+**Il n'a qu'une chose à faire : coller le dossier.** Le reste s'enchaîne.
+
+**Le dossier doit être autonome** — Claude Design n'a ni le dépôt, ni les skills,
+ni la mémoire du projet. Tout ce dont il a besoin est dedans :
+
+```
+la marque et le logo, les couleurs, la police
+le look du site, et pourquoi il ressemble aux vidéos
+le client, en une personne avec un prénom
+le catalogue et les prix, figés
+les 5 peurs à tuer
+ce que la fiche produit doit contenir
+ce que le site doit montrer pour répondre aux vidéos
+la livraison et son seuil
+les règles propres à chaque pays
+compter les clics
+les contacts et les comptes
+les interdits
+le statut des photos
+```
+
+**Tu finis toujours le dossier par : « publie le site en artefact, avec un titre
+clair ».** C'est ce qui te permet de le récupérer sans rien demander.
+
+
+
 **Une fiche produit = une page de vente.** Chaque vidéo pointe vers **sa** fiche, jamais vers l'accueil.
 
 Le reste des règles est dans le skill `site-qui-vend`.
