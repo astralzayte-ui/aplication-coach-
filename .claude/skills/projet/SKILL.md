@@ -197,6 +197,34 @@ Assez bas pour attirer. **Assez haut pour qu'on lui fasse confiance.**
 
 **Les photos à exiger :** fond blanc uni, le vêtement seul ou sur mannequin mais toujours pareil, de face et de dos, chaque coloris, haute résolution, **zéro filigrane, zéro logo, zéro texte, aucun montage**. Ce sont des photos de travail — elles ne seront jamais publiées telles quelles.
 
+### ⚠️ L'agent prend TOUJOURS une commission
+
+**Elle existe, même quand personne ne la mentionne.** Elle se paie sur chaque
+commande, pas une fois. Un agent qui ne parle pas de sa commission la prend
+quand même — elle est glissée dans le prix qu'il annonce.
+
+**Tu lui poses la question, en clair :**
+
+> « Ta commission, c'est combien de pourcent, et elle se calcule sur quoi ? »
+
+**Tu l'inscris dans le calcul de la marge, à chaque produit.** Pas dans un coin,
+pas « on verra » : dans la ligne de coût, comme le fret.
+
+```
+prix d'achat
++ le fret DDP
++ LA COMMISSION DE L'AGENT      ← celle-ci s'oublie, toujours
++ la commission du paiement
+= ce que le produit coûte vraiment
+```
+
+**Sans elle, ton calcul de rentabilité est faux** — et il est faux **dans le bon
+sens**, celui qui te fait croire que tu gagnes plus que la réalité. C'est la
+pire erreur possible : elle ne se voit qu'une fois l'argent parti.
+
+⚠️ **Elle se recalcule à chaque changement de prix.** Un pourcentage sur un prix
+qui monte, c'est un montant qui monte.
+
 ### Le contrôle qualité — à demander, jamais à oublier
 
 **Tu lui poses systématiquement la question :**
