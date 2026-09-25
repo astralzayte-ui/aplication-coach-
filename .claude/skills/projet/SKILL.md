@@ -254,6 +254,85 @@ Assez bas pour attirer. **Assez haut pour qu'on lui fasse confiance.**
 
 **Les photos à exiger :** fond blanc uni, le vêtement seul ou sur mannequin mais toujours pareil, de face et de dos, chaque coloris, haute résolution, **zéro filigrane, zéro logo, zéro texte, aucun montage**. Ce sont des photos de travail — elles ne seront jamais publiées telles quelles.
 
+## Le dossier fournisseur — écrit APRÈS l'étude de marché, jamais avant
+
+**L'ordre :** l'étude de marché est confirmée → le catalogue est arrêté →
+**seulement là** on écrit les conditions. Elles dépendent des produits : on ne
+demande pas les mêmes choses pour un t-shirt et pour une doudoune.
+
+Tu produis **deux documents**, jamais un seul :
+
+```
+LE QUESTIONNAIRE   pour CHOISIR l'agent      →  envoyé en premier
+LE DOCUMENT        pour l'ENGAGER            →  avec le bon de commande,
+                                                AVANT le paiement
+```
+
+⚠️ **Jamais les conditions après le paiement.** Une fois l'argent parti, elles
+ne valent rien — il dira qu'il ne les avait pas vues.
+
+### On impose, on ne demande pas
+
+**Chaque condition devient une question à laquelle il répond OUI ou NON.**
+
+Pas de « moyen », pas de « partiellement » : une condition est remplie ou elle
+ne l'est pas. **Un seul NON et l'agent est écarté** — il le sait en haut de la page.
+
+```
+LA RÈGLE                      LA QUESTION
+─────────────────────────────────────────────────
+"DDP à 5 $/kg"           →    Prix DDP par kg : ___
+"XS à XXL partout"       →    Toutes les tailles XS-XXL ?   OUI / NON
+"même bain de teinture"  →    Ensemble d'un seul lot ?      OUI / NON
+```
+
+**Il se positionne sans que tu aies à exiger.** S'il écrit 7 $, il a dit non tout seul.
+
+**Le ton du message compte autant que le contenu :**
+
+```
+❌  "peux-tu confirmer"       →  ✅  "voilà les conditions"
+❌  "si c'est plus simple"    →  ✅  "remplis"
+❌  "merci d'avance"          →  ✅  rien
+❌  pas de date               →  ✅  une date limite
+❌  il est seul en lice       →  ✅  "on parle à plusieurs fournisseurs"
+```
+
+> **Tu ne vends pas, tu sélectionnes.** Il y a des milliers d'usines ;
+> c'est lui qui a besoin de toi.
+
+### Les conditions qui s'oublient toujours
+
+Celles-là ne viennent jamais à l'esprit et coûtent le plus cher :
+
+**🔴 Rien du fournisseur dans le colis.**
+Aucune facture, aucun prix, aucune étiquette d'usine à l'intérieur. Si le client
+ouvre et trouve un bon avec le prix d'achat dessus, **la vente est morte et l'avis
+est écrit.** C'est LA règle du dropshipping.
+
+**🔴 Le prix bloqué, 6 mois minimum, écrit.**
+Sinon il casse le prix pour prendre le marché, et le remonte à la deuxième
+commande — quand tes prix de vente sont déjà figés et tes vidéos déjà tournées.
+
+**🟠 Jamais 100 % d'avance.**
+```
+30 % à la commande
+70 % avant expédition, après réception des photos du lot
+```
+Un agent qui exige tout d'avance : au suivant.
+
+**🟠 L'échantillon, payé et reçu, avant la première vraie commande.**
+
+**🟠 Qui paie quand ça foire.** Colis perdu, pièce défectueuse, mauvaise taille :
+le pourcentage de défaut toléré et qui paie le renvoi. **Sans ça, la réponse est
+toujours « c'est toi ».**
+
+**🟠 Le contrôle qualité avant expédition** — son prix se demande ici.
+
+**🟠 Le MOQ** — la quantité minimum par commande.
+
+**🟠 Le délai de réassort** — pas seulement le délai de la première commande.
+
 ### ⚠️ L'agent prend TOUJOURS une commission
 
 **Elle existe, même quand personne ne la mentionne.** Elle se paie sur chaque
