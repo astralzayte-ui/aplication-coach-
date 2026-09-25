@@ -106,7 +106,19 @@ Au Maroc c'est **le même mec**, avec deux différences : il **paie à la livrai
 
 ## 4. Le catalogue et les prix
 
-**Cinq produits. Pas un de plus.** Ne pas en inventer.
+**Cinq catégories. Pas une de plus.** Ne pas en inventer.
+
+**Une catégorie = un prix.** Tous les modèles d'une catégorie coûtent la même chose.
+
+```
+5 catégories   =  5 prix
+≈ 36 modèles   =  les références réparties dedans, ≈ 7 par catégorie
+```
+
+⚠️ **Le nombre exact de modèles n'est pas figé** — le fournisseur est en train
+de sourcer. **Le site doit tenir de 3 à 10 modèles par catégorie sans casser.**
+
+Le site montre donc **5 rayons**, pas 5 fiches.
 
 | # | 🇲🇦 | Produit |
 |---|---|---|
@@ -321,22 +333,62 @@ Pas encore de nom de domaine.
 - ❌ Pas de « plus que 2 en stock » si c'est faux
 - ❌ Pas de case pré-cochée, pas d'assurance glissée dans le panier
 - ❌ Pas de photo portant la marque d'un concurrent
-- ❌ Pas de sélecteur homme/femme — 5 produits unisexes, ça n'ajoute qu'une porte devant une pièce vide
+- ❌ Pas de sélecteur homme/femme — les produits sont unisexes, ça n'ajoute qu'une porte devant une pièce vide
 - ❌ Pas d'emoji, pas de dégradé, pas de carte à bordure colorée à gauche
 
 ---
 
-## 12. Les photos — statut
+## 12. Les photos — prends celles du site existant
 
-**Elles n'existent pas encore.** Le fournisseur est payé, le colis est en route.
+**Le propriétaire a déjà un site avec ses produits dessus :**
 
-Ce qu'il enverra : des photos **fond blanc, le vêtement seul ou sur mannequin**, de face et de dos, chaque coloris. **Ce sont des photos de travail — elles ne seront jamais publiées telles quelles.** Elles servent à habiller un modèle.
+```
+https://flourishing-dasik-35d194.netlify.app/
+```
 
-**Donc : prévois les emplacements au bon format (portrait), avec des zones grises légendées.** Pas d'images de remplacement prises ailleurs, jamais.
+**Analyse-le, récupère les photos, et mets-les sur le nouveau site comme si
+c'étaient les vraies.** Le but : avoir tout de suite une vitrine complète et
+belle à regarder, au lieu de zones grises.
+
+⚠️ **Ce sont des photos provisoires.** Certaines portent encore des marques
+d'autres boutiques ou un filigrane. **Le site ne doit pas être rendu public
+tant qu'elles n'ont pas été remplacées.** C'est une vitrine pour lui, pas
+encore une boutique ouverte.
+
+Les vraies photos arriveront avec le colis du fournisseur. Elles se
+remplaceront une par une, sans toucher à la structure.
+
+**Donc : prévois que chaque photo soit facile à remplacer**, et garde le même
+format partout (portrait).
 
 ---
 
-## 13. Quand c'est fini — publie-le
+## 13. Téléphone ET ordinateur
+
+**Le téléphone d'abord** — 90 % du trafic vient de là, et c'est là que ça se
+joue. Mais **le site doit être beau sur un ordinateur aussi** : c'est là que le
+propriétaire le regarde, le montre, et le fait valider.
+
+```
+TÉLÉPHONE     le prix et le bouton visibles sans scroller
+              une barre d'achat fixe en bas
+              photos en portrait, plein écran
+              formulaire le plus court possible
+
+ORDINATEUR    la grille de produits respire, elle ne s'étale pas
+              une largeur maximale au contenu — pas de texte
+              qui traverse tout l'écran
+              les photos gardent leur format portrait
+              rien n'est coupé, rien n'est étiré
+```
+
+⚠️ **Le piège classique :** un site pensé pour le téléphone qui, sur un grand
+écran, devient une colonne étroite perdue au milieu du vide. **Ça ne doit pas
+arriver.**
+
+---
+
+## 14. Quand c'est fini — publie-le
 
 **Publie le site en artefact**, comme tu le fais d'habitude. Rien à envoyer,
 rien à exporter : le propriétaire le retrouve dans ses artefacts, et Claude Code
@@ -350,6 +402,6 @@ qu'il soit reconnaissable dans la liste.
 
 ---
 
-## 14. En une ligne
+## 15. En une ligne
 
 > Une boutique **noire**, pensée **pour un téléphone**, où chaque fiche produit est une page de vente, où **la seule couleur est le bouton d'achat**, et où **personne ne regarde la caméra**.
