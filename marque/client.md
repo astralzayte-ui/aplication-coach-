@@ -29,7 +29,9 @@ Ce qu'il lâche d'un coup : **40 à 60 €.**
 
 Deux différences, deux seulement :
 
-1. Il paie **à la livraison**. Il a jamais mis sa carte en ligne.
+1. ⚠️ **Il paie par carte** — décidé le 25/09, plus de paiement à la livraison.
+   **C'est notre plus gros risque au Maroc** : il a jamais mis sa carte en ligne.
+   Tout doit servir à le rassurer avant qu'il tape son numéro.
 2. Il se méfie à mort des boutiques Instagram — « il va jamais arriver ».
 
 Tout le reste est identique : mêmes comptes suivis, mêmes heures, mêmes envies.

@@ -37,9 +37,13 @@ VAGUE 2 — jours 21 à 40
 Seul le **prix à l'écran** change : `34,90 €` pour la France, `249 MAD` pour le Maroc.
 Même mec, même rue, même hook, même montage. **Le budget ne bouge pas.**
 
-⚠️ **Deux hooks ne passent pas au Maroc** (paiement à la livraison) :
-« On te rend ton argent » et « Retour gratuit » — là-bas il n'a pas encore payé.
-**L'argument marocain, c'est : « Tu paies quand tu l'as dans les mains. »**
+✅ **Depuis le 25/09, les mêmes hooks valent dans les deux pays.** Plus de
+paiement à la livraison : « On te rend ton argent » et « Retour gratuit »
+fonctionnent aussi au Maroc.
+
+⚠️ **En échange, le Maroc devient plus dur.** Il doit sortir sa carte, ce qu'il
+n'a jamais fait. Les hooks qui rassurent — le SAV, le remboursement, la date —
+comptent **plus** là-bas qu'en France.
 
 **Rythme : 2 vidéos par jour.**
 Une toujours **le soir, 21h-1h** — c'est l'heure de Yanis. La deuxième le midi.

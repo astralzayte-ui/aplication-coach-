@@ -167,7 +167,11 @@ Si c'est pas DDP, t'as des frais à payer à l'arrivée sans les avoir prévus.
 ### LE COD (paiement à la livraison)
 **Le client paie en espèces au livreur.**
 
-Au Maroc, c'est la norme. **Le risque : il refuse le colis à la porte** — et c'est toi qui paies l'aller ET le retour.
+C'est la norme au Maroc. Le risque : **il refuse le colis à la porte**, et c'est
+toi qui paies l'aller ET le retour.
+
+🔴 **Écarté le 25/09.** Plus de COD nulle part — carte uniquement, dans les deux
+pays. Ça supprime le risque de colis refusé, mais ça rend le Maroc plus dur.
 
 ---
 

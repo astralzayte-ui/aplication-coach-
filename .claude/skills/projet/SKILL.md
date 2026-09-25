@@ -310,6 +310,23 @@ Le circuit, du début à la fin :
 
 **Il n'a qu'une chose à faire : coller le dossier.** Le reste s'enchaîne.
 
+⚠️ **Tu écris TOUJOURS en haut du dossier que c'est du dropshipping.**
+
+Ça change tout pour celui qui construit le site, et ça s'oublie :
+
+```
+Pas de stock chez toi          →  le fournisseur expédie directement
+Le délai est plus long         →  il s'annonce, en date précise
+Pas de retour en magasin       →  tout se règle en ligne
+Le client ne doit pas le voir  →  l'emballage et le site disent "marque",
+                                  jamais "revendeur"
+```
+
+**Et la règle de paiement se précise aussi, en haut :** paiement par carte
+avant expédition, ou paiement à la livraison. **Ce n'est pas un détail** — ça
+décide du tunnel de commande, des champs du formulaire et du niveau de
+confiance qu'il faut construire avant le bouton.
+
 **Le dossier doit être autonome** — Claude Design n'a ni le dépôt, ni les skills,
 ni la mémoire du projet. Tout ce dont il a besoin est dedans :
 

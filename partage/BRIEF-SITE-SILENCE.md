@@ -92,7 +92,7 @@ PETIT TEXTE    chrome #B8BEC8
 >
 > **Ce qu'il lâche d'un coup : 40 à 60 €.**
 
-Au Maroc c'est **le même mec**, avec deux différences : il **paie à la livraison** (jamais mis sa carte en ligne) et il se méfie à mort des boutiques Instagram.
+Au Maroc c'est **le même mec**. ⚠️ **Il paie par carte** (décidé le 25/09, plus de paiement à la livraison) — alors qu'il n'a **jamais mis sa carte en ligne** et qu'il se méfie à mort des boutiques Instagram. **C'est le plus gros obstacle du site.**
 
 **Ce que ça change pour le site :**
 
@@ -283,18 +283,29 @@ Vérifiable, donc crédible.
 
 ---
 
-## 8. Le Maroc a ses propres règles
+## 8. Le Maroc — carte uniquement
 
-**Le paiement à la livraison domine.** La vente ne se termine pas au clic, elle se termine à la porte. Le client peut refuser le colis sans rien perdre — et c'est la boutique qui paie l'aller **et** le retour.
+⚠️ **Décidé le 25/09 : plus de paiement à la livraison. Nulle part.**
+Au Maroc comme en France, **le client paie par carte avant l'expédition.**
 
-- **Annoncer le délai honnêtement.** Un délai long annoncé ne fait pas fuir ; un délai long découvert fait refuser le colis.
-- **Prévoir une confirmation téléphonique** avant expédition → ça coupe une bonne partie des refus. Donc : **le numéro de téléphone est obligatoire** à la commande au Maroc.
-- **Pousser le produit d'appel** (249-299 MAD), pas le pack à 699. Un gros montant en espèces à la porte se refuse bien plus souvent.
-- **Prix en MAD**, jamais des euros convertis.
+**Ce que ça change, et c'est le point le plus délicat du site :**
+
+Le client marocain n'a **jamais mis sa carte en ligne**. Il se méfie à mort des
+boutiques Instagram. Lui demander sa carte, c'est lui demander le plus gros
+effort de confiance possible.
+
+**Donc tout ce qui rassure compte deux fois plus sur la version marocaine :**
+
+- La page « qui on est », avec un vrai visage et un vrai nom
+- Le contact direct, **avant** le paiement, pas après
+- La date de livraison précise
+- « On te rend ton argent » et « Retour gratuit », en clair près du bouton
+- Le paiement passe par un prestataire connu et visible — le logo rassure
+
+**Les prix restent en MAD**, jamais des euros convertis.
+**Pousser le produit d'appel** (249-299 MAD), jamais le pack à 699.
 
 🇫🇷 En France : **carte, Apple Pay, PayPal**, et le paiement en 3 fois si possible.
-
----
 
 ## 9. Compter les clics — exigence explicite du propriétaire
 

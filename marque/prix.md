@@ -69,8 +69,8 @@ facturés → **+1,40 € par commande.**
 ⚠️ **Pas 7,50 €.** Sur une veste à 34,90 € ça fait 21 % du prix — ça sonne
 « frais cachés », exactement ce que les clients reprochent aux concurrents.
 
-⚠️ **Au Maroc elle reste basse.** Le client paie en espèces à la porte : chaque
-dirham ajouté augmente le risque de refus du colis.
+⚠️ **Au Maroc aussi, la livraison est payante.** Plus de paiement à la livraison :
+le client paie par carte, comme en France.
 
 ## Les 4 leviers d'attractivité (sans toucher aux prix)
 
@@ -95,8 +95,9 @@ réellement pratiqué (DGCCRF).
 - **Fiche produit** → pack en upsell.
 - **Accueil + panier** → pack en vedette.
 - **Boost payant (étape 9)** → doudoune et pack uniquement. Marge trop courte ailleurs.
-- **Maroc** → paiement à la livraison dominant. Confirmation téléphonique avant
-  expédition pour couper les refus. Pousser le 249-299 MAD, pas le 699.
+- **Maroc** → **paiement par carte uniquement, décidé le 25/09. Plus de COD.**
+  Ça supprime le risque de colis refusé (~20 MAD par commande), mais ça rend
+  la confiance plus dure à gagner : pousser le 249-299 MAD, jamais le 699.
 
 ## Réserves
 
