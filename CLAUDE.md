@@ -49,6 +49,25 @@ navigateur — jamais dans le fichier. Elles ne sont sauvegardées nulle part ai
 L'utilisateur a déjà perdu ses données une fois lors d'un changement de schéma. Il y
 est très sensible, et il a raison.
 
+## Le piège iPhone : deux tiroirs séparés
+
+Sur iOS, l'application ajoutée à l'écran d'accueil possède **son propre
+`localStorage`, distinct de celui de Safari**, alors que l'adresse est la même.
+L'utilisateur se sert de l'icône de l'écran d'accueil : **ses données sont dans ce
+tiroir-là, et nulle part ailleurs.**
+
+Conséquence, et c'est une erreur déjà commise :
+
+- **Ne jamais lui faire ouvrir l'application dans Safari** pour contourner un cache,
+  ni lui proposer une adresse maquillée du genre `…/?v=2`. Il tombe sur un tiroir
+  vide, l'assistant de configuration se relance, et il croit tout avoir perdu.
+- **Ne jamais lui faire supprimer puis rajouter le raccourci** de l'écran d'accueil
+  pour forcer une mise à jour.
+- Pour rafraîchir le code **sans quitter le bon tiroir** : tirer l'écran vers le bas
+  dans l'application, ou la fermer complètement depuis le sélecteur d'applications
+  puis la rouvrir.
+- Ne jamais évoquer « Effacer historique et données de site » : cela effacerait tout.
+
 ---
 
 # Publication

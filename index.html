@@ -1974,6 +1974,44 @@ function openCatDetail(cat){
   openModal('m-catdetail');
 }
 
+// ═══ MISE À JOUR AUTOMATIQUE ═══
+// L'app va voir d'elle-même si une version plus récente est en ligne et se
+// recharge. Même origine, donc le localStorage — et donc les données — reste
+// intact. Évite d'avoir à rafraîchir à la main, manœuvre qui a déjà fait
+// croire à l'utilisateur qu'il avait tout perdu.
+const APP_VERSION='2026-09-25-01';
+(function(){
+  const PAUSE=()=>
+    !document.getElementById('wizard').classList.contains('hidden') ||
+    document.querySelector('.overlay.open') ||
+    (document.activeElement&&document.activeElement.id==='note-editor') ||
+    pendingDel || pendingDelCf ||
+    document.querySelector('.dep-item-row.dragging');
+  // Uniquement quand la page est servie par le site : ouverte comme simple
+  // fichier local, la requête est refusée et ne sert à rien.
+  if(!/^https?:$/.test(location.protocol))return;
+  let busy=false;
+  async function check(){
+    if(busy||document.hidden||navigator.onLine===false)return;
+    busy=true;
+    try{
+      const r=await fetch('index.html?_maj='+Date.now(),{cache:'no-store'});
+      if(r.ok){
+        const m=(await r.text()).match(/APP_VERSION='([^']+)'/);
+        if(m&&m[1]&&m[1]!==APP_VERSION&&!PAUSE()){
+          location.replace(location.pathname+'?maj='+Date.now());
+          return;
+        }
+      }
+    }catch(e){}
+    busy=false;
+  }
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)setTimeout(check,400);});
+  window.addEventListener('focus',()=>setTimeout(check,400));
+  setTimeout(check,2500);
+  setInterval(check,5*60*1000);
+})();
+
 // ═══ INIT ═══
 // Une ancienne version du site installait un service worker qui servait
 // la page depuis son cache sans jamais revalider. S'il en reste un, il
