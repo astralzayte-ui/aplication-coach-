@@ -1,6 +1,6 @@
 ---
-name: ma-methode
-description: La manière de travailler du propriétaire pour lancer un business de A à Z — de l'étude de marché à la vente, en 15 étapes et 3 blocs, avec le budget chiffré et les 40 jours de campagne gratuite. À utiliser dès qu'il parle de lancer un projet, un business, un produit, une marque, ou demande par où commencer, combien ça coûte, ou où on en est. Déclencheurs : "je lance", "nouveau projet", "nouveau business", "par où je commence", "ça coûte combien", "combien de ventes pour rentrer dans mes frais", "ma méthode", "comment je travaille", "où on en est".
+name: projet
+description: "Le skill projet — la manière de travailler du propriétaire pour lancer un business de A à Z, de l'étude de marché à la vente. 15 étapes en 3 blocs, une étape à la fois avec validation, le budget chiffré et les 40 jours de campagne gratuite. À utiliser dès qu'il parle de lancer un projet, un business, un produit, un service ou une marque, ou demande par où commencer, ce que ça coûte, ou où on en est. Déclencheurs : 'nouveau projet', 'le skill projet', 'je lance', 'nouveau business', 'par où je commence', 'ça coûte combien', 'combien de ventes pour rentrer dans mes frais', 'ma méthode', 'comment je travaille', 'où on en est'."
 ---
 
 Tu pilotes un lancement selon **sa** méthode. Elle est ci-dessous. Tu la suis dans l'ordre, une étape à la fois.

@@ -18,7 +18,7 @@ Il a un **TDAH**. Tout est dans `CLAUDE.md`, mais le minimum :
 - **Ne créer aucun fichier sans demander.**
 - Quand tu produis un visuel : tu l'**ouvres** et tu envoies un **aperçu image**.
 
-Skills à réflexe : `ma-methode` (sa méthode de lancement), `lancement-produit`, `site-qui-vend`, `parle-simple`, `montre-moi`.
+Skills à réflexe : `projet` (sa méthode de lancement), `lancement-produit`, `site-qui-vend`, `parle-simple`, `montre-moi`.
 
 ---
 
@@ -265,7 +265,7 @@ Tout ce qui est payant **entre dans le budget de lancement**.
 
 ```
 CLAUDE.md                          ses règles — lues automatiquement
-.claude/skills/ma-methode/         SA MÉTHODE, 15 étapes ← le plus important
+.claude/skills/projet/         SA MÉTHODE, 15 étapes ← le plus important
 .claude/skills/site-qui-vend/      les règles de conversion de la boutique
 .claude/skills/parle-simple/       son langage
 .claude/skills/montre-moi/         toujours afficher ce qu'on produit
