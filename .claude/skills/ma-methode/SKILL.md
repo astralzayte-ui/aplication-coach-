@@ -299,6 +299,39 @@ Les mêmes couleurs
 
 Le reste des règles est dans le skill `site-qui-vend`.
 
+### Le site doit être cohérent avec trois choses
+
+**En une phrase : il ne doit pas se rendre compte qu'il a changé d'endroit.**
+
+**1. Avec ce que disent les vidéos** — la promesse faite doit se voir sur la fiche.
+**2. Avec le look des vidéos** — mêmes couleurs, même ambiance, même lumière.
+**3. Avec les prix et les règles** — le moindre chiffre qui diffère le fait douter.
+
+### ⚠️ Un chiffre qui change, change PARTOUT le même jour
+
+Les prix et les frais de livraison **bougeront**. C'est normal. Ce qui ne doit
+jamais arriver, c'est qu'ils bougent à un endroit et pas à l'autre.
+
+**Quand un prix change, la liste complète de ce qu'il faut reprendre :**
+
+```
+1.  le fichier des prix                 ← la source, on part toujours de là
+2.  le site — fiche produit, panier, accueil
+3.  le seuil de livraison offerte       ← il dépend des prix
+4.  les vidéos déjà écrites             ← le prix est affiché à l'écran
+5.  les vidéos déjà programmées         ← à reprendre ou à annuler
+6.  la bio des comptes
+7.  le brief du site                    ← pour que la prochaine version soit juste
+8.  le calcul de la marge et du budget
+```
+
+**La règle :** on change **le fichier des prix d'abord**, jamais le site en premier.
+Le fichier est la seule vérité. Tout le reste en découle.
+
+⚠️ **Une vidéo déjà publiée avec l'ancien prix est un problème** : elle continue
+de tourner et d'amener des gens qui voient un autre prix en arrivant. Soit on la
+retire, soit on assume — mais on le décide, on ne le subit pas.
+
 ### La règle qui compte le plus : le site répond aux vidéos
 
 Les hooks viennent des plaintes réelles des clients des concurrents.
