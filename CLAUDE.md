@@ -109,3 +109,15 @@ inchangés.
 Répondre **en français**, simplement, sans jargon. L'utilisateur n'est pas
 développeur : lui donner les clics à faire, pas les concepts. Quand une manipulation
 est irréversible (supprimer, débrancher, écraser), le prévenir **avant**, pas après.
+
+**Court.** Il l'a demandé explicitement. Faire le travail, puis annoncer le résultat
+en quelques lignes. Ne pas dérouler les étapes, les tests, les mesures ni le
+raisonnement : il ne les lit pas. Les détails techniques seulement s'il les demande.
+
+## Ergonomie tactile
+
+Il utilise l'application au pouce, sur téléphone. Une cible de moins de 32 px
+coincée entre deux autres est intapable, même si un test automatisé la touche sans
+problème : le clic programmé vise le pixel exact, pas le doigt. Quand il signale
+qu'un bouton « ne marche pas » alors que le code répond, mesurer la taille et
+l'écartement des cibles avant de chercher ailleurs.

@@ -208,6 +208,14 @@
     .dep-item-amt  { font-size:13px; font-weight:800; font-variant-numeric:tabular-nums; color:var(--rose); flex-shrink:0; }
     .dep-divider   { height:1px; background:var(--border); margin:16px 16px 0; }
     .icon-btn      { display:flex; align-items:center; justify-content:center; background:none; border:none; color:var(--text-muted); cursor:pointer; padding:0; flex-shrink:0; width:22px; height:22px; transition:color .15s; -webkit-tap-highlight-color:transparent; }
+    /* Cible tactile confortable : une croix de 22 px coincée entre deux autres
+       boutons est intapable au pouce. */
+    .dep-item-row { gap:7px; }
+    .dep-item-row .icon-btn.del { width:34px; height:34px; border-radius:10px;
+      background:var(--rose-dim); color:var(--rose); }
+    .dep-item-row .icon-btn.del svg { width:16px; height:16px; }
+    .dep-item-row .icon-btn.del:active { background:rgba(255,107,129,.28); transform:scale(.9); }
+    .dep-item-row .drag-grip { width:26px; height:34px; }
     .icon-btn.del:active  { color:var(--rose); }
     .icon-btn.edit:active { color:var(--mint); }
     .dep-add-btn   { width:24px; height:24px; border-radius:50%; border:none; background:var(--surf2); color:var(--text-dim); cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; -webkit-tap-highlight-color:transparent; }
@@ -1462,8 +1470,7 @@ function renderDepenses(){
         <span class="dep-item-time">${hm}</span>
         <span class="dep-item-name">${esc(d.desc||c.name)}</span>
         <span class="dep-item-amt">−${fmt(d.montant)} DH</span>
-        <button class="icon-btn edit" data-edit="${d.id}" title="Modifier">${I.pencil}</button>
-        <button class="icon-btn del"  data-del="${d.id}"  title="Supprimer">${I.x}</button>
+        <button class="icon-btn del" data-del="${d.id}" title="Supprimer" aria-label="Supprimer">${I.x}</button>
         <button class="drag-grip" data-grip="${d.id}" title="Glisser pour déplacer" aria-label="Déplacer">${I.grip}</button>
       </div>`;
     }).join('');
@@ -1479,7 +1486,7 @@ function renderDepenses(){
 
   if(S.depenses.length>1){
     html+=`<div class="drag-tip"><span class="svg-icon" style="width:13px;height:13px">${I.grip}</span>
-      Glisse par la poignée (ou appuie 1 s sur une ligne) pour réordonner.</div>`;
+      Appuie sur une ligne pour la modifier · glisse la poignée pour la déplacer.</div>`;
   }
 
   document.getElementById('dep-list').innerHTML=html;
@@ -1488,6 +1495,7 @@ function renderDepenses(){
 // ═══ GLISSER-DÉPOSER : réordonner les dépenses ═══
 (function(){
   const HOLD=450, SLOP=9, EDGE=95, STEP=11;
+  // Empeche l'appui qui termine un glissement d'ouvrir aussi la modification.
   let d=null, press=null, scrollTimer=null;
 
   const listEl = ()=>document.getElementById('dep-list');
@@ -1554,6 +1562,7 @@ function renderDepenses(){
   }
   function end(){
     if(!d)return;
+    justDragged=true; setTimeout(()=>{justDragged=false;},350);
     clearInterval(scrollTimer); scrollTimer=null;
     const {row,ph}=d; d=null;
     row.classList.remove('dragging');
@@ -1597,7 +1606,7 @@ function renderDepenses(){
 })();
 
 // Dépense dont la suppression attend confirmation (une seule à la fois).
-let pendingDel=null, pendingDelCf=null;
+let pendingDel=null, pendingDelCf=null, justDragged=false;
 function refreshDelViews(){
   renderDepenses(); renderHome();
   const m=document.getElementById('m-catdetail');
@@ -1637,6 +1646,9 @@ document.addEventListener('click',function(e){
   }
   const ed=e.target.closest('[data-edit]');
   if(ed){ openEditDep(ed.dataset.edit);return; }
+  // Appui n'importe ou sur la ligne (hors boutons) : ouvre la modification.
+  const row=e.target.closest('.dep-item-row[data-dep]');
+  if(row&&!e.target.closest('button')&&!justDragged){ openEditDep(row.dataset.dep); return; }
   const ad=e.target.closest('[data-adddate]');
   if(ad){ openAddDep(ad.dataset.adddate);return; }
   const rv=e.target.closest('[data-rev]');
@@ -1979,7 +1991,7 @@ function openCatDetail(cat){
 // recharge. Même origine, donc le localStorage — et donc les données — reste
 // intact. Évite d'avoir à rafraîchir à la main, manœuvre qui a déjà fait
 // croire à l'utilisateur qu'il avait tout perdu.
-const APP_VERSION='2026-09-25-01';
+const APP_VERSION='2026-09-25-02';
 (function(){
   const PAUSE=()=>
     !document.getElementById('wizard').classList.contains('hidden') ||
