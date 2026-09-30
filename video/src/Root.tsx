@@ -1,6 +1,7 @@
 import React from "react";
 import { Composition } from "remotion";
 import { Moule } from "./Composition";
+import { SousTitres } from "./SousTitres";
 
 /*
   Le même clip, deux marchés. Seul le prix change.
@@ -36,6 +37,14 @@ export const RemotionRoot: React.FC = () => {
           prix: "298 MAD",
           showSafeZone: false,
         }}
+      />
+      <Composition
+        id="SousTitres"
+        component={SousTitres}
+        durationInFrames={480}
+        fps={30}
+        width={1080}
+        height={1920}
       />
       <Composition
         id="ZoneSure"

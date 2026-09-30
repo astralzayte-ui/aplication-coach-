@@ -14,7 +14,7 @@ import {
   Le navigateur du rendu n'a pas le droit de sortir : une police
   qui ne charge pas, et tout le texte tombe en Times New Roman.
 */
-const fontFamily = "Archivo";
+export const fontFamily = "Archivo";
 
 const css = `
 @font-face {
@@ -41,9 +41,9 @@ if (typeof document !== "undefined") {
 }
 
 /* La palette SILENCE */
-const NOIR = "#0B0B0C";
-const IVOIRE = "#F4F2ED";
-const AMBRE = "#E0A458";
+export const NOIR = "#0B0B0C";
+export const IVOIRE = "#F4F2ED";
+export const AMBRE = "#E0A458";
 
 /* La zone sûre : les applis recouvrent les bords, tout le texte tient dedans */
 export const SAFE = { top: 220, bottom: 500, side: 180 };
@@ -73,7 +73,7 @@ export type Props = {
 };
 
 /* Texte blanc, contour noir épais, figé — jamais d'animation */
-const Texte: React.FC<{
+export const Texte: React.FC<{
   children: React.ReactNode;
   size: number;
   color?: string;
