@@ -58,6 +58,8 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 
 | | |
 |---|---|
+| La boutique — la source | **claude.ai/artifact/RgFKZrBwxEBDBEacQrHRiF** — Claude Design, 3 écrans |
+| La boutique — à regarder | **silence-boutique.netlify.app** — une copie, republiée après chaque modification |
 | Questionnaire fournisseur | **silence-supplier.netlify.app** |
 | Netlify | clé dans les Identifiants API — Claude publie et renomme seul |
 | Gemini | clé dans les Identifiants API |
@@ -79,6 +81,8 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 🔴  la pub n'est pas dans le budget — au feeling, quand il le sent,
     et seulement sur une vidéo qui a déjà gagné en gratuit
 🔴  jamais d'accès à sa banque — Stripe en lecture seule, rien d'autre
+🔴  le site se modifie TOUJOURS dans Claude Design, jamais sur Netlify —
+    Netlify est une copie, republiée derrière chaque modification
 🔴  le site alterne noir et ivoire — deux blocs clairs (les promesses,
     le test à 11 €) cassent le noir. Annule le « fond noir partout,
     sans exception » du cahier des charges, qui reste à corriger.
