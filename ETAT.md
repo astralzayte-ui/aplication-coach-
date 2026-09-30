@@ -101,7 +101,12 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 | Gemini | clé dans les Identifiants API |
 | Photos provisoires | `flourishing-dasik-35d194.netlify.app` ⚠️ **jamais public** |
 | Metricool | connecteur branché — marque `SILENCE | Menswear`, id **7079823** |
+| E-mail | **silenceworldwide@gmail.com** |
+| WhatsApp | **+212 728 861 105** |
+| Responsable publication | **Julien Wail Colly** |
 | Instagram | `silence.worldwide` — compte professionnel ✅ |
+| TikTok France | `silence.worldwide` |
+| TikTok Maroc | `silence.worldwide_maroc` |
 | TikTok | `SILENCE | Menswear` — ⚠️ **compte personnel**, stats réduites |
 
 ## Les décisions prises, à ne pas rouvrir
@@ -118,6 +123,10 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
     et seulement sur une vidéo qui a déjà gagné en gratuit
 🔴  le scraping coûte 0 — ~65 crédits par projet, 7 000 bonus gratuits à
     réclamer au projet 2 ≈ 100 projets
+🔴  le renvoi est à la charge du client s'il change d'avis ;
+    gratuit si le produit a un défaut (là c'est la loi)
+🔴  14 jours de rétractation pour TOUT LE MONDE — le Maroc n'exige
+    que 7 jours, on donne 14 partout pour n'avoir qu'une règle
 🔴  jamais d'accès à sa banque — Stripe en lecture seule, rien d'autre
 🔴  le site se modifie TOUJOURS dans Claude Design, jamais sur Netlify —
     Netlify est une copie, republiée derrière chaque modification

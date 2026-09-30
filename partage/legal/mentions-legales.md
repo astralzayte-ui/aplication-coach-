@@ -23,15 +23,15 @@ américain *(Limited Liability Company)* immatriculée dans l'État de
 | Siège | [Adresse complète] |
 | Identifiant fiscal américain | EIN **[EIN]** |
 | Numéro de TVA intracommunautaire | **[à compléter dès l'inscription au guichet unique]** |
-| Responsable de la publication | [Prénom NOM] |
+| Responsable de la publication | Julien Wail Colly |
 
 ## Nous joindre
 
 | | |
 |---|---|
-| E-mail | **[adresse e-mail]** — réponse sous 24 h ouvrées |
-| Téléphone | **[numéro]** |
-| WhatsApp | **[numéro]** |
+| E-mail | **silenceworldwide@gmail.com** — réponse sous 24 h ouvrées |
+| Téléphone | **+212 728 861 105** |
+| WhatsApp | **+212 728 861 105** |
 
 ## L'hébergeur du site
 

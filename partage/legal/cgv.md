@@ -7,7 +7,7 @@
 > 🔴 **Ne publie pas le site sans cette page.** Sans elle et sans le formulaire
 > de rétractation, le délai de 14 jours devient **12 mois**.
 
-**Dernière mise à jour : [date]**
+**Dernière mise à jour : [à la mise en ligne]**
 
 ---
 
@@ -16,7 +16,7 @@
 Le site est édité et exploité par **[Nom de la société]**, LLC immatriculée
 dans l'État de **[État]** — voir les *Mentions légales*.
 
-**Contact :** [e-mail] · [téléphone]
+**Contact :** silenceworldwide@gmail.com · +212 728 861 105
 
 Les présentes conditions s'appliquent à toute commande passée sur le site
 par un consommateur. Passer commande vaut acceptation sans réserve.
@@ -124,7 +124,7 @@ te rétracter, **sans avoir à te justifier**.
 
 Deux possibilités, au choix :
 
-- nous envoyer une déclaration claire par e-mail à **[e-mail]**
+- nous envoyer une déclaration claire par e-mail à **silenceworldwide@gmail.com**
 - ou utiliser le **formulaire type de rétractation** joint au site
 
 Le délai est respecté si tu envoies ta déclaration **avant la fin du 14ᵉ jour**.
@@ -184,7 +184,7 @@ il ne les remplace pas.
 
 ## 9. Une réclamation
 
-Écris-nous d'abord à **[e-mail]**. Nous répondons sous 24 h ouvrées et
+Écris-nous d'abord à **silenceworldwide@gmail.com**. Nous répondons sous 24 h ouvrées et
 cherchons une solution.
 
 ### Le médiateur de la consommation
@@ -218,5 +218,11 @@ Ta qualité de consommateur résidant en France te garantit le bénéfice des
 règles protectrices françaises, quelle que soit la nationalité du vendeur,
 et la compétence des tribunaux de ton lieu de résidence.
 
-Pour les clients résidant au Maroc, les dispositions impératives de la loi
-marocaine 31-08 sur la protection du consommateur s'appliquent.
+### 🇲🇦 Pour les clients au Maroc
+
+La loi marocaine **31-08** sur la protection du consommateur s'applique. Elle
+prévoit un droit de rétractation de **7 jours**.
+
+**Nous accordons 14 jours à tout le monde**, France et Maroc, plutôt que deux
+règles différentes. C'est plus que ce que la loi marocaine exige, et c'est
+volontaire.
