@@ -66,9 +66,24 @@ export const PLACE = {
   prix: "centre",
 } as const;
 
+/*
+  🔴 LES DEUX SOUS-TITRES DU TÉMOIN — choisis le 30/09
+
+      A   LE FIGÉ        la phrase arrive entière, elle ne bouge plus
+      C   MOT PAR MOT    les mots s'ajoutent un par un
+
+  A est la règle actuelle. C la contredit volontairement : c'est le
+  code TikTok. On teste laquelle est vraie CHEZ NOUS, au lieu de croire.
+
+  ⚠️ Chaque vidéo publiée doit porter sa lettre, écrite quelque part.
+  Sans ça, les chiffres remontent et ne se relient à rien.
+*/
+export type TypeSousTitre = "A" | "C";
+
 export type Props = {
   hook: string;
   prix: string;
+  sousTitre: TypeSousTitre;
   showSafeZone: boolean;
 };
 
@@ -252,7 +267,26 @@ const AuCentre: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   </AbsoluteFill>
 );
 
-export const Moule: React.FC<Props> = ({ hook, prix, showSafeZone }) => {
+/* Le sous-titre, dans le type choisi. Rien d'autre ne change. */
+const SousTitre: React.FC<{ texte: string; type: TypeSousTitre }> = ({
+  texte,
+  type,
+}) => {
+  const frame = useCurrentFrame();
+  if (type === "A") {
+    return <Texte size={70}>{texte}</Texte>;
+  }
+  const mots = texte.split(" ");
+  const visibles = Math.min(mots.length, Math.floor(frame / 6) + 1);
+  return <Texte size={70}>{mots.slice(0, visibles).join(" ")}</Texte>;
+};
+
+export const Moule: React.FC<Props> = ({
+  hook,
+  prix,
+  sousTitre,
+  showSafeZone,
+}) => {
   return (
     <AbsoluteFill style={{ backgroundColor: NOIR }}>
       <Decor />
@@ -267,14 +301,14 @@ export const Moule: React.FC<Props> = ({ hook, prix, showSafeZone }) => {
       {/* 1 – 3 s : il enfile — EN BAS, toujours */}
       <Sequence from={30} durationInFrames={60}>
         <EnBas>
-          <Texte size={70}>Il l'enfile</Texte>
+          <SousTitre texte="Il l'enfile" type={sousTitre} />
         </EnBas>
       </Sequence>
 
       {/* 3 – 6 s : il marche — EN BAS, toujours, même place */}
       <Sequence from={90} durationInFrames={90}>
         <EnBas>
-          <Texte size={70}>Il marche</Texte>
+          <SousTitre texte="Il marche" type={sousTitre} />
         </EnBas>
       </Sequence>
 

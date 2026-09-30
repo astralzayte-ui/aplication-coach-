@@ -22,6 +22,7 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={{
           hook: HOOK,
           prix: "39,89 €",
+          sousTitre: "A" as const,
           showSafeZone: false,
         }}
       />
@@ -35,6 +36,21 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={{
           hook: HOOK,
           prix: "298 MAD",
+          sousTitre: "A" as const,
+          showSafeZone: false,
+        }}
+      />
+      <Composition
+        id="TemoinC"
+        component={Moule}
+        durationInFrames={300}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          hook: HOOK,
+          prix: "39,89 €",
+          sousTitre: "C" as const,
           showSafeZone: false,
         }}
       />
@@ -56,6 +72,7 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={{
           hook: HOOK,
           prix: "39,89 €",
+          sousTitre: "A" as const,
           showSafeZone: true,
         }}
       />

@@ -1154,6 +1154,47 @@ de qui l'algorithme a servi. La rétention dépend de la vidéo.
 ⚠️ **Le témoin change UNE chose à la fois.** Deux changements d'un coup, et on
 ne saura pas lequel a joué. C'est la seule règle qui rend le test lisible.
 
+### 🔴 Le sous-titre est toujours l'une des choses testées
+
+**La façon d'écrire le texte à l'écran se teste, elle ne se décide pas.** Deux
+traitements, jamais plus :
+
+```
+A   LE FIGÉ        la phrase arrive entière et ne bouge plus
+C   MOT PAR MOT    les mots s'ajoutent un par un — le code de la plateforme
+```
+
+**Pourquoi ces deux-là :** la règle « texte figé » du moule vient d'une
+conviction — *un texte qui bouge dit « c'est une pub »*. Elle n'a jamais été
+vérifiée sur un vrai compte. **Une règle qu'on ne teste jamais est une croyance,
+pas une méthode.**
+
+⚠️ **Deux types, jamais quatre.** Sur seize vidéos témoins, quatre variantes
+font quatre vidéos chacune. Quand une vidéo fait 200 vues et la suivante 80 000,
+quatre vidéos ne mesurent que du bruit — et on croira avoir appris quelque chose.
+
+```
+2 types sur 16 témoins   =   8 chacun   ← ça commence à parler
+4 types sur 16 témoins   =   4 chacun   ← illisible
+```
+
+### 🔴 Sans étiquette, rien ne se lit
+
+**Avant de publier, chaque vidéo porte ce qui la distingue, écrit dans un
+fichier :**
+
+```
+vidéo 07   hook n°12   source 2   sous-titre A   moule
+vidéo 08   hook n°13   source 5   sous-titre C   témoin
+```
+
+**C'est la même règle que pour les hooks** — chacun porte sa source. Sans ce
+fichier, les chiffres remontent de la plateforme et **ne se relient à rien** :
+on voit qu'une vidéo a marché, jamais pourquoi.
+
+⚠️ **L'étiquette s'écrit AVANT la publication.** Après, on ne s'en souvient
+plus, et reconstituer à la main quatre-vingts vidéos ne se fait jamais.
+
 ---
 
 ### Étape 14 — Le jour 21
@@ -1165,6 +1206,7 @@ ne saura pas lequel a joué. C'est la seule règle qui rend le test lisible.
 | **La branche qui a tenu** | **on écrit de nouveaux hooks dedans** |
 | La source qui gagne | on en fait plus le mois d'après |
 | Moule vs témoin | le gagnant prend 100 % de la vague 2 |
+| **Sous-titre A vs C** | **le gagnant devient le sous-titre du moule** |
 
 **Le chiffre qui compte : la rétention à 3 secondes.** C'est elle qui juge le hook.
 **Les clics jugent le produit**, pas le hook. Ne jamais confondre les deux.
@@ -1175,10 +1217,19 @@ La branche vaut plus que le hook : un hook gagnant donne une vidéo, **une branc
 
 ```
 ✅  quel moule pour la vague 2
+✅  quel sous-titre, A ou C — et il devient la règle
 ✅  quelles branches on continue, lesquelles on abandonne
 ✅  quelle source on creuse le mois d'après
 ✅  sur quel produit on mettra la pub, s'il y en a
 ```
+
+**Comment on lit le sous-titre :** on compare **la rétention à 3 secondes**
+des huit vidéos en A contre les huit en C. Rien d'autre — ni les vues, ni les
+likes, ni les commentaires.
+
+⚠️ **Un écart de moins de 5 points ne tranche rien.** À égalité, on garde A :
+c'est le plus simple à produire, et la simplicité gagne quand le reste est
+indécis.
 
 ```
 ❌  changer les prix          ← ils sont figés, ils bougent pas au milieu
