@@ -150,7 +150,6 @@
   <p class="eyebrow" id="eyebrow"></p>
   <h1 dir="ltr">SILENCE</h1>
   <p class="lede" id="lede1"></p>
-  <p class="lede" id="lede2"></p>
   <div class="warn"><p class="ask" id="ask"></p></div>
 
   <div class="status">
@@ -161,15 +160,6 @@
   <h2 id="t1"></h2>
   <p class="h2sub" id="s1"></p>
   <div id="qs"></div>
-
-  <h2 id="t2"></h2>
-  <p class="h2sub" id="s2"></p>
-  <div class="tblwrap">
-    <table>
-      <thead><tr id="thead"></tr></thead>
-      <tbody id="rows"></tbody>
-    </table>
-  </div>
 
   <h2 id="t4"></h2>
   <p class="h2sub" id="s4"></p>
@@ -191,16 +181,16 @@
 const L = {
 fr:{
   eyebrow:"Qualification fournisseur",
-  lede1:"Ligne de streetwear. <strong>Commandes mensuelles, en croissance chaque mois.</strong> Six catégories, unisexe, XS à XXL.",
+  lede1:"Six catégories, unisexe, <strong>XS à XXL, tailles européennes</strong>.",
   lede2:"Nos conditions ne sont pas négociables. Répondez à toutes.",
   ask:"Nous vous prions de renseigner ce formulaire dans son intégralité, afin que nous sachions avec qui nous nous engageons.",
   warn:"Chaque réponse est <strong>oui</strong> ou <strong>non</strong>. Si un point demande un aménagement, dites-le-nous plutôt que de le passer sous silence — nous savons que tout ne peut pas être parfait. Plusieurs fournisseurs sont consultés en parallèle, et celui que nous retiendrons recevra notre première commande dans la semaine.",
   wait:"NON RÉPONDU", prog:"EN COURS", ok:"QUALIFIÉ", ko:"DISQUALIFIÉ",
   tally:(d,n,f)=>"<b>"+d+"</b>/"+n+" répondues · <b>"+f+"</b> refusées",
-  t1:"Partie 1 — Les conditions", s1:"19 questions. Touchez OUI ou NON.",
+  t1:"Partie 1 — Les conditions", s1:"18 questions. Touchez OUI ou NON.",
   t2:"Partie 2 — Vos prix", s2:"Les trois colonnes ambre sont <strong>nos conditions, pas des questions</strong>. Remplissez les deux blanches.",
   t3:"Partie 3 — Vos conditions", s3:"Des chiffres, pas des adjectifs.",
-  t4:"Partie 3 — Renvoyez ceci", s4:"Copiez le bloc et envoyez-le-nous sur WeChat ou par e-mail.",
+  t4:"Partie 2 — Renvoyez ceci", s4:"Copiez le bloc et envoyez-le-nous sur WeChat ou par e-mail.",
   yes:"OUI", no:"NON", stamp:"Vos réponses", copy:"COPIER MES RÉPONSES", copied:"COPIÉ", sel:"SÉLECTIONNEZ ET COPIEZ",
   foot:"streetwear, France & Maroc",
   th:["Catégorie","Grammage<br>mini","Poids max<br>par pièce","Notre prix<br>cible","Votre prix","Production"],
@@ -220,11 +210,10 @@ fr:{
   ["Suivi en ligne, du départ à la livraison.","Numéro de suivi, transporteur et date d'expédition envoyés le jour même. Sans suivi, la commande n'est pas conforme."],
   ["Pas de marques de luxe, pas de logos copiés ou volés.","Si un modèle vient d'une marque connue, approchez-vous du design sans le copier."],
   ["Prix bloqués 6 mois, par écrit.","Nous publions nos prix. Ils ne peuvent pas bouger sous nos pieds."],
-  ["30 % d'acompte, 70 % avant expédition.","Les 70 % sont payés après réception des photos du lot terminé."],
   ["Un échantillon payé avant la première vraie commande.","Une pièce, livrée chez nous, avant que nous nous engagions."],
   ["Contrôle qualité avant chaque expédition.","Pas optionnel. Indiquez-nous son coût."],
   ["Quantité minimum de commande : 1 pièce.","Nous commandons ce que nous vendons, quand nous le vendons. Pas de minimum à 500 pièces."],
-  ["Vous tenez les grammages de la partie 2.","200 g/m² sur les t-shirts, 320 sur les sweats et joggings, 300 sur les vestes. Le tissu fin est la plainte numéro un de notre marché — nous ne l'expédierons pas."]],
+  ["Vous tenez les épaisseurs de tissu que nous imposons.","200 g/m² sur les t-shirts, 320 sur les sweats et joggings, 300 sur les vestes. Le tissu fin est la plainte numéro un de notre marché — nous ne l'expédierons pas."]],
   cats:["T-shirt","Sweat à capuche + jogging","Survêtement imperméable","Veste","Doudoune","Tenue complète (4 pièces)"],
   terms:[
   ["parcel","Un colis livré en France","EUR","Depuis votre entrepôt européen jusqu'à la porte du client."],
@@ -240,16 +229,16 @@ fr:{
 },
 en:{
   eyebrow:"Supplier qualification",
-  lede1:"Streetwear line. <strong>Monthly orders, growing every month.</strong> Six categories, unisex, XS to XXL.",
+  lede1:"Six categories, unisex, <strong>XS to XXL, European sizes</strong>.",
   lede2:"Our conditions are not negotiable. Answer every one.",
   ask:"We kindly ask you to complete this form in full, so that we know precisely with whom we are entering into business.",
   warn:"Each answer is <strong>yes</strong> or <strong>no</strong>. If a point needs adjusting, tell us rather than leave it unsaid — we know not everything can be perfect. Several suppliers are being consulted in parallel, and the one we select will receive our first order within the week.",
   wait:"NOT ANSWERED", prog:"IN PROGRESS", ok:"QUALIFIED", ko:"DISQUALIFIED",
   tally:(d,n,f)=>"<b>"+d+"</b>/"+n+" answered · <b>"+f+"</b> failed",
-  t1:"Part 1 — The conditions", s1:"19 questions. Tap YES or NO.",
+  t1:"Part 1 — The conditions", s1:"18 questions. Tap YES or NO.",
   t2:"Part 2 — Your prices", s2:"The three amber columns are <strong>our conditions, not questions</strong>. Fill in the two white ones.",
   t3:"Part 3 — Your terms", s3:"Numbers, not adjectives.",
-  t4:"Part 3 — Send this back", s4:"Copy the block and send it to us on WeChat or by email.",
+  t4:"Part 2 — Send this back", s4:"Copy the block and send it to us on WeChat or by email.",
   yes:"YES", no:"NO", stamp:"Your answers", copy:"COPY MY ANSWERS", copied:"COPIED", sel:"SELECT AND COPY",
   foot:"streetwear, France & Morocco",
   th:["Category","Min fabric<br>weight","Max piece<br>weight","Our target<br>price","Your price","Production"],
@@ -271,11 +260,10 @@ en:{
   ["Online tracking, from dispatch to delivery.","Tracking number, carrier and dispatch date sent the same day it ships. No tracking means the order is not compliant."],
   ["No luxury brands, no copied or stolen logos.","If a model comes from a known brand, get close to the design without copying it."],
   ["Prices locked for 6 months, in writing.","We publish our prices. They cannot move under us."],
-  ["30% deposit, 70% before shipping.","The 70% is paid after we see photos of the finished batch."],
   ["A paid sample before the first real order.","One piece, shipped to us, before we commit."],
   ["Quality inspection before every shipment.","Not optional. Tell us what it costs."],
   ["Minimum order quantity: 1 piece.","We order what we sell, when we sell it. No 500-piece minimum."],
-  ["You hit the fabric weights in Part 2.","200 gsm on tees, 320 gsm on hoodies and joggers, 300 gsm on jackets. Thin fabric is the number one complaint in our market — we are not shipping it."]],
+  ["You hit the fabric weights we require.","200 gsm on tees, 320 gsm on hoodies and joggers, 300 gsm on jackets. Thin fabric is the number one complaint in our market — we are not shipping it."]],
   cats:["T-shirt","Hoodie + joggers","Waterproof tracksuit","Jacket","Puffer","Full outfit (4 pieces)"],
   terms:[
   ["parcel","One parcel delivered in France","EUR","From your European warehouse to the customer's door."],
@@ -292,16 +280,16 @@ en:{
 ar:{
   rtl:true, wide:true,
   eyebrow:"تأهيل المورّد",
-  lede1:"خط ملابس ستريت وير. <strong>طلبات شهرية، تزداد كل شهر.</strong> ستة أصناف، للجنسين، من XS إلى XXL.",
+  lede1:"ستة أصناف، للجنسين، <strong>من XS إلى XXL، بمقاسات أوروبية</strong>.",
   lede2:"شروطنا غير قابلة للتفاوض. أجيبوا عن كل سؤال.",
   ask:"نرجو منكم تعبئة هذه الاستمارة كاملةً، حتى نعرف على وجه الدقة مع من سنعمل.",
   warn:"كل جواب هو <strong>«نعم»</strong> أو <strong>«لا»</strong>. وإن كان أحد البنود يحتاج إلى تعديل، فأخبرونا به بدل السكوت عنه — فنحن ندرك أن كل شيء لا يمكن أن يكون مثالياً. ونحن نستشير عدة موردين في آنٍ واحد، ومن نختاره يتلقّى أول طلبية لنا خلال الأسبوع.",
   wait:"لم يُجب", prog:"جارٍ", ok:"مؤهّل", ko:"مستبعَد",
   tally:(d,n,f)=>"أُجيب <b>"+d+"</b>/"+n+" · مرفوض <b>"+f+"</b>",
-  t1:"الجزء 1 — الشروط", s1:"19 سؤالاً. اضغطوا «نعم» أو «لا».",
+  t1:"الجزء 1 — الشروط", s1:"18 سؤالاً. اضغطوا «نعم» أو «لا».",
   t2:"الجزء 2 — أسعاركم", s2:"الأعمدة الثلاثة بالأصفر هي <strong>شروطنا، وليست أسئلة</strong>. املأوا العمودين الأبيضين.",
   t3:"الجزء 3 — شروطكم", s3:"أرقام، لا صفات.",
-  t4:"الجزء 3 — أعيدوا هذا إلينا", s4:"انسخوا النص وأرسلوه لنا على WeChat أو بالبريد الإلكتروني.",
+  t4:"الجزء 2 — أعيدوا هذا إلينا", s4:"انسخوا النص وأرسلوه لنا على WeChat أو بالبريد الإلكتروني.",
   yes:"نعم", no:"لا", stamp:"أجوبتكم", copy:"انسخ أجوبتي", copied:"تم النسخ", sel:"حدّد وانسخ",
   foot:"ستريت وير، فرنسا والمغرب",
   th:["الصنف","أدنى وزن<br>للقماش","أقصى وزن<br>للقطعة","سعرنا<br>المستهدف","سعركم","مدة الإنتاج"],
@@ -321,11 +309,10 @@ ar:{
   ["تتبّع إلكتروني، من الإرسال إلى التسليم.","رقم التتبّع وشركة النقل وتاريخ الإرسال في اليوم نفسه. بدون تتبّع يُعتبر الطلب غير مطابق."],
   ["لا علامات فاخرة، لا شعارات منسوخة أو مسروقة.","إذا كان الموديل مستوحى من علامة معروفة، اقتربوا من التصميم دون نسخه."],
   ["الأسعار مثبّتة 6 أشهر، كتابةً.","نحن ننشر أسعارنا. لا يمكن أن تتغيّر من تحتنا."],
-  ["30% دفعة مقدّمة، 70% قبل الشحن.","الـ70% تُدفع بعد استلامنا صور الدفعة الجاهزة."],
   ["نموذج مدفوع قبل أول طلب حقيقي.","قطعة واحدة، تُشحن إلينا، قبل أن نلتزم."],
   ["فحص الجودة قبل كل شحنة.","غير اختياري. أخبرونا بتكلفته."],
   ["أدنى كمية للطلب: قطعة واحدة.","نطلب ما نبيعه، حين نبيعه. لا حد أدنى بـ500 قطعة."],
-  ["تحقّقون أوزان القماش المذكورة في الجزء 2.","200 غرام للتيشيرت، 320 للهودي والبنطلون الرياضي، 300 للجاكيت. القماش الرقيق هو الشكوى الأولى في سوقنا — لن نشحنه."]],
+  ["تحقّقون أوزان القماش التي نشترطها.","200 غرام للتيشيرت، 320 للهودي والبنطلون الرياضي، 300 للجاكيت. القماش الرقيق هو الشكوى الأولى في سوقنا — لن نشحنه."]],
   cats:["تيشيرت","هودي + بنطلون رياضي","بدلة رياضية مقاومة للماء","جاكيت","جاكيت منفوخ","طقم كامل (4 قطع)"],
   terms:[
   ["parcel","طرد واحد يُسلّم في فرنسا","يورو","من مستودعكم الأوروبي إلى باب العميل."],
@@ -342,16 +329,16 @@ ar:{
 ja:{
   wide:true,
   eyebrow:"サプライヤー審査",
-  lede1:"ストリートウェアブランド。<strong>毎月発注、月ごとに増加。</strong>6カテゴリー、ユニセックス、XS〜XXL。",
+  lede1:"6カテゴリー、ユニセックス、<strong>XS〜XXL、EUサイズ</strong>。",
   lede2:"当方の条件は交渉不可です。すべてにお答えください。",
   ask:"本フォームにすべてご記入いただきますようお願い申し上げます。どなたと取引を始めるのかを正確に把握するためです。",
   warn:"ご回答は<strong>「はい」</strong>か<strong>「いいえ」</strong>でお願いいたします。調整が必要な項目がございましたら、伏せずにお知らせください — すべてが完璧である必要はないと承知しております。複数のサプライヤーに並行して打診しており、選定させていただいた一社には今週中に最初の発注をいたします。",
   wait:"未回答", prog:"回答中", ok:"合格", ko:"不合格",
   tally:(d,n,f)=>"回答 <b>"+d+"</b>/"+n+" · 不適合 <b>"+f+"</b>",
-  t1:"パート1 — 条件", s1:"19問。「はい」か「いいえ」をタップ。",
+  t1:"パート1 — 条件", s1:"18問。「はい」か「いいえ」をタップ。",
   t2:"パート2 — 御社の価格", s2:"アンバー色の3列は<strong>当方の条件であり、質問ではありません</strong>。白い2列にご記入ください。",
   t3:"パート3 — 御社の条件", s3:"形容詞ではなく、数字で。",
-  t4:"パート3 — これを返送", s4:"ブロックをコピーし、WeChatまたはメールでお送りください。",
+  t4:"パート2 — これを返送", s4:"ブロックをコピーし、WeChatまたはメールでお送りください。",
   yes:"はい", no:"いいえ", stamp:"御社の回答", copy:"回答をコピー", copied:"コピーしました", sel:"選択してコピー",
   foot:"ストリートウェア、フランスとモロッコ",
   th:["カテゴリー","最低<br>生地重量","1着の<br>最大重量","当方の<br>目標価格","御社の価格","生産期間"],
@@ -371,11 +358,10 @@ ja:{
   ["発送から配達までのオンライン追跡。","発送当日に追跡番号・配送業者・発送日を送付。追跡なしの注文は不適合とみなします。"],
   ["高級ブランド不可、ロゴの模倣・流用不可。","有名ブランド由来のデザインは、複製せず近づける範囲で。"],
   ["価格を6か月固定、書面で。","当方は価格を公開します。途中で動かすことはできません。"],
-  ["着手金30%、出荷前に70%。","70%は完成ロットの写真を確認した後に支払います。"],
   ["初回本発注の前に有償サンプル。","1着を当方に発送してから発注します。"],
   ["全出荷前の品質検査。","任意ではありません。費用をお知らせください。"],
   ["最小発注数量：1着。","売れた分だけ、売れたときに発注します。500着の最低数量は受けません。"],
-  ["パート2の生地重量を満たすこと。","Tシャツ200g、フーディとジョガー320g、ジャケット300g。生地の薄さは当方の市場で最も多い不満です — 出荷しません。"]],
+  ["当方が求める生地重量を満たすこと。","Tシャツ200g、フーディとジョガー320g、ジャケット300g。生地の薄さは当方の市場で最も多い不満です — 出荷しません。"]],
   cats:["Tシャツ","フーディ + ジョガー","防水トラックスーツ","ジャケット","ダウンジャケット","フルセット（4点）"],
   terms:[
   ["parcel","フランス国内での1梱包の配送費","EUR","御社の欧州倉庫から顧客の玄関まで。"],
@@ -392,16 +378,16 @@ ja:{
 zh:{
   wide:true,
   eyebrow:"供应商资格审核",
-  lede1:"街头服饰品牌。<strong>每月下单，逐月增长。</strong>六个品类，男女通穿，XS 到 XXL。",
+  lede1:"六个品类，男女通穿，<strong>XS 到 XXL，欧码</strong>。",
   lede2:"我们的条件不可谈判。请全部回答。",
   ask:"敬请完整填写本表格，以便我们确切了解将与何方合作。",
   warn:"每个回答请用<strong>「是」</strong>或<strong>「否」</strong>。若有条款需要调整，请直接告知，不必回避 —— 我们明白并非所有条件都能做到完美。我们正同时接洽多家供应商，最终选定的一家将在本周内收到我们的首笔订单。",
   wait:"未作答", prog:"进行中", ok:"合格", ko:"不合格",
   tally:(d,n,f)=>"已答 <b>"+d+"</b>/"+n+" · 不符合 <b>"+f+"</b>",
-  t1:"第一部分 — 条件", s1:"19 个问题。点「是」或「否」。",
+  t1:"第一部分 — 条件", s1:"18 个问题。点「是」或「否」。",
   t2:"第二部分 — 你们的价格", s2:"三列琥珀色是<strong>我们的条件，不是问题</strong>。请填写两列白色。",
   t3:"第三部分 — 你们的条款", s3:"要数字，不要形容词。",
-  t4:"第三部分 — 发回给我们", s4:"复制下面的内容，通过微信或邮件发给我们。",
+  t4:"第二部分 — 发回给我们", s4:"复制下面的内容，通过微信或邮件发给我们。",
   yes:"是", no:"否", stamp:"你的回答", copy:"复制我的回答", copied:"已复制", sel:"请选中并复制",
   foot:"街头服饰，法国与摩洛哥",
   th:["品类","最低<br>克重","单件<br>最大重量","我们的<br>目标价","你们的价格","生产周期"],
@@ -421,11 +407,10 @@ zh:{
   ["全程在线物流跟踪，从发货到签收。","发货当天提供运单号、承运商和发货日期。没有跟踪号视为不合格订单。"],
   ["不做奢侈品牌，不用抄袭或盗用的 logo。","如果款式来自知名品牌，做到接近即可，不要照抄。"],
   ["价格锁定 6 个月，书面确认。","我们对外公布售价。价格不能中途变动。"],
-  ["30% 定金，70% 发货前付清。","70% 在我们看到成品批次照片后支付。"],
   ["首次正式下单前先付费打样。","一件样品，寄到我们手上，然后我们才下单。"],
   ["每批发货前做质检。","不是可选项。请告知费用。"],
   ["最小起订量：1 件。","卖多少订多少。不接受 500 件起订。"],
-  ["达到第二部分的面料克重。","T恤 200 克，卫衣和运动裤 320 克，外套 300 克。面料偏薄是我们市场投诉最多的问题 —— 我们不会发这种货。"]],
+  ["达到我们要求的面料克重。","T恤 200 克，卫衣和运动裤 320 克，外套 300 克。面料偏薄是我们市场投诉最多的问题 —— 我们不会发这种货。"]],
   cats:["T恤","连帽卫衣 + 运动裤","防水运动套装","外套","羽绒服","全套（4 件）"],
   terms:[
   ["parcel","法国境内一个包裹的配送费","欧元","从你们的欧洲仓库送到客户家门。"],
@@ -459,18 +444,14 @@ function build() {
 
   $("eyebrow").textContent = t.eyebrow;
   $("lede1").innerHTML = t.lede1;
-  $("lede2").textContent = t.lede2;
   $("ask").textContent = t.ask;
   $("t1").textContent = t.t1; $("s1").textContent = t.s1;
-  $("t2").textContent = t.t2; $("s2").innerHTML = t.s2;
   $("t4").textContent = t.t4; $("s4").textContent = t.s4;
   $("stamp").textContent = t.stamp;
   $("copybtn").textContent = t.copy;
   $("foot").textContent = t.foot;
   document.querySelectorAll(".langs button").forEach(b =>
     b.setAttribute("aria-pressed", b.dataset.l === lang ? "true" : "false"));
-
-  $("thead").innerHTML = t.th.map(h => "<th>" + h + "</th>").join("");
 
   const qs = $("qs"); qs.innerHTML = "";
   t.q.forEach((q, i) => {
@@ -490,22 +471,6 @@ function build() {
       answers[i] = b.dataset.v; card.dataset.a = b.dataset.v; refresh();
     }));
     qs.appendChild(card);
-  });
-
-  const rows = $("rows"); rows.innerHTML = "";
-  t.cats.forEach((c, i) => {
-    const prev = { p: (($("p" + i) || {}).value) || "", d: (($("d" + i) || {}).value) || "" };
-    const tr = document.createElement("tr");
-    tr.innerHTML =
-      "<td>" + c + "</td>" +
-      '<td class="spec" dir="ltr">' + SPECS[i][0] + "</td>" +
-      '<td class="spec" dir="ltr">' + SPECS[i][1] + "</td>" +
-      '<td class="spec" dir="ltr">' + SPECS[i][2] + "</td>" +
-      '<td><input id="p' + i + '" dir="ltr" placeholder="' + t.ph.usd + '"></td>' +
-      '<td><input id="d' + i + '" dir="ltr" placeholder="' + t.ph.days + '"></td>';
-    rows.appendChild(tr);
-    $("p" + i).value = prev.p; $("d" + i).value = prev.d;
-    tr.querySelectorAll("input").forEach(x => x.addEventListener("input", refresh));
   });
 
   refresh();
@@ -534,11 +499,6 @@ function refresh() {
   E.q.forEach((q, i) => {
     const a = answers[i] ? (answers[i] === "yes" ? "YES " : "NO  ") : "—   ";
     o.push(String(i + 1).padStart(2, "0") + "  " + a + "  " + q[0]);
-  });
-  o.push("");
-  o.push(E.lbl.prices);
-  E.cats.forEach((c, i) => {
-    o.push("- " + c + " | " + E.lbl.yourprice + ": " + val("p" + i) + " | " + E.lbl.prod + ": " + val("d" + i));
   });
   $("output").textContent = o.join("\n");
 }

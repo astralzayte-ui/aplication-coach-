@@ -1,5 +1,7 @@
 SILENCE — 供应商资格审核
 
+六个品类，男女通穿，XS 到 XXL，欧码。
+
 敬请完整填写本表格，以便我们确切了解将与何方合作。
 
 — 第一部分 — 条件 —
@@ -17,37 +19,18 @@ SILENCE — 供应商资格审核
 12. [   ] 全程在线物流跟踪，从发货到签收。
 13. [   ] 不做奢侈品牌，不用抄袭或盗用的 logo。
 14. [   ] 价格锁定 6 个月，书面确认。
-15. [   ] 30% 定金，70% 发货前付清。
-16. [   ] 首次正式下单前先付费打样。
-17. [   ] 每批发货前做质检。
-18. [   ] 最小起订量：1 件。
-19. [   ] 达到第二部分的面料克重。
-
-— 第二部分 — 你们的价格 —
-• T恤
-   最低克重: 200 gsm | 单件最大重量: 0.25 kg | 我们的目标价: 2.50 USD
-   你们的价格: ______   生产周期: ______
-• 连帽卫衣 + 运动裤
-   最低克重: 320 gsm | 单件最大重量: 1.00 kg | 我们的目标价: 3.00 USD
-   你们的价格: ______   生产周期: ______
-• 防水运动套装
-   最低克重: nylon | 单件最大重量: 0.60 kg | 我们的目标价: 3.00 USD
-   你们的价格: ______   生产周期: ______
-• 外套
-   最低克重: 300 gsm | 单件最大重量: 0.60 kg | 我们的目标价: 5.80 USD
-   你们的价格: ______   生产周期: ______
-• 羽绒服
-   最低克重: — | 单件最大重量: 0.90 kg | 我们的目标价: 6.20 USD
-   你们的价格: ______   生产周期: ______
-• 全套（4 件）
-   最低克重: 320 gsm | 单件最大重量: 1.60 kg | 我们的目标价: 8.80 USD
-   你们的价格: ______   生产周期: ______
+15. [   ] 首次正式下单前先付费打样。
+16. [   ] 每批发货前做质检。
+17. [   ] 最小起订量：1 件。
+18. [   ] 达到我们要求的面料克重。
 
 
 ============================================================
 
 
 SILENCE — SUPPLIER QUALIFICATION
+
+Six categories, unisex, XS to XXL, European sizes.
 
 We kindly ask you to complete this form in full, so that we know precisely with whom we are entering into business.
 
@@ -66,28 +49,7 @@ We kindly ask you to complete this form in full, so that we know precisely with 
 12. [   ] Online tracking, from dispatch to delivery.
 13. [   ] No luxury brands, no copied or stolen logos.
 14. [   ] Prices locked for 6 months, in writing.
-15. [   ] 30% deposit, 70% before shipping.
-16. [   ] A paid sample before the first real order.
-17. [   ] Quality inspection before every shipment.
-18. [   ] Minimum order quantity: 1 piece.
-19. [   ] You hit the fabric weights in Part 2.
-
-— Part 2 — Your prices —
-• T-shirt
-   min gsm: 200 gsm | max weight: 0.25 kg | our target: 2.50 USD
-   YOUR PRICE: ______   PRODUCTION: ______
-• Hoodie + joggers
-   min gsm: 320 gsm | max weight: 1.00 kg | our target: 3.00 USD
-   YOUR PRICE: ______   PRODUCTION: ______
-• Waterproof tracksuit
-   min gsm: nylon | max weight: 0.60 kg | our target: 3.00 USD
-   YOUR PRICE: ______   PRODUCTION: ______
-• Jacket
-   min gsm: 300 gsm | max weight: 0.60 kg | our target: 5.80 USD
-   YOUR PRICE: ______   PRODUCTION: ______
-• Puffer
-   min gsm: — | max weight: 0.90 kg | our target: 6.20 USD
-   YOUR PRICE: ______   PRODUCTION: ______
-• Full outfit (4 pieces)
-   min gsm: 320 gsm | max weight: 1.60 kg | our target: 8.80 USD
-   YOUR PRICE: ______   PRODUCTION: ______
+15. [   ] A paid sample before the first real order.
+16. [   ] Quality inspection before every shipment.
+17. [   ] Minimum order quantity: 1 piece.
+18. [   ] You hit the fabric weights we require.
