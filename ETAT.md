@@ -27,16 +27,16 @@ LA SUITE    dépouiller sa réponse, puis arrêter le catalogue
 | **Le questionnaire** | en ligne, vérifié, 18 conditions, 5 langues |
 | **Metricool** | branché — Insta + TikTok, je lis et je publie |
 | **Le montage vidéo** | `video/` — le moule rendu en code, pas par Higgs Field |
+| **Le lien envoyé** | 30/09 — à relancer s'il n'a rien dit sous 3 jours |
 
 ## Ce qui bloque
 
-**Tout attend la réponse de l'agent.** Sans son catalogue :
+**Le lien est parti chez l'agent le 30/09.** Tout attend sa réponse. Sans son catalogue :
 pas de scripts vidéo, pas de site, pas de marge réelle.
 
 ## Ce qu'il doit faire, lui
 
 ```
-🟠  envoyer le lien à l'agent          ← le seul qui compte
 🟠  recharger Higgs Field
 🟠  Stripe en lecture seule            ← inutile tant qu'il n'y a pas de vente
 ```
@@ -91,6 +91,10 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 ❓  le prochain projet : nouveau dossier, ou à côté de celui-ci
 ❓  TikTok en compte personnel — on verra si la rétention 3 s remonte
 
+📌  RAPPELER À RECHARGER HIGGS FIELD dès que l'agent envoie le
+    catalogue et les vidéos — il l'a demandé le 30/09
+📌  Claude Design est accessible directement : plus besoin de lui faire
+    faire l'aller-retour pour le site (étape 11 du skill à corriger)
 📌  le sigil (4 piques + ligne ambre) va sur l'écran de fin des vidéos,
     au prochain rendu — le SVG est dans partage/BRIEF-SITE-SILENCE.md
 ```
