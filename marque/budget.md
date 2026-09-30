@@ -15,9 +15,13 @@
 | **Les crédits de scraping** | ❌ **à chiffrer** | ~65 par projet, puis **tous les mois** |
 | **L'échantillon fournisseur** | ❌ **à chiffrer** | |
 | **L'agent fournisseur** | ❌ **à chiffrer** | déjà payé, montant pas communiqué |
-| **Créer l'entreprise** | ❌ **à chiffrer** | la LLC américaine |
-| **Un numéro américain** | ❌ **à chiffrer** | pour le compte de paiement et le contact du site |
+| **Créer l'entreprise** ✅ | **2 500 MAD** | la LLC américaine |
+| **Un numéro américain** ✅ | **500 MAD** | pour le compte de paiement et le contact du site |
 | **Le site** | **0** | construit ici, hébergé gratuitement sur Netlify |
+
+🟢 **L'entreprise et le numéro — 3 000 MAD — ne se paient qu'UNE FOIS.** La LLC
+et le numéro servent à **tous** tes projets suivants. Au projet 2, ces deux
+lignes valent zéro.
 
 🔴 **Trois lignes se paient AVANT la première vente :** l'agent, la création de
 l'entreprise, le numéro. **Elles ne se divisent pas par le nombre de ventes** —
@@ -131,28 +135,41 @@ seule ligne, sinon tu n'apprends rien.
 
 Sur **2 mois** (préparation + les 40 jours) :
 
+### Ce lancement-ci — le vrai total
+
 ```
-Le domaine                       100 MAD
+Créer l'entreprise             2 500 MAD    ← une seule fois, jamais refait
+Le numéro américain              500 MAD    ← une seule fois
 80 vidéos × 10 MAD               800 MAD
 Metricool, 2 mois × 172          344 MAD
-Gemini                             ~0
-Le site, l'hébergement             ~0
-─────────────────────────────────────────
-CE QU'ON CONNAÎT               1 244 MAD    ≈ 115 €
+Le domaine                       100 MAD
+Gemini · le site · l'hébergement   ~0
+───────────────────────────────────────────
+                               4 244 MAD    ≈ 392 €
 ```
 
-❌ **Ce total est INCOMPLET, et il faut le dire.** Il manque encore :
+### Le projet SUIVANT — ce qu'il coûtera vraiment
 
 ```
-les crédits de scraping        à chiffrer, ~65 par projet
+4 244 MAD
+− 3 000 MAD   l'entreprise et le numéro, déjà payés
+───────────────────────────────
+  1 244 MAD    ≈ 115 €
+```
+
+🟢 **Les 3 000 MAD les plus lourds, tu les paies une seule fois dans ta vie.**
+Le projet 2 démarre à 1 244 MAD, le projet 3 aussi.
+
+❌ **Il manque encore trois lignes :**
+
+```
+les crédits de scraping        ~65 par projet, à chiffrer en dirhams
 l'échantillon fournisseur      à chiffrer
 l'agent fournisseur            déjà payé, montant pas communiqué
-la création de l'entreprise    à chiffrer
-le numéro américain            à chiffrer
 ```
 
-**Tant que ces cinq lignes manquent, 1 244 MAD est un plancher, pas un
-total.** Un chiffre inventé pour les combler serait pire — il rassurerait.
+**Tant qu'elles manquent, 4 244 MAD est un plancher.** Un chiffre inventé pour
+les combler serait pire — il rassurerait.
 
 **Un seul chiffre. Il n'y a pas de version France seule** — le lancement se
 fait sur les deux marchés en même temps, décidé le 30/09.
@@ -163,20 +180,23 @@ fait sur les deux marchés en même temps, décidé le 30/09.
 
 ## 5. Combien de ventes pour être à zéro
 
-**Le lancement coûte 1 244 MAD ≈ 115 €.**
-
 Avec le net réel par vente *(chaîne de paiement déduite, voir `prix.md`)* :
 
-| Ce qu'il achète | Tu touches | Ventes pour être à zéro |
-|---|---|---|
-| 🇫🇷 **Sweat + jogging** ⭐ | **22,90 €** | **6 ventes** |
-| 🇫🇷 Veste | 11,70 € | 10 ventes |
-| 🇫🇷 T-shirt | 6,80 € | 17 ventes |
-| 🇲🇦 tous produits | ❌ **à chiffrer** | le coût de livraison au Maroc manque |
+| Ce qu'il achète | Tu touches | **Ce lancement** *(392 €)* | **Le projet 2** *(115 €)* |
+|---|---|---|---|
+| 🇫🇷 **Sweat + jogging** ⭐ | **22,90 €** | **18 ventes** | **6 ventes** |
+| 🇫🇷 Veste | 11,70 € | 34 ventes | 10 ventes |
+| 🇫🇷 T-shirt | 6,80 € | 58 ventes | 17 ventes |
+| 🇲🇦 tous produits | ❌ **à chiffrer** | le coût de livraison au Maroc manque | |
 
-> **Six ventes du produit d'appel et tout ton lancement est remboursé.**
+> **Dix-huit ventes du produit d'appel et ce lancement est remboursé.**
+> **Six suffiront pour le suivant.**
 
-⚠️ **Le t-shirt ne rembourse rien** — 17 ventes pour rentrer dans ses frais.
+⚠️ **Le chiffre est passé de 6 à 18** le jour où l'entreprise et le numéro sont
+entrés dans le calcul. **Ce n'est pas une mauvaise nouvelle, c'est le vrai
+chiffre** — et 3 000 MAD de ces 4 244 ne se repaieront jamais.
+
+⚠️ **Le t-shirt ne rembourse rien** — 58 ventes pour rentrer dans tes frais.
 C'est normal : **il recrute, il ne nourrit pas.**
 
 *(Ne compte pas encore : l'agent, l'échantillon, le stock, le contrôle qualité, et les colis refusés au Maroc ~20 MAD par commande.)*

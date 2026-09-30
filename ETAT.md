@@ -22,7 +22,7 @@ LA SUITE    dépouiller sa réponse, puis arrêter le catalogue
 | **Étude de marché** | prix concurrents relevés pour de vrai |
 | **Le client** | Yanis, 19 ans, Vitry |
 | **Les hooks** | 49, dont 18 tirés d'avis 1 étoile réels |
-| **Le budget** | **1 244 MAD** ≈ 115 € → **6 ventes pour être à zéro** |
+| **Le budget** | **4 244 MAD** ≈ 392 € → **18 ventes** · le projet 2 : 1 244 MAD → 6 ventes |
 | **Les prix** | figés, France et Maroc |
 | **Le questionnaire** | en ligne, vérifié, 18 conditions, 5 langues |
 | **Metricool** | branché — Insta + TikTok, je lis et je publie |
@@ -49,6 +49,8 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 ❌  la commission de l'agent, en %
 ❌  le prix du contrôle qualité
 ❌  le prix de l'échantillon
+❌  ce que coûtent les crédits de scraping, en dirhams
+✅  l'entreprise 2 500 MAD · le numéro américain 500 MAD — une seule fois
 ❌  ce qui a déjà été payé à l'agent
 ```
 
