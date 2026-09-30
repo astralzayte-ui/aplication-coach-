@@ -26,6 +26,7 @@ LA SUITE    dépouiller sa réponse, puis arrêter le catalogue
 | **Les prix** | figés, France et Maroc |
 | **Le questionnaire** | en ligne, vérifié, 18 conditions, 5 langues |
 | **Metricool** | branché — Insta + TikTok, je lis et je publie |
+| **Le montage vidéo** | `video/` — le moule rendu en code, pas par Higgs Field |
 
 ## Ce qui bloque
 
@@ -87,6 +88,9 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 ❓  marque/budget.md dit encore « 800 MAD de pub, décidé » — à corriger
 ❓  le prochain projet : nouveau dossier, ou à côté de celui-ci
 ❓  TikTok en compte personnel — on verra si la rétention 3 s remonte
+
+📌  le sigil (4 piques + ligne ambre) va sur l'écran de fin des vidéos,
+    au prochain rendu — le SVG est dans partage/BRIEF-SITE-SILENCE.md
 ```
 
 ---
