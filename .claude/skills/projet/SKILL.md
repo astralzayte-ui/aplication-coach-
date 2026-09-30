@@ -271,6 +271,53 @@ LE DOCUMENT        pour l'ENGAGER            →  avec le bon de commande,
 ⚠️ **Jamais les conditions après le paiement.** Une fois l'argent parti, elles
 ne valent rien — il dira qu'il ne les avait pas vues.
 
+### Comment le questionnaire arrive chez l'agent
+
+**Un questionnaire que l'agent n'ouvre pas ne sert à rien.** Trois façons de le
+lui donner, dans cet ordre :
+
+```
+1  UN LIEN            un site déposé en ligne    ← toujours essayer ça
+2  LE TEXTE BRUT      collé dans la conversation ← la roue de secours
+3  LE FICHIER         à télécharger              ← en dernier
+```
+
+**Pourquoi pas un artefact Claude :** il demande un compte, et **Claude n'est
+pas accessible depuis la Chine**. L'agent ne l'ouvrira pas.
+
+**Pourquoi le fichier en dernier :** sur WeChat il doit sortir la pièce jointe,
+trouver un navigateur, l'ouvrir. Chaque étape en perd un.
+
+**Le texte brut ne peut pas échouer.** Pas de compte, pas de navigateur, pas de
+téléchargement. Il répond dans le chat. Envoie-le **toujours en dessous du
+lien**, dans le même message.
+
+#### Le site, Claude le publie lui-même
+
+Il faut une clé Netlify dans les **Identifiants API** de l'environnement, sous
+le nom `NETLIFY_AUTH_TOKEN`. Elle se crée sur
+`app.netlify.com/user/applications` → *New access token*.
+
+⚠️ **Jamais la clé dans la conversation.** Elle s'écrit dans les réglages, nulle
+part ailleurs.
+
+```
+créer le site      POST  /api/v1/sites            {"name": "..."}
+publier            POST  /api/v1/sites/{id}/deploys.zip   (le dossier zippé)
+renommer           PATCH /api/v1/sites/{id}       {"name": "..."}
+```
+
+Le fichier doit s'appeler `index.html`, sinon l'adresse ne montre rien.
+
+**On renomme AVANT d'envoyer l'adresse.** Netlify donne un nom au hasard
+(`lucky-custard-09dbcb`). Une fois renommé, **l'ancienne adresse meurt** — si
+l'agent l'a déjà, il tombe sur une page blanche et on ne le saura jamais.
+
+**On ouvre la page une fois, soi-même, avant de donner l'adresse.**
+
+⚠️ **Jamais sur un site qui sert déjà à autre chose.** Un site par usage. Les
+photos de travail et le questionnaire ne vivent pas à la même adresse.
+
 ### On impose, on ne demande pas
 
 **Chaque condition devient une question à laquelle il répond OUI ou NON.**
