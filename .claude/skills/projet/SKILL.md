@@ -427,6 +427,39 @@ C'est **le chiffre qui débloque**. Il ne risque pas sa vie, il risque 83 €.
 - **On paie un outil seulement s'il remplace du temps ou donne un chiffre qu'on n'a pas.** Pas parce qu'il est pratique.
 - **La pub n'est jamais dans le budget de départ.** Elle arrive après le jour 21, sur un gagnant.
 
+### 🔴 Les dépenses qu'on oublie toujours
+
+**Le budget de départ ne s'arrête pas aux abonnements.** Voici celles qui
+tombent à côté de la liste et qui font mentir le total.
+
+| | Combien | Quand ça tombe |
+|---|---|---|
+| **Les visuels** *(Higgs Field)* | **800 MAD** pour 80 vidéos — 10 MAD la vidéo | avant la première vidéo |
+| **Les crédits de scraping** | ❌ à chiffrer — **~65 par projet** | étapes 1, 3 et 8, puis tous les mois |
+| **L'agent fournisseur** | ❌ à chiffrer — **il est payé d'avance** | étape 6 |
+| **Créer l'entreprise** | ❌ à chiffrer | avant d'encaisser le premier euro |
+| **Un numéro de téléphone** *(pays du compte)* | ❌ à chiffrer | pour le compte de paiement et le contact du site |
+| **Le domaine** | ~100 MAD / an | avant la mise en ligne |
+| **Le site lui-même** | **0** | il se construit ici, il s'héberge gratuitement |
+
+⚠️ **« Le site » est la ligne que tout le monde surestime.** Les vidéos qui
+enseignent le web vendent un hébergement à 4 €/mois et un abonnement de plus.
+**On ne paie ni l'un ni l'autre** — le site se construit ici et se publie sur
+un hébergeur gratuit. Seul le domaine coûte.
+
+⚠️ **Les crédits de scraping sont un coût RÉCURRENT, pas un coût de départ.**
+Les sources s'épuisent, il faut les recharger tous les mois. Un projet en
+consomme environ 65 ; le deuxième mois, il faut racheter.
+
+🔴 **Trois de ces lignes se paient AVANT la première vente :** l'agent, la
+création de l'entreprise, et le numéro. Elles ne se divisent pas par le nombre
+de ventes — **elles sortent de sa poche avant que quoi que ce soit rentre.**
+On les met en haut du budget, pas en note de bas de page.
+
+⚠️ **On ne devine aucun de ces montants.** Tant qu'il ne les a pas donnés, ils
+restent marqués `❌ à chiffrer` — un total avec des chiffres inventés est pire
+qu'un total incomplet, parce qu'il rassure.
+
 ### 🔴 Ce que ça coûte d'être payé
 
 **Ce n'est pas un coût de départ, c'est un pourcentage sur chaque vente** — donc

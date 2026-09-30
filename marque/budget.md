@@ -11,9 +11,25 @@
 | | Combien | Note |
 |---|---|---|
 | **Le domaine** | **100 MAD / an** | obligatoire |
-| **Les crédits IA (visuels)** | **800 MAD** | pour 80 vidéos = **10 MAD la vidéo** |
+| **Les crédits IA (visuels)** | **800 MAD** | 80 vidéos = **10 MAD la vidéo** — Higgs Field, à recharger |
+| **Les crédits de scraping** | ❌ **à chiffrer** | ~65 par projet, puis **tous les mois** |
 | **L'échantillon fournisseur** | ❌ **à chiffrer** | |
-| **L'agent fournisseur** | ❌ **à chiffrer** | payé, montant pas communiqué |
+| **L'agent fournisseur** | ❌ **à chiffrer** | déjà payé, montant pas communiqué |
+| **Créer l'entreprise** | ❌ **à chiffrer** | la LLC américaine |
+| **Un numéro américain** | ❌ **à chiffrer** | pour le compte de paiement et le contact du site |
+| **Le site** | **0** | construit ici, hébergé gratuitement sur Netlify |
+
+🔴 **Trois lignes se paient AVANT la première vente :** l'agent, la création de
+l'entreprise, le numéro. **Elles ne se divisent pas par le nombre de ventes** —
+elles sortent de ta poche avant que quoi que ce soit rentre.
+
+⚠️ **Le scraping est un coût qui revient**, pas un coût de départ. Les sources
+s'épuisent, on les recharge tous les mois. Il te reste **78 crédits
+ScrapeCreators** — assez pour ce projet plus un mois. Firecrawl (966 sur 1000)
+se recharge seul le 24 de chaque mois.
+
+⚠️ **« Le site » coûte 0.** Les vidéos qui enseignent le web vendent un
+hébergement à 4 €/mois — on ne le paie pas. Seul le domaine coûte.
 
 ---
 
@@ -120,9 +136,23 @@ Le domaine                       100 MAD
 80 vidéos × 10 MAD               800 MAD
 Metricool, 2 mois × 172          344 MAD
 Gemini                             ~0
+Le site, l'hébergement             ~0
 ─────────────────────────────────────────
-                               1 244 MAD    ≈ 115 €
+CE QU'ON CONNAÎT               1 244 MAD    ≈ 115 €
 ```
+
+❌ **Ce total est INCOMPLET, et il faut le dire.** Il manque encore :
+
+```
+les crédits de scraping        à chiffrer, ~65 par projet
+l'échantillon fournisseur      à chiffrer
+l'agent fournisseur            déjà payé, montant pas communiqué
+la création de l'entreprise    à chiffrer
+le numéro américain            à chiffrer
+```
+
+**Tant que ces cinq lignes manquent, 1 244 MAD est un plancher, pas un
+total.** Un chiffre inventé pour les combler serait pire — il rassurerait.
 
 **Un seul chiffre. Il n'y a pas de version France seule** — le lancement se
 fait sur les deux marchés en même temps, décidé le 30/09.
