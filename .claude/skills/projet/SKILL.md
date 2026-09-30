@@ -11,6 +11,11 @@ Tu pilotes un lancement selon **sa** méthode. Elle est ci-dessous. Tu la suis d
 
 **Une question à la fois.** Jamais une liste de questions.
 
+**Tu lui réclames ses vidéos enregistrées.** Il scrolle tous les jours et
+enregistre ce qui l'arrête. C'est la source la moins chère du projet, et elle
+n'arrive que si tu la demandes. **Tu la réclames à l'étape 7**, puis à chaque
+jour 21.
+
 **Ses écrans sont en français.** Il traduit les pages avec son navigateur. Quand
 tu le guides dans une interface — Netlify, Stripe, Meta, n'importe laquelle —
 tu nommes les boutons **en français**, avec le nom d'origine juste après.
@@ -69,13 +74,48 @@ phrase, tu continues.
 
 ### Étape 1 — L'étude de marché
 
-**On cherche trois choses.**
+**On cherche quatre choses.**
 
 | | On cherche | Avec quoi | Coût |
 |---|---|---|---|
 | **A** | Qui achète | lui + toi | gratuit |
-| **B** | Ce que les autres font mal | Ad Library, avis 1 étoile, Gemini + recherche web | gratuit |
+| **B** | Ce que les autres font mal | Ad Library, avis 1 étoile, recherche web | gratuit |
 | **C** | Ce que le lancement coûte | ses chiffres | gratuit |
+| **D** | **Ce qui peut tout casser de l'extérieur** | recherche web, vérification | gratuit |
+
+### 🔴 D — l'extérieur, celui qu'on oublie toujours
+
+**C'est le bloc qui manque à toutes les études de marché faites vite.** Il ne
+parle ni du produit ni du client — il parle de ce qui rend un plan impossible
+alors qu'il était bon sur le papier.
+
+**Les quatre questions, à poser dans chaque pays où on vend :**
+
+```
+1.  COMMENT ON EST PAYÉ      quel moyen de paiement, quel pourcentage part,
+                             quel risque si le client refuse
+2.  CE QUE LA LOI INTERDIT   sur le prix, sur les promesses, sur le retour
+3.  CE QUI EST BLOQUÉ        un service qu'on compte utiliser et qui ne
+                             s'ouvre pas là-bas
+4.  CE QUI COÛTE EN PLUS     frais d'une carte étrangère, conversion,
+                             douane, colis refusé
+```
+
+**Vécu sur ce projet — les quatre ont mordu :**
+
+| Ce qu'on a trouvé | Ce que ça a changé |
+|---|---|
+| Le paiement à la livraison fait refuser des colis, et on paie l'aller-retour | **Écarté partout.** Carte uniquement. |
+| Un prix barré doit avoir été réellement pratiqué *(France)* | **Aucun faux prix barré**, jamais |
+| Google ne s'ouvre pas en Chine | Le questionnaire fournisseur **sans police extérieure** |
+| Compte américain + clients européens = carte étrangère | **4,4 %** par vente au lieu de 2,9 % |
+
+⚠️ **Chacun a été trouvé en retard, après avoir construit dessus.** Trouvé à
+l'étape 1, aucun n'aurait coûté une seule reprise.
+
+⚠️ **On ne cherche que ce qui change quelque chose.** La taille du marché et
+les tendances vont dans un dossier de banque. Le moyen de paiement décide de
+la boutique entière.
 
 **Les règles :**
 
@@ -95,7 +135,13 @@ phrase, tu continues.
 7.  Combien de vidéos, sur combien de jours
 8.  Le coût total — obligatoire + qui bouge
 9.  Combien de ventes pour être à zéro
+10. Ce qui peut tout casser de l'extérieur, par pays
 ```
+
+⚠️ **Rien ne démarre tant que l'étude n'est pas confirmée.** Tout le reste en
+découle : le prix, les conditions du fournisseur, les hooks, le site. Une étude
+à moitié faite se paie **quatre étapes plus loin**, au moment où c'est le plus
+cher à reprendre.
 
 ---
 
@@ -118,6 +164,25 @@ phrase, tu continues.
 - **Deux pays ≠ deux cibles.** C'est le même mec ailleurs. On traduit, on change le paiement. On n'invente pas une deuxième marque.
 - Les cibles écartées, **on les note**. Elles reviennent quand il y a du budget pub.
 
+### Ses vraies phrases — les siennes, pas les nôtres
+
+**Une fiche client écrite de mémoire ne vaut rien.** Ce qui la rend utile, ce
+sont **ses mots à lui**, recopiés tels quels.
+
+```
+les avis 1 étoile des concurrents   ← la mine principale (étape 3)
+ce qu'il te dit, lui                ← il EST souvent la cible
+les vidéos qu'il enregistre         ← ce qui l'a arrêté (étape 8)
+```
+
+⚠️ **On recopie mot pour mot, fautes comprises.** Dès qu'on reformule, on perd
+ce qui faisait mal. *« Les robes sont les mêmes qu'au marché mais en 10× plus
+cher »* ne se réécrit pas.
+
+⚠️ **Tout chiffre qu'on n'a pas vérifié est marqué « estimation ».** Celui qui
+compte le plus : **combien il lâche d'un coup**. C'est lui qui décide le produit
+en vedette — se tromper dessus fait rater la vitrine entière.
+
 ---
 
 ### Étape 3 — Les concurrents
@@ -138,6 +203,31 @@ phrase, tu continues.
 - **Ne jamais payer une agence pour ça.** Leurs pubs sont publiques et gratuites.
 - **Vérifier s'ils parlent avant de payer des transcriptions.** Certaines niches sont muettes (musique + texte) — les accroches sont dans les légendes.
 - **Ce qui sort d'ici s'écrit avec leurs mots.** « Deux lavages et c'est bouloché » bat « un tissu qui tient ».
+
+### 🔴 Cette étape passe AVANT l'étape 5
+
+**Le relevé des prix se fait ici, pas au moment de fixer les siens.** Sans lui,
+on fixe un prix au ressenti et on croit casser le marché alors qu'on s'aligne
+dessus. *(La règle complète est à l'étape 5.)*
+
+### Où trouver les avis 1 étoile
+
+```
+Trustpilot           le plus riche, et public
+Google, les cartes   les clients pressés y vont
+Les commentaires     sous leurs propres pubs et vidéos — souvent les plus durs
+Les boutiques d'appli si la marque en a une
+```
+
+**Une marque à 2,8 sur 5 avec 886 avis est une mine.** Une marque à 4,8 n'a
+rien à donner — on cherche ailleurs.
+
+⚠️ **Un avis isolé est un accident. La même plainte vingt fois est un marché.**
+On ne garde que ce qui revient.
+
+⚠️ **Chaque plainte retenue devient un hook, donc une promesse.** Avant de la
+retenir, on vérifie qu'on peut faire mieux qu'eux sur ce point précis. Sinon on
+s'accuse nous-mêmes.
 
 ---
 
@@ -176,6 +266,54 @@ C'est **le chiffre qui débloque**. Il ne risque pas sa vie, il risque 83 €.
 - Une dépense obligatoire **se divise par le nombre de ventes**. 900 MAD sur 10 ventes = 90 MAD la vente. Sur 100 ventes = 9 MAD.
 - **On paie un outil seulement s'il remplace du temps ou donne un chiffre qu'on n'a pas.** Pas parce qu'il est pratique.
 - **La pub n'est jamais dans le budget de départ.** Elle arrive après le jour 21, sur un gagnant.
+
+### 🔴 Ce que ça coûte d'être payé
+
+**Ce n'est pas un coût de départ, c'est un pourcentage sur chaque vente** — donc
+il ne se voit pas dans le total, et il mange la marge en silence.
+
+**On chiffre la chaîne entière, pas la première ligne :**
+
+```
+l'encaissement          ce que prend le service de paiement
++ la carte étrangère    un supplément si le compte n'est pas dans le pays
+                        du client
++ la conversion         chaque passage d'une monnaie à une autre
++ le transfert          pour sortir l'argent vers sa banque à lui
+= CE QU'IL TOUCHE VRAIMENT
+```
+
+⚠️ **Vécu sur ce projet :** le tarif affiché était **2,9 % + 0,30 $**. Le vrai,
+compte américain et clients européens, était **4,4 %** — et ce n'était pas la
+fin de la chaîne. **Trouvé après avoir fixé les prix.**
+
+**Donc : on calcule ce qu'il touche par vente à l'étape 4, pas plus tard.**
+C'est ce chiffre-là qui sert à l'étape 5, jamais le prix de vente.
+
+### Abonnement ou pourcentage — le point de bascule
+
+```
+sans abonnement   0 par mois   +   un gros pourcentage
+avec abonnement   X par mois   +   un petit pourcentage
+```
+
+**On démarre toujours sans abonnement.** Zéro vente doit coûter zéro.
+
+**On calcule le point de bascule le jour du choix, et on l'écrit** : le montant
+de ventes mensuel à partir duquel l'abonnement devient moins cher. On le
+surveille au rapport mensuel. C'est une décision prise **d'avance**, pas une
+décision à reprendre.
+
+### Le budget se fait en deux fois
+
+```
+ÉTAPE 4    ce qu'on connaît déjà      →  un chiffre ferme, tout de suite
+ÉTAPE 6    l'agent + le produit       →  après le catalogue, pas avant
+```
+
+**On ne demande jamais un chiffre avant de pouvoir le connaître.** Le prix de
+l'agent dépend des produits demandés — le réclamer à l'étape 4 ne donne qu'une
+réponse inventée.
 
 ---
 
@@ -492,23 +630,94 @@ Les angles se répartissent entre : **objection frontale, preuve, réaction de r
 
 Les hooks se rangent **dans** les angles : un angle = une branche, 2 à 3 hooks dedans.
 
+**Les sept angles, et ce qu'ils font :**
+
+| L'angle | Ce qu'il fait |
+|---|---|
+| **Objection frontale** | On dit tout haut ce qu'il pense tout bas |
+| **Preuve** | On montre. On ne dit pas. |
+| **Réaction de rue** | Quelqu'un d'autre le dit à notre place |
+| **Démonstration** | Le produit à l'épreuve, en vrai |
+| **Format natif** | On emprunte la forme de la plateforme |
+| **Prank** | On fait rire d'abord, on vend après |
+| **Prix** | Le chiffre, nu |
+
+### 🔴 Un hook est une promesse
+
+**Ce qu'un hook promet, le site doit le tenir.** Sinon on devient exactement la
+boutique qu'on attaque — et cette fois c'est nous qui récoltons les avis 1 étoile.
+
+```
+Le hook dit          « ils répondent plus quand t'as payé »
+Donc le site montre  un contact visible, une réponse sous 24 h, écrit noir
+                     sur blanc sur la fiche produit
+```
+
+**Avant de publier un hook, on vérifie que sa promesse est visible sur le site.**
+Pas dans une FAQ au fond — **sur la page où la vidéo l'envoie**.
+
+Un hook dont la promesse n'est pas tenable **ne se publie pas**. On le garde
+pour le jour où elle le sera.
+
 ---
 
-### Étape 8 — Les 4 sources
+### Étape 8 — Les 5 sources
 
 **Chaque hook est marqué par sa source.**
 
 ```
-1.  Lui + toi        ses objections          40 %
-2.  Ad Library       les pubs qui tournent   30 %
-3.  Scraping UGC     les vidéos qui percent  30 %
-4.  Avis 1 étoile    ce que les clients      vague 2
-                     gueulent
+VAGUE 1 — 40 vidéos
+1.  Lui + toi                  ses objections              35 %   14
+2.  Ses vidéos enregistrées    ce qui l'a arrêté, LUI      25 %   10
+3.  Ad Library                 les pubs qui tournent       25 %   10
+4.  Scraping UGC               les vidéos qui percent      15 %    6
+
+VAGUE 2 — à partir du jour 21
+5.  Avis 1 étoile              ce que leurs clients gueulent
+    + les sources 1 et 2 rechargées
 ```
 
-**Pourquoi le marquage :** à la fin, il ne sait pas seulement quel hook a marché. **Il sait où aller chercher les hooks du mois suivant.** C'est ça qui sert tous les mois d'après.
+**Pourquoi le marquage :** à la fin, il ne sait pas seulement quel hook a
+marché. **Il sait où aller chercher les hooks du mois suivant.** C'est ça qui
+sert tous les mois d'après.
 
-Les sources 1, 2, 3 s'épuisent. La 4 garde de la matière — et elle sert **au jour 21**, pas avant.
+### Les sources qui s'épuisent, et celles qui se rechargent
+
+```
+S'ÉPUISENT        Ad Library · scraping UGC
+                  on en fait le tour une fois, puis plus rien de neuf
+
+SE RECHARGENT     ses vidéos enregistrées · les avis 1 étoile · lui + toi
+                  il en arrive tous les mois, sans rien payer
+```
+
+**C'est la différence qui compte au mois 2.** Un projet qui n'a que des sources
+qui s'épuisent n'a plus rien à dire après 40 jours.
+
+### Source 2 — les vidéos qu'il enregistre
+
+**Il scrolle tous les jours. Quand une vidéo l'arrête, il l'enregistre et
+envoie le lien.** C'est la source la moins chère et la plus juste : il *est*
+la cible.
+
+**Ce qu'on en tire, avec les connecteurs de lecture vidéo :**
+
+```
+les 3 premières secondes   mot pour mot
+la structure               où arrive le produit, où arrive le prix
+le texte à l'écran         combien de mots, à quel moment
+POURQUOI ça l'a arrêté     ← c'est ça qui vaut de l'or
+```
+
+⚠️ **On prend la forme, jamais le fond.** Une vidéo lui plaît par *comment*
+c'est dit. Ce qu'on dit, nous, vient toujours de son client et des avis.
+
+⚠️ **Une vidéo qui plaît n'est pas une vidéo qui vend.** On vérifie qu'elle
+est dans la niche ou transposable. Un montage brillant sur un tout autre
+produit ne prouve rien.
+
+**On les garde toutes**, même celles qu'on ne joue pas. Au mois 3, la
+bibliothèque vaut plus que n'importe quel scraping payant.
 
 ---
 
@@ -532,6 +741,58 @@ Les sources 1, 2, 3 s'épuisent. La 4 garde de la matière — et elle sert **au
 
 **Le moule n'est pas une source.** C'est le contenant. Il ne prend pas de pourcentage.
 
+### Les trois règles techniques
+
+**Les rater coûte des vues, pas de l'argent.** C'est pire : on ne sait jamais
+que ça a coûté.
+
+#### 1. La zone sûre
+
+**L'application recouvre les bords de la vidéo.** Tout texte qui déborde est
+caché par les boutons — et personne ne le dit.
+
+Sur un format 1080 × 1920 :
+
+| Bord | Laisser libre | Ce qui s'y met |
+|---|---|---|
+| Haut | **220 px** | les onglets |
+| Bas | **500 px** | la légende, la musique |
+| Gauche | **180 px** | symétrie |
+| Droite | **180 px** | like, commentaire, partage |
+
+→ **Bande utile : 720 × 1200.** Tout le texte tient dedans.
+
+**C'est l'erreur numéro un.** Vérifier avec un calque avant une grosse
+publication. *(Ces chiffres bougent avec les mises à jour des applis — à
+revérifier de temps en temps.)*
+
+#### 2. Le texte figé
+
+```
+Blanc, contour noir épais, aucun fond coloré
+Aucune animation — ni entrée, ni sortie
+Entier dès la première image de son passage
+Vers 58 px, réduit jusqu'à ce que ça rentre
+```
+
+> Un texte qui bouge = **« c'est une pub »**
+> Un texte figé = **« c'est un mec »**
+
+#### 3. Le son natif
+
+**En gratuit : ne jamais coller la musique dans le fichier.**
+
+On publie la vidéo muette, puis **on attache le son tendance dans
+l'application**. L'algorithme pousse les vidéos qui utilisent un son de sa
+bibliothèque. Musique collée = moins de vues.
+
+*(On ne colle le son que pour de la pub payante, où on ne peut pas en
+attacher un.)*
+
+- Couper le son des plans par défaut, une seule piste porte tout
+- Faire descendre le son sur la dernière seconde — une coupure nette sonne cassé
+- Sauf sur le silence final : là, c'est voulu
+
 ---
 
 ### Étape 10 — L'univers
@@ -552,7 +813,28 @@ Les mêmes couleurs
 
 **La vraie photo bat l'image générée.** Une image générée peut se voir — et ça dit la même chose qu'un catalogue fournisseur : *« c'est pas une vraie marque »*. Le vrai produit, porté par un vrai pote, au téléphone, bat tout et coûte 0.
 
-**Le personnage de référence :** créé une fois dans l'outil, réutilisé partout. Un visage qui revient, c'est déjà la moitié de la marque.
+### Les personnages de référence — trois, pas un
+
+**Le client doit pouvoir se reconnaître.** On vend rarement à une seule
+origine. Trois personnages couvrent la cible sans la diviser.
+
+```
+Ce qui change   la peau, les cheveux
+Ce qui ne       la rue, la lumière, le cadrage, la carrure, l'âge, le style
+                change PAS
+```
+
+⚠️ **On ne voit jamais les visages** — capuche, de dos, coupé sous les yeux.
+
+> Avec des visages, 3 personnes = **3 marques**.
+> Sans visage, 3 personnes = **1 marque**.
+
+**Créés une fois dans l'outil, réutilisés sur les 80 vidéos.** Le coût par
+vidéo ne bouge pas.
+
+**Ils servent deux fois :** dans les vidéos, et sur la fiche produit — deux
+gabarits différents en photo tuent la peur *« la taille va pas m'aller »*. Avec
+trois, c'est réglé sans rien produire en plus.
 
 **La ligne à ne pas franchir :** un mannequin généré qui porte le produit, c'est normal. Un visage généré qui se présente comme le fondateur ou comme un client, c'est inventer une personne pour créer de la confiance. Ce qui tue *« c'est une arnaque »*, c'est **quelqu'un de réel**.
 
@@ -699,13 +981,25 @@ VAGUE 1 — jours 1 à 20      40 vidéos, 2 par jour
         🛑 JOUR 21 — ON LIT
 
 VAGUE 2 — jours 21 à 40     40 vidéos
-  les gagnants rejoués + les hooks de la source 4
+  les gagnants rejoués + la source 5, et les sources rechargées
   toutes dans le format qui a gagné
 ```
 
 **Pourquoi couper en deux :** tout balancer d'un coup, c'est lire les résultats une fois que tout est déjà sorti. En deux vagues, **on décide au milieu**.
 
 **Le rythme :** 2 par jour. Une toujours à l'heure où la cible scrolle.
+
+⚠️ **Le rythme compte plus que la qualité de chaque vidéo.** Un compte neuf qui
+poste 2 fois par jour pendant 20 jours apprend à l'algorithme à qui le montrer.
+Un compte qui poste 5 chefs-d'œuvre puis s'arrête trois jours n'apprend rien à
+personne.
+
+**Si on prend du retard :** on ne rattrape jamais en publiant 6 d'un coup.
+On reprend à 2 par jour et **on décale le jour 21**. Le repère, c'est le nombre
+de vidéos sorties, pas la date.
+
+**On produit en avance, on publie à l'heure.** Les 40 de la vague 1 peuvent
+être prêtes dès le jour 1 — elles sortent quand même 2 par jour.
 
 ---
 
@@ -718,6 +1012,21 @@ Sans témoin, on ne saura jamais si le moule aide ou s'il freine — il n'y a ri
 ⚠️ **Ce n'est pas une preuve scientifique.** Mais si le moule est franchement mauvais, ça se verra — avant d'avoir brûlé les 80.
 
 Le témoin peut porter **deux tests à la fois** (le format, et par exemple avec/sans visage). Un seul dispositif, deux réponses.
+
+**Comment on le lit, au jour 21 :**
+
+```
+le moule gagne nettement     →  on le garde, vague 2 entièrement dedans
+le témoin gagne nettement    →  le témoin DEVIENT le moule
+c'est serré                  →  on garde le moule
+                                (à égalité, la répétition gagne toujours)
+```
+
+⚠️ **On compare la rétention à 3 secondes, pas les vues.** Les vues dépendent
+de qui l'algorithme a servi. La rétention dépend de la vidéo.
+
+⚠️ **Le témoin change UNE chose à la fois.** Deux changements d'un coup, et on
+ne saura pas lequel a joué. C'est la seule règle qui rend le test lisible.
 
 ---
 
@@ -735,6 +1044,41 @@ Le témoin peut porter **deux tests à la fois** (le format, et par exemple avec
 **Les clics jugent le produit**, pas le hook. Ne jamais confondre les deux.
 
 La branche vaut plus que le hook : un hook gagnant donne une vidéo, **une branche gagnante donne les hooks du mois suivant**.
+
+### Ce qu'on décide ce jour-là, et rien d'autre
+
+```
+✅  quel moule pour la vague 2
+✅  quelles branches on continue, lesquelles on abandonne
+✅  quelle source on creuse le mois d'après
+✅  sur quel produit on mettra la pub, s'il y en a
+```
+
+```
+❌  changer les prix          ← ils sont figés, ils bougent pas au milieu
+❌  changer la marque         ← 20 jours ne jugent pas un univers
+❌  arrêter le projet         ← la vague 2 n'a pas encore tourné
+```
+
+### Si tout est mort au jour 21
+
+**Ça arrive, et ce n'est pas la fin.** Dans l'ordre :
+
+```
+1.  La rétention 3 s est basse partout   →  le problème est le HOOK
+                                            on change de source, pas de produit
+2.  La rétention est bonne, zéro clic    →  le problème est le PRODUIT
+                                            ou son prix
+3.  Des clics, zéro vente                →  le problème est le SITE
+                                            (étape 11, la promesse pas tenue)
+```
+
+⚠️ **On ne change qu'une chose entre les deux vagues.** Tout changer, c'est
+repartir de zéro en croyant avancer.
+
+⚠️ **Zéro vente au jour 21 n'est pas un échec** : 40 vidéos gratuites ont acheté
+une réponse que la pub aurait fait payer. **Le seul vrai échec, c'est d'avoir
+publié sans pouvoir lire.**
 
 ---
 
