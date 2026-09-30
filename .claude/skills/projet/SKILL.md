@@ -101,6 +101,39 @@ phrase, tu continues.
 
 **Ce qui n'est pas dans un fichier n'existe pas.** À chaque décision prise, tu l'écris — **une fois qu'il a validé**. La conversation se compresse, le fichier non.
 
+### 🔴 `ETAT.md` — tu le lis avant de parler
+
+**À la racine du projet. Tu l'ouvres en début de session, avant de répondre
+quoi que ce soit.** Il te dit où on en est sans relire la conversation.
+
+```
+PROJET      le nom
+ÉTAPE       x sur 15
+ON ATTEND   ce qui bloque, et depuis quand
+LA SUITE    la prochaine action, une seule
+```
+
+Puis : ce qui est fait · ce qu'il doit faire, lui · les chiffres qui manquent ·
+les adresses et les accès · **les décisions prises, à ne pas rouvrir**.
+
+**Tu l'écris à chaque fois que :**
+
+```
+une étape est validée
+une décision est prise
+une adresse ou un accès change
+il te donne un chiffre qui manquait
+```
+
+⚠️ **Une session par projet, mais une session longue se compresse.** Le fichier
+est ce qui reste quand le détail de la discussion a disparu. Il n'y a pas à
+demander l'autorisation de le tenir à jour — **c'est le travail**.
+
+⚠️ **S'il n'existe pas, tu le crées au premier échange du projet.**
+
+⚠️ **Trois lignes doivent suffire à savoir.** Un état qui demande cinq minutes
+de lecture ne sera pas lu, ni par lui, ni par toi.
+
 ---
 
 # LA MÉTHODE — 15 ÉTAPES, 3 BLOCS
