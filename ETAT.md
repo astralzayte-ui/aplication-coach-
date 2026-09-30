@@ -1,6 +1,6 @@
 # Où on en est
 
-> Mis à jour le **30/09/2026**.
+> Mis à jour le **30/09/2026**, en fin de journée.
 > Claude le lit en ouvrant une session, et l'écrit à chaque décision.
 > **Trois lignes suffisent à savoir. Le reste est du détail.**
 
@@ -25,6 +25,7 @@ LA SUITE    dépouiller sa réponse, puis arrêter le catalogue
 | **Le budget** | 960 MAD → **5 ventes pour être à zéro** |
 | **Les prix** | figés, France et Maroc |
 | **Le questionnaire** | en ligne, vérifié, 18 conditions, 5 langues |
+| **Metricool** | branché — Insta + TikTok, je lis et je publie |
 
 ## Ce qui bloque
 
@@ -35,8 +36,8 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 
 ```
 🟠  envoyer le lien à l'agent          ← le seul qui compte
-🟠  compte Insta France + Metricool
 🟠  recharger Higgs Field
+🟠  Stripe en lecture seule            ← inutile tant qu'il n'y a pas de vente
 ```
 
 ## Les chiffres qui manquent encore
@@ -58,6 +59,9 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 | Netlify | clé dans les Identifiants API — Claude publie et renomme seul |
 | Gemini | clé dans les Identifiants API |
 | Photos provisoires | `flourishing-dasik-35d194.netlify.app` ⚠️ **jamais public** |
+| Metricool | connecteur branché — marque `SILENCE | Menswear`, id **7079823** |
+| Instagram | `silence.worldwide` — compte professionnel ✅ |
+| TikTok | `SILENCE | Menswear` — ⚠️ **compte personnel**, stats réduites |
 
 ## Les décisions prises, à ne pas rouvrir
 
@@ -68,6 +72,17 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 🔴  aucun prix barré qui n'a pas été réellement pratiqué
 🔴  entrepôt en Europe — sans lui, les 2-3 jours sont impossibles
 🔴  pub : 800 MAD sur 5 semaines, 1 seule vidéo, 0 test A/B
+🔴  jamais d'accès à sa banque — Stripe en lecture seule, rien d'autre
+```
+
+---
+
+## Ce qui reste ouvert
+
+```
+❓  40 ou 50 jours de diffusion — le skill dit 40, il a dit 50 une fois
+❓  le prochain projet : nouveau dossier, ou à côté de celui-ci
+❓  TikTok en compte personnel — on verra si la rétention 3 s remonte
 ```
 
 ---

@@ -126,8 +126,26 @@ il te donne un chiffre qui manquait
 ```
 
 ⚠️ **Une session par projet, mais une session longue se compresse.** Le fichier
-est ce qui reste quand le détail de la discussion a disparu. Il n'y a pas à
-demander l'autorisation de le tenir à jour — **c'est le travail**.
+est ce qui reste quand le détail de la discussion a disparu.
+
+### 🔴 Tu l'écris en silence
+
+**Tu ne demandes pas l'autorisation. Tu ne l'annonces pas. Tu ne le lui envoies
+pas.** Tenir l'état à jour, c'est le travail, pas un livrable.
+
+```
+❌   « Je mets à jour le fichier d'état ? »
+❌   « J'ai mis à jour ETAT.md, le voilà »
+✅   (tu l'écris, tu continues, il ne voit rien)
+```
+
+**Le moment où tu l'écris : dès que tu le sens.** Une étape validée, un accès
+qui change, un chiffre obtenu, une décision prise — et aussi quand la
+conversation devient longue et que tu sens le fil se perdre. **Mieux vaut
+l'écrire dix fois pour rien qu'une fois trop tard.**
+
+⚠️ **C'est la seule exception à « tu ne décides jamais à sa place ».** Elle vaut
+pour `ETAT.md` uniquement, jamais pour les autres fichiers du projet.
 
 ⚠️ **S'il n'existe pas, tu le crées au premier échange du projet.**
 
