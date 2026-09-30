@@ -22,19 +22,36 @@
 | | Combien | Pourquoi |
 |---|---|---|
 | **Metricool Starter** ✅ | **16 €/mois ≈ 172 MAD** | publier tout seul sur **2 pays** |
-| **Gemini API** ✅ | **~3 $/mois ≈ 30 MAD** *(estimation)* | lire les vidéos, chercher sur le web |
+| **Gemini API** ✅ | **~0** — quelques centimes | lire les vidéos, chercher sur le web |
 | **Firecrawl** | **0** | les 500 crédits gratuits suffisent |
 | **WhatsApp Business** | **0** | l'appli gratuite fait les réponses auto |
 | **Instagram / TikTok** | **0** | |
 
-### 💡 Metricool : tu peux commencer gratuit
+### 💡 Metricool : ce qui fait passer de 0 à 16 €
+
+**Metricool ne compte pas les pays. Il compte les « marques ».**
+
+Une marque = **un paquet de comptes** branchés ensemble.
 
 ```
-Gratuit     1 marque     →  la France seule
-Starter     16 €/mois    →  jusqu'à 5 marques  →  France + Maroc
+1 Instagram + 1 TikTok        =  1 marque   →  GRATUIT
+2 Instagram + 2 TikTok        =  2 marques  →  16 €/mois
 ```
 
-**Tant que tu lances que la France, tu paies rien.** Tu passes à 16 € le jour où le Maroc démarre.
+**Donc :**
+
+| | Comptes | Marques | Prix |
+|---|---|---|---|
+| France seule | `silence.worldwide` + TikTok | **1** | **0** |
+| France + Maroc | + `silence.maroc` + son TikTok | **2** | **16 €/mois** |
+
+**C'est le deuxième jeu de comptes qui coûte, pas le Maroc.**
+
+⚠️ **Si tu faisais tourner le Maroc sur les MÊMES comptes, ça resterait
+gratuit.** On ne le fait pas, parce que les prix affichés diffèrent (€ et MAD)
+et qu'un compte qui mélange les deux perd les deux publics.
+
+*(Le plan à 16 € couvre jusqu'à 5 marques — donc 5 projets, pas seulement 2.)*
 
 ### Gemini : le détail du prix ✅
 
@@ -46,7 +63,11 @@ Vidéo       0,002 $ la minute
 ```
 
 → **Une vidéo YouTube de 15 min coûte quelques centimes.**
-Ton usage réel : **2 à 5 $ par mois** *(estimation, à confirmer après un mois)*.
+
+⚠️ **Correction du 30/09 :** les « 2 à 5 $ par mois » étaient une estimation
+gonflée, jamais vérifiée. Au tarif réel — **0,002 $ la minute de vidéo** — lire
+20 vidéos d'une minute coûte **4 centimes**. Ton usage réel est **entre 0 et
+1 $ par mois**.
 
 ---
 
@@ -54,62 +75,34 @@ Ton usage réel : **2 à 5 $ par mois** *(estimation, à confirmer après un moi
 
 | | Combien | Quand |
 |---|---|---|
-| **La pub** | **800 MAD** | **jamais avant le jour 21**, et seulement sur un gagnant |
+| **La pub** | **au feeling** | quand tu le sens — **pas un budget, une décision du jour** |
 | **Le contrôle qualité** | ❌ **à chiffrer** | quand tu le demandes à l'agent, avant une grosse commande |
 
-### La pub — 800 MAD
+### La pub — au feeling *(décidé le 30/09)*
+
+🔴 **La pub n'est plus dans le budget.** Elle se décide le jour où le
+propriétaire le sent, pas à l'avance.
+
+**Ce qui reste, et qui ne bouge pas :**
 
 ```
-Étalé sur 5 semaines    →   23 MAD/jour   ≈ 2,10 €/jour
-Étalé sur 7 semaines    →   16 MAD/jour   ≈ 1,50 €/jour
-Concentré sur 2 semaines →  57 MAD/jour   ≈ 5,30 €/jour   ← recommandé
+On ne paie QUE ce qui a déjà marché en gratuit.
+Jamais une vidéo qui n'a pas fait ses preuves toute seule.
 ```
 
-⚠️ **Étalé, c'est trop mince.** À 1,50-2 € par jour l'algorithme n'a pas assez
-de volume pour apprendre. Tu auras dépensé les 800 MAD sans rien savoir.
-
-**Concentré sur 2 semaines, sur UNE seule vidéo gagnante**, ça donne un vrai
-résultat. C'est la méthode : on paie ce qui a déjà gagné en gratuit.
+**Si un jour tu lances une pub, la règle du budget serré tient toujours :**
 
 ```
-800 MAD de pub  ÷  300 MAD de marge (veste 🇫🇷)  =  3 ventes
+1 seule pub        ← la vidéo qui a gagné
+1 seul produit     ← celui à la plus grosse marge
+1 seule audience   ← pas de découpage
+0 test A/B         ← un petit budget ne peut pas comparer
 ```
 
-**Trois ventes en deux semaines et la pub est remboursée.**
+**Chaque découpage divise ton budget par deux.** À budget serré, tout sur une
+seule ligne, sinon tu n'apprends rien.
 
-### ✅ Décidé : 5 semaines
-
-```
-800 MAD  ÷  35 jours  =  23 MAD/jour  ≈  2,10 €/jour
-```
-
-**Ma réserve, gardée pour mémoire :** à 2 € par jour, l'algorithme a peu de
-volume pour apprendre. Le propriétaire a tranché pour 5 semaines — c'est son
-choix, il est assumé.
-
-### ⚠️ La règle qui rend les 5 semaines viables
-
-**À ce budget, tu ne divises rien.**
-
-```
-1 seule pub          ← la vidéo qui a gagné au jour 21
-1 seul produit       ← celui à la plus grosse marge
-1 seule audience     ← pas de découpage par ville, âge, centre d'intérêt
-0 test A/B           ← le budget est trop petit pour comparer
-```
-
-**Chaque découpage divise les 2 € par deux.** À 1 € par jour, tu n'apprends
-plus rien du tout.
-
-**Tout le budget sur une seule ligne, pendant 35 jours.** C'est la seule façon
-que 2 €/jour produise un signal lisible.
-
-```
-800 MAD de pub  ÷  300 MAD de marge (veste 🇫🇷)  =  3 ventes
-```
-
-**Trois ventes sur 5 semaines et la pub est remboursée.** Une vente toutes les
-12 jours. C'est atteignable.
+*(Note : le 25/09, 800 MAD sur 5 semaines avaient été décidés. Annulé le 30/09.)*
 
 ⚠️ **Le contrôle qualité :** c'est une inspection payée à l'agent ou à une société tierce avant l'expédition. Je n'ai pas de chiffre vérifié — **demande le prix à ton agent**, et on l'inscrit ici.
 
@@ -123,16 +116,18 @@ Sur **2 mois** (préparation + les 40 jours) :
 Le domaine                       100 MAD
 80 vidéos × 10 MAD               800 MAD
 Metricool, 2 mois × 172          344 MAD
-Gemini, 2 mois × 30               60 MAD
+Gemini                             ~0
 ─────────────────────────────────────────
-                               1 304 MAD    ≈ 120 €
+                               1 244 MAD    ≈ 115 €
 ```
 
 **Si tu démarres la France seule (Metricool gratuit) :**
 
 ```
-                                 960 MAD    ≈ 89 €
+                                 900 MAD    ≈ 83 €
 ```
+
+**La pub n'est pas dedans.** C'est voulu.
 
 ---
 
