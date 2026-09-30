@@ -21,7 +21,7 @@
 
 | | Combien | Pourquoi |
 |---|---|---|
-| **Metricool Starter** ✅ | **16 €/mois ≈ 172 MAD** | publier tout seul sur **2 pays** |
+| **Metricool Starter** ✅ | **16 €/mois ≈ 172 MAD** | obligatoire — **2 jeux de comptes** |
 | **Gemini API** ✅ | **~0** — quelques centimes | lire les vidéos, chercher sur le web |
 | **Firecrawl** | **0** | les 500 crédits gratuits suffisent |
 | **WhatsApp Business** | **0** | l'appli gratuite fait les réponses auto |
@@ -46,6 +46,9 @@ Une marque = **un paquet de comptes** branchés ensemble.
 | France + Maroc | + `silence.maroc` + son TikTok | **2** | **16 €/mois** |
 
 **C'est le deuxième jeu de comptes qui coûte, pas le Maroc.**
+
+🔴 **Pour SILENCE, c'est 16 €/mois dès le départ.** On lance la France et le
+Maroc en même temps — le plan gratuit ne s'applique pas ici.
 
 ⚠️ **Si tu faisais tourner le Maroc sur les MÊMES comptes, ça resterait
 gratuit.** On ne le fait pas, parce que les prix affichés diffèrent (€ et MAD)
@@ -121,11 +124,8 @@ Gemini                             ~0
                                1 244 MAD    ≈ 115 €
 ```
 
-**Si tu démarres la France seule (Metricool gratuit) :**
-
-```
-                                 900 MAD    ≈ 83 €
-```
+**Un seul chiffre. Il n'y a pas de version France seule** — le lancement se
+fait sur les deux marchés en même temps, décidé le 30/09.
 
 **La pub n'est pas dedans.** C'est voulu.
 
@@ -133,12 +133,21 @@ Gemini                             ~0
 
 ## 5. Combien de ventes pour être à zéro
 
-| | Marge / vente | À 960 MAD | À 1 304 MAD |
-|---|---|---|---|
-| 🇫🇷 Veste 34,90 € | 27,90 € | **4 ventes** | **5 ventes** |
-| 🇲🇦 Veste 249 MAD | 173 MAD | **6 ventes** | **8 ventes** |
+**Le lancement coûte 1 244 MAD ≈ 115 €.**
 
-**Cinq ventes en France et tout ton lancement est remboursé.**
+Avec le net réel par vente *(chaîne de paiement déduite, voir `prix.md`)* :
+
+| Ce qu'il achète | Tu touches | Ventes pour être à zéro |
+|---|---|---|
+| 🇫🇷 **Sweat + jogging** ⭐ | **22,90 €** | **6 ventes** |
+| 🇫🇷 Veste | 11,70 € | 10 ventes |
+| 🇫🇷 T-shirt | 6,80 € | 17 ventes |
+| 🇲🇦 tous produits | ❌ **à chiffrer** | le coût de livraison au Maroc manque |
+
+> **Six ventes du produit d'appel et tout ton lancement est remboursé.**
+
+⚠️ **Le t-shirt ne rembourse rien** — 17 ventes pour rentrer dans ses frais.
+C'est normal : **il recrute, il ne nourrit pas.**
 
 *(Ne compte pas encore : l'agent, l'échantillon, le stock, le contrôle qualité, et les colis refusés au Maroc ~20 MAD par commande.)*
 

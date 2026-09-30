@@ -22,7 +22,7 @@ LA SUITE    dépouiller sa réponse, puis arrêter le catalogue
 | **Étude de marché** | prix concurrents relevés pour de vrai |
 | **Le client** | Yanis, 19 ans, Vitry |
 | **Les hooks** | 49, dont 18 tirés d'avis 1 étoile réels |
-| **Le budget** | **900 MAD** France seule, pub non comprise |
+| **Le budget** | **1 244 MAD** ≈ 115 € → **6 ventes pour être à zéro** |
 | **Les prix** | figés, France et Maroc |
 | **Le questionnaire** | en ligne, vérifié, 18 conditions, 5 langues |
 | **Metricool** | branché — Insta + TikTok, je lis et je publie |
@@ -71,6 +71,8 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 🔴  le produit d'appel est le sweat + jogging, pas la veste
 🔴  aucun prix barré qui n'a pas été réellement pratiqué
 🔴  entrepôt en Europe — sans lui, les 2-3 jours sont impossibles
+🔴  France ET Maroc dès le départ — pas de lancement France seule,
+    donc Metricool à 16 €/mois dès le premier jour
 🔴  la pub n'est pas dans le budget — au feeling, quand il le sent,
     et seulement sur une vidéo qui a déjà gagné en gratuit
 🔴  jamais d'accès à sa banque — Stripe en lecture seule, rien d'autre
