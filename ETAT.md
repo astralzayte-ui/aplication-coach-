@@ -28,9 +28,40 @@ LA SUITE    dépouiller sa réponse, puis arrêter le catalogue
 | **Metricool** | branché — Insta + TikTok, je lis et je publie |
 | **Les 3 commis** | agents en parallèle — releveur de prix, lecteur d'avis, écrivain de scripts |
 | **Le montage vidéo** | `video/` — le moule rendu en code, pas par Higgs Field |
+| **Les 4 pages légales** | écrites en brouillon dans `partage/legal/` — crochets à remplir |
 | **La boutique** | 3 écrans — refaits sur le système ORYZO, survols et vidéo au défilement |
 | **Les 4 vidéos** | lues ; ce qu'on en garde est dans les décisions ci-dessous |
 | **Le lien envoyé** | 30/09 — à relancer s'il n'a rien dit sous 3 jours |
+
+## 🔴 LA TVA — le trou trouvé le 30/09
+
+Une LLC américaine ne paie pas d'impôt **américain**. Elle doit quand même la
+**TVA française** : la TVA suit la marchandise et le client, pas la
+nationalité de la société. Le seuil de 10 000 € ne s'applique qu'aux sociétés
+établies dans l'UE → **zéro seuil, dès la première vente**.
+
+```
+Sweat + jogging  34,90 €  →  −5,82 €
+T-shirt          11,00 €  →  −1,83 €
+Ensemble         84,00 €  →  −14,00 €
+```
+
+**Les 18 ventes pour rentrer dans les frais sont donc FAUSSES.** À recalculer
+dès que l'agent donne son prix d'achat.
+
+**Solution : le guichet unique (OSS)** — une inscription, une déclaration par
+trimestre. Sauf si l'entrepôt est EN France : alors il faut un numéro de TVA
+français.
+
+**3 questions à poser à l'agent dans la relance :**
+```
+1.  l'entrepôt européen est dans quel pays ?
+2.  qui est l'importateur quand la marchandise entre dans l'entrepôt ?
+    (lui, normalement — à écrire noir sur blanc)
+3.  la composition des fibres, pièce par pièce — obligatoire avant l'achat
+```
+
+---
 
 ## Ce qui bloque
 
@@ -48,6 +79,9 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 
 ```
 ❌  la commission de l'agent, en %
+❌  le médiateur de la consommation — obligatoire, ~100 à 300 €/an
+❌  Refashion (éco-contribution textile) — obligatoire pour vendre du
+    textile en France, quelques centimes la pièce + l'inscription
 ❌  le prix du contrôle qualité
 ❌  le prix de l'échantillon
 ✅  l'entreprise 2 500 MAD · le numéro américain 500 MAD — une seule fois

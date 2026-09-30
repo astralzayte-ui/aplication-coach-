@@ -1,0 +1,120 @@
+# Confidentialité
+
+> 🟠 **À REMPLIR AVANT PUBLICATION :** nom de la société, adresse, e-mail,
+> le nom du prestataire de paiement, celui du transporteur, et le pays de
+> l'entrepôt.
+>
+> 🔴 **Le jour où tu poses un pixel Meta ou TikTok sur le site**, il faut en
+> plus un bandeau cookies avec un bouton **Refuser aussi visible que
+> Accepter**. Tant qu'il n'y a aucun traqueur, la section 7 suffit.
+
+**Dernière mise à jour : [date]**
+
+---
+
+## 1. Qui est responsable
+
+**[Nom de la société]**, [adresse] — voir les *Mentions légales*.
+
+Pour toute question ou pour exercer tes droits : **[e-mail]**
+
+---
+
+## 2. Ce que nous collectons
+
+| Quand | Quoi |
+|---|---|
+| **Tu commandes** | prénom, nom, adresse de livraison, e-mail, téléphone |
+| **Tu paies** | rien. Ta carte est traitée par notre prestataire. **Nous ne la voyons jamais** |
+| **Tu nous écris** | le contenu de ton message et tes coordonnées |
+| **Tu t'inscris à nos nouveautés** | ton e-mail seulement |
+
+**Nous ne collectons aucune donnée sensible.** Ni religion, ni santé, ni
+origine, ni opinion.
+
+---
+
+## 3. Pourquoi, et sur quelle base
+
+| Pourquoi | Base légale | Conservé |
+|---|---|---|
+| Traiter et livrer ta commande | l'exécution du contrat | **3 ans** après le dernier contact |
+| Conserver la facture | obligation comptable | **10 ans** |
+| Gérer une réclamation ou une garantie | l'exécution du contrat | **2 ans** après la fin de la garantie |
+| T'envoyer nos nouveautés | **ton consentement** | jusqu'à ton désabonnement |
+
+Tu peux te désabonner en un clic dans chaque e-mail. **Sans que ça change
+quoi que ce soit à tes commandes.**
+
+---
+
+## 4. Qui d'autre y a accès
+
+Le strict nécessaire, et rien de plus :
+
+| Qui | Pour quoi |
+|---|---|
+| **[Prestataire de paiement]** | encaisser ta carte |
+| **[Transporteur]** | te livrer — nom, adresse, téléphone |
+| **Notre fournisseur logistique, [pays]** | préparer et expédier ton colis |
+| **Netlify** | héberger le site |
+
+🔴 **Nous ne vendons, ne louons et n'échangeons tes données avec personne.**
+Jamais. Aucune exception.
+
+---
+
+## 5. Tes données sortent-elles de l'Union européenne ?
+
+**Oui, et tu as le droit de le savoir.**
+
+Notre société est immatriculée aux **États-Unis** et notre fournisseur
+logistique se trouve **hors Union européenne**. Ton nom et ton adresse de
+livraison circulent donc en dehors de l'UE pour que ton colis arrive.
+
+Ces transferts sont encadrés par les **clauses contractuelles types** de la
+Commission européenne. Seules les données nécessaires à la livraison sont
+transmises.
+
+---
+
+## 6. Tes droits
+
+Tu peux, à tout moment et gratuitement :
+
+```
+accéder            savoir ce que nous avons sur toi
+rectifier          corriger une erreur
+effacer            demander la suppression
+limiter            geler un traitement
+t'opposer          refuser une utilisation
+récupérer          obtenir tes données dans un fichier lisible
+retirer            annuler ton consentement aux nouveautés
+```
+
+**Écris à [e-mail].** Nous répondons **sous un mois**.
+
+Si notre réponse ne te convient pas, tu peux saisir la **CNIL** —
+`cnil.fr` — 3 place de Fontenoy, 75334 Paris Cedex 07.
+
+---
+
+## 7. Les cookies
+
+Le site utilise uniquement les cookies **nécessaires à son
+fonctionnement** : garder ton panier, te garder connecté pendant le
+paiement. **Ils ne servent pas à te suivre** et ne demandent pas ton accord.
+
+Nous n'utilisons **aucun** cookie publicitaire ni aucun traqueur de mesure
+d'audience.
+
+*Si cela change, un bandeau te le demandera avant le premier dépôt, avec un
+refus aussi simple qu'un accord.*
+
+---
+
+## 8. La sécurité
+
+Le site est servi en **HTTPS** de bout en bout. Les paiements sont traités
+par un prestataire certifié **PCI-DSS**. Nos accès sont limités aux
+personnes qui en ont besoin.
