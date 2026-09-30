@@ -50,6 +50,8 @@
   }
   .warn p{margin:0}
   .warn .ask{font-size:16.5px;font-weight:600;color:var(--ivoire)}
+  .warn .ask2{margin-top:12px;padding-top:12px;border-top:1px solid var(--ambre-dim);
+    font-size:14.5px;color:var(--chrome)}
   .warn strong{color:var(--ambre)}
 
   .status{
@@ -150,7 +152,7 @@
   <p class="eyebrow" id="eyebrow"></p>
   <h1 dir="ltr">SILENCE</h1>
   <p class="lede" id="lede1"></p>
-  <div class="warn"><p class="ask" id="ask"></p></div>
+  <div class="warn"><p class="ask" id="ask"></p><p class="ask2" id="ask2"></p></div>
 
   <div class="status">
     <span class="badge wait" id="badge"></span>
@@ -184,6 +186,7 @@ fr:{
   lede1:"Six catégories, unisexe, <strong>XS à XXL, tailles européennes</strong>.",
   lede2:"Nos conditions ne sont pas négociables. Répondez à toutes.",
   ask:"Nous vous prions de renseigner ce formulaire dans son intégralité, afin que nous sachions avec qui nous nous engageons.",
+  ask2:"Une fois vos réponses données, copiez le texte en bas de page et renvoyez-le-nous : il contient l'ensemble de vos réponses.",
   warn:"Chaque réponse est <strong>oui</strong> ou <strong>non</strong>. Si un point demande un aménagement, dites-le-nous plutôt que de le passer sous silence — nous savons que tout ne peut pas être parfait. Plusieurs fournisseurs sont consultés en parallèle, et celui que nous retiendrons recevra notre première commande dans la semaine.",
   wait:"NON RÉPONDU", prog:"EN COURS", ok:"QUALIFIÉ", ko:"DISQUALIFIÉ",
   tally:(d,n,f)=>"<b>"+d+"</b>/"+n+" répondues · <b>"+f+"</b> refusées",
@@ -232,6 +235,7 @@ en:{
   lede1:"Six categories, unisex, <strong>XS to XXL, European sizes</strong>.",
   lede2:"Our conditions are not negotiable. Answer every one.",
   ask:"We kindly ask you to complete this form in full, so that we know precisely with whom we are entering into business.",
+  ask2:"Once you have answered, copy the text at the bottom of this page and send it back to us: it contains all your answers.",
   warn:"Each answer is <strong>yes</strong> or <strong>no</strong>. If a point needs adjusting, tell us rather than leave it unsaid — we know not everything can be perfect. Several suppliers are being consulted in parallel, and the one we select will receive our first order within the week.",
   wait:"NOT ANSWERED", prog:"IN PROGRESS", ok:"QUALIFIED", ko:"DISQUALIFIED",
   tally:(d,n,f)=>"<b>"+d+"</b>/"+n+" answered · <b>"+f+"</b> failed",
@@ -283,6 +287,7 @@ ar:{
   lede1:"ستة أصناف، للجنسين، <strong>من XS إلى XXL، بمقاسات أوروبية</strong>.",
   lede2:"شروطنا غير قابلة للتفاوض. أجيبوا عن كل سؤال.",
   ask:"نرجو منكم تعبئة هذه الاستمارة كاملةً، حتى نعرف على وجه الدقة مع من سنعمل.",
+  ask2:"وبعد الإجابة، انسخوا النص في أسفل الصفحة وأعيدوه إلينا: فهو يتضمّن جميع أجوبتكم.",
   warn:"كل جواب هو <strong>«نعم»</strong> أو <strong>«لا»</strong>. وإن كان أحد البنود يحتاج إلى تعديل، فأخبرونا به بدل السكوت عنه — فنحن ندرك أن كل شيء لا يمكن أن يكون مثالياً. ونحن نستشير عدة موردين في آنٍ واحد، ومن نختاره يتلقّى أول طلبية لنا خلال الأسبوع.",
   wait:"لم يُجب", prog:"جارٍ", ok:"مؤهّل", ko:"مستبعَد",
   tally:(d,n,f)=>"أُجيب <b>"+d+"</b>/"+n+" · مرفوض <b>"+f+"</b>",
@@ -332,6 +337,7 @@ ja:{
   lede1:"6カテゴリー、ユニセックス、<strong>XS〜XXL、EUサイズ</strong>。",
   lede2:"当方の条件は交渉不可です。すべてにお答えください。",
   ask:"本フォームにすべてご記入いただきますようお願い申し上げます。どなたと取引を始めるのかを正確に把握するためです。",
+  ask2:"ご回答後、ページ下部のテキストをコピーして当方にお送りください。そちらにすべてのご回答が含まれております。",
   warn:"ご回答は<strong>「はい」</strong>か<strong>「いいえ」</strong>でお願いいたします。調整が必要な項目がございましたら、伏せずにお知らせください — すべてが完璧である必要はないと承知しております。複数のサプライヤーに並行して打診しており、選定させていただいた一社には今週中に最初の発注をいたします。",
   wait:"未回答", prog:"回答中", ok:"合格", ko:"不合格",
   tally:(d,n,f)=>"回答 <b>"+d+"</b>/"+n+" · 不適合 <b>"+f+"</b>",
@@ -381,6 +387,7 @@ zh:{
   lede1:"六个品类，男女通穿，<strong>XS 到 XXL，欧码</strong>。",
   lede2:"我们的条件不可谈判。请全部回答。",
   ask:"敬请完整填写本表格，以便我们确切了解将与何方合作。",
+  ask2:"回答完毕后，请复制页面底部的文本并发回给我们：其中包含您的全部回答。",
   warn:"每个回答请用<strong>「是」</strong>或<strong>「否」</strong>。若有条款需要调整，请直接告知，不必回避 —— 我们明白并非所有条件都能做到完美。我们正同时接洽多家供应商，最终选定的一家将在本周内收到我们的首笔订单。",
   wait:"未作答", prog:"进行中", ok:"合格", ko:"不合格",
   tally:(d,n,f)=>"已答 <b>"+d+"</b>/"+n+" · 不符合 <b>"+f+"</b>",
@@ -445,6 +452,7 @@ function build() {
   $("eyebrow").textContent = t.eyebrow;
   $("lede1").innerHTML = t.lede1;
   $("ask").textContent = t.ask;
+  $("ask2").textContent = t.ask2;
   $("t1").textContent = t.t1; $("s1").textContent = t.s1;
   $("t4").textContent = t.t4; $("s4").textContent = t.s4;
   $("stamp").textContent = t.stamp;
