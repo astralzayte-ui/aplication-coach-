@@ -22,7 +22,7 @@ LA SUITE    dépouiller sa réponse, puis arrêter le catalogue
 | **Étude de marché** | prix concurrents relevés pour de vrai |
 | **Le client** | Yanis, 19 ans, Vitry |
 | **Les hooks** | 49, dont 18 tirés d'avis 1 étoile réels |
-| **Le budget** | 960 MAD → **5 ventes pour être à zéro** |
+| **Le budget** | **900 MAD** France seule, pub non comprise |
 | **Les prix** | figés, France et Maroc |
 | **Le questionnaire** | en ligne, vérifié, 18 conditions, 5 langues |
 | **Metricool** | branché — Insta + TikTok, je lis et je publie |
@@ -71,7 +71,8 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 🔴  le produit d'appel est le sweat + jogging, pas la veste
 🔴  aucun prix barré qui n'a pas été réellement pratiqué
 🔴  entrepôt en Europe — sans lui, les 2-3 jours sont impossibles
-🔴  pub : 800 MAD sur 5 semaines, 1 seule vidéo, 0 test A/B
+🔴  la pub n'est pas dans le budget — au feeling, quand il le sent,
+    et seulement sur une vidéo qui a déjà gagné en gratuit
 🔴  jamais d'accès à sa banque — Stripe en lecture seule, rien d'autre
 ```
 
@@ -81,6 +82,7 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 
 ```
 ❓  40 ou 50 jours de diffusion — le skill dit 40, il a dit 50 une fois
+❓  marque/budget.md dit encore « 800 MAD de pub, décidé » — à corriger
 ❓  le prochain projet : nouveau dossier, ou à côté de celui-ci
 ❓  TikTok en compte personnel — on verra si la rétention 3 s remonte
 ```
