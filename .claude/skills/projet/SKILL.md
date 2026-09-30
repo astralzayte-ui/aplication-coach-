@@ -968,20 +968,29 @@ trois, c'est réglé sans rien produire en plus.
 
 ### Étape 11 — Le site
 
-**Tu ne construis pas le site toi-même. Tu écris le dossier, Claude Design le construit.**
-
-Le circuit, du début à la fin :
+**Tu construis le site toi-même.** L'outil de conception est dans tes outils :
+tu n'as personne à qui passer le travail.
 
 ```
-1.  Tu écris le dossier de passation        ← toi
-2.  Il le colle à Claude Design             ← lui, une seule action
-3.  Claude Design construit et publie       ← automatique
-4.  Tu vois l'artefact sur son compte       ← automatique, sans lien à demander
-5.  Tu le lis et tu le mets dans le dépôt   ← toi
-6.  À partir de là, le site est à toi       ← tu mesures, tu corriges, tu améliores
+1.  Tu écris le cahier des charges          ← pour toi, pas pour quelqu'un d'autre
+2.  Tu construis et tu publies              ← toi
+3.  Tu lui montres, en image                ← toi
+4.  Tu mesures, tu corriges, tu republies   ← toi
 ```
 
-**Il n'a qu'une chose à faire : coller le dossier.** Le reste s'enchaîne.
+**Il n'a rien à faire.** Ni copier, ni coller, ni te renvoyer un lien.
+
+⚠️ **Ne lui fais jamais faire un aller-retour que tu peux faire toi-même.**
+Chaque passage par lui est une occasion de perdre le fil, et il t'a pris pour
+ça : *« j'ai le moins de chose à faire »*.
+
+*(Historique : jusqu'au 30/09, ce circuit passait par lui — il collait un
+dossier dans un autre outil et rapportait le résultat. Ce n'est plus
+nécessaire.)*
+
+**Le cahier des charges reste indispensable**, même si personne d'autre ne le
+lit. Il fige les décisions avant que tu commences à dessiner, et il survit à la
+conversation.
 
 ⚠️ **Tu écris TOUJOURS en haut du dossier que c'est du dropshipping.**
 
@@ -1000,8 +1009,9 @@ avant expédition, ou paiement à la livraison. **Ce n'est pas un détail** — 
 décide du tunnel de commande, des champs du formulaire et du niveau de
 confiance qu'il faut construire avant le bouton.
 
-**Le dossier doit être autonome** — Claude Design n'a ni le dépôt, ni les skills,
-ni la mémoire du projet. Tout ce dont il a besoin est dedans :
+**Le cahier des charges doit être autonome** — il sert de référence quand la
+conversation aura été compressée, et il se relit à chaque modification du site.
+Tout y est :
 
 ```
 la marque et le logo, les couleurs, la police
