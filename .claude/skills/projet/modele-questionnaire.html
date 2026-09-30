@@ -1,0 +1,550 @@
+<!--
+  MODÈLE — questionnaire fournisseur, réutilisable tel quel.
+  Version qui tourne pour SILENCE : silence-supplier.netlify.app
+
+  CE QUI CHANGE D'UN PROJET À L'AUTRE
+    1. le nom dans <h1>
+    2. les cinq couleurs de :root
+    3. l'objet L, tout en bas — c'est LUI qui porte tout le texte,
+       les conditions et les cinq langues
+
+  CE QUI NE CHANGE JAMAIS
+    · le fichier s'appelle index.html
+    · un seul fichier, aucune police ni image venue d'ailleurs
+    · OUI ou NON, jamais de troisième choix
+    · le bloc à renvoyer reste en anglais, quelle que soit la langue lue
+-->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SILENCE — Supplier Qualification</title>
+<style>html{background:#0B0B0C}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+<style>
+  :root{
+    color-scheme: dark;
+    --noir:#0B0B0C; --surface:#131318; --surface2:#1a1a21;
+    --line:#26262f; --line2:#33333f;
+    --ivoire:#F4F2ED; --chrome:#B8BEC8; --mute:#7E7E8A;
+    --ambre:#E0A458; --ambre-dim:#8a6534;
+    --nuit:#16324F; --rouge:#E4796C;
+    --noto:'Noto Sans Arabic','Noto Sans JP','Noto Sans SC','PingFang SC',
+           'Hiragino Sans','Microsoft YaHei','Segoe UI',Tahoma;
+    --sans:system-ui,-apple-system,'Segoe UI',Roboto,var(--noto),sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,var(--noto),monospace;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--noir); color:var(--ivoire);
+    font-family:var(--sans); font-size:15px; line-height:1.55;
+    padding-block:0; padding-inline:16px;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding-block:26px 80px}
+
+  .langs{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;margin-bottom:26px}
+  .langs button{
+    font:inherit;font-family:var(--mono);font-size:12px;letter-spacing:.08em;cursor:pointer;
+    background:transparent;color:var(--mute);border:1px solid var(--line2);
+    border-radius:5px;padding:8px 13px;min-height:40px;
+  }
+  .langs button:hover{color:var(--ivoire);border-color:var(--chrome)}
+  .langs button[aria-pressed="true"]{background:var(--ivoire);color:var(--noir);border-color:var(--ivoire);font-weight:700}
+  .langs button:focus-visible{outline:2px solid var(--ambre);outline-offset:2px}
+
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ambre);margin:0 0 14px}
+  h1{font-size:clamp(34px,7vw,52px);font-weight:600;letter-spacing:.3em;text-indent:.3em;margin:0 0 20px;line-height:1.05;text-wrap:balance}
+  .lede{max-width:60ch;color:var(--chrome);font-size:16px;margin:0 0 6px}
+  .lede strong{color:var(--ivoire);font-weight:600}
+
+  .warn{
+    margin:28px 0 0;padding:18px 20px;border-radius:10px;
+    border:1px solid var(--ambre-dim);background:rgba(224,164,88,.07);
+    font-size:15px;color:var(--ivoire);
+  }
+  .warn p{margin:0}
+  .warn .ask{font-size:16.5px;font-weight:600;color:var(--ivoire)}
+  .warn .ask2{margin-top:12px;padding-top:12px;border-top:1px solid var(--ambre-dim);
+    font-size:14.5px;color:var(--chrome)}
+  .warn strong{color:var(--ambre)}
+
+  .status{
+    position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
+    margin:32px -16px 0;padding:14px 16px;
+    background:var(--surface);border-block:1px solid var(--line);
+    display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;
+  }
+  .badge{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.12em;padding:7px 14px;border-radius:5px}
+  .badge.ok{background:var(--ambre);color:var(--noir)}
+  .badge.ko{background:var(--rouge);color:var(--noir)}
+  .badge.wait{background:var(--surface2);color:var(--mute);border:1px solid var(--line2)}
+  .tally{font-family:var(--mono);font-size:12.5px;color:var(--mute);font-variant-numeric:tabular-nums}
+  .tally b{color:var(--ivoire)}
+
+  h2{font-size:12px;font-family:var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--ambre);
+     margin:56px 0 6px;font-weight:500}
+  .h2sub{color:var(--mute);font-size:14px;margin:0 0 22px}
+  .h2sub strong{color:var(--ivoire);font-weight:600}
+
+  .q{border:1px solid var(--line);border-radius:10px;background:var(--surface);
+     padding:18px;display:grid;grid-template-columns:34px 1fr;gap:4px 14px;align-items:start;margin-bottom:10px;
+     transition:border-color .15s,background .15s}
+  .q[data-a="no"]{border-color:var(--rouge);background:rgba(228,121,108,.07)}
+  .q[data-a="yes"]{border-color:var(--ambre-dim)}
+  .num{font-family:var(--mono);font-size:12px;color:var(--mute);padding-top:3px;font-variant-numeric:tabular-nums}
+  .qt{font-size:15.5px;font-weight:500;margin:0}
+  .qd{grid-column:2;color:var(--chrome);font-size:13.5px;margin:4px 0 0}
+  .opt{grid-column:2;display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .opt button{
+    font:inherit;font-family:var(--mono);font-size:12.5px;font-weight:700;letter-spacing:.1em;
+    cursor:pointer;padding:9px 20px;border-radius:5px;min-height:44px;min-width:76px;
+    background:transparent;color:var(--mute);border:1px solid var(--line2);
+  }
+  .opt button:hover{color:var(--ivoire);border-color:var(--chrome)}
+  .opt button:focus-visible{outline:2px solid var(--ambre);outline-offset:2px}
+  .q[data-a="yes"] .y{background:var(--ambre);color:var(--noir);border-color:var(--ambre)}
+  .q[data-a="no"] .n{background:var(--rouge);color:var(--noir);border-color:var(--rouge)}
+
+  .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+  table{border-collapse:collapse;width:100%;min-width:660px}
+  th,td{padding:11px 12px;text-align:start;border-bottom:1px solid var(--line);font-size:13.5px}
+  th{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-weight:500}
+  tr:last-child td{border-bottom:none}
+  td:first-child{font-weight:500}
+  .spec{font-family:var(--mono);color:var(--ambre);white-space:nowrap}
+  input{
+    font:inherit;font-family:var(--mono);font-size:13px;width:100%;min-width:84px;
+    background:var(--noir);color:var(--ivoire);border:1px solid var(--line2);
+    border-radius:5px;padding:9px 10px;min-height:42px;
+  }
+  input::placeholder{color:#55555f}
+  input:focus{outline:2px solid var(--ambre);outline-offset:1px;border-color:var(--ambre)}
+
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+  .field{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:15px}
+  .field label{display:block;font-size:13.5px;margin-bottom:9px;color:var(--ivoire)}
+  .field .unit{color:var(--mute)}
+  .field .hint{display:block;color:var(--mute);font-size:12px;margin-top:7px}
+
+  .out{margin-top:16px;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
+  .outhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;
+    padding:13px 16px;border-bottom:1px solid var(--line)}
+  .outhead span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+  .copy{font:inherit;font-family:var(--mono);font-size:12.5px;font-weight:700;letter-spacing:.09em;cursor:pointer;
+    background:var(--ambre);color:var(--noir);border:none;border-radius:5px;padding:10px 18px;min-height:44px}
+  .copy:focus-visible{outline:2px solid var(--ivoire);outline-offset:2px}
+  pre{margin:0;padding:16px;font-family:var(--mono);font-size:12px;line-height:1.7;text-align:left;
+    color:var(--chrome);white-space:pre-wrap;word-break:break-word;max-height:380px;overflow:auto}
+
+  footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);
+    color:var(--mute);font-size:12.5px;display:flex;flex-wrap:wrap;gap:8px 20px}
+  footer b{color:var(--chrome);font-weight:500}
+
+  /* L'arabe et le japonais : pas de majuscules forcées, pas de lettres espacées */
+  .wrap[data-script="wide"] .eyebrow,
+  .wrap[data-script="wide"] h2,
+  .wrap[data-script="wide"] th,
+  .wrap[data-script="wide"] .badge,
+  .wrap[data-script="wide"] .opt button,
+  .wrap[data-script="wide"] .copy,
+  .wrap[data-script="wide"] .outhead span{
+    font-family:var(--sans);letter-spacing:normal;text-transform:none;
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap" id="wrap">
+
+  <div class="langs" dir="ltr">
+    <button type="button" data-l="fr">FRANÇAIS</button>
+    <button type="button" data-l="en">ENGLISH</button>
+    <button type="button" data-l="ar">العربية</button>
+    <button type="button" data-l="ja">日本語</button>
+    <button type="button" data-l="zh">中文</button>
+  </div>
+
+  <p class="eyebrow" id="eyebrow"></p>
+  <h1 dir="ltr">SILENCE</h1>
+  <p class="lede" id="lede1"></p>
+  <div class="warn"><p class="ask" id="ask"></p><p class="ask2" id="ask2"></p></div>
+
+  <div class="status">
+    <span class="badge wait" id="badge"></span>
+    <span class="tally" id="tally"></span>
+  </div>
+
+  <h2 id="t1"></h2>
+  <p class="h2sub" id="s1"></p>
+  <div id="qs"></div>
+
+  <h2 id="t4"></h2>
+  <p class="h2sub" id="s4"></p>
+  <div class="out">
+    <div class="outhead">
+      <span id="stamp"></span>
+      <button class="copy" id="copybtn" type="button"></button>
+    </div>
+    <pre id="output" dir="ltr"></pre>
+  </div>
+
+  <footer>
+    <span><b>SILENCE</b> — <span id="foot"></span></span>
+    <span dir="ltr">astralzayte@gmail.com</span>
+  </footer>
+</div>
+
+<script>
+const L = {
+fr:{
+  eyebrow:"Qualification fournisseur",
+  lede1:"Six catégories, unisexe, <strong>XS à XXL, tailles européennes</strong>.",
+  lede2:"Nos conditions ne sont pas négociables. Répondez à toutes.",
+  ask:"Nous vous prions de renseigner ce formulaire dans son intégralité, afin que nous sachions avec qui nous nous engageons.",
+  ask2:"Une fois vos réponses données, copiez le texte en bas de page et renvoyez-le-nous : il contient l'ensemble de vos réponses.",
+  warn:"Chaque réponse est <strong>oui</strong> ou <strong>non</strong>. Si un point demande un aménagement, dites-le-nous plutôt que de le passer sous silence — nous savons que tout ne peut pas être parfait. Plusieurs fournisseurs sont consultés en parallèle, et celui que nous retiendrons recevra notre première commande dans la semaine.",
+  wait:"NON RÉPONDU", prog:"EN COURS", ok:"QUALIFIÉ", ko:"DISQUALIFIÉ",
+  tally:(d,n,f)=>"<b>"+d+"</b>/"+n+" répondues · <b>"+f+"</b> refusées",
+  t1:"Partie 1 — Les conditions", s1:"18 questions. Touchez OUI ou NON.",
+  t2:"Partie 2 — Vos prix", s2:"Les trois colonnes ambre sont <strong>nos conditions, pas des questions</strong>. Remplissez les deux blanches.",
+  t3:"Partie 3 — Vos conditions", s3:"Des chiffres, pas des adjectifs.",
+  t4:"Partie 2 — Renvoyez ceci", s4:"Copiez le bloc et envoyez-le-nous sur WeChat ou par e-mail.",
+  yes:"OUI", no:"NON", stamp:"Vos réponses", copy:"COPIER MES RÉPONSES", copied:"COPIÉ", sel:"SÉLECTIONNEZ ET COPIEZ",
+  foot:"streetwear, France & Maroc",
+  th:["Catégorie","Grammage<br>mini","Poids max<br>par pièce","Notre prix<br>cible","Votre prix","Production"],
+  ph:{usd:"USD",days:"jours",dash:"—"},
+  q:[
+  ["Coupes unisexes, XS à XXL, sur toutes les catégories.","Chaque pièce portable par un homme et par une femme. Une version femme est bienvenue mais pas obligatoire."],
+  ["Les ensembles viennent du même bain de teinture.","Deux noirs légèrement différents côte à côte, et l'ensemble est raté."],
+  ["DDP jusqu'à votre entrepôt européen — taxes et douane comprises.","Nous ne recevons jamais de facture de douane. Jamais."],
+  ["Livraison au client final en 2 à 3 jours ouvrés.","Depuis votre entrepôt européen, pas depuis la Chine."],
+  ["Un seul colis par commande.","Jamais de commande découpée en plusieurs envois."],
+  ["Tailles européennes, plus les mensurations en cm pour chaque taille.","Poitrine, longueur, taille, entrejambe. Un tableau que nous puissions publier."],
+  ["Un entrepôt en Europe, déjà approvisionné.","C'est comme ça qu'on livre en 2-3 jours. Sans ça, rien d'autre ne fonctionne."],
+  ["Retour sous 14 jours, sans motif.","Remboursement en argent. Jamais en bon d'achat."],
+  ["Photos propres de chaque produit.","Seul ou sur mannequin, fond uni, sans logo, sans filigrane."],
+  ["L'emballage porte notre logo, sans aucune trace de vous.","Notre marque à l'extérieur. Rien de vous."],
+  ["Rien de vous à l'intérieur du colis.","Aucune facture, aucun prix, aucune étiquette d'usine. Le client ne doit jamais voir ce que nous avons payé."],
+  ["Suivi en ligne, du départ à la livraison.","Numéro de suivi, transporteur et date d'expédition envoyés le jour même. Sans suivi, la commande n'est pas conforme."],
+  ["Pas de marques de luxe, pas de logos copiés ou volés.","Si un modèle vient d'une marque connue, approchez-vous du design sans le copier."],
+  ["Prix bloqués 6 mois, par écrit.","Nous publions nos prix. Ils ne peuvent pas bouger sous nos pieds."],
+  ["Un échantillon payé avant la première vraie commande.","Une pièce, livrée chez nous, avant que nous nous engagions."],
+  ["Contrôle qualité avant chaque expédition.","Pas optionnel. Indiquez-nous son coût."],
+  ["Quantité minimum de commande : 1 pièce.","Nous commandons ce que nous vendons, quand nous le vendons. Pas de minimum à 500 pièces."],
+  ["Vous tenez les épaisseurs de tissu que nous imposons.","200 g/m² sur les t-shirts, 320 sur les sweats et joggings, 300 sur les vestes. Le tissu fin est la plainte numéro un de notre marché — nous ne l'expédierons pas."]],
+  cats:["T-shirt","Sweat à capuche + jogging","Survêtement imperméable","Veste","Doudoune","Tenue complète (4 pièces)"],
+  terms:[
+  ["parcel","Un colis livré en France","EUR","Depuis votre entrepôt européen jusqu'à la porte du client."],
+  ["leg","Chine vers votre entrepôt européen","USD/kg","Mer ou air — précisez."],
+  ["comm","Votre commission","%","Calculée sur quoi ?"],
+  ["qc","Contrôle qualité","USD/commande","Obligatoire à chaque expédition."],
+  ["defect","Taux de défauts accepté","%","Et qui paie le renvoi ?"],
+  ["restock","Délai de réassort","jours","Pas la première commande — celle d'après."],
+  ["sample","Prix de l'échantillon, tout compris","USD","Une pièce, livrée chez nous."],
+  ["pay","Moyens de paiement","","Virement, Alibaba, autre."],
+  ["company","Nom de la société","",""],
+  ["contact","Votre nom et votre WeChat","",""]]
+},
+en:{
+  eyebrow:"Supplier qualification",
+  lede1:"Six categories, unisex, <strong>XS to XXL, European sizes</strong>.",
+  lede2:"Our conditions are not negotiable. Answer every one.",
+  ask:"We kindly ask you to complete this form in full, so that we know precisely with whom we are entering into business.",
+  ask2:"Once you have answered, copy the text at the bottom of this page and send it back to us: it contains all your answers.",
+  warn:"Each answer is <strong>yes</strong> or <strong>no</strong>. If a point needs adjusting, tell us rather than leave it unsaid — we know not everything can be perfect. Several suppliers are being consulted in parallel, and the one we select will receive our first order within the week.",
+  wait:"NOT ANSWERED", prog:"IN PROGRESS", ok:"QUALIFIED", ko:"DISQUALIFIED",
+  tally:(d,n,f)=>"<b>"+d+"</b>/"+n+" answered · <b>"+f+"</b> failed",
+  t1:"Part 1 — The conditions", s1:"18 questions. Tap YES or NO.",
+  t2:"Part 2 — Your prices", s2:"The three amber columns are <strong>our conditions, not questions</strong>. Fill in the two white ones.",
+  t3:"Part 3 — Your terms", s3:"Numbers, not adjectives.",
+  t4:"Part 2 — Send this back", s4:"Copy the block and send it to us on WeChat or by email.",
+  yes:"YES", no:"NO", stamp:"Your answers", copy:"COPY MY ANSWERS", copied:"COPIED", sel:"SELECT AND COPY",
+  foot:"streetwear, France & Morocco",
+  th:["Category","Min fabric<br>weight","Max piece<br>weight","Our target<br>price","Your price","Production"],
+  ph:{usd:"USD",days:"days",dash:"—"},
+  lbl:{answered:"Answered",failed:"Failed",company:"Company",contact:"Contact",
+       cond:"CONDITIONS",prices:"PRICES",terms:"SUPPLIER TERMS",yourprice:"your price",prod:"production"},
+  q:[
+  ["Unisex cuts, XS to XXL, on every category.","Every piece wearable by men and women. A dedicated women's version is welcome but not required."],
+  ["Matching sets come from the same dye lot.","Two slightly different blacks side by side kills the set."],
+  ["DDP into your European warehouse — taxes and customs included.","We never receive a customs bill. Ever."],
+  ["Delivery to the end customer in 2 to 3 working days.","From your European warehouse to the customer's door. Not from China."],
+  ["One parcel per order.","Never split an order across shipments."],
+  ["EU sizes, plus measurements in cm for every size.","Chest, length, waist, inseam. A chart we can publish."],
+  ["A European warehouse, already stocked.","This is how we deliver in 2 to 3 days. Without it, nothing else works."],
+  ["14-day returns, no reason needed.","Money back. Never store credit, never a voucher."],
+  ["Clean photos of every product.","Alone or on a model, plain background, no logos, no watermark."],
+  ["Packaging carries our logo, with no trace of you.","Our brand on the outside. Nothing of yours."],
+  ["Nothing of yours inside the parcel.","No invoice, no price, no factory label. The customer must never see what we paid."],
+  ["Online tracking, from dispatch to delivery.","Tracking number, carrier and dispatch date sent the same day it ships. No tracking means the order is not compliant."],
+  ["No luxury brands, no copied or stolen logos.","If a model comes from a known brand, get close to the design without copying it."],
+  ["Prices locked for 6 months, in writing.","We publish our prices. They cannot move under us."],
+  ["A paid sample before the first real order.","One piece, shipped to us, before we commit."],
+  ["Quality inspection before every shipment.","Not optional. Tell us what it costs."],
+  ["Minimum order quantity: 1 piece.","We order what we sell, when we sell it. No 500-piece minimum."],
+  ["You hit the fabric weights we require.","200 gsm on tees, 320 gsm on hoodies and joggers, 300 gsm on jackets. Thin fabric is the number one complaint in our market — we are not shipping it."]],
+  cats:["T-shirt","Hoodie + joggers","Waterproof tracksuit","Jacket","Puffer","Full outfit (4 pieces)"],
+  terms:[
+  ["parcel","One parcel delivered in France","EUR","From your European warehouse to the customer's door."],
+  ["leg","China to your European warehouse","USD/kg","Sea or air — tell us which."],
+  ["comm","Your commission","%","On what is it calculated?"],
+  ["qc","Quality inspection","USD/order","Mandatory on every shipment."],
+  ["defect","Defect rate you accept","%","And who pays the return?"],
+  ["restock","Restock lead time","days","Not the first order — the repeat one."],
+  ["sample","Sample cost, all in","USD","One piece, shipped to us."],
+  ["pay","Payment methods","","Bank transfer, Alibaba, other."],
+  ["company","Company name","",""],
+  ["contact","Your name and WeChat","",""]]
+},
+ar:{
+  rtl:true, wide:true,
+  eyebrow:"تأهيل المورّد",
+  lede1:"ستة أصناف، للجنسين، <strong>من XS إلى XXL، بمقاسات أوروبية</strong>.",
+  lede2:"شروطنا غير قابلة للتفاوض. أجيبوا عن كل سؤال.",
+  ask:"نرجو منكم تعبئة هذه الاستمارة كاملةً، حتى نعرف على وجه الدقة مع من سنعمل.",
+  ask2:"وبعد الإجابة، انسخوا النص في أسفل الصفحة وأعيدوه إلينا: فهو يتضمّن جميع أجوبتكم.",
+  warn:"كل جواب هو <strong>«نعم»</strong> أو <strong>«لا»</strong>. وإن كان أحد البنود يحتاج إلى تعديل، فأخبرونا به بدل السكوت عنه — فنحن ندرك أن كل شيء لا يمكن أن يكون مثالياً. ونحن نستشير عدة موردين في آنٍ واحد، ومن نختاره يتلقّى أول طلبية لنا خلال الأسبوع.",
+  wait:"لم يُجب", prog:"جارٍ", ok:"مؤهّل", ko:"مستبعَد",
+  tally:(d,n,f)=>"أُجيب <b>"+d+"</b>/"+n+" · مرفوض <b>"+f+"</b>",
+  t1:"الجزء 1 — الشروط", s1:"18 سؤالاً. اضغطوا «نعم» أو «لا».",
+  t2:"الجزء 2 — أسعاركم", s2:"الأعمدة الثلاثة بالأصفر هي <strong>شروطنا، وليست أسئلة</strong>. املأوا العمودين الأبيضين.",
+  t3:"الجزء 3 — شروطكم", s3:"أرقام، لا صفات.",
+  t4:"الجزء 2 — أعيدوا هذا إلينا", s4:"انسخوا النص وأرسلوه لنا على WeChat أو بالبريد الإلكتروني.",
+  yes:"نعم", no:"لا", stamp:"أجوبتكم", copy:"انسخ أجوبتي", copied:"تم النسخ", sel:"حدّد وانسخ",
+  foot:"ستريت وير، فرنسا والمغرب",
+  th:["الصنف","أدنى وزن<br>للقماش","أقصى وزن<br>للقطعة","سعرنا<br>المستهدف","سعركم","مدة الإنتاج"],
+  ph:{usd:"دولار",days:"أيام",dash:"—"},
+  q:[
+  ["قصّات موحّدة للجنسين، من XS إلى XXL، في كل الأصناف.","كل قطعة يمكن أن يلبسها رجل وامرأة. نسخة نسائية مخصّصة مرحّب بها لكنها غير إلزامية."],
+  ["الأطقم من نفس حوض الصباغة.","لونان أسودان مختلفان قليلاً جانب بعضهما يفسدان الطقم كله."],
+  ["التسليم DDP إلى مستودعكم في أوروبا — الضرائب والجمارك مشمولة.","لا نستلم أي فاتورة جمركية. أبداً."],
+  ["التسليم إلى العميل النهائي في يومين إلى ثلاثة أيام عمل.","من مستودعكم الأوروبي، لا من الصين."],
+  ["طرد واحد لكل طلب.","لا تقسيم الطلب على عدة شحنات."],
+  ["مقاسات أوروبية، مع القياسات بالسنتيمتر لكل مقاس.","الصدر، الطول، الخصر، طول الساق الداخلي. جدول نستطيع نشره."],
+  ["مستودع في أوروبا، مزوّد بالمخزون مسبقاً.","هكذا نسلّم في يومين إلى ثلاثة. بدونه لا شيء آخر ينفع."],
+  ["إرجاع خلال 14 يوماً، دون ذكر سبب.","استرداد نقدي. لا رصيد شراء أبداً."],
+  ["صور نظيفة لكل منتج.","منفردة أو على عارض، خلفية سادة، بدون شعارات، بدون علامة مائية."],
+  ["التغليف يحمل شعارنا، دون أي أثر لكم.","علامتنا على الخارج. لا شيء يخصّكم."],
+  ["لا شيء يخصّكم داخل الطرد.","لا فاتورة، لا سعر، لا ملصق مصنع. يجب ألّا يرى العميل أبداً ما دفعناه."],
+  ["تتبّع إلكتروني، من الإرسال إلى التسليم.","رقم التتبّع وشركة النقل وتاريخ الإرسال في اليوم نفسه. بدون تتبّع يُعتبر الطلب غير مطابق."],
+  ["لا علامات فاخرة، لا شعارات منسوخة أو مسروقة.","إذا كان الموديل مستوحى من علامة معروفة، اقتربوا من التصميم دون نسخه."],
+  ["الأسعار مثبّتة 6 أشهر، كتابةً.","نحن ننشر أسعارنا. لا يمكن أن تتغيّر من تحتنا."],
+  ["نموذج مدفوع قبل أول طلب حقيقي.","قطعة واحدة، تُشحن إلينا، قبل أن نلتزم."],
+  ["فحص الجودة قبل كل شحنة.","غير اختياري. أخبرونا بتكلفته."],
+  ["أدنى كمية للطلب: قطعة واحدة.","نطلب ما نبيعه، حين نبيعه. لا حد أدنى بـ500 قطعة."],
+  ["تحقّقون أوزان القماش التي نشترطها.","200 غرام للتيشيرت، 320 للهودي والبنطلون الرياضي، 300 للجاكيت. القماش الرقيق هو الشكوى الأولى في سوقنا — لن نشحنه."]],
+  cats:["تيشيرت","هودي + بنطلون رياضي","بدلة رياضية مقاومة للماء","جاكيت","جاكيت منفوخ","طقم كامل (4 قطع)"],
+  terms:[
+  ["parcel","طرد واحد يُسلّم في فرنسا","يورو","من مستودعكم الأوروبي إلى باب العميل."],
+  ["leg","من الصين إلى مستودعكم الأوروبي","دولار/كغ","بحراً أم جواً — حدّدوا."],
+  ["comm","عمولتكم","%","تُحسب على أي أساس؟"],
+  ["qc","فحص الجودة","دولار/طلب","إلزامي في كل شحنة."],
+  ["defect","نسبة العيوب المقبولة","%","ومن يدفع تكلفة الإرجاع؟"],
+  ["restock","مدة إعادة التزويد","أيام","ليس الطلب الأول — الذي يليه."],
+  ["sample","سعر النموذج، شاملاً كل شيء","دولار","قطعة واحدة، تُشحن إلينا."],
+  ["pay","طرق الدفع","","تحويل بنكي، علي بابا، غير ذلك."],
+  ["company","اسم الشركة","",""],
+  ["contact","اسمكم وحساب WeChat","",""]]
+},
+ja:{
+  wide:true,
+  eyebrow:"サプライヤー審査",
+  lede1:"6カテゴリー、ユニセックス、<strong>XS〜XXL、EUサイズ</strong>。",
+  lede2:"当方の条件は交渉不可です。すべてにお答えください。",
+  ask:"本フォームにすべてご記入いただきますようお願い申し上げます。どなたと取引を始めるのかを正確に把握するためです。",
+  ask2:"ご回答後、ページ下部のテキストをコピーして当方にお送りください。そちらにすべてのご回答が含まれております。",
+  warn:"ご回答は<strong>「はい」</strong>か<strong>「いいえ」</strong>でお願いいたします。調整が必要な項目がございましたら、伏せずにお知らせください — すべてが完璧である必要はないと承知しております。複数のサプライヤーに並行して打診しており、選定させていただいた一社には今週中に最初の発注をいたします。",
+  wait:"未回答", prog:"回答中", ok:"合格", ko:"不合格",
+  tally:(d,n,f)=>"回答 <b>"+d+"</b>/"+n+" · 不適合 <b>"+f+"</b>",
+  t1:"パート1 — 条件", s1:"18問。「はい」か「いいえ」をタップ。",
+  t2:"パート2 — 御社の価格", s2:"アンバー色の3列は<strong>当方の条件であり、質問ではありません</strong>。白い2列にご記入ください。",
+  t3:"パート3 — 御社の条件", s3:"形容詞ではなく、数字で。",
+  t4:"パート2 — これを返送", s4:"ブロックをコピーし、WeChatまたはメールでお送りください。",
+  yes:"はい", no:"いいえ", stamp:"御社の回答", copy:"回答をコピー", copied:"コピーしました", sel:"選択してコピー",
+  foot:"ストリートウェア、フランスとモロッコ",
+  th:["カテゴリー","最低<br>生地重量","1着の<br>最大重量","当方の<br>目標価格","御社の価格","生産期間"],
+  ph:{usd:"USD",days:"日",dash:"—"},
+  q:[
+  ["全カテゴリー、ユニセックスの型、XS〜XXL。","すべて男女どちらでも着られること。女性専用版は歓迎しますが必須ではありません。"],
+  ["セット商品は同一染色ロットから。","黒が微妙に違う2着を並べると、セットとして成立しません。"],
+  ["御社の欧州倉庫までDDP — 税金・関税込み。","関税の請求書は一切受け取りません。絶対に。"],
+  ["最終顧客への配送は2〜3営業日。","中国からではなく、御社の欧州倉庫から。"],
+  ["1注文につき1梱包。","注文を複数便に分割しないこと。"],
+  ["EUサイズ、および各サイズのcm実寸。","胸囲、着丈、ウエスト、股下。そのまま公開できる表。"],
+  ["在庫を置いた欧州倉庫。","2〜3日配送はこれが前提です。これがなければ他の条件は意味を持ちません。"],
+  ["14日間、理由不要の返品。","現金返金。クーポンや店舗クレジットは不可。"],
+  ["各商品のクリーンな写真。","単体またはモデル着用、無地背景、ロゴなし、ウォーターマークなし。"],
+  ["梱包には当方のロゴのみ、御社の痕跡は一切なし。","外装は当方のブランド。御社のものは何も入れない。"],
+  ["梱包の中に御社のものを一切入れないこと。","請求書なし、価格表示なし、工場ラベルなし。仕入価格を顧客に見せてはなりません。"],
+  ["発送から配達までのオンライン追跡。","発送当日に追跡番号・配送業者・発送日を送付。追跡なしの注文は不適合とみなします。"],
+  ["高級ブランド不可、ロゴの模倣・流用不可。","有名ブランド由来のデザインは、複製せず近づける範囲で。"],
+  ["価格を6か月固定、書面で。","当方は価格を公開します。途中で動かすことはできません。"],
+  ["初回本発注の前に有償サンプル。","1着を当方に発送してから発注します。"],
+  ["全出荷前の品質検査。","任意ではありません。費用をお知らせください。"],
+  ["最小発注数量：1着。","売れた分だけ、売れたときに発注します。500着の最低数量は受けません。"],
+  ["当方が求める生地重量を満たすこと。","Tシャツ200g、フーディとジョガー320g、ジャケット300g。生地の薄さは当方の市場で最も多い不満です — 出荷しません。"]],
+  cats:["Tシャツ","フーディ + ジョガー","防水トラックスーツ","ジャケット","ダウンジャケット","フルセット（4点）"],
+  terms:[
+  ["parcel","フランス国内での1梱包の配送費","EUR","御社の欧州倉庫から顧客の玄関まで。"],
+  ["leg","中国から御社の欧州倉庫まで","USD/kg","海上か航空か明記してください。"],
+  ["comm","御社の手数料","%","何を基準に計算しますか。"],
+  ["qc","品質検査","USD/注文","全出荷で必須。"],
+  ["defect","許容不良率","%","返送費用は誰が負担しますか。"],
+  ["restock","再入荷リードタイム","日","初回ではなく、追加発注の場合。"],
+  ["sample","サンプル費用、総額","USD","1着、当方宛て発送。"],
+  ["pay","支払方法","","銀行振込、Alibaba、その他。"],
+  ["company","会社名","",""],
+  ["contact","ご担当者名とWeChat ID","",""]]
+},
+zh:{
+  wide:true,
+  eyebrow:"供应商资格审核",
+  lede1:"六个品类，男女通穿，<strong>XS 到 XXL，欧码</strong>。",
+  lede2:"我们的条件不可谈判。请全部回答。",
+  ask:"敬请完整填写本表格，以便我们确切了解将与何方合作。",
+  ask2:"回答完毕后，请复制页面底部的文本并发回给我们：其中包含您的全部回答。",
+  warn:"每个回答请用<strong>「是」</strong>或<strong>「否」</strong>。若有条款需要调整，请直接告知，不必回避 —— 我们明白并非所有条件都能做到完美。我们正同时接洽多家供应商，最终选定的一家将在本周内收到我们的首笔订单。",
+  wait:"未作答", prog:"进行中", ok:"合格", ko:"不合格",
+  tally:(d,n,f)=>"已答 <b>"+d+"</b>/"+n+" · 不符合 <b>"+f+"</b>",
+  t1:"第一部分 — 条件", s1:"18 个问题。点「是」或「否」。",
+  t2:"第二部分 — 你们的价格", s2:"三列琥珀色是<strong>我们的条件，不是问题</strong>。请填写两列白色。",
+  t3:"第三部分 — 你们的条款", s3:"要数字，不要形容词。",
+  t4:"第二部分 — 发回给我们", s4:"复制下面的内容，通过微信或邮件发给我们。",
+  yes:"是", no:"否", stamp:"你的回答", copy:"复制我的回答", copied:"已复制", sel:"请选中并复制",
+  foot:"街头服饰，法国与摩洛哥",
+  th:["品类","最低<br>克重","单件<br>最大重量","我们的<br>目标价","你们的价格","生产周期"],
+  ph:{usd:"美元",days:"天",dash:"—"},
+  q:[
+  ["男女通穿版型，XS 到 XXL，所有品类。","每件都必须男女都能穿。有专门的女款更好，但不是必须。"],
+  ["成套产品必须同一缸染色。","两件黑色略有色差摆在一起，整套就毁了。"],
+  ["DDP 送到你们的欧洲仓库 —— 含税含关税。","我们绝不接受任何关税账单。绝不。"],
+  ["送到终端客户手上 2 到 3 个工作日。","从你们的欧洲仓库发出，不是从中国。"],
+  ["每个订单只发一个包裹。","不允许拆分成多次发货。"],
+  ["欧码，并提供每个尺码的厘米尺寸表。","胸围、衣长、腰围、裤内长。要能直接发布的尺码表。"],
+  ["已有库存的欧洲仓库。","这是 2-3 天送达的前提。没有它，其他条件都没有意义。"],
+  ["14 天无理由退货。","退现金。绝不退购物券。"],
+  ["每个产品的干净照片。","单品或模特图，纯色背景，无 logo，无水印。"],
+  ["包装印我们的 logo，不得出现你们的任何痕迹。","外包装是我们的品牌。没有你们的东西。"],
+  ["包裹内不得有你们的任何物品。","没有发票，没有价格，没有工厂标签。客户绝不能看到我们的采购价。"],
+  ["全程在线物流跟踪，从发货到签收。","发货当天提供运单号、承运商和发货日期。没有跟踪号视为不合格订单。"],
+  ["不做奢侈品牌，不用抄袭或盗用的 logo。","如果款式来自知名品牌，做到接近即可，不要照抄。"],
+  ["价格锁定 6 个月，书面确认。","我们对外公布售价。价格不能中途变动。"],
+  ["首次正式下单前先付费打样。","一件样品，寄到我们手上，然后我们才下单。"],
+  ["每批发货前做质检。","不是可选项。请告知费用。"],
+  ["最小起订量：1 件。","卖多少订多少。不接受 500 件起订。"],
+  ["达到我们要求的面料克重。","T恤 200 克，卫衣和运动裤 320 克，外套 300 克。面料偏薄是我们市场投诉最多的问题 —— 我们不会发这种货。"]],
+  cats:["T恤","连帽卫衣 + 运动裤","防水运动套装","外套","羽绒服","全套（4 件）"],
+  terms:[
+  ["parcel","法国境内一个包裹的配送费","欧元","从你们的欧洲仓库送到客户家门。"],
+  ["leg","中国到你们的欧洲仓库","美元/公斤","海运还是空运 —— 请注明。"],
+  ["comm","你们的佣金","%","按什么计算？"],
+  ["qc","质检费","美元/订单","每批发货必做。"],
+  ["defect","可接受的次品率","%","退货运费谁承担？"],
+  ["restock","补货周期","天","不是首单 —— 是返单。"],
+  ["sample","样品费，全包","美元","一件，寄到我们手上。"],
+  ["pay","付款方式","","银行转账、阿里巴巴、其他。"],
+  ["company","公司名称","",""],
+  ["contact","你的名字和微信","",""]]
+}
+};
+
+/* Nos conditions : les mêmes chiffres dans toutes les langues */
+const SPECS = [["200 gsm","0.25 kg","2.50 USD"],["320 gsm","1.00 kg","3.00 USD"],
+  ["nylon","0.60 kg","3.00 USD"],["300 gsm","0.60 kg","5.80 USD"],
+  ["—","0.90 kg","6.20 USD"],["320 gsm","1.60 kg","8.80 USD"]];
+
+const answers = {};
+let lang = "fr";
+const $ = id => document.getElementById(id);
+
+function build() {
+  const t = L[lang];
+  document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+  const wrap = $("wrap");
+  wrap.dir = t.rtl ? "rtl" : "ltr";
+  if (t.wide) wrap.dataset.script = "wide"; else delete wrap.dataset.script;
+
+  $("eyebrow").textContent = t.eyebrow;
+  $("lede1").innerHTML = t.lede1;
+  $("ask").textContent = t.ask;
+  $("ask2").textContent = t.ask2;
+  $("t1").textContent = t.t1; $("s1").textContent = t.s1;
+  $("t4").textContent = t.t4; $("s4").textContent = t.s4;
+  $("stamp").textContent = t.stamp;
+  $("copybtn").textContent = t.copy;
+  $("foot").textContent = t.foot;
+  document.querySelectorAll(".langs button").forEach(b =>
+    b.setAttribute("aria-pressed", b.dataset.l === lang ? "true" : "false"));
+
+  const qs = $("qs"); qs.innerHTML = "";
+  t.q.forEach((q, i) => {
+    const card = document.createElement("div");
+    card.className = "q";
+    if (answers[i]) card.dataset.a = answers[i];
+    card.innerHTML =
+      '<div class="num" dir="ltr">' + String(i + 1).padStart(2, "0") + '</div>' +
+      '<p class="qt"></p><p class="qd"></p>' +
+      '<div class="opt"><button type="button" class="y" data-v="yes"></button>' +
+      '<button type="button" class="n" data-v="no"></button></div>';
+    card.querySelector(".qt").textContent = q[0];
+    card.querySelector(".qd").textContent = q[1];
+    card.querySelector(".y").textContent = t.yes;
+    card.querySelector(".n").textContent = t.no;
+    card.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+      answers[i] = b.dataset.v; card.dataset.a = b.dataset.v; refresh();
+    }));
+    qs.appendChild(card);
+  });
+
+  refresh();
+}
+
+function val(id) { const e = $(id); return e && e.value.trim() ? e.value.trim() : "—"; }
+
+function refresh() {
+  const t = L[lang], n = t.q.length;
+  const done = Object.keys(answers).length;
+  let fails = 0;
+  for (let i = 0; i < n; i++) if (answers[i] === "no") fails++;
+
+  const badge = $("badge");
+  $("tally").innerHTML = t.tally(done, n, fails);
+  if (fails > 0) { badge.className = "badge ko"; badge.textContent = t.ko; }
+  else if (done === n) { badge.className = "badge ok"; badge.textContent = t.ok; }
+  else { badge.className = "badge wait"; badge.textContent = done === 0 ? t.wait : t.prog; }
+
+  /* Le bloc à renvoyer reste en anglais, quelle que soit la langue choisie */
+  const E = L.en, o = [];
+  o.push("SILENCE — SUPPLIER QUALIFICATION");
+  o.push(E.lbl.answered + ": " + done + "/" + n + "   " + E.lbl.failed + ": " + fails);
+  o.push("");
+  o.push(E.lbl.cond);
+  E.q.forEach((q, i) => {
+    const a = answers[i] ? (answers[i] === "yes" ? "YES " : "NO  ") : "—   ";
+    o.push(String(i + 1).padStart(2, "0") + "  " + a + "  " + q[0]);
+  });
+  $("output").textContent = o.join("\n");
+}
+
+document.querySelectorAll(".langs button").forEach(b =>
+  b.addEventListener("click", () => { lang = b.dataset.l; build(); }));
+
+$("copybtn").addEventListener("click", () => {
+  const t = L[lang], btn = $("copybtn"), txt = $("output").textContent;
+  const done = () => { btn.textContent = t.copied; setTimeout(() => btn.textContent = t.copy, 1800); };
+  const select = () => {
+    const r = document.createRange();
+    r.selectNodeContents($("output"));
+    const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    btn.textContent = t.sel;
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(txt).then(done).catch(select);
+  } else select();
+});
+
+build();
+</script>
+</body>
+</html>

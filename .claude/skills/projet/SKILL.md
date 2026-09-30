@@ -292,6 +292,44 @@ trouver un navigateur, l'ouvrir. Chaque étape en perd un.
 téléchargement. Il répond dans le chat. Envoie-le **toujours en dessous du
 lien**, dans le même message.
 
+#### Le modèle — on ne repart jamais de zéro
+
+Le fichier **`modele-questionnaire.html`**, à côté de ce skill, est la page qui
+tourne pour SILENCE. **On le copie, on change le texte, c'est tout.**
+
+```
+LE CHOIX DE LA LANGUE      cinq boutons, en haut à droite
+LE NOM DE LA MARQUE        en grand, lettres espacées
+UNE LIGNE DE CONTEXTE      uniquement ce qui est vérifiable
+L'ENCADRÉ                  ce qu'on demande, et quoi renvoyer
+LA BARRE QUI SUIT          collée en haut, elle compte en direct
+PARTIE 1 — LES CONDITIONS  une carte par condition, OUI ou NON
+PARTIE 2 — RENVOYEZ CECI   le bloc à copier, toujours en anglais
+```
+
+**Ce qui change d'un projet à l'autre :**
+
+```
+1  le nom dans <h1>
+2  les cinq couleurs de :root
+3  l'objet L, tout en bas   ← il porte TOUT le texte et les cinq langues
+```
+
+**Ce qui ne change jamais — chaque ligne vient d'une erreur déjà faite :**
+
+| La règle | Pourquoi |
+|---|---|
+| **Une condition = un titre + sa raison** | Une condition sans raison se négocie. Avec sa raison, elle se comprend. |
+| **OUI ou NON, jamais un troisième choix** | « Moyen » veut dire non, mais poliment. On ne saura pas lequel. |
+| **Le bloc de retour toujours en anglais** | Il lit dans sa langue, mais c'est toi qui dépouilles. Un bloc en japonais ne te sert à rien. |
+| **Les chiffres restent à l'endroit en arabe** | `dir="ltr"` sur les prix et les poids, sinon l'arabe les retourne. |
+| **Aucune police, aucune image venue d'ailleurs** | Google est bloqué en Chine. Une police qui ne charge pas, et la page est vide. |
+| **Un seul fichier, appelé `index.html`** | Autre nom, adresse morte. Plusieurs fichiers, un oubli au dépôt. |
+| **Le mot « grammage » ne sort jamais** | Personne ne sait ce que c'est. On écrit l'épaisseur du tissu et le chiffre. |
+
+⚠️ **On relit la page en arabe et en chinois avant de donner l'adresse.**
+Une langue qui ne s'affiche pas ne se voit qu'en regardant.
+
 #### Le site, Claude le publie lui-même
 
 Il faut une clé Netlify dans les **Identifiants API** de l'environnement, sous
