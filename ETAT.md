@@ -130,6 +130,11 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 🔴  jamais d'accès à sa banque — Stripe en lecture seule, rien d'autre
 🔴  le site se modifie TOUJOURS dans Claude Design, jamais sur Netlify —
     Netlify est une copie, republiée derrière chaque modification
+🔴  le site est en GLACE — l'ambre ne reste que sur le bouton d'achat.
+    Le logo est bleu, l'orange partout aurait fait deux marques.
+    Glace #A5D8F3 · sur fond clair, bleu nuit #16324F · bouton #E0A458
+🔴  le logo a un fond bleu nuit #121929 : on l'écrase au noir
+    (brightness .82 / contrast 1.32) puis mix-blend-mode: screen
 🔴  le site alterne noir et ivoire — deux blocs clairs (les promesses,
     le test à 11 €) cassent le noir. Annule le « fond noir partout,
     sans exception » du cahier des charges, qui reste à corriger.

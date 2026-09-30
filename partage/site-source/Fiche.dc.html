@@ -13,7 +13,7 @@
     body { margin: 0; background: #0B0B0C; }
     * { box-sizing: border-box; }
     a { color: #F4F2ED; text-decoration: none; }
-    a:hover { color: #E0A458; }
+    a:hover { color: #A5D8F3; }
   </style>
 </helmet>
 
@@ -35,7 +35,7 @@
 
   <!-- Les photos : de face, de dos, la matière -->
   <div style="position: relative">
-    <div style="position: absolute; inset: 0; background: radial-gradient(60% 38% at 50% 30%, rgba(224,164,88,0.22) 0%, rgba(11,11,12,0) 74%)"></div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(60% 38% at 50% 30%, rgba(125,200,240,0.22) 0%, rgba(11,11,12,0) 74%)"></div>
     <div style="position: relative; display: flex; gap: 8px; overflow-x: auto; padding: 16px 20px; scroll-snap-type: x mandatory">
       <sc-for list="{{photos}}" as="ph" hint-placeholder-count="3">
         <img src="{{ph.img}}" alt="{{ph.alt}}"
@@ -47,12 +47,12 @@
 
   <!-- Le prix, visible sans descendre -->
   <div style="padding: 6px 20px 0">
-    <p style="margin: 0 0 8px; font-size: 12px; letter-spacing: 0.22em; color: #E0A458; text-transform: uppercase">Ensemble 2 pièces</p>
+    <p style="margin: 0 0 8px; font-size: 12px; letter-spacing: 0.22em; color: #A5D8F3; text-transform: uppercase">Ensemble 2 pièces</p>
     <h1 style="margin: 0 0 12px; font-size: 27px; font-weight: 600; line-height: 1.15">Sweat à capuche + jogging</h1>
 
     <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 4px">
       <span style="font-size: 34px; font-weight: 700">34,90 €</span>
-      <span style="font-size: 13px; color: #E0A458; font-weight: 600">−36 % sous le marché</span>
+      <span style="font-size: 13px; color: #A5D8F3; font-weight: 600">−36 % sous le marché</span>
     </div>
     <p style="margin: 0 0 4px; font-size: 13px; color: #B8BEC8">+ 4,99 € de livraison — <strong style="color: #F4F2ED; font-weight: 600">39,89 € tout compris</strong></p>
     <p style="margin: 0 0 20px; font-size: 12.5px; color: #7E7E8A">Le même ensemble ailleurs : 50 à 75 €, couramment 62 €.</p>
@@ -62,7 +62,7 @@
   <div style="padding: 0 20px">
     <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 10px">
       <span style="font-size: 13px; font-weight: 600">Ta taille</span>
-      <a href="#mensurations" style="font-size: 12px; color: #E0A458; border-bottom: 1px solid #E0A458; padding: 6px 0">Les mensurations en cm</a>
+      <a href="#mensurations" style="font-size: 12px; color: #A5D8F3; border-bottom: 1px solid #A5D8F3; padding: 6px 0">Les mensurations en cm</a>
     </div>
     <div style="display: flex; gap: 8px; margin-bottom: 22px">
       <sc-for list="{{tailles}}" as="t" hint-placeholder-count="5">
@@ -77,7 +77,7 @@
       <div style="display: flex; flex-direction: column; gap: 13px">
         <sc-for list="{{reponses}}" as="r" hint-placeholder-count="4">
           <div style="display: flex; gap: 11px; align-items: flex-start">
-            <svg viewBox="0 0 24 24" style="width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px" fill="none" stroke="#E0A458" stroke-width="2" aria-hidden="true">
+            <svg viewBox="0 0 24 24" style="width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px" fill="none" stroke="#A5D8F3" stroke-width="2" aria-hidden="true">
               <path d="M4 12.5l5.5 5.5L20 6.5"></path>
             </svg>
             <div style="font-size: 13.5px; line-height: 1.5">
@@ -93,7 +93,7 @@
   <!-- La livraison, en date précise -->
   <div style="padding: 0 20px 26px">
     <div style="display: flex; align-items: center; gap: 14px; border: 1px solid #16324F; background: rgba(22,50,79,0.22); padding: 16px">
-      <svg viewBox="0 0 24 24" style="width: 22px; height: 22px; flex-shrink: 0" fill="none" stroke="#E0A458" stroke-width="1.6" aria-hidden="true">
+      <svg viewBox="0 0 24 24" style="width: 22px; height: 22px; flex-shrink: 0" fill="none" stroke="#A5D8F3" stroke-width="1.6" aria-hidden="true">
         <path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"></path>
         <circle cx="7" cy="18" r="2"></circle>
         <circle cx="17" cy="18" r="2"></circle>
@@ -107,7 +107,7 @@
 
   <!-- La matière, en chiffres -->
   <div id="mensurations" style="padding: 0 20px 26px">
-    <h2 style="margin: 0 0 12px; font-size: 12px; letter-spacing: 0.22em; color: #E0A458; text-transform: uppercase">La matière, en chiffres</h2>
+    <h2 style="margin: 0 0 12px; font-size: 12px; letter-spacing: 0.22em; color: #A5D8F3; text-transform: uppercase">La matière, en chiffres</h2>
     <div style="border: 1px solid #26262F">
       <sc-for list="{{matiere}}" as="m" hint-placeholder-count="4">
         <div style="display: flex; justify-content: space-between; gap: 16px; padding: 12px 14px; border-bottom: 1px solid #26262F; font-size: 13.5px">
@@ -121,7 +121,7 @@
 
   <!-- Les mensurations -->
   <div style="padding: 0 20px 26px">
-    <h2 style="margin: 0 0 12px; font-size: 12px; letter-spacing: 0.22em; color: #E0A458; text-transform: uppercase">Les mensurations, en cm</h2>
+    <h2 style="margin: 0 0 12px; font-size: 12px; letter-spacing: 0.22em; color: #A5D8F3; text-transform: uppercase">Les mensurations, en cm</h2>
     <div style="overflow-x: auto; border: 1px solid #26262F">
       <table style="width: 100%; border-collapse: collapse; font-size: 13px; min-width: 330px">
         <thead>
@@ -149,13 +149,13 @@
 
   <!-- Complète la tenue -->
   <div style="padding: 0 20px 30px">
-    <h2 style="margin: 0 0 12px; font-size: 12px; letter-spacing: 0.22em; color: #E0A458; text-transform: uppercase">Complète la tenue</h2>
+    <h2 style="margin: 0 0 12px; font-size: 12px; letter-spacing: 0.22em; color: #A5D8F3; text-transform: uppercase">Complète la tenue</h2>
     <div style="border: 1px solid #26262F; background: #131318; padding: 18px">
       <div style="display: flex; flex-direction: column; gap: 7px; font-size: 13.5px; margin-bottom: 14px">
         <div style="display: flex; justify-content: space-between"><span style="color: #B8BEC8">Sweat + jogging</span><span>34,90 €</span></div>
         <div style="display: flex; justify-content: space-between"><span style="color: #B8BEC8">Veste</span><span>19,90 €</span></div>
         <div style="display: flex; justify-content: space-between; padding-top: 7px; border-top: 1px solid #26262F"><span style="color: #7E7E8A">Séparément</span><span style="color: #7E7E8A">54,80 €</span></div>
-        <div style="display: flex; justify-content: space-between; font-weight: 700"><span>Les deux</span><span style="color: #E0A458">49,90 €</span></div>
+        <div style="display: flex; justify-content: space-between; font-weight: 700"><span>Les deux</span><span style="color: #A5D8F3">49,90 €</span></div>
       </div>
       <button type="button" style="width: 100%; background: none; border: 1px solid #F4F2ED; color: #F4F2ED; padding: 14px; font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer; min-height: 44px">Ajouter la veste — 15 € de moins</button>
     </div>
@@ -167,14 +167,14 @@
       <div style="font-size: 14px; font-weight: 600; margin-bottom: 6px">Une question avant d'acheter ?</div>
       <p style="margin: 0 0 12px; font-size: 12.5px; color: #B8BEC8; line-height: 1.6">On répond sous 24 h, avant comme après la commande.</p>
       <div style="font-size: 13.5px; line-height: 1.9">
-        WhatsApp <a href="https://wa.me/212728861105" style="border-bottom: 1px solid #E0A458">+212 728 861 105</a><br>
-        E-mail <a href="mailto:silenceworldwide@gmail.com" style="border-bottom: 1px solid #E0A458">silenceworldwide@gmail.com</a>
+        WhatsApp <a href="https://wa.me/212728861105" style="border-bottom: 1px solid #A5D8F3">+212 728 861 105</a><br>
+        E-mail <a href="mailto:silenceworldwide@gmail.com" style="border-bottom: 1px solid #A5D8F3">silenceworldwide@gmail.com</a>
       </div>
     </div>
   </div>
 
   <!-- ╔═══ LE PIED — le sigil et les pages obligatoires ═══╗ -->
-  <div style="padding: 40px 20px 28px; border-top: 1px dashed #40372E; margin-top: 44px">
+  <div style="padding: 40px 20px 28px; border-top: 1px dashed #26323C; margin-top: 44px">
     <div style="display: flex; align-items: flex-end; gap: 9px; margin-bottom: 20px">
       <img src="img/logo-mot.png" alt="SILENCE" style="width: 175px; mix-blend-mode: screen; display: block">
       
@@ -203,7 +203,7 @@
 </div>
 </x-dc>
 
-<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#E0A458","options":["#E0A458","#16324F","#B8BEC8"],"section":"Marque"}}'>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#A5D8F3","options":["#A5D8F3","#E0A458","#16324F"],"section":"Marque"}}'>
 class Component extends DCLogic {
   constructor(props) {
     super(props);
