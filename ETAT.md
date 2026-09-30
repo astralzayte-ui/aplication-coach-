@@ -27,7 +27,8 @@ LA SUITE    dépouiller sa réponse, puis arrêter le catalogue
 | **Le questionnaire** | en ligne, vérifié, 18 conditions, 5 langues |
 | **Metricool** | branché — Insta + TikTok, je lis et je publie |
 | **Le montage vidéo** | `video/` — le moule rendu en code, pas par Higgs Field |
-| **La boutique** | 3 écrans dessinés — accueil téléphone, fiche, ordinateur |
+| **La boutique** | 3 écrans — refaits sur le système ORYZO, survols et vidéo au défilement |
+| **Les 4 vidéos** | lues ; ce qu'on en garde est dans les décisions ci-dessous |
 | **Le lien envoyé** | 30/09 — à relancer s'il n'a rien dit sous 3 jours |
 
 ## Ce qui bloque
@@ -78,6 +79,9 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 🔴  la pub n'est pas dans le budget — au feeling, quand il le sent,
     et seulement sur une vidéo qui a déjà gagné en gratuit
 🔴  jamais d'accès à sa banque — Stripe en lecture seule, rien d'autre
+🔴  le site alterne noir et ivoire — deux blocs clairs (les promesses,
+    le test à 11 €) cassent le noir. Annule le « fond noir partout,
+    sans exception » du cahier des charges, qui reste à corriger.
 🔴  sous-titres testés en vague 1 : A (figé) contre C (mot par mot),
     8 vidéos chacun dans le témoin — le gagnant devient la règle
 ```
@@ -92,7 +96,15 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 ❓  le prochain projet : nouveau dossier, ou à côté de celui-ci
 ❓  TikTok en compte personnel — on verra si la rétention 3 s remonte
 
-📌  IL VA ENVOYER DES VIDÉOS YOUTUBE sur la fabrication de sites.
+📌  À REPORTER DANS LE SKILL site-qui-vend, tiré des 4 vidéos :
+    Refero (styles.refero.design, gratuit) donne le système de design
+    d'un vrai site — on l'injecte AVANT de dessiner, c'est l'écart entre
+    « fait par une IA » et « fait par une agence ». Pris chez ORYZO AI :
+    majuscules graisse 500 partout sauf une voix en minuscules, titres
+    à interligne 0,9, séparateurs pointillés, zéro ombre, une section
+    par écran. Refusé : coins arrondis (le logo n'a que des pointes) et
+    « l'accent jamais sur un bouton » (chez nous l'ambre EST le bouton).
+📌  IL VA ENVOYER D'AUTRES VIDÉOS YOUTUBE sur la fabrication de sites.
     Gemini les lit (image et son, ~2 centimes la vidéo de 20 min).
     Ce qu'on en tire va dans le skill site-qui-vend, pas dans la
     conversation. 🔴 RÈGLE QU'IL A POSÉE : ces vidéos poussent toujours
