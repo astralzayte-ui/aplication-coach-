@@ -48,6 +48,24 @@ const AMBRE = "#E0A458";
 /* La zone sûre : les applis recouvrent les bords, tout le texte tient dedans */
 export const SAFE = { top: 220, bottom: 500, side: 180 };
 
+/*
+  🔴 LES EMPLACEMENTS — ils ne bougent JAMAIS.
+
+  C'est ça qui rend la marque reconnaissable : au bout de dix vidéos,
+  l'œil sait où regarder avant même d'avoir lu. Un élément qui change
+  de place d'une vidéo à l'autre annule tout le travail de répétition.
+
+      LE HOOK        en haut de la zone sûre
+      LES SOUS-TITRES  en bas de la zone sûre
+      LE PRIX        au centre exact
+      LE LOGO        au centre exact, sur l'écran noir
+*/
+export const PLACE = {
+  hook: { top: SAFE.top + 60, height: 520 },
+  sousTitre: { bottom: SAFE.bottom + 60, height: 380 },
+  prix: "centre",
+} as const;
+
 export type Props = {
   hook: string;
   prix: string;
@@ -114,6 +132,41 @@ const Decor: React.FC = () => {
 };
 
 /* Le repère de la zone sûre — pour vérifier, jamais dans la vidéo publiée */
+const Repere: React.FC<{ top?: number; bottom?: number; h: number; nom: string }> = ({
+  top,
+  bottom,
+  h,
+  nom,
+}) => (
+  <div
+    style={{
+      position: "absolute",
+      top,
+      bottom,
+      height: h,
+      left: SAFE.side,
+      right: SAFE.side,
+      border: `3px solid rgba(184,190,200,0.55)`,
+      display: "flex",
+      alignItems: "flex-start",
+      justifyContent: "flex-end",
+    }}
+  >
+    <span
+      style={{
+        fontFamily,
+        fontSize: 26,
+        fontWeight: 700,
+        color: "#B8BEC8",
+        padding: "6px 10px",
+        letterSpacing: 2,
+      }}
+    >
+      {nom}
+    </span>
+  </div>
+);
+
 const ZoneSure: React.FC = () => (
   <AbsoluteFill>
     <div
@@ -125,6 +178,12 @@ const ZoneSure: React.FC = () => (
         right: SAFE.side,
         border: `4px dashed ${AMBRE}`,
       }}
+    />
+    <Repere top={PLACE.hook.top} h={PLACE.hook.height} nom="LE HOOK" />
+    <Repere
+      bottom={PLACE.sousTitre.bottom}
+      h={PLACE.sousTitre.height}
+      nom="LES SOUS-TITRES"
     />
     <div
       style={{
@@ -143,12 +202,46 @@ const ZoneSure: React.FC = () => (
   </AbsoluteFill>
 );
 
-/* Un passage du moule : le texte est centré dans la zone sûre */
-const Passage: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+/* L'emplacement du hook — en haut, toujours */
+const EnHaut: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <div
+    style={{
+      position: "absolute",
+      top: PLACE.hook.top,
+      height: PLACE.hook.height,
+      left: SAFE.side,
+      right: SAFE.side,
+      display: "flex",
+      alignItems: "flex-start",
+      justifyContent: "center",
+    }}
+  >
+    {children}
+  </div>
+);
+
+/* L'emplacement des sous-titres — en bas, toujours */
+const EnBas: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <div
+    style={{
+      position: "absolute",
+      bottom: PLACE.sousTitre.bottom,
+      height: PLACE.sousTitre.height,
+      left: SAFE.side,
+      right: SAFE.side,
+      display: "flex",
+      alignItems: "flex-end",
+      justifyContent: "center",
+    }}
+  >
+    {children}
+  </div>
+);
+
+/* L'emplacement du prix et du logo — le centre exact, toujours */
+const AuCentre: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <AbsoluteFill
     style={{
-      paddingTop: SAFE.top,
-      paddingBottom: SAFE.bottom,
       paddingLeft: SAFE.side,
       paddingRight: SAFE.side,
       justifyContent: "center",
@@ -164,38 +257,38 @@ export const Moule: React.FC<Props> = ({ hook, prix, showSafeZone }) => {
     <AbsoluteFill style={{ backgroundColor: NOIR }}>
       <Decor />
 
-      {/* 0 – 1 s : le hook */}
+      {/* 0 – 1 s : le hook — EN HAUT, toujours */}
       <Sequence durationInFrames={30}>
-        <Passage>
-          <Texte size={92}>{hook}</Texte>
-        </Passage>
+        <EnHaut>
+          <Texte size={84}>{hook}</Texte>
+        </EnHaut>
       </Sequence>
 
-      {/* 1 – 3 s : il enfile */}
+      {/* 1 – 3 s : il enfile — EN BAS, toujours */}
       <Sequence from={30} durationInFrames={60}>
-        <Passage>
-          <Texte size={78}>Il l'enfile</Texte>
-        </Passage>
+        <EnBas>
+          <Texte size={70}>Il l'enfile</Texte>
+        </EnBas>
       </Sequence>
 
-      {/* 3 – 6 s : il marche */}
+      {/* 3 – 6 s : il marche — EN BAS, toujours, même place */}
       <Sequence from={90} durationInFrames={90}>
-        <Passage>
-          <Texte size={78}>Il marche</Texte>
-        </Passage>
+        <EnBas>
+          <Texte size={70}>Il marche</Texte>
+        </EnBas>
       </Sequence>
 
-      {/* 6 – 8 s : le prix, toujours à la même place */}
+      {/* 6 – 8 s : le prix — AU CENTRE, toujours, même place */}
       <Sequence from={180} durationInFrames={60}>
-        <Passage>
+        <AuCentre>
           <div style={{ textAlign: "center" }}>
             <Texte size={150} color={AMBRE}>
               {prix}
             </Texte>
             <div style={{ height: 24 }} />
-            <Texte size={52}>livraison comprise dans le prix affiché</Texte>
+            <Texte size={52}>livraison comprise</Texte>
           </div>
-        </Passage>
+        </AuCentre>
       </Sequence>
 
       {/* 8 – 10 s : écran noir, le logo, zéro son */}
