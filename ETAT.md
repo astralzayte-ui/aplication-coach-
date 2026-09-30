@@ -77,6 +77,8 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 🔴  la pub n'est pas dans le budget — au feeling, quand il le sent,
     et seulement sur une vidéo qui a déjà gagné en gratuit
 🔴  jamais d'accès à sa banque — Stripe en lecture seule, rien d'autre
+🔴  sous-titres testés en vague 1 : A (figé) contre C (mot par mot),
+    8 vidéos chacun dans le témoin — le gagnant devient la règle
 ```
 
 ---
