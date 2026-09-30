@@ -435,7 +435,7 @@ tombent à côté de la liste et qui font mentir le total.
 | | Combien | Quand ça tombe |
 |---|---|---|
 | **Les visuels** *(Higgs Field)* | **800 MAD** pour 80 vidéos — 10 MAD la vidéo | avant la première vidéo |
-| **Les crédits de scraping** | ❌ à chiffrer — **~65 par projet** | étapes 1, 3 et 8, puis tous les mois |
+| **Les crédits de scraping** | **0** — ~65 par projet, le bonus gratuit en couvre ~100 | étapes 1, 3 et 8 |
 | **L'agent fournisseur** | ❌ à chiffrer — **il est payé d'avance** | étape 6 |
 | **Créer l'entreprise** | ❌ à chiffrer | avant d'encaisser le premier euro |
 | **Un numéro de téléphone** *(pays du compte)* | ❌ à chiffrer | pour le compte de paiement et le contact du site |
@@ -447,9 +447,16 @@ enseignent le web vendent un hébergement à 4 €/mois et un abonnement de plus
 **On ne paie ni l'un ni l'autre** — le site se construit ici et se publie sur
 un hébergeur gratuit. Seul le domaine coûte.
 
-⚠️ **Les crédits de scraping sont un coût RÉCURRENT, pas un coût de départ.**
-Les sources s'épuisent, il faut les recharger tous les mois. Un projet en
-consomme environ 65 ; le deuxième mois, il faut racheter.
+🟢 **Les crédits de scraping ne coûtent RIEN, et c'est une erreur qu'on a faite
+une fois.** On les avait écrits comme un abonnement mensuel. Faux. Un projet
+consomme **~65 crédits**, les crédits **n'expirent jamais**, et le compte
+gratuit donne **jusqu'à 7 000 crédits bonus à réclamer** — soit **~100
+projets**. Le plus petit pack payant (47 $ = 25 000 crédits, 1,88 $ les 1 000)
+est une réserve qu'on ne videra jamais.
+
+**La règle qui en sort :** avant d'écrire qu'un outil coûte tous les mois, on
+divise ce que le projet consomme par ce que le gratuit donne. Souvent le
+résultat dépasse cent projets — et la ligne tombe à zéro.
 
 🔴 **Trois de ces lignes se paient AVANT la première vente :** l'agent, la
 création de l'entreprise, et le numéro. Elles ne se divisent pas par le nombre

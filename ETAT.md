@@ -49,7 +49,6 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 ❌  la commission de l'agent, en %
 ❌  le prix du contrôle qualité
 ❌  le prix de l'échantillon
-❌  ce que coûtent les crédits de scraping, en dirhams
 ✅  l'entreprise 2 500 MAD · le numéro américain 500 MAD — une seule fois
 ❌  ce qui a déjà été payé à l'agent
 ```
@@ -82,6 +81,8 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
     donc Metricool à 16 €/mois dès le premier jour
 🔴  la pub n'est pas dans le budget — au feeling, quand il le sent,
     et seulement sur une vidéo qui a déjà gagné en gratuit
+🔴  le scraping coûte 0 — ~65 crédits par projet, 7 000 bonus gratuits à
+    réclamer au projet 2 ≈ 100 projets
 🔴  jamais d'accès à sa banque — Stripe en lecture seule, rien d'autre
 🔴  le site se modifie TOUJOURS dans Claude Design, jamais sur Netlify —
     Netlify est une copie, republiée derrière chaque modification

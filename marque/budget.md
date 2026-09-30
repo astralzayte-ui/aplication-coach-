@@ -12,7 +12,7 @@
 |---|---|---|
 | **Le domaine** | **100 MAD / an** | obligatoire |
 | **Les crédits IA (visuels)** | **800 MAD** | 80 vidéos = **10 MAD la vidéo** — Higgs Field, à recharger |
-| **Les crédits de scraping** | ❌ **à chiffrer** | ~65 par projet, puis **tous les mois** |
+| **Les crédits de scraping** | **0** | les crédits bonus gratuits couvrent ~100 projets |
 | **L'échantillon fournisseur** | ❌ **à chiffrer** | |
 | **L'agent fournisseur** | ❌ **à chiffrer** | déjà payé, montant pas communiqué |
 | **Créer l'entreprise** ✅ | **2 500 MAD** | la LLC américaine |
@@ -27,10 +27,13 @@ lignes valent zéro.
 l'entreprise, le numéro. **Elles ne se divisent pas par le nombre de ventes** —
 elles sortent de ta poche avant que quoi que ce soit rentre.
 
-⚠️ **Le scraping est un coût qui revient**, pas un coût de départ. Les sources
-s'épuisent, on les recharge tous les mois. Il te reste **78 crédits
-ScrapeCreators** — assez pour ce projet plus un mois. Firecrawl (966 sur 1000)
-se recharge seul le 24 de chaque mois.
+🟢 **Le scraping coûte 0.** Prix relevés le 30/09 chez ScrapeCreators : le plus
+petit pack payant est **47 $ pour 25 000 crédits** (1,88 $ les 1 000), et les
+crédits **n'expirent jamais**. Mais un projet n'en consomme que **~65** — et le
+compte gratuit donne **jusqu'à 7 000 crédits bonus à réclamer** (dire comment tu
+les as connus, une étoile sur leur GitHub, un avis sur G2). **7 000 ÷ 65 ≈ 100
+projets.** Il reste 78 crédits, assez pour celui-ci. Firecrawl (966 sur 1000) se
+recharge seul le 24 de chaque mois. → à réclamer au **projet 2**.
 
 ⚠️ **« Le site » coûte 0.** Les vidéos qui enseignent le web vendent un
 hébergement à 4 €/mois — on ne le paie pas. Seul le domaine coûte.
@@ -160,10 +163,9 @@ Gemini · le site · l'hébergement   ~0
 🟢 **Les 3 000 MAD les plus lourds, tu les paies une seule fois dans ta vie.**
 Le projet 2 démarre à 1 244 MAD, le projet 3 aussi.
 
-❌ **Il manque encore trois lignes :**
+❌ **Il manque encore deux lignes :**
 
 ```
-les crédits de scraping        ~65 par projet, à chiffrer en dirhams
 l'échantillon fournisseur      à chiffrer
 l'agent fournisseur            déjà payé, montant pas communiqué
 ```
