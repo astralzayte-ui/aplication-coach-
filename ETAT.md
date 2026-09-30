@@ -26,6 +26,7 @@ LA SUITE    dépouiller sa réponse, puis arrêter le catalogue
 | **Les prix** | figés, France et Maroc |
 | **Le questionnaire** | en ligne, vérifié, 18 conditions, 5 langues |
 | **Metricool** | branché — Insta + TikTok, je lis et je publie |
+| **Les 3 commis** | agents en parallèle — releveur de prix, lecteur d'avis, écrivain de scripts |
 | **Le montage vidéo** | `video/` — le moule rendu en code, pas par Higgs Field |
 | **La boutique** | 3 écrans — refaits sur le système ORYZO, survols et vidéo au défilement |
 | **Les 4 vidéos** | lues ; ce qu'on en garde est dans les décisions ci-dessous |

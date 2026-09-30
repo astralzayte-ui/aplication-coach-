@@ -1406,6 +1406,73 @@ Un chiffre inconnu se marque **« estimation »** et se donne en fourchette.
 
 ---
 
+# LES 3 COMMIS — quand tu lances des agents en parallèle
+
+**Ce skill est le chef. Les agents sont les commis.** Trois, pas plus.
+
+Un agent ne sert qu'à **une** chose : du volume répétitif. Vingt fois la même
+recherche, quatre-vingts fois le même gabarit. Rien d'autre.
+
+## 🔴 La règle qui empêche la catastrophe
+
+**Un agent démarre à zéro. Il ne connaît ni le projet, ni les prix, ni les
+décisions déjà prises.** Si tu ne lui donnes pas la recette, il invente — et
+tu récupères vingt résultats faux qui *ont l'air* justes.
+
+Donc, dans CHAQUE consigne d'agent, tu écris en premier :
+
+```
+AVANT DE COMMENCER, lis :
+  ETAT.md                    où on en est, ce qui est décidé
+  marque/prix.md             la grille figée — elle gagne sur tout
+  marque/le-vocabulaire.md   les mots interdits
+  la section du skill qui concerne ton étape
+```
+
+Et tu finis toujours par : **« Si une donnée te manque, tu écris MANQUE. Tu
+n'inventes pas. »**
+
+## Les trois, et eux seuls
+
+| Le commis | À quelle étape | Combien en parallèle | Ce qu'il rend |
+|---|---|---|---|
+| **Le releveur de prix** | 1 et 3 | 1 par concurrent, ~20 | une ligne par concurrent : prix, livraison, délai, source |
+| **Le lecteur d'avis** | 3 | 4 | les plaintes qui reviennent, classées par nombre — pas les avis isolés |
+| **L'écrivain de scripts** | 8 et 9 | 8 × 10 scripts | 10 scripts au gabarit, hook + corps + fin |
+
+```
+en série     20 concurrents × 2 min  =  40 min
+en parallèle                          =   2 min
+```
+
+## Où un agent ne sert à RIEN
+
+```
+❌  fixer un prix                 ← une décision, jamais déléguée
+❌  corriger le site              ← il perdrait le fil du design
+❌  lui parler                    ← il ne le connaît pas
+❌  trancher un désaccord         ← c'est à lui, ou à toi avec lui
+```
+
+**Un agent par tâche = non.** Quinze ouvriers pour quinze tâches dont douze
+durent trente secondes, c'est plus lent et plus cher.
+
+## Ce que tu fais des résultats
+
+Un agent te rend du **brouillon**, jamais du définitif.
+
+```
+1.  tu lis les 20 retours
+2.  tu jettes ce qui sent l'invention (pas de source = poubelle)
+3.  tu recoupes : la même plainte chez 3 agents = vraie
+4.  TOI tu écris la conclusion dans le fichier du projet
+```
+
+**Tu ne colles jamais la sortie d'un agent directement dans un fichier du
+projet.** Elle passe par toi d'abord.
+
+---
+
 # CE QUI MANQUE ENCORE À CETTE MÉTHODE
 
 Signalé, pas encore tranché. À lui reposer au bon moment.
