@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>SILENCE — sweat à capuche + jogging</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap">
+  <style>
+    body { margin: 0; background: #0B0B0C; }
+    * { box-sizing: border-box; }
+    a { color: #F4F2ED; text-decoration: none; }
+    a:hover { color: #E0A458; }
+  </style>
+</helmet>
+
+<div style="font-family: Archivo, system-ui, sans-serif; background: #0B0B0C; color: #F4F2ED; width: 100%; max-width: 390px; margin: 0 auto; padding-bottom: 96px; overflow: hidden">
+
+  <!-- La barre du haut -->
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; border-bottom: 1px solid #26262F">
+    <a href="Main.dc.html" style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #B8BEC8; min-height: 44px; padding: 10px 0">
+      <svg viewBox="0 0 24 24" style="width: 16px; height: 16px" fill="none" stroke="#B8BEC8" stroke-width="2" aria-hidden="true">
+        <path d="M15 5l-7 7 7 7"></path>
+      </svg>
+      Les rayons
+    </a>
+    <a href="Main.dc.html" style="display: flex; align-items: flex-end; gap: 8px">
+      <svg viewBox="0 0 196 112" style="width: 28px; height: 16px; display: block" aria-hidden="true"><polygon points="6,106 18,4 30,106" fill="#F4F2ED"></polygon><polygon points="38,106 49,34 60,106" fill="#F4F2ED"></polygon><polygon points="68,106 78,60 88,106" fill="#F4F2ED"></polygon><polygon points="96,106 105,80 114,106" fill="#F4F2ED"></polygon><rect x="122" y="100" width="68" height="6" fill="#E0A458"></rect></svg>
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.34em; text-indent: 0.34em">SILENCE</span>
+    </a>
+  </div>
+
+  <!-- Les photos : de face, de dos, la matière -->
+  <div style="position: relative">
+    <div style="position: absolute; inset: 0; background: radial-gradient(60% 38% at 50% 30%, rgba(224,164,88,0.22) 0%, rgba(11,11,12,0) 74%)"></div>
+    <div style="position: relative; display: flex; gap: 8px; overflow-x: auto; padding: 16px 20px; scroll-snap-type: x mandatory">
+      <sc-for list="{{photos}}" as="ph" hint-placeholder-count="3">
+        <img src="{{ph.img}}" alt="{{ph.alt}}"
+             style="flex: 0 0 auto; width: 262px; aspect-ratio: 3 / 4; object-fit: cover; background: #131318;
+                    filter: grayscale(0.25) contrast(1.08) brightness(0.88); scroll-snap-align: center">
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- Le prix, visible sans descendre -->
+  <div style="padding: 6px 20px 0">
+    <p style="margin: 0 0 8px; font-size: 12px; letter-spacing: 0.22em; color: #E0A458; text-transform: uppercase">Ensemble 2 pièces</p>
+    <h1 style="margin: 0 0 12px; font-size: 27px; font-weight: 600; line-height: 1.15">Sweat à capuche + jogging</h1>
+
+    <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 4px">
+      <span style="font-size: 34px; font-weight: 700">34,90 €</span>
+      <span style="font-size: 13px; color: #E0A458; font-weight: 600">−36 % sous le marché</span>
+    </div>
+    <p style="margin: 0 0 4px; font-size: 13px; color: #B8BEC8">+ 4,99 € de livraison — <strong style="color: #F4F2ED; font-weight: 600">39,89 € tout compris</strong></p>
+    <p style="margin: 0 0 20px; font-size: 12.5px; color: #7E7E8A">Le même ensemble ailleurs : 50 à 75 €, couramment 62 €.</p>
+  </div>
+
+  <!-- La taille -->
+  <div style="padding: 0 20px">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 10px">
+      <span style="font-size: 13px; font-weight: 600">Ta taille</span>
+      <a href="#mensurations" style="font-size: 12px; color: #E0A458; border-bottom: 1px solid #E0A458; padding: 6px 0">Les mensurations en cm</a>
+    </div>
+    <div style="display: flex; gap: 8px; margin-bottom: 22px">
+      <sc-for list="{{tailles}}" as="t" hint-placeholder-count="5">
+        <button type="button" onClick="{{t.choisir}}" style="{{t.style}}">{{t.nom}}</button>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- Ce qui se passe si ça va pas — juste au-dessus du bouton -->
+  <div style="padding: 0 20px 22px">
+    <div style="border: 1px solid #26262F; background: #131318; padding: 16px">
+      <div style="display: flex; flex-direction: column; gap: 13px">
+        <sc-for list="{{reponses}}" as="r" hint-placeholder-count="4">
+          <div style="display: flex; gap: 11px; align-items: flex-start">
+            <svg viewBox="0 0 24 24" style="width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px" fill="none" stroke="#E0A458" stroke-width="2" aria-hidden="true">
+              <path d="M4 12.5l5.5 5.5L20 6.5"></path>
+            </svg>
+            <div style="font-size: 13.5px; line-height: 1.5">
+              <strong style="font-weight: 600">{{r.titre}}</strong>
+              <span style="color: #B8BEC8"> {{r.detail}}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <!-- La livraison, en date précise -->
+  <div style="padding: 0 20px 26px">
+    <div style="display: flex; align-items: center; gap: 14px; border: 1px solid #16324F; background: rgba(22,50,79,0.22); padding: 16px">
+      <svg viewBox="0 0 24 24" style="width: 22px; height: 22px; flex-shrink: 0" fill="none" stroke="#E0A458" stroke-width="1.6" aria-hidden="true">
+        <path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"></path>
+        <circle cx="7" cy="18" r="2"></circle>
+        <circle cx="17" cy="18" r="2"></circle>
+      </svg>
+      <div>
+        <div style="font-size: 14px; font-weight: 600; margin-bottom: 3px">Chez toi le [DATE PRÉCISE]</div>
+        <div style="font-size: 12.5px; color: #B8BEC8; line-height: 1.5">Expédié de notre entrepôt en Europe, pas de Chine. Suivi en ligne dès le départ.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- La matière, en chiffres -->
+  <div id="mensurations" style="padding: 0 20px 26px">
+    <h2 style="margin: 0 0 12px; font-size: 12px; letter-spacing: 0.22em; color: #E0A458; text-transform: uppercase">La matière, en chiffres</h2>
+    <div style="border: 1px solid #26262F">
+      <sc-for list="{{matiere}}" as="m" hint-placeholder-count="4">
+        <div style="display: flex; justify-content: space-between; gap: 16px; padding: 12px 14px; border-bottom: 1px solid #26262F; font-size: 13.5px">
+          <span style="color: #B8BEC8">{{m.quoi}}</span>
+          <span style="font-weight: 600; text-align: right">{{m.valeur}}</span>
+        </div>
+      </sc-for>
+    </div>
+    <p style="margin: 12px 0 0; font-size: 12px; color: #7E7E8A; line-height: 1.6">Le tissu fin est la plainte numéro un de ce marché. C'est pour ça qu'on écrit les chiffres au lieu de dire « qualité premium ».</p>
+  </div>
+
+  <!-- Les mensurations -->
+  <div style="padding: 0 20px 26px">
+    <h2 style="margin: 0 0 12px; font-size: 12px; letter-spacing: 0.22em; color: #E0A458; text-transform: uppercase">Les mensurations, en cm</h2>
+    <div style="overflow-x: auto; border: 1px solid #26262F">
+      <table style="width: 100%; border-collapse: collapse; font-size: 13px; min-width: 330px">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align: left; padding: 11px 12px; color: #7E7E8A; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid #26262F">Taille</th>
+            <th scope="col" style="text-align: right; padding: 11px 12px; color: #7E7E8A; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid #26262F">Poitrine</th>
+            <th scope="col" style="text-align: right; padding: 11px 12px; color: #7E7E8A; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid #26262F">Longueur</th>
+            <th scope="col" style="text-align: right; padding: 11px 12px; color: #7E7E8A; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid #26262F">Entrejambe</th>
+          </tr>
+        </thead>
+        <tbody>
+          <sc-for list="{{mesures}}" as="x" hint-placeholder-count="5">
+            <tr>
+              <td style="padding: 11px 12px; font-weight: 600; border-bottom: 1px solid #26262F">{{x.t}}</td>
+              <td style="padding: 11px 12px; text-align: right; color: #B8BEC8; border-bottom: 1px solid #26262F">{{x.p}}</td>
+              <td style="padding: 11px 12px; text-align: right; color: #B8BEC8; border-bottom: 1px solid #26262F">{{x.l}}</td>
+              <td style="padding: 11px 12px; text-align: right; color: #B8BEC8; border-bottom: 1px solid #26262F">{{x.e}}</td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin: 12px 0 0; font-size: 12px; color: #7E7E8A">Les chiffres viendront du fournisseur — [À CONFIRMER].</p>
+  </div>
+
+  <!-- Complète la tenue -->
+  <div style="padding: 0 20px 30px">
+    <h2 style="margin: 0 0 12px; font-size: 12px; letter-spacing: 0.22em; color: #E0A458; text-transform: uppercase">Complète la tenue</h2>
+    <div style="border: 1px solid #26262F; background: #131318; padding: 18px">
+      <div style="display: flex; flex-direction: column; gap: 7px; font-size: 13.5px; margin-bottom: 14px">
+        <div style="display: flex; justify-content: space-between"><span style="color: #B8BEC8">Sweat + jogging</span><span>34,90 €</span></div>
+        <div style="display: flex; justify-content: space-between"><span style="color: #B8BEC8">Veste</span><span>19,90 €</span></div>
+        <div style="display: flex; justify-content: space-between; padding-top: 7px; border-top: 1px solid #26262F"><span style="color: #7E7E8A">Séparément</span><span style="color: #7E7E8A">54,80 €</span></div>
+        <div style="display: flex; justify-content: space-between; font-weight: 700"><span>Les deux</span><span style="color: #E0A458">49,90 €</span></div>
+      </div>
+      <button type="button" style="width: 100%; background: none; border: 1px solid #F4F2ED; color: #F4F2ED; padding: 14px; font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer; min-height: 44px">Ajouter la veste — 15 € de moins</button>
+    </div>
+  </div>
+
+  <!-- Le contact -->
+  <div id="contact" style="padding: 0 20px 30px">
+    <div style="border: 1px solid #26262F; padding: 18px">
+      <div style="font-size: 14px; font-weight: 600; margin-bottom: 6px">Une question avant d'acheter ?</div>
+      <p style="margin: 0 0 12px; font-size: 12.5px; color: #B8BEC8; line-height: 1.6">On répond sous 24 h, avant comme après la commande.</p>
+      <div style="font-size: 13.5px; line-height: 1.9">
+        WhatsApp <a href="#contact" style="border-bottom: 1px solid #E0A458">[NUMÉRO]</a><br>
+        E-mail <a href="mailto:[ADRESSE E-MAIL]" style="border-bottom: 1px solid #E0A458">[ADRESSE E-MAIL]</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ╔═══ LE PIED — le sigil et les pages obligatoires ═══╗ -->
+  <div style="padding: 40px 20px 28px; border-top: 1px dashed #40372E; margin-top: 44px">
+    <div style="display: flex; align-items: flex-end; gap: 9px; margin-bottom: 20px">
+      <svg viewBox="0 0 196 112" style="width: 38px; height: 22px; display: block" aria-hidden="true">
+        <polygon points="6,106 18,4 30,106" fill="#F4F2ED"></polygon>
+        <polygon points="38,106 49,34 60,106" fill="#F4F2ED"></polygon>
+        <polygon points="68,106 78,60 88,106" fill="#F4F2ED"></polygon>
+        <polygon points="96,106 105,80 114,106" fill="#F4F2ED"></polygon>
+        <rect x="122" y="100" width="68" height="6" fill="#E0A458"></rect>
+      </svg>
+      <span class="u" style="font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 500">Silence</span>
+    </div>
+    <div style="font-size: 11px; letter-spacing: 0.1em; line-height: 2.4; color: #B8BEC8; text-transform: uppercase">
+      <a href="mentions-legales.html">Mentions légales</a><br>
+      <a href="cgv.html">Conditions générales de vente</a><br>
+      <a href="retractation.html">Formulaire de rétractation</a><br>
+      <a href="confidentialite.html">Confidentialité</a>
+    </div>
+    <div style="font-size: 11px; letter-spacing: 0.1em; line-height: 2.2; color: #55555F; margin-top: 18px">
+      France 4,99 € · Maroc 49 MAD — 2 à 3 jours, depuis l'Europe<br>
+      Paiement par carte · Rétractation 14 jours
+    </div>
+  </div>
+
+  <!-- La barre d'achat, collée en bas -->
+  <div style="position: fixed; left: 0; right: 0; bottom: 0; background: #0B0B0C; border-top: 1px solid #26262F; padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px)); display: flex; align-items: center; gap: 14px; max-width: 390px; margin: 0 auto">
+    <div style="flex-shrink: 0">
+      <div style="font-size: 19px; font-weight: 700; line-height: 1.1">34,90 €</div>
+      <div style="font-size: 11px; color: #7E7E8A">+ 4,99 € livraison</div>
+    </div>
+    <button type="button" style="flex-grow: 1; background: #E0A458; color: #0B0B0C; border: none; padding: 16px; font-size: 15px; font-weight: 700; letter-spacing: 0.04em; font-family: inherit; cursor: pointer; min-height: 44px">AJOUTER AU PANIER</button>
+  </div>
+
+</div>
+</x-dc>
+
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#E0A458","options":["#E0A458","#16324F","#B8BEC8"],"section":"Marque"}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { taille: "M" };
+  }
+
+  renderVals() {
+    const choisie = this.state.taille;
+    const base =
+      "font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; " +
+      "padding: 13px 0; flex: 1; min-height: 44px; ";
+
+    return {
+      photos: [
+        { img: "img/sweat.jpg",  alt: "L'ensemble, de face, en entier" },
+        { img: "img/survet.jpg", alt: "L'ensemble, de dos" },
+        { img: "img/hero.jpg",   alt: "La matière, de près" }
+      ],
+      tailles: ["XS", "S", "M", "L", "XL", "XXL"].map((nom) => ({
+        nom,
+        choisir: () => this.setState({ taille: nom }),
+        style:
+          base +
+          (nom === choisie
+            ? "background: #F4F2ED; color: #0B0B0C; border: 1px solid #F4F2ED;"
+            : "background: transparent; color: #F4F2ED; border: 1px solid #33333F;")
+      })),
+      reponses: [
+        {
+          titre: "Un défaut, on rembourse.",
+          detail: "En argent, sur la carte qui a payé. Jamais en bon d'achat."
+        },
+        {
+          titre: "Contrôlé avant l'envoi.",
+          detail: "Chaque commande passe au contrôle qualité avant de partir."
+        },
+        {
+          titre: "Le renvoi ne te coûte rien.",
+          detail: "Zéro frais retenu, rien à avancer."
+        },
+        {
+          titre: "On répond sous 24 h.",
+          detail: "Le contact est en bas de cette page, pas caché dans une FAQ."
+        },
+        {
+          titre: "Filmé sans filtre.",
+          detail: "La couleur que tu vois est celle qui arrive."
+        }
+      ],
+      matiere: [
+        { quoi: "Grammage", valeur: "320 g/m²" },
+        { quoi: "Composition", valeur: "[À CONFIRMER]" },
+        { quoi: "Coupe", valeur: "Unisexe, XS à XXL" },
+        { quoi: "Teinture", valeur: "Même bain pour les 2 pièces" }
+      ],
+      mesures: [
+        { t: "XS", p: "[—]", l: "[—]", e: "[—]" },
+        { t: "S", p: "[—]", l: "[—]", e: "[—]" },
+        { t: "M", p: "[—]", l: "[—]", e: "[—]" },
+        { t: "L", p: "[—]", l: "[—]", e: "[—]" },
+        { t: "XL", p: "[—]", l: "[—]", e: "[—]" }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

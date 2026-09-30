@@ -158,7 +158,7 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
     catalogue et les vidéos — il l'a demandé le 30/09
 📌  Claude Design est accessible directement : plus besoin de lui faire
     faire l'aller-retour pour le site (étape 11 du skill à corriger)
-📌  le sigil (4 piques + ligne ambre) va sur l'écran de fin des vidéos,
+📌  le signe (4 piques + ligne ambre) va sur l'écran de fin des vidéos,
     au prochain rendu — le SVG est dans partage/BRIEF-SITE-SILENCE.md
 ```
 

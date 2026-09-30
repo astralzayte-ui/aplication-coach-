@@ -80,6 +80,23 @@ paiement. **Nous ne les voyons ni ne les conservons à aucun moment.**
 
 ## 6. La livraison
 
+### Comment nous travaillons — dit clairement
+
+**Nous ne fabriquons pas les vêtements que nous vendons.** Nous les
+sélectionnons chez un atelier partenaire, qui les stocke dans un entrepôt en
+**[pays de l'entrepôt européen]** et les expédie directement à ton adresse.
+
+**Ce mode de vente s'appelle le dropshipping.** Nous le disons plutôt que de
+le cacher : c'est ce qui nous permet de vendre 25 % sous le prix du marché.
+
+**Ce que ça ne change pas :** ton contrat de vente est conclu avec nous, et
+avec nous seuls. C'est nous qui répondons de la conformité du produit, de la
+garantie légale, de la rétractation et du remboursement. **Tu n'auras jamais
+à t'adresser à l'atelier.**
+
+**Le contrôle qualité :** chaque commande est contrôlée pièce par pièce avant
+de quitter l'entrepôt.
+
 | | |
 |---|---|
 | Expédition depuis | **[pays de l'entrepôt européen]** |

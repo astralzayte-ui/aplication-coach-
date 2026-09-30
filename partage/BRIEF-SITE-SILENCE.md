@@ -29,7 +29,7 @@ Donc : **le téléphone d'abord, la fiche produit d'abord.** L'accueil est secon
 
 **Le logo** — deux morceaux :
 
-**Le sigil.** Quatre piques de glace de hauteur décroissante, puis une ligne plate.
+**Le signe.** Quatre piques de glace de hauteur décroissante, puis une ligne plate.
 C'est de la glace qui fond, et c'est un son qui s'éteint. La ligne plate est la seule partie en couleur.
 
 ```svg
@@ -50,8 +50,8 @@ C'est de la glace qui fond, et c'est un son qui s'éteint. La ligne plate est la
 | | Hex | Où |
 |---|---|---|
 | Noir | `#0B0B0C` | le fond, partout |
-| Blanc cassé | `#F4F2ED` | le texte, le sigil |
-| **Ambre** | `#E0A458` | la ligne du sigil, **le bouton d'achat — rien d'autre** |
+| Blanc cassé | `#F4F2ED` | le texte, le signe |
+| **Ambre** | `#E0A458` | la ligne du signe, **le bouton d'achat — rien d'autre** |
 | Bleu nuit | `#16324F` | le froid, les détails ; remplace l'ambre sur fond clair |
 | Chrome | `#B8BEC8` | les petits textes |
 

@@ -38,7 +38,7 @@ L'idée : *on ne parle pas, on porte.*
 ### Le logo
 → **https://claude.ai/artifact/VWdcbnp1pJezxZd6i9GhJQ** (7 planches)
 
-- **Le sigil :** 4 piques de glace décroissantes + une ligne plate ambre. De la glace qui fond, un son qui s'éteint.
+- **Le signe :** 4 piques de glace décroissantes + une ligne plate ambre. De la glace qui fond, un son qui s'éteint.
 - **Le mot :** lettres très espacées (`letter-spacing: 0.38em`). *Les lettres ne se touchent pas — il y a du silence entre elles.* **Ne jamais resserrer.**
 - **Le print dos :** les piques tombent **par-dessus** les lettres. Grand format uniquement, 12 cm minimum.
 
@@ -46,8 +46,8 @@ L'idée : *on ne parle pas, on porte.*
 
 ```
 Noir          #0B0B0C    le fond, partout
-Blanc cassé   #F4F2ED    le texte, le sigil
-Ambre         #E0A458    la ligne du sigil, le bouton d'achat — RIEN D'AUTRE
+Blanc cassé   #F4F2ED    le texte, le signe
+Ambre         #E0A458    la ligne du signe, le bouton d'achat — RIEN D'AUTRE
 Bleu nuit     #16324F    le froid ; remplace l'ambre sur fond clair
 Chrome        #B8BEC8    les petits textes
 ```

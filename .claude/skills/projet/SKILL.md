@@ -1179,6 +1179,157 @@ Deux choses qui s'oublient et qui coûtent :
 
 ---
 
+### Étape 11 bis — Le site est beau. Il est illégal.
+
+**Tiré d'un cas réel, le 30/09.** Le site était debout, les prix posés, les
+photos en place. **Il manquait tout ce qui suit.** Aucune de ces lignes ne se
+voit sur une maquette — et chacune coûte cher oubliée.
+
+🔴 **Cette étape se fait AVANT la première vidéo, pas avant la première vente.**
+Une vidéo qui marche envoie du monde sur un site non conforme.
+
+---
+
+#### A — Les 4 pages qu'aucun designer ne dessine
+
+| La page | Ce qu'elle contient | Ce que ça coûte de l'oublier |
+|---|---|---|
+| **Mentions légales** | société, adresse, e-mail, téléphone, immatriculation, TVA, **+ l'hébergeur** | amende |
+| **CGV** | prix TTC, livraison, paiement, rétractation, garanties, médiateur, droit applicable | le client n'est engagé à rien |
+| **Formulaire de rétractation** | le **modèle officiel**, fourni, pas mentionné | le délai passe de **14 jours à 12 mois** |
+| **Confidentialité** | ce qu'on collecte, pourquoi, combien de temps, les droits, **les transferts hors UE** | amende |
+
+**Le modèle de ces 4 pages existe dans `partage/legal/`** du projet SILENCE.
+On le reprend, on change les crochets. On ne les réécrit pas de zéro.
+
+**Trois détails qui coûtent de l'argent, pas une amende :**
+
+```
+le bouton de commande doit dire qu'il ENGAGE À PAYER
+   « Valider » ne suffit pas → « Commander et payer »
+
+les frais de RENVOI à la charge du client, écrit noir sur blanc
+   si ce n'est pas écrit, c'est TOI qui les paies
+
+en cas de rétractation, tu rembourses aussi la LIVRAISON ALLER
+   une rétractation te coûte le produit + le port aller
+```
+
+---
+
+#### B — 🔴 La règle des 3 pays
+
+**C'est l'erreur la plus chère de la journée du 30/09.** On lui avait dit
+*« LLC américaine = pas d'impôts, pas de TVA »*. Faux, et il le croyait.
+
+> **Ce qu'on te dit sur les taxes est vrai pour le pays de celui qui te parle.**
+> Ceux qui vendent des sociétés parlent des taxes de LEUR pays. Ils ne mentent
+> pas. Ils répondent à une autre question.
+
+**Pour chaque taxe, trois pays comptent, jamais un seul :**
+
+```
+1.  où la société est immatriculée    →  l'impôt sur les bénéfices de ce pays
+2.  où TU VIS                         →  ton pays t'impose sur ce que tu gagnes
+                                          partout dans le monde
+3.  où est le CLIENT + où est la       →  la TVA
+    MARCHANDISE
+```
+
+**La TVA suit le colis, pas le passeport de la société.** Si l'inverse
+marchait, chaque boutique européenne serait immatriculée au Delaware.
+
+⚠️ **Le piège du seuil.** Les seuils de TVA (le fameux 10 000 € en Europe) sont
+réservés aux sociétés **établies dans la zone**. Une société étrangère n'a
+**aucun seuil** : elle doit la TVA dès la première vente.
+
+**Ce qu'il faut vérifier, dans cet ordre :**
+
+```
+1.  la marchandise part de quel pays ?
+2.  à qui appartient-elle quand elle est dans l'entrepôt ?
+3.  qui est l'importateur quand elle entre dans la zone ?
+4.  → de là seulement découle quelle TVA, et où s'inscrire
+```
+
+🔴 **Et ensuite tu REFAIS le seuil de rentabilité.** Le nombre de ventes calculé
+avant les taxes est faux. 20 % de TVA sur un produit à 34,90 € = **5,82 € qui
+ne sont pas à toi.** Et les prix sont déjà posés à −25 % du marché : **ça sort
+de la marge, pas du prix.**
+
+---
+
+#### C — Les deux obligations que personne ne te dit
+
+| | Quoi | Combien |
+|---|---|---|
+| **Le médiateur de la consommation** | obligatoire pour tout vendeur à des particuliers. Son nom et son site **écrits sur le site** | ~100 à 300 € / an |
+| **La filière du produit** *(REP)* | textile, électro, meubles, jouets, piles… chaque famille a la sienne. Inscription + contribution par pièce + le logo de tri | quelques centimes la pièce |
+
+**Ces deux lignes ne sont JAMAIS dans le budget de l'étape 4.** On les ajoute
+ici, et on remonte le total.
+
+---
+
+#### D — Ce que le produit doit afficher
+
+Demandé au fournisseur **à l'étape 6**, pas ici. Si c'est oublié, il faut le
+relancer et on perd une semaine.
+
+```
+textile     la composition des fibres, pièce par pièce
+            « 80 % coton, 20 % polyester » — obligatoire AVANT l'achat
+            (une matière et un grammage ne suffisent pas)
+partout     le pays de fabrication
+            les consignes d'entretien
+```
+
+---
+
+#### E — Dis comment tu travailles
+
+Si tu ne fabriques pas, **écris-le**. Une fois, à un endroit visible, et fais-en
+l'argument :
+
+> *« On ne fabrique pas. On sélectionne chez un atelier partenaire qui stocke
+> et expédie depuis l'Europe. Ça s'appelle du dropshipping. C'est exactement ce
+> qui nous permet d'être 25 % sous le marché — et chaque commande passe au
+> contrôle qualité avant de partir. »*
+
+**Trois raisons, dans l'ordre d'importance :**
+
+```
+1.  cacher un mode de vente, c'est une pratique trompeuse
+2.  le client qui le découvre seul se sent pris pour un idiot
+    → avis 1 étoile, et il a raison
+3.  dit avec le prix juste à côté, ça devient une preuve d'honnêteté
+```
+
+🔴 **Et la phrase qui protège :** *« ton contrat est avec nous, et avec nous
+seuls. Tu n'auras jamais à t'adresser à l'atelier. »* Dans les CGV **et** sur
+la page. C'est ça qui fait la différence entre une marque et un intermédiaire.
+
+---
+
+#### La liste, à cocher avant la première vidéo
+
+```
+☐  les 4 pages en ligne, zéro crochet restant
+☐  le bouton dit qu'il engage à payer
+☐  les frais de renvoi écrits, à la charge du client
+☐  la TVA : les 3 pays tranchés, l'inscription faite
+☐  le seuil de rentabilité REFAIT après taxes
+☐  le médiateur choisi, payé, nommé sur le site
+☐  la filière du produit : inscrit, logo de tri en place
+☐  la composition affichée sur chaque fiche
+☐  le mode de vente dit clairement, avec la phrase qui protège
+☐  le contrôle qualité dit au même endroit
+```
+
+**Tant qu'une case est vide, aucune vidéo ne part.**
+
+---
+
 ## BLOC 3 — ON DIFFUSE ET ON APPREND
 
 ### Étape 12 — 40 jours, 2 vagues
