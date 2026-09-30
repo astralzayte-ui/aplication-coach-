@@ -27,6 +27,7 @@ LA SUITE    dépouiller sa réponse, puis arrêter le catalogue
 | **Le questionnaire** | en ligne, vérifié, 18 conditions, 5 langues |
 | **Metricool** | branché — Insta + TikTok, je lis et je publie |
 | **Le montage vidéo** | `video/` — le moule rendu en code, pas par Higgs Field |
+| **La boutique** | 3 écrans dessinés — accueil téléphone, fiche, ordinateur |
 | **Le lien envoyé** | 30/09 — à relancer s'il n'a rien dit sous 3 jours |
 
 ## Ce qui bloque
@@ -91,6 +92,14 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 ❓  le prochain projet : nouveau dossier, ou à côté de celui-ci
 ❓  TikTok en compte personnel — on verra si la rétention 3 s remonte
 
+📌  IL VA ENVOYER DES VIDÉOS YOUTUBE sur la fabrication de sites.
+    Gemini les lit (image et son, ~2 centimes la vidéo de 20 min).
+    Ce qu'on en tire va dans le skill site-qui-vend, pas dans la
+    conversation. 🔴 RÈGLE QU'IL A POSÉE : ces vidéos poussent toujours
+    des bibliothèques payantes (3D, animations). Pour chacune, on
+    cherche l'équivalent gratuit qui donne le même effet — on ne
+    recommande un outil payant qu'après avoir montré qu'aucun gratuit
+    ne fait l'affaire.
 📌  RAPPELER À RECHARGER HIGGS FIELD dès que l'agent envoie le
     catalogue et les vidéos — il l'a demandé le 30/09
 📌  Claude Design est accessible directement : plus besoin de lui faire
