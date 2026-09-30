@@ -123,6 +123,77 @@ reel précis — et c'est exactement ce que le clic est censé mesurer.
 - Les photos en ratio portrait, pas paysage
 - Le formulaire le plus court possible
 
+## 9. Le look — on part d'un vrai site, jamais d'une page blanche
+
+**Ce qui sépare « fait par une IA » de « fait par une agence », c'est pas le
+talent : c'est d'avoir un système de design sous les yeux avant de dessiner.**
+
+### Refero — gratuit
+
+`styles.refero.design` — plus de 2 000 systèmes de design tirés de vrais sites,
+donnés en clair : les couleurs avec leur rôle, l'échelle de tailles, les
+espacements, les composants, et la liste de ce qu'il faut faire et ne pas faire.
+
+```
+1.  on cherche un site du MÊME monde que la marque
+    (du produit dans le noir, pas du logiciel en ligne)
+2.  on lit son système
+3.  on prend sa discipline, pas ses couleurs
+4.  on refuse ce qui se bat avec la marque — et on le dit
+```
+
+⚠️ **On ne copie jamais les couleurs ni la police.** On prend la *manière* :
+comment le texte est rythmé, où l'espace vide est mis, ce qui est interdit.
+
+### Ce qu'on a gardé d'ORYZO AI — « du produit dans le noir »
+
+| La règle | Pourquoi elle marche |
+|---|---|
+| **Le noir n'est jamais pur, le blanc non plus** | `#000` et `#fff` font écran d'ordinateur. Un noir tiède fait matière. |
+| **TOUT EN MAJUSCULES, graisse moyenne** | Les titres, la navigation, les étiquettes, les boutons. Ça fait étiquette de musée. |
+| **Une seule voix en minuscules** | Le texte qui *explique*, plus gros, plus fin. Le changement de casse dit au lecteur : ici on te parle. |
+| **Les titres collés** *(interligne 0,9)* | Les lettres se touchent presque, le titre devient un bloc sculpté au lieu de lignes. |
+| **Les séparateurs en pointillés fins** | Un trait plein ferme, un pointillé respire. Jamais plus de 1 px. |
+| **Zéro ombre** | La profondeur vient de deux fonds voisins, pas d'un flou. L'ombre, c'est le réflexe de celui qui a peur du vide. |
+| **Une section = un écran** | On ne compresse jamais deux idées dans la même bande. |
+| **Un seul bouton plein par section** | Le reste en contour. La rareté fait la force. |
+
+### Ce qu'on a refusé, et pourquoi il faut savoir refuser
+
+```
+❌  « coins arrondis, minimum 12 px »
+    Le logo SILENCE n'a que des pointes. Le site suit le logo, pas la mode.
+
+❌  « l'accent ne va jamais sur un bouton »
+    Vrai pour une vitrine. Faux pour une boutique : le bouton d'achat
+    doit être la chose la plus forte de la page.
+```
+
+🔴 **Un système de design est une référence, pas une loi.** Quand une de ses
+règles se bat avec la marque ou avec la vente, **c'est la marque et la vente qui
+gagnent** — et on écrit pourquoi, pour ne pas refaire le débat le mois d'après.
+
+### Les trois effets qui coûtent zéro
+
+```
+LE RYTHME CLAIR / SOMBRE   une section sur deux change de fond.
+                           L'œil se repose, et le bloc clair fait « garantie ».
+
+LA VIDÉO QUI AVANCE        elle ne se joue pas toute seule : son image suit
+AU DÉFILEMENT              le défilement. video.currentTime = avancement × durée.
+
+LE SURVOL SUR LE PRODUIT   la carte se soulève, la photo s'approche, le nom
+                           change de couleur, une flèche sort. Quatre lignes.
+```
+
+⚠️ **Les vidéos qui enseignent le web poussent toujours des bibliothèques
+payantes** — 3D, animations, effets. **Pour chacune, on cherche d'abord
+l'équivalent gratuit.** On ne recommande un outil payant qu'après avoir montré
+qu'aucun gratuit ne fait l'affaire. *(Vécu : l'hébergement à 4 €/mois vendu dans
+trois vidéos sur quatre — Netlify le fait gratuitement.)*
+
+---
+
 ## Ce qu'on ne fait pas
 
 - Pas de compte obligatoire pour commander

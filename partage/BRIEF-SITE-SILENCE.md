@@ -5,6 +5,10 @@
 
 ---
 
+> **Corrigé le 30/09.** Les prix, la livraison et le paiement au Maroc
+> venaient de la première grille ; ils ont été remis sur `marque/prix.md`.
+> Le fond n'est plus noir sans exception : deux sections passent en ivoire.
+
 ## 0. Ce qu'on te demande
 
 Construis la boutique en ligne de **SILENCE**, une marque de streetwear neuve qui vend en **France** et au **Maroc**.
@@ -64,13 +68,29 @@ L'ambre et le bleu nuit sont **volontairement opposés** (un chaud, un froid). C
 Ce n'est pas une image : les photos produit seront tournées **la nuit, dans une rue vide, sous un lampadaire orange**. Le site doit être le même monde. Si le site est clair et les photos sombres, ça fait deux marques.
 
 ```
-FOND           noir #0B0B0C, partout, sans exception
+FOND           noir #0B0B0C — le fond par défaut
 TEXTE          blanc cassé #F4F2ED
 UN HALO        ambre #E0A458, un seul, diffus, derrière le produit en vedette
 LE BOUTON      ambre plein — la seule tache de couleur saturée de la page
 LES DÉTAILS    bleu nuit #16324F
 PETIT TEXTE    chrome #B8BEC8
 ```
+
+### Le rythme clair / sombre — décidé le 30/09
+
+**Le noir n'est plus « partout, sans exception ».** Deux sections passent en
+ivoire `#F4F2ED`, texte noir : **les promesses**, et **le test à 11 €**.
+
+```
+noir → IVOIRE (les promesses) → noir (les rayons) → IVOIRE (le test) → noir
+```
+
+**Pourquoi :** tout en noir, l'œil fatigue et plus rien ne ressort. Le bloc
+clair fait **« garantie »**, pas « décoration » — c'est là qu'on met ce qu'on
+s'engage à tenir.
+
+⚠️ **Deux blocs clairs, pas trois.** Au-delà, c'est le noir qui devient
+l'exception et la marque se perd.
 
 **Les règles de forme :**
 
@@ -106,7 +126,12 @@ Au Maroc c'est **le même mec**. ⚠️ **Il paie par carte** (décidé le 25/09
 
 ## 4. Le catalogue et les prix
 
-**Cinq catégories. Pas une de plus.** Ne pas en inventer.
+**Six rayons.** Les cinq catégories du fournisseur, plus le t-shirt à 11 € qui
+sert de test sans risque.
+
+⚠️ **Ces prix viennent de `marque/prix.md`**, la grille refaite le 25/09 après
+le relevé réel des prix concurrents. **C'est ce fichier qui fait foi** — si les
+deux se contredisent un jour, c'est lui qui gagne, pas ce dossier.
 
 **Une catégorie = un prix.** Tous les modèles d'une catégorie coûtent la même chose.
 
@@ -130,23 +155,28 @@ Le site montre donc **5 rayons**, pas 5 fiches.
 
 ### 🇫🇷 France — en euros
 
-| Produit | Prix |
-|---|---|
-| Veste | **34,90 €** |
-| Sweat + jogging | **39,90 €** |
-| Survêtement imperméable | **44,90 €** |
-| Doudoune | **59,90 €** |
-| Ensemble tête aux pieds | **89,90 €** |
+| Produit | Prix | vs marché |
+|---|---|---|
+| T-shirt *(le test)* | **11,00 €** | — |
+| Veste | **19,90 €** | −25 % |
+| **Sweat + jogging** ⭐ | **34,90 €** | **−36 %** |
+| Survêtement imperméable | **39,90 €** | −28 % |
+| Doudoune | **39,90 €** | −31 % |
+| Ensemble tête aux pieds | **84,00 €** | −26 % |
+
+⭐ **Le produit d'appel, c'est le sweat + jogging.** C'est là que l'écart avec
+le marché est le plus gros, et c'est ça qui se voit.
 
 ### 🇲🇦 Maroc — en dirhams, jamais en euros convertis
 
 | Produit | Prix |
 |---|---|
-| Veste | **249 MAD** |
-| Sweat + jogging | **299 MAD** |
-| Survêtement imperméable | **349 MAD** |
-| Doudoune | **449 MAD** |
-| Ensemble tête aux pieds | **699 MAD** |
+| T-shirt *(le test)* | **79 MAD** |
+| Veste | **149 MAD** |
+| **Sweat + jogging** ⭐ | **249 MAD** |
+| Survêtement imperméable | **299 MAD** |
+| Doudoune | **299 MAD** |
+| Ensemble tête aux pieds | **649 MAD** |
 
 **Ces prix sont figés.** Ne pas les modifier, ne pas en déduire d'autres.
 
@@ -162,7 +192,7 @@ Personne ne lâche 90 € sur une marque découverte dans une story.
 
 **L'économie du pack s'affiche ligne par ligne**, jamais assénée : les pièces séparées, le total, puis le prix du pack. Le lecteur fait la soustraction lui-même — c'est ça qui la rend crédible.
 
-**Le pack à 89,90 € dépasse son plafond d'achat.** Afficher **« ou 3 × 29,97 € »** juste à côté. 30 €, c'est dans sa poche.
+**La tenue complète à 84 € dépasse son plafond d'achat** *(40 à 60 €)*. Afficher **« ou 3 × 28 € »** juste à côté. 28 €, c'est dans sa poche.
 
 **Livraison offerte dès 2 articles.**
 
@@ -171,19 +201,22 @@ Personne ne lâche 90 € sur une marque découverte dans une story.
 **Décision du propriétaire :** la livraison est **facturée plus cher qu'elle ne coûte**, et elle sert de levier pour faire monter le panier.
 
 ```
-Livraison          5,90 €
-Offerte dès        59 €
+Livraison France   4,99 €
+Livraison Maroc      49 MAD
 ```
 
-**Pourquoi 59 € :** c'est exactement le prix de la doudoune (59,90 €). Quelqu'un qui regarde la veste à 34,90 € voit qu'à 59 € la livraison est offerte → il monte d'un cran au lieu d'ajouter un 2e article qui ferait exploser son budget.
+⚠️ **Pas de seuil de livraison offerte pour l'instant.** Il avait été fixé à
+59 € quand la livraison coûtait 5,90 € ; les deux chiffres ont changé le 25/09
+et le seuil n'a pas été refait. **Ne pas en inventer un.**
 
-**Affiche le manque, toujours, dans le panier :**
-
-> *« Plus que 19,10 € pour la livraison offerte »*
+**Le jour où on refait un seuil**, il se pose sur le prix d'un produit réel —
+celui juste au-dessus du panier moyen — pour que le client monte d'un cran au
+lieu d'ajouter un deuxième article. Et le panier affiche toujours ce qui
+manque : *« plus que X € pour la livraison offerte »*.
 
 **Le prix de la livraison est visible dès la fiche produit**, jamais découvert au paiement. Un frais découvert au dernier écran est le premier motif d'abandon — et la 1re plainte relevée chez les concurrents.
 
-⚠️ **Au Maroc, la livraison reste gratuite** ou très basse : le client paie en espèces à la porte, chaque euro ajouté augmente le risque de refus du colis.
+⚠️ **Au Maroc : 49 MAD, et paiement par carte uniquement.** Le paiement à la livraison a été écarté le 25/09 — il faisait porter le risque du colis refusé sur nous.
 
 ---
 

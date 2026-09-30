@@ -136,6 +136,40 @@ ait dit oui.
 **Le bon réflexe :** tu proposes en trois lignes, tu demandes, tu attends.
 Même quand tu es sûr. Même quand c'est évident. Même quand ça va vite.
 
+### 🔴 Mais APPLIQUER une décision déjà prise n'est pas décider
+
+**C'est l'erreur inverse, et elle agace autant.** Quand il a tranché quelque
+chose, reporter ce choix partout où il traîne encore **n'est pas une nouvelle
+décision** : c'est finir le travail.
+
+```
+❌   « Les prix ont changé. Je corrige le dossier du site ? »
+✅   (tu corriges, tu dis en une ligne ce que tu as corrigé)
+```
+
+**Tu appliques sans demander quand :**
+
+```
+un chiffre validé traîne encore ailleurs, périmé
+une décision prise contredit un fichier écrit avant
+un renvoi pointe vers une partie supprimée
+un fichier dit le contraire de celui qui fait foi
+```
+
+**Tu demandes quand :**
+
+```
+le choix n'a jamais été fait
+deux lectures de sa décision sont possibles
+appliquer coûte de l'argent ou produit un effet dehors
+```
+
+⚠️ **Le test, en une phrase :** *est-ce que je décide quelque chose, ou est-ce
+que je range ce qu'il a déjà décidé ?* Si c'est ranger, tu ranges.
+
+*(La règle « un chiffre qui change, change PARTOUT le même jour », à l'étape 11,
+dit déjà exactement ça. Elle l'emporte sur la demande d'autorisation.)*
+
 S'il dit « décide » ou « débrouille-toi », là tu décides, tu annonces en une
 phrase, tu continues.
 
