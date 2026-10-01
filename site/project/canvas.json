@@ -1,0 +1,86 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Bureau.dc.html": {
+      "expand": "fill",
+      "h": 4600,
+      "title": "Accueil — ordinateur",
+      "w": 1280,
+      "x": 940,
+      "y": 0,
+      "is_interactive": true
+    },
+    "Fiche.dc.html": {
+      "expand": "fill",
+      "h": 3100,
+      "is_interactive": true,
+      "title": "Fiche produit — téléphone",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    },
+    "Main.dc.html": {
+      "expand": "fill",
+      "h": 2900,
+      "title": "Accueil — téléphone",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-09-30T20:30:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "focused",
+    "file": "Bureau.dc.html"
+  },
+  "notes": {
+    "catalogue": {
+      "fill": "gray",
+      "text": "Le catalogue tient de 3 à 10 modèles par rayon sans casser. Le nombre exact dépend de l'agent.",
+      "w": 520,
+      "x": 940,
+      "y": 4720
+    },
+    "photos": {
+      "fill": "gray",
+      "text": "Les photos sont des emplacements marqués. Rien à publier tant que le fournisseur n'a pas envoyé les vraies.",
+      "w": 390,
+      "x": 470,
+      "y": 3220
+    },
+    "prix": {
+      "fill": "orange",
+      "text": "Prix pris dans marque/prix.md, la grille figée du 25/09 — pas ceux du cahier des charges, qui sont périmés.",
+      "w": 390,
+      "x": 0,
+      "y": 2680
+    },
+    "titre": {
+      "kind": "title1",
+      "maxW": 2220,
+      "text": "SILENCE — la boutique",
+      "w": 240,
+      "x": 0,
+      "y": -260
+    },
+    "clair": {
+      "x": 940,
+      "y": 4860,
+      "w": 560,
+      "fill": "orange",
+      "text": "Deux blocs passent en ivoire pour casser le noir — ça contredit la règle « fond noir partout » du cahier des charges. À juger sur l'image."
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Fiche.dc.html",
+    "Bureau.dc.html"
+  ],
+  "pages": [],
+  "title": "SILENCE — la boutique"
+}
