@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>SILENCE — accueil</title>
 <script src="./support.js"></script>
+<script src="panier.js" defer></script>
 </head>
 <body>
 <x-dc>
@@ -30,11 +31,12 @@
     <div style="display: flex; gap: 18px; align-items: center">
       <a href="#rayons" class="u" style="font-size: 11px; letter-spacing: 0.14em; padding: 12px 0">Rayons</a>
       <a href="Fiche.dc.html" class="u" style="font-size: 11px; letter-spacing: 0.14em; padding: 12px 0">Qui on est</a>
-      <button type="button" aria-label="Panier" style="background: none; border: none; padding: 10px 0 10px 4px; cursor: pointer; min-height: 44px">
+      <button type="button" data-ouvrir-panier aria-label="Ton panier" style="position: relative; background: none; border: none; padding: 10px 0 10px 4px; cursor: pointer; min-height: 44px">
         <svg viewBox="0 0 24 24" style="width: 19px; height: 19px; display: block" fill="none" stroke="#F4F2ED" stroke-width="1.4">
           <path d="M4 7h16l-1.4 12H5.4L4 7Z"></path>
           <path d="M9 7V5a3 3 0 0 1 6 0v2"></path>
         </svg>
+      <span data-compteur style="display:none;position:absolute;top:2px;right:0;min-width:17px;height:17px;background:#E0A458;color:#0B0B0C;border-radius:9px;font-size:10px;font-weight:700;align-items:center;justify-content:center;padding:0 4px"></span>
       </button>
     </div>
   </div>

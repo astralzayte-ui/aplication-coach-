@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>SILENCE — la boutique</title>
 <script src="./support.js"></script>
+<script src="panier.js" defer></script>
 </head>
 <body>
 <x-dc>
@@ -68,11 +69,12 @@
 
       <div style="display: flex; align-items: center; gap: 22px">
         <span class="u" style="font-size: 10px; letter-spacing: 0.14em; color: #7E7E8A">Livraison 4,99 € · 2 à 3 jours</span>
-        <button type="button" aria-label="Panier" style="background: none; border: none; padding: 10px; cursor: pointer; min-width: 44px; min-height: 44px">
+        <button type="button" data-ouvrir-panier aria-label="Ton panier" style="position: relative; background: none; border: none; padding: 10px; cursor: pointer; min-width: 44px; min-height: 44px">
           <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; display: block" fill="none" stroke="#F4F2ED" stroke-width="1.4">
             <path d="M4 7h16l-1.4 12H5.4L4 7Z"></path><path d="M9 7V5a3 3 0 0 1 6 0v2"></path>
           </svg>
-        </button>
+        <span data-compteur style="display:none;position:absolute;top:2px;right:0;min-width:17px;height:17px;background:#E0A458;color:#0B0B0C;border-radius:9px;font-size:10px;font-weight:700;align-items:center;justify-content:center;padding:0 4px"></span>
+      </button>
       </div>
     </div>
   </div>
@@ -161,7 +163,7 @@
 
     <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px">
       <sc-for list="{{rayons}}" as="r" hint-placeholder-count="6">
-        <a href="Fiche.dc.html" class="rayon">
+        <a href="Fiche.dc.html" class="rayon" data-produit="{{r.nom}}">
           <div class="cadre" style="aspect-ratio: 4 / 5">
             <img class="zoom" src="{{r.img}}" alt="{{r.nom}}"
                  style="object-fit: cover; filter: grayscale(0.25) contrast(1.08) brightness(0.86)">

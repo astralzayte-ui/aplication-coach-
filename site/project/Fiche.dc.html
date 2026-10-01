@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>SILENCE — sweat à capuche + jogging</title>
 <script src="./support.js"></script>
+<script src="panier.js" defer></script>
 </head>
 <body>
 <x-dc>
@@ -31,6 +32,10 @@
       <img src="img/s.png" alt="" style="width: 26px; height: 29px; object-fit: contain; mix-blend-mode: screen; display: block">
       <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.34em; text-indent: 0.34em">SILENCE</span>
     </a>
+    <button type="button" data-ouvrir-panier aria-label="Ton panier" style="position: relative; background: none; border: none; padding: 10px; cursor: pointer; min-width: 44px; min-height: 44px">
+      <svg viewBox="0 0 24 24" style="width: 19px; height: 19px; display: block" fill="none" stroke="#F4F2ED" stroke-width="1.4"><path d="M4 7h16l-1.4 12H5.4L4 7Z"></path><path d="M9 7V5a3 3 0 0 1 6 0v2"></path></svg>
+      <span data-compteur style="display:none;position:absolute;top:2px;right:0;min-width:17px;height:17px;background:#E0A458;color:#0B0B0C;border-radius:9px;font-size:10px;font-weight:700;align-items:center;justify-content:center;padding:0 4px"></span>
+    </button>
   </div>
 
   <!-- Les photos : de face, de dos, la matière -->
@@ -66,7 +71,7 @@
     </div>
     <div style="display: flex; gap: 8px; margin-bottom: 22px">
       <sc-for list="{{tailles}}" as="t" hint-placeholder-count="5">
-        <button type="button" onClick="{{t.choisir}}" style="{{t.style}}">{{t.nom}}</button>
+        <button type="button" onClick="{{t.choisir}}" data-taille="{{t.nom}}" data-choisie="{{t.estChoisie}}" style="{{t.style}}">{{t.nom}}</button>
       </sc-for>
     </div>
   </div>
@@ -157,7 +162,7 @@
         <div style="display: flex; justify-content: space-between; padding-top: 7px; border-top: 1px solid #26262F"><span style="color: #7E7E8A">Séparément</span><span style="color: #7E7E8A">54,80 €</span></div>
         <div style="display: flex; justify-content: space-between; font-weight: 700"><span>Les deux</span><span style="color: #A5D8F3">49,90 €</span></div>
       </div>
-      <button type="button" style="width: 100%; background: none; border: 1px solid #F4F2ED; color: #F4F2ED; padding: 14px; font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer; min-height: 44px">Ajouter la veste — 15 € de moins</button>
+      <button type="button" style="width: 100%; background: none; border: 1px solid #F4F2ED; color: #F4F2ED; padding: 14px; font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer; min-height: 44px" data-ajouter="Veste" data-prix="19,90">Ajouter la veste — 15 € de moins</button>
     </div>
   </div>
 
@@ -197,7 +202,7 @@
       <div style="font-size: 19px; font-weight: 700; line-height: 1.1">34,90 €</div>
       <div style="font-size: 11px; color: #7E7E8A">+ 4,99 € livraison</div>
     </div>
-    <button type="button" style="flex-grow: 1; background: #E0A458; color: #0B0B0C; border: none; padding: 16px; font-size: 15px; font-weight: 700; letter-spacing: 0.04em; font-family: inherit; cursor: pointer; min-height: 44px">AJOUTER AU PANIER</button>
+    <button type="button" style="flex-grow: 1; background: #E0A458; color: #0B0B0C; border: none; padding: 16px; font-size: 15px; font-weight: 700; letter-spacing: 0.04em; font-family: inherit; cursor: pointer; min-height: 44px" data-ajouter="Sweat à capuche + jogging" data-prix="34,90">AJOUTER AU PANIER</button>
   </div>
 
 </div>
@@ -224,6 +229,7 @@ class Component extends DCLogic {
       ],
       tailles: ["XS", "S", "M", "L", "XL", "XXL"].map((nom) => ({
         nom,
+        estChoisie: nom === choisie ? "oui" : "non",
         choisir: () => this.setState({ taille: nom }),
         style:
           base +
