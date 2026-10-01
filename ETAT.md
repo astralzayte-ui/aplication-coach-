@@ -109,6 +109,18 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 | TikTok Maroc | `silence.worldwide_maroc` |
 | TikTok | `SILENCE | Menswear` — ⚠️ **compte personnel**, stats réduites |
 
+## 🔴 LE SITE — il le refait lui-même
+
+Le 01/10, il n'a pas aimé le site fait ici. **Il le refait sur Claude Design,
+seul.** Il l'enverra une fois fini ; le travail sera alors de **le faire
+marcher, pas de le redessiner** : recoller le panier, les 4 pages légales,
+ses informations, et chasser les bugs.
+
+**Tout ce qu'il faut est listé dans `site/A-RECOLLER.md`.**
+Ne rien supprimer de ce fichier ni de `partage/legal/`.
+
+---
+
 ## 📌 À ressortir quand il le demande
 
 **« Je suis à l'agence »** → lui renvoyer **les 2 questions pour l'agence de la
