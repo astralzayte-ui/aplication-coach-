@@ -8,26 +8,40 @@
 🔴 **Ces deux documents sont périmés. Ils décrivent un logo qui n'existe plus.**
 À refaire une fois la couleur du site tranchée.
 
+## 🔴 Qui va où
+
+```
+LE MOT ENTIER   la barre du haut et le pied du site
+                mot-barre-transparent.png
+
+LE S SEUL       UNIQUEMENT les réseaux et la favicon
+                → jamais dans la barre du site
+```
+
 ## Les fichiers
 
 | Fichier | Taille | Pour quoi |
 |---|---|---|
-| `logo-mot.png` | 2000 × 485 | **le site** — le bandeau découpé, sans le SILENCE fantôme du haut |
+| `mot-barre-transparent.png` | 1240 × 355 | **le site** — fond transparent, va sur n'importe quoi |
+| `s-fond-noir-transparent.png` | 800 × 900 | le S détouré — réseaux et favicon |
+| `mot-barre.png` | 1240 × 355 | le mot sur fond noir |
 | `logo-avatar.png` | 1000 × 1000 | Instagram, TikTok, la favicon |
 | `logo-bandeau.jpg` | 2000 × 661 | l'original, avec le fantôme |
 | `logo-bandeau-2.jpg` | 2000 × 661 | l'original, deuxième version |
 | `logo-vertical.jpg` | 1116 × 2000 | les stories et les vidéos |
 | `logo-rond.jpg` | 2000 × 2000 | l'original du rond |
 
-## Comment le poser sur du noir
+## Pourquoi les versions transparentes
 
-Le logo a un fond bleu nuit. Sur un fond noir, ça ferait un rectangle visible.
+Le logo sort de Gemini avec un fond bleu nuit **#121929**.
 
-```css
-mix-blend-mode: screen;
-```
+On a d'abord essayé `mix-blend-mode: screen` : ça marche sur du noir uni, mais
+**ça fait une boîte claire dès qu'il y a une photo derrière**. Vu sur la barre
+du haut, au-dessus de la photo d'accueil.
 
-Le bleu nuit disparaît, la glace reste et brille. **Gratuit, une ligne.**
+La vraie solution : **le fond est devenu transparent pour de vrai**. Chaque
+pixel garde sa couleur, et sa transparence suit sa luminosité — le noir
+disparaît, la glace reste. Le logo va désormais sur n'importe quel fond.
 
 ## La question ouverte
 

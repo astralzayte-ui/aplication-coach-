@@ -47,7 +47,7 @@ th{color:#A5D8F3;font-size:11px;letter-spacing:.14em;text-transform:uppercase;fo
 pre{max-width:100%;background:#131318;border:1px solid #1E1E26;padding:16px;overflow-x:auto;font-size:13.5px;line-height:1.7;margin:0 0 18px}
 code{font-family:ui-monospace,Menlo,Consolas,monospace}
 .haut{display:flex;align-items:center;gap:10px;padding:18px 20px;border-bottom:1px solid #1E1E26}
-.haut img{width:26px;height:29px;object-fit:contain;mix-blend-mode:screen;display:block}
+.haut img{width:118px;display:block}
 .haut span{font-size:12px;letter-spacing:.3em;text-transform:uppercase;font-weight:500}
 .avert{background:#2A1C0B;border:1px solid #E0A458;color:#F0D0A0;padding:14px 16px;margin:0 0 30px;font-size:14px}
 .pied{border-top:1px dashed #26323C;margin-top:50px;padding-top:24px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;line-height:2.4}
@@ -103,7 +103,7 @@ for (const [nom, titre, fichier] of PAGES_LEGALES) {
 <title>SILENCE — ${titre}</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap">
 <style>${CSS}</style></head><body>
-<div class="haut"><img src="img/s.png" alt=""><span>Silence</span></div>
+<div class="haut"><img src="img/logo-barre.png" alt="SILENCE"></div>
 <div class="enveloppe">
 ${avert}
 ${convertir(md)}
