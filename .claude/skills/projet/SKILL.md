@@ -230,6 +230,22 @@ de lecture ne sera pas lu, ni par lui, ni par toi.
 
 # LA MÉTHODE — 15 ÉTAPES, 3 BLOCS
 
+## Le code couleur, à chaque explication
+
+Il lit par la couleur avant de lire les mots. **Chaque point d'une liste
+porte sa pastille**, sans exception :
+
+```
+🟢  bonne idée, ça rapporte, c'est gratuit
+🟠  à surveiller, pas bloquant, en attente
+🔴  problème, décision figée, ou ça coûte cher
+✅  fait
+❌  manque
+```
+
+**Une liste sans pastilles est une liste qu'il ne lira pas.**
+
+
 ## BLOC 1 — ON DÉCIDE (gratuit)
 
 ### Étape 1 — L'étude de marché
