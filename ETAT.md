@@ -109,6 +109,19 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 | TikTok Maroc | `silence.worldwide_maroc` |
 | TikTok | `SILENCE | Menswear` — ⚠️ **compte personnel**, stats réduites |
 
+## 📌 À ressortir quand il le demande
+
+**« Je suis à l'agence »** → lui renvoyer **les 2 questions pour l'agence de la
+LLC** (la TVA, et le médiateur / le droit de la consommation français). Elles
+sont dans la conversation du 30/09. Il peut aussi demander **une traduction en
+arabe**.
+
+Il les a déjà posées par écrit le 30/09. Il attend la réponse. S'ils écrivent
+noir sur blanc qu'une LLC américaine dispense du droit français : corriger le
+site, le budget et le skill, et le lui dire franchement.
+
+---
+
 ## Les décisions prises, à ne pas rouvrir
 
 ```
