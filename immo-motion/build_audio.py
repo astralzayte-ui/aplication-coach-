@@ -102,7 +102,8 @@ fo=int(1.2*SR); music[-fo:]*=np.linspace(1,0,fo); music*=np.minimum(1,t_(N)/0.05
 sfx=np.zeros(N); E=TL["ev"]
 for w in TL["words"]: put(sfx,w,click(),0.8)
 for c in (S["logo"][0],S["demo"][0],S["cta"][0]): put(sfx,c-0.25,whoosh(0.5,True),0.55)
-for c in TL["cuts"][1:]: put(sfx,c-0.18,whoosh(0.4,True),0.45)
+for c in TL["cuts"]: put(sfx,c-0.18,whoosh(0.4,True),0.5)
+for c in TL.get("soft",[]): put(sfx,c-0.12,whoosh(0.3,True),0.25)
 put(sfx,E["wordmark"]+0.1,ding(),0.9)
 for i,t0 in enumerate(E["thumbs"]): put(sfx,t0,click(),0.7)
 put(sfx,E["ten"],pop(),0.7)

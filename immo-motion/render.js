@@ -16,7 +16,7 @@ const ext=mode==='overlay'?'png':'jpg';
     while(true){const k=next++; if(k>=frames.length)break; const [i,t]=frames[k];
       await p.evaluate(t=>window.seek(t),t);
       const name=times?`still_${mode}_${String(t).replace('.','_')}.${ext}`:`${String(i).padStart(5,'0')}.${ext}`;
-      await p.screenshot({path:path.join(out,name),type:ext==='png'?'png':'jpeg',quality:90,omitBackground:mode==='overlay'});
+      await p.screenshot(Object.assign({path:path.join(out,name),type:ext==='png'?'png':'jpeg',omitBackground:mode==='overlay'},ext==='png'?{}:{quality:90}));
       if(++done%60===0) console.log('frames',done,'/',frames.length,flush=true);}
     await ctx.close();
   }
