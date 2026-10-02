@@ -1,10 +1,10 @@
-# Prompt pour Claude Design — site ImmoMotion
+# Prompt pour Claude Design — site ImmoClap
 
 Copie tout le bloc ci-dessous dans Claude Design.
 
 ---
 
-Crée le site web complet d'**ImmoMotion**, un SaaS qui transforme les photos d'un bien immobilier en vidéo cinématique grâce à l'IA (mouvements de caméra, musique, voix off, logo de l'agence). Cible : agences immobilières et propriétaires en **France et au Maroc**. Langue : **français**. Prix affichables en **€ et en DH** (sélecteur).
+Crée le site web complet d'**ImmoClap**, un SaaS qui transforme les photos d'un bien immobilier en vidéo cinématique grâce à l'IA (mouvements de caméra, musique, voix off, logo de l'agence). Cible : agences immobilières et propriétaires en **France et au Maroc**. Langue : **français**. Prix affichables en **€ et en DH** (sélecteur).
 
 Niveau attendu : site SaaS haut de gamme type Apple / Linear / Reel-E — luxe, sobre, cinématique, très animé mais élégant. Tout le site est **une seule longue page qui scrolle**, avec des sections qui **alternent fond noir et fond gris très foncé**.
 
@@ -38,7 +38,7 @@ Niveau attendu : site SaaS haut de gamme type Apple / Linear / Reel-E — luxe, 
 
 ## 3. Structure de la page (dans cet ordre)
 
-**Header** : logo ImmoMotion à gauche (logo simple : un "I" ou une maison stylisée qui forme un bouton play, en doré + texte). Menu : Comment ça marche · Produit (menu déroulant) · Exemples · Comparer · Avis · FAQ · Tarifs. À droite : « Se connecter » + bouton jaune « Ma vidéo gratuite → ».
+**Header** : logo ImmoClap à gauche (logo simple : un maison stylisée en traits fins dont l'intérieur forme un bouton play, en doré, suivie de "Immo" en crème et "Clap" en doré, police serif). Menu : Comment ça marche · Produit (menu déroulant) · Exemples · Comparer · Avis · FAQ · Tarifs. À droite : « Se connecter » + bouton jaune « Ma vidéo gratuite → ».
 
 **I. Hero (fond noir)**
 - Sur-titre espacé : `VIDÉOS IMMOBILIÈRES PAR IA · FRANCE & MAROC`
@@ -60,10 +60,10 @@ Niveau attendu : site SaaS haut de gamme type Apple / Linear / Reel-E — luxe, 
 - Un **grand mockup d'écran** au centre qui **change automatiquement toutes les 4 secondes** selon l'étape active.
 - En dessous, **3 colonnes numérotées 1 · 2 · 3** (gros chiffres serif). Au-dessus de chaque colonne, une **barre fine qui se remplit en doré** pendant que l'étape est active, puis passe à la suivante (comme des stories Instagram). Cliquer sur une étape l'affiche.
   1. « Déposez vos photos » — « Depuis votre téléphone ou votre ordinateur. Sans brief, sans liste de plans. » → l'écran montre une zone de dépôt en pointillés dorés + une **grille de miniatures de photos qui se remplit une par une**, compteur « 25 photos sur 25 prêtes » et bouton « Continuer ».
-  2. « ImmoMotion monte votre vidéo » — « Mouvements de caméra sur chaque photo, musique en rythme, un premier montage en quelques minutes. Ajustez ensuite tout ce que vous voulez. » → l'écran montre l'éditeur (voir section IV).
+  2. « ImmoClap monte votre vidéo » — « Mouvements de caméra sur chaque photo, musique en rythme, un premier montage en quelques minutes. Ajustez ensuite tout ce que vous voulez. » → l'écran montre l'éditeur (voir section IV).
   3. « Publiez partout » — « Tous les formats pour chaque réseau, plus une page web du bien prête à partager. » → l'écran montre 3 aperçus (Écran large 16:9 : YouTube, SeLoger, Avito · Téléphone 9:16 : Reels, TikTok · Carré 1:1 : Instagram, Facebook) avec l'adresse du bien en surimpression et un bouton jaune « Télécharger la vidéo » + « Télécharger toutes les versions (ZIP) ».
 
-**IV. Le studio (fond gris)** — sur-titre `IV —— LE STUDIO` — titre « Le studio ImmoMotion. / *Tout sur un seul écran.* » — sous-titre « Votre premier montage est prêt en quelques minutes. Modifiez ce que vous voulez ensuite. »
+**IV. Le studio (fond gris)** — sur-titre `IV —— LE STUDIO` — titre « Le studio ImmoClap. / *Tout sur un seul écran.* » — sous-titre « Votre premier montage est prêt en quelques minutes. Modifiez ce que vous voulez ensuite. »
 - **Onglets** espacés en majuscules : PLANS · MUSIQUE · TEXTE · VOIX OFF · IMAGE DE MARQUE (onglet actif souligné en doré). Chaque onglet change le mockup.
 - **Mockup de l'éditeur** dans un grand cadre : barre du haut (← Mes biens · adresse du bien · ✓ Votre vidéo est à jour · annuler/rétablir · Télécharger ▾ · bouton jaune Partager · avatar). Barre latérale d'icônes (Plans, Musique, Texte, Voix off, Image de marque). Colonne de **miniatures numérotées** avec étiquettes de transition (« Coupe », « Fondu ») et 2 photos grisées « Pas dans la vidéo » avec un +. À droite, **lecteur vidéo** avec bouton pause, timeline « 0:07 / 1:10 », sélecteur Large / Carré / Téléphone.
   - Onglet MUSIQUE : catalogue de morceaux (titre, ambiance : Luxe, Moderne, Chaleureux, durée, bouton écouter).
@@ -77,7 +77,7 @@ Niveau attendu : site SaaS haut de gamme type Apple / Linear / Reel-E — luxe, 
 **VI. Avis (fond gris)** — titre « Les agents / *en parlent.* » — 3 cartes de témoignage (citation en serif, nom, agence, ville, 5 étoiles). **Placeholders à remplacer par de vrais avis clients** — ne pas inventer de noms d'agences réelles.
 
 **VII. Comparaison (fond noir)** — sur-titre `VII —— LE CALCUL` — titre « Oubliez le tournage à 500 €. / *Et les 7 jours d'attente.* »
-- Tableau 3 colonnes : critère · « Vidéaste traditionnel » · colonne **ImmoMotion mise en avant** (carte surélevée, bordure, fond légèrement plus clair).
+- Tableau 3 colonnes : critère · « Vidéaste traditionnel » · colonne **ImmoClap mise en avant** (carte surélevée, bordure, fond légèrement plus clair).
   - Prix par bien : ~~300 – 1 000 €~~ / **dès 29 €**
   - Délai : 3 à 7 jours / **10 minutes**
   - Formats : 1 / **3 (16:9, 9:16, 1:1)**
@@ -95,7 +95,7 @@ Combien de temps ça prend ? · Faut-il être à l'aise avec l'informatique ? ·
 
 **X. Appel final (fond gris)** — grand titre « Prêt à devenir / *l'agence qui fait de la vidéo ?* » + bouton jaune « Ma première vidéo gratuite → ».
 
-**Footer (fond noir)** — 5 colonnes de liens en petites majuscules : PRODUIT (Fonctionnalités, Studio, Mouvements de caméra, Retouche photo, Voix off, Musique, Image de marque, Page du bien, Tarifs, FAQ) · OUTILS VIDÉO (Vidéo immobilière, Photo en vidéo, Vidéo d'annonce, Reels immobiliers) · SOLUTIONS (Agents immobiliers, Agences, Promoteurs, Location saisonnière, Propriétaires) · RESSOURCES (Tutoriels, Guides, Blog) · ENTREPRISE (À propos, Contact, Confidentialité, CGV, Remboursement). En bas : « © 2026 ImmoMotion » + « Retour en haut ↑ ». Et **le mot "ImmoMotion" en serif géant** (largeur de l'écran) en filigrane très sombre tout en bas, coupé par le bord de la page.
+**Footer (fond noir)** — 5 colonnes de liens en petites majuscules : PRODUIT (Fonctionnalités, Studio, Mouvements de caméra, Retouche photo, Voix off, Musique, Image de marque, Page du bien, Tarifs, FAQ) · OUTILS VIDÉO (Vidéo immobilière, Photo en vidéo, Vidéo d'annonce, Reels immobiliers) · SOLUTIONS (Agents immobiliers, Agences, Promoteurs, Location saisonnière, Propriétaires) · RESSOURCES (Tutoriels, Guides, Blog) · ENTREPRISE (À propos, Contact, Confidentialité, CGV, Remboursement). En bas : « © 2026 ImmoClap » + « Retour en haut ↑ ». Et **le mot "ImmoClap" en serif géant** (largeur de l'écran) en filigrane très sombre tout en bas, coupé par le bord de la page.
 
 **Bouton de chat flottant** rond jaune en bas à droite.
 
