@@ -1,0 +1,148 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{--bg:#0F0D0A;--gold:#EDB62C;--cream:#F4ECE0}
+html,body{margin:0;background:transparent}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--bg)}
+body.overlay #stage{background:transparent}
+.layer{position:absolute;inset:0;overflow:hidden;opacity:0}
+.layer img{position:absolute;left:50%;top:50%;transform-origin:50% 50%}
+.abs{position:absolute;opacity:0;will-change:transform,opacity}
+.serif{font-family:'Source Serif 4',serif;color:var(--cream);line-height:1}
+.gold{color:var(--gold)} #hookWords .abs{text-shadow:0 4px 30px rgba(0,0,0,.65)} .it{font-style:italic}
+.cap{font-family:Montserrat,sans-serif;font-weight:500;text-transform:uppercase;color:var(--cream)}
+#shadeT{position:absolute;left:0;right:0;top:0;height:520px;background:linear-gradient(rgba(10,8,6,.55),rgba(10,8,6,0));opacity:0}
+#shadeB{position:absolute;left:0;right:0;bottom:0;height:1300px;background:linear-gradient(rgba(10,8,6,0),rgba(10,8,6,.82));opacity:0}
+#flash{position:absolute;inset:0;background:#fff1d6;opacity:0;pointer-events:none}
+#fade{position:absolute;inset:0;background:var(--bg);opacity:0;pointer-events:none}
+.thumb{position:absolute;width:240px;height:340px;border-radius:20px;border:3px solid var(--gold);overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.6);opacity:0}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.corner{position:absolute;width:150px;height:150px;border-color:rgba(237,182,44,.75);border-style:solid;opacity:0}
+</style></head><body>
+<div id="stage">
+ <div class="layer" id="L_hook"><img id="hookImg" src="build/bg_hook.jpg" style="height:2100px"></div>
+ <div class="layer" id="L_logo"><img id="logoImg" src="build/bg_logo.jpg" style="height:2100px"></div>
+ <div class="layer" id="L_demo"></div>
+ <div class="layer" id="L_cta"><img id="ctaImg" src="build/bg_cta.jpg" style="height:2100px"></div>
+ <div id="shadeT"></div><div id="shadeB"></div>
+
+ <!-- HOOK -->
+ <div id="hookWords"></div>
+ <!-- LOGO + 10 PHOTOS -->
+ <div class="abs" id="lockupV" style="left:0;top:0;width:1080px;height:1920px;opacity:1">
+  <div id="iconV" class="abs" style="left:410px;top:660px;opacity:1"></div>
+  <div id="wordV" class="abs serif" style="left:0;width:1080px;top:930px;text-align:center;font-size:150px;font-weight:600;opacity:1"><span>Immo</span><span class="gold">Clap</span></div>
+  <div id="tagV" class="abs cap" style="left:0;width:1080px;top:1110px;text-align:center;font-size:24px;letter-spacing:.24em"></div>
+ </div>
+ <div class="abs serif gold" id="ten" style="left:0;width:1080px;top:760px;text-align:center;font-size:420px;font-weight:600"></div>
+ <div class="abs serif it" id="tenCap" style="left:0;width:1080px;top:1150px;text-align:center;font-size:84px">photos suffisent</div>
+ <div id="thumbs"></div>
+ <!-- DEMO -->
+ <div class="abs" id="lower" style="left:80px;top:1190px;opacity:1">
+  <div class="serif" id="low1" style="font-size:112px;font-weight:600;opacity:0">Votre bien</div>
+  <div class="serif gold it" id="low2" style="font-size:112px;opacity:0;margin-top:6px">devient un film</div>
+  <div id="lowLine" style="height:5px;width:0;background:var(--gold);margin-top:26px;border-radius:3px"></div>
+ </div>
+ <div class="abs" id="ring" style="left:80px;top:1230px"></div>
+ <div class="abs serif" id="ringTxt" style="left:400px;top:1285px;font-size:88px"><div style="font-style:italic">en</div><div class="gold" style="font-weight:600;margin-top:6px">10 minutes</div></div>
+ <div class="abs" id="views" style="left:80px;top:1230px;display:flex;align-items:center;gap:30px"><div id="icoV"></div><div class="serif" style="font-size:96px;font-weight:600">Plus de vues</div></div>
+ <div class="abs" id="visits" style="left:80px;top:1410px;display:flex;align-items:center;gap:30px"><div id="icoH"></div><div class="serif" style="font-size:96px;font-weight:600">Plus de visites</div></div>
+ <!-- CTA -->
+ <div class="corner" id="c1" style="left:60px;top:60px;border-width:3px 0 0 3px"></div>
+ <div class="corner" id="c2" style="right:60px;top:60px;border-width:3px 3px 0 0"></div>
+ <div class="corner" id="c3" style="left:60px;bottom:60px;border-width:0 0 3px 3px"></div>
+ <div class="corner" id="c4" style="right:60px;bottom:60px;border-width:0 3px 3px 0"></div>
+ <div class="abs serif" id="vendez" style="left:0;width:1080px;top:560px;text-align:center;font-size:200px;font-weight:600"><span id="vz1" style="display:block">Vendez</span></div>
+ <div class="abs serif gold it" id="vite" style="left:0;width:1080px;top:790px;text-align:center;font-size:200px"><span id="vz2" style="display:block">plus vite</span></div>
+ <div class="abs" id="lockupH" style="left:0;width:1080px;top:1150px;display:flex;justify-content:center;align-items:center;gap:24px">
+   <div id="iconH"></div><div class="serif" style="font-size:150px;font-weight:600;white-space:nowrap"><span>Immo</span><span class="gold">Clap</span></div></div>
+ <div class="abs cap" id="tag2" style="left:0;width:1080px;top:1345px;text-align:center;font-size:28px;letter-spacing:.2em">Vos biens en vidéo cinématique</div>
+ <div class="abs serif it" id="sub" style="left:0;width:1080px;top:1420px;text-align:center;font-size:56px">Votre vidéo prête en <span class="gold" style="font-weight:600">10 minutes</span></div>
+ <div id="flash"></div><div id="fade"></div>
+</div>
+<script>
+const TL=window.TL, E=TL.ev, S=TL.scenes;
+const params=new URLSearchParams(location.search), MODE=params.get('mode')||'full';
+if(MODE==='overlay') document.body.classList.add('overlay');
+const $=id=>document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const eo=x=>1-Math.pow(1-x,3), eob=x=>{const c=1.70158;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)}, eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const P=(t,t0,d)=>clamp((t-t0)/d);
+const win=(t,a,b,fi=.15,fo=.15)=>clamp((t-a)/fi)*clamp((b-t)/fo);
+const house=(id,w)=>`<svg id="${id}" width="${w}" height="${w}" viewBox="0 0 200 200" fill="none"><defs><linearGradient id="${id}g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F8E7BC"/><stop offset="1" stop-color="#EDB62C"/></linearGradient></defs><path class="h" d="M28 168 V86 L100 28 L172 86 V168 Z" stroke="url(#${id}g)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path class="p" d="M82 84 L82 152 L138 117 Z" stroke="url(#${id}g)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const ringIco=(kind,w)=>{const g={play:'<path d="M48 38 L48 82 L86 60 Z"/>',house:'<path d="M32 82 V56 L60 32 L88 56 V82 Z"/><path d="M53 54 L53 72 L70 63 Z"/>'}[kind];
+ return `<svg width="${w}" height="${w}" viewBox="0 0 120 120" fill="none" stroke="#EDB62C" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"><circle cx="60" cy="60" r="54"/>${g}</svg>`};
+$('iconV').innerHTML=house('hv',260); $('iconH').innerHTML=house('hh',150);
+$('icoV').innerHTML=ringIco('play',120); $('icoH').innerHTML=ringIco('house',120);
+$('ring').innerHTML=`<svg width="290" height="290" viewBox="0 0 290 290"><circle cx="145" cy="145" r="125" fill="none" stroke="rgba(244,236,224,.22)" stroke-width="12"/><circle id="rp" cx="145" cy="145" r="125" fill="none" stroke="#EDB62C" stroke-width="12" stroke-linecap="round" transform="rotate(-90 145 145)" stroke-dasharray="785.4" stroke-dashoffset="785.4"/><text x="145" y="168" text-anchor="middle" font-family="Source Serif 4" font-weight="600" font-size="100" fill="#F4ECE0" id="rt">0</text></svg>`;
+const dash=(svgId,pH,pP)=>{const s=$(svgId);[['.h',pH],['.p',pP]].forEach(([q,p])=>{const el=s.querySelector(q),L=el.getTotalLength();el.style.strokeDasharray=L;el.style.strokeDashoffset=L*(1-p)})};
+// mots du hook
+const HW=[['Votre',0],['annonce',0],['passe',0],['inaperçue ?',1]];
+$('hookWords').innerHTML=HW.map((w,i)=>`<div class="abs serif ${w[1]?'gold it':''}" id="hw${i}" style="left:90px;top:${600+i*185}px;font-size:170px;font-weight:${w[1]?400:600}">${w[0]}</div>`).join('');
+// vignettes
+const THUMBS=['photos/06_villa_marrakech.jpg','photos/01_villa_mer.jpg','photos/03_terrasse_casa.jpg','photos/04_riad_patio.jpg','photos/05_salon_paris.jpg','photos/02_maison_vignes.jpg'];
+$('thumbs').innerHTML=THUMBS.map((s,i)=>`<div class="thumb" id="th${i}"><img src="${s}"></div>`).join('');
+// plans de démo (doublure : photos en travelling, remplacées par la vidéo Flow au montage final)
+const SHOTS=[['photos/06_villa_marrakech.jpg',2000/1116,.30,.52,1.00,1.06],['photos/01_villa_mer.jpg',2000/1116,.40,.78,1.05,1.0],['photos/03_terrasse_casa.jpg',2000/1116,.35,.72,1.0,1.06],['photos/04_riad_patio.jpg',1500/837,.5,.5,1.0,1.16]];
+if(MODE!=='overlay') $('L_demo').innerHTML=SHOTS.map((s,i)=>`<img id="sh${i}" src="${s[0]}" style="height:1920px;display:none">`).join('');
+const imgT=(el,sc,x=0,y=0)=>el.style.transform=`translate(-50%,-50%) translate(${x}px,${y}px) scale(${sc})`;
+const vis=(el,o)=>{el.style.opacity=o;el.style.visibility=o>0.003?'visible':'hidden'};
+const pop=(el,t,t0,dy=40)=>{const p=P(t,t0,.45),a=P(t,t0,.2);el.style.opacity=a;el.style.transform=`translateY(${dy*(1-eo(p))}px) scale(${.85+.15*eob(p)})`};
+window.seek=function(t){
+  // couches de fond
+  vis($('L_hook'),t<S.logo[0]?1:0); vis($('L_logo'),t>=S.logo[0]&&t<S.demo[0]?1:0);
+  vis($('L_demo'),t>=S.demo[0]&&t<S.cta[0]?1:0); vis($('L_cta'),t>=S.cta[0]?1:0);
+  const punch=t0=>1+.07*(1-eo(P(t,t0,.4)));
+  imgT($('hookImg'),1.0+.07*P(t,0,2.5)); imgT($('logoImg'),1.0+.1*P(t,2.5,2.5)*1.0*punch(S.logo[0])/punch(S.logo[0]) * punch(S.logo[0]));
+  imgT($('ctaImg'),(1.0+.09*P(t,S.cta[0],6.5))*punch(S.cta[0]));
+  // doublure de la démo
+  if(MODE!=='overlay'){let k=-1;TL.cuts.forEach((c,i)=>{if(t>=c)k=i});
+    SHOTS.forEach((s,i)=>{const el=$('sh'+i);el.style.display=i===k?'block':'none';if(i!==k)return;
+      const u=clamp((t-TL.cuts[i])/2),e=eio(u),z=s[4]+(s[5]-s[4])*e,cx=s[2]+(s[3]-s[2])*e,h=1920*z,W=h*s[1];
+      let left=540-cx*W;left=Math.min(0,Math.max(1080-W,left));el.style.height=h+'px';el.style.left=left+'px';el.style.top=(-(h-1920)/2)+'px';el.style.transform='none';
+      const pu=1+.05*(1-eo(P(t,TL.cuts[i],.3)));el.style.transformOrigin='50% 50%';el.style.transform=`scale(${pu})`});}
+  const inDemo=t>=S.demo[0]&&t<S.cta[0]; const inHook=t<S.logo[0]; vis($('shadeT'),(inDemo||inHook)?1:0); vis($('shadeB'),(inDemo||inHook)?1:0);
+  // HOOK
+  HW.forEach((w,i)=>{const t0=TL.words[i],p=P(t,t0,.4),el=$('hw'+i);let o=P(t,t0,.18);
+    if(i===3) o*=1-.62*P(t,1.95,.4); if(t>=S.logo[0]) o=0;
+    el.style.opacity=o;el.style.transform=`translateY(${50*(1-eo(p))}px)`;el.style.filter=`blur(${14*(1-eo(p))}px)`});
+  // LOGO V + 10 photos
+  const inLogo=t>=S.logo[0]&&t<S.demo[0];
+  dash('hv',eo(P(t,E.logoDraw,.55)),eo(P(t,E.logoDraw+.3,.5)));
+  const wp=eo(P(t,E.wordmark,.5)); $('wordV').style.clipPath=`inset(0 ${100-100*wp}% 0 0)`; $('wordV').style.transform=`translateY(${30*(1-wp)}px)`;
+  const tg='VOS BIENS EN VIDÉO CINÉMATIQUE'; $('tagV').textContent=tg; $('tagV').style.opacity=P(t,E.tagline,.4);
+  const mv=eio(P(t,E.ten-.05,.55)); const gs=1-.4*mv, gy=-455*mv;
+  $('lockupV').style.opacity=inLogo?1:0; $('lockupV').style.transform=`translateY(${gy}px) scale(${gs})`; $('lockupV').style.transformOrigin='540px 880px';
+  $('tagV').style.opacity=P(t,E.tagline,.4)*(1-mv);
+  const np=P(t,E.ten,.6); $('ten').textContent=Math.round(10*eo(np)); $('ten').style.opacity=inLogo?P(t,E.ten+.12,.15):0; $('ten').style.transform=`scale(${.7+.3*eob(P(t,E.ten,.5))})`;
+  $('tenCap').style.opacity=inLogo?P(t,E.ten+.45,.3):0; $('tenCap').style.transform=`translateY(${30*(1-eo(P(t,E.ten+.45,.5)))}px)`;
+  E.thumbs.forEach((t0,i)=>{const el=$('th'+i),p=P(t,t0,.5),x=540-120+(i-2.5)*150,rot=(i-2.5)*7;
+    el.style.left=x+'px';el.style.top=(1330+Math.abs(i-2.5)*14)+'px';el.style.opacity=inLogo?P(t,t0,.2):0;
+    el.style.transform=`translateY(${520*(1-eo(p))}px) rotate(${rot*eo(p)}deg)`;el.style.zIndex=i});
+  // DEMO
+  const lowIn=t>=E.lower&&t<E.ring-.1;
+  const l1=P(t,E.lower,.45),l2=P(t,E.lower2,.45),lo=1-P(t,E.ring-.4,.3);
+  $('low1').style.opacity=l1*lo*(inDemo?1:0); $('low1').style.transform=`translateX(${-60*(1-eo(l1))}px)`;
+  $('low2').style.opacity=l2*lo*(inDemo?1:0); $('low2').style.transform=`translateX(${-60*(1-eo(l2))}px)`;
+  $('lowLine').style.width=(300*eo(P(t,E.lower2+.2,.6)))+'px'; $('lowLine').style.opacity=lo*(inDemo?1:0);
+  const rin=P(t,E.ring,.4),rout=1-P(t,E.views-.25,.25),rp=P(t,E.ring+.1,1.8);
+  $('ring').style.opacity=inDemo?rin*rout:0; $('ring').style.transform=`scale(${.8+.2*eob(rin)})`;
+  $('rp').style.strokeDashoffset=785.4*(1-eio(rp)); $('rt').textContent=Math.round(10*eio(rp));
+  $('ringTxt').style.opacity=inDemo?rin*rout:0; $('ringTxt').style.transform=`translateX(${40*(1-eo(rin))}px)`;
+  const dOut=1-P(t,S.demo[1]-.2,.2);
+  if(inDemo){pop($('views'),t,E.views); pop($('visits'),t,E.visits); $('views').style.opacity*=dOut; $('visits').style.opacity*=dOut}
+  else{$('views').style.opacity=0;$('visits').style.opacity=0}
+  // CTA
+  const inCta=t>=S.cta[0];
+  ['c1','c2','c3','c4'].forEach((id,i)=>{const p=P(t,S.cta[0]+.1+i*.08,.6);$(id).style.opacity=inCta?eo(p):0;$(id).style.transform=`scale(${1.25-.25*eo(p)})`});
+  const vp=eo(P(t,E.vendez,.55)),vp2=eo(P(t,E.vite,.55));
+  $('vendez').style.opacity=inCta?1:0;$('vz1').style.transform=`translateY(${120*(1-vp)}px)`;$('vendez').style.clipPath=`inset(0 0 ${100-100*vp}% 0)`;
+  $('vite').style.opacity=inCta?1:0;$('vz2').style.transform=`translateY(${120*(1-vp2)}px)`;$('vite').style.clipPath=`inset(0 0 ${100-100*vp2}% 0)`;
+  const lp=P(t,E.lockup,.6); dash('hh',eo(P(t,E.lockup,.5)),eo(P(t,E.lockup+.25,.45)));
+  $('lockupH').style.opacity=inCta?P(t,E.lockup,.2):0;$('lockupH').style.transform=`translateY(${40*(1-eo(lp))}px) scale(${.92+.08*eob(lp)})`;
+  $('tag2').style.opacity=inCta?P(t,E.tagline2,.5):0;$('sub').style.opacity=inCta?P(t,E.sub,.5):0;$('sub').style.transform=`translateY(${24*(1-eo(P(t,E.sub,.6)))}px)`;
+  // flash de transition + fondu final
+  let f=0;[S.logo[0],S.demo[0],S.cta[0],...TL.cuts.slice(1)].forEach((c,i)=>{const big=i<3;if(t>=c&&t<c+.3)f=Math.max(f,(big?.6:.18)*(1-(t-c)/.3))});
+  $('flash').style.opacity=f; $('fade').style.opacity=P(t,TL.total-.45,.45);
+};
+window.seek(0);
+</script></body></html>
