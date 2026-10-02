@@ -1195,6 +1195,49 @@ Deux choses qui s'oublient et qui coûtent :
 
 ---
 
+### 🔴 Avant de dessiner : on copie la STRUCTURE d'un concurrent qui vend
+
+**On ne part jamais d'une page blanche.** On prend un concurrent qui fait de
+vraies ventes, et on relève **l'ordre de ses blocs**.
+
+```
+1.  trouver 1 à 3 concurrents qui vendent VRAIMENT
+    (des avis récents, du stock qui bouge, des vidéos qui tournent)
+2.  relever leur accueil et leur fiche produit, bloc par bloc :
+    quoi en premier, quoi juste avant le bouton, quoi en bas
+3.  garder cet ordre
+4.  remplir avec NOS mots, NOS prix, NOS photos
+```
+
+**Pourquoi :** cet ordre leur a coûté des mois de tests et des milliers
+d'euros. Il est déjà payé. On ne refait pas ces tests avec 392 €.
+
+#### 🔴 Ce qu'on copie, et ce qu'on ne copie JAMAIS
+
+```
+✅  l'ORDRE des blocs
+✅  ce qui est au-dessus du bouton d'achat
+✅  les questions auxquelles la page répond, et dans quel ordre
+✅  le nombre d'étapes jusqu'au paiement
+
+❌  le dessin, les couleurs, la typo
+❌  les textes, même reformulés
+❌  les photos, jamais
+❌  le nom, le logo, tout ce qui identifie la marque
+```
+
+**La structure est une recette, pas une œuvre. Le reste appartient à
+quelqu'un.**
+
+#### Qui fait quoi
+
+```
+la recherche concurrents   →  quand il le demande, pas avant
+la construction du site    →  Claude, directement
+```
+
+---
+
 ### Étape 11 bis — Le site est beau. Il est illégal.
 
 **Tiré d'un cas réel, le 30/09.** Le site était debout, les prix posés, les

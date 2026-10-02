@@ -110,7 +110,26 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 | YouTube | branchée ✅ mais au nom **« Julien Colly »** — 🔴 à refaire au nom de SILENCE |
 | TikTok | `SILENCE | Menswear` — ⚠️ **compte personnel**, stats réduites |
 
-## 🔴 LE SITE — il le refait lui-même
+## 🔴 LE SITE — repris par Claude, sur la structure d'un concurrent
+
+**Décidé le 02/10 au soir.** Il ne le refait plus lui-même.
+
+```
+la recherche concurrents   →  quand IL le demande
+la construction             →  Claude, directement
+la méthode                  →  copier l'ORDRE des blocs d'un
+                                concurrent qui vend vraiment,
+                                remplir avec nos mots et nos prix
+```
+
+Écrit dans le skill, étape 11. **On ne copie jamais le dessin, les textes
+ni les photos.**
+
+Tout ce qu'il faut recoller reste dans `site/A-RECOLLER.md`.
+
+---
+
+## 🔴 (ancien) Il le refait lui-même
 
 Le 01/10, il n'a pas aimé le site fait ici. **Il le refait sur Claude Design,
 seul.** Il l'enverra une fois fini ; le travail sera alors de **le faire
