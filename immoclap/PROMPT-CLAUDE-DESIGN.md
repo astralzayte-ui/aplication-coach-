@@ -57,7 +57,7 @@ Niveau attendu : site SaaS haut de gamme type Apple / Linear / Reel-E — luxe, 
 - Ligne sous le bouton : « Gratuit pour essayer · Sans engagement »
 - Juste en dessous : un **grand cadre vidéo** (16:9, coins arrondis) qui contiendra **notre vidéo motion design explicative** (placeholder avec bouton play au centre et image de maison de luxe).
 - Sous la vidéo, petite légende espacée : `CHAQUE PLAN A COMMENCÉ PAR UNE SIMPLE PHOTO`
-- 3 chiffres animés : « 10 min — des photos à la vidéo » · « 3 formats — portails, Reels, carré » · « 0 € — de vidéaste ».
+- 3 chiffres animés : « 5 min — des photos à la vidéo » · « 3 formats — portails, Reels, carré » · « 0 € — de vidéaste ».
 
 **II. Ce que vous obtenez (fond gris)** — grille 2×2 de cartes :
 1. `VIDÉO DU BIEN` — mockup vidéo avec sélecteur Large / Téléphone / Carré. Titre : « Une vidéo cinématique, calée sur la musique ». Lien « Voir la vidéo → ».
@@ -88,7 +88,7 @@ Niveau attendu : site SaaS haut de gamme type Apple / Linear / Reel-E — luxe, 
 **VII. Comparaison (fond noir)** — sur-titre `VII —— LE CALCUL` — titre « Oubliez le tournage à 500 €. / *Et les 7 jours d'attente.* »
 - Tableau 3 colonnes : critère · « Vidéaste traditionnel » · colonne **ImmoClap mise en avant** (carte surélevée, bordure, fond légèrement plus clair).
   - Prix par bien : ~~300 – 1 000 €~~ / **dès 29 €**
-  - Délai : 3 à 7 jours / **10 minutes**
+  - Délai : 3 à 7 jours / **5 minutes**
   - Formats : 1 / **3 (16:9, 9:16, 1:1)**
   - Modifications : payantes / **illimitées**
   - Voix off et musique : en option / **incluses**
