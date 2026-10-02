@@ -299,6 +299,9 @@ header.scrolled{background:rgba(11,10,9,.82);backdrop-filter:blur(14px);-webkit-
 .seg button em{font-style:normal;font-size:11px;color:var(--gold);margin-left:4px}
 .seg button.on em{color:#8a6200}
 .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;align-items:stretch}
+.plans.four{grid-template-columns:repeat(4,1fr);gap:18px}
+.plans.four .plan{padding:30px 22px}
+.plans.four .price{font-size:46px}
 .plan{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:34px 30px;display:flex;flex-direction:column;position:relative}
 .alt .plan{background:var(--bg)}
 .plan.pop{border-color:var(--gold);box-shadow:0 30px 90px -40px rgba(246,188,40,.4)}
@@ -373,11 +376,12 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
   .grid2{grid-template-columns:1fr}
   .app-body{grid-template-columns:52px 1fr}
   .pane{display:none}
-  .plans{grid-template-columns:1fr;max-width:460px;margin-left:auto;margin-right:auto}
+  .plans,.plans.four{grid-template-columns:1fr 1fr;max-width:none}
   .fcols{grid-template-columns:1fr 1fr}
   .fcols>div:first-child{grid-column:span 2}
 }
 @media (max-width:720px){
+  .plans,.plans.four{grid-template-columns:1fr;max-width:460px;margin-left:auto;margin-right:auto}
   section{padding:84px 0}
   .wrap{padding:0 16px}
   .hero{padding:130px 0 64px}
@@ -703,9 +707,9 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
     <div class="eyebrow rv"><i>VI</i><b></b>Le calcul</div>
     <h2 class="center rv">Oubliez le tournage à 500&nbsp;€.<br><span class="it">Et la semaine d'attente.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
     <div class="cmp rv">
-      <div class="col"><div class="cell h"></div><div class="cell k">Prix par bien</div><div class="cell k">Délai</div><div class="cell k">Formats</div><div class="cell k">Modifications</div><div class="cell k">Voix off et musique</div></div>
-      <div class="col"><div class="cell h">Vidéaste<br>traditionnel</div><div class="cell v"><s>300 – 1 000 €</s></div><div class="cell v">3 à 7 jours</div><div class="cell v">1</div><div class="cell v">Payantes</div><div class="cell v">En option</div></div>
-      <div class="col us"><div class="cell h">ImmoClap</div><div class="cell v">Dès 29 €</div><div class="cell v">5 minutes</div><div class="cell v">3</div><div class="cell v">Illimitées</div><div class="cell v ok">Incluses</div></div>
+      <div class="col"><div class="cell h"></div><div class="cell k">Prix par bien</div><div class="cell k">Délai</div><div class="cell k">Formats</div><div class="cell k">Engagement</div><div class="cell k">Voix off et musique</div></div>
+      <div class="col"><div class="cell h">Vidéaste<br>traditionnel</div><div class="cell v"><s>350 – 2 000 €</s></div><div class="cell v">3 à 7 jours</div><div class="cell v">1</div><div class="cell v">Devis par bien</div><div class="cell v">En option</div></div>
+      <div class="col us"><div class="cell h">ImmoClap</div><div class="cell v">Dès 14 €</div><div class="cell v">5 minutes</div><div class="cell v">3</div><div class="cell v">Aucun</div><div class="cell v ok">Incluses</div></div>
     </div>
   </div>
 </section>
@@ -714,33 +718,39 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
 <section id="tarifs">
   <div class="wrap">
     <div class="eyebrow rv"><i>VII</i><b></b>Tarifs</div>
-    <h2 class="center rv">Simple.<br><span class="it">Sans engagement.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
+    <h2 class="center rv">Payez à la vidéo.<br><span class="it">Sans abonnement.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
+    <p class="lead center rv">Achetez des crédits quand un mandat arrive. 1 crédit = 1 vidéo, en 3 formats. Prix HT.</p>
     <div class="toggles rv">
-      <div class="seg" id="cur"><button class="on" data-c="eur">€ Euro</button><button data-c="mad">DH Dirham</button></div>
-      <div class="seg" id="per"><button class="on" data-p="m">Mensuel</button><button data-p="y">Annuel <em>-20 %</em></button></div>
+      <div class="seg" id="cur"><button class="on" data-c="eur">France · €</button><button data-c="mad">Maroc · DH</button></div>
     </div>
-    <div class="plans">
+    <div class="plans four">
       <div class="plan rv">
         <h3>Essai</h3><div class="d">Pour découvrir ImmoClap sur un vrai bien.</div>
         <div class="price">Gratuit</div><div class="per">1 vidéo offerte</div>
         <ul><li>1 vidéo complète</li><li>3 formats</li><li>Musique incluse</li><li>Petit filigrane ImmoClap</li></ul>
         <a href="#" class="btn ghost" data-open>Essayer gratuitement</a>
       </div>
+      <div class="plan rv">
+        <h3>1 vidéo</h3><div class="d">Pour un mandat ponctuel.</div>
+        <div class="price" data-eur="19" data-mad="149"></div><div class="per" data-unit-eur="la vidéo" data-unit-mad="la vidéo"></div>
+        <ul><li>1 vidéo sans filigrane</li><li>3 formats</li><li>Logo de l'agence</li><li>Musique et voix off</li></ul>
+        <a href="#" class="btn ghost" data-open>Commander</a>
+      </div>
       <div class="plan pop rv">
         <span class="badge">Le plus choisi</span>
-        <h3>Pro</h3><div class="d">Pour l'agent qui publie chaque semaine.</div>
-        <div class="price" data-eur="49" data-mad="490">49 <small>€ / mois</small></div><div class="per" data-per></div>
-        <ul><li>5 vidéos par mois</li><li>Sans filigrane</li><li>Logo et couleurs de l'agence</li><li>Voix off française</li><li>3 formats + page du bien</li></ul>
-        <a href="#" class="btn" data-open>Commencer <svg width="14" height="14"><use href="#arrow"/></svg></a>
+        <h3>Pack 5</h3><div class="d">Pour l'agent qui rentre des mandats chaque mois.</div>
+        <div class="price" data-eur="79" data-mad="599"></div><div class="per" data-each-eur="16 € la vidéo" data-each-mad="120 DH la vidéo"></div>
+        <ul><li>5 vidéos sans filigrane</li><li>Logo et couleurs de l'agence</li><li>Voix off et musique</li><li>Crédits valables 12 mois</li></ul>
+        <a href="#" class="btn" data-open>Choisir le pack 5 <svg width="14" height="14"><use href="#arrow"/></svg></a>
       </div>
       <div class="plan rv">
-        <h3>Agence</h3><div class="d">Pour les équipes et les gros volumes.</div>
-        <div class="price" data-eur="149" data-mad="1490">149 <small>€ / mois</small></div><div class="per" data-per></div>
-        <ul><li>20 vidéos par mois</li><li>Plusieurs agents</li><li>Pages des biens + statistiques</li><li>Voix off et musique premium</li><li>Support prioritaire</li></ul>
-        <a href="#" class="btn ghost" data-open>Nous contacter</a>
+        <h3>Pack 10</h3><div class="d">Pour les agences et les gros volumes.</div>
+        <div class="price" data-eur="139" data-mad="999"></div><div class="per" data-each-eur="14 € la vidéo" data-each-mad="100 DH la vidéo"></div>
+        <ul><li>10 vidéos sans filigrane</li><li>Plusieurs agents</li><li>Voix off et musique</li><li>Crédits valables 12 mois</li><li>Support prioritaire</li></ul>
+        <a href="#" class="btn ghost" data-open>Choisir le pack 10</a>
       </div>
     </div>
-    <p class="unit rv">Ou à l'unité : <b id="unit">39 € la vidéo</b>, sans abonnement.</p>
+    <p class="unit rv">Jusqu'à 12 photos par vidéo · Crédits valables 12 mois · TVA éventuelle ajoutée au paiement</p>
   </div>
 </section>
 
@@ -919,14 +929,13 @@ const tab=t=>{$$('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t=
 $$('#tabs button,#rail div').forEach(b=>b.addEventListener('click',()=>tab(b.dataset.t)));
 
 /* tarifs */
-let c='eur',p='m';
+let c='eur';
 const fmt=n=>n.toLocaleString('fr-FR');
-const price=()=>{$$('.price[data-eur]').forEach(el=>{const base=+el.dataset[c];const v=p==='y'?(c==='mad'?Math.round(base*.8/10)*10:Math.round(base*.8)):base;
-    el.innerHTML=`${fmt(v)} <small>${c==='eur'?'€':'DH'} / mois</small>`;});
-  $$('[data-per]').forEach(el=>el.textContent=p==='y'?'facturé annuellement':'facturé mensuellement');
-  $('#unit').textContent=c==='eur'?'39 € la vidéo':'390 DH la vidéo';};
+const price=()=>{$$('.price[data-eur]').forEach(el=>{el.innerHTML=`${fmt(+el.dataset[c])} <small>${c==='eur'?'€':'DH'} HT</small>`;});
+  $$('[data-each-eur]').forEach(el=>el.textContent='soit '+el.dataset['each'+(c==='eur'?'Eur':'Mad')]);
+  $$('[data-unit-eur]').forEach(el=>el.textContent='paiement unique');};
 $$('#cur button').forEach(b=>b.addEventListener('click',()=>{c=b.dataset.c;$$('#cur button').forEach(x=>x.classList.toggle('on',x===b));price();}));
-$$('#per button').forEach(b=>b.addEventListener('click',()=>{p=b.dataset.p;$$('#per button').forEach(x=>x.classList.toggle('on',x===b));price();}));
+try{if((navigator.language||'').toLowerCase().includes('ma')||Intl.DateTimeFormat().resolvedOptions().timeZone==='Africa/Casablanca'){c='mad';$$('#cur button').forEach(x=>x.classList.toggle('on',x.dataset.c==='mad'));}}catch(e){}
 price();
 
 /* FAQ */
