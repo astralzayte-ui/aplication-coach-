@@ -1,0 +1,236 @@
+{
+ "total": 9.5,
+ "fps": 30,
+ "voice": {
+  "s1": 0.25,
+  "s2": 2.1,
+  "s3": 7.3
+ },
+ "voice_text": {
+  "s1": "Votre annonce passe inaperçue ?",
+  "s2": "Avec Immo Clap, vos photos deviennent un film, en dix minutes.",
+  "s3": "Créez votre vidéo."
+ },
+ "scenes": {
+  "hook": [
+   0,
+   2.0
+  ],
+  "demo": [
+   2.0,
+   7.0
+  ],
+  "cta": [
+   7.0,
+   9.5
+  ]
+ },
+ "demo_segments": [
+  [
+   "villa",
+   0.0,
+   1.0
+  ],
+  [
+   "villa",
+   2.2,
+   3.2
+  ],
+  [
+   "villa",
+   3.2,
+   4.2
+  ],
+  [
+   "villa",
+   5.5,
+   6.5
+  ],
+  [
+   "penthouse",
+   2.8,
+   3.8
+  ]
+ ],
+ "cta_bg": [
+  "penthouse",
+  7.5,
+  10.0
+ ],
+ "cuts": [
+  3.0,
+  4.0,
+  5.0,
+  6.0,
+  7.0
+ ],
+ "words": [
+  0.3,
+  0.55,
+  0.8,
+  1.05
+ ],
+ "ev": {
+  "ten": 2.15,
+  "thumbs": [
+   2.3,
+   2.4,
+   2.5,
+   2.6,
+   2.7,
+   2.8
+  ],
+  "one_video": 3.0,
+  "ring": 4.3,
+  "ring_end": 6.6,
+  "flash_cta": 7.0,
+  "lockup": 7.1,
+  "cta_text": 7.3,
+  "tagline": 7.8,
+  "fade_out": 9.2
+ },
+ "sfx": [
+  {
+   "t": 0.3,
+   "type": "click"
+  },
+  {
+   "t": 0.55,
+   "type": "click"
+  },
+  {
+   "t": 0.8,
+   "type": "click"
+  },
+  {
+   "t": 1.05,
+   "type": "click"
+  },
+  {
+   "t": 1.8,
+   "type": "whoosh"
+  },
+  {
+   "t": 2.0,
+   "type": "impact"
+  },
+  {
+   "t": 2.15,
+   "type": "pop"
+  },
+  {
+   "t": 2.15,
+   "type": "tick"
+  },
+  {
+   "t": 2.26,
+   "type": "tick"
+  },
+  {
+   "t": 2.3,
+   "type": "click"
+  },
+  {
+   "t": 2.37,
+   "type": "tick"
+  },
+  {
+   "t": 2.4,
+   "type": "click"
+  },
+  {
+   "t": 2.48,
+   "type": "tick"
+  },
+  {
+   "t": 2.5,
+   "type": "click"
+  },
+  {
+   "t": 2.59,
+   "type": "tick"
+  },
+  {
+   "t": 2.6,
+   "type": "click"
+  },
+  {
+   "t": 2.7,
+   "type": "click"
+  },
+  {
+   "t": 2.8,
+   "type": "click"
+  },
+  {
+   "t": 2.85,
+   "type": "whoosh"
+  },
+  {
+   "t": 3.0,
+   "type": "pop"
+  },
+  {
+   "t": 3.85,
+   "type": "whoosh"
+  },
+  {
+   "t": 4.3,
+   "type": "pop"
+  },
+  {
+   "t": 4.5,
+   "type": "tick"
+  },
+  {
+   "t": 4.85,
+   "type": "whoosh"
+  },
+  {
+   "t": 4.9,
+   "type": "tick"
+  },
+  {
+   "t": 5.3,
+   "type": "tick"
+  },
+  {
+   "t": 5.7,
+   "type": "tick"
+  },
+  {
+   "t": 5.85,
+   "type": "whoosh"
+  },
+  {
+   "t": 6.1,
+   "type": "tick"
+  },
+  {
+   "t": 6.85,
+   "type": "whoosh"
+  },
+  {
+   "t": 7.0,
+   "type": "impact"
+  },
+  {
+   "t": 7.1,
+   "type": "pop"
+  },
+  {
+   "t": 7.3,
+   "type": "pop"
+  },
+  {
+   "t": 7.4,
+   "type": "ding"
+  }
+ ],
+ "music": {
+  "bpm": 120,
+  "drop": 2.0,
+  "cta": 7.0,
+  "end_fade": 0.8
+ }
+}
