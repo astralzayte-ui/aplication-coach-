@@ -107,7 +107,7 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 | Instagram | `silence.worldwide` — compte professionnel ✅ |
 | TikTok France | `silence.worldwide` |
 | TikTok Maroc | `silence.worldwide_maroc` |
-| YouTube | chaîne créée le 02/10, branchée dans Metricool ✅ |
+| YouTube | branchée ✅ mais au nom **« Julien Colly »** — 🔴 à refaire au nom de SILENCE |
 | TikTok | `SILENCE | Menswear` — ⚠️ **compte personnel**, stats réduites |
 
 ## 🔴 LE SITE — il le refait lui-même
@@ -119,6 +119,21 @@ ses informations, et chasser les bugs.
 
 **Tout ce qu'il faut est listé dans `site/A-RECOLLER.md`.**
 Ne rien supprimer de ce fichier ni de `partage/legal/`.
+
+---
+
+## 📌 DEMAIN — ce qu'il fait, lui
+
+```
+🟠  refaire la chaîne YouTube au nom de SILENCE
+    (elle est au nom « Julien Colly » — les vidéos sortiraient
+     sous son nom perso) puis la rebrancher dans Metricool
+```
+
+🟢 **Google Drive n'est PAS nécessaire** — il n'apparaît pas dans les
+connexions Metricool, et on n'en a pas besoin : Metricool accepte n'importe
+quelle adresse publique. Les 80 vidéos seront déposées sur un hébergement
+gratuit, et Metricool ira les chercher. Zéro manip pour lui.
 
 ---
 
