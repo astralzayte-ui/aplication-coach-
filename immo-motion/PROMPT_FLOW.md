@@ -1,12 +1,19 @@
-# Prompt Google Flow : villa vue mosquée Hassan II (Casablanca), un seul prompt, 4 plans, 8 s, 9:16
+# Prompts Google Flow ImmoClap (8 s, 9:16, Veo 3.1 Quality, x1, image de référence en Frames to Video)
 
-Dans Flow : image de référence (terrasse + mosquée) en "Frames to Video" (première image) ou "Ingredient", 9:16, 8 s, son coupé.
-Plus long : utiliser "Extend". Si le 9:16 est refusé : générer en 16:9, le recadrage est fait au montage.
-
+## Prompt 1 : la villa (image de référence : villa moderne blanche avec piscine)
 ```
-Use the reference image as the exact villa: same terrace, same glass railing, same living room with a fireplace, same Hassan II Mosque view over the ocean at sunset. Cinematic luxury real estate film, vertical 9:16, 8 seconds, four continuous shots with a smooth stabilized gimbal camera, photorealistic, warm golden-hour light, premium architecture magazine look, no people, no text, no logos, no subtitles, no music, no voice.
-[00:00-00:02] Wide establishing shot of the terrace at sunset, slow push-in toward the lounge sofa, the Hassan II Mosque glowing on the horizon.
-[00:02-00:04] Smooth lateral tracking along the glass railing, revealing the ocean, the white city and the mosque in the golden light.
-[00:04-00:06] The camera glides through the sliding glass doors into the warm living room, fireplace burning, ambient lights on.
-[00:06-00:08] Slow pull-back and rise to a wide final shot of the terrace as the city lights turn on, the mosque illuminated at dusk.
+Use the reference image as the exact villa: same architecture, same pool, same garden, same materials. Cinematic luxury real estate walkthrough focused on the HOUSE itself, vertical 9:16, 8 seconds, four continuous shots, smooth stabilized gimbal camera, photorealistic, warm golden-hour light, premium architecture magazine look, no people, no text, no logos, no subtitles, no music, no voice.
+[00:00-00:02] Slow cinematic orbit around the villa facade, full building in frame, infinity pool in the foreground, glass walls glowing.
+[00:02-00:04] The camera glides through the open glass doors into a bright double-height living room with a beige sofa, wooden floor and the pool visible through the windows.
+[00:04-00:06] Smooth tracking shot through the open kitchen with a white marble island and the dining area with a design pendant light.
+[00:06-00:08] Rise through the upper floor balcony and pull back to a wide final shot of the whole villa at dusk, windows lit, pool glowing.
+```
+
+## Prompt 2 : le penthouse vue mosquée Hassan II, Casablanca (image de référence : la terrasse)
+```
+Use the reference image as the exact penthouse: same terrace, same glass railing with LED lines, same living room with a fireplace, same Hassan II Mosque and ocean view at sunset. Cinematic luxury real estate walkthrough focused on the APARTMENT itself, with the view as a bonus, vertical 9:16, 8 seconds, four continuous shots, smooth stabilized gimbal camera, photorealistic, warm golden-hour light, premium architecture magazine look, no people, no text, no logos, no subtitles, no music, no voice.
+[00:00-00:02] Slow push-in on the terrace lounge area with the sofa, armchairs and olive tree, the Hassan II Mosque glowing in the background.
+[00:02-00:04] The camera glides through the sliding glass doors into the elegant living room, fireplace burning, designer lighting, artwork on the wall.
+[00:04-00:06] Smooth lateral tracking through the open-plan living and dining area, warm ambient lights, marble and wood details.
+[00:06-00:08] Pull back through the glass doors to the terrace as the city lights turn on, final wide shot of the penthouse with the mosque lit at dusk.
 ```
