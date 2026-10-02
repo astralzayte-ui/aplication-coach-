@@ -229,6 +229,8 @@ site, le budget et le skill, et le lui dire franchement.
     gratuit si le produit a un défaut (là c'est la loi)
 🔴  14 jours de rétractation pour TOUT LE MONDE — le Maroc n'exige
     que 7 jours, on donne 14 partout pour n'avoir qu'une règle
+🔴  LE FREIN : 100 €/jour = produit validé · moins de 3 ventes au
+    jour 40 = on arrête. Posé le 02/10, relevé sur le terrain.
 🔴  jamais d'accès à sa banque — Stripe en lecture seule, rien d'autre
 🔴  le site se modifie TOUJOURS dans Claude Design, jamais sur Netlify —
     Netlify est une copie, republiée derrière chaque modification

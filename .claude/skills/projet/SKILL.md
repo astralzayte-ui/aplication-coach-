@@ -1195,7 +1195,49 @@ Deux choses qui s'oublient et qui coûtent :
 
 ---
 
-### 🔴 Avant de dessiner : on copie la STRUCTURE d'un concurrent qui vend
+### 🔴 LE FREIN — le chiffre qui dit d'arrêter
+
+**Relevé sur le terrain, pas estimé :**
+
+> **100 € de ventes par jour = le produit est validé.**
+
+C'est le seuil au-dessus duquel on arrête de douter et on pousse.
+
+```
+100 € par jour  ≈  3 ventes du produit d'appel
+```
+
+### Les trois zones
+
+| Au jour 20, en moyenne par jour | Ce que ça veut dire | Ce qu'on fait |
+|---|---|---|
+| **au-dessus de 100 €** | 🟢 le produit est validé | on pousse, on arrête de tester |
+| **entre 20 et 100 €** | 🟠 ça vit, mais ça ne décolle pas | on change l'angle, pas le produit |
+| **sous 20 €** | 🔴 rien ne prend | on change de produit |
+
+### 🔴 Le bouton stop
+
+```
+JOUR 40  —  moins de 3 ventes au total  →  ON ARRÊTE CE PRODUIT
+```
+
+**Pourquoi 3 :** il en faut ~23 pour rentrer dans les frais. Sous 3 après
+80 vidéos, les 23 sont un rêve, pas un objectif.
+
+### Ce que le frein n'est PAS
+
+```
+❌  un chiffre qu'on ajuste quand il déplaît
+❌  une moyenne sur une seule bonne journée
+✅  écrit AVANT de commencer, relu au jour 20 et au jour 40
+```
+
+**Sans ce chiffre posé à l'avance, on pousse un produit mort pendant des
+mois en se disant « encore une semaine ».**
+
+---
+
+## 🔴 Avant de dessiner : on copie la STRUCTURE d'un concurrent qui vend
 
 **On ne part jamais d'une page blanche.** On prend un concurrent qui fait de
 vraies ventes, et on relève **l'ordre de ses blocs**.
@@ -1687,8 +1729,9 @@ projet.** Elle passe par toi d'abord.
 
 Signalé, pas encore tranché. À lui reposer au bon moment.
 
-**1. Aucun bouton stop.** ⚠️ le plus grave
-Nulle part un chiffre qui dit *« ça marche pas, on arrête »*. Sans ça on pousse un truc mort pendant des mois.
+**1. ~~Aucun bouton stop~~** ✅ **réglé le 02/10** — le frein est écrit
+plus haut : 100 €/jour pour valider, moins de 3 ventes au jour 40 pour
+arrêter.
 
 **2. Le deuxième achat.**
 Toute la méthode vise la **première vente**. Dans beaucoup de métiers, l'argent est au 2ᵉ et au 3ᵉ achat. Aucune étape là-dessus.
@@ -1702,4 +1745,4 @@ C'est une des 5 peurs. Aucune étape ne le construit.
 **5. Le stock et la trésorerie.**
 Combien de stock, quand on recommande, combien on immobilise.
 
-**Le 1 et le 2 valent plus que les trois autres.**
+**Le 2 est maintenant le plus grave, le 1 étant réglé.**
