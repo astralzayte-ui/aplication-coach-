@@ -141,6 +141,29 @@ Ne rien supprimer de ce fichier ni de `partage/legal/`.
 
 ---
 
+## 📌 LA DIFFUSION — décidé le 02/10, à mettre en place au lancement
+
+```
+Instagram + YouTube   100 % automatique via Metricool
+TikTok                sa SŒUR finit à la main sur son téléphone :
+                      elle choisit le son, elle appuie
+```
+
+**Ce qu'elle fait une fois :** installer Metricool (iPhone ou Android),
+se connecter avec `astralzayte@gmail.com`, autoriser les notifications.
+Le compte n'est partagé avec personne pour l'instant.
+
+**Ce que Claude fait :** la vidéo, le texte, les hashtags, l'heure, et
+chaque TikTok réglé en « rappel à l'heure » (`autoPublish: false`).
+
+🔴 **Reste à trancher** : le son choisi (elle intervient) ou le zéro
+effort (TikTok automatique, son au hasard). Il tranchera au lancement.
+
+🔴 Les vidéos iront sur un hébergement gratuit public — **pas besoin de
+Google Drive**, Metricool accepte n'importe quelle adresse.
+
+---
+
 ## 📌 DEMAIN — ce qu'il fait, lui
 
 ```
