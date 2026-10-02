@@ -1,0 +1,5 @@
+Dans Claude Design :
+1. Nouveau projet, SANS système de conception (pas "Nocturne").
+2. Dépose le dossier assets (logo + photos).
+3. Colle le texte de ETAPE-1. Attends le résultat.
+4. Puis ETAPE-2, ETAPE-3, ETAPE-4, une par une, dans la même conversation.
