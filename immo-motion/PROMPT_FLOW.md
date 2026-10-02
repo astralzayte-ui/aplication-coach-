@@ -17,3 +17,19 @@ Use the reference image as the exact penthouse: same terrace, same glass railing
 [00:04-00:06] Smooth lateral tracking through the open-plan living and dining area, warm ambient lights, marble and wood details.
 [00:06-00:08] Pull back through the glass doors to the terrace as the city lights turn on, final wide shot of the penthouse with the mosque lit at dusk.
 ```
+
+## Prompt 1 bis : la villa, version "plus de pièces" (6 plans rapides en 8 s)
+```
+Use the reference image as the exact villa: same architecture, same materials, same style in every room. Fast-paced cinematic luxury real estate home tour showing as many rooms as possible, vertical 9:16, 8 seconds, six shots with smooth stabilized gimbal camera moves and seamless match-cut transitions, photorealistic, warm golden-hour light, bright airy interiors, premium architecture magazine look, no people, no text, no logos, no subtitles, no music, no voice.
+[00:00-00:01] Quick push-in on the villa facade, glass walls glowing, pool in the foreground.
+[00:01-00:03] Glide through the entrance into the bright living room with a beige sofa, wooden floor, large windows, then pan to the dining table with a design pendant light.
+[00:03-00:04] Smooth tracking along the open kitchen, white marble island with wood details.
+[00:04-00:05] Slide into the master bedroom, king bed with linen sheets, soft morning light.
+[00:05-00:06] Reveal the luxury bathroom, freestanding bathtub, natural stone, large mirror.
+[00:06-00:08] Out onto the terrace, wide rising shot over the infinity pool and the whole villa at dusk, windows lit, pool glowing.
+```
+
+### Suite (Extend, +8 s) : encore plus de pièces
+```
+Continue the same home tour in the same villa and the same style, same camera language: [00:00-00:02] grand entrance hall with a sculptural staircase; [00:02-00:04] elegant home office with a wooden desk and garden view; [00:04-00:06] second bedroom with a large window and a balcony; [00:06-00:08] landscaped garden with olive trees and an outdoor lounge, ending on a final wide shot of the villa glowing at night. No people, no text, no music, no voice.
+```
