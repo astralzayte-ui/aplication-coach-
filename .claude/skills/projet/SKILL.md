@@ -1195,7 +1195,92 @@ Deux choses qui s'oublient et qui coûtent :
 
 ---
 
-### 🔴 LE FREIN — le chiffre qui dit d'arrêter
+### 🟢 LES LOTS — le levier qui divise le seuil par deux
+
+**Relevé sur le terrain : un panier moyen passé de 39 € à 79 € juste en
+vendant par lots.**
+
+```
+tu vends la pièce seule   →  il faut 23 ventes
+tu vends un lot           →  il en faut 12
+```
+
+🔴 **Aucune vidéo, aucun hook, aucun site ne donne un gain pareil.** Et
+c'est gratuit : les produits existent déjà, c'est l'affichage qui change.
+
+### L'escalier à trois marches
+
+**Jamais une liste à plat. Trois choix côte à côte, du moins cher au plus
+cher, avec l'économie visible sur chacun.**
+
+```
+LA PIÈCE SEULE          34,90 €
+LA PIÈCE + UNE AUTRE    49,90 €   ⭐ LE PLUS CHOISI
+LA TENUE ENTIÈRE        84,00 €   −26 %
+```
+
+🔴 **Celui du milieu porte « le plus choisi ».** C'est celui que tu veux
+vendre, et c'est celui qui double le panier.
+
+**Vérifié chez les gros :** les abonnements qui marchent affichent tous
+trois paliers avec le milieu marqué. Ce n'est pas une théorie.
+
+### Ce qu'on ne copie PAS de ces pages
+
+```
+❌  le compte à rebours            fausse urgence
+❌  le prix barré jamais pratiqué  interdit en France
+❌  le « X € par jour »            pour cacher le vrai prix
+```
+
+---
+
+## 🟢 LE DEUXIÈME ACHAT — 30 % de chiffre sans un euro de pub
+
+**Le trou le plus grave de la méthode, et le moins cher à boucher.**
+Relevé deux fois sur le terrain : **30 % des clients reviennent**, si on
+leur parle.
+
+### Le seul geste : un message, 10 jours après la livraison
+
+> *« Salut, il te va comment ? »*
+
+**Ce message fait trois choses d'un coup :**
+
+```
+🟢  il récolte un AVIS         → le trou « zéro avis au jour 40 »
+🟢  il attrape un problème     → avant qu'il devienne 1 étoile
+🟢  il place la 2ᵉ vente       → le code promo arrive APRÈS sa réponse,
+                                  jamais dans le premier message
+```
+
+🔴 **Jamais le code promo en premier.** Un message qui vend d'entrée se
+fait ignorer. On demande des nouvelles, on écoute, et le code vient après.
+
+### Le deuxième levier : un mot dans le colis
+
+```
+« Ton prochain achat : −15 %, code à toi, valable 60 jours »
+```
+
+**Un bout de papier. Pas de timbre, pas d'outil, pas d'abonnement.**
+
+### 🟠 Automatiser ce message — ce qui est vrai
+
+```
+🟢  WhatsApp Business (gratuit)   message d'accueil et message d'absence
+                                   → PAS d'envoi programmé à J+10
+🟠  l'API WhatsApp Business        le vrai envoi automatique, payant,
+                                   passe par un prestataire
+```
+
+**Au lancement, on l'envoie à la main.** Dix clients, dix messages : c'est
+dix minutes. **On n'automatise qu'à partir du moment où ça devient pénible**
+— et à ce moment-là, le chiffre paie l'outil.
+
+---
+
+## 🔴 LE FREIN — le chiffre qui dit d'arrêter
 
 **Relevé sur le terrain, pas estimé :**
 
@@ -1736,8 +1821,8 @@ arrêter.
 **2. Le deuxième achat.**
 Toute la méthode vise la **première vente**. Dans beaucoup de métiers, l'argent est au 2ᵉ et au 3ᵉ achat. Aucune étape là-dessus.
 
-**3. Récolter les vrais avis.**
-Les faux sont interdits (bien). Mais rien n'organise la collecte des vrais. Au jour 40 il aura des clients et zéro avis affiché.
+**3. ~~Récolter les vrais avis~~** ✅ **réglé le 02/10** — c'est le même
+message à J+10 qui les récolte.
 
 **4. Le SAV.**
 C'est une des 5 peurs. Aucune étape ne le construit.
@@ -1745,4 +1830,4 @@ C'est une des 5 peurs. Aucune étape ne le construit.
 **5. Le stock et la trésorerie.**
 Combien de stock, quand on recommande, combien on immobilise.
 
-**Le 2 est maintenant le plus grave, le 1 étant réglé.**
+**Il reste le SAV, le stock et la trésorerie. Le 4 est le plus grave des trois.**
