@@ -8,6 +8,15 @@ Crée le site web complet d'**ImmoClap**, un SaaS qui transforme les photos d'un
 
 Niveau attendu : site SaaS haut de gamme type Apple / Linear / Reel-E — luxe, sobre, cinématique, très animé mais élégant. Tout le site est **une seule longue page qui scrolle**, avec des sections qui **alternent fond noir et fond gris très foncé**.
 
+
+## 0. Fichiers joints (dans ce ZIP)
+
+- `assets/logo.svg` : logo officiel (maison + play, "Immo" crème + "Clap" doré). À utiliser tel quel dans le header et le footer.
+- `assets/icon.svg` : symbole seul (maison + play). `assets/favicon.svg` : favicon.
+- `assets/logo-fond-noir.png` : aperçu du logo.
+- `assets/exemples/*.jpg` : photos de biens de démonstration (Marrakech, Paris, Fès, Casablanca, Bordeaux) → à utiliser pour le hero, la section Exemples et les mockups. Elles sont étiquetées "Vidéo de démonstration".
+- Contact : contact.immoclap@gmail.com · réseaux : @immoclap (Instagram, TikTok, YouTube) → icônes dans le footer.
+
 ## 1. Direction artistique
 
 - **Couleurs**
@@ -112,6 +121,6 @@ Après connexion → page **Tableau de bord** (même style) : « Mes biens », b
 ## 5. Contraintes
 
 - **Responsive parfait** : mobile d'abord, menu burger, grilles qui passent en 1 colonne, mockups qui se réduisent proprement.
-- Images : utiliser des photos de maisons et intérieurs de luxe (placeholders Unsplash), vidéos en placeholder.
+- Images : utiliser des photos de maisons et intérieurs de luxe (utiliser les photos de `assets/exemples/`, compléter avec des placeholders Unsplash si besoin), vidéos en placeholder.
 - Code propre, sections bien séparées et commentées, pour que le développeur branche ensuite la connexion, l'upload, la génération vidéo et le paiement.
 - Ne copier aucun texte ni logo d'un site existant : tout le contenu est celui ci-dessus.
