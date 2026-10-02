@@ -107,6 +107,7 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 | Instagram | `silence.worldwide` — compte professionnel ✅ |
 | TikTok France | `silence.worldwide` |
 | TikTok Maroc | `silence.worldwide_maroc` |
+| YouTube | chaîne créée le 02/10, branchée dans Metricool ✅ |
 | TikTok | `SILENCE | Menswear` — ⚠️ **compte personnel**, stats réduites |
 
 ## 🔴 LE SITE — il le refait lui-même
@@ -118,6 +119,25 @@ ses informations, et chasser les bugs.
 
 **Tout ce qu'il faut est listé dans `site/A-RECOLLER.md`.**
 Ne rien supprimer de ce fichier ni de `partage/legal/`.
+
+---
+
+## 📌 DEMAIN — les 4 vidéos qui restent
+
+Le quota Gemini gratuit s'est vidé le 02/10. **Il se remet à zéro chaque jour.**
+
+4 vidéos sur 6 restent à analyser :
+```
+https://youtu.be/X4UnU2e24cc     j'ai reconstruit le funnel de cette marque
+https://youtu.be/q6ykds4Yhb8     coaching 800 → 15K€/mois
+https://youtu.be/fhbcwJJhvGg     l'écosystème pour créer sa marque
+https://youtu.be/jeNNWXlNCVQ     0 à 800 € en 2 semaines
+```
+Le script est prêt : `scratchpad/videos2/v.sh` (modèles qui marchent :
+`gemini-3-flash-preview`, `gemini-flash-latest`). Les 2 déjà faites sont
+dans `v2.md` et `v5.md`.
+
+🔴 **Il a dit : on attend demain. Ne pas passer par les sous-titres.**
 
 ---
 
