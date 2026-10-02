@@ -3,7 +3,7 @@ Crée UNE seule page HTML (index.html), en français, pour ImmoClap : un service
 INFOS DE LA MARQUE
 - Nom : ImmoClap — logo : assets/logo.svg — icône : assets/icon.svg — favicon : assets/favicon.svg
 - E-mail : contact.immoclap@gmail.com
-- Réseaux : Instagram, TikTok et YouTube @immoclap
+- Réseaux : Instagram, TikTok et YouTube @immoclap · comptes France : Instagram et TikTok @immoclap.fr
 - Photos de biens (démonstration) : assets/exemples/ (marrakech, paris, fes, casablanca, bordeaux)
 
 STYLE
