@@ -160,9 +160,10 @@
 
   /* ---------- le popup -10 % ---------- */
   function popup() {
-    if (lire('silence.inscrit', false)) return;
+    var force = /[?&]popup\b/.test(location.search);              // ?popup = toujours l'afficher (pour tester)
+    if (!force && lire('silence.inscrit', false)) return;
     var vu = lire('silence.popup-vu', 0);
-    if (vu && Date.now() - vu < 7 * 24 * 3600 * 1000) return;  // pas plus d'une fois par semaine
+    if (!force && vu && Date.now() - vu < 7 * 24 * 3600 * 1000) return;  // pas plus d'une fois par semaine
     var p = document.createElement('div');
     p.className = 'popup'; p.setAttribute('role', 'dialog'); p.setAttribute('aria-modal', 'true'); p.setAttribute('aria-label', '−10 % sur ta première commande');
     p.innerHTML =
@@ -188,11 +189,20 @@
     document.body.appendChild(p);
 
     var montre = false;
-    function ouvrir() { if (montre || lire('silence.inscrit', false)) return; montre = true; p.classList.add('ouvert'); ecrire('silence.popup-vu', Date.now()); }
+    function ouvrir() { if (montre || (!force && lire('silence.inscrit', false))) return; montre = true; p.classList.add('ouvert'); ecrire('silence.popup-vu', Date.now()); }
     function fermer() { p.classList.remove('ouvert'); }
     p.addEventListener('click', function (e) { if (e.target.closest('[data-ferme-popup]')) fermer(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fermer(); });
-    setTimeout(ouvrir, 7000);                                    // après 7 secondes
+    // 6 secondes sur le site AU TOTAL : changer de page ne remet pas le compteur à zéro
+    var deja = 0; try { deja = +sessionStorage.getItem('silence.temps') || 0; } catch (e) {}
+    var debut = Date.now();
+    function noter() { try { sessionStorage.setItem('silence.temps', deja + Date.now() - debut); } catch (e) {} }
+    window.addEventListener('pagehide', noter);
+    document.addEventListener('visibilitychange', function () { if (document.hidden) noter(); });
+    setTimeout(ouvrir, force ? 800 : Math.max(800, 6000 - deja));
+    window.addEventListener('scroll', function () {              // ou quand il a descendu la moitié de la page
+      if (scrollY > (document.documentElement.scrollHeight - innerHeight) * 0.5 && Date.now() - debut > 2500) ouvrir();
+    }, { passive: true });
     document.addEventListener('mouseout', function (e) {         // ou quand la souris quitte la page
       if (!e.relatedTarget && e.clientY < 10) ouvrir();
     });
