@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SILENCE — Tu parles pas. Tu portes.</title>
+<meta name="description" content="SILENCE — marque de streetwear indépendante, France et Maroc. Ensembles, vestes, t-shirts à 25 à 36 % sous le prix du marché. Chaque commande contrôlée avant l'envoi.">
+<meta name="theme-color" content="#0A0A0A">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="SILENCE — Tu parles pas. Tu portes.">
+<meta property="og:description" content="Streetwear à 25 à 36 % sous le prix du marché. France & Maroc.">
+<meta property="og:image" content="img/s.png">
+<link rel="icon" href="img/s.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="accueil">
+<div id="entete"></div>
+<main>
+
+  <!-- 1. LE HÉROS — une phrase de marque, pas un produit -->
+  <section class="heros">
+    <div class="enveloppe heros-grille">
+      <div>
+        <span class="etiquette">Marque indépendante · France &amp; Maroc</span>
+        <h1>Tu parles pas.<br>Tu portes.</h1>
+        <p class="chapeau">Du streetwear 25 à 36 % sous le prix du marché. Le grammage écrit sur chaque pièce, pas des adjectifs. Et chaque commande contrôlée avant de partir.</p>
+        <div class="heros-boutons">
+          <a class="btn btn-plein" href="collection.html?c=tout">Découvrir →</a>
+          <a class="btn btn-vide" href="produit.html?p=tshirt">Le test à 11 € →</a>
+        </div>
+        <div class="preuve">
+          <div class="preuve-chiffre">−36 %</div>
+          <div class="preuve-texte"><b>sous le prix du marché</b><span>prix relevés chez 3 concurrents, le 24/09</span></div>
+        </div>
+      </div>
+      <div class="heros-photo">
+        <img src="img/hero.jpg" alt="Un homme en survêtement sous une structure de béton" fetchpriority="high">
+        <div class="heros-badge"><b>−36 %</b><span>vs le marché</span></div>
+        <div class="heros-carte" data-icone="loupeCheck"><span data-ico="loupeCheck"></span><div><b>Contrôlé avant l'envoi</b><span>Chaque commande</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. LES ONGLETS + LA GRILLE -->
+  <section class="enveloppe" style="padding-bottom:56px">
+    <div class="onglets" role="tablist">
+      <button class="onglet actif" type="button" role="tab" aria-selected="true" data-onglet="pepites">Nos pépites</button>
+      <button class="onglet" type="button" role="tab" aria-selected="false" data-onglet="ensembles">Ensembles</button>
+      <button class="onglet" type="button" role="tab" aria-selected="false" data-onglet="vestes">Vestes</button>
+    </div>
+    <div class="grille" data-grille></div>
+  </section>
+
+  <!-- 3. LES DEUX BANNIÈRES -->
+  <section class="bannieres">
+    <a class="banniere" href="collection.html?c=ensembles">
+      <img src="img/sweat.jpg" alt="" loading="lazy">
+      <div class="banniere-texte"><h3>Les ensembles</h3><p>Le haut et le bas, même bain de teinture.</p><span>Découvrir</span></div>
+    </a>
+    <a class="banniere" href="produit.html?p=tshirt">
+      <img src="img/tshirt.jpg" alt="" loading="lazy">
+      <div class="banniere-texte"><h3>Le test à 11 €</h3><p>Juge notre matière sans risquer gros.</p><span>Découvrir</span></div>
+    </a>
+  </section>
+
+  <!-- 4. LA RÉASSURANCE -->
+  <section class="enveloppe reassurance">
+    <div class="reassure"><i data-ico="loupeCheck"></i><div><b>Contrôlé avant l'envoi</b><span>Chaque commande</span></div></div>
+    <div class="reassure"><i data-ico="carte"></i><div><b>Paiement sécurisé</b><span>Par carte bancaire</span></div></div>
+    <div class="reassure"><i data-ico="bouclier"></i><div><b>Un défaut ?</b><span>On rembourse ou on remplace</span></div></div>
+    <div class="reassure"><i data-ico="bulle"></i><div><b>SAV réactif</b><span>Réponse sous 24 h</span></div></div>
+  </section>
+
+  <!-- 5. L'ESCALIER DES LOTS -->
+  <section class="section">
+    <div class="enveloppe">
+      <div class="surtitre">★ Le bon plan</div>
+      <h2 class="titre-section">La tenue, en 3 marches</h2>
+      <div class="escalier" data-escalier></div>
+    </div>
+  </section>
+
+  <!-- 6. LES UNIVERS -->
+  <section class="section section-gris">
+    <div class="enveloppe">
+      <div class="surtitre">★ Notre catalogue</div>
+      <h2 class="titre-section" style="margin-bottom:8px">6 pièces, <span style="color:var(--ambre-texte)">3 univers</span></h2>
+      <p style="text-align:center;color:var(--texte-doux);margin:0 0 34px">Clique sur un univers pour voir ses pièces.</p>
+      <div class="univers" data-univers></div>
+    </div>
+  </section>
+
+  <!-- 7. LES AVIS — masqués tant qu'il n'y a pas de vrais clients -->
+  <section class="section">
+    <div class="enveloppe"><h2 class="titre-section">Ils portent SILENCE</h2><div class="avis-piste" data-avis></div></div>
+  </section>
+
+  <!-- 8. LA FAQ -->
+  <section class="section" id="faq">
+    <div class="enveloppe">
+      <h2 class="titre-section">Les questions qu'on nous pose</h2>
+      <div class="faq-contact"><a class="btn btn-vide" href="https://wa.me/212728861105" target="_blank" rel="noopener">Nous contacter</a></div>
+      <div class="faq" data-faq></div>
+      <div class="badges">
+        <span>🇫🇷 🇲🇦 <b>Marque indépendante</b> · France &amp; Maroc</span>
+        <span><b>Contrôlé</b> avant l'envoi</span>
+        <span><b>−25 à −36 %</b> sous le marché</span>
+        <span><b>SAV</b> sous 24 h</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+<div id="pied"></div>
+<form name="newsletter" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input name="email"><input name="source"><input name="bot-field">
+</form>
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script src="panier.js"></script>
+</body>
+</html>

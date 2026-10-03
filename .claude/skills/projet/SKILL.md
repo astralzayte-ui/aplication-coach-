@@ -1219,8 +1219,12 @@ LA PIÈCE + UNE AUTRE    49,90 €   ⭐ LE PLUS CHOISI
 LA TENUE ENTIÈRE        84,00 €   −26 %
 ```
 
-🔴 **Celui du milieu porte « le plus choisi ».** C'est celui que tu veux
+🔴 **Celui du milieu est mis en avant.** C'est celui que tu veux
 vendre, et c'est celui qui double le panier.
+
+🔴 **Tant qu'il n'y a pas de ventes : « Recommandé », jamais « le plus
+choisi ».** « Le plus choisi » seulement quand les chiffres le prouvent —
+sinon c'est un mensonge, et c'est interdit (pratique trompeuse).
 
 **Vérifié chez les gros :** les abonnements qui marchent affichent tous
 trois paliers avec le milieu marqué. Ce n'est pas une théorie.

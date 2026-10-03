@@ -1,0 +1,7 @@
+<body data-page="collection">
+<div id="entete"></div>
+<main class="enveloppe">
+  <div class="col-tete"><h1 data-col-titre>Toute la boutique</h1><p data-col-compte></p></div>
+  <div class="onglets" data-col-onglets style="margin-top:26px"></div>
+  <div class="grille" data-collection style="padding-bottom:40px"></div>
+</main>

@@ -1,0 +1,19 @@
+<body data-page="produit">
+<div id="entete"></div>
+<main>
+  <div class="enveloppe fiche" data-fiche></div>
+
+  <section class="section">
+    <div class="enveloppe">
+      <h2 class="titre-section">Complète la tenue</h2>
+      <div class="grille grille-4" data-autres></div>
+    </div>
+  </section>
+
+  <section class="section section-gris" id="faq">
+    <div class="enveloppe">
+      <h2 class="titre-section">Les questions qu'on nous pose</h2>
+      <div class="faq" data-faq></div>
+    </div>
+  </section>
+</main>

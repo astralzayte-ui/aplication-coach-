@@ -94,8 +94,8 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 
 | | |
 |---|---|
-| La boutique — la source | **claude.ai/artifact/RgFKZrBwxEBDBEacQrHRiF** — Claude Design, 3 écrans |
-| La boutique — à regarder | **silence-boutique.netlify.app** — une copie, republiée après chaque modification |
+| La boutique — la source | dossier **`boutique/`** (HTML simple) — `node boutique/construire.cjs` puis publication |
+| La boutique — à regarder | **silence-boutique.netlify.app** — refaite le 03/10 sur la structure de boutique-streetwear.com |
 | Questionnaire fournisseur | **silence-supplier.netlify.app** |
 | Netlify | clé dans les Identifiants API — Claude publie et renomme seul |
 | Gemini | clé dans les Identifiants API |
@@ -126,6 +126,22 @@ la méthode                  →  copier l'ORDRE des blocs d'un
 ni les photos.**
 
 Tout ce qu'il faut recoller reste dans `site/A-RECOLLER.md`.
+
+**✅ Fait le 03/10 :** concurrent n°1 choisi = **boutique-streetwear.com**.
+Copié : l'ordre des blocs, les onglets, le popup −10 % contre l'e-mail,
+le menu, la fiche produit. Pas copié : leurs photos, leurs textes,
+leurs faux avis.
+
+```
+le code                 boutique/  (data.js = prix, produits, FAQ)
+les e-mails du popup    Netlify → Forms → « newsletter »
+le code de bienvenue    BIENVENUE10 = −10 % (baisse la marge)
+caché tant que flou     prix et délai de livraison, composition,
+                        mesures, avis clients
+```
+
+🔴 Photos provisoires = d'autres marques → **jamais public** tant
+qu'elles ne sont pas remplacées (le site est en « noindex »).
 
 ---
 
@@ -237,11 +253,11 @@ site, le budget et le skill, et le lui dire franchement.
 🔴  LE FREIN : 100 €/jour = produit validé · moins de 3 ventes au
     jour 40 = on arrête. Posé le 02/10, relevé sur le terrain.
 🔴  jamais d'accès à sa banque — Stripe en lecture seule, rien d'autre
-🔴  le site se modifie TOUJOURS dans Claude Design, jamais sur Netlify —
+🔴  le site se modifie dans `boutique/`, jamais sur Netlify —
     Netlify est une copie, republiée derrière chaque modification
-🔴  le site est en GLACE — l'ambre ne reste que sur le bouton d'achat.
-    Le logo est bleu, l'orange partout aurait fait deux marques.
-    Glace #A5D8F3 · sur fond clair, bleu nuit #16324F · bouton #E0A458
+🔴  (03/10) le site est BLANC, entête et pied NOIRS (le logo glace
+    a besoin du noir), une seule couleur vive : l'ambre #E0A458.
+    Remplace l'ancienne règle « glace partout ».
 🔴  le logo a un fond bleu nuit #121929 : on l'écrase au noir
     (brightness .82 / contrast 1.32) puis mix-blend-mode: screen
 🔴  le site alterne noir et ivoire — deux blocs clairs (les promesses,
