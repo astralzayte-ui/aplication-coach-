@@ -9,13 +9,22 @@ PROMPT="${2:-Analyse cette vidéo en détail : sujet, structure, hook, messages 
 # Ordre de préférence. Le quota gratuit est compté par modèle.
 MODELS=(
   gemini-3.8-flash
+  gemini-3.1-pro-preview
+  gemini-pro-latest
   gemini-3.7-flash
   gemini-3.6-flash
   gemini-3.5-flash
+  gemini-omni-1.1-flash
+  gemini-omni-flash-preview
   gemini-3-flash-preview
+  gemini-2.5-pro
+  gemini-2.5-flash
+  gemini-3.5-flash-lite
   gemini-3.1-flash-lite
+  gemini-3.1-flash-lite-preview
   gemini-flash-latest
   gemini-flash-lite-latest
+  gemini-2.5-flash-lite
 )
 
 BODY=$(jq -n --arg url "$URL" --arg p "$PROMPT" \
