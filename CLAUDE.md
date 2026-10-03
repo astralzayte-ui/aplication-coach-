@@ -141,6 +141,14 @@ visible tout de suite. Le coffre, lui, est une fonction : `netlify/functions/`.
 **Pour publier une application différente**, la ranger dans `apps/<nom>/index.html` :
 elle sort à `…netlify.app/<nom>/`. Ne jamais écraser `index.html`.
 
+Le site est sur le compte Netlify **« collyjulien9's team »**, pas dans l'équipe
+NovaSites où l'utilisateur atterrit par défaut. Journal des déploiements :
+https://app.netlify.com/sites/chic-biscotti-07e6f1/deploys
+
+**Dépendances npm : épingler une version publiée depuis au moins deux semaines.**
+L'installation Netlify a refusé `@netlify/blobs` publié deux jours plus tôt
+(« No matching version found ») : cinq mises en ligne ont échoué sans bruit.
+
 Netlify ne remonte pas l'état des déploiements sur GitHub. Pour savoir si une mise en
 ligne est passée, comparer `APP_VERSION` servi par le site à celui du dépôt.
 
