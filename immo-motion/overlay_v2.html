@@ -12,6 +12,7 @@ body.overlay #stage{background:transparent}
 #plateWrap,#L_hook,#fbWrap{visibility:hidden}
 body.overlay #plateWrap,body.overlay #fbWrap{display:none}
 .shade{position:absolute;left:0;width:1080px;opacity:0;pointer-events:none}
+#shadeD{top:700px;height:900px;background:linear-gradient(rgba(12,10,8,0) 0%,rgba(12,10,8,.18) 14%,rgba(12,10,8,.38) 27%,rgba(12,10,8,.38) 62%,rgba(12,10,8,.18) 80%,rgba(12,10,8,0) 100%)}
 #shadeT{top:0;height:760px;background:linear-gradient(rgba(10,8,6,.52),rgba(10,8,6,.22) 45%,rgba(10,8,6,0))}
 #shadeB{top:520px;height:1400px;background:linear-gradient(rgba(10,8,6,0) 0%,rgba(10,8,6,.30) 28%,rgba(10,8,6,.54) 52%,rgba(10,8,6,.68) 76%,rgba(10,8,6,.76) 100%)}
 #shadeC{top:380px;height:1540px;background:linear-gradient(rgba(10,8,6,0) 0%,rgba(10,8,6,.22) 24%,rgba(10,8,6,.50) 46%,rgba(10,8,6,.70) 68%,rgba(10,8,6,.84) 100%)}
@@ -30,6 +31,13 @@ canvas{position:absolute;left:0;top:0;width:1080px;height:1920px;pointer-events:
 .mi{display:inline-block;white-space:nowrap;padding:0 .06em;margin:0 -.06em}
 .shim{background-image:linear-gradient(105deg,#D99A1E 0%,#EDB62C 34%,#FFF4CF 50%,#EDB62C 66%,#D99A1E 100%);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;padding-right:.1em}
 .mk.g{filter:drop-shadow(0 0 14px rgba(237,182,44,.5)) drop-shadow(0 4px 10px rgba(0,0,0,.6))}
+/* démo : ombres renforcées (lisibilité sur plans clairs) ; le « 10 » or perd son halo doré au profit d'une ombre sombre */
+.sh2{text-shadow:0 3px 22px rgba(0,0,0,.70),0 1px 3px rgba(0,0,0,.6),0 6px 36px rgba(0,0,0,.45)}
+.mk.g#eqA{filter:drop-shadow(0 3px 22px rgba(0,0,0,.75)) drop-shadow(0 1px 3px rgba(0,0,0,.65)) drop-shadow(0 0 6px rgba(0,0,0,.35))}
+/* CTA : balayage de reflet sur le logo (copie du mot, remplie uniquement par le dégradé) */
+.mi.rel{position:relative}
+.shine{position:absolute;left:.06em;top:0;white-space:nowrap;pointer-events:none;color:transparent;-webkit-text-fill-color:transparent;text-shadow:none;background-image:linear-gradient(105deg,transparent 40%,rgba(255,246,214,.8) 50%,transparent 60%);background-size:250% 100%;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text}
+#pLogo,#pCta,#pTag{transform-origin:540px 1056px}
 .thumb{position:absolute;width:250px;height:350px;left:415px;top:465px;border-radius:20px;border:3px solid var(--gold);overflow:hidden;box-shadow:0 22px 50px rgba(0,0,0,.6);opacity:0;background:#1a1612}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block}
 #vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 75% 62% at 50% 46%,rgba(0,0,0,0) 52%,rgba(0,0,0,.52) 100%);opacity:0}
@@ -44,7 +52,7 @@ canvas{position:absolute;left:0;top:0;width:1080px;height:1920px;pointer-events:
  <div class="fill" id="plateWrap"><img id="plate" width="1080" height="1920" style="height:1920px;width:1080px"></div>
  <!-- fond opaque du hook -->
  <div class="fill" id="L_hook"><img id="hookImg" src="build/bg_hook.jpg" style="height:2100px"></div>
- <div class="shade" id="shadeT"></div><div class="shade" id="shadeB"></div><div class="shade" id="shadeC"></div>
+ <div class="shade" id="shadeT"></div><div class="shade" id="shadeB"></div><div class="shade" id="shadeC"></div><div class="shade" id="shadeD"></div>
  <canvas id="fxB" width="1080" height="1920"></canvas>
 
  <div id="world">
@@ -63,10 +71,10 @@ canvas{position:absolute;left:0;top:0;width:1080px;height:1920px;pointer-events:
   <div class="par" id="pEq">
    <div class="ln" id="eq1" style="left:114px;top:918px;align-items:baseline;gap:20px">
     <span class="mk g" data-safe="text" id="eqA"><span class="mi serif shim" id="tenN" style="font-size:190px;min-width:222px;text-align:right">0</span></span>
-    <span class="mk" data-safe="text" id="eqB"><span class="mi serif sh" style="font-size:112px">photos</span></span>
+    <span class="mk" data-safe="text" id="eqB"><span class="mi serif sh2" style="font-size:112px">photos</span></span>
    </div>
    <div class="ln" id="eq2" style="left:114px;top:1094px">
-    <span class="mk" data-safe="text" id="eqC"><span class="mi serif sh" style="font-size:112px"><span class="gold">=&nbsp;1</span>&nbsp;<span class="it">vidéo</span></span></span>
+    <span class="mk" data-safe="text" id="eqC"><span class="mi serif sh2" style="font-size:112px"><span class="gold">=&nbsp;1</span>&nbsp;<span class="it">vidéo</span></span></span>
    </div>
   </div>
   <!-- DÉMO : anneau 10 min -->
@@ -81,7 +89,7 @@ canvas{position:absolute;left:0;top:0;width:1080px;height:1920px;pointer-events:
   <div class="par" id="pLogo">
    <div class="abs" id="lockup" style="left:0;width:1080px;top:520px;height:140px;display:flex;justify-content:center;align-items:center;gap:20px">
     <span id="iconH" data-safe="logo" style="display:block;width:130px;height:130px"></span>
-    <span class="mk" data-safe="logo" id="wordH"><span class="mi serif sh" style="font-size:124px">Immo<span class="gold">Clap</span></span></span>
+    <span class="mk" data-safe="logo" id="wordH"><span class="mi rel serif sh" id="wordHi" style="font-size:124px">Immo<span class="gold">Clap</span><span class="shine" id="wordShine" data-safe="text" aria-hidden="true">ImmoClap</span></span></span>
    </div>
   </div>
   <div class="par" id="pCta">
@@ -207,7 +215,7 @@ window.seek=function(t){
   let k=-1;SEG.forEach(s=>{if(t>=s[0]&&t<s[1])k=s[2]});
   FB_SRC.forEach((_,i)=>{$('fb'+i).style.display=(inDemo&&i===k)?'block':'none'});$('fbC').style.display=inCta?'block':'none';
   const loc=inCta?P(t,S.cta[0],S.cta[1]-S.cta[0]):(k>=0?P(t,SEG[k][0],SEG[k][1]-SEG[k][0]):0);
-  const vs=(1+.07*cm.pun)*(1+.035*loc),vx=-14*loc+cm.sx*1.5,vy=cm.sy*1.5;
+  const vs=(1+.07*cm.pun)*(1+(inCta?.07:.035)*loc),vx=-14*loc+cm.sx*1.5,vy=cm.sy*1.5;
   const tr=`translate(-50%,-50%) translate(${vx}px,${vy}px) scale(${vs})`;
   $('plate').style.transform=tr;$('plate').style.left='50%';$('plate').style.top='50%';
   document.querySelectorAll('#fbWrap .fb').forEach(e=>e.style.transform=tr);
@@ -217,6 +225,8 @@ window.seek=function(t){
  vis($('shadeT'),(.85+.15*Math.sin(t*1.4))*(inCta?.6:1)*P(t,0,.2));
  vis($('shadeB'),(inCta?1-P(t,S.cta[0],.3):1)*P(t,0,.2));
  vis($('shadeC'),inCta?P(t,S.cta[0],.35):0);
+ // bande sombre derrière le bloc texte de la démo (contraste du « 10 » or et du crème sur plans clairs)
+ vis($('shadeD'),inDemo?P(t,S.demo[0],.2):(inCta?1-P(t,S.cta[0],.3):0));
  // ── ambiance
  ambient(t,inHook?.62:(inDemo?.46:.7),PX,PY);
  front(t);
@@ -274,7 +284,12 @@ window.seek=function(t){
   const n=done?10:Math.round(10*pr);$('ringNum').textContent=n;$('ringNum').style.color=done?'#EDB62C':'#F4ECE0';}
 
  // ── CTA : logo horizontal, « Créez votre vidéo », promesse, fondu
- par('pLogo',.8);par('pCta',1.2);par('pTag',.6);
+ // dérive lente du bloc CTA (montée + léger zoom), la caméra ne s'arrête jamais
+ const dp=eio(P(t,E.lockup,S.cta[1]-E.lockup-.1)),drift=inCta?`translateY(${-14*dp}px) scale(${1+.025*dp})`:'';
+ par('pLogo',.8,drift);par('pCta',1.2,drift);par('pTag',.6,drift);
+ // pulsation à 120 BPM (période 0,5 s) calée sur la ligne « Créez votre vidéo »
+ const BEAT=.5,bph=t>=E.cta_text?((t-E.cta_text)%BEAT)/BEAT:1,beat=t>=E.cta_text+.35?.028*Math.exp(-bph*7):0,gl=18+10*Math.sin(2*Math.PI*(t-E.cta_text)/BEAT);
+ const sw=eio(P(t,8.0,.9)),swp=lerp(120,-20,sw);          // balayage de reflet 8,0 -> 8,9 s
  {const lp=P(t,E.lockup,.55);
   dash('hh',eo(P(t,E.lockup,.5)),eo(P(t,E.lockup+.25,.45)));
   $('iconH').style.filter=`drop-shadow(0 0 ${10+8*Math.sin(t*4)}px rgba(237,182,44,.6)) drop-shadow(0 4px 10px rgba(0,0,0,.6))`;
@@ -282,9 +297,10 @@ window.seek=function(t){
   const wp=eo(P(t,E.lockup+.12,.5));$('wordH').style.clipPath=`inset(-30% ${100-100*wp}% -30% -10%)`;mi($('wordH')).style.transform=`translateX(${-40*(1-wp)}px)`;
   vis($('iconH'),inCta&&t>=E.lockup?1:0);vis($('wordH'),inCta&&t>=E.lockup?1:0);
   [['cw0',E.cta_text],['cw1',E.cta_text+.12],['cw2',E.cta_text+.24]].forEach(([id,t0])=>{const p=P(t,t0,.45);mi($(id)).style.transform=`translateY(${115*(1-eob(p,1.15))}%)`;
-   const pu=1+.05*Math.exp(-Math.max(0,t-t0)*12)*(t>=t0+.15?1:0);$(id).style.transformOrigin='50% 60%';$(id).style.transform=`scale(${pu})`;vis($(id),inCta&&t>=t0-.02?1:0)});
-  $('cw2').style.filter=`drop-shadow(0 0 ${16+12*Math.sin(t*4.2)}px rgba(237,182,44,.6)) drop-shadow(0 5px 12px rgba(0,0,0,.65))`;
-  shim($('cw2i'),t,.3);
+   const pu=(1+.05*Math.exp(-Math.max(0,t-t0)*12)*(t>=t0+.15?1:0))*(1+beat);$(id).style.transformOrigin='50% 60%';$(id).style.transform=`scale(${pu})`;vis($(id),inCta&&t>=t0-.02?1:0)});
+  $('cw2').style.filter=`drop-shadow(0 0 ${gl}px rgba(237,182,44,.55)) drop-shadow(0 5px 12px rgba(0,0,0,.65))`;
+  shim($('cw2i'),t,.3,swp);
+  $('wordShine').style.backgroundPosition=`${swp}% 0`;
   const ap=eo(P(t,E.tagline-.2,.6));put($('accent'),inCta?ap:0,0,0,1,0);$('accent').style.transform=`scaleX(${ap})`;
   const tp=P(t,E.tagline,.5);mi($('tagMk')).style.transform=`translateY(${115*(1-eo(tp))}%)`;vis($('tagMk'),inCta&&t>=E.tagline?1:0);
  }
@@ -297,6 +313,9 @@ window.seek=function(t){
  vis($('fade'),P(t,E.fade_out,(TOT-1/FPS)-E.fade_out));
 };
 // reflet doré qui balaie les textes or (shimmer)
-function shim(el,t,ph){const u=((t*.55+ph)%1.9)/1.0;const s=clamp(u/.9);el.style.backgroundPosition=`${100*(1-(.12+.76*s))}% 0`}
+const SWEEP='linear-gradient(105deg,transparent 40%,rgba(255,240,200,.55) 50%,transparent 60%)',GOLDG='linear-gradient(105deg,#D99A1E 0%,#EDB62C 34%,#FFF4CF 50%,#EDB62C 66%,#D99A1E 100%)';
+function shim(el,t,ph,swp){const u=((t*.55+ph)%1.9)/1.0;const s=clamp(u/.9),bp=100*(1-(.12+.76*s));
+ if(swp===undefined){el.style.backgroundPosition=`${bp}% 0`;return}
+ el.style.backgroundImage=`${SWEEP},${GOLDG}`;el.style.backgroundSize='250% 100%,300% 100%';el.style.backgroundRepeat='no-repeat,repeat';el.style.backgroundPosition=`${swp}% 0,${bp}% 0`}
 window.seek(0);
 </script></body></html>

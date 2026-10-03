@@ -159,22 +159,23 @@ json.dump({"demo_frames": nfr, "cta_frames": ncta, "total_frames": NF}, open(f"{
 # 2) composition : yuv420p (BT.709 supposé, clips non étiquetés) -> RGB planaire -> overlay -> yuv420p BT.709
 TO_RGB = "scale=in_range=tv:in_color_matrix=bt709:flags=bicubic+accurate_rnd+full_chroma_int,format=gbrp"
 PUN, PUN_K, PUN_LEN, PUSH, DRIFT = 0.07, 7.5, 0.7, 0.035, 14.0      # mêmes constantes que la doublure « full » de overlay_v2.html
+PUSH_CTA = 0.07     # CTA : poussée 1.00 -> 1.07 sur 2,5 s (le plan crépuscule est quasi fixe : sans cela l'image reste statique > 1 s)
 
-def fx(seg_starts):  # seg_starts : [(t_debut_local, durée)] ; renvoie (zoom, dérive) en fonction de t (s dans le clip)
+def fx(seg_starts, push=PUSH):  # seg_starts : [(t_debut_local, durée)] ; renvoie (zoom, dérive) en fonction de t (s dans le clip)
     z = d = None; items = []
     for t0, du in seg_starts:
         a = f"(t-{t0})"
-        items.append((t0 + du, f"(1+{PUN}*exp(-{PUN_K}*{a})*lt({a},{PUN_LEN}))*(1+{PUSH}*{a}/{du})", f"{DRIFT}*{a}/{du}"))
+        items.append((t0 + du, f"(1+{PUN}*exp(-{PUN_K}*{a})*lt({a},{PUN_LEN}))*(1+{push}*{a}/{du})", f"{DRIFT}*{a}/{du}"))
     def pw(k):
         s = items[-1][k]
         for it in reversed(items[:-1]): s = f"if(lt(t,{it[0]}),{it[k]},{s})"
         return s
     return pw(1), pw(2)
 
-def video(inp, seg_starts, shift, lab):
+def video(inp, seg_starts, shift, lab, push=PUSH):
     if not FX:
         return f"[{inp}:v]{TO_RGB},setpts=PTS+{shift}/TB[{lab}]"
-    z, d = fx(seg_starts)
+    z, d = fx(seg_starts, push)
     return (f"[{inp}:v]{TO_RGB},scale=w='2*trunc(1080*({z})/2)':h='2*trunc(1920*({z})/2)':eval=frame:flags=bicubic,"
             f"crop=w=1080:h=1920:x='(iw-1080)/2+({d})':y='(ih-1920)/2',setsar=1,setpts=PTS+{shift}/TB[{lab}]")
 
@@ -183,7 +184,7 @@ for _, a, b in segs: demo_starts.append((p, b - a)); p += b - a
 g = [f"color=c=0x0F0D0A:s=1080x1920:r={FPS}:d={TOT},format=gbrp[base]"]
 # entrées : 0 = demo_bg_v2.mp4, 1 = cta_bg_v2.mp4, 2 = PNG overlay, 3 = mix audio
 g.append(video(0, demo_starts, D0, "demo"))
-g.append(video(1, [(0.0, C1 - C0)], C0, "cta"))
+g.append(video(1, [(0.0, C1 - C0)], C0, "cta", PUSH_CTA))
 g.append("[2:v]format=gbrap[ov]")      # surtout pas de setpts=PTS-STARTPTS ici : avec ffmpeg 6.1 il décale l'overlay (x1,5) après l'image 60
 g.append("[base][demo]overlay=format=gbrp:eof_action=pass[b1]")
 g.append("[b1][cta]overlay=format=gbrp:eof_action=pass[b2]")
