@@ -129,11 +129,16 @@ L'utilisateur n'a rien à faire — il dit « poste » et il recharge. Ne pas lu
 demander de télécharger un fichier ni de le déposer sur Netlify : c'était l'ancienne
 méthode, elle est terminée.
 
-`netlify.toml` fixe `publish = "."` et empêche la page d'être mise en cache, pour
-qu'une mise à jour soit visible tout de suite.
+`netlify.toml` construit un dossier `_site` qui ne contient que `index.html` (plus
+`apps/`), et le publie : le reste du dépôt, les paquets du coffre et ce fichier-ci ne
+sont pas servis. La page n'est pas mise en cache, pour qu'une mise à jour soit
+visible tout de suite. Le coffre, lui, est une fonction : `netlify/functions/`.
 
-**Pour publier une application différente**, la mettre dans un sous-dossier
-(`/quiz/index.html` → `…netlify.app/quiz/`) plutôt que d'écraser `index.html`.
+**Pour publier une application différente**, la ranger dans `apps/<nom>/index.html` :
+elle sort à `…netlify.app/<nom>/`. Ne jamais écraser `index.html`.
+
+Netlify ne remonte pas l'état des déploiements sur GitHub. Pour savoir si une mise en
+ligne est passée, comparer `APP_VERSION` servi par le site à celui du dépôt.
 
 ---
 

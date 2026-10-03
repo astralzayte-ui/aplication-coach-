@@ -1,5 +1,9 @@
 [build]
-  publish = "."
+  # Ne publier que l'application. Sans ça, Netlify mettait en ligne tout le dépôt :
+  # les ~2 800 fichiers de paquets installés pour le coffre, et les notes de travail.
+  # Une autre app se range dans apps/<nom>/index.html et sort à /<nom>/.
+  command = "rm -rf _site && mkdir -p _site && cp index.html _site/ && if [ -d apps ]; then cp -R apps/. _site/; fi"
+  publish = "_site"
 
 # Le coffre (netlify/functions/vault.mjs) dépend de @netlify/blobs, qui exige Node 22.12+.
 [build.environment]
