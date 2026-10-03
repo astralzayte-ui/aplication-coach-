@@ -59,10 +59,10 @@ def read_wav(path):
 
 
 def write_wav(path, x, sr=SR):
-    x = np.clip(np.asarray(x, dtype=np.float64), -1, 1)
+    x = np.asarray(x, dtype=np.float64)
     w = wave.open(path, "wb")
     w.setnchannels(1); w.setsampwidth(2); w.setframerate(sr)
-    w.writeframes((x * 32767).astype(np.int16).tobytes())
+    w.writeframes(np.clip(np.round(x * 32768), -32768, 32767).astype(np.int16).tobytes())
     w.close()
 
 
@@ -323,9 +323,10 @@ def main():
             raise SystemExit("--reuse : impossible de découper audio/voice_v2.wav en 3 phrases")
         phrases = sp[0]
         ok, cost, info = evaluate(phrases)
-        chosen = {"x": x, "model": "reuse", "i": 0}
-        source = "single-take (réutilisée)"
-        meta["takes"] = [{"i": 0, "model": "reuse", "info": info, "ok": ok}]
+        old = json.load(open("audio/voice_v2_takes.json")) if os.path.exists("audio/voice_v2_takes.json") else {}
+        chosen = {"x": x, "model": old.get("raw_take", {}).get("model", "reuse"), "i": 0}
+        source = old.get("source", "single-take (réutilisée)")
+        meta["takes"] = old.get("takes") or [{"i": 0, "model": "reuse", "info": info, "ok": ok}]      # garde les transcriptions déjà vérifiées
     elif not a.per_phrase:
         takes = make_single_takes(a.takes)
         scored = []

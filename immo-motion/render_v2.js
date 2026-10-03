@@ -30,7 +30,7 @@ function ensurePlates(frameNums){
     const n=Math.round(dur*FPS);
     const need=frameNums.some(f=>f>=f0&&f<f0+n&&!fs.existsSync(path.join(PLATES,'p_'+String(f).padStart(4,'0')+'.jpg')));
     if(!need)continue;
-    execFileSync('ffmpeg',['-y','-v','error','-ss',String(a),'-t',String(dur),'-i',path.join(ROOT,'clips',clip+'.mp4'),
+    execFileSync('ffmpeg',['-y','-v','fatal','-ss',String(a),'-t',String(dur),'-i',path.join(ROOT,'clips',clip+'.mp4'),
       '-vf','fps='+FPS+',scale=1080:1920','-q:v','3','-start_number',String(f0),path.join(PLATES,'p_%04d.jpg')]);
   }
 }
