@@ -189,6 +189,40 @@
     .dep-item-row.wait .dep-item-name { color:var(--text-dim); }
     .day-wait { font-size:11px; font-weight:700; color:var(--orange); font-variant-numeric:tabular-nums; }
 
+    /* CLÉ DU COFFRE */
+    .cle-box { font-family:'Courier New',monospace; font-size:15px; font-weight:800; letter-spacing:.6px;
+      text-align:center; padding:13px 10px; background:var(--bg); border:1px dashed var(--border2);
+      border-radius:var(--rs); color:var(--mint); margin-bottom:8px; word-break:break-all;
+      user-select:all; -webkit-user-select:all; }
+
+    /* BILAN */
+    .bl-kpis { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:12px; }
+    .bl-kpi { background:var(--surf2); border-radius:var(--rs); padding:11px 6px; text-align:center; }
+    .bl-kpi-v { font-size:17px; font-weight:800; font-variant-numeric:tabular-nums; font-family:Georgia,'Times New Roman',serif; }
+    .bl-kpi-l { font-size:9px; letter-spacing:.6px; text-transform:uppercase; color:var(--text-dim); margin-top:2px; }
+    .bl-track { height:8px; background:var(--surf2); border-radius:999px; overflow:hidden; margin-bottom:18px; }
+    .bl-fill { height:100%; border-radius:999px; }
+    .bl-h { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); margin:18px 0 9px; }
+    .bl-verdict { border-radius:var(--rs); padding:12px 14px; font-size:13px; line-height:1.55; }
+    .bl-verdict.ok   { background:var(--mint-dim);   border:1px solid var(--border2); color:var(--text); }
+    .bl-verdict.warn { background:var(--orange-dim); border:1px solid rgba(255,180,107,.35); color:var(--text); }
+    .bl-verdict.bad  { background:var(--rose-dim);   border:1px solid rgba(255,107,129,.35); color:var(--text); }
+    .bl-verdict b { font-variant-numeric:tabular-nums; }
+    .bl-cat { margin-bottom:10px; }
+    .bl-cat-top { display:flex; align-items:center; gap:8px; font-size:13px; margin-bottom:5px; }
+    .bl-cat-n { flex:1; font-weight:600; }
+    .bl-cat-a { font-weight:800; font-variant-numeric:tabular-nums; }
+    .bl-cat-p { font-size:11px; color:var(--text-muted); min-width:34px; text-align:right; font-variant-numeric:tabular-nums; }
+    .bl-cat-bar { height:5px; background:var(--surf2); border-radius:999px; overflow:hidden; }
+    .bl-line { display:flex; align-items:center; gap:10px; padding:9px 12px; background:var(--surf2); border-radius:var(--rx); margin-bottom:5px; font-size:13px; }
+    .bl-line-a { font-weight:800; color:var(--rose); font-variant-numeric:tabular-nums; min-width:62px; }
+    .bl-line-n { flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .bl-line-d { font-size:11px; color:var(--text-muted); flex-shrink:0; }
+    .bl-fact { display:flex; justify-content:space-between; gap:10px; padding:9px 2px; border-bottom:1px solid var(--border); font-size:13px; }
+    .bl-fact:last-child { border-bottom:none; }
+    .bl-fact span:first-child { color:var(--text-dim); }
+    .bl-fact span:last-child { font-weight:700; font-variant-numeric:tabular-nums; text-align:right; }
+
     /* CONFIRMATION DE SUPPRESSION */
     .row-confirm { border-color:var(--rose) !important; background:var(--rose-dim) !important; }
     .rc-txt { flex:1; min-width:0; font-size:12px; font-weight:700; color:var(--rose);
@@ -510,6 +544,9 @@ CREATE POLICY "own" ON budget_data
       </div>
       <div id="wiz-charges-info" style="font-size:12px;color:var(--text-muted);margin-top:-8px;margin-bottom:20px;line-height:1.6"></div>
       <button class="wiz-btn" onclick="wizStep2()">Suivant →</button>
+      <button id="wiz-recup" onclick="reconnecterCoffre()" style="width:100%;padding:12px;border:none;background:none;color:var(--text-dim);font-size:13px;cursor:pointer;margin-top:6px">
+        J'ai déjà une clé — récupérer mes données
+      </button>
     </div>
 
     <div class="wiz-step" id="wiz-step2">
@@ -557,6 +594,9 @@ CREATE POLICY "own" ON budget_data
         <button class="hero-pill" onclick="openAddRevenu()">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           Ajouter de l'argent
+        </button>
+        <button class="hero-pill" onclick="openBilan()">
+          <span style="font-size:12px">📊</span> Bilan
         </button>
         <button class="hero-pill ghost" onclick="openWizard(false)">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0115-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 01-15 6.7L3 16"/></svg>
@@ -704,6 +744,7 @@ CREATE POLICY "own" ON budget_data
   <div style="font-size:11px;color:var(--text-muted);margin-top:10px;line-height:1.6">
     Tes données vivent dans ce navigateur. Elles restent en place quand tu mets l'app à jour sur la même adresse. Fais une sauvegarde avant de changer de téléphone.
   </div>
+  <div id="um-coffre" style="margin-top:22px"></div>
   <div id="um-snaps" style="margin-top:22px"></div>
   <div id="um-actions"></div>
   <button class="cancel-btn" onclick="closeModal('m-user')">Fermer</button>
@@ -763,6 +804,13 @@ CREATE POLICY "own" ON budget_data
   <button class="submit-btn" onclick="saveEditDep()">Enregistrer</button>
   <button class="submit-btn danger" style="margin-top:8px" onclick="deleteEditDep()">Supprimer cette dépense</button>
   <button class="cancel-btn" onclick="closeModal('m-editdep')">Annuler</button>
+</div></div>
+
+<div class="overlay" id="m-bilan" onclick="overlayClick(event,'m-bilan')"><div class="sheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-title">📊 <span id="bl-title">Bilan</span></div>
+  <div id="bl-body"></div>
+  <button class="cancel-btn" onclick="closeModal('m-bilan')">Fermer</button>
 </div></div>
 
 <div class="overlay" id="m-catdetail" onclick="overlayClick(event,'m-catdetail')"><div class="sheet">
@@ -841,13 +889,14 @@ const DEF = {
   revenus:[],       // {id,montant,desc,ts}
   evenements:[],    // conservé pour ne rien perdre des anciennes données
   notes:'',         // bloc-notes libre (HTML mis en forme)
+  archives:[],      // periodes cloturees, gardees a vie pour les bilans
   carryOver:0
 };
 let S = JSON.parse(JSON.stringify(DEF));
 let _uid = 0;
 const uid = ()=>String(Date.now())+String(_uid++);
 
-const ARR_KEYS = ['depenses','chargesRec','revenus','evenements'];
+const ARR_KEYS = ['depenses','chargesRec','revenus','evenements','archives'];
 function normalize(){
   if(!S.cat_budgets || typeof S.cat_budgets!=='object') S.cat_budgets={...DEF.cat_budgets};
   Object.keys(DEF.cat_budgets).forEach(k=>{ if(typeof S.cat_budgets[k]!=='number') S.cat_budgets[k]=0; });
@@ -995,8 +1044,81 @@ function openUserMenu(){
       <div style="font-size:12px;color:var(--text-dim);margin-bottom:20px;line-height:1.6">Mode local — tout est enregistré dans ce navigateur, sur cet appareil.</div>`;
     act.innerHTML=`<button class="submit-btn" style="background:var(--surf2);color:var(--text-dim);font-size:13px;margin-top:18px" onclick="closeModal('m-user');showCfgScreen()">Activer la synchro cloud</button>`;
   }
+  renderCoffre();
   renderSnaps();
   openModal('m-user');
+}
+function ilYa(t){
+  const s=Math.round((Date.now()-t)/1000);
+  if(s<60)return "à l'instant";
+  if(s<3600)return 'il y a '+Math.round(s/60)+' min';
+  if(s<86400)return 'il y a '+Math.round(s/3600)+' h';
+  const d=new Date(t);
+  return 'le '+String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0');
+}
+function renderCoffre(){
+  const box=document.getElementById('um-coffre');
+  if(!box)return;
+  if(!coffreActif()){box.innerHTML='';return;}
+  const k=assurerCle();
+  let e={}; try{e=JSON.parse(localStorage.getItem(VLAST)||'{}');}catch(x){}
+  const statut=e.ok
+    ? `<span style="color:var(--mint)">● Synchronisé ${ilYa(e.t)}</span>`
+    : e.t
+      ? `<span style="color:var(--orange)">● Pas encore synchronisé (${esc(e.err||'erreur')}) — nouvel essai à la prochaine saisie</span>`
+      : `<span style="color:var(--text-muted)">● Première synchronisation en cours…</span>`;
+  box.innerHTML=`
+    <div style="font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px">🤖 Agent financier</div>
+    <div style="font-size:12px;margin-bottom:10px">${statut}</div>
+    <div style="font-size:11px;color:var(--text-muted);line-height:1.6;margin-bottom:10px">
+      Une copie privée de tes données part toute seule dans un coffre. Claude la lit pour tes bilans,
+      et elle te sauve si tu perds ton téléphone. Garde cette clé précieusement :</div>
+    <div class="cle-box" id="cle-txt">${k}</div>
+    <div style="display:flex;gap:8px">
+      <button class="rc-no" style="flex:1;padding:10px" onclick="copierCle()">Copier la clé</button>
+      <button class="rc-no" style="flex:1;padding:10px" onclick="reconnecterCoffre()">J'ai déjà une clé</button>
+    </div>`;
+}
+function copierCle(){
+  const k=assurerCle();
+  const repli=()=>{
+    const el=document.getElementById('cle-txt');
+    if(el){const r=document.createRange();r.selectNodeContents(el);const sel=getSelection();sel.removeAllRanges();sel.addRange(r);}
+    toast('Clé sélectionnée — copie-la');
+  };
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(k).then(()=>toast('Clé copiée ✓'),repli);
+  } else repli();
+}
+async function reconnecterCoffre(){
+  if(!coffreActif()){toast('Disponible seulement en ligne');return;}
+  const saisie=prompt('Colle ta clé (XXXX-XXXX-XXXX-XXXX-XXXX-XXXX) :');
+  if(saisie==null)return;
+  const k=saisie.trim().toUpperCase().replace(/\s+/g,'');
+  if(!CLE_FMT.test(k)){toast('Clé invalide');return;}
+  let r;
+  try{ r=await fetch(VAULT_URL,{headers:{'Authorization':'Bearer '+k},cache:'no-store'}); }
+  catch(e){ toast('Pas de connexion'); return; }
+  if(r.status===404){
+    if(!confirm("Aucune donnée pour cette clé.\n\nL'utiliser quand même pour ce téléphone ?"))return;
+    try{localStorage.setItem(VKEY,k);}catch(e){}
+    toast('Clé enregistrée'); renderCoffre(); programmerCoffre(500); return;
+  }
+  if(!r.ok){ toast('Erreur '+r.status); return; }
+  let o; try{ o=await r.json(); }catch(e){ toast('Coffre illisible'); return; }
+  const st=o&&o.state; if(!st||typeof st!=='object'){toast('Coffre illisible');return;}
+  const n=(st.depenses||[]).length, a=(st.archives||[]).length;
+  if(!confirm(`Coffre trouvé : ${n} dépense${n>1?'s':''} en cours, ${a} période${a>1?'s':''} archivée${a>1?'s':''}.\n\nRemplacer les données de ce téléphone par celles du coffre ?`))return;
+  autoSnapshot(true);              // l'état actuel reste récupérable
+  try{localStorage.setItem(VKEY,k);}catch(e){}
+  S={...JSON.parse(JSON.stringify(DEF)),...st};
+  normalize();
+  localStorage.setItem('bf-v3',JSON.stringify(S));
+  closeModal('m-user');
+  document.getElementById('wizard').classList.add('hidden');
+  toast('Données récupérées ✓');
+  renderAll();
+  programmerCoffre(800);
 }
 function renderSnaps(){
   const box=document.getElementById('um-snaps');
@@ -1031,7 +1153,9 @@ function restoreSnap(t){
   try{
     const p=JSON.parse(s.d);
     if(!p||typeof p!=='object')throw new Error('format');
+    const garde=S.archives;   // les sauvegardes locales ne portent pas l'historique
     S={...JSON.parse(JSON.stringify(DEF)),...p};
+    if(!Array.isArray(p.archives))S.archives=garde;
     normalize();
     localStorage.setItem('bf-v3',JSON.stringify(S));
     closeModal('m-user');
@@ -1131,13 +1255,13 @@ function readSnaps(){
   try{ const a=JSON.parse(localStorage.getItem(SNAP_KEY)||'[]'); return Array.isArray(a)?a:[]; }
   catch(e){ return []; }
 }
-function autoSnapshot(){
+function autoSnapshot(force){
   if(!S.setup_done)return;
   try{
     const snaps=readSnaps();
     const last=snaps[snaps.length-1];
-    if(last&&Date.now()-last.t<SNAP_EVERY)return;
-    snaps.push({t:Date.now(),d:JSON.stringify(S)});
+    if(!force&&last&&Date.now()-last.t<SNAP_EVERY)return;
+    snaps.push({t:Date.now(),d:JSON.stringify({...S,archives:undefined})});
     while(snaps.length>SNAP_MAX)snaps.shift();
     try{ localStorage.setItem(SNAP_KEY,JSON.stringify(snaps)); }
     catch(err){ // plus de place : on ne garde que les 3 plus récentes
@@ -1145,7 +1269,43 @@ function autoSnapshot(){
     }
   }catch(e){}
 }
-const save = ()=>{ localStorage.setItem('bf-v3',JSON.stringify(S)); autoSnapshot(); clearTimeout(_cloudTimer); _cloudTimer=setTimeout(saveToCloud,2000); };
+// ═══ COFFRE : copie privée sur Netlify, lue par Claude pour les bilans ═══
+// Chaque enregistrement part (regroupé) vers /.netlify/functions/vault, protégé
+// par une clé générée ici et jamais publiée. Sert aussi de secours si le
+// téléphone est perdu : la clé suffit pour tout récupérer ailleurs.
+const VAULT_URL='/.netlify/functions/vault', VKEY='bf-coffre-cle', VLAST='bf-coffre-etat';
+const CLE_FMT=/^[A-Z2-9]{4}(?:-[A-Z2-9]{4}){5}$/;
+const coffreActif=()=>/^https?:$/.test(location.protocol);
+function cleCoffre(){ try{return localStorage.getItem(VKEY)||'';}catch(e){return '';} }
+function assurerCle(){
+  let k=cleCoffre();
+  if(CLE_FMT.test(k))return k;
+  const A='ABCDEFGHJKLMNPQRSTUVWXYZ23456789', r=new Uint8Array(24);
+  crypto.getRandomValues(r);
+  k=''; r.forEach((b,i)=>{ k+=A[b&31]; if(i%4===3&&i<23)k+='-'; });
+  try{localStorage.setItem(VKEY,k);}catch(e){}
+  return k;
+}
+let _coffreT=null;
+function programmerCoffre(delai){
+  if(!coffreActif())return;
+  clearTimeout(_coffreT); _coffreT=setTimeout(envoyerCoffre,delai==null?3000:delai);
+}
+async function envoyerCoffre(){
+  if(!coffreActif()||!S.setup_done)return;
+  const k=assurerCle();
+  let etat;
+  try{
+    const r=await fetch(VAULT_URL,{method:'PUT',
+      headers:{'Authorization':'Bearer '+k,'Content-Type':'application/json'},
+      body:JSON.stringify({v:1,app:APP_VERSION,envoyeLe:new Date().toISOString(),state:S})});
+    etat={ok:r.ok,t:Date.now(),err:r.ok?'':('erreur '+r.status)};
+  }catch(e){ etat={ok:false,t:Date.now(),err:'hors ligne'}; }
+  try{localStorage.setItem(VLAST,JSON.stringify(etat));}catch(e){}
+  const m=document.getElementById('m-user');
+  if(m&&m.classList.contains('open'))renderCoffre();
+}
+const save = ()=>{ localStorage.setItem('bf-v3',JSON.stringify(S)); autoSnapshot(); programmerCoffre(); clearTimeout(_cloudTimer); _cloudTimer=setTimeout(saveToCloud,2000); };
 
 // ═══ CALCUL ═══
 const fmt   = (n)=>Math.round(n).toLocaleString('fr-FR').replace(/ | /g,' ');
@@ -1344,9 +1504,25 @@ function updateRem(){
   const el=document.getElementById('wiz-rem-val');
   if(el){el.textContent=fmt(rem)+' DH';el.className='wiz-rem-val'+(rem<0?' over':'');}
 }
+// Fige la période qui se termine dans l'historique, avant toute remise à zéro.
+// Doit tourner avant de toucher au mode et au budget : chargeAmt() en dépend.
+function archiverPeriode(){
+  if(!S.setup_done)return;
+  const payees=S.chargesRec.filter(c=>c.payé);
+  if(!S.depenses.length&&!S.revenus.length&&!payees.length)return;
+  S.archives.push({
+    debut:S.period_start, fin:today(), mode:S.mode,
+    budget:S.budget, budgetTotal:budgetTotal(), depense:totalSpent(), reste:restant(),
+    cat_budgets:{...S.cat_budgets},
+    depenses:S.depenses.map(d=>({...d})),
+    revenus:S.revenus.map(r=>({...r})),
+    chargesPayees:payees.map(c=>({nom:c.nom,emoji:c.emoji,montant:chargeAmt(c),montantMensuel:c.montantMensuel}))
+  });
+}
 function finishWizard(){
   const b=parseFloat(document.getElementById('wiz-budget').value)||0;
   if(b<=0){toast('Budget invalide');return;}
+  archiverPeriode();
   const carry=S.carryOver||0;
   S.mode=wizMode;
   S.budget=b+carry;
@@ -2018,6 +2194,106 @@ function saveNotes(){
   },true);
 })();
 
+// ═══ BILAN ═══
+function openBilan(){
+  const bt=budgetTotal(), sp=totalSpent(), rest=bt-sp;
+  const pct=bt>0?Math.min(100,Math.round(sp/bt*100)):0;
+  const dn=Math.max(1,dayNum()), dl=daysLeft(), pd=Math.max(1,periodDays());
+  const variable=totalLogged();             // dépenses cochées, hors charges fixes
+  const rythme=variable/dn;                 // ce qui part par jour, au quotidien
+  const engage=chargesDue()+depAttente();   // déjà prévu mais pas encore sorti
+  const dispo=rest-engage;                  // vraiment libre
+  const parJour=dispo/Math.max(1,dl);
+  const projete=rythme*pd+chargesTotal();   // fin de période si on continue pareil
+  const ecart=bt-projete;
+
+  document.getElementById('bl-title').textContent=isMois()?'Bilan du mois':'Bilan de la semaine';
+
+  const col=pct>=90?'var(--rose)':pct>=70?'var(--orange)':'var(--mint)';
+  let h=`<div class="bl-kpis">
+      <div class="bl-kpi"><div class="bl-kpi-v c-mint">${fmt(bt)}</div><div class="bl-kpi-l">Budget</div></div>
+      <div class="bl-kpi"><div class="bl-kpi-v c-rose">${fmt(sp)}</div><div class="bl-kpi-l">Dépensé</div></div>
+      <div class="bl-kpi"><div class="bl-kpi-v" style="color:${rest<0?'var(--rose)':'var(--text)'}">${fmt(rest)}</div><div class="bl-kpi-l">Restant</div></div>
+    </div>
+    <div class="bl-track"><div class="bl-fill" style="width:${pct}%;background:${col}"></div></div>`;
+
+  // Verdict
+  const nb=S.depenses.filter(d=>d.coche).length;
+  if(!nb&&!chargesPaid()){
+    h+=`<div class="bl-verdict ok">Pas encore de dépense cette période. Ton budget est intact.</div>`;
+  } else {
+    let cls,txt;
+    if(dispo<0){
+      cls='bad';
+      txt=`Tu es déjà engagé au-delà de ton budget de <b>${fmt(-dispo)} DH</b>, en comptant ce qui est en attente.`;
+    } else if(ecart<0&&dl>0){
+      cls='warn';
+      txt=`À ce rythme (<b>${fmt(rythme)} DH/jour</b>), tu dépasses de <b>${fmt(-ecart)} DH</b> d'ici la fin. `
+        +`Pour tenir, vise <b>${fmt(parJour)} DH/jour</b> sur les ${dl} jour${dl>1?'s':''} restant${dl>1?'s':''}.`;
+    } else {
+      cls='ok';
+      txt=dl>0
+        ? `Tu tiens le rythme 👌 À <b>${fmt(rythme)} DH/jour</b>, tu finis avec environ <b>${fmt(ecart)} DH</b> de côté. `
+          +`Tu peux te permettre <b>${fmt(parJour)} DH/jour</b>.`
+        : `Dernier jour. Il te reste <b>${fmt(dispo)} DH</b> de libre.`;
+    }
+    h+=`<div class="bl-verdict ${cls}">${txt}</div>`;
+  }
+
+  // Répartition
+  const cats=Object.entries(CATS).map(([k,v])=>({k,v,a:logCat(k)})).filter(x=>x.a>0).sort((a,b)=>b.a-a.a);
+  if(chargesPaid()>0)cats.push({k:'_charges',v:{name:'Charges fixes',k:'repeat',col:'var(--text-dim)'},a:chargesPaid()});
+  cats.sort((a,b)=>b.a-a.a);
+  if(cats.length){
+    const max=cats[0].a, tot=cats.reduce((s,x)=>s+x.a,0);
+    h+=`<div class="bl-h">Où part l'argent</div>`+cats.map(x=>`
+      <div class="bl-cat">
+        <div class="bl-cat-top">
+          <span class="svg-icon" style="width:15px;height:15px;color:${x.v.col}">${I[x.v.k]||I.grid}</span>
+          <span class="bl-cat-n">${x.v.name}</span>
+          <span class="bl-cat-a">${fmt(x.a)} DH</span>
+          <span class="bl-cat-p">${Math.round(x.a/tot*100)}%</span>
+        </div>
+        <div class="bl-cat-bar"><div class="bl-fill" style="width:${Math.round(x.a/max*100)}%;background:${x.v.col}"></div></div>
+      </div>`).join('');
+  }
+
+  // Plus grosses dépenses
+  const top=S.depenses.filter(d=>d.coche).sort((a,b)=>b.montant-a.montant).slice(0,5);
+  if(top.length){
+    h+=`<div class="bl-h">Tes plus grosses dépenses</div>`+top.map(d=>{
+      const dt=new Date(d.date+'T00:00:00');
+      return `<div class="bl-line">
+        <span class="bl-line-a">${fmt(d.montant)} DH</span>
+        <span class="bl-line-n">${esc(d.desc||(CATS[d.cat]||CATS.divers).name)}</span>
+        <span class="bl-line-d">${DAYS[dt.getDay()]} ${dt.getDate()}</span>
+      </div>`;
+    }).join('');
+  }
+
+  // Chiffres clés
+  const parJourMap={};
+  S.depenses.filter(d=>d.coche).forEach(d=>{parJourMap[d.date]=(parJourMap[d.date]||0)+d.montant;});
+  const jours=Object.entries(parJourMap).sort((a,b)=>b[1]-a[1]);
+  const facts=[];
+  if(nb){
+    facts.push(['Nombre de dépenses',nb]);
+    facts.push(['Dépense moyenne',fmt(variable/nb)+' DH']);
+  }
+  if(jours.length){
+    const dt=new Date(jours[0][0]+'T00:00:00');
+    facts.push(['Jour le plus cher',`${DAYSL[dt.getDay()]} ${dt.getDate()} · ${fmt(jours[0][1])} DH`]);
+  }
+  if(totalRevenus()>0)facts.push(['Argent ajouté','+'+fmt(totalRevenus())+' DH']);
+  if(engage>0)facts.push(['En attente (pas encore payé)',fmt(engage)+' DH']);
+  facts.push(['Jours restants',`${dl} sur ${pd}`]);
+  h+=`<div class="bl-h">Chiffres clés</div><div>`
+    +facts.map(f=>`<div class="bl-fact"><span>${f[0]}</span><span>${f[1]}</span></div>`).join('')+`</div>`;
+
+  document.getElementById('bl-body').innerHTML=h;
+  openModal('m-bilan');
+}
+
 // ═══ DÉTAIL CATÉGORIE ═══
 let curCat=null;
 function openCatDetail(cat){
@@ -2062,7 +2338,7 @@ function openCatDetail(cat){
 // recharge. Même origine, donc le localStorage — et donc les données — reste
 // intact. Évite d'avoir à rafraîchir à la main, manœuvre qui a déjà fait
 // croire à l'utilisateur qu'il avait tout perdu.
-const APP_VERSION='2026-09-25-03';
+const APP_VERSION='2026-10-03-01';
 (function(){
   const PAUSE=()=>
     !document.getElementById('wizard').classList.contains('hidden') ||
@@ -2119,6 +2395,7 @@ const APP_VERSION='2026-09-25-03';
 
   if(!supaUrl){
     showAppUI();bootUI();
+    programmerCoffre(1500);
     return;
   }
   if(authToken&&authUser){

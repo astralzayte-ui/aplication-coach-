@@ -1,0 +1,8 @@
+{
+  "name": "budget-notes",
+  "private": true,
+  "description": "Dépendance du coffre Netlify (netlify/functions/vault.mjs). L'application elle-même, index.html, n'a besoin d'aucun paquet.",
+  "dependencies": {
+    "@netlify/blobs": "11.1.3"
+  }
+}

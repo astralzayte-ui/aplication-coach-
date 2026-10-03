@@ -30,7 +30,8 @@ de budget. Ne pas « corriger » ce nom.
 # ⚠️ Règle numéro un : ne jamais perdre les données
 
 Les données de l'utilisateur vivent dans **`localStorage`, clé `bf-v3`**, dans son
-navigateur — jamais dans le fichier. Elles ne sont sauvegardées nulle part ailleurs.
+navigateur — jamais dans le fichier. Une copie part aussi dans le coffre (voir plus
+bas), mais le téléphone reste la source : ce qui est cassé là finit dans le coffre.
 
 **Par conséquent :**
 
@@ -67,6 +68,53 @@ Conséquence, et c'est une erreur déjà commise :
   dans l'application, ou la fermer complètement depuis le sélecteur d'applications
   puis la rouvrir.
 - Ne jamais évoquer « Effacer historique et données de site » : cela effacerait tout.
+
+---
+
+# Agent financier : le coffre
+
+L'utilisateur veut que Claude soit **son agent financier, pour la vie** : il demande
+« fais-moi un bilan » dans une conversation et Claude répond à partir de ses vraies
+données. Pour ça, l'application envoie toute seule une copie de son état dans un
+**coffre privé** sur Netlify, que Claude relit.
+
+- Côté serveur : `netlify/functions/vault.mjs` (Netlify Blobs, dépendance dans
+  `package.json`). Accès par clé `XXXX-XXXX-XXXX-XXXX-XXXX-XXXX` en
+  `Authorization: Bearer`. Le serveur ne garde que l'empreinte de la clé. Une copie
+  datée par jour est conservée en plus de la dernière, pour revenir en arrière.
+- Côté application : la clé est générée sur le téléphone, chaque `save()` déclenche
+  un envoi groupé, et un envoi part dès l'ouverture. La clé se voit et se copie dans
+  le menu en haut à gauche, rubrique « Agent financier ». Sur un téléphone neuf,
+  « J'ai déjà une clé » dans l'assistant récupère tout.
+- **Le dépôt Git est public.** Aucune donnée financière, aucune clé ne doit jamais
+  y être écrite, ni dans un fichier, ni dans un message de commit.
+
+## Faire un bilan
+
+```bash
+python3 outils/coffre.py            # résumé chiffré : période en cours, historique, par mois
+python3 outils/coffre.py --json     # état brut, pour une question précise
+python3 outils/coffre.py --versions # copies journalières disponibles
+```
+
+La clé est lue dans la variable d'environnement **`BUDGET_KEY`**. Si elle manque, le
+script le dit : demander à l'utilisateur de l'ajouter dans les réglages de
+l'environnement (menu de l'environnement cloud dans la barre de titre de la session,
+puis Modifier, variable `BUDGET_KEY`). Une nouvelle session la prend en compte.
+**Ne jamais lui demander de coller la clé dans la conversation.**
+
+Restituer le bilan comme un conseiller, en peu de lignes : où part l'argent ce
+mois-ci, ce qui change par rapport aux mois précédents, une ou deux remarques
+concrètes. Chiffres en DH. Le coffre contient aussi le bloc-notes : ne pas le lire ni
+le citer sauf s'il le demande.
+
+## L'historique ne s'efface plus
+
+Avant chaque nouvelle période, `archiverPeriode()` fige la période qui se termine
+dans `S.archives` (dépenses, revenus, charges payées, budget, mode). C'est la mémoire
+de toute sa vie financière : ne jamais vider ce tableau, ne jamais le tronquer sans
+qu'il le demande. Les sauvegardes locales automatiques l'excluent, parce qu'il
+grossit sans fin ; le coffre, lui, le garde en entier.
 
 ---
 

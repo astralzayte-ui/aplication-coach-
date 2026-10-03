@@ -1,6 +1,10 @@
 [build]
   publish = "."
 
+# Le coffre (netlify/functions/vault.mjs) dépend de @netlify/blobs, qui exige Node 22.12+.
+[build.environment]
+  NODE_VERSION = "22"
+
 [[headers]]
   for = "/*"
   [headers.values]
