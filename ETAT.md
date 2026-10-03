@@ -1,6 +1,6 @@
 # Où on en est
 
-> Mis à jour le **30/09/2026**, en fin de journée.
+> Mis à jour le **03/10/2026**.
 > Claude le lit en ouvrant une session, et l'écrit à chaque décision.
 > **Trois lignes suffisent à savoir. Le reste est du détail.**
 
@@ -8,9 +8,9 @@
 
 ```
 PROJET      SILENCE — streetwear, France et Maroc
-ÉTAPE       6 sur 15 — le fournisseur
-ON ATTEND   la réponse de l'agent au questionnaire
-LA SUITE    dépouiller sa réponse, puis arrêter le catalogue
+ÉTAPE       7 sur 15 faites · le site (11) construit, sans les vraies infos
+ON ATTEND   l'agent (muet depuis le 30/09) · la société de la LLC (TVA, médiateur)
+LA SUITE    relancer l'agent — tout le reste en dépend
 ```
 
 ---
