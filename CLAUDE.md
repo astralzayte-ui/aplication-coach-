@@ -101,7 +101,10 @@ python3 outils/coffre.py --json     # état brut, pour une question précise
 python3 outils/coffre.py --versions # copies journalières disponibles
 ```
 
-La clé est lue dans la variable d'environnement **`BUDGET_KEY`**. Si elle manque, le
+La clé est fournie **soit** par un identifiant de l'environnement Claude Code
+(« Ajouter un identifiant » : type Bearer, site `chic-biscotti-07e6f1.netlify.app`,
+chemin `/.netlify/functions/vault` ; le proxy ajoute l'en-tête, Claude ne voit jamais
+la clé), **soit** par la variable d'environnement **`BUDGET_KEY`**. Si elle manque, le
 script le dit : demander à l'utilisateur de l'ajouter dans les réglages de
 l'environnement (menu de l'environnement cloud dans la barre de titre de la session,
 puis Modifier, variable `BUDGET_KEY`). Une nouvelle session la prend en compte.

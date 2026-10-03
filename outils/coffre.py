@@ -3,8 +3,8 @@
 
 Le coffre (netlify/functions/vault.mjs) garde l'état complet de l'application :
 période en cours, historique des périodes clôturées, revenus, charges, notes.
-Ce script le récupère avec la clé posée dans la variable d'environnement
-BUDGET_KEY et en tire un résumé chiffré, à reformuler ensuite pour
+Ce script le récupère avec la clé (variable BUDGET_KEY, ou identifiant
+Bearer de l'environnement injecté par le proxy) et en tire un résumé chiffré, à reformuler ensuite pour
 l'utilisateur. Aucune donnée n'est écrite sur le disque.
 
     python3 outils/coffre.py              résumé complet
@@ -24,21 +24,25 @@ MOIS = ["janv", "févr", "mars", "avr", "mai", "juin", "juil", "août", "sept", 
 
 
 def appeler(query=""):
+    # Deux façons de fournir la clé : la variable BUDGET_KEY, ou un identifiant
+    # « Bearer » déclaré dans l'environnement Claude Code pour le site du coffre ;
+    # dans ce cas le proxy sortant ajoute lui-même l'en-tête et le script ne voit
+    # jamais la clé.
     cle = os.environ.get("BUDGET_KEY", "").strip()
-    if not cle:
-        sys.exit("BUDGET_KEY absente : la clé du coffre doit être posée comme variable "
-                 "d'environnement dans les réglages de l'environnement Claude Code.")
     ctx = ssl.create_default_context()
     if os.path.exists("/root/.ccr/ca-bundle.crt"):  # proxy sortant de l'environnement cloud
         ctx.load_verify_locations("/root/.ccr/ca-bundle.crt")
-    req = urllib.request.Request(URL + query, headers={"Authorization": "Bearer " + cle,
-                                                       "Cache-Control": "no-store"})
+    entetes = {"Cache-Control": "no-store"}
+    if cle:
+        entetes["Authorization"] = "Bearer " + cle
+    req = urllib.request.Request(URL + query, headers=entetes)
     try:
         with urllib.request.urlopen(req, context=ctx, timeout=30) as r:
             return json.loads(r.read().decode("utf-8"))
     except urllib.error.HTTPError as e:
         corps = e.read().decode("utf-8", "replace")
-        sys.exit({401: "Clé refusée par le coffre.",
+        sys.exit({401: "Clé absente ou refusée : poser BUDGET_KEY, ou un identifiant Bearer "
+                       "pour chic-biscotti-07e6f1.netlify.app dans les réglages de l'environnement.",
                   404: "Coffre vide pour cette clé : l'application n'a encore rien envoyé."}
                  .get(e.code, f"Erreur {e.code} : {corps}"))
 
