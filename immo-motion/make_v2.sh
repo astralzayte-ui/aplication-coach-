@@ -184,7 +184,7 @@ g = [f"color=c=0x0F0D0A:s=1080x1920:r={FPS}:d={TOT},format=gbrp[base]"]
 # entrées : 0 = demo_bg_v2.mp4, 1 = cta_bg_v2.mp4, 2 = PNG overlay, 3 = mix audio
 g.append(video(0, demo_starts, D0, "demo"))
 g.append(video(1, [(0.0, C1 - C0)], C0, "cta"))
-g.append("[2:v]format=gbrap,setpts=PTS-STARTPTS[ov]")
+g.append("[2:v]format=gbrap[ov]")      # surtout pas de setpts=PTS-STARTPTS ici : avec ffmpeg 6.1 il décale l'overlay (x1,5) après l'image 60
 g.append("[base][demo]overlay=format=gbrp:eof_action=pass[b1]")
 g.append("[b1][cta]overlay=format=gbrp:eof_action=pass[b2]")
 g.append("[b2][ov]overlay=format=gbrp:eof_action=pass,"
@@ -195,7 +195,7 @@ open(f"{D}/compose.txt", "w").write(";".join(g))
 step = round(0.4 * FPS)
 label = r"%{eif\:floor(t)\:d}.%{eif\:floor(t*10+0.02)-10*floor(t)\:d} s"
 open(f"{D}/sheet.txt", "w").write(
-    f"select='not(mod(n,{step}))+eq(n,{NF-1})',scale=288:512:flags=lanczos,"
+    f"select='not(mod(n,{step}))+eq(n,{NF-1})',scale=288:512:flags=lanczos+accurate_rnd+full_chroma_int:in_range=tv:in_color_matrix=bt709,format=rgb24,"
     f"drawtext=fontfile=fonts/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCu170w-.ttf:text='{label}':x=8:y=8:fontsize=22:"
     f"fontcolor=white:box=1:boxcolor=black@0.6:boxborderw=5,tile=5x5:padding=6:margin=6:color=0x1a1612")
 print(f"plan : démo {nfr} i, cta {ncta} i, total {NF} i, effets vidéo {'oui' if FX else 'non'}")
@@ -237,11 +237,24 @@ else
   [ "$have" = "$NF" ] || die "$have images rendues, $NF attendues"
   echo "$STAMP" > "$FRAMES/.stamp"
 fi
+# Chromium écrit les PNG entièrement opaques (le hook) en RGB sans alpha et les autres en RGBA : ffmpeg réinitialise alors
+# tout le graphe de filtres à la 1re image RGBA (images 60-61 perdues, overlay décalé). On force donc RGBA partout.
+python3 - "$FRAMES" <<'PYN'
+import glob, subprocess, sys
+from concurrent.futures import ThreadPoolExecutor
+fs = sorted(glob.glob(sys.argv[1] + "/*.png"))
+bad = [f for f in fs if open(f, "rb").read(26)[25] != 6]        # octet 25 de l'en-tête PNG = type de couleur (6 = RGBA)
+def fix(f):
+  subprocess.run(["ffmpeg", "-y", "-hide_banner", "-nostdin", "-v", "error", "-i", f, "-pix_fmt", "rgba", f + ".tmp.png"], check=True)
+  subprocess.run(["mv", f + ".tmp.png", f], check=True)
+with ThreadPoolExecutor(4) as ex: list(ex.map(fix, bad))
+print(f"PNG sans canal alpha convertis en RGBA : {len(bad)} / {len(fs)}")
+PYN
 
 # ───────────────────────── 4. composition finale ─────────────────────────
 log "4/6 composition -> $OUT_MP4"
 TOTAL=$(python3 -c "import json;print(json.load(open('timeline_v2.json'))['total'])")
-"${FF[@]}" -i build/demo_bg_v2.mp4 -i build/cta_bg_v2.mp4 -framerate 30 -start_number 0 -i "$FRAMES/%05d.png" -i audio/mix_v2.wav \
+"${FF[@]}" -i build/demo_bg_v2.mp4 -i build/cta_bg_v2.mp4 -thread_queue_size 64 -framerate 30 -start_number 0 -i "$FRAMES/%05d.png" -i audio/mix_v2.wav \
   -filter_complex "$(<"$FILT/compose.txt")" -map '[v]' -map 3:a \
   -c:v libx264 -preset medium -crf 17 -pix_fmt yuv420p -profile:v high -r 30 -g 60 \
   -colorspace bt709 -color_primaries bt709 -color_trc bt709 -color_range tv \
@@ -249,7 +262,7 @@ TOTAL=$(python3 -c "import json;print(json.load(open('timeline_v2.json'))['total
 
 # ───────────────────────── 5. planche de contrôle ─────────────────────────
 log "5/6 planche -> $SHEET"
-"${FF[@]}" -i "$OUT_MP4" -an -filter_complex_script "$FILT/sheet.txt" -fps_mode passthrough -frames:v 1 -q:v 3 "$SHEET"
+ffmpeg -y -hide_banner -nostdin -v error -i "$OUT_MP4" -an -filter_complex_script "$FILT/sheet.txt" -fps_mode passthrough -frames:v 1 -update 1 -q:v 3 "$SHEET"
 
 # ───────────────────────── 6. contrôles automatiques ─────────────────────────
 log "6/6 contrôles du MP4"
