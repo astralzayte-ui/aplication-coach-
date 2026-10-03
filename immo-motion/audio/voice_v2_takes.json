@@ -1,0 +1,93 @@
+{
+ "voice": "Sulafat",
+ "style": "Lis ce texte publicitaire en français avec une voix de femme chaleureuse, souriante et naturelle, au rythme vivant et enjoué, sans traîner, avec de courtes pauses entre les trois phrases ; la dernière phrase est un appel à l'action dit avec assurance, un peu plus posé : ",
+ "text": {
+  "s1": "Votre annonce passe inaperçue ?",
+  "s2": "Avec Immo Clap, vos photos deviennent un film, en dix minutes.",
+  "s3": "Créez votre vidéo."
+ },
+ "slots": {
+  "s1": 1.8,
+  "s2": 4.8,
+  "s3": 2.0
+ },
+ "max_atempo": 1.12,
+ "takes": [
+  {
+   "i": 1,
+   "model": "gemini-3.1-flash-tts-preview",
+   "gen_s": 5.5,
+   "ok": true,
+   "cost": 0.0,
+   "info": {
+    "s1": {
+     "dur": 1.445,
+     "atempo": 1.0,
+     "fits": true
+    },
+    "s2": {
+     "dur": 3.885,
+     "atempo": 1.0,
+     "fits": true
+    },
+    "s3": {
+     "dur": 0.98,
+     "atempo": 1.0,
+     "fits": true
+    }
+   },
+   "transcripts": {
+    "s1": {
+     "text": "Votre annonce passe inaperçue ?",
+     "model": "gemini-flash-latest",
+     "similarity": 1.0
+    },
+    "s2": {
+     "text": "Avec Immo Clap, vos photos deviennent un film en 10 minutes.",
+     "model": "gemini-flash-latest",
+     "similarity": 1.0
+    },
+    "s3": {
+     "text": "Créez votre vidéo.",
+     "model": "gemini-flash-latest",
+     "similarity": 1.0
+    }
+   }
+  }
+ ],
+ "source": "single-take #1",
+ "phrases": {
+  "s1": {
+   "file": "audio/s1_v2.wav",
+   "speech_dur": 1.445,
+   "pre_roll": 0.02,
+   "raw_dur": 1.445,
+   "atempo": 1.0,
+   "slot_max": 1.8,
+   "source": "single-take #1"
+  },
+  "s2": {
+   "file": "audio/s2_v2.wav",
+   "speech_dur": 3.885,
+   "pre_roll": 0.02,
+   "raw_dur": 3.885,
+   "atempo": 1.0,
+   "slot_max": 4.8,
+   "source": "single-take #1"
+  },
+  "s3": {
+   "file": "audio/s3_v2.wav",
+   "speech_dur": 0.98,
+   "pre_roll": 0.02,
+   "raw_dur": 0.98,
+   "atempo": 1.0,
+   "slot_max": 2.0,
+   "source": "single-take #1"
+  }
+ },
+ "raw_take": {
+  "file": "audio/voice_v2.wav",
+  "duration": 8.24,
+  "model": "gemini-3.1-flash-tts-preview"
+ }
+}

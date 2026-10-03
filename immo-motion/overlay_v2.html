@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>ImmoClap story v2</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{--bg:#0F0D0A;--gold:#EDB62C;--cream:#F4ECE0;--goldlt:#F8E7BC}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:transparent;overflow:hidden}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--bg)}
+body.overlay #stage{background:transparent}
+.fill{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:hidden}
+.fill>img,.fill .fb{position:absolute;left:50%;top:50%;transform-origin:50% 50%;max-width:none}
+#plateWrap,#L_hook,#fbWrap{visibility:hidden}
+body.overlay #plateWrap,body.overlay #fbWrap{display:none}
+.shade{position:absolute;left:0;width:1080px;opacity:0;pointer-events:none}
+#shadeT{top:0;height:760px;background:linear-gradient(rgba(10,8,6,.52),rgba(10,8,6,.22) 45%,rgba(10,8,6,0))}
+#shadeB{top:520px;height:1400px;background:linear-gradient(rgba(10,8,6,0) 0%,rgba(10,8,6,.30) 28%,rgba(10,8,6,.54) 52%,rgba(10,8,6,.68) 76%,rgba(10,8,6,.76) 100%)}
+#shadeC{top:380px;height:1540px;background:linear-gradient(rgba(10,8,6,0) 0%,rgba(10,8,6,.22) 24%,rgba(10,8,6,.50) 46%,rgba(10,8,6,.70) 68%,rgba(10,8,6,.84) 100%)}
+canvas{position:absolute;left:0;top:0;width:1080px;height:1920px;pointer-events:none}
+#world{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 760px;will-change:transform}
+.par{position:absolute;left:0;top:0;width:1080px;height:1920px;pointer-events:none}
+.abs{position:absolute}
+.serif{font-family:'Source Serif 4',serif;color:var(--cream);line-height:1;font-weight:600}
+.gold{color:var(--gold)}
+.it{font-style:italic;font-weight:400}
+.cap{font-family:Montserrat,sans-serif;font-weight:600;text-transform:uppercase;color:var(--cream);line-height:1}
+.sh{text-shadow:0 3px 6px rgba(0,0,0,.5),0 8px 30px rgba(0,0,0,.65)}
+.ln{position:absolute;display:flex;gap:.26em;white-space:nowrap;line-height:1}
+/* masque de texte : la boite .mk coupe ce qui glisse dessous */
+.mk{display:inline-block;overflow:hidden;vertical-align:top;padding:.14em .12em .17em .08em;margin:-.14em -.12em -.17em -.08em}
+.mi{display:inline-block;white-space:nowrap;padding:0 .06em;margin:0 -.06em}
+.shim{background-image:linear-gradient(105deg,#D99A1E 0%,#EDB62C 34%,#FFF4CF 50%,#EDB62C 66%,#D99A1E 100%);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;padding-right:.1em}
+.mk.g{filter:drop-shadow(0 0 14px rgba(237,182,44,.5)) drop-shadow(0 4px 10px rgba(0,0,0,.6))}
+.thumb{position:absolute;width:250px;height:350px;left:415px;top:465px;border-radius:20px;border:3px solid var(--gold);overflow:hidden;box-shadow:0 22px 50px rgba(0,0,0,.6);opacity:0;background:#1a1612}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+#vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 75% 62% at 50% 46%,rgba(0,0,0,0) 52%,rgba(0,0,0,.52) 100%);opacity:0}
+#grain{position:absolute;inset:0;pointer-events:none;opacity:0;mix-blend-mode:overlay;background-size:256px 256px}
+#leak{position:absolute;inset:0;pointer-events:none;opacity:0}
+#flash{position:absolute;inset:0;background:#fff1d6;opacity:0;pointer-events:none}
+#fade{position:absolute;inset:0;background:var(--bg);opacity:0;pointer-events:none}
+</style></head><body>
+<div id="stage">
+ <!-- doublure vidéo (mode full uniquement) : images extraites des clips par render_v2.js -->
+ <div class="fill" id="fbWrap"></div>
+ <div class="fill" id="plateWrap"><img id="plate" width="1080" height="1920" style="height:1920px;width:1080px"></div>
+ <!-- fond opaque du hook -->
+ <div class="fill" id="L_hook"><img id="hookImg" src="build/bg_hook.jpg" style="height:2100px"></div>
+ <div class="shade" id="shadeT"></div><div class="shade" id="shadeB"></div><div class="shade" id="shadeC"></div>
+ <canvas id="fxB" width="1080" height="1920"></canvas>
+
+ <div id="world">
+  <!-- HOOK -->
+  <div class="par" id="pHook">
+   <div class="ln serif sh" id="hk1" style="left:112px;top:560px;font-size:116px"><span class="mk" data-safe="text" id="hw0"><span class="mi">Votre</span></span><span class="mk" data-safe="text" id="hw1"><span class="mi">annonce</span></span></div>
+   <div class="ln serif sh" id="hk2" style="left:112px;top:684px;font-size:116px"><span class="mk" data-safe="text" id="hw2"><span class="mi">passe</span></span></div>
+   <div class="ln serif" id="hk3" style="left:112px;top:806px;font-size:160px"><span class="mk g" data-safe="text" id="hw3"><span class="mi it shim" id="hw3i">inaperçue&nbsp;?</span></span></div>
+  </div>
+  <!-- DÉMO : éventail -> vidéo -->
+  <div class="par" id="pThumbs" style="transform-origin:540px 640px">
+   <div id="thumbs"></div>
+   <div class="abs" id="playIco" data-safe="icon" style="z-index:20;left:480px;top:580px;width:120px;height:120px;opacity:0"></div>
+  </div>
+  <!-- DÉMO : équation 10 photos = 1 vidéo -->
+  <div class="par" id="pEq">
+   <div class="ln" id="eq1" style="left:114px;top:918px;align-items:baseline;gap:20px">
+    <span class="mk g" data-safe="text" id="eqA"><span class="mi serif shim" id="tenN" style="font-size:190px;min-width:222px;text-align:right">0</span></span>
+    <span class="mk" data-safe="text" id="eqB"><span class="mi serif sh" style="font-size:112px">photos</span></span>
+   </div>
+   <div class="ln" id="eq2" style="left:114px;top:1094px">
+    <span class="mk" data-safe="text" id="eqC"><span class="mi serif sh" style="font-size:112px"><span class="gold">=&nbsp;1</span>&nbsp;<span class="it">vidéo</span></span></span>
+   </div>
+  </div>
+  <!-- DÉMO : anneau 10 min -->
+  <div class="par" id="pRing">
+   <div class="abs" id="ringBox" data-safe="icon" style="left:310px;top:410px;width:460px;height:460px;opacity:0"></div>
+   <div class="abs" id="ringNumBox" style="left:310px;top:410px;width:460px;height:460px;opacity:0">
+    <div class="abs serif" id="ringNum" data-safe="text" style="left:130px;width:200px;top:150px;height:150px;text-align:center;font-size:150px;text-shadow:0 4px 18px rgba(0,0,0,.6)">0</div>
+    <div class="abs cap gold" id="ringMin" data-safe="text" style="left:130px;width:200px;top:300px;height:40px;text-align:center;font-size:38px;letter-spacing:.3em;padding-left:.3em;text-shadow:0 3px 12px rgba(0,0,0,.7)">min</div>
+   </div>
+  </div>
+  <!-- CTA -->
+  <div class="par" id="pLogo">
+   <div class="abs" id="lockup" style="left:0;width:1080px;top:520px;height:140px;display:flex;justify-content:center;align-items:center;gap:20px">
+    <span id="iconH" data-safe="logo" style="display:block;width:130px;height:130px"></span>
+    <span class="mk" data-safe="logo" id="wordH"><span class="mi serif sh" style="font-size:124px">Immo<span class="gold">Clap</span></span></span>
+   </div>
+  </div>
+  <div class="par" id="pCta">
+   <div class="ln serif sh" id="cz1" style="left:0;width:1080px;justify-content:center;top:742px;font-size:136px;gap:.24em"><span class="mk" data-safe="text" id="cw0"><span class="mi">Créez</span></span><span class="mk" data-safe="text" id="cw1"><span class="mi">votre</span></span></div>
+   <div class="ln serif" id="cz2" style="left:0;width:1080px;justify-content:center;top:872px;font-size:210px"><span class="mk g" data-safe="text" id="cw2"><span class="mi it shim" id="cw2i">vidéo</span></span></div>
+   <div class="abs" id="accent" data-safe="icon" style="left:360px;width:360px;top:1088px;height:5px;border-radius:3px;background:linear-gradient(90deg,rgba(237,182,44,0),#EDB62C 18%,#FFF1BF 50%,#EDB62C 82%,rgba(237,182,44,0));opacity:0;transform-origin:50% 50%"></div>
+  </div>
+  <div class="par" id="pTag">
+   <div class="abs cap" id="tag" style="left:0;width:1080px;top:1128px;text-align:center;font-size:31px;letter-spacing:.17em"><span class="mk" data-safe="text" id="tagMk" style="padding-left:.3em"><span class="mi" id="tagI" style="text-shadow:0 2px 6px rgba(0,0,0,.7),0 6px 22px rgba(0,0,0,.7)">Vos biens en vidéo cinématique</span></span></div>
+  </div>
+ </div>
+
+ <canvas id="fxF" width="1080" height="1920"></canvas>
+ <div id="vig"></div><div id="grain"></div>
+ <div id="leak"></div><div id="flash"></div><div id="fade"></div>
+</div>
+<script>
+// ───────────── données (timeline_v2.json injecté par render_v2.js, sinon lu en XHR) ─────────────
+const TL=window.TL||(()=>{const x=new XMLHttpRequest();x.open('GET','timeline_v2.json',false);x.send();return JSON.parse(x.responseText)})();
+const E=TL.ev,S=TL.scenes,CUTS=TL.cuts,WORDS=TL.words,TOT=TL.total,FPS=TL.fps;
+const Q=new URLSearchParams(location.search),MODE=Q.get('mode')||'full',OV=MODE==='overlay',USE_PLATES=Q.get('plates')!=='0';
+if(OV)document.body.classList.add('overlay');
+const $=id=>document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const P=(t,t0,d)=>clamp((t-t0)/d);
+const lerp=(a,b,x)=>a+(b-a)*x;
+const eo=x=>1-Math.pow(1-x,3), eo5=x=>1-Math.pow(1-x,5), ei=x=>x*x*x;
+const eob=(x,c=1.70158)=>1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2);
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const h=n=>{n=Math.sin(n*127.1+311.7)*43758.5453;return n-Math.floor(n)};
+const vis=(el,o)=>{el.style.opacity=o;el.style.visibility=o>0.003?'visible':'hidden'};
+const put=(el,o,x=0,y=0,s=1,r=0)=>{vis(el,o);el.style.transform=`translate(${x}px,${y}px) rotate(${r}deg) scale(${s})`};
+const mi=el=>el.firstElementChild;
+const TICKS=TL.sfx.filter(s=>s.type==='tick').map(s=>s.t);
+const COUNT_TICKS=TICKS.filter(t=>t>=E.ten&&t<E.thumbs[0]+.4);      // 2.15 … 2.59
+const RING_TICKS=TICKS.filter(t=>t>=E.ring&&t<=E.ring_end);          // 4.5 … 6.1
+const T_OUT=S.demo[1]-.16;                                           // sortie de la démo (6,84)
+
+// ───────────── SVG : logo maison+play (dash-draw), icônes, anneau ─────────────
+const house=(id,w)=>`<svg id="${id}" width="${w}" height="${w}" viewBox="0 0 200 200" fill="none" style="display:block;overflow:visible"><defs><linearGradient id="${id}g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F8E7BC"/><stop offset="1" stop-color="#EDB62C"/></linearGradient></defs><path class="h" d="M28 168 V86 L100 28 L172 86 V168 Z" stroke="url(#${id}g)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path class="p" d="M82 84 L82 152 L138 117 Z" stroke="url(#${id}g)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const dash=(svgId,pH,pP)=>{const s=$(svgId);[['.h',pH],['.p',pP]].forEach(([q,p])=>{const el=s.querySelector(q),L=el.getTotalLength();el.style.strokeDasharray=L;el.style.strokeDashoffset=L*(1-p)})};
+$('iconH').innerHTML=house('hh',130);
+$('playIco').innerHTML=`<svg width="120" height="120" viewBox="0 0 120 120" fill="none" style="display:block;overflow:visible"><circle cx="60" cy="60" r="54" fill="rgba(15,13,10,.55)" stroke="#EDB62C" stroke-width="5"/><path d="M48 36 L48 84 L88 60 Z" fill="#EDB62C" stroke="#EDB62C" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
+const RC=230,RR=168,RL=2*Math.PI*RR;
+let dial='';for(let j=0;j<10;j++){const a=(j*36-90)*Math.PI/180,c=Math.cos(a),s=Math.sin(a);dial+=`<line id="dl${j}" x1="${RC+c*192}" y1="${RC+s*192}" x2="${RC+c*212}" y2="${RC+s*212}" stroke="rgba(244,236,224,.4)" stroke-width="6" stroke-linecap="round"/>`}
+$('ringBox').innerHTML=`<svg width="460" height="460" viewBox="0 0 460 460" style="display:block;overflow:visible"><circle cx="${RC}" cy="${RC}" r="152" fill="rgba(15,13,10,.52)"/><circle cx="${RC}" cy="${RC}" r="${RR}" fill="none" stroke="rgba(244,236,224,.28)" stroke-width="16"/><circle id="rp" cx="${RC}" cy="${RC}" r="${RR}" fill="none" stroke="#EDB62C" stroke-width="16" stroke-linecap="round" transform="rotate(-90 ${RC} ${RC})" stroke-dasharray="${RL}" stroke-dashoffset="${RL}"/>${dial}</svg>`;
+
+// ───────────── vignettes de l'éventail ─────────────
+const THUMBS=['photos/06_villa_marrakech.jpg','photos/01_villa_mer.jpg','photos/03_terrasse_casa.jpg','photos/04_riad_patio.jpg','photos/05_salon_paris.jpg','photos/02_maison_vignes.jpg'];
+$('thumbs').innerHTML=THUMBS.map((s,i)=>`<div class="thumb" id="th${i}" data-safe="img"><img src="${s}"></div>`).join('');
+const TH_W=250,TH_H=350,PIVOT=[540,820],CARD=[540,640];
+const FAN_A=i=>(i-2.5)*15;
+const fanPos=i=>{const a=FAN_A(i)*Math.PI/180;return [PIVOT[0]+Math.sin(a)*TH_H/2,PIVOT[1]-Math.cos(a)*TH_H/2,FAN_A(i)]};
+const PILE=[[-16,8,-13],[14,-8,10],[-10,-4,-7],[12,6,12],[-6,4,-5],[0,0,0]];  // [dx,dy,rot] des vignettes empilées en "1 vidéo"
+
+// ───────────── doublure du mode full ─────────────
+const FB_SRC=['photos/06_villa_marrakech.jpg','photos/01_villa_mer.jpg','photos/03_terrasse_casa.jpg','photos/04_riad_patio.jpg','photos/05_salon_paris.jpg'];
+const SEG=[];{let s=S.demo[0];TL.demo_segments.forEach((d,i)=>{const dur=d[2]-d[1];SEG.push([s,s+dur,i]);s+=dur})}
+if(!OV){$('fbWrap').innerHTML=FB_SRC.map((s,i)=>`<img class="fb" id="fb${i}" src="${s}" style="height:1920px;display:none">`).join('')+`<img class="fb" id="fbC" src="build/bg_cta.jpg" style="height:1920px;display:none">`}
+const plate=$('plate');let plateWait=null,plateUrl='';
+plate.onerror=()=>{plate.style.opacity=0};plate.onload=()=>{plate.style.opacity=1};
+function setPlate(u){if(u===plateUrl)return;plateUrl=u;plateWait=new Promise(res=>{const a=plate.onload,b=plate.onerror;plate.onload=()=>{a();res()};plate.onerror=()=>{b();res()};plate.src=u})}
+window.plateReady=()=>plateWait||Promise.resolve();
+
+// ───────────── grain (tuile de bruit déterministe) ─────────────
+{const c=document.createElement('canvas');c.width=c.height=256;const g=c.getContext('2d'),im=g.createImageData(256,256);let s=1234567;const r=()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+ for(let i=0;i<256*256;i++){const v=Math.floor(r()*255);im.data[i*4]=im.data[i*4+1]=im.data[i*4+2]=v;im.data[i*4+3]=255}g.putImageData(im,0,0);$('grain').style.backgroundImage=`url(${c.toDataURL()})`}
+
+// ───────────── particules dorées ─────────────
+const fxB=$('fxB').getContext('2d'),fxF=$('fxF').getContext('2d');
+const NP=46,PART=Array.from({length:NP},(_,i)=>({x:h(i*3.1)*1080,y:h(i*5.7+1)*2040,z:h(i*7.3+2),ph:h(i*2.9+3)*6.283,sp:h(i*4.1+4)}));
+function glow(g,x,y,r,rgb,a){const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,`rgba(${rgb},${a})`);gr.addColorStop(.35,`rgba(${rgb},${a*.45})`);gr.addColorStop(1,`rgba(${rgb},0)`);g.fillStyle=gr;g.beginPath();g.arc(x,y,r,0,6.2832);g.fill()}
+function ambient(t,amt,cx,cy){fxB.clearRect(0,0,1080,1920);if(amt<.01)return;
+ for(const p of PART){const d=.35+.9*p.z,v=14+55*d;const y=(((p.y-v*t)%2040)+2040)%2040-60,x=p.x+Math.sin(t*(.5+.6*p.sp)+p.ph)*24*d-cx*d*1.6;
+  const r=(1.8+4.6*d)*(.6+.4*p.sp),tw=.55+.45*Math.sin(t*(2+3*p.sp)+p.ph*3);glow(fxB,x,y+cy*d,r*3.2,'255,226,150',amt*tw*(.28+.5*d))}}
+const star=(g,x,y,r,a)=>{glow(g,x,y,r*1.5,'255,226,150',a*.55);g.save();g.translate(x,y);g.fillStyle=`rgba(255,246,214,${a})`;g.beginPath();for(let i=0;i<8;i++){const an=i*Math.PI/4,rr=i%2?r*.16:r;g.lineTo(Math.cos(an)*rr,Math.sin(an)*rr)}g.closePath();g.fill();g.restore()};
+const BURSTS=[
+ {t:COUNT_TICKS[COUNT_TICKS.length-1]||E.ten+.44,x:300,y:1010,n:14,R:170,sz:3.2,seed:1},
+ {t:E.one_video,x:540,y:640,n:32,R:360,sz:4,seed:2},
+ {t:E.ring,x:540,y:640,n:22,R:300,sz:3.6,seed:3,r0:150},
+ {t:E.ring_end,x:540,y:640,n:46,R:450,sz:4.8,seed:4,r0:190},
+ {t:E.flash_cta,x:540,y:760,n:34,R:520,sz:4.2,seed:5},
+ {t:E.lockup,x:217,y:590,n:18,R:210,sz:3.6,seed:6}];
+function front(t){fxF.clearRect(0,0,1080,1920);
+ // lignes de whip sur chaque coupure
+ [S.demo[0],...CUTS].forEach(c=>{const a=(t-c)/.24;if(a<0||a>=1)return;for(let k=0;k<6;k++){const y=h(c*13+k)*1500+200,len=420+500*h(c*7+k),x=lerp(-len,1080,eo(a))+h(k+c)*200*a,al=(1-a)*.5;
+  const gr=fxF.createLinearGradient(x,0,x+len,0);gr.addColorStop(0,'rgba(255,241,214,0)');gr.addColorStop(.7,`rgba(255,241,214,${al})`);gr.addColorStop(1,'rgba(255,241,214,0)');fxF.fillStyle=gr;fxF.fillRect(x,y,len,3)}});
+ // éclats dorés
+ BURSTS.forEach(b=>{for(let k=0;k<b.n;k++){const dur=.85+.4*h(k*3.3+b.seed),a=(t-b.t)/dur;if(a<0||a>=1)continue;
+  const ang=6.2832*h(k*1.7+b.seed*9.1),sp=.5+.5*h(k*2.3+b.seed),dist=(b.r0||0)+b.R*sp*eo5(a),x=b.x+Math.cos(ang)*dist,y=b.y+Math.sin(ang)*dist+60*a*a;
+  const al=Math.pow(1-a,1.4),sz=b.sz*(1-.55*a)+.6;glow(fxF,x,y,sz*3.4,'255,214,120',al*.9);fxF.fillStyle=`rgba(255,246,214,${al})`;fxF.beginPath();fxF.arc(x,y,sz*.6,0,6.2832);fxF.fill()}});
+ // étincelles (ding) autour du logo
+ [[E.lockup+.3,250,540,30],[E.lockup+.3+.12,880,640,24],[E.lockup+.3+.22,228,660,18],[E.lockup+.3+.3,820,520,20]].forEach(([t0,x,y,r])=>{const a=(t-t0)/.55;if(a<0||a>=1)return;star(fxF,x,y,r*Math.sin(Math.PI*a),Math.sin(Math.PI*a))});
+}
+
+// ───────────── caméra : micro-tremblement + zoom punch à chaque coupure ─────────────
+const PUNCH_AT=[S.demo[0],...CUTS];
+function camera(t){
+ let sx=1.4*Math.sin(t*8.3)+.9*Math.sin(t*14.9+1.1),sy=1.2*Math.sin(t*6.9+.4)+.8*Math.sin(t*12.7+2.2),sr=.045*Math.sin(t*5.1+.7),pun=0,lastC=-9;
+ PUNCH_AT.forEach(c=>{const a=t-c;if(a>=0&&a<.7){const k=Math.exp(-a*7.5);if(k>pun){pun=k;lastC=c}const q=Math.exp(-a*8);sx+=5*q*Math.sin(a*52+c*3);sy+=5*q*Math.cos(a*47+c*5)}});
+ const zs=t>=S.cta[0]?.025*P(t,S.cta[0],S.cta[1]-S.cta[0]):(t>=S.demo[0]?.018*P(t,S.demo[0],S.demo[1]-S.demo[0]):0); // la caméra ne s'arrête jamais
+ return {sx,sy,sr,pun,s:1+.04*pun+zs,lastC};
+}
+
+// ───────────── seek(t) : pur et déterministe ─────────────
+window.seek=function(t){
+ t=clamp(t,0,TOT);
+ const inHook=t<S.demo[0],inDemo=t>=S.demo[0]&&t<S.cta[0],inCta=t>=S.cta[0];
+ const f=Math.round(t*FPS),cm=camera(t);
+ // caméra / parallaxe : chaque couche a sa profondeur
+ $('world').style.transform=`translate(${cm.sx}px,${cm.sy}px) rotate(${cm.sr}deg) scale(${cm.s})`;
+ const PX=8*Math.sin(t*.9)+3*Math.sin(t*2.3+1),PY=5*Math.sin(t*.7+1)+2*Math.sin(t*1.9);
+ const par=(id,d,extra='')=>{$(id).style.transform=`translate(${PX*d}px,${PY*d}px) ${extra}`};
+
+ // ── fonds
+ const hookP=P(t,0,S.hook[1]);
+ const hbx=-80+160*eio(hookP),hby=22-44*hookP,hs=1.06+.10*hookP+.07*ei(P(t,1.7,.3));
+ $('L_hook').style.visibility=inHook?'visible':'hidden';
+ $('hookImg').style.transform=`translate(-50%,-50%) translate(${hbx}px,${hby}px) scale(${hs})`;
+ // doublure vidéo (full)
+ if(!OV){
+  $('plateWrap').style.visibility=inDemo||inCta?'visible':'hidden';$('fbWrap').style.visibility=inDemo||inCta?'visible':'hidden';
+  let k=-1;SEG.forEach(s=>{if(t>=s[0]&&t<s[1])k=s[2]});
+  FB_SRC.forEach((_,i)=>{$('fb'+i).style.display=(inDemo&&i===k)?'block':'none'});$('fbC').style.display=inCta?'block':'none';
+  const loc=inCta?P(t,S.cta[0],S.cta[1]-S.cta[0]):(k>=0?P(t,SEG[k][0],SEG[k][1]-SEG[k][0]):0);
+  const vs=(1+.07*cm.pun)*(1+.035*loc),vx=-14*loc+cm.sx*1.5,vy=cm.sy*1.5;
+  const tr=`translate(-50%,-50%) translate(${vx}px,${vy}px) scale(${vs})`;
+  $('plate').style.transform=tr;$('plate').style.left='50%';$('plate').style.top='50%';
+  document.querySelectorAll('#fbWrap .fb').forEach(e=>e.style.transform=tr);
+  if(USE_PLATES&&(inDemo||inCta))setPlate('build/v2_plates/p_'+String(f).padStart(4,'0')+'.jpg');
+ }
+ // dégradés de lisibilité (seules ombres du fond transparent)
+ vis($('shadeT'),(.85+.15*Math.sin(t*1.4))*(inCta?.6:1)*P(t,0,.2));
+ vis($('shadeB'),(inCta?1-P(t,S.cta[0],.3):1)*P(t,0,.2));
+ vis($('shadeC'),inCta?P(t,S.cta[0],.35):0);
+ // ── ambiance
+ ambient(t,inHook?.62:(inDemo?.46:.7),PX,PY);
+ front(t);
+ // grain animé + vignette : partout en full, uniquement sur le hook (fond opaque) en overlay
+ const tex=(!OV||inHook);
+ vis($('vig'),tex?1:0);
+ const gr=$('grain');vis(gr,tex?.16:0);gr.style.backgroundPosition=`${Math.floor(h(f*1.37)*256)}px ${Math.floor(h(f*2.11+5)*256)}px`;
+
+ // ── HOOK : mots synchronisés (stagger d'après timeline), masque + dépassement
+ par('pHook',-.6);
+ [['hw0',0],['hw1',1],['hw2',2],['hw3',3]].forEach(([id,i])=>{const el=$(id),m=mi(el),t0=WORDS[i];
+  const p=P(t,t0,.4),ex=P(t,1.78+i*.04,.17);
+  const y=115*(1-eob(p,1.15))-115*eo(ex);
+  m.style.transform=`translateY(${y}%)`;
+  const pulse=1+.05*Math.exp(-Math.max(0,t-t0)*13)*(t>=t0+.12?1:0);
+  el.style.transformOrigin='0% 60%';el.style.transform=`scale(${pulse})`;
+  vis(el,inHook&&t>=t0-.02?1:0);});
+ $('hw3').style.filter=`drop-shadow(0 0 ${14+10*Math.sin(t*5)}px rgba(237,182,44,.55)) drop-shadow(0 4px 10px rgba(0,0,0,.65))`;
+ shim($('hw3i'),t,0);
+
+ // ── DÉMO : « 10 photos » (compteur), éventail, « = 1 vidéo »
+ const dOut=1-eo(P(t,T_OUT,.16)),dOS=1-.07*(1-dOut);
+ par('pEq',.9,`scale(${1})`);
+ {const a=P(t,E.ten,.42),b=P(t,E.ten+.1,.42);
+  let k=0;COUNT_TICKS.forEach(c=>{if(t>=c)k++});const val=Math.min(10,k*2),lastC=k?COUNT_TICKS[k-1]:E.ten;
+  $('tenN').textContent=val;
+  const bump=1+.1*Math.exp(-(t-lastC)*16)*(k>0?1:0);
+  mi($('eqA')).style.transform=`translateY(${115*(1-eob(a,1.1))}%)`;mi($('eqB')).style.transform=`translateY(${115*(1-eob(b,1.1))}%)`;
+  const o=inDemo?dOut:0,sc=dOS;
+  $('eqA').style.transformOrigin='30% 70%';$('eqA').style.transform=`scale(${bump*sc})`;$('eqB').style.transform=`scale(${sc})`;
+  vis($('eqA'),t>=E.ten?o:0);vis($('eqB'),t>=E.ten+.1?o:0);
+  shim($('tenN'),t,.6);
+  const c=P(t,E.one_video,.42);mi($('eqC')).style.transform=`translateY(${115*(1-eob(c,1.1))}%)`;$('eqC').style.transform=`scale(${sc})`;vis($('eqC'),t>=E.one_video?o:0);}
+ // éventail → pile "1 vidéo" → sortie quand l'anneau arrive
+ const cardOut=P(t,E.ring-.12,.28);
+ par('pThumbs',1.5,`rotate(${1.3*Math.sin(t*1.9)*P(t,E.one_video+.5,.4)}deg) translateY(${4*Math.sin(t*2.3)*P(t,E.one_video+.4,.4)}px)`);
+ THUMBS.forEach((_,i)=>{const el=$('th'+i),t0=E.thumbs[i],pe=P(t,t0,.46),fan=fanPos(i),pm=eio(P(t,E.one_video,.5));
+  const sway=1.6*Math.sin(t*3.1+i)*(1-pm);
+  let cx=lerp(PIVOT[0],fan[0],eob(pe,1.5)),cy=lerp(PIVOT[1]+60,fan[1],eob(pe,1.5)),rot=fan[2]*eob(pe,1.7)+sway,sc=lerp(.62,1,eob(pe,1.4));
+  const pile=PILE[i];cx=lerp(cx,CARD[0]+pile[0],pm);cy=lerp(cy,CARD[1]+pile[1],pm);rot=lerp(rot,pile[2],pm);sc*=1+(i===5?.1:0)*pm+.07*Math.sin(Math.PI*pm);
+  sc*=1-.4*eo(cardOut);
+  const o=(inDemo?P(t,t0,.14):0)*(1-eo(cardOut))*dOut;
+  el.style.zIndex=i;put(el,o,cx-CARD[0],cy-CARD[1],sc*dOS,rot);
+  el.querySelector('img').style.transform=`scale(${1.04+.1*P(t,t0,2)})`});
+ {const p=P(t,E.one_video+.12,.4);put($('playIco'),(inDemo?p:0)*(1-eo(cardOut))*dOut,0,0,(.5+.5*eob(p,2))*(1+.05*Math.sin(t*6))*(1-.4*eo(cardOut)),0)}
+
+ // anneau « 10 min » : progression, graduations, compteur
+ par('pRing',1.1);
+ {const rin=P(t,E.ring,.42),pr=eio(P(t,E.ring+.1,E.ring_end-E.ring-.1)),done=t>=E.ring_end;
+  const pulse=done?1+.06*Math.exp(-(t-E.ring_end)*9):1;let tk=0;RING_TICKS.forEach(c=>{const a=t-c;if(a>=0&&a<.25)tk=Math.max(tk,Math.exp(-a*14))});
+  const o=(inDemo?rin:0)*dOut,sc=(.6+.4*eob(rin,1.8))*pulse*(1+.025*tk)*dOS;
+  put($('ringBox'),o,0,0,sc,0);put($('ringNumBox'),o,0,0,sc,0);
+  $('rp').style.strokeDashoffset=RL*(1-pr);$('rp').style.filter=`drop-shadow(0 0 ${8+16*tk+(done?14*Math.exp(-(t-E.ring_end)*4):0)}px rgba(237,182,44,.9))`;
+  for(let j=0;j<10;j++){const lit=pr>=(j+.5)/10;$('dl'+j).setAttribute('stroke',lit?'#F8E7BC':'rgba(244,236,224,.4)')}
+  const n=done?10:Math.round(10*pr);$('ringNum').textContent=n;$('ringNum').style.color=done?'#EDB62C':'#F4ECE0';}
+
+ // ── CTA : logo horizontal, « Créez votre vidéo », promesse, fondu
+ par('pLogo',.8);par('pCta',1.2);par('pTag',.6);
+ {const lp=P(t,E.lockup,.55);
+  dash('hh',eo(P(t,E.lockup,.5)),eo(P(t,E.lockup+.25,.45)));
+  $('iconH').style.filter=`drop-shadow(0 0 ${10+8*Math.sin(t*4)}px rgba(237,182,44,.6)) drop-shadow(0 4px 10px rgba(0,0,0,.6))`;
+  $('lockup').style.transform=`scale(${.9+.1*eob(lp,1.6)})`;vis($('lockup'),inCta?P(t,E.lockup,.15):0);
+  const wp=eo(P(t,E.lockup+.12,.5));$('wordH').style.clipPath=`inset(-30% ${100-100*wp}% -30% -10%)`;mi($('wordH')).style.transform=`translateX(${-40*(1-wp)}px)`;
+  vis($('iconH'),inCta&&t>=E.lockup?1:0);vis($('wordH'),inCta&&t>=E.lockup?1:0);
+  [['cw0',E.cta_text],['cw1',E.cta_text+.12],['cw2',E.cta_text+.24]].forEach(([id,t0])=>{const p=P(t,t0,.45);mi($(id)).style.transform=`translateY(${115*(1-eob(p,1.15))}%)`;
+   const pu=1+.05*Math.exp(-Math.max(0,t-t0)*12)*(t>=t0+.15?1:0);$(id).style.transformOrigin='50% 60%';$(id).style.transform=`scale(${pu})`;vis($(id),inCta&&t>=t0-.02?1:0)});
+  $('cw2').style.filter=`drop-shadow(0 0 ${16+12*Math.sin(t*4.2)}px rgba(237,182,44,.6)) drop-shadow(0 5px 12px rgba(0,0,0,.65))`;
+  shim($('cw2i'),t,.3);
+  const ap=eo(P(t,E.tagline-.2,.6));put($('accent'),inCta?ap:0,0,0,1,0);$('accent').style.transform=`scaleX(${ap})`;
+  const tp=P(t,E.tagline,.5);mi($('tagMk')).style.transform=`translateY(${115*(1-eo(tp))}%)`;vis($('tagMk'),inCta&&t>=E.tagline?1:0);
+ }
+ // ── transitions : flash/whip aux coupures, light leak, fondu final
+ let fl=0;[[S.demo[0],.5],[CUTS[0],.2],[CUTS[1],.2],[CUTS[2],.2],[CUTS[3],.2],[E.flash_cta,.55]].forEach(([c,am])=>{const a=(t-c)/.3;if(a>=0&&a<1)fl=Math.max(fl,am*(1-a)*(1-a))});
+ vis($('flash'),fl);
+ const lk=[[S.demo[0]-.05,.7,.3],[E.flash_cta-.05,.7,.3]].reduce((m,[c,d,am])=>{const a=(t-c)/d;return a>=0&&a<1?Math.max(m,am*Math.sin(Math.PI*a)):m},0),la=[S.demo[0]-.05,E.flash_cta-.05].map(c=>P(t,c,.7));
+ const lx=t<S.cta[0]?-20+140*la[0]:-20+140*la[1];
+ $('leak').style.background=`radial-gradient(ellipse 620px 1000px at ${lx}% 38%,rgba(255,170,60,.85),rgba(255,120,40,.35) 45%,rgba(255,120,40,0) 75%)`;vis($('leak'),lk);
+ vis($('fade'),P(t,E.fade_out,(TOT-1/FPS)-E.fade_out));
+};
+// reflet doré qui balaie les textes or (shimmer)
+function shim(el,t,ph){const u=((t*.55+ph)%1.9)/1.0;const s=clamp(u/.9);el.style.backgroundPosition=`${100*(1-(.12+.76*s))}% 0`}
+window.seek(0);
+</script></body></html>
