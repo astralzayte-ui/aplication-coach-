@@ -21,6 +21,10 @@ Trois onglets : **Accueil** (solde, saisie rapide, revenus) · **Dépenses** (ch
 fixes + dépenses cochables, réordonnables au doigt) · **Notes** (bloc-notes libre
 avec mise en forme).
 
+**Design choisi : « Anneaux »** (fond noir, trois anneaux sur l'accueil : rouge =
+budget dépensé, vert = temps écoulé, bleu = charges payées ; chiffres en Barlow Semi
+Condensed embarquée en base64). Garder ce style pour toute nouvelle partie.
+
 Sur l'écran d'accueil du téléphone elle se présente comme **« Notes »** avec une
 icône de bloc-notes : c'est **voulu**, l'utilisateur ne veut pas qu'on voie une app
 de budget. Ne pas « corriger » ce nom.
