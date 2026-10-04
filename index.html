@@ -933,6 +933,12 @@ function normalize(){
   if(typeof S.budget!=='number') S.budget=DEF.budget;
   if(typeof S.notes!=='string') S.notes='';
   if(!S.period_start) S.period_start=today();
+  // Budget de base, sans le report de la période d'avant : c'est lui qui repart
+  // à chaque renouvellement. Déduit du dernier report quand il est identifiable.
+  if(typeof S.budget_base!=='number'){
+    const a=S.archives[S.archives.length-1];
+    S.budget_base=(a&&a.fin===S.period_start&&a.reste>0&&S.budget-a.reste>0)?S.budget-a.reste:S.budget;
+  }
   // Ordre manuel des dépenses — ajouté à la volée sur les anciennes données,
   // calé sur l'horodatage pour que l'ordre affiché reste identique.
   S.depenses.forEach(d=>{
@@ -1385,14 +1391,47 @@ function firstOfMonthStr(){
   const n=new Date();
   return ymd(new Date(n.getFullYear(),n.getMonth(),1));
 }
+// Fin de période = la date affichée (7 jours après le début, ou le 1er du mois suivant).
 function shouldReset(){
   if(!S.setup_done)return false;
-  return S.period_start < (isMois()?firstOfMonthStr():lastSundayStr());
+  return today() >= ymd(periodEnd());
 }
+// Nouvelle période sans rien demander : on archive, on reprend le même budget,
+// les mêmes enveloppes, et on ajoute ce qu'il restait.
+function renouvelerPeriode(){
+  const carry=Math.max(0,restant());
+  archiverPeriode();
+  if(isMois()) S.period_start=firstOfMonthStr();
+  else{
+    let d=new Date(S.period_start+'T00:00:00');
+    for(;;){ const e=new Date(d); e.setDate(e.getDate()+7); if(ymd(e)>today())break; d=e; }
+    S.period_start=ymd(d);
+  }
+  S.budget=S.budget_base+carry;
+  S.carryOver=0;
+  S.chargesRec=S.chargesRec.map(c=>({...c,payé:false}));
+  S.depenses=[];
+  S.revenus=[];
+  S.evenements=S.evenements.filter(e=>!e.done);
+  save();
+  return carry;
+}
+// L'appli reste souvent ouverte en arrière-plan : on revérifie au retour.
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden||!shouldReset())return;
+  if(!document.getElementById('wizard').classList.contains('hidden'))return;
+  const carry=renouvelerPeriode(); renderAll();
+  toast((isMois()?'Nouveau mois':'Nouvelle semaine')+(carry>0?` · +${fmt(carry)} DH reportés`:'')+' 🎉');
+});
 function bootUI(){
   buildQuickCats();selQCat('nourriture');
   if(!S.setup_done){ S.carryOver=0; openWizard(true); return; }
-  if(shouldReset()){ S.carryOver=Math.max(0,restant()); openWizard(false,true); return; }
+  if(shouldReset()){
+    const carry=renouvelerPeriode();
+    renderAll();
+    toast((isMois()?'Nouveau mois':'Nouvelle semaine')+(carry>0?` · +${fmt(carry)} DH reportés`:'')+' 🎉');
+    return;
+  }
   renderAll();
 }
 
@@ -1495,7 +1534,7 @@ function openWizard(first,auto){
   if(carry>0){cEl.style.display='block';cEl.innerHTML=`💰 Il te restait <b>${fmt(carry)} DH</b> — ajoutés à ton nouveau budget`;}
   else cEl.style.display='none';
   selMode(wizMode);
-  document.getElementById('wiz-budget').value=S.budget;
+  document.getElementById('wiz-budget').value=first?S.budget:S.budget_base;
   buildWizCatRows();
   Object.keys(DEF.cat_budgets).forEach(c=>{const el=document.getElementById('cb-'+c);if(el)el.value=S.cat_budgets[c]||0;});
   document.getElementById('wiz-step1').classList.add('active');
@@ -1553,6 +1592,7 @@ function finishWizard(){
   const carry=S.carryOver||0;
   S.mode=wizMode;
   S.budget=b+carry;
+  S.budget_base=b;
   S.carryOver=0;
   S.period_start=today();
   S.setup_done=true;
@@ -2378,7 +2418,7 @@ function openCatDetail(cat){
 // recharge. Même origine, donc le localStorage — et donc les données — reste
 // intact. Évite d'avoir à rafraîchir à la main, manœuvre qui a déjà fait
 // croire à l'utilisateur qu'il avait tout perdu.
-const APP_VERSION='2026-10-03-02';
+const APP_VERSION='2026-10-04-01';
 (function(){
   const PAUSE=()=>
     !document.getElementById('wizard').classList.contains('hidden') ||
