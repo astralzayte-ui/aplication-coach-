@@ -110,6 +110,11 @@ l'environnement (menu de l'environnement cloud dans la barre de titre de la sess
 puis Modifier, variable `BUDGET_KEY`). Une nouvelle session la prend en compte.
 **Ne jamais lui demander de coller la clé dans la conversation.**
 
+**Le suivi commence le 1er octobre 2026** (remise à zéro de l'appli) : rien avant
+ne compte. Pour « le suivi d'octobre », « de 2026 », « où part 50 % » :
+`python3 outils/coffre.py --suivi 2026-10` (ou `2026`, ou `DEBUT FIN`) donne total,
+catégories en % avec cumul, mois par mois, plus grosses dépenses.
+
 Restituer le bilan comme un conseiller, en peu de lignes : où part l'argent ce
 mois-ci, ce qui change par rapport aux mois précédents, une ou deux remarques
 concrètes. Chiffres en DH. Le coffre contient aussi le bloc-notes : ne pas le lire ni
@@ -169,6 +174,15 @@ Avant de pousser : vérifier la syntaxe du script en ligne, puis faire tourner u
 parcours navigateur réel en 390×844 avec `hasTouch`. Toujours inclure une épreuve
 qui part d'un `localStorage` au format de production et confirme que les totaux sont
 inchangés.
+
+---
+
+# Périodes
+
+Le renouvellement est **automatique**, sans écran à valider : la semaine finit 7
+jours après son début, le mois le 1er. Même budget de base (`budget_base`) + ce
+qu'il restait, enveloppes gardées, période archivée. Le bouton « Nouvelle période »
+reste pour changer de budget ou de mode.
 
 ---
 

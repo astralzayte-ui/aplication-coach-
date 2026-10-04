@@ -11,6 +11,12 @@ l'utilisateur. Aucune donnée n'est écrite sur le disque.
     python3 outils/coffre.py --json       état brut
     python3 outils/coffre.py --versions   dates des copies journalières
     python3 outils/coffre.py --date AAAA-MM-JJ   résumé d'une copie passée
+    python3 outils/coffre.py --suivi 2026-10      suivi d'un mois
+    python3 outils/coffre.py --suivi 2026         suivi d'une année
+    python3 outils/coffre.py --suivi 2026-10-01 2026-12-31   suivi d'un intervalle
+
+Le suivi commence le 2026-10-01 (remise à zéro de l'appli) : tout ce qui est
+daté avant est ignoré.
 """
 import json, os, ssl, sys, urllib.error, urllib.request
 from collections import defaultdict
@@ -20,6 +26,7 @@ URL = os.environ.get("BUDGET_URL", "https://chic-biscotti-07e6f1.netlify.app/.ne
 CATS = {"nourriture": "Nourriture", "boisson": "Boisson", "plaisirs": "Plaisir",
         "sorties": "Activité", "transport": "Transport", "divers": "Choses de la vie",
         "remboursement": "Remboursement"}
+SUIVI_DEBUT = "2026-10-01"
 MOIS = ["janv", "févr", "mars", "avr", "mai", "juin", "juil", "août", "sept", "oct", "nov", "déc"]
 
 
@@ -163,9 +170,75 @@ def resume(env):
     return "\n".join(out)
 
 
+def mouvements(S):
+    """Toutes les dépenses payées et charges payées, datées, depuis SUIVI_DEBUT."""
+    mode = S.get("mode", "semaine")
+    lignes = []
+    def ajouter(deps, charges_payees, debut):
+        for d in deps:
+            if d.get("coche", True):
+                lignes.append((d.get("date") or debut or "", d.get("cat"), d["montant"], d.get("desc", "")))
+        for c in charges_payees:
+            lignes.append((debut or "", "_charges", c[1], c[0]))
+    for a in S.get("archives", []):
+        ajouter(a.get("depenses", []), [(c.get("nom", ""), c.get("montant", 0)) for c in a.get("chargesPayees", [])], a.get("debut"))
+    ajouter(S.get("depenses", []), [(c.get("nom", ""), montant_charge(c, mode))
+                                    for c in S.get("chargesRec", []) if c.get("payé")], S.get("period_start"))
+    return [l for l in lignes if l[0] >= SUIVI_DEBUT]
+
+
+def suivi(env, de, a):
+    S = env.get("state", {})
+    lignes = [l for l in mouvements(S) if de <= l[0] <= a]
+    nom = lambda c: "Charges fixes" if c == "_charges" else nom_cat(c)
+    out = [f"# Suivi du {max(de, SUIVI_DEBUT)} au {min(a, date.today().isoformat())}"]
+    tot = sum(l[2] for l in lignes)
+    if not tot:
+        return out[0] + "\nAucune dépense enregistrée sur cette période."
+    jours = {l[0] for l in lignes}
+    out.append(f"Total dépensé : {dh(tot)} ({len(lignes)} ligne(s), sur {len(jours)} jour(s) avec dépense)")
+    cats = defaultdict(float)
+    for l in lignes:
+        cats[l[1]] += l[2]
+    out.append("Par catégorie :")
+    cumul = 0
+    for c, v in sorted(cats.items(), key=lambda x: -x[1]):
+        cumul += v
+        out.append(f"  - {nom(c)} : {dh(v)} ({round(v / tot * 100)} %, cumul {round(cumul / tot * 100)} %)")
+    par_mois = defaultdict(float)
+    for l in lignes:
+        par_mois[l[0][:7]] += l[2]
+    if len(par_mois) > 1:
+        out.append("Par mois : " + " · ".join(f"{mois_lisible(m)} {dh(v)}" for m, v in sorted(par_mois.items())))
+        out.append(f"Moyenne : {dh(tot / len(par_mois))} par mois")
+    out.append("Plus grosses : " + " · ".join(f"{dh(l[2])} {l[3]} ({l[0]})"
+                                             for l in sorted(lignes, key=lambda l: -l[2])[:5]))
+    rev = [r for r in S.get("revenus", []) + [r for x in S.get("archives", []) for r in x.get("revenus", [])]
+           if de <= (r.get("date") or r.get("ts") or "")[:10] <= a
+           and (r.get("date") or r.get("ts") or "")[:10] >= SUIVI_DEBUT]
+    if rev:
+        out.append(f"Revenus ajoutés : {dh(sum(r.get('montant', 0) for r in rev))}")
+    return "\n".join(out)
+
+
+def bornes(args):
+    x = args[0]
+    if len(args) > 1:
+        return x, args[1]
+    if len(x) == 4:
+        return f"{x}-01-01", f"{x}-12-31"
+    if len(x) == 7:
+        return f"{x}-01", f"{x}-31"
+    return x, x
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
-    if "--versions" in a:
+    if "--suivi" in a:
+        i = a.index("--suivi")
+        args = [x for x in a[i + 1:i + 3] if x[:1].isdigit()] or [str(date.today().year)]
+        print(suivi(appeler(), *bornes(args)))
+    elif "--versions" in a:
         print("\n".join(appeler("?versions=1").get("dates", [])) or "aucune copie")
     elif "--date" in a:
         env = appeler("?date=" + a[a.index("--date") + 1])
