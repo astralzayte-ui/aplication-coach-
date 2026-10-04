@@ -35,6 +35,7 @@ Réflexes :
 | vidéo | `video`, puis Higgs Field pour générer |
 | visuels, affiches | `canvas-design`, `image` |
 | interface web | `frontend-design` |
+| légal d'un site, avant toute mise en ligne | `site-legal` |
 | idées bloquées | `brainstorming`, `marketing-ideas` |
 | bug | `systematic-debugging` |
 | créer un skill | `skill-creator`, `writing-skills` |

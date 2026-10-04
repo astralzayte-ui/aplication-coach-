@@ -321,6 +321,10 @@ h1, h2, h3 { font-family: var(--titre); font-weight: 400; margin: 0; line-height
 .popup-code .code { display: inline-block; font-family: 'Inter', system-ui, sans-serif; font-weight: 600; font-size: 26px; letter-spacing: .14em;
                     border: 2px dashed var(--ambre); color: var(--ambre); padding: 12px 22px; border-radius: 8px; margin: 6px 0 16px; }
 .popup .mention-rgpd { margin-top: 14px; max-width: 380px; }
+.accord { display: flex; gap: 10px; align-items: flex-start; text-align: left; font-size: 12.5px; line-height: 1.45; color: #A8A8A0; cursor: pointer; }
+.accord input { flex: none; width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--ambre); cursor: pointer; }
+.accord a { display: inline; padding: 0; text-decoration: underline; color: inherit; }
+.accord.a-cocher span { color: #FF8A7A; }
 @keyframes apparait { from { opacity: 0; } }
 @keyframes monte { from { opacity: 0; transform: translateY(18px) scale(.98); } }
 @media (max-width: 720px) {

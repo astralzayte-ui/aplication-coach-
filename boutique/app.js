@@ -103,6 +103,7 @@
         '</div>' +
         '<div><h4>Nos politiques</h4>' +
           '<a href="cgv.html">Conditions générales de vente</a>' +
+          '<a href="remboursements.html">Retours et remboursements</a>' +
           '<a href="retractation.html">Formulaire de rétractation</a>' +
           '<a href="confidentialite.html">Confidentialité</a>' +
           '<a href="mentions-legales.html">Mentions légales</a>' +
@@ -119,16 +120,22 @@
   }
 
   /* ---------- le formulaire e-mail (popup + pied) ---------- */
+  function accord() {
+    return '<label class="accord"><input type="checkbox" name="accord" value="oui">' +
+      '<span>J\'accepte de recevoir les e-mails de SILENCE (nouveautés et offres). Désinscription en un clic. <a href="confidentialite.html">Confidentialité</a></span></label>';
+  }
+
   function formulaire(source, bouton) {
     return '<form class="formulaire-lettre" data-lettre="' + source + '" novalidate>' +
       '<input type="email" name="email" required autocomplete="email" placeholder="Ton e-mail" aria-label="Ton adresse e-mail">' +
+      accord() +
       '<button class="btn btn-plein" type="submit">' + bouton + '</button>' +
-      '<p class="mention-rgpd">En t\'inscrivant, tu acceptes de recevoir nos e-mails. Désinscription en un clic. <a href="confidentialite.html">Confidentialité</a>.</p>' +
       '</form>';
   }
 
   function envoyerLettre(email, source) {
-    var corps = 'form-name=newsletter&email=' + encodeURIComponent(email) + '&source=' + encodeURIComponent(source);
+    var corps = 'form-name=newsletter&email=' + encodeURIComponent(email) + '&source=' + encodeURIComponent(source) +
+      '&accord=' + encodeURIComponent('oui — ' + new Date().toISOString());   // la preuve de l'accord, datée
     return fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: corps })
       .catch(function () {});
   }
@@ -139,6 +146,8 @@
     if (window.SILENCE && window.SILENCE.rafraichir) window.SILENCE.rafraichir();
   }
 
+  function secouer(el) { el.classList.add('secoue', 'a-cocher'); setTimeout(function () { el.classList.remove('secoue'); }, 450); }
+
   function brancherFormulaires() {
     document.addEventListener('submit', function (ev) {
       var f = ev.target.closest && ev.target.closest('[data-lettre]');
@@ -146,7 +155,9 @@
       ev.preventDefault();
       var champ = f.querySelector('input[type=email]');
       var v = (champ.value || '').trim();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) { champ.focus(); champ.classList.add('secoue'); setTimeout(function () { champ.classList.remove('secoue'); }, 450); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) { secouer(champ); champ.focus(); return; }
+      var coche = f.querySelector('input[name=accord]');
+      if (coche && !coche.checked) { secouer(coche.closest('.accord')); coche.focus(); return; }  // pas d'accord, pas d'inscription
       envoyerLettre(v, f.getAttribute('data-lettre'));
       activerCode();
       if (f.getAttribute('data-lettre') === 'popup') {
@@ -177,9 +188,9 @@
           '<div data-popup-form><p>Exclusivement pour ta première commande</p>' +
             '<form data-lettre="popup" novalidate>' +
               '<input type="email" name="email" required autocomplete="email" placeholder="Il te suffit de laisser ton e-mail" aria-label="Ton adresse e-mail">' +
+              accord() +
               '<button class="btn" type="submit">Accède à ton offre spéciale</button>' +
             '</form>' +
-            '<p class="mention-rgpd">En t\'inscrivant, tu acceptes de recevoir nos e-mails. Désinscription en un clic. <a href="confidentialite.html">Confidentialité</a>.</p>' +
           '</div>' +
           '<div class="popup-code" data-popup-code><p>C\'est fait. Ton code :</p><div class="code">' + C.codeBienvenue + '</div>' +
             '<p style="font-size:15px">Il s\'applique tout seul dans ton panier.</p>' +

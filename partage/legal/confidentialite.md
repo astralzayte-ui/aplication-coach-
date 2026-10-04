@@ -27,7 +27,8 @@ Pour toute question ou pour exercer tes droits : **silenceworldwide@gmail.com**
 | **Tu commandes** | prénom, nom, adresse de livraison, e-mail, téléphone |
 | **Tu paies** | rien. Ta carte est traitée par notre prestataire. **Nous ne la voyons jamais** |
 | **Tu nous écris** | le contenu de ton message et tes coordonnées |
-| **Tu t'inscris à nos nouveautés** | ton e-mail seulement |
+| **Tu t'inscris à nos nouveautés** | ton e-mail, et la date à laquelle tu as coché la case d'accord |
+| **Tu arrives depuis une de nos vidéos** | le nom de la vidéo (ex. « vidéo 12 »), et rien d'autre |
 
 **Nous ne collectons aucune donnée sensible.** Ni religion, ni santé, ni
 origine, ni opinion.
@@ -99,17 +100,35 @@ Si notre réponse ne te convient pas, tu peux saisir la **CNIL** —
 
 ---
 
-## 7. Les cookies
+## 7. Les cookies et la mesure de nos vidéos
 
-Le site utilise uniquement les cookies **nécessaires à son
-fonctionnement** : garder ton panier, te garder connecté pendant le
-paiement. **Ils ne servent pas à te suivre** et ne demandent pas ton accord.
+**Pas de cookie publicitaire. Pas de traqueur d'une autre société.**
 
-Nous n'utilisons **aucun** cookie publicitaire ni aucun traqueur de mesure
-d'audience.
+Le site garde quelques informations **dans ton navigateur**, nécessaires à
+son fonctionnement : ton panier, tes favoris, ton code de bienvenue, et le
+fait que tu as déjà vu la fenêtre de bienvenue.
 
-*Si cela change, un bandeau te le demandera avant le premier dépôt, avec un
-refus aussi simple qu'un accord.*
+### La mesure de nos vidéos
+
+Quand tu arrives depuis une de nos vidéos, le lien porte son nom
+(par exemple `?v=video12`). Le site le garde dans ton navigateur et
+**le joint à ta commande WhatsApp**, pour une seule raison : savoir quelle
+vidéo amène des clients, et faire plus de celles-là.
+
+```
+ce qu'on garde      le nom de la vidéo, et rien d'autre
+ce qu'on ne fait    pas de profil, pas de pub ciblée,
+                    rien de vendu, rien de partagé
+combien de temps    13 mois au plus
+```
+
+Cette mesure sert uniquement nos propres statistiques : elle ne demande
+pas ton accord. **Tu peux t'y opposer** à tout moment : écris-nous, ou
+vide les données du site dans ton navigateur.
+
+*Si un jour nous ajoutons un outil de mesure ou de publicité d'une autre
+société, un bandeau te demandera ton accord avant, avec un bouton
+« Refuser » aussi visible que « Accepter ».*
 
 ---
 

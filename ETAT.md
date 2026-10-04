@@ -143,6 +143,27 @@ caché tant que flou     prix et délai de livraison, composition,
 🔴 Photos provisoires = d'autres marques → **jamais public** tant
 qu'elles ne sont pas remplacées (le site est en « noindex »).
 
+**📌 DÉCIDÉ LE 04/10 — la prochaine refonte (il la demandera cette semaine) :**
+```
+le but        refaire boutique-streetwear.com EN MIEUX, pas une copie
+le mode       il met Claude en capacité maximale — tu prends le temps
+              de penser avant de dessiner
+avant         relire marque/structure-concurrent.md
+après         passer le skill site-legal, verdict en couleurs
+```
+
+**À régler avec la refonte :**
+```
+🔴  les polices viennent de Google → les copier sur le site
+    (il a demandé une explication avant)
+🔴  « Contrôlé avant l'envoi » partout → à retirer tant que l'agent
+    ne l'a pas confirmé par écrit
+✅  04/10 : case « j'accepte les e-mails » obligatoire (popup + pied)
+✅  04/10 : page Retours et remboursements (carte, pas de bon imposé)
+✅  04/10 : la mesure des vidéos écrite dans la confidentialité
+❌  pas de bandeau cookies, pas de CGU — décidé, pas besoin
+```
+
 ---
 
 ## 🔴 (ancien) Il le refait lui-même

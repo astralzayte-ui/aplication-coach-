@@ -15,6 +15,7 @@ const queue = fs.readFileSync(path.join(ICI, '_queue.html'), 'utf8');
 const echap = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const enligne = s => echap(s)
   .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+  .replace(/(^|[^*])\*([^*\n]+?)\*(?!\*)/g, '$1<em>$2</em>')
   .replace(/`(.+?)`/g, '<code>$1</code>')
   .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" style="text-decoration:underline">$1</a>');
 
@@ -49,6 +50,7 @@ const PAGES = [
   ['cgv', 'Conditions générales de vente', 'cgv.html'],
   ['formulaire-retractation', 'Formulaire de rétractation', 'retractation.html'],
   ['confidentialite', 'Confidentialité', 'confidentialite.html'],
+  ['remboursements', 'Retours et remboursements', 'remboursements.html'],
 ];
 for (const [nom, titre, fichier] of PAGES) {
   const md = fs.readFileSync(path.join(LEGAL, nom + '.md'), 'utf8');
