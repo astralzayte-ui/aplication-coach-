@@ -69,6 +69,9 @@ Dernière mise à jour : 05/10/2026. À tenir à jour à chaque décision import
 - Avant toute vidéo : Metricool branché sur les comptes ImmoClap, suivi ?v=videoXX sur le site, ventes lisibles (Lemon Squeezy), fichier d'étiquettes. Rien de coché au 05/10.
 - Étape 1 proposée (espionner les pubs actives Reel-E / AutoReel / Roomotion, ~15–20 crédits scraping sur ~45) : pas encore lancée.
 
+## Plan million
+- Méthode notée dans `PLAN-MILLION.md`, pas commencée (attendre « go »).
+
 ## Outils / accès
 - Gemini (clé injectée par le proxy) : script `.claude/skills/analyse-youtube/scripts/gemini_youtube.sh` avec liste de modèles étendue ; modèles TTS (gemini-3.8-flash-tts) et Lyria disponibles.
 - Higgsfield API : solde 0 → ne rien générer de payant sans accord.
