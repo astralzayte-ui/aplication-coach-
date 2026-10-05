@@ -70,7 +70,7 @@ Dernière mise à jour : 05/10/2026. À tenir à jour à chaque décision import
 - Étape 1 proposée (espionner les pubs actives Reel-E / AutoReel / Roomotion, ~15–20 crédits scraping sur ~45) : pas encore lancée.
 
 ## Plan million
-- Plan dans `PLAN-MILLION.md` : but = 1 000 000 € de CA en 12 mois (🔴 très peu probable avec ces moyens, tenté quand même ; frein mois 2 < 2 000 €/mois → objectif 4 ans). Abonnements de lancement : Solo 39 €/349 DH (3 vidéos), Agence 99 €/899 DH (10 vidéos), gardés à vie pour les 100 premiers ; hausse ensuite à 79 €/590 DH et 199 €/1 490 DH. Structure seulement, rien lancé.
+- Plan dans `PLAN-MILLION.md` : but = 1 000 000 € de CA en 12 mois (🔴 très peu probable avec ces moyens, tenté quand même ; frein mois 2 < 2 000 €/mois → objectif 4 ans). Abonnements de lancement : Solo 39 €/349 DH (3 vidéos), Agence 99 €/899 DH (10 vidéos), gardés à vie pour les 100 premiers ; hausse ensuite à 79 €/590 DH et 199 €/1 490 DH. Validé le 05/10, rien lancé : attendre qu'il dise de lancer.
 
 ## Outils / accès
 - Gemini (clé injectée par le proxy) : script `.claude/skills/analyse-youtube/scripts/gemini_youtube.sh` avec liste de modèles étendue ; modèles TTS (gemini-3.8-flash-tts) et Lyria disponibles.

@@ -1,6 +1,6 @@
 # Plan million — ImmoClap
 
-Statut : structure écrite le 05/10/2026, **rien de lancé** — en attente de validation.
+Statut : **validé le 05/10/2026**, rien de lancé — attendre que le fondateur dise de lancer.
 Légende : 🟢 bonne idée · 🟠 à surveiller · 🔴 problème · ✅ fait · ❌ manque.
 
 ## 1. Ce que le fondateur a répondu
