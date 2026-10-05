@@ -50,7 +50,7 @@ Dernière mise à jour : 05/10/2026. À tenir à jour à chaque décision import
 ## Budget de lancement (décidé le 05/10) — voir aussi `BUDGET.md`
 - Pour lancer ≈ 800 DH : Metricool Starter ~20 $ + pub payante 19 jours ~30 $ + recharge Higgsfield 200 DH + domaine immoclap.com ~100 DH.
 - Ensuite ≈ 400 DH de pubs.
-- 200 DH de Higgsfield ≈ 4 vidéos complètes seulement.
+- Les 200 DH Higgsfield = vidéos des CLIENTS (pas les pubs) : ≈ 4 vidéos (Kling 3.0) ou ~8 (Kling 2.5). Les essais gratuits puisent dedans ; recharger avec les ventes.
 - Metricool : gratuit = 1 marque + 20 posts/mois → insuffisant ; Starter 16 €/mois (5 marques, illimité). La marque gratuite actuelle est occupée par « silence.worldwide » (autre projet).
 
 ## Ordre décidé (entonnoir)

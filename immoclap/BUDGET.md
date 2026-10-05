@@ -14,4 +14,4 @@
 |---|---|
 | Reste des pubs | ~400 DH |
 
-Note : 200 DH de Higgsfield ≈ 21 $ ≈ 4 vidéos complètes (12 plans Kling 3.0) ou ~8 avec Kling 2.5.
+Note : les 200 DH Higgsfield servent aux vidéos des CLIENTS (pas aux pubs). ≈ 21 $ ≈ 4 vidéos clients (Kling 3.0) ou ~8 (Kling 2.5) ; chaque vente recharge le solde ; les essais gratuits le consomment aussi.
