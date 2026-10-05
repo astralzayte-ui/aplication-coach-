@@ -178,6 +178,25 @@ Ne rien supprimer de ce fichier ni de `partage/legal/`.
 
 ---
 
+## 🎯 LE MILLION — ses réponses (05/10), à ne pas lui reposer
+
+```
+QUEL MILLION     1 M€ de CHIFFRE D'AFFAIRES (ce qui rentre)
+EN COMBIEN       1 an
+L'ARGENT         le budget de lancement seulement (1 144 MAD / 40 jours)
+                 + de la pub sur ce qui marche, payée par les ventes
+                 → on réinvestit ce que l'organique rapporte
+PERTE MAX        le budget de départ, rien de plus
+SON TEMPS        le minimum : la publication est automatique (Metricool),
+                 Claude analyse vidéos, clics, ventes, et propose
+IL REFUSE        montrer SON visage · s'endetter · appeler des gens
+```
+
+**Le plan million se lance quand il dit « go million »** — skill
+`million`, sans lui reposer ces questions.
+
+---
+
 ## 📌 LA DIFFUSION — décidé le 02/10, à mettre en place au lancement
 
 ```
