@@ -1,6 +1,6 @@
 ---
 name: pub
-description: Trouver, décortiquer et fabriquer des pubs et des vidéos qui vendent, à partir des pubs qui marchent VRAIMENT chez les concurrents — avec ses outils (ScrapeCreators, Gemini, Higgs Field, Metricool, Meta). Espionne les pubs actives, les regarde seconde par seconde, en tire les formats et les hooks, produit, teste, et décide quoi payer. À utiliser dès qu'il parle de pub, de hooks, de vidéos à faire, de concurrents qui cartonnent, de quoi tester, ou de mettre de l'argent en pub. Déclencheurs : "pub", "les pubs", "mes hooks", "quelle vidéo faire", "espionne", "ce qui marche chez eux", "Ad Library", "lancer de la pub", "booster", "ma vidéo marche pas", "on paie quoi".
+description: Rappelle le coût (1 144 MAD pour 40 jours) et exige le tableau de bord avant tout lancement. Trouver, décortiquer et fabriquer des pubs et des vidéos qui vendent, à partir des pubs qui marchent VRAIMENT chez les concurrents — avec ses outils (ScrapeCreators, Gemini, Higgs Field, Metricool, Meta). Espionne les pubs actives, les regarde seconde par seconde, en tire les formats et les hooks, produit, teste, et décide quoi payer. À utiliser dès qu'il parle de pub, de hooks, de vidéos à faire, de concurrents qui cartonnent, de quoi tester, ou de mettre de l'argent en pub. Déclencheurs : "pub", "les pubs", "mes hooks", "quelle vidéo faire", "espionne", "ce qui marche chez eux", "Ad Library", "lancer de la pub", "booster", "ma vidéo marche pas", "on paie quoi".
 ---
 
 # PUB — on ne fabrique que ce qui a déjà gagné ailleurs
@@ -20,6 +20,80 @@ C'est le trou que ce skill bouche.
 - Court, couleurs (🟢 🟠 🔴 ✅ ❌), zéro jargon — comme partout
 - **Un plan avec le coût AVANT chaque recherche qui consomme des crédits**
 - Tu ne lances rien de payant sans son oui. Le gratuit, tu le fais.
+
+---
+
+## 🔴 CE QUE ÇA COÛTE — tu le rappelles AVANT chaque lancement
+
+**Dès qu'il dit « on fait des pubs pour tel produit », tu sors ce bloc en
+premier**, avant toute recherche :
+
+```
+LES VISUELS          80 vidéos × 10 MAD (Higgs Field)       800 MAD
+METRICOOL Starter    172 MAD/mois (16 €) × 2 mois             344 MAD
+                     (2 vidéos/jour sur 3 réseaux : le gratuit
+                      ne suffit pas)
+LE SCRAPING          ~65 crédits, pris sur le bonus gratuit      0 MAD
+                     si le bonus est vide : le plus petit pack
+                     47 $ (≈ 470 MAD), une réserve pour ~100 projets
+──────────────────────────────────────────────────────────────────
+TOTAL POUR 40 JOURS                                     1 144 MAD
+                                                        ≈ 106 €
+```
+
+**La pub payante n'est PAS dedans.** Elle ne s'ajoute qu'après le jour 21,
+sur une vidéo qui a gagné en gratuit (étape 6).
+
+⚠️ **Tu vérifies les prix au moment du lancement** — Higgs et Metricool
+bougent. Un prix vieux de plus de 3 mois se revérifie avant d'être annoncé.
+
+---
+
+## 🔴 LE TABLEAU DE BORD — pas de suivi, pas de lancement
+
+**Aucune vidéo ne sort tant que Claude ne peut pas VOIR ce qui se passe.**
+Publier sans pouvoir lire, c'est le seul vrai échec (skill projet, étape 14).
+
+**Ce que Claude doit pouvoir lire seul, sans lui demander :**
+
+```
+LES VIDÉOS     Metricool → getAnalyticsDataByMetrics
+               vues, rétention 3 s, clics, par vidéo et par réseau
+LE SITE        quelle vidéo amène qui : le lien ?v=video12
+               mémorisé et joint à la commande
+LES VENTES     Stripe, clé en LECTURE SEULE — jamais une clé qui
+               peut bouger de l'argent
+L'ÉTIQUETTE    le fichier des étiquettes : chaque vidéo, sa source,
+               son hook, son format, son début
+```
+
+**Le rendez-vous automatique :** une Routine (rappel programmé) qui
+réveille Claude **chaque matin**. Il lit les 4 sources, et écrit un point
+de 5 lignes :
+
+```
+hier         X vidéos sorties · X vues · X clics · X ventes
+la meilleure vidéo 07 · rétention 3 s 62 % · source « pubs concurrentes »
+la pire      vidéo 09 · 18 % → à ne pas refaire
+le compteur  jour 12 / 40 · 2 ventes · frein : 🟢 / 🟠 / 🔴
+à faire      une seule action
+```
+
+⚠️ **La Routine se crée au lancement, avec son accord** — elle consomme
+de son forfait Claude chaque matin. Heure : quand sa limite est remise à
+zéro, pas avant.
+
+**La liste à cocher AVANT la première vidéo :**
+
+```
+☐  Metricool branché, les 3 réseaux connectés, Claude lit les chiffres
+☐  le site retient la vidéo d'origine ET la joint à la commande
+☐  Stripe en lecture seule, Claude voit les ventes
+☐  le fichier des étiquettes existe, la vidéo 01 est étiquetée
+☐  la Routine du matin est créée
+```
+
+**Une case vide = on ne lance pas.**
 
 ---
 
