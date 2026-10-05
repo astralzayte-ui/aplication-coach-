@@ -24,10 +24,14 @@ Légende : 🟢 bonne idée · 🟠 à surveiller · 🔴 problème · ✅ fait 
 - On le tente quand même, avec des freins : le palier 2 dira tôt si c'est jouable.
 
 ### Ce qui doit changer pour le rendre possible (par ordre d'effet)
-1. 🟢 **Vendre plus cher** : abonnements dès le lancement (estimation, à tester) :
-   - Solo 79 €/mois (6 vidéos) · Agence 199 €/mois (20 vidéos) · Réseau sur devis.
-   - Maroc : Solo 590 DH/mois · Agence 1 490 DH/mois.
+1. 🟢 **Partir bas, monter ensuite** (décidé le 05/10, estimation à tester) :
+   - Lancement — France : Solo 39 €/mois (3 vidéos) · Agence 99 €/mois (10 vidéos).
+   - Lancement — Maroc : Solo 349 DH/mois (3 vidéos) · Agence 899 DH/mois (10 vidéos).
+   - Prix de lancement gardé à vie pour les 100 premiers abonnés (argument de vente).
+   - Ensuite (palier 3, quand la demande est prouvée) : Solo 79 € / 590 DH · Agence 199 € / 1 490 DH · Réseau sur devis.
    - Vidéo à l'unité gardée comme porte d'entrée (19 € / 149 DH).
+   - Marge estimée (Higgsfield ~4,6 €/vidéo + Lemon Squeezy) : Agence 99 € → ~47 € ; Agence 899 DH → ~390 DH ; Solo 39 € → ~23 €.
+   - 🟠 Avec ces prix bas, il faudrait ~1 560 abonnés Agence au mois 12 : la hausse de prix est obligatoire pour viser le million.
 2. 🟢 **Faire revenir** : abonnement + annuel (2 mois offerts) + parrainage.
 3. 🟠 **Réseaux et franchises par e-mail** : un contrat = des dizaines d'agences d'un coup (modèle Danim).
 4. 🟠 **Réinvestir 100 % des ventes en pub** tant qu'une vente coûte moins de 70 % de sa marge.
