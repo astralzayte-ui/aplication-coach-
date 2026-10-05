@@ -407,3 +407,16 @@ h1, h2, h3 { font-family: var(--titre); font-weight: 400; margin: 0; line-height
 .col-tete h1 { font-size: clamp(32px, 4vw, 52px); text-transform: uppercase; margin-bottom: 8px; }
 .col-tete p { color: var(--texte-doux); margin: 0; }
 .vide { text-align: center; color: var(--texte-doux); padding: 40px 0; }
+
+/* ---- refonte du 05/10 ---- */
+.tout-voir { display: flex; justify-content: center; margin-top: 40px; }
+.lot-fiche { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin: 18px 0 0;
+  padding: 14px 16px; border: 1.5px solid var(--ambre); border-radius: var(--rayon); background: #FDF6EC; }
+.lot-fiche b { display: block; font-size: 15px; }
+.lot-fiche span { display: block; font-size: 13px; color: var(--texte-doux); margin-top: 2px; }
+.lot-fiche .btn { flex: none; min-height: 40px; padding: 0 14px; font-size: 13px; }
+.avis-vide { max-width: 640px; margin: 0 auto; text-align: center; padding: 34px 24px; border: 1px dashed var(--ligne);
+  border-radius: var(--rayon); background: var(--fond-gris); display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.avis-vide p { margin: 0; line-height: 1.7; color: var(--texte-doux); }
+.avis-vide b { color: var(--noir); }
+@media (max-width: 520px) { .lot-fiche { flex-direction: column; align-items: stretch; } }

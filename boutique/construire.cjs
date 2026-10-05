@@ -5,9 +5,17 @@ const ICI = __dirname, OUT = path.join(ICI, 'dist'), LEGAL = path.join(ICI, '..'
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true });
 
-for (const f of ['index.html', 'produit.html', 'collection.html', 'style.css', 'data.js', 'app.js', 'panier.js'])
+/* ---- les 3 pages de la boutique : _tete + corps + _queue ---- */
+const T = n => fs.readFileSync(path.join(ICI, n), 'utf8');
+for (const [nom, titre] of [['index', 'SILENCE — Tu parles pas. Tu portes.'], ['produit', 'SILENCE'], ['collection', 'La boutique — SILENCE']]) {
+  const page = T('_tete.html').replace('__TITRE__', titre) + T('_' + nom + '.corps') + T('_queue.html');
+  fs.writeFileSync(path.join(ICI, nom + '.html'), page);      // gardé à côté, pour les tests
+  fs.writeFileSync(path.join(OUT, nom + '.html'), page);
+}
+for (const f of ['style.css', 'polices.css', 'data.js', 'app.js', 'panier.js'])
   fs.copyFileSync(path.join(ICI, f), path.join(OUT, f));
-fs.cpSync(path.join(ICI, 'img'), path.join(OUT, 'img'), { recursive: true });
+for (const d of ['img', 'polices'])
+  fs.cpSync(path.join(ICI, d), path.join(OUT, d), { recursive: true });
 
 /* ---- les pages légales ---- */
 const tete = fs.readFileSync(path.join(ICI, '_tete.html'), 'utf8');

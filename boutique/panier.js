@@ -34,8 +34,13 @@
   function code() { return lire('silence.code', null); }
   function combien() { return panier().reduce(function (t, a) { return t + a.n; }, 0); }
   function sousTotal() { return panier().reduce(function (t, a) { return t + a.prix * a.n; }, 0); }
-  function remise() { var c = code(); return c ? Math.round(sousTotal() * c.pct) / 100 : 0; }
-  function total() { return sousTotal() - remise() + (C.livraison || 0); }
+  /* le lot « tenue + veste » : 49,90 € au lieu de 54,80 €, appliqué tout seul dès que les deux sont dans le panier */
+  var ENS = 'Sweat à capuche + jogging', VES = 'Veste zippée délavée', GAIN_LOT = 4.90;
+  function nombreDe(nom) { return panier().reduce(function (t, a) { return t + (a.nom === nom ? a.n : 0); }, 0); }
+  function lots() { return Math.min(nombreDe(ENS), nombreDe(VES)); }
+  function remiseLot() { return Math.round(lots() * GAIN_LOT * 100) / 100; }
+  function remise() { var c = code(); return c ? Math.round((sousTotal() - remiseLot()) * c.pct) / 100 : 0; }
+  function total() { return sousTotal() - remiseLot() - remise() + (C.livraison || 0); }
 
   function ajouter(a) {
     var p = panier();
@@ -89,6 +94,13 @@
     p.querySelector('[data-fermer]').onclick = fermer;
     p.querySelector('[data-commander]').onclick = commander;
     p.addEventListener('click', function (e) {
+      var k = e.target.closest('[data-complete]');
+      if (k) {
+        var nom = k.getAttribute('data-complete');
+        ajouter({ nom: nom, prix: nom === VES ? 19.90 : 34.90, taille: k.getAttribute('data-taille-ref') || 'à préciser', n: 1 });
+        compter('complete_tenue', { article: nom });
+        return;
+      }
       var b = e.target.closest('[data-plus],[data-moins]'); if (!b) return;
       changer(+b.getAttribute('data-i'), b.hasAttribute('data-plus') ? 1 : -1);
     });
@@ -97,6 +109,17 @@
 
   function ligneTotal(lib, val, fort) {
     return '<div style="display:flex;justify-content:space-between;padding:3px 0;' + (fort ? 'font-weight:800;font-size:18px;padding-top:8px' : 'font-size:14.5px') + '"><span>' + lib + '</span><span>' + val + '</span></div>';
+  }
+
+  function suggestion(art) {
+    var e = nombreDe(ENS), v = nombreDe(VES), manque = e > v ? VES : (v > e ? ENS : null);
+    if (!manque) return '';
+    var ref = art.filter(function (a) { return a.nom === (manque === VES ? ENS : VES); })[0];
+    var prix = manque === VES ? 19.90 : 34.90;
+    return '<div style="margin:18px 0 6px;padding:14px 16px;border:1.5px solid #E0A458;border-radius:4px;background:#FDF6EC">' +
+      '<div style="font-weight:800;font-size:14.5px">Complète la tenue : −4,90 €</div>' +
+      '<div style="font-size:13px;color:#66665F;margin:3px 0 12px;line-height:1.5">Ajoute ' + (manque === VES ? 'la veste' : 'le sweat + jogging') + ' (' + euro(prix) + ') : le prix du lot s\'applique tout seul.</div>' +
+      '<button type="button" data-complete="' + echap(manque) + '" data-taille-ref="' + echap(ref && ref.taille || '') + '" style="min-height:42px;padding:0 16px;background:#0A0A0A;color:#fff;border:0;border-radius:4px;font-weight:800;font-size:13px;letter-spacing:.04em;text-transform:uppercase">Ajouter ' + (manque === VES ? 'la veste' : 'l\'ensemble') + '</button></div>';
   }
 
   function dessiner() {
@@ -114,9 +137,10 @@
             '<button type="button" data-plus data-i="' + i + '" aria-label="Plus" style="background:none;border:0;width:36px;height:34px;font-size:17px">+</button>' +
           '</div></div>' +
           '<div style="font-weight:700;white-space:nowrap">' + euro(a.prix * a.n) + '</div></div>';
-      }).join('');
+      }).join('') + suggestion(art);
     }
     var t = ligneTotal('Sous-total', euro(sousTotal()));
+    if (remiseLot()) t += ligneTotal('Lot tenue + veste' + (lots() > 1 ? ' ×' + lots() : ''), '<span style="color:#1B7F3B;font-weight:700">−' + euro(remiseLot()) + '</span>');
     if (c && art.length) t += ligneTotal('Code ' + echap(c.code) + ' (−' + c.pct + ' %)', '<span style="color:#1B7F3B;font-weight:700">−' + euro(remise()) + '</span>');
     t += ligneTotal('Livraison', C.livraison == null ? 'confirmée sur WhatsApp' : euro(C.livraison));
     t += ligneTotal('Total', euro(total()), true);
@@ -133,6 +157,7 @@
     var lignes = art.map(function (a) { return '• ' + a.nom + (a.taille ? ' — taille ' + a.taille : '') + ' ×' + a.n + ' — ' + euro(a.prix * a.n); });
     var txt = 'Bonjour, je veux commander sur SILENCE :\n\n' + lignes.join('\n') +
       '\n\nSous-total : ' + euro(sousTotal()) +
+      (remiseLot() ? '\nLot tenue + veste : −' + euro(remiseLot()) : '') +
       (c ? '\nCode ' + c.code + ' : −' + euro(remise()) : '') +
       (C.livraison == null ? '\nLivraison : à confirmer' : '\nLivraison : ' + euro(C.livraison)) +
       '\nTotal : ' + euro(total()) +

@@ -38,7 +38,7 @@
     var messages = [
       '🇫🇷 🇲🇦 France &amp; Maroc',
       '−10 % sur ta première commande',
-      'Contrôlé avant l\'envoi',
+      'Changé d\'avis ? Remboursé sur ta carte',
       'Paiement par carte, jamais à la livraison',
       'SAV sous 24 h'
     ];
@@ -339,7 +339,10 @@
 
     // les avis — seulement s'il y en a de vrais
     var av = $('[data-avis]');
-    if (av) { if (!window.AVIS.length) av.closest('section').classList.add('cache'); }
+    if (av && !window.AVIS.length) {
+      av.outerHTML = '<div class="avis-vide"><p><b>Zéro avis pour l\'instant — et zéro avis inventé.</b><br>La boutique ouvre : les premiers avis arriveront avec les premières commandes.</p>' +
+        '<a class="btn btn-vide" href="https://instagram.com/' + C.instagram + '" target="_blank" rel="noopener">Tague @' + C.instagram + ' · on te reposte</a></div>';
+    }
 
     faq($('[data-faq]'));
   }
@@ -352,6 +355,15 @@
   }
 
   /* ---------- la fiche produit ---------- */
+  /* l'ensemble et la veste se vendent mieux à deux : le panier applique le prix du lot tout seul */
+  function lotFiche(p) {
+    if (p.id !== 'ensemble' && p.id !== 'veste') return '';
+    var autre = produit(p.id === 'ensemble' ? 'veste' : 'ensemble');
+    return '<div class="lot-fiche"><div><b>Avec ' + (p.id === 'ensemble' ? 'la veste' : 'le sweat + jogging') + ' : 49,90 €</b>' +
+      '<span>au lieu de 54,80 € séparément — le panier l\'applique tout seul</span></div>' +
+      '<a class="btn btn-vide" href="produit.html?p=' + autre.id + '">Voir ' + (p.id === 'ensemble' ? 'la veste' : 'l\'ensemble') + '</a></div>';
+  }
+
   function fiche() {
     var zone = $('[data-fiche]'); if (!zone) return;
     var id = new URLSearchParams(location.search).get('p') || 'ensemble';
@@ -391,11 +403,12 @@
         '<div class="quantite"><button type="button" aria-label="Moins" data-qte-moins>−</button><input type="number" min="1" max="9" value="1" data-qte aria-label="Quantité"><button type="button" aria-label="Plus" data-qte-plus>+</button></div>' +
         '<button class="btn btn-plein btn-large" type="button" data-ajouter="' + echap(p.nom) + '" data-prix="' + p.prix.toFixed(2).replace('.', ',') + '">Ajouter au panier</button>' +
         '<ul class="reassure-liste">' +
-          '<li>' + ICO.loupeCheck + 'Contrôlé avant l\'envoi, chaque commande</li>' +
+          '<li>' + ICO.retour + 'Changé d\'avis ? Remboursé sur ta carte</li>' +
           '<li>' + ICO.bouclier + 'Un défaut ? On rembourse ou on remplace</li>' +
           '<li>' + ICO.carte + 'Paiement par carte, jamais à la livraison</li>' +
           '<li>' + ICO.bulle + 'SAV sous 24 h, sur WhatsApp</li>' +
         '</ul>' +
+        lotFiche(p) +
         '<div class="ticket" aria-label="Récapitulatif">' +
           '<div class="ticket-tete"><span>Ta commande</span><span>' + num + '</span></div>' +
           '<div class="ticket-ligne"><span>' + echap(p.court) + '</span><b>' + euro(p.prix) + '</b></div>' +

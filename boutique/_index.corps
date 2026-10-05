@@ -8,7 +8,7 @@
       <div>
         <span class="etiquette">Marque indépendante · France &amp; Maroc</span>
         <h1>Tu parles pas.<br>Tu portes.</h1>
-        <p class="chapeau">Du streetwear 25 à 36 % sous le prix du marché. Le grammage écrit sur chaque pièce, pas des adjectifs. Et chaque commande contrôlée avant de partir.</p>
+        <p class="chapeau">Du streetwear 25 à 36 % sous le prix du marché. Le grammage écrit sur chaque pièce, pas des adjectifs. Et un vrai contact : réponse sous 24 h.</p>
         <div class="heros-boutons">
           <a class="btn btn-plein" href="collection.html?c=tout">Découvrir →</a>
           <a class="btn btn-vide" href="produit.html?p=tshirt">Le test à 11 € →</a>
@@ -21,7 +21,7 @@
       <div class="heros-photo">
         <img src="img/hero.jpg" alt="Un homme en survêtement sous une structure de béton" fetchpriority="high">
         <div class="heros-badge"><b>−36 %</b><span>vs le marché</span></div>
-        <div class="heros-carte" data-icone="loupeCheck"><span data-ico="loupeCheck"></span><div><b>Contrôlé avant l'envoi</b><span>Chaque commande</span></div></div>
+        <div class="heros-carte"><span data-ico="bulle"></span><div><b>Réponse sous 24 h</b><span>Sur WhatsApp, avant comme après</span></div></div>
       </div>
     </div>
   </section>
@@ -34,6 +34,7 @@
       <button class="onglet" type="button" role="tab" aria-selected="false" data-onglet="vestes">Vestes</button>
     </div>
     <div class="grille" data-grille></div>
+    <div class="tout-voir"><a class="btn btn-plein" href="collection.html?c=tout">Tout voir</a></div>
   </section>
 
   <!-- 3. LES DEUX BANNIÈRES -->
@@ -50,7 +51,7 @@
 
   <!-- 4. LA RÉASSURANCE -->
   <section class="enveloppe reassurance">
-    <div class="reassure"><i data-ico="loupeCheck"></i><div><b>Contrôlé avant l'envoi</b><span>Chaque commande</span></div></div>
+    <div class="reassure"><i data-ico="retour"></i><div><b>Changé d'avis ?</b><span>Remboursé sur ta carte</span></div></div>
     <div class="reassure"><i data-ico="carte"></i><div><b>Paiement sécurisé</b><span>Par carte bancaire</span></div></div>
     <div class="reassure"><i data-ico="bouclier"></i><div><b>Un défaut ?</b><span>On rembourse ou on remplace</span></div></div>
     <div class="reassure"><i data-ico="bulle"></i><div><b>SAV réactif</b><span>Réponse sous 24 h</span></div></div>
@@ -88,7 +89,7 @@
       <div class="faq" data-faq></div>
       <div class="badges">
         <span>🇫🇷 🇲🇦 <b>Marque indépendante</b> · France &amp; Maroc</span>
-        <span><b>Contrôlé</b> avant l'envoi</span>
+        <span><b>Remboursé</b> sur ta carte</span>
         <span><b>−25 à −36 %</b> sous le marché</span>
         <span><b>SAV</b> sous 24 h</span>
       </div>

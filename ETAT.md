@@ -154,10 +154,12 @@ après         passer le skill site-legal, verdict en couleurs
 
 **À régler avec la refonte :**
 ```
-🔴  les polices viennent de Google → les copier sur le site
-    (il a demandé une explication avant)
-🔴  « Contrôlé avant l'envoi » partout → à retirer tant que l'agent
-    ne l'a pas confirmé par écrit
+✅  05/10 : les polices sont copiées sur le site (plus rien chez Google)
+✅  05/10 : « Contrôlé avant l'envoi » retiré de la pub du site (bandeau,
+    héros, réassurance, fiche). 🟠 Reste dans la FAQ et les CGV, à sa
+    demande — à retirer aussi si l'agent ne le confirme pas
+✅  05/10 : le lot tenue + veste (49,90 €) s'applique tout seul dans le
+    panier, avec la suggestion « complète la tenue »
 ✅  04/10 : case « j'accepte les e-mails » obligatoire (popup + pied)
 ✅  04/10 : page Retours et remboursements (carte, pas de bon imposé)
 ✅  04/10 : la mesure des vidéos écrite dans la confidentialité
