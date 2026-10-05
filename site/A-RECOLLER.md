@@ -83,7 +83,7 @@ page privée qui affiche : vidéo / visites / clics / paniers / ventes.
 🔴  renvoi à la charge du client s'il change d'avis
     gratuit si le produit a un défaut — là c'est la loi
 🔴  le dropshipping est dit clairement, et c'est l'argument
-🔴  le contrôle qualité est annoncé au même endroit
+❌  le contrôle qualité : RETIRÉ le 05/10 (pas confirmé par l'agent)
 🔴  aucun prix barré qui n'a pas été réellement pratiqué
 🔴  les prix viennent de marque/prix.md, jamais du cahier des charges
 ```

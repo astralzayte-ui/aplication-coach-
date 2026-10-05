@@ -99,7 +99,7 @@ window.FAQ = [
   { q: 'Le paiement est-il sécurisé ?',
     r: "Paiement par carte uniquement, jamais à la livraison. Tes données bancaires ne passent jamais par nous." },
   { q: 'Où sont fabriquées vos pièces ?',
-    r: "On ne fabrique pas nous-mêmes, et on le dit : nos pièces viennent d'un atelier partenaire, stockées et expédiées depuis l'Europe. C'est ce qui nous permet d'être 25 à 36 % sous le prix du marché. Chaque commande est contrôlée avant de partir — et ton contrat est avec nous, avec nous seuls." },
+    r: "On ne fabrique pas nous-mêmes, et on le dit : nos pièces viennent d'un atelier partenaire, stockées et expédiées depuis l'Europe. C'est ce qui nous permet d'être 25 à 36 % sous le prix du marché. Et ton contrat est avec nous, avec nous seuls." },
   { q: 'Une question, un souci ?',
     r: "On répond sous 24 h, sur WhatsApp ou par e-mail. Avant comme après ta commande." }
 ];

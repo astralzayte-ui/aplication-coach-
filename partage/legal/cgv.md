@@ -94,9 +94,6 @@ avec nous seuls. C'est nous qui répondons de la conformité du produit, de la
 garantie légale, de la rétractation et du remboursement. **Tu n'auras jamais
 à t'adresser à l'atelier.**
 
-**Le contrôle qualité :** chaque commande est contrôlée pièce par pièce avant
-de quitter l'entrepôt.
-
 | | |
 |---|---|
 | Expédition depuis | **[pays de l'entrepôt européen]** |
@@ -173,14 +170,6 @@ Elle couvre les défauts non visibles rendant l'article inutilisable, pendant
 remboursement total ou une réduction du prix.
 
 *Articles 1641 et suivants du code civil.*
-
-### Notre contrôle avant envoi
-
-Chaque pièce est contrôlée avant expédition. **Un défaut constaté, nous
-remboursons ou remplaçons.** Ce contrôle s'ajoute aux garanties ci-dessus,
-il ne les remplace pas.
-
----
 
 ## 9. Une réclamation
 
