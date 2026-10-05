@@ -1546,8 +1546,8 @@ la page. C'est ça qui fait la différence entre une marque et un intermédiaire
 
 ```
 VAGUE 1 — jours 1 à 20      40 vidéos, 2 par jour
-  60 % dans le moule
-  40 % hors moule           ← le témoin
+  on teste SEULEMENT la source et l'angle
+  le moule et le sous-titre restent FIXES
 
         🛑 JOUR 21 — ON LIT
 
@@ -1575,6 +1575,29 @@ de vidéos sorties, pas la date.
 ---
 
 ### Étape 13 — Le témoin
+
+### 🔴 UNE question par vague — décidé le 05/10
+
+**40 vidéos ne répondent pas à 4 questions à la fois.** Tester la source,
+l'angle, le moule et le sous-titre en même temps, c'est ne savoir à la fin
+ce qui a joué.
+
+```
+VAGUE 1   la SOURCE et l'ANGLE        moule et sous-titre fixes (A)
+VAGUE 2   le SOUS-TITRE (A contre C)  sur la source et l'angle gagnants
+PROJET 2  le MOULE contre le témoin   quand le reste est connu
+```
+
+**Ce que 80 vidéos peuvent dire, honnêtement :**
+
+```
+🟢  un GROS écart (une source à 55 % de rétention, une autre à 25 %)
+🔴  un petit écart (41 % contre 38 %) → c'est du bruit, on garde l'ordre
+    de départ
+```
+
+*Le reste de cette étape (moule contre témoin) s'applique à partir du
+projet 2, ou de la vague 2 si le sous-titre est déjà tranché.*
 
 **60 % dans le moule, 40 % hors moule.**
 
