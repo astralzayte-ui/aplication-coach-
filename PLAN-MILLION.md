@@ -83,6 +83,10 @@ reste interdite.
 5 à 20 % la commission du créateur — payée SEULEMENT s'il vend
 ```
 
+**Comment on les trouve : on ne les contacte pas.** On fixe une commission
+(ex. 15 %) : le produit apparaît dans la vitrine des créateurs, ils le
+choisissent eux-mêmes. Plus des invitations en un clic depuis TikTok.
+
 **Pourquoi c'est fait pour toi :** **pas ton visage** (ce sont les leurs),
 **pas d'appel** (les invitations passent par la plateforme), **pas
 d'avance** (ils sont payés à la vente).
@@ -90,9 +94,8 @@ d'avance** (ils sont payés à la vente).
 🔴 **Mais :**
 - La commission TikTok + celle du créateur prennent **~24 % du prix**. Ça ne
   marche qu'avec le levier 1 (panier à 55 €).
-- Un vendeur hors Union européenne doit être inscrit à la **filière
-  textile (Refashion)** et souvent avoir **un représentant en France**.
-  **À vérifier avec ta LLC avant d'ouvrir.**
+- TikTok exige la **filière textile (Refashion)** pour ouvrir la boutique.
+  **On la règle au palier 3, pas avant** (décidé le 05/10).
 
 ### 🟢 3. Le contenu 80 / 20
 
@@ -104,6 +107,10 @@ passent, et l'algorithme coupe la vidéo.
        humour — le vêtement est porté, pas vendu
 20 %   le produit, le prix, le lot
 ```
+
+✅ **Appliqué le 05/10 :** le moule montre le prix dans 1 vidéo sur 5
+(skills `projet` et `pub`). Les scripts ne sont pas à refaire. Les vidéos
+**boostées** (payées, après le jour 21) peuvent vendre à 100 %.
 
 🟢 **La tenue du jour EST du contenu qui plaît** : c'est ce qu'a fait le
 compte de la niche à 22,8 M de vues. Le moule (skill `projet`) reste bon.

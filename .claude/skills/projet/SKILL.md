@@ -965,11 +965,33 @@ bibliothèque vaut plus que n'importe quel scraping payant.
 0-1 s     le hook s'affiche          ← change à chaque fois
 1-3 s     l'action                   ← même geste, toujours
 3-6 s     le plan large              ← même cadrage, toujours
-6-8 s     le prix                    ← même place à l'écran
+6-8 s     le prix — 1 vidéo sur 5    ← même place à l'écran
+          les 4 autres : le plan de la tenue portée, rien à vendre
 8-10 s    la signature               ← identique
 ```
 
 Écrire un script = **changer une phrase**, pas repartir de zéro.
+
+### 🔴 La règle 80 / 20 — décidée le 05/10
+
+**Une vidéo gratuite qui ne fait QUE vendre tourne mal** : les gens passent,
+et l'algorithme coupe la vidéo. *(Source : Rob Prsa, 1 M$ de ventes et 500
+marques accompagnées · même constat chez Odd Muse.)*
+
+```
+80 %   la tenue PORTÉE — tenue du jour, style, réaction de rue, humour
+       pas de prix, pas de « achète »
+20 %   la vente — le prix, le lot, « lien en bio »
+```
+
+🟢 **Le vêtement est dans CHAQUE vidéo.** Ce qui change, c'est qu'on ne le
+vend que dans une sur cinq.
+
+🔴 **Ça ne vaut que pour le gratuit.** Une vidéo boostée (payée, après le
+jour 21, sur une gagnante) peut vendre directement : là, on paie pour être
+vu, l'algorithme ne coupe rien.
+
+**Dans l'étiquette de chaque vidéo :** `80` ou `20`.
 
 **Pourquoi :** un compte neuf où chaque vidéo ressemble à rien de la précédente, l'algorithme ne sait pas à qui le montrer. La répétition est le signal.
 

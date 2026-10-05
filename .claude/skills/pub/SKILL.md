@@ -234,6 +234,18 @@ avec.** Sans lien, la pub n'a jamais existé.
    → c'est le début qui décide, pas le reste
 ```
 
+### 🔴 80 / 20 en gratuit — décidé le 05/10
+
+```
+80 %   la tenue portée, SANS prix ni « achète »
+       (tenue du jour, style, réaction de rue, humour)
+20 %   la vente : prix, lot, « lien en bio »
+```
+
+**Sur les 40 vidéos d'une vague : 32 portées, 8 qui vendent.** Les 8 se
+répartissent sur les 5 sources. Une vidéo **boostée** (payée) peut vendre
+à 100 % — la règle ne vaut que pour le gratuit.
+
 ### Les outils
 
 | Pour | L'outil |
@@ -281,7 +293,7 @@ les chiffres        Metricool → getAnalyticsDataByMetrics
 ### Chaque vidéo porte son étiquette AVANT de sortir
 
 ```
-vidéo 07 · source « pubs concurrentes » · angle « qualité » · hook n°12
+vidéo 07 · source « pubs concurrentes » · angle « qualité » · hook n°12 · 80
 ```
 
 ### Les sources : parts égales, puis le gagnant prend plus
@@ -341,6 +353,13 @@ au-dessus du coût max         → on coupe, même si « ça clique »
 
 **On concentre :** un petit budget sur UNE vidéo gagnante pendant 2
 semaines, pas éparpillé sur 10.
+
+**TikTok Shop + créateurs affiliés (palier 3 du plan million) :** on ne
+contacte personne. On fixe une commission (ex. 15 %) dans le Centre
+d'affiliation : le produit apparaît dans la vitrine des créateurs, ils le
+choisissent et tournent eux-mêmes. En plus, des invitations en un clic
+depuis TikTok. **Payés seulement s'ils vendent.** 🔴 TikTok exige la
+filière textile pour ouvrir la boutique — à régler au palier 3.
 
 **TikTok :** on booste la vidéo organique gagnante elle-même (elle garde
 ses vues et ses commentaires). **Meta :** même principe, la publication

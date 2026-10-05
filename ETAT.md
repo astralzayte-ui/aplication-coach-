@@ -197,6 +197,11 @@ LE MÊME dans toutes les vidéos (l'image de marque). 🔴 Jamais présenté
 comme le fondateur ni comme un client · 🔴 étiquette « contenu IA » mise
 automatiquement par Claude via Metricool. Pas de Cowork (décidé le 05/10).
 
+**Décidé le 05/10 :** contenu gratuit 80/20 (prix dans 1 vidéo sur 5) ·
+stocks en Europe · TikTok Shop + créateurs affiliés au palier 3 ·
+filière textile réglée au palier 3 · pub payée = seulement la vidéo
+gratuite qui a gagné, avec l'argent des ventes.
+
 **✅ Plan écrit le 05/10 : `PLAN-MILLION.md`.** Verdict : 1 M€ en 12 mois 🔴 tel quel ·
 année 1 réaliste 100-300 k€ (estimation) · le verrou = la marge (25 €/commande visés).
 
