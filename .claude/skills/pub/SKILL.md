@@ -67,21 +67,21 @@ L'ÉTIQUETTE    le fichier des étiquettes : chaque vidéo, sa source,
                son hook, son format, son début
 ```
 
-**Le rendez-vous automatique :** une Routine (rappel programmé) qui
-réveille Claude **chaque matin**. Il lit les 4 sources, et écrit un point
-de 5 lignes :
+**Pas de rappel automatique — décidé le 05/10.** Claude gère, et
+**répond quand il demande** (« ça donne quoi ? », « on en est où les
+pubs ? »). À ce moment-là, il lit les 4 sources et répond en 5 lignes :
 
 ```
-hier         X vidéos sorties · X vues · X clics · X ventes
-la meilleure vidéo 07 · rétention 3 s 62 % · source « pubs concurrentes »
-la pire      vidéo 09 · 18 % → à ne pas refaire
-le compteur  jour 12 / 40 · 2 ventes · frein : 🟢 / 🟠 / 🔴
-à faire      une seule action
+depuis le début   X vidéos sorties · X vues · X clics · X ventes
+la meilleure      vidéo 07 · rétention 3 s 62 % · source « pubs concurrentes »
+la pire           vidéo 09 · 18 % → à ne pas refaire
+le compteur       jour 12 / 40 · 2 ventes · frein : 🟢 / 🟠 / 🔴
+à faire           une seule action
 ```
 
-⚠️ **La Routine se crée au lancement, avec son accord** — elle consomme
-de son forfait Claude chaque matin. Heure : quand sa limite est remise à
-zéro, pas avant.
+⚠️ **Claude ne voit rien entre deux conversations.** Les chiffres sont
+gardés par Metricool, Stripe et le site : rien ne se perd, tout se lit
+d'un coup quand il demande.
 
 **La liste à cocher AVANT la première vidéo :**
 
@@ -90,7 +90,6 @@ zéro, pas avant.
 ☐  le site retient la vidéo d'origine ET la joint à la commande
 ☐  Stripe en lecture seule, Claude voit les ventes
 ☐  le fichier des étiquettes existe, la vidéo 01 est étiquetée
-☐  la Routine du matin est créée
 ```
 
 **Une case vide = on ne lance pas.**
