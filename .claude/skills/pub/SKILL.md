@@ -134,8 +134,9 @@ d'un coup quand il demande.
 | Les commentaires sous leurs pubs | `v1_tiktok_video_comments`, `v2_instagram_post_comments` | crédits |
 | Meta en direct *(si branché)* | connecteur `meta_ads` → `ads_library_search` | gratuit |
 
-**Crédits ScrapeCreators :** ~1 par appel, le bonus gratuit en couvre des
-milliers. **On vérifie le solde avant** : `v1_account_credit_balance`.
+**Crédits ScrapeCreators :** ~1 par appel. 🔴 **Le 05/10, il n'en restait
+que 19** — le bonus gratuit est **à réclamer** sur son compte. On vérifie le
+solde avant (`v1_account_credit_balance`) et on le dit s'il ne suffit pas.
 
 ⚠️ **On cherche 5 concurrents qui VENDENT** (avis récents, pubs actives),
 pas les plus connus. Une grande marque gagne grâce à son nom — on ne peut

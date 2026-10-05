@@ -197,6 +197,9 @@ LE MÊME dans toutes les vidéos (l'image de marque). 🔴 Jamais présenté
 comme le fondateur ni comme un client · 🔴 étiquette « contenu IA » mise
 automatiquement par Claude via Metricool. Pas de Cowork (décidé le 05/10).
 
+**✅ Plan écrit le 05/10 : `PLAN-MILLION.md`.** Verdict : 1 M€ en 12 mois 🔴 tel quel ·
+année 1 réaliste 100-300 k€ (estimation) · le verrou = la marge (25 €/commande visés).
+
 **Le plan million se lance quand il dit « go million »** — skill
 `million`, sans lui reposer ces questions.
 
