@@ -42,6 +42,7 @@ Dernière mise à jour : 05/10/2026. À tenir à jour à chaque décision import
 
 ## Paiement — Lemon Squeezy
 - Compte sur astralzayte@gmail.com, boutique encore nommée « ImmoMotion » / URL immomotion → le fondateur doit renommer en ImmoClap / immoclap, e-mail contact → contact.immoclap@gmail.com, devise → EUR, logo.
+- 🔴 05/10 : vérification d'identité REFUSÉE (« Rejected », sans raison). Plan : e-mail au support (hello@lemonsqueezy.com) pour la raison + nouvel examen ; en parallèle ouvrir Polar.sh (Merchant of Record, accepte les particuliers, Maroc dans la liste des pays payés via Stripe Connect Express ; frais 4 % + 0,40 $ +1,5 % carte hors US +0,5 % abonnement). Dodo Payments : Maroc fermé aux nouveaux comptes depuis le 23/03/2026. Si on change de prestataire : mettre à jour CGV/remboursement (Lemon Squeezy cité).
 - Vérification d'identité Stripe ENVOYÉE le 04/10 (particulier, Maroc, RIB CIH). Statut « En bref » = en examen, réponse attendue sous 2–3 jours ouvrés (≈ mardi/mercredi 6–7/10).
 - Reste : 2FA, créer les produits (1 vidéo, pack 5, pack 10) après validation.
 - Lemon Squeezy n'a pas de bouton de suppression de compte (support : hello@lemonsqueezy.com).
