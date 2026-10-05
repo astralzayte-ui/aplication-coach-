@@ -19,7 +19,7 @@
     return vieux || { v: '', le: Date.now() };
   }
 
-  /* ---------- 2. le comptage (la partie serveur reste à brancher) ---------- */
+  /* ---------- 2. le comptage → /api/clic (netlify/functions/clic.mjs) ---------- */
   function compter(quoi, extra) {
     var s = source(), corps = { quoi: quoi, v: s.v, page: location.pathname };
     for (var k in (extra || {})) corps[k] = extra[k];
@@ -168,7 +168,10 @@
 
   /* ---------- 7. le branchement : on écoute le document entier ---------- */
   function brancher() {
-    source(); compter('visite');
+    source();
+    // une visite = un passage sur le site, pas chaque page vue
+    var nouvelle = true; try { nouvelle = !sessionStorage.getItem('silence.vu'); sessionStorage.setItem('silence.vu', '1'); } catch (e) {}
+    if (nouvelle) compter('visite');
     document.addEventListener('click', function (e) {
       var b = e.target.closest && e.target.closest('[data-ouvrir-panier]');
       if (b) { e.preventDefault(); ouvrir(); return; }

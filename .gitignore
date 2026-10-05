@@ -2,3 +2,5 @@ video/node_modules/
 video/out/
 build/
 boutique/dist/
+boutique/node_modules/
+boutique/.netlify/

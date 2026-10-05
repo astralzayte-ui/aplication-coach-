@@ -1,0 +1,9 @@
+{
+  "name": "silence-boutique",
+  "private": true,
+  "type": "module",
+  "description": "La boutique SILENCE : site statique + 2 fonctions (le compteur et le relevé).",
+  "dependencies": {
+    "@netlify/blobs": "^10.0.0"
+  }
+}

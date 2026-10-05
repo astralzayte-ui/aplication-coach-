@@ -61,6 +61,10 @@ LES VIDÉOS     Metricool → getAnalyticsDataByMetrics
                vues, rétention 3 s, clics, par vidéo et par réseau
 LE SITE        quelle vidéo amène qui : le lien ?v=video12
                mémorisé et joint à la commande
+               ✅ SILENCE (05/10) : compteur /api/clic → visites,
+               clics, paniers, commandes PAR VIDÉO · Claude lit :
+               node boutique/outils/releve.mjs  (avec NODE_USE_ENV_PROXY=1
+               et NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt)
 LES VENTES     Stripe, clé en LECTURE SEULE — jamais une clé qui
                peut bouger de l'argent
 L'ÉTIQUETTE    le fichier des étiquettes : chaque vidéo, sa source,
@@ -87,9 +91,9 @@ d'un coup quand il demande.
 
 ```
 ☐  Metricool branché, les 3 réseaux connectés, Claude lit les chiffres
-☐  le site retient la vidéo d'origine ET la joint à la commande
+✅  le site retient la vidéo d'origine ET la joint à la commande (05/10)
 ☐  Stripe en lecture seule, Claude voit les ventes
-☐  le fichier des étiquettes existe, la vidéo 01 est étiquetée
+☐  le fichier des étiquettes existe (✅ marque/etiquettes-videos.md), la vidéo 01 est étiquetée
 ```
 
 **Une case vide = on ne lance pas.**

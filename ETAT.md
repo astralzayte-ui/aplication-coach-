@@ -160,6 +160,12 @@ après         passer le skill site-legal, verdict en couleurs
     On le remet seulement si l'agent le confirme PAR ÉCRIT
 ✅  05/10 : le lot tenue + veste (49,90 €) s'applique tout seul dans le
     panier, avec la suggestion « complète la tenue »
+✅  05/10 : LE TABLEAU DE BORD du site — le compteur /api/clic range
+    visites, clics, paniers, commandes PAR VIDÉO (aucune donnée perso).
+    Claude lit : node boutique/outils/releve.mjs
+    🔴 Publier UNIQUEMENT avec boutique/outils/publier.sh — un zip
+    envoyé à l'ancienne efface les 2 fonctions
+    Les étiquettes des vidéos : marque/etiquettes-videos.md
 ✅  04/10 : case « j'accepte les e-mails » obligatoire (popup + pied)
 ✅  04/10 : page Retours et remboursements (carte, pas de bon imposé)
 ✅  04/10 : la mesure des vidéos écrite dans la confidentialité
