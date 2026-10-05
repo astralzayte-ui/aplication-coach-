@@ -1215,7 +1215,7 @@ cher, avec l'économie visible sur chacun.**
 
 ```
 LA PIÈCE SEULE          34,90 €
-LA PIÈCE + UNE AUTRE    49,90 €   ⭐ LE PLUS CHOISI
+LA PIÈCE + UNE AUTRE    49,90 €   ⭐ RECOMMANDÉ
 LA TENUE ENTIÈRE        84,00 €   −26 %
 ```
 
