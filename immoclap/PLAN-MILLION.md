@@ -1,10 +1,10 @@
 # Plan million — ImmoClap
 
-Statut : écrit le 05/10/2026, **en attente de validation du fondateur**.
+Statut : structure écrite le 05/10/2026, **rien de lancé** — en attente de validation.
 Légende : 🟢 bonne idée · 🟠 à surveiller · 🔴 problème · ✅ fait · ❌ manque.
 
 ## 1. Ce que le fondateur a répondu
-- Million = **argent qui rentre** (chiffre d'affaires), **en 1 an**. Devise non précisée → on vise **1 000 000 DH**.
+- Million = **argent qui rentre** (chiffre d'affaires), **1 000 000 €**, **en 1 an** (corrigé le 05/10).
 - Ouvert à un **abonnement agences**, et à monter ou baisser les prix.
 - Veut être **rentable dès le début** (le client paie avant que la vidéo soit générée).
 - Budget total : pub 800–900 DH · site 100 DH · Higgsfield 200 DH · tests 100 DH · Metricool ~172 DH/mois.
@@ -13,18 +13,28 @@ Légende : 🟢 bonne idée · 🟠 à surveiller · 🔴 problème · ✅ fait 
 - Marchés : **Maroc + France en même temps**.
 - Les messages écrits (WhatsApp, e-mail, DM) ne sont **pas** refusés → c'est le levier principal.
 
-## 2. Calcul à rebours (1 000 000 DH en 12 mois)
-- Moyenne : **83 300 DH/mois** = **2 740 DH/jour**.
-- Comme on part de zéro, il faut finir vers **~150 000 DH/mois** au mois 12 (estimation, montée régulière).
-- En vidéos à l'unité (moyenne ~175 DH, mix 19 € et 149 DH) : **~16 vidéos/jour** en moyenne, **~29/jour** à la fin.
-- En abonnements (~900 DH/mois en moyenne, estimation) : **~90 abonnés** en moyenne, **~170 abonnés** au mois 12.
-- Coût Higgsfield ~50 DH/vidéo → ~30 % du prix part en génération.
+## 2. Calcul à rebours — BUT RETENU : 1 000 000 € de CA en 12 mois
+(décidé le 05/10 : « sois plus ambitieux, on part sur un an » ; 1 000 000 € ≈ 10,8 M DH)
+- Moyenne : **83 300 €/mois** = **2 740 €/jour**.
+- En partant de zéro : finir vers **~154 000 €/mois** au mois 12 (estimation, montée régulière).
+- À l'unité (19 €) : **~144 vidéos/jour** → 🔴 (plus de 100/jour).
+- Abonnement 79 €/mois : **~1 950 abonnés** au mois 12 → 🔴.
+- Abonnement « Agence » 199 €/mois : **~775 abonnés** au mois 12 → 🟠.
+- Verdict honnête : 🔴 **avec ~1 300 DH, sans appeler, seul : très peu probable.** Danim l'a fait en ~9 mois, mais avec une équipe commerciale et 2,5 M€ levés.
+- On le tente quand même, avec des freins : le palier 2 dira tôt si c'est jouable.
 
-Verdict :
-- 🔴 **1 000 000 DH en 12 mois, avec ~1 300 DH et sans appeler : très peu probable.** Les vrais chiffres ci-dessous montrent que les petits outils solo du même métier font 25 000 à 500 000 DH par an.
-- 🟠 **1 000 000 DH en 18 à 24 mois** : possible si l'abonnement agences prend et si un canal gratuit (messages, contenu) marche.
-- 🔴 **1 000 000 €** : hors de portée en 1 an avec ces règles.
-- On garde le cap « million », mais chaque palier a son frein : on ne dépense jamais plus que ce qui rentre.
+### Ce qui doit changer pour le rendre possible (par ordre d'effet)
+1. 🟢 **Vendre plus cher** : abonnements dès le lancement (estimation, à tester) :
+   - Solo 79 €/mois (6 vidéos) · Agence 199 €/mois (20 vidéos) · Réseau sur devis.
+   - Maroc : Solo 590 DH/mois · Agence 1 490 DH/mois.
+   - Vidéo à l'unité gardée comme porte d'entrée (19 € / 149 DH).
+2. 🟢 **Faire revenir** : abonnement + annuel (2 mois offerts) + parrainage.
+3. 🟠 **Réseaux et franchises par e-mail** : un contrat = des dizaines d'agences d'un coup (modèle Danim).
+4. 🟠 **Réinvestir 100 % des ventes en pub** tant qu'une vente coûte moins de 70 % de sa marge.
+5. 🔴 Rester sur 2 marchés seulement (France + Maroc) : pas de nouveau pays avant le palier 4.
+
+## Ancien calcul (1 000 000 DH) — remplacé
+- 83 300 DH/mois en moyenne ; 1 M DH en 1 an 🔴, en 18–24 mois 🟠.
 
 ## 3. Vrais parcours (même métier : photos → vidéo immo)
 | Qui | Chiffres réels | Ce qu'on en retient |
@@ -41,57 +51,46 @@ Leçons :
 - 🟢 Maroc : aucun concurrent vidéo IA trouvé → place libre.
 - 🔴 Le vrai problème, ce n'est pas le produit, c'est **trouver les clients** sans appeler.
 
-## 4. Les 5 paliers
+## 4. Les 5 paliers (objectif 1 M€ en 12 mois)
 
-### Palier 1 — Première vente (mois 1)
-- **Preuve :** 1 vente payée par un inconnu.
-- **Actions :**
-  1. Finir auto-entrepreneur + Lemon Squeezy, créer les 3 produits.
-  2. Faire 2 vidéos d'exemple réelles (tests 100 DH).
-  3. Envoyer un WhatsApp aux 160 agences du Maroc (`prospection/agences-maroc.csv`) avec la vidéo d'exemple et une offre de lancement (-30 % sur la 1re vidéo). Claude écrit les messages, le fondateur appuie sur « envoyer ».
-- **Coût :** ~300 DH (tests + Higgsfield) + 100 DH de domaine.
-- **Durée :** 4 semaines après la validation de Lemon Squeezy.
-- **Frein :** 0 vente après 160 messages + 30 publications → on change l'offre (prix ou message) avant de dépenser 1 DH de plus.
+### Palier 1 — Le premier euro (mois 1)
+- **Preuve :** 1 inconnu a payé.
+- **Actions :** 1) finir auto-entrepreneur + Lemon Squeezy (produits unité + abonnements) ; 2) 2 vidéos d'exemple réelles ; 3) WhatsApp aux 160 agences du Maroc + e-mails à ~300 agences en France (Claude écrit, le fondateur envoie).
+- **Coût :** ~400 DH (tests, Higgsfield, domaine).
+- **Durée :** 4 semaines après la validation Lemon Squeezy.
+- **Frein :** 0 vente après 460 messages + 30 publications → on change l'offre avant de dépenser plus.
 
-### Palier 2 — 10 clients payants, ~5 000 DH/mois (mois 2–3)
-- **Preuve :** 10 clients qui ont payé, dont 3 qui reviennent.
-- **Actions :**
-  1. Metricool Starter : 2 publications/jour sur Insta + TikTok + YouTube (avant/après photos → vidéo, sans visage). Claude analyse les chiffres.
-  2. France : e-mails écrits à ~300 agences (Paris, Lyon, Marseille, Bordeaux, Nice), à préparer.
-  3. Pub payante 30 $ sur la vidéo qui a gagné en gratuit (skill `pub`).
-- **Coût :** Metricool ~172 DH/mois + pub ~300 DH, payés par les ventes du palier 1.
+### Palier 2 — Ça se répète (mois 2)
+- **Preuve :** ~5 000 €/mois, des ventes chaque semaine sans pub.
+- **Actions :** 1) Metricool : 2 publications/jour × 3 réseaux, Claude analyse ; 2) relances écrites + parrainage ; 3) premiers abonnés Solo/Agence.
+- **Coût :** Metricool ~172 DH/mois, payé par les ventes.
+- **Durée :** 1 mois.
+- **Frein :** sous 2 000 €/mois à la fin du mois 2 → le million en 1 an est mort ; on repasse sur l'objectif 4 ans (sans arrêter le projet).
+
+### Palier 3 — Ça se paie tout seul (mois 3–4)
+- **Preuve :** 1 € de pub rapporte plus de 1 €, chiffre à l'appui ; ~25 000 €/mois.
+- **Actions :** 1) pub sur la vidéo gagnante en gratuit (skill `pub`) ; 2) réinvestir les ventes ; 3) pages « vidéo immobilière + ville » (Google).
+- **Coût :** pub = les ventes du mois d'avant.
 - **Durée :** 2 mois.
-- **Frein :** une vente coûte plus de ~100 DH de pub (70 % de la marge) → on coupe la pub.
+- **Frein :** une vente coûte plus de 70 % de sa marge en pub → on coupe.
 
-### Palier 3 — Abonnement lancé, ~20 000 DH/mois (mois 4–6)
-- **Preuve :** 20 agences abonnées.
-- **Actions :**
-  1. Ajouter l'abonnement (estimation à tester) : Maroc **590 DH/mois** (5 vidéos), France **79 €/mois** (6 vidéos).
-  2. Parrainage : 1 vidéo offerte par agence amenée.
-  3. Pages « vidéo immobilière + ville » sur le site (Google, gratuit).
-- **Coût :** ~0 DH de plus (pub payée par les ventes).
-- **Durée :** 3 mois.
-- **Frein :** plus de 15 % des abonnés partent chaque mois → on corrige le produit avant de chercher plus de clients.
+### Palier 4 — Ça tourne sans toi (mois 5–8)
+- **Preuve :** une semaine sans le fondateur, les ventes continuent ; ~80 000 €/mois.
+- **Actions :** 1) e-mails aux réseaux et franchises (offre groupe) ; 2) marque blanche pour photographes immo ; 3) support client automatisé par Claude.
+- **Coût :** pub ≤ 30 % du CA.
+- **Durée :** 4 mois.
+- **Frein :** aucun réseau signé après 50 e-mails → on reste en direct, objectif décalé.
 
-### Palier 4 — Réseaux et revendeurs, ~50 000 DH/mois (mois 7–9)
-- **Preuve :** 1 réseau d'agences ou 1 photographe immo qui revend ImmoClap.
-- **Actions :**
-  1. E-mails aux réseaux et franchises (France + Maroc) : offre de groupe (même modèle que Danim).
-  2. Offre « marque blanche » pour photographes immobiliers (ils revendent sous leur nom).
-  3. Pub sur les 1 ou 2 vidéos gagnantes seulement, budget = 20 % des ventes du mois d'avant.
-- **Coût :** 20 % du CA du mois d'avant, maximum.
-- **Durée :** 3 mois.
-- **Frein :** pas de réseau signé après 50 e-mails → on reste sur les agences en direct.
+### Palier 5 — Le million (mois 9–12)
+- **Preuve :** rythme du palier 4 × mois restants ≥ 1 M€ cumulé ; ~150 000 €/mois.
+- **Actions :** 1) abonnements annuels ; 2) intégration aux portails d'annonces ; 3) SARL (bien avant, dès 80 000 DH).
+- **Coût :** pub ≤ 30 % du CA.
+- **Durée :** 4 mois.
+- **Frein :** marge nette sous 40 % → on monte les prix avant de grossir.
 
-### Palier 5 — Rythme du million, ~150 000 DH/mois (mois 10–12+)
-- **Preuve :** 3 mois de suite au-dessus de 83 000 DH.
-- **Actions :**
-  1. Abonnement annuel (2 mois offerts) → l'argent rentre d'avance.
-  2. Proposer une intégration aux portails d'annonces (e-mail).
-  3. Passer en SARL AU dès 80 000 DH de CA cumulé (voir `PROJET.md`).
-- **Coût :** pub ≤ 20 % du CA.
-- **Durée :** 3 mois et plus. Réaliste : mois 18–24.
-- **Frein :** la marge nette tombe sous 40 % → on monte les prix avant de grossir.
+## Où on en est
+- Palier 0 : rien n'est lancé (le fondateur a dit de ne pas commencer).
+- Prochaine action, une seule : s'inscrire auto-entrepreneur à Barid Al-Maghrib.
 
 ## 5. Ce qui manque (❌)
 - ❌ Auto-entrepreneur pas encore inscrit.
@@ -106,5 +105,6 @@ Leçons :
 - Virtual Staging AI : https://techcrunch.com/2024/02/23/virtual-staging-ai-helps-realtors-digitally-furnish-rooms-within-seconds
 - Acquire : https://app.acquire.com/startup/lb8cvl8m2k-ai-video-platform-for-turning-real-estate-photos-into-listing-videos · https://app.acquire.com/public/4kyu863x8a-ai-real-estate-video-platform-turning-listing-photos-into-cinematic-property-videos
 - PropFade : https://trustmrr.com/startup/propfade
+- Danim (lancement oct. 2022, 2,5 M€ levés) : https://www.mysweetimmo.com/2026/09/14/immobilier-danim-2-veut-simplifier-la-vie-des-agents-grace-a-lia/
 - AutoReel : https://www.autoreelapp.com/faq/cost-effective-realtor-tools/how-much-does-autoreel-cost-per-month-for-individual-real-estate-agents
 - Roomotion : https://www.demotivateur.fr/vie-pratique/quel-est-le-meilleur-outil-ia-pour-creer-une-video-immobiliere-a-partir-de-photos-en-2026-50350
