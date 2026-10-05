@@ -245,9 +245,17 @@ avec.** Sans lien, la pub n'a jamais existé.
 généré sur Higgs Field, **le même dans toutes les vidéos** — créé une fois,
 réutilisé partout. C'est ce qui fait l'image de marque.
 
-🔴 **L'étiquette « contenu généré par IA »** se coche à chaque publication
-sur TikTok et Meta — obligatoire pour un visage réaliste généré. Sans elle :
-vidéo retirée, compte sanctionné.
+🔴 **L'étiquette « contenu généré par IA »** — obligatoire pour un visage
+réaliste généré. Sans elle : vidéo retirée, compte sanctionné.
+**Claude la met lui-même via Metricool (`createScheduledPost`), à CHAQUE
+publication — jamais oubliée :**
+
+```
+Instagram   instagramData.isAiGenerated = true
+TikTok      tiktokData.isAigc = true              (vidéo uniquement)
+            tiktokData.commercialContentOwnBrand = true   (pub pour SA marque)
+YouTube     youtubeData.isAiGeneratedContent = true
+```
 
 🔴 **Vraie personne > personne générée.** Un visage généré qui se fait
 passer pour un client ou le fondateur = mensonge (skill projet, étape 10).

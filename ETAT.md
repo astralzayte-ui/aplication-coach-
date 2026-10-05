@@ -194,8 +194,8 @@ IL REFUSE        montrer SON visage · s'endetter · appeler des gens
 
 **LE VISAGE — décidé le 05/10 :** un personnage généré sur Higgs Field,
 LE MÊME dans toutes les vidéos (l'image de marque). 🔴 Jamais présenté
-comme le fondateur ni comme un client · 🔴 étiquette « contenu IA » sur
-TikTok et Meta, obligatoire.
+comme le fondateur ni comme un client · 🔴 étiquette « contenu IA » mise
+automatiquement par Claude via Metricool. Pas de Cowork (décidé le 05/10).
 
 **Le plan million se lance quand il dit « go million »** — skill
 `million`, sans lui reposer ces questions.
