@@ -70,7 +70,7 @@ Dernière mise à jour : 05/10/2026. À tenir à jour à chaque décision import
 - Étape 1 proposée (espionner les pubs actives Reel-E / AutoReel / Roomotion, ~15–20 crédits scraping sur ~45) : pas encore lancée.
 
 ## Plan million
-- Méthode notée dans `PLAN-MILLION.md`, pas commencée (attendre « go »).
+- Plan écrit le 05/10 dans `PLAN-MILLION.md` (1 M DH de CA en 1 an = 🔴 très peu probable, 🟠 18–24 mois ; levier = abonnement agences + messages écrits ; 5 paliers). En attente de validation.
 
 ## Outils / accès
 - Gemini (clé injectée par le proxy) : script `.claude/skills/analyse-youtube/scripts/gemini_youtube.sh` avec liste de modèles étendue ; modèles TTS (gemini-3.8-flash-tts) et Lyria disponibles.
