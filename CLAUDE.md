@@ -24,6 +24,7 @@ Réflexes :
 | lancement, étude de marché, sourcing, prix, hooks | `lancement-produit` |
 | page qui ne convertit pas | `cro` |
 | écrire un texte de vente | `copywriting` |
+| pubs : espionner, décortiquer, fabriquer, tester, payer | `pub` |
 | variantes de pub en masse | `ad-creative` |
 | stratégie de campagne payante | `ads` |
 | leviers d'achat, psychologie | `marketing-psychology` |
