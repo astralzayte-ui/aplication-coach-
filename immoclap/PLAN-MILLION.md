@@ -1,6 +1,6 @@
 # Plan million — ImmoClap
 
-Statut : **validé le 05/10/2026**, rien de lancé — attendre que le fondateur dise de lancer.
+Statut : **validé et lancé le 05/10/2026** (préparation du palier 1).
 Légende : 🟢 bonne idée · 🟠 à surveiller · 🔴 problème · ✅ fait · ❌ manque.
 
 ## 1. Ce que le fondateur a répondu
@@ -92,8 +92,12 @@ Leçons :
 - **Durée :** 4 mois.
 - **Frein :** marge nette sous 40 % → on monte les prix avant de grossir.
 
-## Où on en est
-- Palier 0 : rien n'est lancé (le fondateur a dit de ne pas commencer).
+## Où on en est (05/10, plan lancé)
+- ✅ App espace client (mode test) en ligne : /app.html.
+- ✅ Abonnements Solo / Agence sur le site + CGV mises à jour.
+- ✅ Suivi `?v=` (origine des visites) sur le site.
+- ✅ 127 messages WhatsApp Maroc prêts (Google Sheet + `prospection/whatsapp-maroc.csv`).
+- ❌ Palier 1 bloqué par : auto-entrepreneur, Lemon Squeezy (validation + 5 produits + code -30 %), recharge Higgsfield.
 - Prochaine action, une seule : s'inscrire auto-entrepreneur à Barid Al-Maghrib.
 
 ## 5. Ce qui manque (❌)

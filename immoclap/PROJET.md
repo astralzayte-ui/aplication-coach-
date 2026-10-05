@@ -30,9 +30,11 @@ Dernière mise à jour : 05/10/2026. À tenir à jour à chaque décision import
 - Photos de démo : `assets/exemples/{marrakech,paris,fes,casablanca,bordeaux}.jpg` (Tanger jamais reçue en fichier).
 - Règle : copier le STYLE de Reel-E, jamais leurs textes / images / code. Visuels IA toujours étiquetés « démonstration ». Pas de faux avis.
 
-## Prix (sans abonnement, crédits)
+## Prix (crédits + abonnements depuis le 05/10)
 - France : 1 vidéo 19 € HT · pack 5 = 79 € · pack 10 = 139 €.
 - Maroc : 1 vidéo 149 DH · pack 5 = 599 DH · pack 10 = 999 DH.
+- Abonnements affichés sur le site et dans les CGV (05/10) : Solo 39 €/349 DH (3 vidéos/mois), Agence 99 €/899 DH (10 vidéos/mois), sans engagement, prix gardé à vie pour les 100 premiers.
+- Suivi d'origine : `?v=xxx` dans l'URL est mémorisé et envoyé avec le formulaire (champ `source`).
 - PAS d'essai gratuit (décidé le 05/10) : à la place, bouton « Voir un exemple » qui lit une vraie vidéo de démo. Max 12 photos par vidéo. Crédits valables 12 mois.
 - Coût Higgsfield ≈ 5 $ / vidéo (Kling 3.0, 12 plans × 5 s) ; ≈ 2,5 $ avec Kling 2.5.
 - Marges nettes calculées (après Lemon Squeezy 5 % + 0,50 $, virement 1 %, impôt AE 1 %, Higgsfield) : France 1 vidéo ≈ 139 DH, pack 10 ≈ 918 DH ; Maroc 1 vidéo ≈ 88 DH, pack 10 ≈ 463 DH.
@@ -60,8 +62,8 @@ Dernière mise à jour : 05/10/2026. À tenir à jour à chaque décision import
 3. Payant ensuite : recharger Higgsfield, acheter immoclap.com, Metricool Starter.
 
 ## Chantiers Claude (reportés à la demande du fondateur, rappel programmé le 05/10 à 08:00 UTC)
-1. Prospects : 160 agences Maroc déjà dans `prospection/agences-maroc.csv` (Marrakech, Agadir, Casablanca, Rabat, Tanger). Reste : France (Paris, Lyon, Marseille, Bordeaux, Nice), playbook de prospection (WhatsApp au Maroc + appel ; e-mail/DM en France), Google Sheets avec liens wa.me + message pré-rempli.
-2. App « espace client » en mode test (Supabase auth + questionnaire 3 min + upload + génération mock + Lemon Squeezy test). Rien construit encore.
+1. Prospects : 160 agences Maroc déjà dans `prospection/agences-maroc.csv` ; ✅ messages WhatsApp prêts (`prospection/whatsapp-maroc.csv`, 127 avec lien wa.me) + Google Sheet « ImmoClap — Prospection WhatsApp Maroc » (Drive du fondateur, id 11ia25sP2dwW9p7i0Jnu8UQ6Y0BLtqi_3tzTm1oV7WKU, bouton « Ouvrir » par agence, modèle modifiable colonne J). NE PAS envoyer avant Lemon Squeezy validé + code promo -30 % créé (Marrakech, Agadir, Casablanca, Rabat, Tanger). Reste : France (Paris, Lyon, Marseille, Bordeaux, Nice), playbook de prospection (WhatsApp au Maroc + appel ; e-mail/DM en France), Google Sheets avec liens wa.me + message pré-rempli.
+2. ✅ App « espace client » en mode test construite le 05/10 : `app.html` (en ligne https://immoclap.netlify.app/app.html, noindex, pas liée depuis le site). Connexion simulée, crédits, achat simulé (unité, packs, abonnements Solo/Agence), assistant 4 étapes (3–12 photos, infos du bien, style/voix/formats/logo, récap), génération simulée → vidéo de démo. Données en localStorage. Pour passer en vrai : coller les liens Lemon Squeezy dans `CONFIG.checkout`, `testMode:false`, vraie connexion (Supabase ou autre) et fonction de génération Higgsfield.
 - Annulés : amélioration motion design du site, pub motion design (la recherche YouTube est faite : `pub-recherche-youtube.json`).
 - Script de workflow : `/root/.claude/projects/-home-user-aplication-coach-/5c78e82e-7a2c-53e6-8166-801579d546c3/workflows/scripts/immoclap-4-chantiers-wf_73a6474e-56f.js` (args {track: prospects|app|site|ad}). Attention : machine à 4 CPU → 2 agents max par workflow ; limites de session atteintes plusieurs fois.
 
@@ -70,7 +72,7 @@ Dernière mise à jour : 05/10/2026. À tenir à jour à chaque décision import
 - Étape 1 proposée (espionner les pubs actives Reel-E / AutoReel / Roomotion, ~15–20 crédits scraping sur ~45) : pas encore lancée.
 
 ## Plan million
-- Plan dans `PLAN-MILLION.md` : but = 1 000 000 € de CA en 12 mois (🔴 très peu probable avec ces moyens, tenté quand même ; frein mois 2 < 2 000 €/mois → objectif 4 ans). Abonnements de lancement : Solo 39 €/349 DH (3 vidéos), Agence 99 €/899 DH (10 vidéos), gardés à vie pour les 100 premiers ; hausse ensuite à 79 €/590 DH et 199 €/1 490 DH. Validé le 05/10, rien lancé : attendre qu'il dise de lancer.
+- Plan dans `PLAN-MILLION.md` : but = 1 000 000 € de CA en 12 mois (🔴 très peu probable avec ces moyens, tenté quand même ; frein mois 2 < 2 000 €/mois → objectif 4 ans). Abonnements de lancement : Solo 39 €/349 DH (3 vidéos), Agence 99 €/899 DH (10 vidéos), gardés à vie pour les 100 premiers ; hausse ensuite à 79 €/590 DH et 199 €/1 490 DH. Lancé le 05/10 : palier 1 en préparation (voir « Où on en est » dans le plan).
 
 ## Outils / accès
 - Gemini (clé injectée par le proxy) : script `.claude/skills/analyse-youtube/scripts/gemini_youtube.sh` avec liste de modèles étendue ; modèles TTS (gemini-3.8-flash-tts) et Lyria disponibles.

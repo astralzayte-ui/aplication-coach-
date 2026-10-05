@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Espace client — ImmoClap</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#0B0A09">
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+:root{
+  --bg:#0B0A09; --bg2:#181614; --card:#201D1A; --line:#2A2622;
+  --fg:#F3EFE7; --muted:#B4AA9D; --dim:#7d746a; --gold:#F6BC28; --gold2:#E5C99E;
+  --ok:#7FC48B; --err:#E57B6B;
+  --serif:"Newsreader",Georgia,serif; --sans:"Inter",system-ui,-apple-system,sans-serif;
+  --r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-height:1.1}
+h1{font-size:clamp(32px,5vw,48px)}
+h2{font-size:clamp(26px,3.6vw,36px)}
+h3{font-size:22px}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+
+/* bandeau test */
+.testbar{background:var(--gold);color:#16120a;font-size:13px;font-weight:600;text-align:center;padding:7px 16px}
+
+/* header */
+.top{border-bottom:1px solid var(--line);background:var(--bg)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--serif);font-size:22px}
+.logo img{width:30px;height:30px}
+.logo .wm b{font-weight:400;color:var(--gold)}
+.who{display:flex;align-items:center;gap:12px;font-size:14px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;white-space:nowrap}
+.chip b{color:var(--gold);font-weight:600}
+
+/* boutons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:#16120a;font-weight:600;font-size:15px;padding:13px 22px;border-radius:10px;transition:transform .15s,opacity .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+.btn.sm{padding:8px 14px;font-size:13px}
+.btn.full{width:100%}
+.lnk{color:var(--muted);font-size:14px;text-decoration:underline;text-underline-offset:3px}
+
+/* écrans */
+main.wrap{padding:40px 16px 80px}
+.screen{display:none}
+.screen.on{display:block}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.grid2{grid-template-columns:1fr}}
+
+/* login */
+.login{max-width:420px;margin:40px auto 0;text-align:center}
+.login p{margin:12px 0 28px}
+.login form{text-align:left;display:grid;gap:12px}
+.or{display:flex;align-items:center;gap:12px;color:var(--dim);font-size:13px;margin:4px 0}
+.or:before,.or:after{content:"";flex:1;height:1px;background:var(--line)}
+.gbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:12px;border-radius:10px;background:#fff;color:#1f1f1f;font-weight:500}
+
+/* champs */
+label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+input[type=text],input[type=email],input[type=tel],input[type=number],select,textarea{width:100%;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:15px;outline:none;transition:border-color .15s}
+input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+textarea{resize:vertical;min-height:90px}
+.field{margin-bottom:16px}
+.req{color:var(--gold)}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt span{display:inline-block;padding:9px 14px;border:1px solid var(--line);border-radius:10px;font-size:14px;cursor:pointer;transition:border-color .15s,background .15s}
+.opt input:checked+span{border-color:var(--gold);background:rgba(246,188,40,.1);color:var(--fg)}
+.opt input:focus-visible+span{outline:2px solid var(--gold);outline-offset:2px}
+
+/* tableau de bord */
+.dash-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px}
+.stat{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.stat .n{font-family:var(--serif);font-size:34px;line-height:1}
+.stat .l{font-size:13px;color:var(--muted);margin-top:6px}
+@media(max-width:560px){.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:span 2}}
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.vid{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;text-align:left;transition:border-color .15s}
+.vid:hover{border-color:var(--dim)}
+.vid .th{aspect-ratio:16/10;background:var(--card) center/cover no-repeat;position:relative}
+.vid .th i{position:absolute;inset:auto auto 10px 10px;font-style:normal;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:rgba(0,0,0,.6);padding:4px 8px;border-radius:6px}
+.vid .bd{padding:14px}
+.vid .bd b{display:block;font-weight:500}
+.empty{border:1px dashed var(--line);border-radius:var(--r);padding:48px 20px;text-align:center}
+.empty p{margin:8px 0 20px}
+
+/* assistant */
+.steps{display:flex;gap:6px;margin:0 0 28px}
+.steps div{flex:1;height:4px;border-radius:2px;background:var(--line);transition:background .3s}
+.steps div.on{background:var(--gold)}
+.stephead{margin-bottom:22px}
+.stephead small{display:block;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:28px}
+.drop{border:1.5px dashed var(--dim);border-radius:var(--r);padding:36px 16px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s}
+.drop.over,.drop:hover{border-color:var(--gold);background:rgba(246,188,40,.05)}
+.drop svg{margin:0 auto 10px;color:var(--gold)}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-top:16px}
+.thumb{position:relative;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--card)}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb .n{position:absolute;left:6px;top:6px;background:rgba(0,0,0,.65);font-size:11px;padding:2px 7px;border-radius:6px}
+.thumb .rm{position:absolute;right:6px;top:6px;width:24px;height:24px;border-radius:50%;background:rgba(0,0,0,.7);display:grid;place-items:center;font-size:14px}
+.thumb .mv{position:absolute;right:6px;bottom:6px;display:flex;gap:4px}
+.thumb .mv button{width:24px;height:24px;border-radius:6px;background:rgba(0,0,0,.7);font-size:12px}
+.err{color:var(--err);font-size:13px;margin-top:10px;min-height:1em}
+.recap dl{display:grid;grid-template-columns:160px 1fr;gap:8px 16px;font-size:14px}
+.recap dt{color:var(--muted)}
+@media(max-width:560px){.recap dl{grid-template-columns:1fr}.recap dt{margin-top:6px}}
+.logo-prev{width:56px;height:56px;border-radius:10px;background:var(--card) center/contain no-repeat;border:1px solid var(--line);flex:none}
+
+/* génération */
+.gen{max-width:520px;margin:20px auto 0;text-align:center}
+.ring{width:84px;height:84px;margin:0 auto 24px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--gold);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.gsteps{list-style:none;text-align:left;margin:28px auto 0;display:grid;gap:10px;max-width:340px}
+.gsteps li{display:flex;align-items:center;gap:10px;color:var(--dim);font-size:15px;transition:color .3s}
+.gsteps li:before{content:"";width:18px;height:18px;border-radius:50%;border:1.5px solid var(--line);flex:none;transition:all .3s}
+.gsteps li.doing{color:var(--fg)}
+.gsteps li.doing:before{border-color:var(--gold);border-top-color:transparent;animation:spin .8s linear infinite}
+.gsteps li.done{color:var(--muted)}
+.gsteps li.done:before{background:var(--ok);border-color:var(--ok)}
+.bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:24px}
+.bar i{display:block;height:100%;width:0;background:var(--gold);transition:width .4s}
+
+/* résultat */
+.player{background:#000;border-radius:var(--r);overflow:hidden;position:relative}
+.player video{width:100%;max-height:70vh;margin:0 auto;background:#000}
+.player .tag{position:absolute;left:12px;top:12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:rgba(0,0,0,.65);padding:5px 9px;border-radius:6px;z-index:1}
+.fmts{display:flex;gap:8px;margin:16px 0}
+.notice{border:1px solid rgba(246,188,40,.35);background:rgba(246,188,40,.07);border-radius:10px;padding:12px 14px;font-size:14px;color:var(--gold2)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+
+/* offres */
+.offers{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.offer{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:6px}
+.offer.hl{border-color:var(--gold)}
+.offer .p{font-family:var(--serif);font-size:32px;line-height:1.1}
+.offer .p small{font-family:var(--sans);font-size:13px;color:var(--muted)}
+.offer .d{font-size:13px;color:var(--muted);flex:1;margin-bottom:10px}
+.badge{align-self:flex-start;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--gold);color:#16120a;font-weight:600;padding:3px 8px;border-radius:6px}
+.cur{display:inline-flex;border:1px solid var(--line);border-radius:10px;padding:3px}
+.cur button{padding:6px 14px;border-radius:7px;font-size:13px;color:var(--muted)}
+.cur button.on{background:var(--card);color:var(--fg)}
+.sec-t{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:32px 0 14px;flex-wrap:wrap}
+.sec-t:first-child{margin-top:0}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--fg);color:#16120a;padding:12px 18px;border-radius:10px;font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:all .25s;z-index:99;max-width:calc(100% - 32px)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div class="testbar">Mode test — aucun paiement réel, aucune vraie génération. La vidéo affichée est une démonstration.</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="index.html"><img src="assets/icon.svg" alt=""><span class="wm">Immo<b>Clap</b></span></a>
+    <div class="who" id="who" hidden>
+      <span class="chip"><b id="credits">0</b> crédit(s)</span>
+      <button class="lnk" id="logout">Déconnexion</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- CONNEXION -->
+  <section class="screen" id="s-login">
+    <div class="login">
+      <h1>Votre espace</h1>
+      <p class="muted">Connectez-vous pour créer vos vidéos.</p>
+      <form id="f-login" novalidate>
+        <button type="button" class="gbtn" id="g-login">
+          <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
+          Continuer avec Google
+        </button>
+        <div class="or">ou</div>
+        <div>
+          <label for="email">Adresse e-mail</label>
+          <input type="email" id="email" placeholder="vous@agence.com" autocomplete="email" required>
+        </div>
+        <button class="btn full" type="submit">Recevoir un lien de connexion</button>
+        <div class="err" id="login-err"></div>
+        <p class="small muted" style="text-align:center">En mode test, la connexion est simulée. En continuant, vous acceptez les <a href="cgv.html">CGV</a> et la <a href="confidentialite.html">politique de confidentialité</a>.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- TABLEAU DE BORD -->
+  <section class="screen" id="s-dash">
+    <div class="dash-head">
+      <div>
+        <p class="muted small" id="hello"></p>
+        <h1>Mes vidéos</h1>
+      </div>
+      <button class="btn" id="new-video">+ Nouvelle vidéo</button>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n" id="st-credits">0</div><div class="l">Crédits restants</div></div>
+      <div class="stat"><div class="n" id="st-videos">0</div><div class="l">Vidéos créées</div></div>
+      <div class="stat"><div class="n" id="st-plan">—</div><div class="l">Formule</div></div>
+    </div>
+    <div id="vids"></div>
+    <div class="sec-t" style="margin-top:44px">
+      <h2>Acheter des crédits</h2>
+      <div class="cur" id="cur"><button data-c="eur" class="on">€</button><button data-c="mad">DH</button></div>
+    </div>
+    <h3 style="margin-bottom:12px">Sans engagement</h3>
+    <div class="offers" id="offers-once"></div>
+    <h3 style="margin:28px 0 12px">Abonnement agence <span class="muted small" style="font-family:var(--sans)">— prix de lancement gardé à vie pour les 100 premiers</span></h3>
+    <div class="offers" id="offers-sub"></div>
+    <p class="small muted" style="margin-top:14px">Crédits valables 12 mois. Paiement sécurisé par Lemon Squeezy. 1 crédit = 1 vidéo (jusqu'à 12 photos, 3 formats).</p>
+  </section>
+
+  <!-- ASSISTANT NOUVELLE VIDÉO -->
+  <section class="screen" id="s-new">
+    <div class="steps" id="steps"><div></div><div></div><div></div><div></div></div>
+
+    <!-- étape 1 -->
+    <div class="step" data-step="0">
+      <div class="stephead"><small>Étape 1 sur 4</small><h2>Les photos du bien</h2><p class="muted">De 3 à 12 photos, dans l'ordre de la visite. Lumineuses, à l'horizontale de préférence.</p></div>
+      <div class="drop" id="drop" tabindex="0" role="button" aria-label="Ajouter des photos">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16V4m0 0l-4 4m4-4l4 4M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+        <b>Glissez vos photos ici</b><br><span class="muted small">ou touchez pour choisir (JPG, PNG, WEBP)</span>
+      </div>
+      <input type="file" id="files" accept="image/*" multiple hidden>
+      <div class="thumbs" id="thumbs"></div>
+      <div class="err" id="err0"></div>
+    </div>
+
+    <!-- étape 2 -->
+    <div class="step" data-step="1" hidden>
+      <div class="stephead"><small>Étape 2 sur 4</small><h2>Le bien</h2><p class="muted">Ces informations servent au texte à l'écran et à la voix off.</p></div>
+      <div class="field"><label>Type de bien <span class="req">*</span></label>
+        <div class="opts" id="o-type">
+          <label class="opt"><input type="radio" name="type" value="Appartement" checked><span>Appartement</span></label>
+          <label class="opt"><input type="radio" name="type" value="Villa"><span>Villa</span></label>
+          <label class="opt"><input type="radio" name="type" value="Maison"><span>Maison</span></label>
+          <label class="opt"><input type="radio" name="type" value="Riad"><span>Riad</span></label>
+          <label class="opt"><input type="radio" name="type" value="Terrain"><span>Terrain</span></label>
+          <label class="opt"><input type="radio" name="type" value="Local commercial"><span>Local commercial</span></label>
+        </div>
+      </div>
+      <div class="field"><label>Transaction</label>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="deal" value="Vente" checked><span>Vente</span></label>
+          <label class="opt"><input type="radio" name="deal" value="Location"><span>Location</span></label>
+          <label class="opt"><input type="radio" name="deal" value="Location saisonnière"><span>Location saisonnière</span></label>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="field"><label for="city">Ville <span class="req">*</span></label><input type="text" id="city" placeholder="Marrakech"></div>
+        <div class="field"><label for="area">Quartier</label><input type="text" id="area" placeholder="Guéliz"></div>
+        <div class="field"><label for="price">Prix</label><input type="text" id="price" placeholder="2 500 000 DH"></div>
+        <div class="field"><label for="surface">Surface (m²)</label><input type="number" id="surface" min="0" placeholder="180"></div>
+        <div class="field"><label for="rooms">Pièces</label><input type="number" id="rooms" min="0" placeholder="5"></div>
+        <div class="field"><label for="beds">Chambres</label><input type="number" id="beds" min="0" placeholder="3"></div>
+      </div>
+      <div class="field"><label for="highlights">Points forts (un par ligne)</label><textarea id="highlights" placeholder="Piscine privée&#10;Vue sur l'Atlas&#10;Proche du centre"></textarea></div>
+      <div class="err" id="err1"></div>
+    </div>
+
+    <!-- étape 3 -->
+    <div class="step" data-step="2" hidden>
+      <div class="stephead"><small>Étape 3 sur 4</small><h2>Le style</h2><p class="muted">Musique, voix, formats et votre marque.</p></div>
+      <div class="field"><label>Ambiance musicale</label>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="music" value="Élégante" checked><span>Élégante</span></label>
+          <label class="opt"><input type="radio" name="music" value="Dynamique"><span>Dynamique</span></label>
+          <label class="opt"><input type="radio" name="music" value="Chaleureuse"><span>Chaleureuse</span></label>
+          <label class="opt"><input type="radio" name="music" value="Orientale moderne"><span>Orientale moderne</span></label>
+        </div>
+      </div>
+      <div class="field"><label>Voix off</label>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="voice" value="Aucune"><span>Aucune</span></label>
+          <label class="opt"><input type="radio" name="voice" value="Voix féminine" checked><span>Voix féminine</span></label>
+          <label class="opt"><input type="radio" name="voice" value="Voix masculine"><span>Voix masculine</span></label>
+        </div>
+      </div>
+      <div class="field"><label>Langue</label>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="lang" value="Français" checked><span>Français</span></label>
+          <label class="opt"><input type="radio" name="lang" value="Anglais"><span>Anglais</span></label>
+          <label class="opt"><input type="radio" name="lang" value="Arabe"><span>Arabe</span></label>
+        </div>
+      </div>
+      <div class="field"><label>Formats <span class="req">*</span></label>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="fmt" value="16:9" checked><span>16:9 · portails, YouTube</span></label>
+          <label class="opt"><input type="checkbox" name="fmt" value="9:16" checked><span>9:16 · Reels, TikTok</span></label>
+          <label class="opt"><input type="checkbox" name="fmt" value="1:1"><span>1:1 · Facebook</span></label>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="field"><label for="agency">Nom de l'agence</label><input type="text" id="agency" placeholder="Mon Agence Immo"></div>
+        <div class="field"><label for="phone">Téléphone affiché en fin de vidéo</label><input type="tel" id="phone" placeholder="+212 6 00 00 00 00"></div>
+      </div>
+      <div class="field"><label>Logo (facultatif)</label>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="logo-prev" id="logo-prev"></div>
+          <button type="button" class="btn ghost sm" id="logo-btn">Choisir un logo</button>
+          <input type="file" id="logo-file" accept="image/*" hidden>
+        </div>
+      </div>
+      <div class="err" id="err2"></div>
+    </div>
+
+    <!-- étape 4 -->
+    <div class="step" data-step="3" hidden>
+      <div class="stephead"><small>Étape 4 sur 4</small><h2>Récapitulatif</h2><p class="muted">Vérifiez avant de lancer. La génération utilise 1 crédit.</p></div>
+      <div class="card recap"><dl id="recap"></dl></div>
+      <div class="err" id="err3"></div>
+    </div>
+
+    <div class="nav">
+      <button class="btn ghost" id="prev">Retour</button>
+      <button class="btn" id="next">Continuer</button>
+    </div>
+  </section>
+
+  <!-- GÉNÉRATION -->
+  <section class="screen" id="s-gen">
+    <div class="gen">
+      <div class="ring"></div>
+      <h2>Votre vidéo se prépare</h2>
+      <p class="muted">Restez sur cette page, ça ne prend que quelques instants.</p>
+      <ul class="gsteps" id="gsteps">
+        <li>Analyse des photos</li>
+        <li>Mouvements de caméra</li>
+        <li>Musique et voix off</li>
+        <li>Texte, logo et coordonnées</li>
+        <li>Montage des formats</li>
+      </ul>
+      <div class="bar"><i id="gbar"></i></div>
+    </div>
+  </section>
+
+  <!-- RÉSULTAT -->
+  <section class="screen" id="s-result">
+    <button class="lnk" id="back-dash">← Mes vidéos</button>
+    <h1 id="r-title" style="margin:14px 0 6px"></h1>
+    <p class="muted" id="r-sub"></p>
+    <div class="fmts" id="r-fmts"></div>
+    <div class="player"><span class="tag">Vidéo de démonstration</span><video id="r-video" controls playsinline preload="metadata"></video></div>
+    <div class="notice" style="margin-top:16px">Mode test : cette vidéo est un exemple réalisé avec d'autres photos. Quand les comptes ouvriront, la vidéo sera générée à partir de vos photos.</div>
+    <div class="actions">
+      <a class="btn" id="r-dl" download>Télécharger</a>
+      <button class="btn ghost" id="r-new">Créer une autre vidéo</button>
+    </div>
+  </section>
+
+  <!-- PAIEMENT TEST -->
+  <section class="screen" id="s-pay">
+    <div class="login">
+      <h1>Paiement</h1>
+      <p class="muted" id="pay-desc"></p>
+      <div class="card" style="text-align:left">
+        <p class="small muted">En production, ce bouton ouvre la page de paiement sécurisée Lemon Squeezy. En mode test, rien n'est débité : les crédits sont ajoutés pour essayer le parcours.</p>
+        <button class="btn full" id="pay-ok" style="margin-top:16px">Simuler le paiement</button>
+        <button class="btn ghost full" id="pay-cancel" style="margin-top:10px">Annuler</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ===== Configuration ===== */
+const CONFIG = {
+  testMode: true,                 // false quand Lemon Squeezy + génération réelle sont branchés
+  checkout: {                     // liens Lemon Squeezy à coller quand les produits existent
+    one:'', pack5:'', pack10:'', solo:'', agence:''
+  },
+  maxPhotos: 12, minPhotos: 3,
+};
+const OFFERS = {
+  once:[
+    {id:'one',   name:'1 vidéo', credits:1,  eur:19,  mad:149, d:'Pour essayer sur un bien.'},
+    {id:'pack5', name:'Pack 5',  credits:5,  eur:79,  mad:599, d:'16 € / 120 DH la vidéo.', hl:true},
+    {id:'pack10',name:'Pack 10', credits:10, eur:139, mad:999, d:'14 € / 100 DH la vidéo.'},
+  ],
+  sub:[
+    {id:'solo',  name:'Solo',    credits:3,  eur:39,  mad:349, d:'3 vidéos par mois. Sans engagement.', monthly:true},
+    {id:'agence',name:'Agence',  credits:10, eur:99,  mad:899, d:'10 vidéos par mois. Sans engagement.', monthly:true, hl:true},
+  ]
+};
+const DEMOS = {
+  '16:9':{mp4:'assets/videos/villa-marrakech-16x9.mp4', webm:'assets/videos/villa-marrakech-16x9.webm'},
+  '9:16':{mp4:'assets/videos/villa-marrakech-9x16.mp4', webm:'assets/videos/villa-marrakech-9x16.webm'},
+  '1:1': {mp4:'assets/videos/villa-marrakech-16x9.mp4', webm:'assets/videos/villa-marrakech-16x9.webm'},
+};
+
+/* ===== Outils ===== */
+const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const KEY='immoclap_test_v1';
+const load=()=>{try{return JSON.parse(localStorage.getItem(KEY))||null}catch(e){return null}};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){toast('Stockage du navigateur plein : supprimez d\'anciennes vidéos de test.')}};
+let state = load() || {user:null, credits:0, plan:null, videos:[]};
+let cur = 'eur';
+try{if(Intl.DateTimeFormat().resolvedOptions().timeZone==='Africa/Casablanca')cur='mad'}catch(e){}
+
+const toast=(t)=>{const el=$('#toast');el.textContent=t;el.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove('on'),3200)};
+const show=id=>{$$('.screen').forEach(s=>s.classList.toggle('on',s.id===id));scrollTo(0,0);};
+const money=(o)=>cur==='eur'?`${o.eur} €`:`${o.mad.toLocaleString('fr-FR')} DH`;
+
+/* ===== Connexion ===== */
+function login(email){
+  state.user={email, since:Date.now()};
+  save(); route();
+}
+$('#f-login').addEventListener('submit',e=>{
+  e.preventDefault();
+  const v=$('#email').value.trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){ $('#login-err').textContent='Adresse e-mail invalide.'; return; }
+  $('#login-err').textContent='';
+  toast('Mode test : connexion directe, sans lien e-mail.');
+  login(v);
+});
+$('#g-login').addEventListener('click',()=>{toast('Mode test : connexion Google simulée.');login('test.google@immoclap.app');});
+$('#logout').addEventListener('click',()=>{state.user=null;save();route();});
+
+/* ===== Tableau de bord ===== */
+function renderDash(){
+  $('#who').hidden=false;
+  $('#credits').textContent=state.credits;
+  $('#hello').textContent=state.user.email;
+  $('#st-credits').textContent=state.credits;
+  $('#st-videos').textContent=state.videos.length;
+  $('#st-plan').textContent=state.plan||'Crédits';
+  const box=$('#vids');
+  if(!state.videos.length){
+    box.innerHTML=`<div class="empty"><h3>Aucune vidéo pour l'instant</h3><p class="muted">Déposez les photos d'un bien, on s'occupe du reste.</p><button class="btn" data-new>Créer ma première vidéo</button></div>`;
+  }else{
+    box.innerHTML='<div class="vids">'+state.videos.slice().reverse().map(v=>`
+      <button class="vid" data-id="${v.id}">
+        <div class="th" style="background-image:url('${v.cover||'assets/videos/villa-marrakech-poster.jpg'}')"><i>${esc(v.formats.join(' · '))}</i></div>
+        <div class="bd"><b>${esc(v.type)} · ${esc(v.city)}</b><span class="muted small">${new Date(v.at).toLocaleDateString('fr-FR')} · ${v.photos} photos</span></div>
+      </button>`).join('')+'</div>';
+  }
+  renderOffers();
+}
+function renderOffers(){
+  const card=(o)=>`<div class="offer${o.hl?' hl':''}">${o.hl?'<span class="badge">'+(o.monthly?'Le plus choisi':'Populaire')+'</span>':''}
+    <h3>${o.name}</h3><div class="p">${money(o)}${o.monthly?' <small>/ mois</small>':''}</div>
+    <div class="d">${o.d}</div><button class="btn sm${o.hl?'':' ghost'}" data-buy="${o.id}">${o.monthly?'S\'abonner':'Acheter'}</button></div>`;
+  $('#offers-once').innerHTML=OFFERS.once.map(card).join('');
+  $('#offers-sub').innerHTML=OFFERS.sub.map(card).join('');
+  $$('#cur button').forEach(b=>b.classList.toggle('on',b.dataset.c===cur));
+}
+$('#cur').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;cur=b.dataset.c;renderOffers();});
+document.addEventListener('click',e=>{
+  if(e.target.closest('[data-new]')) startNew();
+  const v=e.target.closest('.vid'); if(v) openResult(state.videos.find(x=>x.id===v.dataset.id));
+  const b=e.target.closest('[data-buy]'); if(b) buy(b.dataset.buy);
+});
+$('#new-video').addEventListener('click',()=>startNew());
+
+/* ===== Paiement ===== */
+let pending=null;
+function buy(id){
+  const o=[...OFFERS.once,...OFFERS.sub].find(x=>x.id===id);
+  if(!CONFIG.testMode && CONFIG.checkout[id]){
+    const u=new URL(CONFIG.checkout[id]); u.searchParams.set('checkout[email]',state.user.email);
+    location.href=u.toString(); return;
+  }
+  pending=o;
+  $('#pay-desc').textContent=`${o.name} — ${money(o)}${o.monthly?' par mois':''} · ${o.credits} crédit(s)`;
+  show('s-pay');
+}
+$('#pay-ok').addEventListener('click',()=>{
+  if(!pending)return;
+  state.credits+=pending.credits;
+  if(pending.monthly) state.plan=pending.name;
+  save(); toast(`+${pending.credits} crédit(s) ajouté(s) (test).`);
+  const resume=pending.resume; pending=null;
+  if(resume){ show('s-new'); goStep(3); renderHeader(); } else route();
+});
+$('#pay-cancel').addEventListener('click',()=>{const r=pending&&pending.resume;pending=null; if(r){show('s-new');goStep(3);} else route();});
+
+/* ===== Assistant ===== */
+let draft, step=0;
+function startNew(){
+  draft={photos:[],logo:null};
+  $$('#s-new input[type=text],#s-new input[type=number],#s-new input[type=tel],#s-new textarea').forEach(i=>i.value='');
+  if(state.user && !state.user.email.startsWith('test.google')) $('#agency').placeholder='Mon Agence Immo';
+  $('#logo-prev').style.backgroundImage='';
+  renderThumbs(); show('s-new'); goStep(0);
+}
+function goStep(n){
+  step=n;
+  $$('.step').forEach(s=>s.hidden=+s.dataset.step!==n);
+  $$('#steps div').forEach((d,i)=>d.classList.toggle('on',i<=n));
+  $('#prev').textContent=n===0?'Annuler':'Retour';
+  $('#next').textContent=n===3?`Générer la vidéo (1 crédit)`:'Continuer';
+  $$('.err').forEach(e=>e.textContent='');
+  if(n===3) renderRecap();
+  scrollTo(0,0);
+}
+const val=n=>{const el=$(`#s-new input[name="${n}"]:checked`);return el?el.value:''};
+const vals=n=>$$(`#s-new input[name="${n}"]:checked`).map(i=>i.value);
+function validate(n){
+  if(n===0){
+    if(draft.photos.length<CONFIG.minPhotos){$('#err0').textContent=`Ajoutez au moins ${CONFIG.minPhotos} photos.`;return false;}
+  }
+  if(n===1){
+    if(!$('#city').value.trim()){$('#err1').textContent='Indiquez la ville.';$('#city').focus();return false;}
+  }
+  if(n===2){
+    if(!vals('fmt').length){$('#err2').textContent='Choisissez au moins un format.';return false;}
+  }
+  return true;
+}
+$('#prev').addEventListener('click',()=>{ if(step===0) route(); else goStep(step-1); });
+$('#next').addEventListener('click',()=>{
+  if(!validate(step))return;
+  if(step<3) return goStep(step+1);
+  if(state.credits<1){
+    $('#err3').innerHTML='Il vous faut 1 crédit. <button class="lnk" id="buy-one">Acheter 1 vidéo</button>';
+    $('#buy-one').addEventListener('click',()=>{buy('one');pending.resume=true;});
+    return;
+  }
+  generate();
+});
+
+/* photos */
+const drop=$('#drop'), files=$('#files');
+drop.addEventListener('click',()=>files.click());
+drop.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();files.click();}});
+['dragenter','dragover'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',e=>addFiles(e.dataTransfer.files));
+files.addEventListener('change',()=>{addFiles(files.files);files.value='';});
+
+function shrink(file,max=480,q=.72){
+  return new Promise((res,rej)=>{
+    const img=new Image(), url=URL.createObjectURL(file);
+    img.onload=()=>{const s=Math.min(1,max/Math.max(img.width,img.height));
+      const c=document.createElement('canvas');c.width=Math.round(img.width*s);c.height=Math.round(img.height*s);
+      c.getContext('2d').drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(url);
+      res({src:c.toDataURL('image/jpeg',q),w:img.width,h:img.height,name:file.name});};
+    img.onerror=()=>{URL.revokeObjectURL(url);rej()};
+    img.src=url;
+  });
+}
+async function addFiles(list){
+  const imgs=[...list].filter(f=>f.type.startsWith('image/'));
+  const room=CONFIG.maxPhotos-draft.photos.length;
+  if(imgs.length>room) $('#err0').textContent=`Maximum ${CONFIG.maxPhotos} photos : ${imgs.length-room} ignorée(s).`;
+  else $('#err0').textContent='';
+  for(const f of imgs.slice(0,Math.max(0,room))){
+    try{ const p=await shrink(f); if(p.w<800) $('#err0').textContent=`« ${f.name} » est petite (${p.w}px) : la vidéo risque d'être floue.`; draft.photos.push(p);}catch(e){}
+  }
+  renderThumbs();
+}
+function renderThumbs(){
+  $('#thumbs').innerHTML=draft.photos.map((p,i)=>`<div class="thumb"><img src="${p.src}" alt=""><span class="n">${i+1}</span>
+    <button class="rm" data-rm="${i}" aria-label="Retirer">×</button>
+    <div class="mv">${i>0?`<button data-mv="${i}" data-d="-1" aria-label="Avancer">←</button>`:''}${i<draft.photos.length-1?`<button data-mv="${i}" data-d="1" aria-label="Reculer">→</button>`:''}</div></div>`).join('');
+}
+$('#thumbs').addEventListener('click',e=>{
+  const r=e.target.closest('[data-rm]'); if(r){draft.photos.splice(+r.dataset.rm,1);renderThumbs();return;}
+  const m=e.target.closest('[data-mv]'); if(m){const i=+m.dataset.mv,j=i+ +m.dataset.d;[draft.photos[i],draft.photos[j]]=[draft.photos[j],draft.photos[i]];renderThumbs();}
+});
+
+/* logo */
+$('#logo-btn').addEventListener('click',()=>$('#logo-file').click());
+$('#logo-file').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const p=await shrink(f,200,.9);draft.logo=p.src;$('#logo-prev').style.backgroundImage=`url('${p.src}')`;}catch(_){}});
+
+function collect(){
+  return {
+    type:val('type'), deal:val('deal'), city:$('#city').value.trim(), area:$('#area').value.trim(),
+    price:$('#price').value.trim(), surface:$('#surface').value, rooms:$('#rooms').value, beds:$('#beds').value,
+    highlights:$('#highlights').value.split('\n').map(s=>s.trim()).filter(Boolean),
+    music:val('music'), voice:val('voice'), lang:val('lang'), formats:vals('fmt'),
+    agency:$('#agency').value.trim(), phone:$('#phone').value.trim(),
+  };
+}
+function renderRecap(){
+  const d=collect();
+  const rows=[
+    ['Photos',`${draft.photos.length}`],
+    ['Bien',`${d.type} · ${d.deal}`],
+    ['Lieu',[d.area,d.city].filter(Boolean).join(', ')],
+    ['Prix',d.price||'—'],
+    ['Surface / pièces',[d.surface&&d.surface+' m²',d.rooms&&d.rooms+' pièces',d.beds&&d.beds+' ch.'].filter(Boolean).join(' · ')||'—'],
+    ['Points forts',d.highlights.join(', ')||'—'],
+    ['Musique',d.music],
+    ['Voix off',d.voice==='Aucune'?'Aucune':`${d.voice} (${d.lang})`],
+    ['Formats',d.formats.join(', ')],
+    ['Marque',[d.agency,d.phone,draft.logo?'logo ajouté':''].filter(Boolean).join(' · ')||'—'],
+    ['Crédits',`${state.credits} disponible(s) → ${Math.max(0,state.credits-1)} après`],
+  ];
+  $('#recap').innerHTML=rows.map(([a,b])=>`<dt>${a}</dt><dd>${esc(b)}</dd>`).join('');
+}
+
+/* ===== Génération (simulée) ===== */
+function generate(){
+  const d=collect();
+  state.credits-=1; save(); renderHeader();
+  show('s-gen');
+  const lis=$$('#gsteps li'); lis.forEach(l=>l.className='');
+  $('#gbar').style.width='0';
+  let i=0;
+  const tick=()=>{
+    if(i>0) lis[i-1].className='done';
+    if(i<lis.length){ lis[i].className='doing'; $('#gbar').style.width=((i+1)/lis.length*100)+'%'; i++; setTimeout(tick,1300); }
+    else{
+      const v={id:'v'+Date.now().toString(36), at:Date.now(), photos:draft.photos.length, cover:draft.photos[0]?.src||null, ...d};
+      state.videos.push(v); save();
+      openResult(v);
+    }
+  };
+  tick();
+}
+
+/* ===== Résultat ===== */
+const vid=$('#r-video');
+const canMp4=!!vid.canPlayType('video/mp4; codecs="avc1.42E01E"');
+function setFormat(v,f){
+  const s=DEMOS[f]; const src=canMp4?s.mp4:s.webm;
+  vid.src=src; $('#r-dl').href=s.mp4; $('#r-dl').setAttribute('download',`immoclap-${(v.city||'video').toLowerCase().replace(/[^a-z0-9]+/g,'-')}-${f.replace(':','x')}.mp4`);
+  $$('#r-fmts button').forEach(b=>b.classList.toggle('ghost',b.dataset.f!==f));
+}
+function openResult(v){
+  if(!v)return;
+  $('#r-title').textContent=`${v.type} · ${v.city}`;
+  $('#r-sub').textContent=[v.area,v.price,v.surface&&v.surface+' m²'].filter(Boolean).join(' · ')||new Date(v.at).toLocaleString('fr-FR');
+  $('#r-fmts').innerHTML=v.formats.map(f=>`<button class="btn sm" data-f="${f}">${f}</button>`).join('');
+  $$('#r-fmts button').forEach(b=>b.addEventListener('click',()=>setFormat(v,b.dataset.f)));
+  setFormat(v,v.formats[0]);
+  show('s-result');
+}
+$('#back-dash').addEventListener('click',()=>{vid.pause();route();});
+$('#r-new').addEventListener('click',()=>{vid.pause();startNew();});
+
+/* ===== Navigation ===== */
+function renderHeader(){ $('#credits').textContent=state.credits; }
+function route(){
+  if(!state.user){ $('#who').hidden=true; show('s-login'); return; }
+  renderDash(); show('s-dash');
+}
+route();
+</script>
+</body>
+</html>

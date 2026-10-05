@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ImmoClap — Vos biens immobiliers en vidéo cinématique</title>
-<meta name="description" content="Déposez les photos de votre bien : ImmoClap crée une vidéo cinématique avec votre logo, une voix off et de la musique, en 5 minutes. Payez à la vidéo, sans abonnement.">
+<meta name="description" content="Déposez les photos de votre bien : ImmoClap crée une vidéo cinématique avec votre logo, une voix off et de la musique, en 5 minutes. Payez à la vidéo ou au mois, sans engagement.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta property="og:title" content="ImmoClap — Vos biens méritent mieux que des photos">
-<meta property="og:description" content="Vos photos deviennent une vidéo cinématique en 5 minutes. Sans abonnement.">
+<meta property="og:description" content="Vos photos deviennent une vidéo cinématique en 5 minutes. Sans engagement.">
 <meta property="og:image" content="https://immoclap.netlify.app/assets/exemples/marrakech.jpg">
 <meta name="theme-color" content="#0B0A09">
 <link rel="stylesheet" href="assets/fonts.css">
@@ -310,6 +310,11 @@ header.scrolled{background:rgba(11,10,9,.82);backdrop-filter:blur(14px);-webkit-
 .plans.four .price{font-size:46px}
 .plan{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:34px 30px;display:flex;flex-direction:column;position:relative}
 .alt .plan{background:var(--bg)}
+.subs{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:24px auto 0}
+.subs .plan{padding:28px 30px}
+.subs-t{text-align:center;margin-top:64px}
+.subs-t p{color:var(--muted);margin-top:10px}
+@media(max-width:760px){.subs{grid-template-columns:1fr;max-width:460px}}
 .plan.pop{border-color:var(--gold);box-shadow:0 30px 90px -40px rgba(246,188,40,.4)}
 .plan .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gold);color:#16120a;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:5px 12px;border-radius:20px;white-space:nowrap}
 .plan h3{font-size:26px}
@@ -476,7 +481,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
     <p class="lead fade">Déposez les photos de votre bien. En quelques minutes, vous obtenez une vidéo cinématique avec votre logo, une voix off et de la musique. <strong>Sans vidéaste. Sans facture à 500&nbsp;€. Sans attendre.</strong></p>
     <div class="cta fade">
       <div class="cta-row"><a href="#" class="btn" data-open>Créer ma vidéo <svg width="16" height="16"><use href="#arrow"/></svg></a><a href="#" class="btn ghost" data-play="assets/exemples/marrakech.jpg" data-video="assets/videos/villa-marrakech-9x16.mp4" data-title="Villa Palmeraie, Marrakech"><svg width="14" height="14"><use href="#tri"/></svg> Voir un exemple</a></div>
-      <div class="trust">Paiement à la vidéo · Sans abonnement · Prête en quelques minutes</div>
+      <div class="trust">Paiement à la vidéo · Sans engagement · Prête en quelques minutes</div>
     </div>
     <div class="showreel fade">
       <div class="frame">
@@ -724,8 +729,8 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
 <section id="tarifs">
   <div class="wrap">
     <div class="eyebrow rv"><i>VII</i><b></b>Tarifs</div>
-    <h2 class="center rv">Payez à la vidéo.<br><span class="it">Sans abonnement.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
-    <p class="lead center rv">Achetez des crédits quand un mandat arrive. 1 crédit = 1 vidéo, en 3 formats. Prix HT.</p>
+    <h2 class="center rv">Payez à la vidéo.<br><span class="it">Sans engagement.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
+    <p class="lead center rv">Achetez des crédits quand un mandat arrive, ou abonnez-vous si vous publiez chaque mois. 1 crédit = 1 vidéo, en 3 formats. Prix HT.</p>
     <div class="toggles rv">
       <div class="seg" id="cur"><button class="on" data-c="eur">France · €</button><button data-c="mad">Maroc · DH</button></div>
     </div>
@@ -750,6 +755,22 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
         <a href="#" class="btn ghost" data-open>Choisir le pack 10</a>
       </div>
     </div>
+    <div class="subs-t rv"><h3>Vous publiez chaque mois ? Passez à l'abonnement.</h3><p>Sans engagement, résiliable en un clic. Prix de lancement gardé à vie pour les 100 premiers abonnés.</p></div>
+    <div class="plans subs">
+      <div class="plan rv">
+        <h3>Solo</h3><div class="d">Pour l'agent indépendant ou le mandataire.</div>
+        <div class="price" data-eur="39" data-mad="349"></div><div class="per" data-month>par mois · 3 vidéos</div>
+        <ul><li>3 vidéos par mois, 3 formats</li><li>Logo de l'agence</li><li>Crédits non utilisés reportés</li></ul>
+        <a href="#" class="btn ghost" data-open>S'abonner</a>
+      </div>
+      <div class="plan pop rv">
+        <span class="badge">Prix de lancement</span>
+        <h3>Agence</h3><div class="d">Pour les agences qui rentrent des mandats chaque semaine.</div>
+        <div class="price" data-eur="99" data-mad="899"></div><div class="per" data-month>par mois · 10 vidéos</div>
+        <ul><li>10 vidéos par mois, 3 formats</li><li>Plusieurs agents</li><li>Crédits non utilisés reportés</li><li>Support prioritaire</li></ul>
+        <a href="#" class="btn" data-open>S'abonner <svg width="14" height="14"><use href="#arrow"/></svg></a>
+      </div>
+    </div>
     <p class="unit rv"><a href="#" class="link" data-play="assets/exemples/marrakech.jpg" data-video="assets/videos/villa-marrakech-9x16.mp4" data-title="Villa Palmeraie, Marrakech">Voir une vidéo d'exemple ▸</a><br><br>Jusqu'à 12 photos par vidéo · Crédits valables 12 mois · TVA éventuelle ajoutée au paiement</p>
   </div>
 </section>
@@ -767,7 +788,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
       <div class="q"><button aria-expanded="false">La musique est-elle libre de droits ?<span class="pm">+</span></button><div class="a"><div><p>Oui. Toutes les musiques sont utilisables sur les portails et les réseaux sociaux, sans risque de blocage.</p></div></div></div>
       <div class="q"><button aria-expanded="false">Puis-je ajouter mon logo ?<span class="pm">+</span></button><div class="a"><div><p>Oui : logo, couleurs de l'agence et carton de fin avec vos coordonnées, sur chaque vidéo.</p></div></div></div>
       <div class="q"><button aria-expanded="false">L'IA modifie-t-elle mon bien ?<span class="pm">+</span></button><div class="a"><div><p>Non. ImmoClap ajoute uniquement un mouvement de caméra : les volumes, les matériaux et les défauts restent tels qu'ils sont. Les retouches d'ambiance (lumière, ciel) sont toujours signalées « image retouchée par IA ».</p></div></div></div>
-      <div class="q"><button aria-expanded="false">Puis-je voir un exemple avant d'acheter ?<span class="pm">+</span></button><div class="a"><div><p>Oui. Cliquez sur « Voir un exemple » en haut de la page ou sur les vidéos de la section Exemples : ce sont des vidéos de démonstration réalisées avec ImmoClap. Vous payez ensuite à la vidéo, sans abonnement.</p></div></div></div>
+      <div class="q"><button aria-expanded="false">Puis-je voir un exemple avant d'acheter ?<span class="pm">+</span></button><div class="a"><div><p>Oui. Cliquez sur « Voir un exemple » en haut de la page ou sur les vidéos de la section Exemples : ce sont des vidéos de démonstration réalisées avec ImmoClap. Vous payez ensuite à la vidéo ou au mois, sans engagement.</p></div></div></div>
     </div>
   </div>
 </section>
@@ -822,12 +843,13 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
     
     <form name="inscription" method="POST" data-netlify="true" netlify-honeypot="bot" id="form">
       <input type="hidden" name="form-name" value="inscription">
+      <input type="hidden" name="source" id="src">
       <p hidden><label>Ne pas remplir <input name="bot"></label></p>
       <input type="email" name="email" placeholder="Votre e-mail professionnel" required autocomplete="email">
       <button class="btn" type="submit" style="margin-top:12px">Être prévenu</button>
     </form>
     <p class="okmsg">Merci ! On vous écrit à cette adresse dès l'ouverture des commandes.</p>
-    <p class="fine">Paiement à la vidéo, sans abonnement. En continuant, vous acceptez nos <a href="cgv.html" style="text-decoration:underline">CGV</a> et notre <a href="confidentialite.html" style="text-decoration:underline">politique de confidentialité</a>.</p>
+    <p class="fine">Paiement à la vidéo ou au mois, sans engagement. En continuant, vous acceptez nos <a href="cgv.html" style="text-decoration:underline">CGV</a> et notre <a href="confidentialite.html" style="text-decoration:underline">politique de confidentialité</a>.</p>
   </div>
 </div>
 
@@ -968,6 +990,9 @@ lb.addEventListener('click',e=>{if(e.target===lb)lbClose()});
 $$('[data-open]',lb).forEach(el=>el.addEventListener('click',lbClose,true));
 addEventListener('keydown',e=>{if(e.key==='Escape')lbClose()});
 })();
+
+/* source de la visite (?v=video12, ?v=wa-ma) gardée et jointe au formulaire */
+try{const v=new URLSearchParams(location.search).get('v');if(v)localStorage.setItem('immoclap_src',v.slice(0,40));const sv=localStorage.getItem('immoclap_src');if(sv)document.getElementById('src').value=sv;}catch(e){}
 </script>
 </body>
 </html>
