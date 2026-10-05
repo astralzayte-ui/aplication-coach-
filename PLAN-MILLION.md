@@ -68,8 +68,7 @@ ce que coûte une vente en pub, mode     ~22 €  (rapport de 2,3 entre
   partout, livraison offerte à partir de 59 €
 - 🟢 **Le coût d'achat** : négocier dès la réponse de l'agent, puis un
   **stock en Europe** acheté par bateau une fois le produit validé
-- 🔴 **Depuis juillet 2026** : 3 € de douane par article venu de Chine +
-  la TVA à l'entrée → **à mettre dans le calcul de la marge**
+- ✅ **Les stocks seront en Europe** (décidé le 05/10) : pas de douane colis par colis
 
 **Le seuil à viser :** **25 € qui restent par commande**. En dessous, la pub
 reste interdite.
