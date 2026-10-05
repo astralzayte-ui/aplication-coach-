@@ -264,7 +264,7 @@ les chiffres        Metricool → getAnalyticsDataByMetrics
 ### Chaque vidéo porte son étiquette AVANT de sortir
 
 ```
-vidéo 07 · format « visage qui parle » · hook n°12 · source « pub X » · début B
+vidéo 07 · source « pubs concurrentes » · angle « qualité » · hook n°12
 ```
 
 ### Les sources : parts égales, puis le gagnant prend plus
@@ -277,9 +277,9 @@ JOUR 21        on classe par la MOYENNE de rétention 3 s de chaque source
 JOURS 21-40    1ʳᵉ 50 % · 2ᵉ 30 % · les autres 20 %, jamais zéro
 ```
 
-🔴 **Une seule question par vague :** vague 1 = la source et l'angle
-(moule et sous-titre fixes) · vague 2 = le sous-titre. 40 vidéos ne
-tranchent qu'un GROS écart.
+🔴 **On ne teste QUE la source et l'angle**, sur les 2 vagues. Le moule
+et le sous-titre (figé) ne bougent pas. 80 vidéos ne tranchent qu'un
+GROS écart.
 
 🟠 **Jamais juger une source sur sa meilleure vidéo** — un coup de chance
 ne fait pas une source gagnante.

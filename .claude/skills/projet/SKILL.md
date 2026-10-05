@@ -1547,7 +1547,7 @@ la page. C'est ça qui fait la différence entre une marque et un intermédiaire
 ```
 VAGUE 1 — jours 1 à 20      40 vidéos, 2 par jour
   on teste SEULEMENT la source et l'angle
-  le moule et le sous-titre restent FIXES
+  le moule et le sous-titre (A, figé) restent FIXES
 
         🛑 JOUR 21 — ON LIT
 
@@ -1576,28 +1576,26 @@ de vidéos sorties, pas la date.
 
 ### Étape 13 — Le témoin
 
-### 🔴 UNE question par vague — décidé le 05/10
+### 🔴 ON NE TESTE QUE LA SOURCE ET L'ANGLE — décidé le 05/10
 
-**40 vidéos ne répondent pas à 4 questions à la fois.** Tester la source,
-l'angle, le moule et le sous-titre en même temps, c'est ne savoir à la fin
-ce qui a joué.
+**Il a tranché : le test du sous-titre et le moule contre le témoin, c'était
+trop.** 80 vidéos ne répondent bien qu'à une question.
 
 ```
-VAGUE 1   la SOURCE et l'ANGLE        moule et sous-titre fixes (A)
-VAGUE 2   le SOUS-TITRE (A contre C)  sur la source et l'angle gagnants
-PROJET 2  le MOULE contre le témoin   quand le reste est connu
+TESTÉ        la SOURCE (5 × 8 vidéos) et l'ANGLE, sur les 2 vagues
+FIXE         le moule, sur toutes les vidéos
+FIXE         le sous-titre : A, le figé
 ```
 
 **Ce que 80 vidéos peuvent dire, honnêtement :**
 
 ```
 🟢  un GROS écart (une source à 55 % de rétention, une autre à 25 %)
-🔴  un petit écart (41 % contre 38 %) → c'est du bruit, on garde l'ordre
-    de départ
+🔴  un petit écart (41 % contre 38 %) → du bruit, on ne change rien
 ```
 
-*Le reste de cette étape (moule contre témoin) s'applique à partir du
-projet 2, ou de la vague 2 si le sous-titre est déjà tranché.*
+*Tout ce qui suit dans cette étape (témoin, sous-titre A/C, étiquettes de
+sous-titre) est mis de côté. On n'y revient que s'il le demande.*
 
 **60 % dans le moule, 40 % hors moule.**
 
@@ -1673,8 +1671,6 @@ plus, et reconstituer à la main quatre-vingts vidéos ne se fait jamais.
 | Les hooks morts | jetés |
 | **La branche qui a tenu** | **on écrit de nouveaux hooks dedans** |
 | La source qui gagne | on en fait plus le mois d'après |
-| Moule vs témoin | le gagnant prend 100 % de la vague 2 |
-| **Sous-titre A vs C** | **le gagnant devient le sous-titre du moule** |
 
 **Le chiffre qui compte : la rétention à 3 secondes.** C'est elle qui juge le hook.
 **Les clics jugent le produit**, pas le hook. Ne jamais confondre les deux.
@@ -1684,20 +1680,16 @@ La branche vaut plus que le hook : un hook gagnant donne une vidéo, **une branc
 ### Ce qu'on décide ce jour-là, et rien d'autre
 
 ```
-✅  quel moule pour la vague 2
-✅  quel sous-titre, A ou C — et il devient la règle
+✅  quelle source prend 50 % de la vague 2
+✅  quels angles on continue
 ✅  quelles branches on continue, lesquelles on abandonne
 ✅  quelle source on creuse le mois d'après
 ✅  sur quel produit on mettra la pub, s'il y en a
 ```
 
-**Comment on lit le sous-titre :** on compare **la rétention à 3 secondes**
-des huit vidéos en A contre les huit en C. Rien d'autre — ni les vues, ni les
-likes, ni les commentaires.
-
-⚠️ **Un écart de moins de 5 points ne tranche rien.** À égalité, on garde A :
-c'est le plus simple à produire, et la simplicité gagne quand le reste est
-indécis.
+**Comment on lit la source :** on compare **la rétention à 3 secondes
+moyenne** des 8 vidéos de chaque source. Rien d'autre — ni les vues, ni les
+likes. Un petit écart ne tranche rien : on garde l'ordre.
 
 ```
 ❌  changer les prix          ← ils sont figés, ils bougent pas au milieu
