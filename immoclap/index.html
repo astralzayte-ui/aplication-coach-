@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ImmoClap — Vos biens immobiliers en vidéo cinématique</title>
-<meta name="description" content="Déposez les photos de votre bien : ImmoClap crée une vidéo cinématique avec votre logo, une voix off et de la musique, en 5 minutes. Votre première vidéo est offerte.">
+<meta name="description" content="Déposez les photos de votre bien : ImmoClap crée une vidéo cinématique avec votre logo, une voix off et de la musique, en 5 minutes. Payez à la vidéo, sans abonnement.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta property="og:title" content="ImmoClap — Vos biens méritent mieux que des photos">
-<meta property="og:description" content="Vos photos deviennent une vidéo cinématique en 5 minutes. Première vidéo offerte.">
+<meta property="og:description" content="Vos photos deviennent une vidéo cinématique en 5 minutes. Sans abonnement.">
 <meta property="og:image" content="https://immoclap.netlify.app/assets/exemples/marrakech.jpg">
 <meta name="theme-color" content="#0B0A09">
 <link rel="stylesheet" href="assets/fonts.css">
@@ -254,7 +254,13 @@ header.scrolled{background:rgba(11,10,9,.82);backdrop-filter:blur(14px);-webkit-
 .lb.on{opacity:1;visibility:visible}
 .lb-in{width:100%;max-width:1000px}
 .lb-v{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000}
-.lb-v img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lb-v img,.lb-v video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lb-v video{display:none;background:#000}
+.lb.isvid .lb-v video{display:block}.lb.isvid .lb-v img,.lb.isvid .lb-t,.lb.isvid .lb-bar{display:none}
+.lb.portrait .lb-in{max-width:min(420px,calc((100vh - 140px)*9/16))}
+.lb.portrait .lb-v{aspect-ratio:9/16}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.showreel video{width:100%;height:100%;object-fit:cover;display:block}
 .lb.on .lb-v img{animation:lbk 12s linear forwards}
 @keyframes lbk{0%{transform:scale(1.25) translate(4%,2%)}100%{transform:scale(1.02) translate(-2%,-1%)}}
 .lb-t{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(transparent 40%,rgba(0,0,0,.55));padding:20px}
@@ -446,7 +452,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
     </nav>
     <div class="nav-r">
       <a href="#" class="login" data-open>Se connecter</a>
-      <a href="#" class="btn sm" data-open>Ma vidéo gratuite <svg width="14" height="14"><use href="#arrow"/></svg></a>
+      <a href="#" class="btn sm" data-open>Créer ma vidéo <svg width="14" height="14"><use href="#arrow"/></svg></a>
       <button class="burger" aria-label="Menu" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 22 22"><path d="M3 7h16M3 15h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
     </div>
   </div>
@@ -455,7 +461,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
 <nav class="mob" aria-label="Menu mobile">
   <a href="#produit">Produit</a><a href="#comment">Comment ça marche</a><a href="#exemples">Exemples</a><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a>
   <a href="#" data-open>Se connecter</a>
-  <a href="#" class="btn" data-open>Ma vidéo gratuite <svg width="14" height="14"><use href="#arrow"/></svg></a>
+  <a href="#" class="btn" data-open>Créer ma vidéo <svg width="14" height="14"><use href="#arrow"/></svg></a>
 </nav>
 
 <main>
@@ -469,14 +475,14 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
     </h1>
     <p class="lead fade">Déposez les photos de votre bien. En quelques minutes, vous obtenez une vidéo cinématique avec votre logo, une voix off et de la musique. <strong>Sans vidéaste. Sans facture à 500&nbsp;€. Sans attendre.</strong></p>
     <div class="cta fade">
-      <a href="#" class="btn" data-open>Ma première vidéo gratuite <svg width="16" height="16"><use href="#arrow"/></svg></a>
-      <div class="trust">Gratuit pour essayer · Sans carte bancaire · Sans engagement</div>
+      <div class="cta-row"><a href="#" class="btn" data-open>Créer ma vidéo <svg width="16" height="16"><use href="#arrow"/></svg></a><a href="#" class="btn ghost" data-play="assets/exemples/marrakech.jpg" data-video="assets/videos/villa-marrakech-9x16.mp4" data-title="Villa Palmeraie, Marrakech"><svg width="14" height="14"><use href="#tri"/></svg> Voir un exemple</a></div>
+      <div class="trust">Paiement à la vidéo · Sans abonnement · Prête en quelques minutes</div>
     </div>
     <div class="showreel fade">
       <div class="frame">
-        <img src="assets/exemples/marrakech.jpg" alt="Villa avec piscine dans la palmeraie de Marrakech (démonstration)">
+        <video poster="assets/exemples/marrakech.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Vidéo de démonstration : villa à Marrakech"><source src="assets/videos/villa-marrakech-16x9.webm" type="video/webm"><source src="assets/videos/villa-marrakech-16x9.mp4" type="video/mp4"></video>
         <div class="shade"></div>
-        <button class="play" data-play="assets/exemples/marrakech.jpg" data-title="Villa Palmeraie, Marrakech" aria-label="Voir la vidéo de démonstration"><svg style="color:var(--gold)"><use href="#tri"/></svg></button>
+        <button class="play" data-play="assets/exemples/marrakech.jpg" data-video="assets/videos/villa-marrakech-9x16.mp4" data-title="Villa Palmeraie, Marrakech" aria-label="Voir la vidéo de démonstration"><svg style="color:var(--gold)"><use href="#tri"/></svg></button>
         <div class="cap">Chaque plan commence par une simple photo</div>
       </div>
     </div>
@@ -692,10 +698,10 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
     <h2 class="center rv">Voyez ce que<br><span class="it">vous obtiendrez.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
     <p class="lead center rv">Des vidéos de démonstration. Appuyez sur lecture.</p>
     <div class="ex">
-      <div class="c big rv" data-play="assets/exemples/marrakech.jpg" data-title="Villa Palmeraie, Marrakech"><div class="im"><img src="assets/exemples/marrakech.jpg" alt="Villa Palmeraie, Marrakech" loading="lazy"><span class="pp"><svg width="16" height="16" style="color:var(--fg)"><use href="#tri"/></svg></span></div><h3>Villa Palmeraie, Marrakech</h3><small>VIDÉO DE DÉMONSTRATION</small></div>
+      <div class="c big rv" data-play="assets/exemples/marrakech.jpg" data-video="assets/videos/villa-marrakech-9x16.mp4" data-title="Villa Palmeraie, Marrakech"><div class="im"><img src="assets/exemples/marrakech.jpg" alt="Villa Palmeraie, Marrakech" loading="lazy"><span class="pp"><svg width="16" height="16" style="color:var(--fg)"><use href="#tri"/></svg></span></div><h3>Villa Palmeraie, Marrakech</h3><small>VIDÉO DE DÉMONSTRATION</small></div>
       <div class="c rv" data-play="assets/exemples/paris.jpg" data-title="Haussmannien, Paris 8e"><div class="im"><img src="assets/exemples/paris.jpg" alt="Appartement haussmannien, Paris" loading="lazy"><span class="pp"><svg width="16" height="16" style="color:var(--fg)"><use href="#tri"/></svg></span></div><h3>Haussmannien, Paris 8e</h3><small>VIDÉO DE DÉMONSTRATION</small></div>
       <div class="c rv" data-play="assets/exemples/fes.jpg" data-title="Riad Médina, Fès"><div class="im"><img src="assets/exemples/fes.jpg" alt="Riad, Fès" loading="lazy"><span class="pp"><svg width="16" height="16" style="color:var(--fg)"><use href="#tri"/></svg></span></div><h3>Riad Médina, Fès</h3><small>VIDÉO DE DÉMONSTRATION</small></div>
-      <div class="c rv" data-play="assets/exemples/casablanca.jpg" data-title="Penthouse Anfa, Casablanca"><div class="im"><img src="assets/exemples/casablanca.jpg" alt="Penthouse, Casablanca" loading="lazy"><span class="pp"><svg width="16" height="16" style="color:var(--fg)"><use href="#tri"/></svg></span></div><h3>Penthouse Anfa, Casablanca</h3><small>VIDÉO DE DÉMONSTRATION</small></div>
+      <div class="c rv" data-play="assets/exemples/casablanca.jpg" data-video="assets/videos/penthouse-casablanca-9x16.mp4" data-title="Penthouse Anfa, Casablanca"><div class="im"><img src="assets/exemples/casablanca.jpg" alt="Penthouse, Casablanca" loading="lazy"><span class="pp"><svg width="16" height="16" style="color:var(--fg)"><use href="#tri"/></svg></span></div><h3>Penthouse Anfa, Casablanca</h3><small>VIDÉO DE DÉMONSTRATION</small></div>
       <div class="c rv" data-play="assets/exemples/bordeaux.jpg" data-title="Maison d'architecte, Bordeaux"><div class="im"><img src="assets/exemples/bordeaux.jpg" alt="Maison d'architecte, Bordeaux" loading="lazy"><span class="pp"><svg width="16" height="16" style="color:var(--fg)"><use href="#tri"/></svg></span></div><h3>Maison d'architecte, Bordeaux</h3><small>VIDÉO DE DÉMONSTRATION</small></div>
     </div>
   </div>
@@ -723,13 +729,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
     <div class="toggles rv">
       <div class="seg" id="cur"><button class="on" data-c="eur">France · €</button><button data-c="mad">Maroc · DH</button></div>
     </div>
-    <div class="plans four">
-      <div class="plan rv">
-        <h3>Essai</h3><div class="d">Pour découvrir ImmoClap sur un vrai bien.</div>
-        <div class="price">Gratuit</div><div class="per">1 vidéo offerte</div>
-        <ul><li>1 vidéo complète</li><li>3 formats</li><li>Musique incluse</li><li>Petit filigrane ImmoClap</li></ul>
-        <a href="#" class="btn ghost" data-open>Essayer gratuitement</a>
-      </div>
+    <div class="plans">
       <div class="plan rv">
         <h3>1 vidéo</h3><div class="d">Pour un mandat ponctuel.</div>
         <div class="price" data-eur="19" data-mad="149"></div><div class="per" data-unit-eur="la vidéo" data-unit-mad="la vidéo"></div>
@@ -750,7 +750,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
         <a href="#" class="btn ghost" data-open>Choisir le pack 10</a>
       </div>
     </div>
-    <p class="unit rv">Jusqu'à 12 photos par vidéo · Crédits valables 12 mois · TVA éventuelle ajoutée au paiement</p>
+    <p class="unit rv"><a href="#" class="link" data-play="assets/exemples/marrakech.jpg" data-video="assets/videos/villa-marrakech-9x16.mp4" data-title="Villa Palmeraie, Marrakech">Voir une vidéo d'exemple ▸</a><br><br>Jusqu'à 12 photos par vidéo · Crédits valables 12 mois · TVA éventuelle ajoutée au paiement</p>
   </div>
 </section>
 
@@ -767,7 +767,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
       <div class="q"><button aria-expanded="false">La musique est-elle libre de droits ?<span class="pm">+</span></button><div class="a"><div><p>Oui. Toutes les musiques sont utilisables sur les portails et les réseaux sociaux, sans risque de blocage.</p></div></div></div>
       <div class="q"><button aria-expanded="false">Puis-je ajouter mon logo ?<span class="pm">+</span></button><div class="a"><div><p>Oui : logo, couleurs de l'agence et carton de fin avec vos coordonnées, sur chaque vidéo.</p></div></div></div>
       <div class="q"><button aria-expanded="false">L'IA modifie-t-elle mon bien ?<span class="pm">+</span></button><div class="a"><div><p>Non. ImmoClap ajoute uniquement un mouvement de caméra : les volumes, les matériaux et les défauts restent tels qu'ils sont. Les retouches d'ambiance (lumière, ciel) sont toujours signalées « image retouchée par IA ».</p></div></div></div>
-      <div class="q"><button aria-expanded="false">Comment fonctionne la vidéo gratuite ?<span class="pm">+</span></button><div class="a"><div><p>Laissez votre e-mail : vous recevez votre accès et votre première vidéo est offerte, sans carte bancaire.</p></div></div></div>
+      <div class="q"><button aria-expanded="false">Puis-je voir un exemple avant d'acheter ?<span class="pm">+</span></button><div class="a"><div><p>Oui. Cliquez sur « Voir un exemple » en haut de la page ou sur les vidéos de la section Exemples : ce sont des vidéos de démonstration réalisées avec ImmoClap. Vous payez ensuite à la vidéo, sans abonnement.</p></div></div></div>
     </div>
   </div>
 </section>
@@ -776,7 +776,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
 <section class="final">
   <div class="wrap">
     <h2 class="rv">Prêt à devenir<br><span class="it">l'agence qui fait de la vidéo&nbsp;?<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
-    <a href="#" class="btn rv" data-open>Ma première vidéo gratuite <svg width="16" height="16"><use href="#arrow"/></svg></a>
+    <a href="#" class="btn rv" data-open>Créer ma vidéo <svg width="16" height="16"><use href="#arrow"/></svg></a>
   </div>
 </section>
 </main>
@@ -807,8 +807,8 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Aperçu vidéo">
   <button class="x" aria-label="Fermer">×</button>
   <div class="lb-in">
-    <div class="lb-v"><img id="lbimg" src="assets/exemples/marrakech.jpg" alt=""><div class="lb-t"><b id="lbtitle"></b></div><div class="lb-logo"><svg><use href="#mark"/></svg>Immo<span style="color:var(--gold)">Clap</span></div><div class="lb-bar"></div></div>
-    <div class="lb-f"><small>APERÇU · VIDÉO DE DÉMONSTRATION</small><a href="#" class="btn sm" data-open>Créer la mienne gratuitement <svg width="14" height="14"><use href="#arrow"/></svg></a></div>
+    <div class="lb-v"><img id="lbimg" src="assets/exemples/marrakech.jpg" alt=""><video id="lbvid" controls playsinline preload="none"></video><div class="lb-t"><b id="lbtitle"></b></div><div class="lb-logo"><svg><use href="#mark"/></svg>Immo<span style="color:var(--gold)">Clap</span></div><div class="lb-bar"></div></div>
+    <div class="lb-f"><small>APERÇU · VIDÉO DE DÉMONSTRATION</small><a href="#" class="btn sm" data-open>Créer la mienne <svg width="14" height="14"><use href="#arrow"/></svg></a></div>
   </div>
 </div>
 
@@ -817,17 +817,17 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
   <div class="mbox" id="mbox">
     <button class="x" aria-label="Fermer">×</button>
     <svg width="44" height="44" style="margin:0 auto 14px;display:block"><use href="#mark"/></svg>
-    <h3 id="mt">Votre première vidéo,<br><span class="it" style="color:var(--gold2)">offerte.</span></h3>
-    <p>Laissez votre e-mail : on vous envoie votre accès pour créer votre première vidéo.</p>
+    <h3 id="mt">Créez votre<br><span class="it" style="color:var(--gold2)">première vidéo.</span></h3>
+    <p>Les comptes ouvrent très bientôt. Laissez votre e-mail : on vous écrit dès que vous pouvez commander.</p>
     
     <form name="inscription" method="POST" data-netlify="true" netlify-honeypot="bot" id="form">
       <input type="hidden" name="form-name" value="inscription">
       <p hidden><label>Ne pas remplir <input name="bot"></label></p>
       <input type="email" name="email" placeholder="Votre e-mail professionnel" required autocomplete="email">
-      <button class="btn" type="submit" style="margin-top:12px">Recevoir mon accès</button>
+      <button class="btn" type="submit" style="margin-top:12px">Être prévenu</button>
     </form>
-    <p class="okmsg">Merci ! On vous écrit très vite à cette adresse pour créer votre première vidéo.</p>
-    <p class="fine">1 vidéo offerte, sans carte bancaire. En continuant, vous acceptez nos <a href="cgv.html" style="text-decoration:underline">CGV</a> et notre <a href="confidentialite.html" style="text-decoration:underline">politique de confidentialité</a>.</p>
+    <p class="okmsg">Merci ! On vous écrit à cette adresse dès l'ouverture des commandes.</p>
+    <p class="fine">Paiement à la vidéo, sans abonnement. En continuant, vous acceptez nos <a href="cgv.html" style="text-decoration:underline">CGV</a> et notre <a href="confidentialite.html" style="text-decoration:underline">politique de confidentialité</a>.</p>
   </div>
 </div>
 
@@ -956,9 +956,12 @@ $('#form').addEventListener('submit',e=>{e.preventDefault();const f=e.target;
   .finally(()=>mbox.classList.add('sent'));});
 /* aperçu vidéo */
 const lb=$('#lb'), lbimg=$('#lbimg'), lbt=$('#lbtitle');
+const lbvid=$('#lbvid');
 const lbOpen=el=>{lbimg.src=el.dataset.play;lbimg.alt=el.dataset.title;lbt.textContent=el.dataset.title;
+  const v=el.dataset.video;lb.classList.toggle('isvid',!!v);lb.classList.toggle('portrait',!!(v&&v.includes('9x16')));
+  if(v){const src=lbvid.canPlayType('video/mp4; codecs="avc1.42E01E"')?v:v.replace('.mp4','.webm');lbvid.src=src;lbvid.currentTime=0;lbvid.play().catch(()=>{lbvid.muted=true;lbvid.play().catch(()=>{})});}else{lbvid.pause();lbvid.removeAttribute('src');}
   lb.classList.remove('on');void lb.offsetWidth;lb.classList.add('on');document.body.style.overflow='hidden';};
-const lbClose=()=>{lb.classList.remove('on');if(!modal.classList.contains('on'))document.body.style.overflow='';};
+const lbClose=()=>{lb.classList.remove('on');lbvid.pause();if(!modal.classList.contains('on'))document.body.style.overflow='';};
 $$('[data-play]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();lbOpen(el)}));
 $('.x',lb).addEventListener('click',lbClose);
 lb.addEventListener('click',e=>{if(e.target===lb)lbClose()});

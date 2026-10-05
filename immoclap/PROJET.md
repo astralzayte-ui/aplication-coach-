@@ -16,6 +16,7 @@ Dernière mise à jour : 05/10/2026. À tenir à jour à chaque décision import
 - Nom : ImmoClap (ancien nom abandonné : ImmoMotion).
 - E-mail : contact.immoclap@gmail.com.
 - Réseaux : Instagram / TikTok / YouTube @immoclap ; comptes France Instagram + TikTok @immoclap.fr (créés par sa demi-sœur).
+- ⚠️ Les bios disent « 1ère vidéo offerte » → à remplacer (plus d'essai gratuit).
 - Bio validée (mêmes sur les 2 Insta, sans drapeaux) : « 🎬 Vos biens immobiliers en vidéo cinématique / 📸 Vos photos → une vidéo en 5 min / 🏠 Pour agences et propriétaires / 👇 Votre 1ère vidéo offerte ». Nom Insta et TikTok : « ImmoClap · Vidéo immobilière ».
 - Logo : maison en traits fins + bouton play, « Immo » crème + « Clap » doré. Fichiers : `assets/logo.svg`, `icon.svg`, `favicon.svg`, `photo-profil-reseaux.jpg`.
 - Charte : fond #0B0A09 / #181614, crème #F3EFE7, secondaire #B4AA9D, doré #F6BC28 ; titres Newsreader (2e ligne italique soulignée d'un trait doré), texte Inter (polices auto-hébergées `assets/fonts.css`).
@@ -25,14 +26,14 @@ Dernière mise à jour : 05/10/2026. À tenir à jour à chaque décision import
 - Fichiers : `immoclap/index.html` (landing style Reel-E), `cgv.html`, `mentions-legales.html`, `confidentialite.html`, `remboursement.html`, `merci.html`. Pages légales générées par un script (copie dans le scratchpad, `legal.py`) — l'éditeur est rempli, identifiant auto-entrepreneur « en cours d'immatriculation ».
 - Formulaire Netlify « inscription » (e-mail) actif ; détection des formulaires activée. Pas encore de vrais comptes / Google login / paiement.
 - Variables d'env Netlify secrètes : HF_API_KEY_ID, HF_API_KEY_SECRET (clé Higgsfield, expire dans 1 an ~ sept. 2027).
-- Vidéos de démo réelles (fournies par le fondateur, générées IA) : `assets/videos/villa-marrakech-*` et `penthouse-casablanca-*` (9x16, 16x9, poster). PAS encore intégrées au site.
+- Vidéos de démo réelles (fournies par le fondateur, générées IA) : `assets/videos/villa-marrakech-*` et `penthouse-casablanca-*` (mp4 H.264 + webm VP9, 9x16 avec son, 16x9 sans son). Intégrées : hero en autoplay, bouton « Voir un exemple », cartes Exemples Marrakech/Casablanca, lien sous les tarifs. Le Chromium de test n'a pas H.264 → toujours fournir le webm.
 - Photos de démo : `assets/exemples/{marrakech,paris,fes,casablanca,bordeaux}.jpg` (Tanger jamais reçue en fichier).
 - Règle : copier le STYLE de Reel-E, jamais leurs textes / images / code. Visuels IA toujours étiquetés « démonstration ». Pas de faux avis.
 
 ## Prix (sans abonnement, crédits)
 - France : 1 vidéo 19 € HT · pack 5 = 79 € · pack 10 = 139 €.
 - Maroc : 1 vidéo 149 DH · pack 5 = 599 DH · pack 10 = 999 DH.
-- 1 vidéo d'essai gratuite. Max 12 photos par vidéo. Crédits valables 12 mois.
+- PAS d'essai gratuit (décidé le 05/10) : à la place, bouton « Voir un exemple » qui lit une vraie vidéo de démo. Max 12 photos par vidéo. Crédits valables 12 mois.
 - Coût Higgsfield ≈ 5 $ / vidéo (Kling 3.0, 12 plans × 5 s) ; ≈ 2,5 $ avec Kling 2.5.
 - Marges nettes calculées (après Lemon Squeezy 5 % + 0,50 $, virement 1 %, impôt AE 1 %, Higgsfield) : France 1 vidéo ≈ 139 DH, pack 10 ≈ 918 DH ; Maroc 1 vidéo ≈ 88 DH, pack 10 ≈ 463 DH.
 - Concurrents : Roomotion (FR) 30–39 € HT/vidéo ; Reel-E 12–20 $/vidéo ; StagingVision 5–40 € ; vidéaste 350–2 000 €. Maroc : aucune offre vidéo IA ; shooting photo 500–1 500 DH.
