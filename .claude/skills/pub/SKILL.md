@@ -241,6 +241,14 @@ avec.** Sans lien, la pub n'a jamais existé.
 | Le moule, le texte à l'écran, en série | Remotion, dossier `video/` du projet |
 | Juger une vidéo avant de la publier | Higgs `virality_predictor` — un avis, pas une vérité |
 
+🟢 **Le visage de la marque (SILENCE, décidé le 05/10) :** un personnage
+généré sur Higgs Field, **le même dans toutes les vidéos** — créé une fois,
+réutilisé partout. C'est ce qui fait l'image de marque.
+
+🔴 **L'étiquette « contenu généré par IA »** se coche à chaque publication
+sur TikTok et Meta — obligatoire pour un visage réaliste généré. Sans elle :
+vidéo retirée, compte sanctionné.
+
 🔴 **Vraie personne > personne générée.** Un visage généré qui se fait
 passer pour un client ou le fondateur = mensonge (skill projet, étape 10).
 
