@@ -68,6 +68,10 @@ Dernière mise à jour : 05/10/2026. À tenir à jour à chaque décision import
 - Annulés : amélioration motion design du site, pub motion design (la recherche YouTube est faite : `pub-recherche-youtube.json`).
 - Script de workflow : `/root/.claude/projects/-home-user-aplication-coach-/5c78e82e-7a2c-53e6-8166-801579d546c3/workflows/scripts/immoclap-4-chantiers-wf_73a6474e-56f.js` (args {track: prospects|app|site|ad}). Attention : machine à 4 CPU → 2 agents max par workflow ; limites de session atteintes plusieurs fois.
 
+## Prochaine session (décidé le 05/10)
+- Le 06/10 : étapes 1 à 7 seulement (le temps d'économiser). Fondateur : 1 auto-entrepreneur, 2 e-mail Lemon Squeezy, 3 compte Polar (sans Finance→Account), 4 produits sandbox + liens. Claude : 5 paiement test Polar, 6 vrais comptes clients, 7 génération Higgsfield branchée (sans générer de payant). Rappel programmé 06/10 09:00 UTC (trig_01KBT5rcABkf7toEUnTotNoZ).
+- Étapes 8 et suivantes (recharge Higgsfield, domaine, examen Polar, prospection, Metricool) : après.
+
 ## Pubs (skill `pub`)
 - Avant toute vidéo : Metricool branché sur les comptes ImmoClap, suivi ?v=videoXX sur le site, ventes lisibles (Lemon Squeezy), fichier d'étiquettes. Rien de coché au 05/10.
 - Étape 1 proposée (espionner les pubs actives Reel-E / AutoReel / Roomotion, ~15–20 crédits scraping sur ~45) : pas encore lancée.
