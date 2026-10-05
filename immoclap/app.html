@@ -372,11 +372,19 @@ textarea{resize:vertical;min-height:90px}
     <div class="login">
       <h1>Paiement</h1>
       <p class="muted" id="pay-desc"></p>
-      <div class="card" style="text-align:left">
-        <p class="small muted">En production, ce bouton ouvre la page de paiement sécurisée Lemon Squeezy. En mode test, rien n'est débité : les crédits sont ajoutés pour essayer le parcours.</p>
-        <button class="btn full" id="pay-ok" style="margin-top:16px">Simuler le paiement</button>
-        <button class="btn ghost full" id="pay-cancel" style="margin-top:10px">Annuler</button>
-      </div>
+      <form class="card" id="f-pay" style="text-align:left" novalidate autocomplete="off">
+        <div class="notice" style="margin-bottom:16px">🔒 Paiement de test : <b>n'entrez jamais une vraie carte</b>. Rien n'est envoyé ni enregistré.<br>Carte acceptée : <b>4242 4242 4242 4242</b> · Carte refusée : <b>4000 0000 0000 0002</b> · date future, CVC au choix.</div>
+        <div class="field"><label for="cc-name">Nom sur la carte</label><input type="text" id="cc-name" placeholder="Agence Test" autocomplete="off"></div>
+        <div class="field"><label for="cc-num">Numéro de carte</label><input type="text" id="cc-num" inputmode="numeric" placeholder="4242 4242 4242 4242" maxlength="19" autocomplete="off"></div>
+        <div class="grid2" style="grid-template-columns:1fr 1fr">
+          <div class="field"><label for="cc-exp">Expiration</label><input type="text" id="cc-exp" inputmode="numeric" placeholder="MM/AA" maxlength="5" autocomplete="off"></div>
+          <div class="field"><label for="cc-cvc">CVC</label><input type="text" id="cc-cvc" inputmode="numeric" placeholder="123" maxlength="4" autocomplete="off"></div>
+        </div>
+        <div class="err" id="pay-err"></div>
+        <button class="btn full" type="submit" id="pay-ok" style="margin-top:8px">Payer</button>
+        <button class="btn ghost full" type="button" id="pay-cancel" style="margin-top:10px">Annuler</button>
+        <p class="small muted" style="margin-top:12px;text-align:center">En production : page de paiement sécurisée Lemon Squeezy.</p>
+      </form>
     </div>
   </section>
 </main>
@@ -487,15 +495,39 @@ function buy(id){
   $('#pay-desc').textContent=`${o.name} — ${money(o)}${o.monthly?' par mois':''} · ${o.credits} crédit(s)`;
   show('s-pay');
 }
-$('#pay-ok').addEventListener('click',()=>{
+const TEST_CARDS={'4242424242424242':'ok','4000000000000002':'declined','4000000000009995':'funds'};
+const ccNum=$('#cc-num'), ccExp=$('#cc-exp');
+ccNum.addEventListener('input',()=>{ccNum.value=ccNum.value.replace(/\D/g,'').slice(0,16).replace(/(.{4})(?=.)/g,'$1 ');});
+ccExp.addEventListener('input',()=>{let v=ccExp.value.replace(/\D/g,'').slice(0,4);if(v.length>2)v=v.slice(0,2)+'/'+v.slice(2);ccExp.value=v;});
+$('#f-pay').addEventListener('submit',e=>{
+  e.preventDefault();
   if(!pending)return;
-  state.credits+=pending.credits;
-  if(pending.monthly) state.plan=pending.name;
-  save(); toast(`+${pending.credits} crédit(s) ajouté(s) (test).`);
-  const resume=pending.resume; pending=null;
-  if(resume){ show('s-new'); goStep(3); renderHeader(); } else route();
+  const err=$('#pay-err'), num=ccNum.value.replace(/\D/g,''), exp=ccExp.value, cvc=$('#cc-cvc').value.replace(/\D/g,'');
+  err.textContent='';
+  const fail=(m,el)=>{err.textContent=m;if(el)el.focus();};
+  if(!$('#cc-name').value.trim()) return fail('Indiquez le nom sur la carte.',$('#cc-name'));
+  if(num.length<16) return fail('Numéro de carte incomplet.',ccNum);
+  const m=exp.match(/^(\d{2})\/(\d{2})$/);
+  if(!m||+m[1]<1||+m[1]>12) return fail('Date d\'expiration invalide (MM/AA).',ccExp);
+  const now=new Date(), y=2000+ +m[2];
+  if(y<now.getFullYear()||(y===now.getFullYear()&&+m[1]<now.getMonth()+1)) return fail('Cette carte a expiré.',ccExp);
+  if(cvc.length<3) return fail('CVC invalide.',$('#cc-cvc'));
+  const r=TEST_CARDS[num];
+  if(!r) return fail('Mode test : seules les cartes de test sont acceptées (4242 4242 4242 4242).',ccNum);
+  const btn=$('#pay-ok'); btn.disabled=true; btn.textContent='Paiement en cours…';
+  setTimeout(()=>{
+    btn.disabled=false; btn.textContent='Payer';
+    if(r==='declined') return fail('Paiement refusé par la banque. Essayez une autre carte.');
+    if(r==='funds') return fail('Fonds insuffisants.');
+    state.credits+=pending.credits;
+    if(pending.monthly) state.plan=pending.name;
+    save(); toast(`Paiement accepté (test) : +${pending.credits} crédit(s).`);
+    $('#f-pay').reset();
+    const resume=pending.resume; pending=null;
+    if(resume){ show('s-new'); goStep(3); renderHeader(); } else route();
+  },1600);
 });
-$('#pay-cancel').addEventListener('click',()=>{const r=pending&&pending.resume;pending=null; if(r){show('s-new');goStep(3);} else route();});
+$('#pay-cancel').addEventListener('click',()=>{$('#f-pay').reset();$('#pay-err').textContent='';const r=pending&&pending.resume;pending=null; if(r){show('s-new');goStep(3);} else route();});
 
 /* ===== Assistant ===== */
 let draft, step=0;
