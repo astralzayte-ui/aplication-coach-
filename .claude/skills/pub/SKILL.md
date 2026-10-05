@@ -194,6 +194,19 @@ les chiffres        Metricool → getAnalyticsDataByMetrics
 vidéo 07 · format « visage qui parle » · hook n°12 · source « pub X » · début B
 ```
 
+### Les sources : parts égales, puis le gagnant prend plus
+
+```
+JOURS 1-20     5 sources × 8 vidéos, parts ÉGALES
+               (lui + toi · ses vidéos enregistrées · pubs concurrentes ·
+                vidéos qui percent · avis 1 étoile)
+JOUR 21        on classe par la MOYENNE de rétention 3 s de chaque source
+JOURS 21-40    1ʳᵉ 50 % · 2ᵉ 30 % · les autres 20 %, jamais zéro
+```
+
+🟠 **Jamais juger une source sur sa meilleure vidéo** — un coup de chance
+ne fait pas une source gagnante.
+
 ### Comment on lit
 
 ```

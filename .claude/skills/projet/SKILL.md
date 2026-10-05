@@ -882,15 +882,35 @@ pour le jour où elle le sera.
 **Chaque hook est marqué par sa source.**
 
 ```
-VAGUE 1 — 40 vidéos
-1.  Lui + toi                  ses objections              35 %   14
-2.  Ses vidéos enregistrées    ce qui l'a arrêté, LUI      25 %   10
-3.  Ad Library                 les pubs qui tournent       25 %   10
-4.  Scraping UGC               les vidéos qui percent      15 %    6
+VAGUE 1 — 40 vidéos, PARTS ÉGALES
+1.  Lui + toi                  ses objections                  8
+2.  Ses vidéos enregistrées    ce qui l'a arrêté, LUI          8
+3.  Les pubs concurrentes      celles qui tournent 30 j+       8   ← skill pub
+4.  Scraping UGC               les vidéos qui percent          8
+5.  Avis 1 étoile              ce que leurs clients gueulent   8
 
-VAGUE 2 — à partir du jour 21
-5.  Avis 1 étoile              ce que leurs clients gueulent
-    + les sources 1 et 2 rechargées
+        🛑 JOUR 21 — on classe les 5 sources
+
+VAGUE 2 — 40 vidéos, LE GAGNANT PREND PLUS
+la 1ʳᵉ source     50 %   20 vidéos
+la 2ᵉ             30 %   12 vidéos
+les 3 autres      20 %    8 vidéos   ← jamais à zéro
+```
+
+### 🟢 Pourquoi des parts égales au départ — décidé le 05/10
+
+**Les anciens pourcentages (35 / 25 / 25 / 15) étaient choisis au
+feeling.** En partant égal, ce sont **les chiffres qui décident** quelle
+source mérite plus, pas nous.
+
+**Les deux règles pour ne pas se tromper :**
+
+```
+🟠  on compare la MOYENNE de chaque source (rétention 3 s),
+    jamais sa meilleure vidéo — une vidéo qui explose par chance
+    ne fait pas gagner toute sa source
+🟢  on garde 20 % pour les perdantes — une source peut juste
+    avoir mal démarré, et le mois d'après tout bouge
 ```
 
 **Pourquoi le marquage :** à la fin, il ne sait pas seulement quel hook a
@@ -1532,8 +1552,8 @@ VAGUE 1 — jours 1 à 20      40 vidéos, 2 par jour
         🛑 JOUR 21 — ON LIT
 
 VAGUE 2 — jours 21 à 40     40 vidéos
-  les gagnants rejoués + la source 5, et les sources rechargées
-  toutes dans le format qui a gagné
+  les sources redistribuées : 50 % / 30 % / 20 % (étape 8)
+  les gagnants rejoués, toutes dans le format qui a gagné
 ```
 
 **Pourquoi couper en deux :** tout balancer d'un coup, c'est lire les résultats une fois que tout est déjà sorti. En deux vagues, **on décide au milieu**.
