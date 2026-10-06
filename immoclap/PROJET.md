@@ -74,6 +74,13 @@ Dernière mise à jour : 05/10/2026. À tenir à jour à chaque décision import
 - Le 06/10 : étapes 1 à 7 seulement (le temps d'économiser). Fondateur : 1 auto-entrepreneur, 2 e-mail Lemon Squeezy, 3 compte Polar (sans Finance→Account), 4 produits sandbox + liens. Claude : 5 paiement test Polar, 6 vrais comptes clients, 7 génération Higgsfield branchée (sans générer de payant). Rappel programmé 06/10 09:00 UTC (trig_01KBT5rcABkf7toEUnTotNoZ).
 - Étapes 8 et suivantes (recharge Higgsfield, domaine, examen Polar, prospection, Metricool) : après.
 
+## Chantier futur : WhatsApp (décidé le 06/10)
+- But : chatbot WhatsApp qui répond aux clients (questions fréquentes : prix, délai, fonctionnement) et passe la main au fondateur pour le reste ; Claude lit les conversations, les analyse (routine quotidienne + à la demande) et propose des réponses (envoi seulement avec accord au début).
+- Technique : API WhatsApp Cloud en « coexistence » (même numéro que l'appli WhatsApp Business du téléphone, historique synchronisé, ouvert à tous les pays depuis mai 2026) ; webhook = fonction Netlify qui stocke les messages ; IA du chatbot = Gemini ; jeton Meta en secret d'environnement (jamais dans le chat).
+- Coût : 1 000 messages de service gratuits par mois et par numéro (règle Meta au 01/10/2026), au-delà payant ; messages marketing toujours payants. Interdit : prospection à froid par l'API (consentement obligatoire) → les 127 messages restent manuels.
+- Quand : après l'ouverture des paiements (étape 14). Le fondateur doit : compte Meta Business + numéro WhatsApp Business ; Claude le guide.
+- Polar : jeton d'organisation en lecture seule → variable d'environnement POLAR_ACCESS_TOKEN (+ autoriser api.polar.sh dans le réseau de l'environnement).
+
 ## Pubs (skill `pub`)
 - Avant toute vidéo : Metricool branché sur les comptes ImmoClap, suivi ?v=videoXX sur le site, ventes lisibles (Lemon Squeezy), fichier d'étiquettes. Rien de coché au 05/10.
 - Étape 1 proposée (espionner les pubs actives Reel-E / AutoReel / Roomotion, ~15–20 crédits scraping sur ~45) : pas encore lancée.
