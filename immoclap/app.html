@@ -1429,7 +1429,7 @@ function routeWizard(r){
   if (!draft) { if (n > 1) return leaveFlow('videos'); draft = newDraft(); saveDraft(); }
   if (!(n >= 1 && n <= 4)) return exitTo('nouvelle/' + (draft.step || 1));
   const bad = firstBadStep(n);
-  if (bad) return exitTo('nouvelle/' + bad);
+  if (bad) { stepNotice = bad; return exitTo('nouvelle/' + bad); } /* on dit pourquoi on reste sur cette étape */
   draft.step = n; saveDraftSoon();
   fillForm(); clearStepErrors();
   $$('.step').forEach(s => s.hidden = +s.dataset.step !== n);
@@ -1447,7 +1447,10 @@ function routeWizard(r){
   renderHeader('');
   const titles = ['Les photos', 'Le bien', 'Le style', 'Récapitulatif'];
   showScreen('new', `Étape ${n} sur 4 · ${titles[n - 1]}`, $(`.step[data-step="${n}"] h1`));
+  if (stepNotice === n) { const p = stepProblem(n); if (p) showProblem(p); }
+  stepNotice = 0;
 }
+let stepNotice = 0;
 const navOf = r => r.a === 'videos' || r.a === 'compte' ? r.a : '';
 const curStep = () => { const r = parseHash(); return r.a === 'nouvelle' ? (parseInt(r.b, 10) || 1) : 0; };
 function updateNextBtn(n){
