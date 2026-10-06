@@ -1092,7 +1092,12 @@ function logout(msg){
   resetWizardUI();
   $('#email').value = '';
   toast(msg || 'Vous êtes déconnecté.');
-  go('connexion', true);
+  wantedRoute = null;
+  /* les écrans du compte quitté disparaissent de l'historique : Retour ne ramène ni à eux ni à une
+     deuxième page de connexion. On remonte à la première entrée de l'app, remplacée par la connexion. */
+  const n = entryI();
+  if (n > 0) { afterBack = {t:'connexion', push:false}; history.go(-n); }
+  else go('connexion', true);
 }
 
 /* ---------- plusieurs onglets ouverts sur le même compte ---------- */
@@ -1140,15 +1145,18 @@ function onExternalDraft(){
 const SCREENS = {login:'s-login', dash:'s-dash', new:'s-new', video:'s-video', account:'s-account', pay:'s-pay'};
 let lastRoute = '';
 function parseHash(){ const h = decodeURIComponent(location.hash.replace(/^#\/?/, '')); const [a, b, c] = h.split('/'); return {a:a || '', b:b || '', c:c || '', raw:h}; }
-let navReplace = false, pendFrom, flowDepth = 0, flowPre = false, afterBack = null, rendered = false;
+let navReplace = false, pendFrom, pendI, curI = 0, flowDepth = 0, flowPre = false, afterBack = null, rendered = false;
 /* hash de l'entrée d'historique qui précède l'entrée courante (connu seulement si on y est arrivé en avançant) */
 function entryFrom(){ try { const st = history.state; return st && typeof st.from === 'string' ? st.from : null; } catch(e) { return null; } }
+/* rang de l'entrée courante depuis l'ouverture de l'app (0 = première entrée) */
+function entryI(){ try { const st = history.state; return st && typeof st.i === 'number' ? st.i : curI; } catch(e) { return curI; } }
 function go(h, replace){
   const target = '#' + h;
   if (location.hash === target) { render(); return; }
   navReplace = !!replace;
   /* entrée précédente de la future entrée : la même que celle de l'entrée remplacée, ou l'entrée qu'on quitte */
   pendFrom = replace ? entryFrom() : (location.hash || null);
+  pendI = entryI() + (replace ? 0 : 1);
   if (replace) location.replace(target); else location.hash = h;
 }
 /* quitter un écran de passage (paiement) : si l'entrée précédente est déjà la destination, on y revient
@@ -1163,15 +1171,17 @@ function exitTo(dest){
 const isFlow = r => r.a === 'nouvelle' || (r.a === 'paiement' && r.c === 'reprise');
 function stampHistory(r){
   let st = null; try { st = history.state; } catch(e) {}
-  if (st && typeof st.flow === 'number') { flowDepth = st.flow; flowPre = !!st.pre; navReplace = false; pendFrom = undefined; rendered = true; return; }
+  if (st && typeof st.flow === 'number') { flowDepth = st.flow; flowPre = !!st.pre; curI = typeof st.i === 'number' ? st.i : 0; navReplace = false; pendFrom = pendI = undefined; rendered = true; return true; }
   let d = 0, pre = false;
   if (isFlow(r)) {
     if (flowDepth > 0) { d = navReplace ? flowDepth : flowDepth + 1; pre = flowPre; }
     else { d = 1; pre = rendered && !navReplace; }
   }
   const from = pendFrom !== undefined ? pendFrom : rendered ? prevHash : null;
-  navReplace = false; pendFrom = undefined; rendered = true; flowDepth = d; flowPre = pre;
-  try { history.replaceState(Object.assign({}, st, {flow:d, pre, from}), ''); } catch(e) {}
+  const i = pendI !== undefined ? pendI : rendered ? curI + 1 : 0;
+  navReplace = false; pendFrom = pendI = undefined; rendered = true; flowDepth = d; flowPre = pre; curI = i;
+  try { history.replaceState(Object.assign({}, st, {flow:d, pre, from, i}), ''); } catch(e) {}
+  return false;
 }
 /* sortie du parcours. Si une entrée précède le parcours, on y revient puis on avance vers la cible :
    les étapes mortes sont retirées de l'historique (Retour comme Suivant). Sinon, la première étape
@@ -1199,7 +1209,7 @@ function showScreen(name, title, focusEl){
 }
 function render(){
   const r = parseHash();
-  stampHistory(r);
+  const known = stampHistory(r); /* entrée déjà visitée (Retour, Suivant, rechargement) */
   $$('dialog[open]').forEach(d => { if (d.id !== 'dlg') d.close(); });
   closeHelp();
   if (r.a !== 'video') $('#r-video').pause();
@@ -1207,19 +1217,26 @@ function render(){
   if (lastRoute === 'nouvelle' && r.a !== 'nouvelle' && draft) { saveDraftSoon.flush(); if (r.a !== 'paiement' && draftHasContent()) toast('Brouillon enregistré : reprenez-le depuis Mes vidéos.'); }
   if (!session) {
     renderHeader('');
-    if (r.a !== 'connexion') { wantedRoute = r.raw || null; return go('connexion', true); }
+    if (r.a !== 'connexion') {
+      /* lien direct : on y va après la connexion. Écran d'un compte quitté (Suivant après une
+         déconnexion) : on revient à l'unique page de connexion, sans en créer une deuxième. */
+      wantedRoute = known ? null : r.raw || null;
+      const n = entryI();
+      if (n > 0) { afterBack = {t:'connexion', push:false}; history.go(-n); return; }
+      return go('connexion', true);
+    }
     lastRoute = 'connexion';
     return showScreen('login', 'Connexion');
   }
   lastRoute = r.a;
   switch (r.a) {
-    case 'connexion': return go('videos', true);
+    case 'connexion': return exitTo('videos');
     case 'videos': renderDash(); renderHeader('videos'); return showScreen('dash', 'Mes vidéos');
     case 'nouvelle': return routeWizard(r);
     case 'video': return routeVideo(r.b);
     case 'compte': renderAccount(); renderHeader('compte'); return showScreen('account', 'Mon compte');
     case 'paiement': return routePay(r.b, r.c === 'reprise');
-    default: return go('videos', true);
+    default: return exitTo('videos');
   }
 }
 
@@ -1410,9 +1427,9 @@ function routeWizard(r){
   let n = parseInt(r.b, 10);
   /* sans brouillon, une étape avancée (entrée d'historique périmée) ramène à Mes vidéos, d'un seul coup */
   if (!draft) { if (n > 1) return leaveFlow('videos'); draft = newDraft(); saveDraft(); }
-  if (!(n >= 1 && n <= 4)) return go('nouvelle/' + (draft.step || 1), true);
+  if (!(n >= 1 && n <= 4)) return exitTo('nouvelle/' + (draft.step || 1));
   const bad = firstBadStep(n);
-  if (bad) return go('nouvelle/' + bad, true);
+  if (bad) return exitTo('nouvelle/' + bad);
   draft.step = n; saveDraftSoon();
   fillForm(); clearStepErrors();
   $$('.step').forEach(s => s.hidden = +s.dataset.step !== n);
@@ -1440,7 +1457,7 @@ function updateNextBtn(n){
 }
 $('#prev').addEventListener('click', async () => {
   const n = curStep();
-  if (n > 1) return go('nouvelle/' + (n - 1));
+  if (n > 1) return exitTo('nouvelle/' + (n - 1));
   if (!draftHasContent()) { clearDraft(); return leaveFlow('videos'); }
   const v = await ask({title:"Quitter l'assistant ?", html:'<p>Votre brouillon est enregistré dans ce navigateur : vous pourrez le reprendre depuis Mes vidéos.</p>',
     buttons:[{label:'Garder le brouillon et quitter', value:'keep', focus:true}, {label:'Supprimer le brouillon', value:'del', kind:'danger'}, {label:'Rester', value:null, kind:'ghost'}]});
@@ -1836,7 +1853,7 @@ const canMp4 = !!vid.canPlayType('video/mp4; codecs="avc1.42E01E"');
 const ui = {fmt:'16:9', ver:'logo', tlang:'Français', vid:null};
 function routeVideo(id){
   const v = acct.videos.find(x => x.id === id);
-  if (!v) { toast('Vidéo introuvable.'); return go('videos', true); }
+  if (!v) { toast('Vidéo introuvable.'); return exitTo('videos'); }
   ui.vid = v;
   $('#v-proc').hidden = v.status !== 'processing';
   $('#v-ready').hidden = v.status !== 'ready';
@@ -1983,7 +2000,7 @@ function routePay(id, resume){
   /* un paiement est en cours : on reste sur l'offre réellement payée */
   if (pay.busy && pay.ctx && pay.ctx.offer.id !== id) {
     toast('Un paiement est en cours : attendez la fin.');
-    return go('paiement/' + pay.ctx.offer.id + (pay.ctx.resume ? '/reprise' : ''), true);
+    return exitTo('paiement/' + pay.ctx.offer.id + (pay.ctx.resume ? '/reprise' : ''));
   }
   if (!pay.busy && o.kind === 'sub' && acct.sub && acct.sub.id === o.id) { toast(`${o.name} est déjà votre formule.`); return exitTo('compte'); }
   if (!pay.busy || !payCtx || payCtx.offer.id !== id) {
