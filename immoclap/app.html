@@ -2,8 +2,9 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Espace client — ImmoClap</title>
+<meta name="description" content="Espace client ImmoClap, version de test.">
 <meta name="robots" content="noindex,nofollow">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32">
@@ -11,687 +12,2061 @@
 <meta name="theme-color" content="#0B0A09">
 <link rel="stylesheet" href="assets/fonts.css">
 <style>
+[hidden]{display:none!important}
 :root{
-  --bg:#0B0A09; --bg2:#181614; --card:#201D1A; --line:#2A2622;
-  --fg:#F3EFE7; --muted:#B4AA9D; --dim:#7d746a; --gold:#F6BC28; --gold2:#E5C99E;
-  --ok:#7FC48B; --err:#E57B6B;
-  --serif:"Newsreader",Georgia,serif; --sans:"Inter",system-ui,-apple-system,sans-serif;
-  --r:14px;
+  --bg:#0B0A09; --bg2:#181614; --card:#201D1A; --line:#2E2925; --line2:#5A524A;
+  --fg:#F3EFE7; --muted:#B4AA9D; --dim:#968C80; --gold:#F6BC28; --gold2:#E5C99E; --ink:#16120A;
+  --ok:#7FC48B; --err:#EF8A7A;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif; --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:14px; --r2:10px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased}
+html{-webkit-text-size-adjust:100%;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15px;line-height:1.55;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img,video{display:block;max-width:100%}
+svg{display:block;flex:none}
 a{color:inherit}
 button,input,select,textarea{font:inherit;color:inherit}
 button{background:none;border:0;cursor:pointer}
-h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-height:1.1}
-h1{font-size:clamp(32px,5vw,48px)}
-h2{font-size:clamp(26px,3.6vw,36px)}
-h3{font-size:22px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.015em;line-height:1.12}
+h1{font-size:clamp(32px,5vw,46px)}
+h2{font-size:clamp(24px,3.2vw,32px)}
+h3,.h3{font-family:var(--serif);font-size:21px;font-weight:400;line-height:1.2}
+h1:focus,h2:focus{outline:none}
+.it{font-style:italic;position:relative;display:inline-block}
+.it::after{content:"";position:absolute;left:1%;width:98%;bottom:-.22em;height:.3em;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 20' preserveAspectRatio='none'%3E%3Cpath d='M2 14 C 80 4, 200 2, 298 9' fill='none' stroke='%23E5C99E' stroke-width='2' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") no-repeat center/100% 100%}
 .muted{color:var(--muted)}
 .small{font-size:13px}
-.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+.fine{font-size:13px;color:var(--muted);line-height:1.5}
+.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.wrap{width:100%;max-width:1040px;margin:0 auto;padding:0 16px}
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;left:-9999px;top:8px;background:var(--gold);color:var(--ink);padding:10px 14px;border-radius:8px;z-index:200;font-weight:600}
+.skip:focus{left:8px}
 
-/* bandeau test */
-.testbar{background:var(--gold);color:#16120a;font-size:13px;font-weight:600;text-align:center;padding:7px 16px}
-
-/* header */
-.top{border-bottom:1px solid var(--line);background:var(--bg)}
-.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--serif);font-size:22px}
+/* bandeau test + en-tête */
+.testbar{background:var(--gold);color:var(--ink);font-size:13px;font-weight:600;text-align:center;padding:7px 16px;line-height:1.4}
+.top{background:var(--bg);border-bottom:1px solid var(--line);position:relative;z-index:20}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;min-height:64px;gap:10px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--serif);font-size:22px;font-weight:500;min-height:44px}
 .logo img{width:30px;height:30px}
-.logo .wm b{font-weight:400;color:var(--gold)}
-.who{display:flex;align-items:center;gap:12px;font-size:14px}
-.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;white-space:nowrap}
+.logo .wm b{font-weight:500;color:var(--gold)}
+.who{display:flex;align-items:center;gap:4px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:0 14px;min-height:40px;font-size:13px;white-space:nowrap;text-decoration:none;margin-right:6px}
 .chip b{color:var(--gold);font-weight:600}
+.chip:hover{border-color:var(--line2)}
+.hbtn{display:inline-flex;align-items:center;gap:8px;min-height:44px;min-width:44px;justify-content:center;padding:0 10px;border-radius:10px;color:var(--muted);font-size:14px;text-decoration:none}
+.hbtn:hover,.hbtn[aria-current=page]{color:var(--fg);background:var(--bg2)}
+.hbtn[aria-disabled=true]{opacity:.5;cursor:not-allowed}
+@media(max-width:760px){.hbtn span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}.hbtn{padding:0}.logo .wm{font-size:20px}.chip{padding:0 10px;margin-right:2px}}
+@media(max-width:360px){.logo .wm{display:none}}
 
-/* boutons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:#16120a;font-weight:600;font-size:15px;padding:13px 22px;border-radius:10px;transition:transform .15s,opacity .15s}
-.btn:hover{transform:translateY(-1px)}
-.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
-.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
-.btn.sm{padding:8px 14px;font-size:13px}
+/* boutons et liens */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:var(--ink);font-weight:600;font-size:15px;padding:12px 20px;min-height:46px;border-radius:var(--r2);text-decoration:none;text-align:center;line-height:1.25;transition:transform .15s,box-shadow .15s,opacity .15s,border-color .15s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 10px 26px -12px rgba(246,188,40,.55)}
+.btn:disabled,.btn[aria-disabled=true]{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line2)}
+.btn.ghost:hover{border-color:var(--gold2);box-shadow:none}
+.btn.danger{background:transparent;color:var(--err);border:1px solid rgba(239,138,122,.5)}
+.btn.sm{padding:9px 14px;min-height:40px;font-size:14px}
 .btn.full{width:100%}
-.lnk{color:var(--muted);font-size:14px;text-decoration:underline;text-underline-offset:3px}
+.lnk{color:var(--muted);font-size:14px;text-decoration:underline;text-underline-offset:3px;min-height:32px;display:inline-flex;align-items:center;gap:6px}
+.lnk:hover{color:var(--fg)}
+.back{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:14px;text-decoration:none;min-height:40px;margin-bottom:10px}
+.back:hover{color:var(--fg)}
 
-/* écrans */
-main.wrap{padding:40px 16px 80px}
+/* structure */
+main.wrap{flex:1;padding:36px 16px 72px}
 .screen{display:none}
 .screen.on{display:block}
-.card{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:24px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:720px){.grid2{grid-template-columns:1fr}}
-
-/* login */
-.login{max-width:420px;margin:40px auto 0;text-align:center}
-.login p{margin:12px 0 28px}
-.login form{text-align:left;display:grid;gap:12px}
-.or{display:flex;align-items:center;gap:12px;color:var(--dim);font-size:13px;margin:4px 0}
-.or:before,.or:after{content:"";flex:1;height:1px;background:var(--line)}
-.gbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:12px;border-radius:10px;background:#fff;color:#1f1f1f;font-weight:500}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.card+.card{margin-top:16px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:0 16px}
+@media(max-width:720px){.grid2{grid-template-columns:1fr}.grid3{grid-template-columns:1fr 1fr}}
+.notice{border:1px solid rgba(246,188,40,.35);background:rgba(246,188,40,.07);border-radius:var(--r2);padding:12px 14px;font-size:14px;color:var(--gold2);line-height:1.5}
+.notice b{color:var(--fg)}
+.pill{display:inline-flex;align-items:center;font-size:12px;font-weight:600;letter-spacing:.02em;padding:3px 9px;border-radius:999px;border:1px solid var(--line2);color:var(--fg);white-space:nowrap}
+.pill.gold{border-color:rgba(246,188,40,.55);color:var(--gold)}
+.pill.ok{border-color:rgba(127,196,139,.45);color:var(--ok)}
+.pill.err{border-color:rgba(239,138,122,.5);color:var(--err)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);margin-right:6px;vertical-align:1px}
 
 /* champs */
-label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
-input[type=text],input[type=email],input[type=tel],input[type=number],select,textarea{width:100%;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:15px;outline:none;transition:border-color .15s}
+label,legend,.lab{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+fieldset{border:0;min-width:0}
+input[type=text],input[type=email],input[type=tel],select,textarea{width:100%;background:var(--card);border:1px solid var(--line2);border-radius:var(--r2);padding:12px 14px;font-size:16px;line-height:1.4;outline:none;transition:border-color .15s}
 input:focus,select:focus,textarea:focus{border-color:var(--gold)}
-textarea{resize:vertical;min-height:90px}
-.field{margin-bottom:16px}
+input[aria-invalid=true],textarea[aria-invalid=true]{border-color:var(--err)}
+::placeholder{color:var(--dim);font-style:italic;opacity:1}
+textarea{resize:vertical;min-height:96px}
+.field{margin-bottom:18px}
 .req{color:var(--gold)}
+.ferr{color:var(--err);font-size:13px;margin-top:6px}
+.ferr:empty{display:none}
+.err{color:var(--err);font-size:14px;margin-top:12px}
+.err:empty{display:none}
 .opts{display:flex;flex-wrap:wrap;gap:8px}
-.opt{position:relative}
-.opt input{position:absolute;opacity:0;pointer-events:none}
-.opt span{display:inline-block;padding:9px 14px;border:1px solid var(--line);border-radius:10px;font-size:14px;cursor:pointer;transition:border-color .15s,background .15s}
-.opt input:checked+span{border-color:var(--gold);background:rgba(246,188,40,.1);color:var(--fg)}
+.opt{position:relative;margin:0;color:var(--fg);font-size:14px}
+.opt input{position:absolute;opacity:0;width:1px;height:1px}
+.opt span{display:inline-flex;align-items:center;min-height:42px;padding:8px 14px;border:1px solid var(--line2);border-radius:var(--r2);cursor:pointer;transition:border-color .15s,background .15s}
+.opt input:checked+span{border-color:var(--gold);background:rgba(246,188,40,.1)}
 .opt input:focus-visible+span{outline:2px solid var(--gold);outline-offset:2px}
+.check{display:flex;gap:12px;align-items:flex-start;color:var(--fg);font-size:14px;line-height:1.5;cursor:pointer;margin:0}
+.check input{width:20px;height:20px;margin-top:1px;accent-color:var(--gold);flex:none}
+.check small{display:block;color:var(--muted);font-size:13px}
+.check a{color:var(--gold2)}
+
+/* connexion */
+.login{max-width:440px;margin:24px auto 0;text-align:center}
+.login h1{margin-bottom:14px}
+.login .intro{margin:0 0 22px}
+.login form{text-align:left;display:grid;gap:12px;margin-top:20px}
+.or{display:flex;align-items:center;gap:12px;color:var(--dim);font-size:13px;margin:6px 0}
+.or:before,.or:after{content:"";flex:1;height:1px;background:var(--line)}
+.gbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:48px;padding:12px;border-radius:var(--r2);background:#fff;color:#1f1f1f;font-weight:500}
+.gbtn small{color:#5f6368;font-weight:400}
 
 /* tableau de bord */
-.dash-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:28px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px}
-.stat{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:18px}
-.stat .n{font-family:var(--serif);font-size:34px;line-height:1}
-.stat .l{font-size:13px;color:var(--muted);margin-top:6px}
-@media(max-width:560px){.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:span 2}}
-.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
-.vid{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;text-align:left;transition:border-color .15s}
-.vid:hover{border-color:var(--dim)}
+.dash-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.draft{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border:1px solid rgba(246,188,40,.35);background:rgba(246,188,40,.06);border-radius:var(--r);padding:14px 16px;margin-bottom:20px}
+.draft .dthumb{width:64px;height:48px;border-radius:8px;background:var(--card) center/cover no-repeat;flex:none}
+.draft .dtxt{flex:1;min-width:180px}
+.draft .dtxt b{display:block;font-weight:600}
+.draft .dact{display:flex;gap:8px;flex-wrap:wrap}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px}
+.tile{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.tile .n{font-family:var(--serif);font-size:36px;line-height:1}
+.tile .l{font-size:13px;color:var(--muted)}
+.tile .s{font-size:13px;color:var(--muted);margin-top:4px}
+.tile .s a,.tile .s button{color:var(--gold2);text-decoration:underline;text-underline-offset:3px;font-size:13px}
+@media(max-width:620px){.tiles{grid-template-columns:1fr 1fr}.tiles .tile:last-child{grid-column:span 2}}
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;list-style:none}
+.vid{display:block;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;text-decoration:none;transition:border-color .15s;height:100%}
+.vid:hover{border-color:var(--line2)}
 .vid .th{aspect-ratio:16/10;background:var(--card) center/cover no-repeat;position:relative}
-.vid .th i{position:absolute;inset:auto auto 10px 10px;font-style:normal;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:rgba(0,0,0,.6);padding:4px 8px;border-radius:6px}
+.vid .th .pill{position:absolute;left:10px;top:10px;background:rgba(11,10,9,.82)}
+.vid .th i{position:absolute;right:10px;bottom:10px;font-style:normal;font-size:11px;letter-spacing:.06em;background:rgba(11,10,9,.78);padding:4px 8px;border-radius:6px}
 .vid .bd{padding:14px}
-.vid .bd b{display:block;font-weight:500}
-.empty{border:1px dashed var(--line);border-radius:var(--r);padding:48px 20px;text-align:center}
-.empty p{margin:8px 0 20px}
+.vid .bd b{display:block;font-weight:500;margin-bottom:2px}
+.vid .prog{height:3px;background:var(--line)}
+.vid .prog i{display:block;height:100%;background:var(--gold);width:0;transition:width .4s}
+.empty{border:1px dashed var(--line2);border-radius:var(--r);padding:44px 20px;text-align:center}
+.empty h2{font-size:26px}
+.empty p{margin:10px auto 22px;max-width:440px}
+.empty .act{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.sec-t{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:48px 0 16px;flex-wrap:wrap}
+.cur{display:inline-flex;border:1px solid var(--line2);border-radius:var(--r2);padding:3px}
+.cur button{min-height:38px;min-width:52px;padding:0 12px;border-radius:7px;font-size:13px;color:var(--muted)}
+.cur button[aria-pressed=true]{background:var(--card);color:var(--fg)}
+.offers{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.offer{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:6px}
+.offer.cur-plan{border-color:var(--gold2)}
+.offer .ot{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:26px}
+.offer .ot h3,.offer .ot .h3{font-size:22px}
+.offer .p{font-family:var(--serif);font-size:32px;line-height:1.1;margin-top:4px}
+.offer .p small,.bigp small{font-family:var(--sans);font-size:13px;color:var(--muted);letter-spacing:.02em}
+.offer .u{font-size:13px;color:var(--gold2);min-height:20px}
+.offer .d{font-size:13px;color:var(--muted);flex:1;margin-bottom:10px}
+.sub-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:28px 0 12px}
+.sub-h p{font-size:13px;color:var(--muted)}
 
 /* assistant */
-.steps{display:flex;gap:6px;margin:0 0 28px}
-.steps div{flex:1;height:4px;border-radius:2px;background:var(--line);transition:background .3s}
-.steps div.on{background:var(--gold)}
+.steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 26px}
+.steps a{display:flex;flex-direction:column;gap:8px;text-decoration:none;color:var(--dim);font-size:13px;min-height:40px;padding-bottom:4px}
+.steps a::before{content:"";height:4px;border-radius:2px;background:var(--line)}
+.steps a.done{color:var(--muted)}
+.steps a.done::before{background:var(--gold2)}
+.steps a[aria-current=step]{color:var(--fg);font-weight:500}
+.steps a[aria-current=step]::before{background:var(--gold)}
+.steps a[aria-disabled=true]{pointer-events:none}
 .stephead{margin-bottom:22px}
-.stephead small{display:block;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-.nav{display:flex;justify-content:space-between;gap:12px;margin-top:28px}
-.drop{border:1.5px dashed var(--dim);border-radius:var(--r);padding:36px 16px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s}
+.stephead h1{margin-bottom:6px;font-size:clamp(28px,4vw,38px)}
+.split{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:28px;align-items:start}
+.split .pv-col{position:sticky;top:16px}
+@media(max-width:860px){.split{grid-template-columns:minmax(0,1fr)}.split .pv-col{position:static}}
+.subh{font-family:var(--serif);font-size:23px;margin:30px 0 14px}
+.subh:first-child{margin-top:0}
+.tip{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-bottom:16px;font-size:14px}
+.tip .ic{grid-row:span 3;width:34px;height:34px;border-radius:50%;border:1px solid var(--gold2);display:grid;place-items:center;color:var(--gold2)}
+.tip b{font-weight:600}
+.tip ul{margin:2px 0 4px 18px;color:var(--muted)}
+.tip a{color:var(--gold2)}
+.drop{border:1.5px dashed var(--line2);border-radius:var(--r);padding:30px 16px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s}
 .drop.over,.drop:hover{border-color:var(--gold);background:rgba(246,188,40,.05)}
 .drop svg{margin:0 auto 10px;color:var(--gold)}
-.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-top:16px}
-.thumb{position:relative;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--card)}
-.thumb img{width:100%;height:100%;object-fit:cover}
-.thumb .n{position:absolute;left:6px;top:6px;background:rgba(0,0,0,.65);font-size:11px;padding:2px 7px;border-radius:6px}
-.thumb .rm{position:absolute;right:6px;top:6px;width:24px;height:24px;border-radius:50%;background:rgba(0,0,0,.7);display:grid;place-items:center;font-size:14px}
-.thumb .mv{position:absolute;right:6px;bottom:6px;display:flex;gap:4px}
-.thumb .mv button{width:24px;height:24px;border-radius:6px;background:rgba(0,0,0,.7);font-size:12px}
-.err{color:var(--err);font-size:13px;margin-top:10px;min-height:1em}
-.recap dl{display:grid;grid-template-columns:160px 1fr;gap:8px 16px;font-size:14px}
+.drop b{display:block;font-weight:600;margin-bottom:2px}
+.count{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:14px;font-size:14px;color:var(--muted)}
+.count b{color:var(--fg);font-weight:600}
+.msgs{list-style:none;margin-top:10px;display:grid;gap:6px}
+.msgs li{font-size:13.5px;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg2);line-height:1.45}
+.msgs li.err{color:var(--err);border-color:rgba(239,138,122,.35);margin:0}
+.msgs li.warn{color:var(--gold2);border-color:rgba(246,188,40,.3)}
+.msgs li.info{color:var(--muted)}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:16px;list-style:none}
+.thumb{position:relative;aspect-ratio:4/3;border-radius:var(--r2);overflow:hidden;background:var(--card);border:1px solid var(--line);cursor:grab;touch-action:manipulation}
+.thumb.dragging{opacity:.35}
+.thumb.over{outline:2px solid var(--gold);outline-offset:2px}
+.thumb img{width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
+.thumb .n{position:absolute;left:6px;top:6px;background:rgba(11,10,9,.8);font-size:12px;padding:3px 8px;border-radius:6px;line-height:1.3}
+.thumb .n em{font-style:normal;color:var(--gold2);margin-left:4px}
+.thumb .q{position:absolute;left:6px;bottom:6px;background:rgba(11,10,9,.85);color:var(--gold2);font-size:11px;padding:3px 7px;border-radius:6px;line-height:1.3}
+.thumb .rm{position:absolute;right:6px;top:6px;width:36px;height:36px;border-radius:50%;background:rgba(11,10,9,.82);display:grid;place-items:center}
+.thumb .mv{position:absolute;right:6px;bottom:6px;display:flex;gap:6px}
+.thumb .mv button{width:36px;height:36px;border-radius:8px;background:rgba(11,10,9,.82);display:grid;place-items:center}
+.thumb button:hover{background:rgba(11,10,9,.95);color:var(--gold)}
+.thumb button:disabled{opacity:.3;cursor:default}
+.wnav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:30px;padding-top:18px;border-top:1px solid var(--line)}
+.wnav .saved{font-size:13px;color:var(--dim);text-align:center;flex:1}
+@media(max-width:620px){.wnav{position:sticky;bottom:0;z-index:5;background:linear-gradient(to top,var(--bg) 78%,rgba(11,10,9,0));margin:24px -16px 0;padding:14px 16px calc(14px + env(safe-area-inset-bottom));border-top:0}.wnav .btn{flex:1}.wnav .saved{display:none}}
+.estimate{font-size:14px;color:var(--muted);margin-top:8px}
+.estimate b{color:var(--fg);font-weight:600}
+.fmts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:620px){.fmts{grid-template-columns:1fr}}
+.fmt{position:relative;margin:0}
+.fmt input{position:absolute;opacity:0;width:1px;height:1px}
+.fmt .box{display:flex;gap:12px;align-items:flex-start;height:100%;padding:14px;border:1px solid var(--line2);border-radius:var(--r2);cursor:pointer;color:var(--fg);transition:border-color .15s,background .15s}
+.fmt .shape{flex:none;border:1.5px solid var(--muted);border-radius:3px;margin-top:3px}
+.fmt b{display:block;font-weight:600;font-size:14px}
+.fmt small{display:block;color:var(--muted);font-size:13px;line-height:1.4}
+.fmt input:checked+.box{border-color:var(--gold);background:rgba(246,188,40,.08)}
+.fmt input:checked+.box .shape{border-color:var(--gold)}
+.fmt input:focus-visible+.box{outline:2px solid var(--gold);outline-offset:2px}
+.vrow{display:flex;flex-wrap:wrap;gap:8px}
+.vopt{display:inline-flex;align-items:stretch}
+.vopt .opt span{border-top-right-radius:0;border-bottom-right-radius:0}
+.vopt .play{display:inline-flex;align-items:center;gap:6px;padding:0 12px;min-height:42px;border:1px solid var(--line2);border-left:0;border-radius:0 var(--r2) var(--r2) 0;font-size:13px;color:var(--gold2)}
+.vopt .play:hover{color:var(--gold)}
+.vopt .play[aria-pressed=true]{color:var(--ink);background:var(--gold2)}
+.logo-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.logo-prev{width:72px;height:72px;border-radius:var(--r2);border:1px solid var(--line2);flex:none;background-color:#e9e4dc;background-image:linear-gradient(45deg,#cfc8bd 25%,transparent 25%,transparent 75%,#cfc8bd 75%),linear-gradient(45deg,#cfc8bd 25%,transparent 25%,transparent 75%,#cfc8bd 75%);background-size:14px 14px;background-position:0 0,7px 7px;display:grid;place-items:center;overflow:hidden}
+.logo-prev img{max-width:88%;max-height:88%;object-fit:contain}
+.logo-prev span{font-size:11px;color:#5a524a;background:rgba(233,228,220,.85);padding:1px 5px;border-radius:4px}
+.brand-note{font-size:13px;color:var(--muted);margin:-6px 0 14px}
+
+/* aperçus (titre d'ouverture, carton de fin) */
+.pv-col .pv-h{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.pv-col .pv-h b{font-weight:600;font-size:14px}
+.seg{display:inline-flex;flex-wrap:wrap;gap:4px;border:1px solid var(--line2);border-radius:var(--r2);padding:3px}
+.seg button{min-height:36px;padding:0 12px;border-radius:7px;font-size:13px;color:var(--muted);white-space:nowrap}
+.seg button[aria-pressed=true]{background:var(--card);color:var(--fg)}
+.seg button small{color:var(--dim);margin-left:4px;font-size:12px}
+.pv{container-type:inline-size;position:relative;border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/9;width:100%;margin:0 auto;border:1px solid var(--line)}
+.pv.r916{aspect-ratio:9/16;max-width:250px}
+.pv.r11{aspect-ratio:1/1;max-width:340px}
+.pv .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pv .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.04) 18%,rgba(0,0,0,.5) 55%,rgba(0,0,0,.86))}
+.pv .open{position:absolute;left:7cqw;right:7cqw;bottom:8cqw;display:flex;flex-direction:column;gap:1.6cqw;color:#fff;text-shadow:0 1px 14px rgba(0,0,0,.55)}
+.pv .kick{font-size:11px;font-size:max(9px,2.6cqw);letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);font-weight:600}
+.pv .ttl{font-family:var(--serif);font-size:24px;font-size:max(17px,6.6cqw);line-height:1.05;overflow-wrap:anywhere}
+.pv .rule{width:12cqw;height:2px;background:var(--gold)}
+.pv .meta{font-size:12px;font-size:max(10px,3.1cqw);color:#f1ece4}
+.pv .lab{position:absolute;top:8px;left:8px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:rgba(11,10,9,.75);color:#fff;padding:4px 8px;border-radius:6px;z-index:2}
+.pv.end{background:radial-gradient(circle at 50% 38%,#26221e 0,#0B0A09 72%)}
+.pv .endc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.6cqw;text-align:center;padding:8cqw;color:#fff}
+.pv .by{font-size:10px;font-size:max(9px,2.4cqw);letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.pv .lgw{display:inline-flex;align-items:center;justify-content:center;max-width:100%}
+.pv .lgw.plate{background:#F3EFE7;border-radius:2cqw;padding:2.2cqw 3.4cqw}
+.pv .lg{max-width:34cqw;max-height:20cqw;object-fit:contain}
+.pv.r916 .lg{max-width:56cqw;max-height:30cqw}
+.pv .mono{width:15cqw;height:15cqw;min-width:40px;min-height:40px;border-radius:50%;border:1px solid var(--gold2);display:grid;place-items:center;font-family:var(--serif);font-size:16px;font-size:max(14px,6cqw);color:var(--gold2)}
+.pv .ag{font-family:var(--serif);font-size:22px;font-size:max(16px,6cqw);line-height:1.1;overflow-wrap:anywhere}
+.pv .ph{font-size:13px;font-size:max(11px,3.4cqw);letter-spacing:.05em;color:var(--gold2)}
+.pv .ghost{color:rgba(255,255,255,.5);font-style:italic}
+.pv .nolg{position:absolute;inset:0;display:grid;place-items:center;font-size:12px;color:var(--muted);padding:12px;text-align:center}
+.pv-cap{font-size:12px;color:var(--dim);margin-top:8px;text-align:center}
+@media(max-width:860px){.split .pv-col{order:-1;margin-bottom:8px}.split .pv.r916{max-width:190px}.split .pv.r11{max-width:260px}}
+.hint-touch{display:none}
+@media (hover:none){.hint-mouse{display:none}.hint-touch{display:inline}}
+.hello{font-size:15px;color:var(--muted);margin-bottom:6px}
+.pv-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+.pv-pair .pv.r916{max-width:100%}
+@media(max-width:520px){.pv-pair{grid-template-columns:1fr}}
+
+/* récap */
+.recap-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px;align-items:start}
+@media(max-width:860px){.recap-grid{grid-template-columns:minmax(0,1fr)}}
+.recap-grid > *,.split > *,.res > *{min-width:0}
+.rthumbs{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px}
+.rthumbs img{width:64px;height:48px;object-fit:cover;border-radius:6px;flex:none}
+.recap dl{display:grid;grid-template-columns:150px 1fr;gap:9px 16px;font-size:14px}
 .recap dt{color:var(--muted)}
-@media(max-width:560px){.recap dl{grid-template-columns:1fr}.recap dt{margin-top:6px}}
-.logo-prev{width:56px;height:56px;border-radius:10px;background:var(--card) center/contain no-repeat;border:1px solid var(--line);flex:none}
+.recap dd{overflow-wrap:anywhere}
+@media(max-width:560px){.recap dl{grid-template-columns:104px 1fr;gap:8px 12px}}
+.recap .edit{display:flex;gap:4px 14px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.credit-box{margin:18px 0}
+.credit-box .mini{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 
 /* génération */
-.gen{max-width:520px;margin:20px auto 0;text-align:center}
+.gen{max-width:540px;margin:16px auto 0;text-align:center}
 .ring{width:84px;height:84px;margin:0 auto 24px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--gold);animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+.gen p{margin-top:10px}
 .gsteps{list-style:none;text-align:left;margin:28px auto 0;display:grid;gap:10px;max-width:340px}
 .gsteps li{display:flex;align-items:center;gap:10px;color:var(--dim);font-size:15px;transition:color .3s}
-.gsteps li:before{content:"";width:18px;height:18px;border-radius:50%;border:1.5px solid var(--line);flex:none;transition:all .3s}
+.gsteps li:before{content:"";width:18px;height:18px;border-radius:50%;border:1.5px solid var(--line2);flex:none}
 .gsteps li.doing{color:var(--fg)}
 .gsteps li.doing:before{border-color:var(--gold);border-top-color:transparent;animation:spin .8s linear infinite}
 .gsteps li.done{color:var(--muted)}
 .gsteps li.done:before{background:var(--ok);border-color:var(--ok)}
 .bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:24px}
 .bar i{display:block;height:100%;width:0;background:var(--gold);transition:width .4s}
+.gen .fine{margin-top:18px}
 
 /* résultat */
-.player{background:#000;border-radius:var(--r);overflow:hidden;position:relative}
-.player video{width:100%;max-height:70vh;margin:0 auto;background:#000}
-.player .tag{position:absolute;left:12px;top:12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:rgba(0,0,0,.65);padding:5px 9px;border-radius:6px;z-index:1}
-.fmts{display:flex;gap:8px;margin:16px 0}
-.notice{border:1px solid rgba(246,188,40,.35);background:rgba(246,188,40,.07);border-radius:10px;padding:12px 14px;font-size:14px;color:var(--gold2)}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.res-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.res-head h1{margin-bottom:6px}
+.res{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px;align-items:start}
+@media(max-width:860px){.res{grid-template-columns:minmax(0,1fr);gap:18px}}
+.res-main .seg{margin-bottom:14px}
+.player{--arn:1.7778;--h:66vh;position:relative;background:#000;border-radius:var(--r);overflow:hidden;aspect-ratio:var(--arn);width:min(100%,calc(var(--h) * var(--arn)));margin:0 auto}
+.player video{width:100%;height:100%;object-fit:contain;background:#000}
+.player .tag{position:absolute;left:12px;top:12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:rgba(11,10,9,.75);padding:5px 9px;border-radius:6px;z-index:1;pointer-events:none}
+@media(max-width:620px){.player{--h:54vh}}
+.res-side .card h2{font-size:22px;margin-bottom:12px}
+.res-side .stack{display:grid;gap:10px}
+.res-bar{display:none}
+@media(max-width:620px){.res-bar{display:flex;gap:10px;position:sticky;bottom:0;z-index:5;background:linear-gradient(to top,var(--bg) 78%,rgba(11,10,9,0));margin:12px -16px 0;padding:14px 16px calc(14px + env(safe-area-inset-bottom))}.res-bar .btn{flex:1}}
+.texts{margin-top:40px}
+.texts .sec-t{margin-top:0}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:980px){.tgrid{grid-template-columns:minmax(0,1fr)}}
+.tcard{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.tcard h3{font-size:19px}
+.tcard textarea{min-height:190px;font-size:14px;line-height:1.5;background:var(--card)}
+.tcard .tact{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tcard .cnt{font-size:12px;color:var(--dim);margin-left:auto}
 
-/* offres */
-.offers{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.offer{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:6px}
-.offer.hl{border-color:var(--gold)}
-.offer .p{font-family:var(--serif);font-size:32px;line-height:1.1}
-.offer .p small{font-family:var(--sans);font-size:13px;color:var(--muted)}
-.offer .d{font-size:13px;color:var(--muted);flex:1;margin-bottom:10px}
-.badge{align-self:flex-start;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--gold);color:#16120a;font-weight:600;padding:3px 8px;border-radius:6px}
-.cur{display:inline-flex;border:1px solid var(--line);border-radius:10px;padding:3px}
-.cur button{padding:6px 14px;border-radius:7px;font-size:13px;color:var(--muted)}
-.cur button.on{background:var(--card);color:var(--fg)}
-.sec-t{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:32px 0 14px;flex-wrap:wrap}
-.sec-t:first-child{margin-top:0}
+/* compte */
+.acct{display:grid;gap:18px}
+.acct .card h2{font-size:26px;margin-bottom:6px}
+.acct .card > .fine:first-of-type{margin-bottom:16px}
+.kv{display:grid;grid-template-columns:200px 1fr;gap:8px 16px;font-size:14px;margin:14px 0}
+.kv dt{color:var(--muted)}
+@media(max-width:560px){.kv{grid-template-columns:1fr;gap:2px}.kv dd{margin-bottom:8px}}
+.row-act{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.lots,.orders{list-style:none;display:grid;gap:8px;margin-top:10px}
+.lots li,.orders li{display:flex;justify-content:space-between;align-items:center;gap:8px 14px;flex-wrap:wrap;border:1px solid var(--line);border-radius:var(--r2);padding:12px 14px;font-size:14px}
+.lots li .meta,.orders li .meta{color:var(--muted);font-size:13px}
+.orders li b{font-weight:600}
+.testtools{border:1px dashed rgba(246,188,40,.45);border-radius:var(--r2);padding:12px 14px;margin-top:16px;font-size:13px;color:var(--gold2)}
+.testtools .btn{margin-top:8px}
 
-/* toast */
-.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--fg);color:#16120a;padding:12px 18px;border-radius:10px;font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:all .25s;z-index:99;max-width:calc(100% - 32px)}
+/* pied de page, aide, dialogues, toast */
+.foot{border-top:1px solid var(--line);padding:24px 0 calc(28px + env(safe-area-inset-bottom));font-size:13px;color:var(--muted)}
+.foot .wrap{display:flex;justify-content:space-between;gap:14px 24px;flex-wrap:wrap}
+.foot nav{display:flex;flex-wrap:wrap;gap:4px 18px}
+.foot a{text-decoration:none;min-height:32px;display:inline-flex;align-items:center}
+.foot a:hover{color:var(--fg);text-decoration:underline}
+.help{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:40}
+@media(max-width:620px){body.has-bar .help{bottom:calc(90px + env(safe-area-inset-bottom))}}
+.help-btn{width:52px;height:52px;border-radius:50%;background:var(--gold);color:var(--ink);display:grid;place-items:center;box-shadow:0 10px 30px -10px rgba(0,0,0,.7)}
+.help-menu{position:absolute;right:0;bottom:64px;width:min(300px,calc(100vw - 32px));background:var(--bg2);border:1px solid var(--line2);border-radius:var(--r);padding:8px;box-shadow:0 20px 50px -20px rgba(0,0,0,.8)}
+.help-menu p{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:8px 10px 6px}
+.help-menu a,.help-menu button{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px;border-radius:8px;text-decoration:none;font-size:14px;min-height:48px}
+.help-menu a:hover,.help-menu button:hover{background:var(--card)}
+.help-menu .hi{width:32px;height:32px;border-radius:50%;border:1px solid var(--line2);display:grid;place-items:center;color:var(--gold2);flex:none}
+.help-menu small{display:block;color:var(--muted);font-size:12px}
+dialog{margin:auto;background:var(--bg2);color:var(--fg);border:1px solid var(--line2);border-radius:var(--r);padding:24px;width:min(520px,calc(100vw - 32px));max-height:calc(100vh - 32px);overflow:auto}
+dialog::backdrop{background:rgba(5,4,3,.72)}
+dialog h2{font-size:26px;margin-bottom:10px}
+dialog .dtext{color:var(--muted);font-size:15px;line-height:1.55}
+dialog .dtext p+p{margin-top:8px}
+dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin-top:22px}
+#demo-dlg{width:min(440px,calc(100vw - 32px))}
+#demo-dlg video{width:100%;max-height:62vh;border-radius:var(--r2);background:#000;margin:12px auto 0}
+.receipt{font-size:14px;line-height:1.6}
+.receipt .rtop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:12px}
+.receipt .stamp{border:2px solid var(--err);color:var(--err);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12px;padding:4px 8px;border-radius:6px;transform:rotate(-3deg);white-space:nowrap}
+.receipt table{width:100%;border-collapse:collapse;margin:10px 0}
+.receipt td{padding:6px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.receipt td:last-child{text-align:right}
+.receipt .tot td{font-weight:700;border-bottom:0}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:var(--fg);color:var(--ink);padding:12px 18px;border-radius:var(--r2);font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:300;width:max-content;max-width:calc(100% - 32px);text-align:center}
 .toast.on{opacity:1;transform:translate(-50%,0)}
+@media(max-width:620px){body.has-bar .toast{bottom:calc(96px + env(safe-area-inset-bottom))}}
+#print-area{display:none}
+@media print{
+  body.printing > *:not(#print-area){display:none!important}
+  body.printing #print-area{display:block;color:#000;background:#fff;padding:24px;font-family:var(--sans)}
+  body.printing #print-area .receipt td{border-color:#ccc}
+  body.printing{background:#fff}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .ring{border-top-color:var(--gold);border-right-color:var(--gold)}
+}
 </style>
 </head>
 <body>
-<div class="testbar">Mode test — aucun paiement réel, aucune vraie génération. La vidéo affichée est une démonstration.</div>
-
+<a class="skip" href="#main">Aller au contenu</a>
 <header class="top">
+  <div class="testbar">Mode test : aucun paiement réel, aucune vraie génération. Vidéos de démonstration.</div>
   <div class="wrap">
-    <a class="logo" href="index.html"><img src="assets/icon.svg" alt=""><span class="wm">Immo<b>Clap</b></span></a>
-    <div class="who" id="who" hidden>
-      <span class="chip"><b id="credits">0</b> crédit(s)</span>
-      <button class="lnk" id="logout">Déconnexion</button>
-    </div>
+    <a class="logo" href="#videos" id="home-link"><img src="assets/icon.svg" alt="" width="30" height="30"><span class="wm">Immo<b>Clap</b></span><span class="sr">, retour à mes vidéos</span></a>
+    <nav class="who" id="who" aria-label="Mon espace" hidden>
+      <a class="chip" href="#compte" id="chip" title="Voir mes crédits"><b id="credits">0</b> <span id="credits-l">crédit</span></a>
+      <a class="hbtn" href="#videos" data-nav="videos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9.5v5l4-2.5z"/></svg><span>Mes vidéos</span></a>
+      <a class="hbtn" href="#compte" data-nav="compte"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span>Mon compte</span></a>
+      <button class="hbtn" type="button" id="logout"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 4h3a2 2 0 012 2v12a2 2 0 01-2 2h-3M10 16l-4-4 4-4M6 12h10"/></svg><span>Déconnexion</span></button>
+    </nav>
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap" id="main">
 
-  <!-- CONNEXION -->
-  <section class="screen" id="s-login">
+  <!-- ===================== CONNEXION ===================== -->
+  <section class="screen" id="s-login" aria-labelledby="login-h">
     <div class="login">
-      <h1>Votre espace</h1>
-      <p class="muted">Connectez-vous pour créer vos vidéos.</p>
+      <h1 id="login-h" tabindex="-1">Votre espace<br><span class="it">ImmoClap.</span></h1>
+      <p class="muted intro">Vos vidéos, vos achats et votre kit de marque, au même endroit.</p>
+      <p class="notice" style="text-align:left">Version de test : les comptes et les paiements ne sont pas encore ouverts. La connexion est simulée et vos données restent dans ce navigateur.</p>
       <form id="f-login" novalidate>
         <button type="button" class="gbtn" id="g-login">
           <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
-          Continuer avec Google
+          Continuer avec Google <small>(simulé)</small>
         </button>
         <div class="or">ou</div>
         <div>
           <label for="email">Adresse e-mail</label>
-          <input type="email" id="email" placeholder="vous@agence.com" autocomplete="email" required>
+          <input type="email" id="email" placeholder="ex. : vous@agence.com" autocomplete="email" aria-describedby="login-err" required>
+          <p class="ferr" id="login-err" aria-live="polite"></p>
         </div>
-        <button class="btn full" type="submit">Recevoir un lien de connexion</button>
-        <div class="err" id="login-err"></div>
-        <p class="small muted" style="text-align:center">En mode test, la connexion est simulée. En continuant, vous acceptez les <a href="cgv.html">CGV</a> et la <a href="confidentialite.html">politique de confidentialité</a>.</p>
+        <button class="btn full" type="submit">Continuer</button>
+        <p class="fine" style="text-align:center">En mode test, pas de lien par e-mail : la connexion est immédiate. En continuant, vous acceptez les <a href="cgv.html">CGV</a> et la <a href="confidentialite.html">politique de confidentialité</a>.</p>
       </form>
     </div>
   </section>
 
-  <!-- TABLEAU DE BORD -->
-  <section class="screen" id="s-dash">
+  <!-- ===================== TABLEAU DE BORD ===================== -->
+  <section class="screen" id="s-dash" aria-labelledby="dash-h">
     <div class="dash-head">
       <div>
-        <p class="muted small" id="hello"></p>
-        <h1>Mes vidéos</h1>
+        <p class="hello" id="hello"></p>
+        <h1 id="dash-h" tabindex="-1">Mes <span class="it">vidéos.</span></h1>
       </div>
-      <button class="btn" id="new-video">+ Nouvelle vidéo</button>
+      <button class="btn" type="button" id="new-video">+ Nouvelle vidéo</button>
     </div>
-    <div class="stats">
-      <div class="stat"><div class="n" id="st-credits">0</div><div class="l">Crédits restants</div></div>
-      <div class="stat"><div class="n" id="st-videos">0</div><div class="l">Vidéos créées</div></div>
-      <div class="stat"><div class="n" id="st-plan">—</div><div class="l">Formule</div></div>
-    </div>
+    <div id="draft-banner"></div>
+    <div class="tiles" id="tiles"></div>
+    <h2 class="sr">Liste des vidéos</h2>
     <div id="vids"></div>
-    <div class="sec-t" style="margin-top:44px">
-      <h2>Acheter des crédits</h2>
-      <div class="cur" id="cur"><button data-c="eur" class="on">€</button><button data-c="mad">DH</button></div>
+
+    <div class="sec-t" id="buy">
+      <div>
+        <h2 id="buy-h" tabindex="-1">Acheter des crédits</h2>
+        <p class="fine" style="margin-top:6px">1 crédit = 1 vidéo de 3 à 12 photos, livrée en 3 formats.</p>
+      </div>
+      <div class="cur" role="group" aria-label="Devise"><button type="button" data-c="eur">€</button><button type="button" data-c="mad">DH</button></div>
     </div>
-    <h3 style="margin-bottom:12px">Sans engagement</h3>
+    <div class="sub-h"><h3>À l'unité ou en pack</h3><p>Crédits valables 12 mois.</p></div>
     <div class="offers" id="offers-once"></div>
-    <h3 style="margin:28px 0 12px">Abonnement agence <span class="muted small" style="font-family:var(--sans)">— prix de lancement gardé à vie pour les 100 premiers</span></h3>
+    <div class="sub-h"><h3>Abonnement mensuel</h3><p>Sans engagement. Prix de lancement conservé pour les 100 premiers abonnés, tant que l'abonnement reste actif sans interruption.</p></div>
     <div class="offers" id="offers-sub"></div>
-    <p class="small muted" style="margin-top:14px">Crédits valables 12 mois. Paiement sécurisé par Lemon Squeezy. 1 crédit = 1 vidéo (jusqu'à 12 photos, 3 formats).</p>
+    <p class="fine" style="margin-top:16px">Prix HT · TVA éventuelle calculée au paiement selon votre pays. Chaque vidéo comprend musique, voix off, logo et carton de fin, plus une version sans logo pour les portails. Le paiement passe par notre prestataire de paiement, qui agit comme revendeur (Merchant of Record) ; son nom figure sur la page de paiement et sur le reçu.</p>
+    <p class="fine" style="margin-top:8px">Plus de 10 vidéos par mois ? <a href="mailto:contact.immoclap@gmail.com?subject=Volume%20de%20vid%C3%A9os" style="color:var(--gold2)">Écrivez-nous</a>.</p>
   </section>
 
-  <!-- ASSISTANT NOUVELLE VIDÉO -->
-  <section class="screen" id="s-new">
-    <div class="steps" id="steps"><div></div><div></div><div></div><div></div></div>
+  <!-- ===================== ASSISTANT ===================== -->
+  <section class="screen" id="s-new" aria-label="Nouvelle vidéo">
+    <ol class="steps" id="steps">
+      <li><a href="#nouvelle/1" data-s="1">1 · Photos</a></li>
+      <li><a href="#nouvelle/2" data-s="2">2 · Le bien</a></li>
+      <li><a href="#nouvelle/3" data-s="3">3 · Le style</a></li>
+      <li><a href="#nouvelle/4" data-s="4">4 · Récap</a></li>
+    </ol>
 
-    <!-- étape 1 -->
-    <div class="step" data-step="0">
-      <div class="stephead"><small>Étape 1 sur 4</small><h2>Les photos du bien</h2><p class="muted">De 3 à 12 photos, dans l'ordre de la visite. Lumineuses, à l'horizontale de préférence.</p></div>
-      <div class="drop" id="drop" tabindex="0" role="button" aria-label="Ajouter des photos">
-        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16V4m0 0l-4 4m4-4l4 4M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
-        <b>Glissez vos photos ici</b><br><span class="muted small">ou touchez pour choisir (JPG, PNG, WEBP)</span>
+    <!-- Étape 1 -->
+    <div class="step" data-step="1">
+      <div class="stephead">
+        <p class="eyebrow">Étape 1 sur 4</p>
+        <h1 class="sh" tabindex="-1">Les photos du bien</h1>
+        <p class="muted">De 3 à 12 photos, dans l'ordre de la visite. Chaque photo devient un plan d'environ 5 secondes.</p>
       </div>
-      <input type="file" id="files" accept="image/*" multiple hidden>
-      <div class="thumbs" id="thumbs"></div>
-      <div class="err" id="err0"></div>
+      <div class="tip">
+        <span class="ic" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2V17h5v-1.1c0-.8.4-1.5 1-2A6 6 0 0012 3z"/></svg></span>
+        <b>Pour un beau rendu</b>
+        <ul>
+          <li>Photos nettes et lumineuses, prises à l'horizontale.</li>
+          <li>Au moins 1920 px de large, sans filigrane.</li>
+          <li>Rangez-les comme une visite : façade, séjour, cuisine, chambres, jardin ou vue.</li>
+        </ul>
+        <a href="guide.html" target="_blank" rel="noopener">Lire le guide photos →</a>
+      </div>
+      <div class="drop" id="drop" tabindex="0" role="button" aria-describedby="drop-hint err1">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 16V4m0 0l-4 4m4-4l4 4M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+        <b>Ajoutez vos photos</b>
+        <span class="muted small" id="drop-hint">Glissez-les ici, ou cliquez pour les choisir · JPG, PNG ou WEBP</span>
+      </div>
+      <input type="file" id="files" accept="image/*,.heic,.heif" multiple hidden>
+      <div class="count" id="count" aria-live="polite"></div>
+      <ul class="msgs" id="msgs1" aria-live="polite"></ul>
+      <ul class="thumbs" id="thumbs" aria-label="Photos de la vidéo, dans l'ordre"></ul>
+      <p class="err" id="err1" role="alert"></p>
     </div>
 
-    <!-- étape 2 -->
-    <div class="step" data-step="1" hidden>
-      <div class="stephead"><small>Étape 2 sur 4</small><h2>Le bien</h2><p class="muted">Ces informations servent au texte à l'écran et à la voix off.</p></div>
-      <div class="field"><label>Type de bien <span class="req">*</span></label>
-        <div class="opts" id="o-type">
-          <label class="opt"><input type="radio" name="type" value="Appartement" checked><span>Appartement</span></label>
-          <label class="opt"><input type="radio" name="type" value="Villa"><span>Villa</span></label>
-          <label class="opt"><input type="radio" name="type" value="Maison"><span>Maison</span></label>
-          <label class="opt"><input type="radio" name="type" value="Riad"><span>Riad</span></label>
-          <label class="opt"><input type="radio" name="type" value="Terrain"><span>Terrain</span></label>
-          <label class="opt"><input type="radio" name="type" value="Local commercial"><span>Local commercial</span></label>
-        </div>
-      </div>
-      <div class="field"><label>Transaction</label>
-        <div class="opts">
-          <label class="opt"><input type="radio" name="deal" value="Vente" checked><span>Vente</span></label>
-          <label class="opt"><input type="radio" name="deal" value="Location"><span>Location</span></label>
-          <label class="opt"><input type="radio" name="deal" value="Location saisonnière"><span>Location saisonnière</span></label>
-        </div>
-      </div>
-      <div class="grid2">
-        <div class="field"><label for="city">Ville <span class="req">*</span></label><input type="text" id="city" placeholder="Marrakech"></div>
-        <div class="field"><label for="area">Quartier</label><input type="text" id="area" placeholder="Guéliz"></div>
-        <div class="field"><label for="price">Prix</label><input type="text" id="price" placeholder="2 500 000 DH"></div>
-        <div class="field"><label for="surface">Surface (m²)</label><input type="number" id="surface" min="0" placeholder="180"></div>
-        <div class="field"><label for="rooms">Pièces</label><input type="number" id="rooms" min="0" placeholder="5"></div>
-        <div class="field"><label for="beds">Chambres</label><input type="number" id="beds" min="0" placeholder="3"></div>
-      </div>
-      <div class="field"><label for="highlights">Points forts (un par ligne)</label><textarea id="highlights" placeholder="Piscine privée&#10;Vue sur l'Atlas&#10;Proche du centre"></textarea></div>
-      <div class="err" id="err1"></div>
-    </div>
-
-    <!-- étape 3 -->
+    <!-- Étape 2 -->
     <div class="step" data-step="2" hidden>
-      <div class="stephead"><small>Étape 3 sur 4</small><h2>Le style</h2><p class="muted">Musique, voix, formats et votre marque.</p></div>
-      <div class="field"><label>Ambiance musicale</label>
+      <div class="stephead">
+        <p class="eyebrow">Étape 2 sur 4</p>
+        <h1 class="sh" tabindex="-1">Le bien</h1>
+        <p class="muted">Ces informations forment le titre d'ouverture de la vidéo et vos textes d'annonce. Seule la ville est obligatoire.</p>
+      </div>
+      <div class="split">
+        <div>
+          <fieldset class="field">
+            <legend>Type de bien <span class="req" aria-hidden="true">*</span></legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="type" value="Appartement"><span>Appartement</span></label>
+              <label class="opt"><input type="radio" name="type" value="Villa"><span>Villa</span></label>
+              <label class="opt"><input type="radio" name="type" value="Maison"><span>Maison</span></label>
+              <label class="opt"><input type="radio" name="type" value="Riad"><span>Riad</span></label>
+              <label class="opt"><input type="radio" name="type" value="Terrain"><span>Terrain</span></label>
+              <label class="opt"><input type="radio" name="type" value="Local commercial"><span>Local commercial</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="field">
+            <legend>Transaction</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="deal" value="Vente"><span>Vente</span></label>
+              <label class="opt"><input type="radio" name="deal" value="Location"><span>Location</span></label>
+              <label class="opt"><input type="radio" name="deal" value="Location saisonnière"><span>Location saisonnière</span></label>
+            </div>
+          </fieldset>
+          <div class="grid2">
+            <div class="field"><label for="city">Ville <span class="req" aria-hidden="true">*</span><span class="sr">(obligatoire)</span></label><input type="text" id="city" placeholder="ex. : Marrakech" autocomplete="address-level2" aria-describedby="city-err" maxlength="60"><p class="ferr" id="city-err"></p></div>
+            <div class="field"><label for="area">Quartier</label><input type="text" id="area" placeholder="ex. : Guéliz" maxlength="60"></div>
+          </div>
+          <div class="field"><label for="price" id="price-l">Prix</label><input type="text" id="price" placeholder="ex. : 2 500 000 DH" maxlength="40" aria-describedby="price-hint"><p class="fine" id="price-hint" style="margin-top:6px">Écrit tel quel dans la vidéo, si vous l'affichez.</p></div>
+          <label class="check" style="margin:-6px 0 18px"><input type="checkbox" id="showPrice"> <span>Afficher le prix dans la vidéo</span></label>
+          <div class="grid3">
+            <div class="field"><label for="surface">Surface (m²)</label><input type="text" id="surface" inputmode="decimal" placeholder="ex. : 120" maxlength="8" aria-describedby="surface-err"><p class="ferr" id="surface-err"></p></div>
+            <div class="field"><label for="rooms">Pièces</label><input type="text" id="rooms" inputmode="numeric" placeholder="ex. : 4" maxlength="3" aria-describedby="rooms-err"><p class="ferr" id="rooms-err"></p></div>
+            <div class="field"><label for="beds">Chambres</label><input type="text" id="beds" inputmode="numeric" placeholder="ex. : 2" maxlength="3" aria-describedby="beds-err"><p class="ferr" id="beds-err"></p></div>
+          </div>
+          <div class="field"><label for="highlights">Points forts (un par ligne)</label><textarea id="highlights" maxlength="600" placeholder="ex. : piscine privée&#10;ex. : vue dégagée"></textarea></div>
+        </div>
+        <div class="pv-col" role="group" aria-label="Aperçu du titre d'ouverture">
+          <div class="pv-h"><b>Aperçu du titre d'ouverture</b><div class="seg pvfmt" role="group" aria-label="Format de l'aperçu"></div></div>
+          <div class="pv" id="pv-open2"></div>
+          <p class="pv-cap" id="pv-open2-cap"></p>
+        </div>
+      </div>
+      <p class="err" id="err2" role="alert"></p>
+    </div>
+
+    <!-- Étape 3 -->
+    <div class="step" data-step="3" hidden>
+      <div class="stephead">
+        <p class="eyebrow">Étape 3 sur 4</p>
+        <h1 class="sh" tabindex="-1">Le style</h1>
+        <p class="muted">Votre marque, le son et les formats.</p>
+      </div>
+      <div class="split">
+        <div>
+          <h2 class="subh">Votre marque</h2>
+          <p class="brand-note" id="brand-note"></p>
+          <div class="grid2">
+            <div class="field"><label for="agency">Nom de l'agence</label><input type="text" id="agency" placeholder="ex. : Agence du Centre" maxlength="50" autocomplete="organization"></div>
+            <div class="field"><label for="phone">Téléphone affiché</label><input type="tel" id="phone" placeholder="ex. : +212 6 12 34 56 78" maxlength="25" autocomplete="tel"></div>
+          </div>
+          <div class="field">
+            <p class="lab" id="logo-l">Logo (facultatif · PNG transparent conseillé)</p>
+            <div class="logo-row" role="group" aria-labelledby="logo-l">
+              <div class="logo-prev" id="logo-prev"><span>Aucun</span></div>
+              <button type="button" class="btn ghost sm" id="logo-btn">Choisir un logo</button>
+              <button type="button" class="btn ghost sm" id="logo-rm" hidden>Retirer</button>
+              <input type="file" id="logo-file" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden>
+            </div>
+            <p class="ferr" id="logo-err" aria-live="polite"></p>
+          </div>
+          <button type="button" class="lnk" id="save-kit">Enregistrer dans mon kit de marque</button>
+          <label class="check" style="margin-top:18px"><input type="checkbox" id="nologo"> <span>Version sans logo pour les portails<small>En plus, une copie de chaque format sans logo ni coordonnées : certains portails les refusent.</small></span></label>
+        </div>
+        <div class="pv-col" role="group" aria-label="Aperçu du carton de fin">
+          <div class="pv-h"><b>Aperçu du carton de fin</b><div class="seg pvfmt" role="group" aria-label="Format de l'aperçu"></div></div>
+          <div class="pv end" id="pv-end3"></div>
+          <p class="pv-cap" id="pv-end3-cap">Aperçu indicatif, mis à jour pendant la saisie.</p>
+        </div>
+      </div>
+
+      <h2 class="subh">Le son</h2>
+      <fieldset class="field">
+        <legend>Ambiance musicale</legend>
         <div class="opts">
-          <label class="opt"><input type="radio" name="music" value="Élégante" checked><span>Élégante</span></label>
+          <label class="opt"><input type="radio" name="music" value="Élégante"><span>Élégante</span></label>
           <label class="opt"><input type="radio" name="music" value="Dynamique"><span>Dynamique</span></label>
           <label class="opt"><input type="radio" name="music" value="Chaleureuse"><span>Chaleureuse</span></label>
           <label class="opt"><input type="radio" name="music" value="Orientale moderne"><span>Orientale moderne</span></label>
         </div>
-      </div>
-      <div class="field"><label>Voix off</label>
+      </fieldset>
+      <fieldset class="field">
+        <legend>Langue des textes et de la voix</legend>
         <div class="opts">
-          <label class="opt"><input type="radio" name="voice" value="Aucune"><span>Aucune</span></label>
-          <label class="opt"><input type="radio" name="voice" value="Voix féminine" checked><span>Voix féminine</span></label>
-          <label class="opt"><input type="radio" name="voice" value="Voix masculine"><span>Voix masculine</span></label>
-        </div>
-      </div>
-      <div class="field"><label>Langue</label>
-        <div class="opts">
-          <label class="opt"><input type="radio" name="lang" value="Français" checked><span>Français</span></label>
-          <label class="opt"><input type="radio" name="lang" value="Anglais"><span>Anglais</span></label>
+          <label class="opt"><input type="radio" name="lang" value="Français"><span>Français</span></label>
           <label class="opt"><input type="radio" name="lang" value="Arabe"><span>Arabe</span></label>
+          <label class="opt"><input type="radio" name="lang" value="Anglais"><span>Anglais</span></label>
         </div>
-      </div>
-      <div class="field"><label>Formats <span class="req">*</span></label>
-        <div class="opts">
-          <label class="opt"><input type="checkbox" name="fmt" value="16:9" checked><span>16:9 · portails, YouTube</span></label>
-          <label class="opt"><input type="checkbox" name="fmt" value="9:16" checked><span>9:16 · Reels, TikTok</span></label>
-          <label class="opt"><input type="checkbox" name="fmt" value="1:1"><span>1:1 · Facebook</span></label>
+      </fieldset>
+      <fieldset class="field">
+        <legend>Voix off</legend>
+        <div class="vrow">
+          <label class="opt"><input type="radio" name="voice" value="Aucune"><span>Aucune</span></label>
+          <div class="vopt"><label class="opt"><input type="radio" name="voice" value="Voix féminine"><span>Voix féminine</span></label><button type="button" class="play" data-v="f" aria-pressed="false"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg><span>Écouter</span></button></div>
+          <div class="vopt"><label class="opt"><input type="radio" name="voice" value="Voix masculine"><span>Voix masculine</span></label><button type="button" class="play" data-v="m" aria-pressed="false"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg><span>Écouter</span></button></div>
         </div>
-      </div>
-      <div class="grid2">
-        <div class="field"><label for="agency">Nom de l'agence</label><input type="text" id="agency" placeholder="Mon Agence Immo"></div>
-        <div class="field"><label for="phone">Téléphone affiché en fin de vidéo</label><input type="tel" id="phone" placeholder="+212 6 00 00 00 00"></div>
-      </div>
-      <div class="field"><label>Logo (facultatif)</label>
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="logo-prev" id="logo-prev"></div>
-          <button type="button" class="btn ghost sm" id="logo-btn">Choisir un logo</button>
-          <input type="file" id="logo-file" accept="image/*" hidden>
+        <p class="fine" style="margin-top:8px">Extraits de démonstration générés par IA (environ 5 s) : la voix finale peut légèrement différer.</p>
+      </fieldset>
+
+      <h2 class="subh">Formats</h2>
+      <fieldset class="field">
+        <legend>Formats à livrer <span class="req" aria-hidden="true">*</span> · tous inclus dans le crédit</legend>
+        <div class="fmts">
+          <label class="fmt"><input type="checkbox" name="fmt" value="16:9" aria-describedby="err3"><span class="box"><span class="shape" style="width:30px;height:17px" aria-hidden="true"></span><span><b>16:9 · Écran large</b><small>Idéal pour SeLoger, Leboncoin, Avito, Mubawab et YouTube.</small></span></span></label>
+          <label class="fmt"><input type="checkbox" name="fmt" value="9:16" aria-describedby="err3"><span class="box"><span class="shape" style="width:14px;height:25px" aria-hidden="true"></span><span><b>9:16 · Vertical</b><small>Idéal pour Reels, TikTok, Stories et WhatsApp.</small></span></span></label>
+          <label class="fmt"><input type="checkbox" name="fmt" value="1:1" aria-describedby="err3"><span class="box"><span class="shape" style="width:21px;height:21px" aria-hidden="true"></span><span><b>1:1 · Carré</b><small>Idéal pour le fil Instagram et Facebook.</small></span></span></label>
         </div>
-      </div>
-      <div class="err" id="err2"></div>
+      </fieldset>
+      <p class="estimate" id="est3"></p>
+      <p class="err" id="err3" role="alert"></p>
     </div>
 
-    <!-- étape 4 -->
-    <div class="step" data-step="3" hidden>
-      <div class="stephead"><small>Étape 4 sur 4</small><h2>Récapitulatif</h2><p class="muted">Vérifiez avant de lancer. La génération utilise 1 crédit.</p></div>
-      <div class="card recap"><dl id="recap"></dl></div>
-      <div class="err" id="err3"></div>
+    <!-- Étape 4 -->
+    <div class="step" data-step="4" hidden>
+      <div class="stephead">
+        <p class="eyebrow">Étape 4 sur 4</p>
+        <h1 class="sh" tabindex="-1">Récapitulatif</h1>
+        <p class="muted">Vérifiez avant de lancer. Le crédit n'est utilisé qu'une fois la vidéo prête.</p>
+      </div>
+      <div class="recap-grid">
+        <div class="card recap">
+          <div class="rthumbs" id="rthumbs"></div>
+          <dl id="recap"></dl>
+          <div class="edit"><a class="lnk" href="#nouvelle/1">Modifier les photos</a><a class="lnk" href="#nouvelle/2">Modifier le bien</a><a class="lnk" href="#nouvelle/3">Modifier le style</a></div>
+        </div>
+        <div>
+          <div class="pv-pair" id="pv-pair4"></div>
+          <p class="pv-cap">Ouverture et carton de fin (aperçu indicatif).</p>
+        </div>
+      </div>
+      <div class="card credit-box" id="credit-box"></div>
+      <label class="check"><input type="checkbox" id="rights" aria-describedby="err4"> <span>Je détiens les droits sur ces photos et l'accord du propriétaire du bien (<a href="cgv.html" target="_blank" rel="noopener">CGV, article 7</a>).</span></label>
+      <p class="err" id="err4" role="alert"></p>
     </div>
 
-    <div class="nav">
-      <button class="btn ghost" id="prev">Retour</button>
-      <button class="btn" id="next">Continuer</button>
+    <div class="wnav">
+      <button class="btn ghost" type="button" id="prev">Retour</button>
+      <span class="saved" id="saved" aria-live="polite"></span>
+      <button class="btn" type="button" id="next">Continuer</button>
     </div>
   </section>
 
-  <!-- GÉNÉRATION -->
-  <section class="screen" id="s-gen">
-    <div class="gen">
-      <div class="ring"></div>
-      <h2>Votre vidéo se prépare</h2>
-      <p class="muted">Restez sur cette page, ça ne prend que quelques instants.</p>
+  <!-- ===================== VIDÉO (génération + résultat) ===================== -->
+  <section class="screen" id="s-video" aria-label="Vidéo">
+    <a class="back" href="#videos">← Mes vidéos</a>
+
+    <div id="v-proc" class="gen">
+      <div class="ring" aria-hidden="true"></div>
+      <h1 tabindex="-1" id="proc-h">Votre vidéo se prépare</h1>
+      <p class="muted" id="proc-sub"></p>
       <ul class="gsteps" id="gsteps">
         <li>Analyse des photos</li>
         <li>Mouvements de caméra</li>
         <li>Musique et voix off</li>
-        <li>Texte, logo et coordonnées</li>
+        <li>Titre, logo et coordonnées</li>
         <li>Montage des formats</li>
       </ul>
-      <div class="bar"><i id="gbar"></i></div>
+      <div class="bar" role="progressbar" aria-label="Avancement de la génération" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="gbar-wrap"><i id="gbar"></i></div>
+      <p class="fine" id="proc-note">Mode test : la génération est simulée et dure environ 15 secondes. Hors mode test, une génération prend en général quelques minutes ; elle continue même si vous quittez cette page, et la vidéo apparaît ensuite dans Mes vidéos.</p>
+      <p class="fine">1 crédit est réservé : il ne sera utilisé qu'une fois la vidéo enregistrée.</p>
+      <div style="margin-top:22px"><a class="btn ghost" href="#videos">Retour à mes vidéos</a></div>
     </div>
-  </section>
 
-  <!-- RÉSULTAT -->
-  <section class="screen" id="s-result">
-    <button class="lnk" id="back-dash">← Mes vidéos</button>
-    <h1 id="r-title" style="margin:14px 0 6px"></h1>
-    <p class="muted" id="r-sub"></p>
-    <div class="fmts" id="r-fmts"></div>
-    <div class="player"><span class="tag">Vidéo de démonstration</span><video id="r-video" controls playsinline preload="metadata"></video></div>
-    <div class="notice" style="margin-top:16px">Mode test : cette vidéo est un exemple réalisé avec d'autres photos. Quand les comptes ouvriront, la vidéo sera générée à partir de vos photos.</div>
-    <div class="actions">
-      <a class="btn" id="r-dl" download>Télécharger</a>
-      <button class="btn ghost" id="r-new">Créer une autre vidéo</button>
-    </div>
-  </section>
-
-  <!-- PAIEMENT TEST -->
-  <section class="screen" id="s-pay">
-    <div class="login">
-      <h1>Paiement</h1>
-      <p class="muted" id="pay-desc"></p>
-      <form class="card" id="f-pay" style="text-align:left" novalidate autocomplete="off">
-        <div class="notice" style="margin-bottom:16px">🔒 Paiement de test : <b>n'entrez jamais une vraie carte</b>. Rien n'est envoyé ni enregistré.<br>Carte acceptée : <b>4242 4242 4242 4242</b> · Carte refusée : <b>4000 0000 0000 0002</b> · date future, CVC au choix.</div>
-        <div class="field"><label for="cc-name">Nom sur la carte</label><input type="text" id="cc-name" placeholder="Agence Test" autocomplete="off"></div>
-        <div class="field"><label for="cc-num">Numéro de carte</label><input type="text" id="cc-num" inputmode="numeric" placeholder="4242 4242 4242 4242" maxlength="19" autocomplete="off"></div>
-        <div class="grid2" style="grid-template-columns:1fr 1fr">
-          <div class="field"><label for="cc-exp">Expiration</label><input type="text" id="cc-exp" inputmode="numeric" placeholder="MM/AA" maxlength="5" autocomplete="off"></div>
-          <div class="field"><label for="cc-cvc">CVC</label><input type="text" id="cc-cvc" inputmode="numeric" placeholder="123" maxlength="4" autocomplete="off"></div>
+    <div id="v-ready">
+      <div class="res-head">
+        <div>
+          <p class="eyebrow" id="r-eyebrow"></p>
+          <h1 id="r-title" tabindex="-1"></h1>
+          <p class="muted" id="r-sub"></p>
         </div>
-        <div class="err" id="pay-err"></div>
-        <button class="btn full" type="submit" id="pay-ok" style="margin-top:8px">Payer</button>
+      </div>
+      <div class="res">
+        <div class="res-main">
+          <div class="seg" id="r-fmts" role="group" aria-label="Format affiché"></div>
+          <div class="player" id="player"><span class="tag">Démonstration</span><video id="r-video" controls playsinline preload="metadata"></video></div>
+          <p class="fine" style="margin-top:12px">Mode test : cette vidéo de démonstration a été réalisée avec d'autres photos (villa à Marrakech). Quand les comptes ouvriront, la vidéo sera générée à partir de vos photos, avec votre titre et votre carton de fin.</p>
+        </div>
+        <div class="res-side">
+          <div class="card">
+            <h2>Télécharger</h2>
+            <div class="stack">
+              <div class="seg" id="r-ver" role="group" aria-label="Version" hidden></div>
+              <a class="btn full" id="r-dl" download>Télécharger</a>
+              <button class="btn ghost full" type="button" id="r-dlall">Tout télécharger</button>
+              <p class="fine">Fichiers MP4. Les vidéos sont conservées au moins 30 jours : pensez à les télécharger.</p>
+              <p class="fine" id="r-ver-note" hidden>Mode test : la démonstration n'a pas de carton de fin, les deux versions renvoient au même fichier.</p>
+            </div>
+          </div>
+          <div class="card">
+            <h2>Un défaut ?</h2>
+            <p class="fine">Plan déformé, texte ou logo erroné : écrivez-nous dans les 14 jours, nous régénérons la vidéo gratuitement (<a href="remboursement.html" style="color:var(--gold2)">politique de remboursement</a>).</p>
+            <div class="stack" style="margin-top:12px">
+              <a class="btn ghost full" id="r-report" href="#">Signaler un défaut / demander une nouvelle génération</a>
+              <button class="btn danger full" type="button" id="r-del">Supprimer la vidéo</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="texts" aria-labelledby="texts-h">
+        <div class="sec-t">
+          <div>
+            <h2 id="texts-h">Textes prêts à publier</h2>
+            <p class="fine" style="margin-top:6px">Écrits à partir des infos du bien. Modifiez-les si besoin, puis copiez-les.</p>
+          </div>
+          <div class="seg" id="t-lang" role="group" aria-label="Langue des textes"><button type="button" data-l="Français">FR</button><button type="button" data-l="Arabe">AR</button><button type="button" data-l="Anglais">EN</button></div>
+        </div>
+        <div class="tgrid">
+          <div class="tcard"><h3 id="t1-h">Description d'annonce</h3><textarea id="t-desc" aria-labelledby="t1-h"></textarea><div class="tact"><button type="button" class="btn sm" data-copy="t-desc">Copier</button><span class="cnt" data-cnt="t-desc"></span></div></div>
+          <div class="tcard"><h3 id="t2-h">Légende Instagram / TikTok</h3><textarea id="t-social" aria-labelledby="t2-h"></textarea><div class="tact"><button type="button" class="btn sm" data-copy="t-social">Copier</button><span class="cnt" data-cnt="t-social" data-max="2200"></span></div></div>
+          <div class="tcard"><h3 id="t3-h">Message WhatsApp</h3><textarea id="t-wa" aria-labelledby="t3-h"></textarea><div class="tact"><button type="button" class="btn sm" data-copy="t-wa">Copier</button><a class="btn sm ghost" id="t-wa-open" target="_blank" rel="noopener" href="#">Ouvrir WhatsApp</a></div></div>
+        </div>
+      </section>
+      <div class="res-bar"><a class="btn" id="r-dl2" download>Télécharger</a><a class="btn ghost" href="#videos">Mes vidéos</a></div>
+    </div>
+
+    <div id="v-failed" class="gen">
+      <h1 tabindex="-1">La vidéo n'a pas pu être enregistrée</h1>
+      <p class="muted" id="fail-msg"></p>
+      <p class="fine">Aucun crédit n'a été utilisé.</p>
+      <div class="row-act" style="justify-content:center;margin-top:22px">
+        <button class="btn" type="button" id="f-retry">Réessayer</button>
+        <button class="btn ghost" type="button" id="f-del">Retirer de la liste</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== COMPTE ===================== -->
+  <section class="screen" id="s-account" aria-labelledby="acct-h">
+    <div class="dash-head">
+      <div><p class="eyebrow" id="acct-mail"></p><h1 id="acct-h" tabindex="-1">Mon <span class="it">compte.</span></h1></div>
+    </div>
+    <div class="acct">
+      <div class="card" id="kit">
+        <h2>Profil et kit de marque</h2>
+        <p class="fine">Enregistrés une fois, le nom, le téléphone et le logo sont repris automatiquement dans chaque nouvelle vidéo.</p>
+        <form id="f-kit" novalidate>
+          <div class="grid2">
+            <div class="field"><label for="k-first">Prénom</label><input type="text" id="k-first" autocomplete="given-name" maxlength="40" placeholder="ex. : Sara"></div>
+            <div class="field"><label for="k-agency">Nom de l'agence</label><input type="text" id="k-agency" autocomplete="organization" maxlength="50" placeholder="ex. : Agence du Centre"></div>
+            <div class="field"><label for="k-phone">Téléphone affiché en fin de vidéo</label><input type="tel" id="k-phone" autocomplete="tel" maxlength="25" placeholder="ex. : +33 6 12 34 56 78"></div>
+            <div class="field"><label for="k-email">E-mail de contact (repris dans les textes d'annonce)</label><input type="email" id="k-email" autocomplete="email" maxlength="80" aria-describedby="k-email-err" placeholder="ex. : contact@agence.com"><p class="ferr" id="k-email-err"></p></div>
+          </div>
+          <div class="field">
+            <p class="lab" id="k-logo-l">Logo (PNG transparent conseillé)</p>
+            <div class="logo-row" role="group" aria-labelledby="k-logo-l">
+              <div class="logo-prev" id="k-logo-prev"><span>Aucun</span></div>
+              <button type="button" class="btn ghost sm" id="k-logo-btn">Choisir un logo</button>
+              <button type="button" class="btn ghost sm" id="k-logo-rm" hidden>Retirer</button>
+              <input type="file" id="k-logo-file" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden>
+            </div>
+            <p class="ferr" id="k-logo-err" aria-live="polite"></p>
+          </div>
+          <label class="check"><input type="checkbox" id="k-auto"> <span>Appliquer automatiquement à chaque nouvelle vidéo</span></label>
+          <div class="row-act"><button class="btn" type="submit">Enregistrer</button></div>
+        </form>
+      </div>
+
+      <div class="card" id="plan-card"></div>
+      <div class="card" id="orders-card"></div>
+
+      <div class="card">
+        <h2>Données de test</h2>
+        <p class="fine">Tout ce que vous faites ici est enregistré dans ce navigateur seulement. Vous pouvez tout effacer pour ce compte : crédits, vidéos, commandes, brouillon et kit de marque.</p>
+        <div class="row-act"><button class="btn danger" type="button" id="wipe">Supprimer mes données de test</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PAIEMENT (TEST) ===================== -->
+  <section class="screen" id="s-pay" aria-labelledby="pay-h">
+    <div class="login" style="max-width:480px">
+      <a class="back" href="#videos" id="pay-back" style="float:left">← Retour</a>
+      <div style="clear:both"></div>
+      <h1 id="pay-h" tabindex="-1">Paiement</h1>
+      <div class="card" style="text-align:left;margin:16px 0" id="pay-sum"></div>
+      <form class="card" id="f-pay" style="text-align:left" novalidate autocomplete="off">
+        <p class="notice" style="margin-bottom:18px">Paiement de test : <b>n'entrez jamais une vraie carte.</b> Rien n'est envoyé ni enregistré.<br>Acceptée : <b>4242 4242 4242 4242</b> · Refusée : <b>4000 0000 0000 0002</b> · Fonds insuffisants : <b>4000 0000 0000 9995</b>. Date future, CVC au choix.</p>
+        <div class="field"><label for="cc-name">Nom sur la carte</label><input type="text" id="cc-name" placeholder="ex. : Agence Test" autocomplete="off" aria-describedby="cc-name-err"><p class="ferr" id="cc-name-err"></p></div>
+        <div class="field"><label for="cc-num">Numéro de carte (test)</label><input type="text" id="cc-num" inputmode="numeric" placeholder="ex. : 4242 4242 4242 4242" maxlength="19" autocomplete="off" aria-describedby="cc-num-err"><p class="ferr" id="cc-num-err"></p></div>
+        <div class="grid2" style="grid-template-columns:1fr 1fr">
+          <div class="field"><label for="cc-exp">Expiration</label><input type="text" id="cc-exp" inputmode="numeric" placeholder="MM/AA" maxlength="5" autocomplete="off" aria-describedby="cc-exp-err"><p class="ferr" id="cc-exp-err"></p></div>
+          <div class="field"><label for="cc-cvc">CVC</label><input type="text" id="cc-cvc" inputmode="numeric" placeholder="ex. : 123" maxlength="4" autocomplete="off" aria-describedby="cc-cvc-err"><p class="ferr" id="cc-cvc-err"></p></div>
+        </div>
+        <label class="check"><input type="checkbox" id="pay-cgv" aria-describedby="pay-cgv-err"> <span>J'accepte les <a href="cgv.html" target="_blank" rel="noopener">CGV</a> et la <a href="remboursement.html" target="_blank" rel="noopener">politique de remboursement</a>. Je demande l'exécution immédiate du service et je reconnais perdre mon droit de rétractation pour chaque crédit dès que la vidéo correspondante est générée.</span></label>
+        <p class="ferr" id="pay-cgv-err"></p>
+        <p class="err" id="pay-err" role="alert"></p>
+        <button class="btn full" type="submit" id="pay-ok" style="margin-top:16px">Payer</button>
         <button class="btn ghost full" type="button" id="pay-cancel" style="margin-top:10px">Annuler</button>
-        <p class="small muted" style="margin-top:12px;text-align:center">En production : page de paiement sécurisée Lemon Squeezy.</p>
+        <p class="fine" style="margin-top:14px;text-align:center">En production, le paiement se fait sur la page de notre prestataire de paiement, qui agit comme revendeur (Merchant of Record) ; son nom figure sur la page de paiement et sur le reçu. Vos données de carte ne passent jamais par ImmoClap.</p>
       </form>
     </div>
   </section>
 </main>
 
+<footer class="foot">
+  <div class="wrap">
+    <nav aria-label="Informations légales">
+      <a href="cgv.html">CGV</a><a href="confidentialite.html">Confidentialité</a><a href="remboursement.html">Remboursement</a><a href="mentions-legales.html">Mentions légales</a><a href="mailto:contact.immoclap@gmail.com">Contact</a><a href="index.html">Retour au site</a>
+    </nav>
+    <span>© 2026 ImmoClap · <a href="https://www.instagram.com/immoclap/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/@immoclap" target="_blank" rel="noopener">TikTok</a></span>
+  </div>
+</footer>
+
+<div class="help" id="help">
+  <div class="help-menu" id="help-menu" hidden>
+    <p>Aide</p>
+    <a href="mailto:contact.immoclap@gmail.com?subject=Aide%20espace%20client"><span class="hi" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span>Écrire au support<small>contact.immoclap@gmail.com</small></span></a>
+    <a href="guide.html" target="_blank" rel="noopener"><span class="hi" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2zM4 5v16"/></svg></span><span>Guide photos<small>Préparer de bonnes photos</small></span></a>
+    <button type="button" id="help-demo"><span class="hi" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span>Voir un exemple<small>Vidéo de démonstration</small></span></button>
+  </div>
+  <button class="help-btn" type="button" id="help-btn" aria-expanded="false" aria-controls="help-menu"><span class="sr">Aide</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9.1 9a3 3 0 015.8 1c0 2-3 2.5-3 4.5"/><circle cx="12" cy="18" r=".6" fill="currentColor"/></svg></button>
+</div>
+
+<dialog id="dlg" aria-labelledby="dlg-h">
+  <h2 id="dlg-h"></h2>
+  <div class="dtext" id="dlg-t"></div>
+  <div class="dbtns" id="dlg-b"></div>
+</dialog>
+
+<dialog id="rcpt-dlg" aria-labelledby="rcpt-h" style="width:min(560px,calc(100vw - 32px))">
+  <h2 id="rcpt-h" class="sr">Reçu de test</h2>
+  <div id="rcpt"></div>
+  <div class="dbtns"><button class="btn ghost" type="button" data-close>Fermer</button><button class="btn" type="button" id="rcpt-print">Imprimer</button></div>
+</dialog>
+
+<dialog id="demo-dlg" aria-labelledby="demo-h">
+  <h2 id="demo-h">Exemple de vidéo</h2>
+  <div class="seg" id="demo-seg" role="group" aria-label="Exemple"><button type="button" data-d="villa-marrakech" aria-pressed="true">Villa · Marrakech</button><button type="button" data-d="penthouse-casablanca" aria-pressed="false">Penthouse · Casablanca</button></div>
+  <video id="demo-video" controls playsinline preload="none"></video>
+  <p class="fine" style="margin-top:10px">Démonstration générée par IA à partir de photos.</p>
+  <div class="dbtns"><button class="btn ghost" type="button" data-close>Fermer</button></div>
+</dialog>
+
+<div id="print-area" aria-hidden="true"></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-/* ===== Configuration ===== */
+'use strict';
+/* =====================================================================
+   ImmoClap · espace client (mode test, sans serveur)
+   Toutes les données restent dans le navigateur (localStorage), par compte.
+   Pour passer en production : vraie connexion, crédits accordés par le
+   serveur après paiement (jamais dans le navigateur), génération réelle.
+   ===================================================================== */
 const CONFIG = {
-  testMode: true,                 // false quand Lemon Squeezy + génération réelle sont branchés
-  checkout: {                     // liens Lemon Squeezy à coller quand les produits existent
-    one:'', pack5:'', pack10:'', solo:'', agence:''
-  },
-  maxPhotos: 12, minPhotos: 3,
+  testMode: true,
+  checkout: { one:'', pack5:'', pack10:'', solo:'', agence:'' }, // liens de paiement du prestataire (production)
+  minPhotos: 3, maxPhotos: 12, secPerPhoto: 5, goodWidth: 1920,
+  genMs: 15000, payMs: 1600, creditMonths: 12,
+  support: 'contact.immoclap@gmail.com'
 };
-const OFFERS = {
-  once:[
-    {id:'one',   name:'1 vidéo', credits:1,  eur:19,  mad:149, d:'Pour essayer sur un bien.'},
-    {id:'pack5', name:'Pack 5',  credits:5,  eur:79,  mad:599, d:'16 € / 120 DH la vidéo.', hl:true},
-    {id:'pack10',name:'Pack 10', credits:10, eur:139, mad:999, d:'14 € / 100 DH la vidéo.'},
-  ],
-  sub:[
-    {id:'solo',  name:'Solo',    credits:3,  eur:39,  mad:349, d:'3 vidéos par mois. Sans engagement.', monthly:true},
-    {id:'agence',name:'Agence',  credits:10, eur:99,  mad:899, d:'10 vidéos par mois. Sans engagement.', monthly:true, hl:true},
-  ]
+const OFFERS = [
+  {id:'one',    kind:'once', name:'1 vidéo', credits:1,  eur:19,  mad:149, d:'Pour un mandat ponctuel.'},
+  {id:'pack5',  kind:'once', name:'Pack 5',  credits:5,  eur:79,  mad:599, d:"Pour l'agent qui rentre des mandats chaque mois."},
+  {id:'pack10', kind:'once', name:'Pack 10', credits:10, eur:139, mad:999, d:'Pour les agences et les gros volumes.'},
+  {id:'solo',   kind:'sub',  name:'Solo',    credits:3,  eur:39,  mad:349, d:"Pour l'agent indépendant ou le mandataire."},
+  {id:'agence', kind:'sub',  name:'Agence',  credits:10, eur:99,  mad:899, d:'Pour les agences qui publient chaque semaine.'},
+];
+const offerById = id => OFFERS.find(o => o.id === id);
+const FMT = {
+  '16:9': {name:'Écran large', file:'16x9', arn:16/9, cls:'',     poster:'assets/videos/villa-marrakech-16x9-poster.jpg'},
+  '9:16': {name:'Vertical',    file:'9x16', arn:9/16, cls:'r916', poster:'assets/videos/villa-marrakech-poster.jpg'},
+  '1:1':  {name:'Carré',       file:'1x1',  arn:1,    cls:'r11',  poster:'assets/videos/villa-marrakech-1x1-poster.jpg'},
 };
-const DEMOS = {
-  '16:9':{mp4:'assets/videos/villa-marrakech-16x9.mp4', webm:'assets/videos/villa-marrakech-16x9.webm'},
-  '9:16':{mp4:'assets/videos/villa-marrakech-9x16.mp4', webm:'assets/videos/villa-marrakech-9x16.webm'},
-  '1:1': {mp4:'assets/videos/villa-marrakech-16x9.mp4', webm:'assets/videos/villa-marrakech-16x9.webm'},
+const FMT_ORDER = ['16:9','9:16','1:1'];
+const demoSrc = f => ({mp4:`assets/videos/villa-marrakech-${FMT[f].file}.mp4`, webm:`assets/videos/villa-marrakech-${FMT[f].file}.webm`});
+const LANG_CODE = {'Français':'fr','Arabe':'ar','Anglais':'en'};
+
+/* ---------- outils ---------- */
+const $ = (s, c=document) => c.querySelector(s), $$ = (s, c=document) => [...c.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const now = () => Date.now();
+const pl = (n, one, many) => `${n}\u00a0${n > 1 ? many : one}`;
+const nf0 = new Intl.NumberFormat('fr-FR', {maximumFractionDigits:0});
+const nf2 = new Intl.NumberFormat('fr-FR', {minimumFractionDigits:2, maximumFractionDigits:2});
+const moneyBig = (v, c) => `${Number.isInteger(v) ? nf0.format(v) : nf2.format(v)}\u00a0${c === 'eur' ? '€' : 'DH'} <small>HT</small>`;
+const money = (v, c, ht=true) => `${Number.isInteger(v) ? nf0.format(v) : nf2.format(v)}\u00a0${c === 'eur' ? '€' : 'DH'}${ht ? '\u00a0HT' : ''}`;
+const fmtDate = t => new Date(t).toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'});
+const fmtDateTime = t => new Date(t).toLocaleString('fr-FR', {day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit'});
+function addMonths(t, n){ const d = new Date(t), day = d.getDate(); d.setDate(1); d.setMonth(d.getMonth() + n); const last = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate(); d.setDate(Math.min(day, last)); return d.getTime(); }
+const slug = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const tag = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
+const debounce = (fn, ms) => { let t; const f = (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; f.flush = () => { clearTimeout(t); fn(); }; return f; };
+const BL = {}; /* ligne vide dans joinLines */
+function joinLines(arr){ const out = []; for (const x of arr) { if (x === BL) { if (out.length && out[out.length - 1] !== BL) out.push(BL); } else if (x) out.push(x); } while (out.length && out[out.length - 1] === BL) out.pop(); return out.map(x => x === BL ? '' : x).join('\n'); }
+const rid = n => Math.random().toString(36).slice(2, 2 + n).toUpperCase().padEnd(n, '0');
+
+/* ---------- stockage (chaque accès protégé) ---------- */
+const LS = {
+  get(k){ try { return localStorage.getItem(k); } catch(e) { return null; } },
+  set(k, v){ try { localStorage.setItem(k, v); return true; } catch(e) { return false; } },
+  del(k){ try { localStorage.removeItem(k); } catch(e) {} },
+  json(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e) { return null; } }
 };
+const K = { session:'immoclap_session', cur:'immoclap_cur', legacy:'immoclap_test_v1', acct:e => 'immoclap_acct:' + e, draft:e => 'immoclap_draft:' + e };
 
-/* ===== Outils ===== */
-const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const KEY='immoclap_test_v1';
-const load=()=>{try{return JSON.parse(localStorage.getItem(KEY))||null}catch(e){return null}};
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){toast('Stockage du navigateur plein : supprimez d\'anciennes vidéos de test.')}};
-let state = load() || {user:null, credits:0, plan:null, videos:[]};
-let cur = 'eur';
-try{if(Intl.DateTimeFormat().resolvedOptions().timeZone==='Africa/Casablanca')cur='mad'}catch(e){}
+let session = null, acct = null, draft = null;
+let cur = (() => { const s = LS.get(K.cur); if (s === 'eur' || s === 'mad') return s; try { if (Intl.DateTimeFormat().resolvedOptions().timeZone === 'Africa/Casablanca') return 'mad'; } catch(e) {} return 'eur'; })();
 
-const toast=(t)=>{const el=$('#toast');el.textContent=t;el.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove('on'),3200)};
-const show=id=>{$$('.screen').forEach(s=>s.classList.toggle('on',s.id===id));scrollTo(0,0);};
-const money=(o)=>cur==='eur'?`${o.eur} €`:`${o.mad.toLocaleString('fr-FR')} DH`;
-
-/* ===== Connexion ===== */
-function login(email){
-  state.user={email, since:Date.now()};
-  save(); route();
+function newAcct(email){
+  return {v:2, created:now(), profile:{first:'', agency:'', phone:'', email, logo:null, auto:true}, lots:[], sub:null, videos:[], orders:[]};
 }
-$('#f-login').addEventListener('submit',e=>{
-  e.preventDefault();
-  const v=$('#email').value.trim();
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){ $('#login-err').textContent='Adresse e-mail invalide.'; return; }
-  $('#login-err').textContent='';
-  toast('Mode test : connexion directe, sans lien e-mail.');
-  login(v);
-});
-$('#g-login').addEventListener('click',()=>{toast('Mode test : connexion Google simulée.');login('test.google@immoclap.app');});
-$('#logout').addEventListener('click',()=>{state.user=null;save();route();});
+function saveAcct(){ return session && acct ? LS.set(K.acct(session.email), JSON.stringify(acct)) : false; }
+function loadAcct(email){
+  const a = LS.json(K.acct(email));
+  if (!a || typeof a !== 'object') return newAcct(email);
+  a.profile = Object.assign({first:'', agency:'', phone:'', email, logo:null, auto:true}, a.profile || {});
+  a.lots = Array.isArray(a.lots) ? a.lots : []; a.videos = Array.isArray(a.videos) ? a.videos : []; a.orders = Array.isArray(a.orders) ? a.orders : [];
+  return a;
+}
+/* ancienne version : un seul état partagé entre tous les comptes → rangé dans le compte qui était connecté */
+function migrateLegacy(){
+  const old = LS.json(K.legacy); if (!old) return;
+  try {
+    const email = old.user && old.user.email ? String(old.user.email).toLowerCase() : null;
+    if (email && !LS.get(K.acct(email))) {
+      const a = newAcct(email);
+      if (old.credits > 0) a.lots.push({id:'L' + rid(6), n:old.credits, left:old.credits, at:now(), exp:addMonths(now(), CONFIG.creditMonths), src:'reprise', sub:false});
+      (old.videos || []).forEach(v => a.videos.push(Object.assign({}, v, {status:'ready', cover:null, highlights:v.highlights || []})));
+      LS.set(K.acct(email), JSON.stringify(a));
+      if (!LS.get(K.session)) LS.set(K.session, JSON.stringify({email}));
+    }
+  } catch(e) {}
+  LS.del(K.legacy);
+}
 
-/* ===== Tableau de bord ===== */
+/* ---------- crédits ---------- */
+const activeLots = () => acct.lots.filter(l => l.left > 0 && l.exp > now());
+const creditsTotal = () => activeLots().reduce((s, l) => s + l.left, 0);
+const reserved = () => acct.videos.filter(v => v.status === 'processing').length;
+const creditsAvail = () => Math.max(0, creditsTotal() - reserved());
+function nextExpiry(){
+  const ls = activeLots().sort((a, b) => a.exp - b.exp); if (!ls.length) return null;
+  const day = new Date(ls[0].exp).toDateString();
+  return {date:ls[0].exp, n:ls.filter(l => new Date(l.exp).toDateString() === day).reduce((s, l) => s + l.left, 0)};
+}
+function debitOne(){ const l = activeLots().sort((a, b) => a.exp - b.exp)[0]; if (!l) return null; l.left -= 1; return l.id; }
+
+/* abonnement : renouvellements passés (temps réel) et fin après résiliation */
+function subHousekeeping(){
+  const s = acct.sub; if (!s) return false;
+  let changed = false, guard = 0;
+  while (acct.sub && acct.sub.renew <= now() && guard++ < 24) { renewSub(true); changed = true; }
+  return changed;
+}
+function renewSub(silent){
+  const s = acct.sub; if (!s) return;
+  if (s.status === 'canceling') {
+    acct.lots.forEach(l => { if (l.sub && l.left > 0) { l.left = 0; l.ended = true; } });
+    acct.sub = null;
+    if (!silent) toast("Abonnement terminé (simulation). Les crédits d'abonnement non utilisés ont expiré.");
+    return;
+  }
+  if (s.next) { s.id = s.next; s.next = null; }
+  const o = offerById(s.id), at = s.renew;
+  const order = makeOrder(o, 'renew', at, null);
+  acct.lots.push({id:'L' + rid(6), n:o.credits, left:o.credits, at, exp:addMonths(at, CONFIG.creditMonths), src:o.id, sub:true, order:order.id});
+  s.renew = addMonths(s.renew, 1);
+  if (!silent) toast(`Renouvellement simulé : +${pl(o.credits, 'crédit', 'crédits')}.`);
+}
+function makeOrder(o, kind, at, last4){
+  const d = new Date(at || now());
+  const id = `IC-T${String(d.getFullYear()).slice(2)}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}-${rid(4)}`;
+  const order = {id, at:at || now(), offer:o.id, name:o.name, credits:o.credits, eur:o.eur, mad:o.mad, cur, kind, last4:last4 || null};
+  acct.orders.push(order);
+  return order;
+}
+
+/* ---------- interface commune ---------- */
+function toast(t){ const el = $('#toast'); el.textContent = t; el.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('on'), 3800); }
+function setFieldErr(input, errEl, msg){ if (errEl) errEl.textContent = msg || ''; if (input) input.setAttribute('aria-invalid', msg ? 'true' : 'false'); }
+
+/* boîte de dialogue générique → Promise(valeur du bouton, ou null) */
+function ask({title, html, buttons}){
+  return new Promise(res => {
+    const d = $('#dlg');
+    $('#dlg-h').textContent = title; $('#dlg-t').innerHTML = html || '';
+    $('#dlg-b').innerHTML = buttons.map((b, i) => `<button type="button" class="btn ${b.kind || ''}" data-i="${i}">${esc(b.label)}</button>`).join('');
+    const done = v => { d.removeEventListener('close', onClose); if (d.open) d.close(); res(v); };
+    const onClose = () => done(null);
+    d.addEventListener('close', onClose);
+    $$('#dlg-b button').forEach(btn => btn.addEventListener('click', () => done(buttons[+btn.dataset.i].value)));
+    d.showModal();
+    const def = $$('#dlg-b button')[buttons.findIndex(b => b.focus)] || $('#dlg-b button'); def && def.focus();
+  });
+}
+document.addEventListener('click', e => { const c = e.target.closest('[data-close]'); if (c) c.closest('dialog').close(); });
+
+/* ---------- état « occupé » : paiement ou génération ---------- */
+const pay = {busy:false, timer:null};
+let genBusy = false;
+const isBusy = () => pay.busy || (acct && reserved() > 0);
+addEventListener('beforeunload', e => { if (pay.busy) { e.preventDefault(); e.returnValue = ''; } });
+
+/* ---------- en-tête ---------- */
+function renderHeader(route){
+  $('#who').hidden = !session;
+  if (!session) return;
+  const n = creditsAvail();
+  $('#credits').textContent = n; $('#credits-l').textContent = n > 1 ? 'crédits' : 'crédit';
+  $('#chip').title = `${pl(n, 'crédit disponible', 'crédits disponibles')}${reserved() ? ` · ${reserved()} réservé(s)` : ''}`;
+  $$('#who [data-nav]').forEach(a => { if (a.dataset.nav === route) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+  const lo = $('#logout'); lo.setAttribute('aria-disabled', isBusy() ? 'true' : 'false');
+  lo.title = isBusy() ? 'Indisponible pendant une génération ou un paiement' : '';
+}
+
+/* ---------- connexion ---------- */
+function login(email, opts={}){
+  email = String(email).trim().toLowerCase();
+  session = {email}; LS.set(K.session, JSON.stringify(session));
+  acct = loadAcct(email);
+  if (subHousekeeping()) saveAcct();
+  draft = loadDraft();
+  resetWizardUI();
+  if (!opts.silent) { toast(opts.msg || 'Connecté (mode test).'); go(opts.to || 'videos', true); }
+}
+$('#f-login').addEventListener('submit', e => {
+  e.preventDefault();
+  const inp = $('#email'), v = inp.value.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) { setFieldErr(inp, $('#login-err'), 'Adresse e-mail invalide (ex. : vous@agence.com).'); inp.focus(); return; }
+  setFieldErr(inp, $('#login-err'), '');
+  login(v, {msg:'Mode test : connexion directe, sans lien e-mail.', to:afterLogin()});
+});
+$('#g-login').addEventListener('click', () => login('test.google@immoclap.app', {msg:'Mode test : connexion Google simulée.', to:afterLogin()}));
+let wantedRoute = null;
+const afterLogin = () => { const w = wantedRoute; wantedRoute = null; return w && !/^connexion/.test(w) ? w : 'videos'; };
+
+$('#logout').addEventListener('click', async () => {
+  if (pay.busy) { toast('Paiement en cours : attendez la fin avant de vous déconnecter.'); return; }
+  if (acct && reserved() > 0) {
+    await ask({title:'Génération en cours', html:'<p>Attendez la fin de la génération avant de vous déconnecter : elle ne prend que quelques secondes en mode test.</p>', buttons:[{label:"D'accord", value:'ok', focus:true}]});
+    return;
+  }
+  logout();
+});
+function logout(){
+  if (draft) saveDraftSoon.flush();
+  stopVoice(); $('#r-video').pause();
+  session = null; acct = null; draft = null;
+  LS.del(K.session);
+  resetWizardUI();
+  $('#email').value = '';
+  toast('Vous êtes déconnecté.');
+  go('connexion', true);
+}
+
+/* ---------- routeur (une URL par écran) ---------- */
+const SCREENS = {login:'s-login', dash:'s-dash', new:'s-new', video:'s-video', account:'s-account', pay:'s-pay'};
+let lastRoute = '';
+function parseHash(){ const h = decodeURIComponent(location.hash.replace(/^#\/?/, '')); const [a, b, c] = h.split('/'); return {a:a || '', b:b || '', c:c || '', raw:h}; }
+function go(h, replace){
+  const target = '#' + h;
+  if (location.hash === target) { render(); return; }
+  if (replace) location.replace(target); else location.hash = h;
+}
+let prevHash = null;
+addEventListener('hashchange', e => { try { prevHash = new URL(e.oldURL).hash || null; } catch(_) { prevHash = null; } render(); });
+function showScreen(name, title, focusEl){
+  $$('.screen').forEach(s => s.classList.toggle('on', s.id === SCREENS[name]));
+  document.title = `${title} — ImmoClap`;
+  document.body.classList.toggle('has-bar', name === 'new' || name === 'video');
+  const f = focusEl || $(`#${SCREENS[name]} h1`);
+  scrollTo(0, 0);
+  if (f) { try { f.focus({preventScroll:true}); } catch(e) { f.focus(); } }
+}
+function render(){
+  const r = parseHash();
+  $$('dialog[open]').forEach(d => { if (d.id !== 'dlg') d.close(); });
+  closeHelp();
+  if (r.a !== 'video') $('#r-video').pause();
+  if (r.a !== 'nouvelle') stopVoice();
+  if (lastRoute === 'nouvelle' && r.a !== 'nouvelle' && draft) { saveDraftSoon.flush(); if (r.a !== 'paiement' && draftHasContent()) toast('Brouillon enregistré : reprenez-le depuis Mes vidéos.'); }
+  if (!session) {
+    renderHeader('');
+    if (r.a !== 'connexion') { wantedRoute = r.raw || null; return go('connexion', true); }
+    lastRoute = 'connexion';
+    return showScreen('login', 'Connexion');
+  }
+  lastRoute = r.a;
+  switch (r.a) {
+    case 'connexion': return go('videos', true);
+    case 'videos': renderDash(); renderHeader('videos'); return showScreen('dash', 'Mes vidéos');
+    case 'nouvelle': return routeWizard(r);
+    case 'video': return routeVideo(r.b);
+    case 'compte': renderAccount(); renderHeader('compte'); return showScreen('account', 'Mon compte');
+    case 'paiement': return routePay(r.b, r.c === 'reprise');
+    default: return go('videos', true);
+  }
+}
+
+/* ---------- tableau de bord ---------- */
+function helloName(){ const p = acct.profile; return p.first ? `Bonjour ${p.first}` : p.agency ? `Bonjour, ${p.agency}` : `Bonjour · ${session.email}`; }
+function planLabel(){
+  const s = acct.sub;
+  if (!s) return {t:'À la carte', s:`<button type="button" data-scroll="buy">Voir les abonnements</button>`};
+  const o = offerById(s.id);
+  if (s.status === 'canceling') return {t:o.name, s:`Résilié · actif jusqu'au ${fmtDate(s.renew)}`};
+  return {t:o.name, s:`${money(o[cur], cur)} / mois · renouvelé le ${fmtDate(s.renew)}${s.next ? ` (passage à ${offerById(s.next).name})` : ''}`};
+}
 function renderDash(){
-  $('#who').hidden=false;
-  $('#credits').textContent=state.credits;
-  $('#hello').textContent=state.user.email;
-  $('#st-credits').textContent=state.credits;
-  $('#st-videos').textContent=state.videos.length;
-  $('#st-plan').textContent=state.plan||'Crédits';
-  const box=$('#vids');
-  if(!state.videos.length){
-    box.innerHTML=`<div class="empty"><h3>Aucune vidéo pour l'instant</h3><p class="muted">Déposez les photos d'un bien, on s'occupe du reste.</p><button class="btn" data-new>Créer ma première vidéo</button></div>`;
-  }else{
-    box.innerHTML='<div class="vids">'+state.videos.slice().reverse().map(v=>`
-      <button class="vid" data-id="${v.id}">
-        <div class="th" style="background-image:url('${v.cover||'assets/videos/villa-marrakech-poster.jpg'}')"><i>${esc(v.formats.join(' · '))}</i></div>
-        <div class="bd"><b>${esc(v.type)} · ${esc(v.city)}</b><span class="muted small">${new Date(v.at).toLocaleDateString('fr-FR')} · ${v.photos} photos</span></div>
-      </button>`).join('')+'</div>';
+  $('#hello').textContent = helloName();
+  /* brouillon */
+  const db = $('#draft-banner');
+  if (draft && draftHasContent()) {
+    const f = draft.f, c = draft.photos[0];
+    db.innerHTML = `<div class="draft"><div class="dthumb" style="${c ? `background-image:url('${c.src}')` : ''}"></div>
+      <div class="dtxt"><b>Brouillon en cours</b><span class="muted small">${pl(draft.photos.length, 'photo', 'photos')}${f.city ? ' · ' + esc(f.type) + ', ' + esc(f.city) : ''} · étape ${draft.step || 1} sur 4 · modifié le ${fmtDateTime(draft.updated)}</span></div>
+      <div class="dact"><a class="btn sm" href="#nouvelle/${draft.step || 1}">Reprendre</a><button type="button" class="btn sm ghost" id="draft-del">Supprimer</button></div></div>`;
+  } else db.innerHTML = '';
+  /* tuiles */
+  const n = creditsAvail(), ex = nextExpiry(), rs = reserved(), pln = planLabel();
+  let cs = '';
+  if (rs) cs += `${rs} réservé${rs > 1 ? 's' : ''} pour une génération en cours.<br>`;
+  if (ex) cs += `Dont ${ex.n} expire${ex.n > 1 ? 'nt' : ''} le ${fmtDate(ex.date)}.`;
+  else if (!rs) cs += `<button type="button" data-scroll="buy">Acheter des crédits</button>`;
+  const ready = acct.videos.filter(v => v.status === 'ready').length;
+  $('#tiles').innerHTML = `
+    <div class="tile"><span class="n">${n}</span><span class="l">${n > 1 ? 'Crédits disponibles' : 'Crédit disponible'}</span><span class="s">${cs}</span></div>
+    <div class="tile"><span class="n">${ready}</span><span class="l">${ready > 1 ? 'Vidéos prêtes' : 'Vidéo prête'}</span><span class="s">${acct.videos.length > ready ? `${acct.videos.length - ready} en cours ou en échec` : '1 crédit = 1 vidéo, 3 formats'}</span></div>
+    <div class="tile"><span class="n" style="font-size:30px">${esc(pln.t)}</span><span class="l">Formule</span><span class="s">${pln.s} · <a href="#compte">Gérer</a></span></div>`;
+  /* vidéos */
+  const box = $('#vids');
+  if (!acct.videos.length) {
+    box.innerHTML = `<div class="empty"><h2>Aucune vidéo pour l'instant</h2><p class="muted">Ajoutez les photos d'un bien, choisissez le style : la vidéo est montée pour vous.</p><div class="act"><button type="button" class="btn" data-new>Créer ma première vidéo</button><button type="button" class="btn ghost" data-demo>Voir un exemple</button></div></div>`;
+  } else {
+    box.innerHTML = '<ul class="vids">' + acct.videos.slice().reverse().map(v => {
+      const st = v.status === 'ready' ? '<span class="pill ok"><span class="dot"></span>Prête</span>' : v.status === 'processing' ? `<span class="pill gold" data-prog-t="${v.id}">En cours</span>` : '<span class="pill err">Échec</span>';
+      return `<li><a class="vid" href="#video/${esc(v.id)}">
+        <div class="th" style="background-image:url('${v.cover || FMT['16:9'].poster}')">${st}<i>${esc((v.formats || []).join(' · '))}</i></div>
+        ${v.status === 'processing' ? `<div class="prog"><i data-prog="${v.id}"></i></div>` : ''}
+        <div class="bd"><b>${esc(v.type)} · ${esc(v.city)}</b><span class="muted small">${fmtDate(v.at)} · ${pl(v.photos, 'photo', 'photos')}</span></div></a></li>`;
+    }).join('') + '</ul>';
+    updateProgressBits();
   }
   renderOffers();
 }
+document.addEventListener('click', async e => {
+  const t = e.target;
+  if (t.closest('[data-new]')) return startNew();
+  if (t.closest('[data-demo]')) return openDemo();
+  const sc = t.closest('[data-scroll]'); if (sc) { const el = $('#' + sc.dataset.scroll); if (location.hash !== '#videos') { go('videos'); setTimeout(() => { $('#buy').scrollIntoView({behavior:'smooth'}); $('#buy-h').focus({preventScroll:true}); }, 50); } else { el.scrollIntoView({behavior:'smooth'}); $('#buy-h').focus({preventScroll:true}); } return; }
+  const pc = t.closest('[data-plan]'); if (pc) { e.preventDefault(); return planChange(pc.dataset.plan); }
+  if (t.closest('#draft-del')) {
+    const v = await ask({title:'Supprimer le brouillon ?', html:'<p>Les photos et les informations saisies seront effacées.</p>', buttons:[{label:'Supprimer le brouillon', value:'del', kind:'danger'}, {label:'Annuler', value:null, kind:'ghost', focus:true}]});
+    if (v === 'del') { clearDraft(); renderDash(); toast('Brouillon supprimé.'); }
+  }
+});
+$('#new-video').addEventListener('click', () => startNew());
+
 function renderOffers(){
-  const card=(o)=>`<div class="offer${o.hl?' hl':''}">${o.hl?'<span class="badge">'+(o.monthly?'Le plus choisi':'Populaire')+'</span>':''}
-    <h3>${o.name}</h3><div class="p">${money(o)}${o.monthly?' <small>/ mois</small>':''}</div>
-    <div class="d">${o.d}</div><button class="btn sm${o.hl?'':' ghost'}" data-buy="${o.id}">${o.monthly?'S\'abonner':'Acheter'}</button></div>`;
-  $('#offers-once').innerHTML=OFFERS.once.map(card).join('');
-  $('#offers-sub').innerHTML=OFFERS.sub.map(card).join('');
-  $$('#cur button').forEach(b=>b.classList.toggle('on',b.dataset.c===cur));
+  const card = o => {
+    const price = o[cur], unit = offerById('one')[cur];
+    let pill = '', per = '';
+    if (o.kind === 'once' && o.credits > 1) { pill = `<span class="pill">−${Math.round((1 - price / (unit * o.credits)) * 100)}\u00a0%</span>`; }
+    if (o.kind === 'sub') pill = '<span class="pill gold">Prix de lancement</span>';
+    if (o.credits > 1) per = `soit ${money(Math.round(price / o.credits * 100) / 100, cur)} la vidéo`;
+    else per = 'Crédit valable 12 mois';
+    const isCur = acct.sub && acct.sub.id === o.id;
+    let btn;
+    if (o.kind === 'sub') {
+      if (isCur) btn = `<button class="btn sm ghost full" type="button" disabled>Formule actuelle</button>`;
+      else if (acct.sub) btn = `<button class="btn sm ghost full" type="button" data-plan="${o.id}">Passer à ${o.name}</button>`;
+      else btn = `<a class="btn sm ghost full" href="#paiement/${o.id}">S'abonner</a>`;
+    } else btn = `<a class="btn sm ghost full" href="#paiement/${o.id}">Acheter</a>`;
+    const sub = o.kind === 'sub' ? `${o.credits} vidéos par mois. Crédits reportés tant que l'abonnement est actif (12 mois maximum). Résiliable depuis Mon compte.` : '';
+    return `<div class="offer${isCur ? ' cur-plan' : ''}"><div class="ot"><h4 class="h3">${o.name}</h4>${pill}</div>
+      <div class="p">${moneyBig(price, cur)}${o.kind === 'sub' ? ' <small>/ mois</small>' : ''}</div><div class="u">${per}</div>
+      <div class="d">${o.d}${sub ? '<br>' + sub : ''}</div>${btn}</div>`;
+  };
+  $('#offers-once').innerHTML = OFFERS.filter(o => o.kind === 'once').map(card).join('');
+  $('#offers-sub').innerHTML = OFFERS.filter(o => o.kind === 'sub').map(card).join('');
+  syncCur();
 }
-$('#cur').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;cur=b.dataset.c;renderOffers();});
-document.addEventListener('click',e=>{
-  if(e.target.closest('[data-new]')) startNew();
-  const v=e.target.closest('.vid'); if(v) openResult(state.videos.find(x=>x.id===v.dataset.id));
-  const b=e.target.closest('[data-buy]'); if(b) buy(b.dataset.buy);
-});
-$('#new-video').addEventListener('click',()=>startNew());
-
-/* ===== Paiement ===== */
-let pending=null;
-function buy(id){
-  const o=[...OFFERS.once,...OFFERS.sub].find(x=>x.id===id);
-  if(!CONFIG.testMode && CONFIG.checkout[id]){
-    const u=new URL(CONFIG.checkout[id]); u.searchParams.set('checkout[email]',state.user.email);
-    location.href=u.toString(); return;
-  }
-  pending=o;
-  $('#pay-desc').textContent=`${o.name} — ${money(o)}${o.monthly?' par mois':''} · ${o.credits} crédit(s)`;
-  show('s-pay');
-}
-const TEST_CARDS={'4242424242424242':'ok','4000000000000002':'declined','4000000000009995':'funds'};
-const ccNum=$('#cc-num'), ccExp=$('#cc-exp');
-ccNum.addEventListener('input',()=>{ccNum.value=ccNum.value.replace(/\D/g,'').slice(0,16).replace(/(.{4})(?=.)/g,'$1 ');});
-ccExp.addEventListener('input',()=>{let v=ccExp.value.replace(/\D/g,'').slice(0,4);if(v.length>2)v=v.slice(0,2)+'/'+v.slice(2);ccExp.value=v;});
-$('#f-pay').addEventListener('submit',e=>{
-  e.preventDefault();
-  if(!pending)return;
-  const err=$('#pay-err'), num=ccNum.value.replace(/\D/g,''), exp=ccExp.value, cvc=$('#cc-cvc').value.replace(/\D/g,'');
-  err.textContent='';
-  const fail=(m,el)=>{err.textContent=m;if(el)el.focus();};
-  if(!$('#cc-name').value.trim()) return fail('Indiquez le nom sur la carte.',$('#cc-name'));
-  if(num.length<16) return fail('Numéro de carte incomplet.',ccNum);
-  const m=exp.match(/^(\d{2})\/(\d{2})$/);
-  if(!m||+m[1]<1||+m[1]>12) return fail('Date d\'expiration invalide (MM/AA).',ccExp);
-  const now=new Date(), y=2000+ +m[2];
-  if(y<now.getFullYear()||(y===now.getFullYear()&&+m[1]<now.getMonth()+1)) return fail('Cette carte a expiré.',ccExp);
-  if(cvc.length<3) return fail('CVC invalide.',$('#cc-cvc'));
-  const r=TEST_CARDS[num];
-  if(!r) return fail('Mode test : seules les cartes de test sont acceptées (4242 4242 4242 4242).',ccNum);
-  const btn=$('#pay-ok'); btn.disabled=true; btn.textContent='Paiement en cours…';
-  setTimeout(()=>{
-    btn.disabled=false; btn.textContent='Payer';
-    if(r==='declined') return fail('Paiement refusé par la banque. Essayez une autre carte.');
-    if(r==='funds') return fail('Fonds insuffisants.');
-    state.credits+=pending.credits;
-    if(pending.monthly) state.plan=pending.name;
-    save(); toast(`Paiement accepté (test) : +${pending.credits} crédit(s).`);
-    $('#f-pay').reset();
-    const resume=pending.resume; pending=null;
-    if(resume){ show('s-new'); goStep(3); renderHeader(); } else route();
-  },1600);
-});
-$('#pay-cancel').addEventListener('click',()=>{$('#f-pay').reset();$('#pay-err').textContent='';const r=pending&&pending.resume;pending=null; if(r){show('s-new');goStep(3);} else route();});
-
-/* ===== Assistant ===== */
-let draft, step=0;
-function startNew(){
-  draft={photos:[],logo:null};
-  $$('#s-new input[type=text],#s-new input[type=number],#s-new input[type=tel],#s-new textarea').forEach(i=>i.value='');
-  if(state.user && !state.user.email.startsWith('test.google')) $('#agency').placeholder='Mon Agence Immo';
-  $('#logo-prev').style.backgroundImage='';
-  renderThumbs(); show('s-new'); goStep(0);
-}
-function goStep(n){
-  step=n;
-  $$('.step').forEach(s=>s.hidden=+s.dataset.step!==n);
-  $$('#steps div').forEach((d,i)=>d.classList.toggle('on',i<=n));
-  $('#prev').textContent=n===0?'Annuler':'Retour';
-  $('#next').textContent=n===3?`Générer la vidéo (1 crédit)`:'Continuer';
-  $$('.err').forEach(e=>e.textContent='');
-  if(n===3) renderRecap();
-  scrollTo(0,0);
-}
-const val=n=>{const el=$(`#s-new input[name="${n}"]:checked`);return el?el.value:''};
-const vals=n=>$$(`#s-new input[name="${n}"]:checked`).map(i=>i.value);
-function validate(n){
-  if(n===0){
-    if(draft.photos.length<CONFIG.minPhotos){$('#err0').textContent=`Ajoutez au moins ${CONFIG.minPhotos} photos.`;return false;}
-  }
-  if(n===1){
-    if(!$('#city').value.trim()){$('#err1').textContent='Indiquez la ville.';$('#city').focus();return false;}
-  }
-  if(n===2){
-    if(!vals('fmt').length){$('#err2').textContent='Choisissez au moins un format.';return false;}
-  }
-  return true;
-}
-$('#prev').addEventListener('click',()=>{ if(step===0) route(); else goStep(step-1); });
-$('#next').addEventListener('click',()=>{
-  if(!validate(step))return;
-  if(step<3) return goStep(step+1);
-  if(state.credits<1){
-    $('#err3').innerHTML='Il vous faut 1 crédit. <button class="lnk" id="buy-one">Acheter 1 vidéo</button>';
-    $('#buy-one').addEventListener('click',()=>{buy('one');pending.resume=true;});
-    return;
-  }
-  generate();
+function syncCur(){ $$('.cur button').forEach(b => b.setAttribute('aria-pressed', b.dataset.c === cur ? 'true' : 'false')); }
+document.addEventListener('click', e => {
+  const b = e.target.closest('.cur button'); if (!b) return;
+  cur = b.dataset.c; LS.set(K.cur, cur); syncCur();
+  const r = parseHash();
+  if (r.a === 'videos') renderDash();
+  if (r.a === 'paiement') renderPaySummary();
+  if (r.a === 'compte') renderPlanCard();
+  updatePricePlaceholder();
 });
 
-/* photos */
-const drop=$('#drop'), files=$('#files');
-drop.addEventListener('click',()=>files.click());
-drop.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();files.click();}});
-['dragenter','dragover'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add('over')}));
-['dragleave','drop'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.remove('over')}));
-drop.addEventListener('drop',e=>addFiles(e.dataTransfer.files));
-files.addEventListener('change',()=>{addFiles(files.files);files.value='';});
+/* ---------- changement de formule ---------- */
+async function planChange(id){
+  const s = acct.sub, o = offerById(id);
+  if (!s) return go('paiement/' + id);
+  if (s.id === id) return;
+  const curO = offerById(s.id);
+  if (o.eur > curO.eur) return go('paiement/' + id);
+  const v = await ask({title:`Passer à ${o.name} ?`, html:`<p>Le changement s'appliquera au prochain renouvellement, le ${fmtDate(s.renew)} : ${money(o[cur], cur)} par mois pour ${o.credits} vidéos.</p><p>D'ici là, vous gardez la formule ${curO.name} et vos crédits.</p>`, buttons:[{label:`Passer à ${o.name}`, value:'ok'}, {label:'Annuler', value:null, kind:'ghost', focus:true}]});
+  if (v !== 'ok') return;
+  s.next = id; if (s.status === 'canceling') s.status = 'active';
+  if (!saveAcct()) { s.next = null; return toast('Stockage du navigateur plein : changement non enregistré.'); }
+  toast(`Passage à ${o.name} prévu le ${fmtDate(s.renew)}.`);
+  render();
+}
 
-function shrink(file,max=480,q=.72){
-  return new Promise((res,rej)=>{
-    const img=new Image(), url=URL.createObjectURL(file);
-    img.onload=()=>{const s=Math.min(1,max/Math.max(img.width,img.height));
-      const c=document.createElement('canvas');c.width=Math.round(img.width*s);c.height=Math.round(img.height*s);
-      c.getContext('2d').drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(url);
-      res({src:c.toDataURL('image/jpeg',q),w:img.width,h:img.height,name:file.name});};
-    img.onerror=()=>{URL.revokeObjectURL(url);rej()};
-    img.src=url;
+/* ================= ASSISTANT ================= */
+function newDraft(){
+  const p = acct.profile, auto = p.auto !== false;
+  return {v:1, created:now(), updated:now(), step:1, photos:[], f:{
+    type:'Appartement', deal:'Vente', city:'', area:'', price:'', showPrice:true, surface:'', rooms:'', beds:'', highlights:'',
+    music:'Élégante', voice:'Voix féminine', lang:'Français', formats:['16:9','9:16','1:1'], nologo:false,
+    agency:auto ? p.agency : '', phone:auto ? p.phone : '', logo:auto ? p.logo : null, logoDark:auto ? !!p.logoDark : false, fromKit:auto && !!(p.agency || p.phone || p.logo), preview:'16:9'}};
+}
+function loadDraft(){
+  const d = LS.json(K.draft(session.email));
+  if (!d || !d.f || !Array.isArray(d.photos)) return null;
+  return d;
+}
+let draftWarned = false;
+function saveDraft(){
+  if (!draft || !session) return true;
+  draft.updated = now();
+  const ok = LS.set(K.draft(session.email), JSON.stringify(draft));
+  const el = $('#saved');
+  if (ok) { el.textContent = 'Brouillon enregistré'; draftWarned = false; }
+  else { el.textContent = 'Brouillon non enregistré (stockage plein)'; if (!draftWarned) { toast("Stockage du navigateur plein : le brouillon ne sera pas conservé si vous fermez la page."); draftWarned = true; } }
+  return ok;
+}
+const saveDraftSoon = debounce(saveDraft, 300);
+function clearDraft(){ draft = null; if (session) LS.del(K.draft(session.email)); resetWizardUI(); }
+function draftHasContent(){ if (!draft) return false; const f = draft.f; return draft.photos.length > 0 || !!(f.city || f.area || f.price || f.surface || f.highlights); }
+
+async function startNew(){
+  if (draft && draftHasContent()) {
+    const v = await ask({title:'Un brouillon est en cours', html:`<p>${pl(draft.photos.length, 'photo', 'photos')}${draft.f.city ? ' · ' + esc(draft.f.type) + ', ' + esc(draft.f.city) : ''}. Voulez-vous le reprendre ?</p>`,
+      buttons:[{label:'Reprendre le brouillon', value:'resume', focus:true}, {label:'Nouvelle vidéo (efface le brouillon)', value:'new', kind:'ghost'}]});
+    if (v === 'resume') return go('nouvelle/' + (draft.step || 1));
+    if (v !== 'new') return;
+  }
+  clearDraft();
+  draft = newDraft(); saveDraft();
+  go('nouvelle/1');
+}
+
+/* validation par étape : renvoie {msg, el, errEl} ou null */
+const intRe = /^\d{1,3}$/, surfRe = /^\d{1,6}([.,]\d{1,2})?$/;
+function stepProblem(n){
+  const f = draft.f;
+  if (n === 1 && draft.photos.length < CONFIG.minPhotos) return {msg:`Ajoutez au moins ${CONFIG.minPhotos} photos (encore ${CONFIG.minPhotos - draft.photos.length}).`, el:$('#drop'), errEl:$('#err1')};
+  if (n === 2) {
+    if (!f.city.trim()) return {msg:'Indiquez la ville.', el:$('#city'), errEl:$('#city-err'), field:true};
+    if (f.surface && (!surfRe.test(f.surface.trim()) || parseFloat(f.surface.replace(',', '.')) <= 0)) return {msg:'Surface : un nombre positif, sans unité (ex. : 120).', el:$('#surface'), errEl:$('#surface-err'), field:true};
+    if (f.rooms && (!intRe.test(f.rooms.trim()) || +f.rooms < 1)) return {msg:'Pièces : un nombre entier, au moins 1.', el:$('#rooms'), errEl:$('#rooms-err'), field:true};
+    if (f.beds && !intRe.test(f.beds.trim())) return {msg:'Chambres : un nombre entier positif.', el:$('#beds'), errEl:$('#beds-err'), field:true};
+    if (f.beds && f.rooms && +f.beds > +f.rooms) return {msg:'Il ne peut pas y avoir plus de chambres que de pièces.', el:$('#beds'), errEl:$('#beds-err'), field:true};
+  }
+  if (n === 3 && !f.formats.length) return {msg:'Choisissez au moins un format.', el:$('input[name=fmt]'), errEl:$('#err3')};
+  return null;
+}
+function firstBadStep(upTo){ for (let i = 1; i < upTo; i++) if (stepProblem(i)) return i; return null; }
+function clearStepErrors(){ ['err1','err2','err3','err4','city-err','surface-err','rooms-err','beds-err','logo-err'].forEach(id => { const el = $('#' + id); if (el) el.textContent = ''; }); $$('#s-new [aria-invalid]').forEach(i => i.setAttribute('aria-invalid', 'false')); }
+function showProblem(p){ if (p.field) setFieldErr(p.el, p.errEl, p.msg); else p.errEl.textContent = p.msg; if (p.el) p.el.focus(); }
+
+function routeWizard(r){
+  let n = parseInt(r.b, 10);
+  /* sans brouillon, une étape avancée (ex. bouton Retour après une génération) ramène à Mes vidéos */
+  if (!draft) { if (n > 1) return go('videos', true); draft = newDraft(); saveDraft(); }
+  if (!(n >= 1 && n <= 4)) return go('nouvelle/' + (draft.step || 1), true);
+  const bad = firstBadStep(n);
+  if (bad) return go('nouvelle/' + bad, true);
+  draft.step = n; saveDraftSoon();
+  fillForm(); clearStepErrors();
+  $$('.step').forEach(s => s.hidden = +s.dataset.step !== n);
+  $$('#steps a').forEach(a => {
+    const s = +a.dataset.s;
+    a.classList.toggle('done', s < n);
+    if (s === n) a.setAttribute('aria-current', 'step'); else a.removeAttribute('aria-current');
+    a.setAttribute('aria-disabled', s > n && firstBadStep(s) ? 'true' : 'false');
   });
+  $('#prev').textContent = n === 1 ? 'Annuler' : 'Retour';
+  renderThumbs(); renderPreviews(); renderEstimate();
+  if (n === 3) { renderBrandNote(); labelPlays(); }
+  if (n === 4) renderRecap();
+  updateNextBtn(n);
+  renderHeader('');
+  const titles = ['Les photos', 'Le bien', 'Le style', 'Récapitulatif'];
+  showScreen('new', `Étape ${n} sur 4 · ${titles[n - 1]}`, $(`.step[data-step="${n}"] h1`));
 }
+const navOf = r => r.a === 'videos' || r.a === 'compte' ? r.a : '';
+const curStep = () => { const r = parseHash(); return r.a === 'nouvelle' ? (parseInt(r.b, 10) || 1) : 0; };
+function updateNextBtn(n){
+  const b = $('#next');
+  if (n < 4) { b.textContent = 'Continuer'; return; }
+  b.textContent = creditsAvail() >= 1 ? 'Générer la vidéo · 1 crédit' : `Acheter 1 crédit · ${money(offerById('one')[cur], cur)}`;
+}
+$('#prev').addEventListener('click', async () => {
+  const n = curStep();
+  if (n > 1) return go('nouvelle/' + (n - 1));
+  if (!draftHasContent()) { clearDraft(); return go('videos'); }
+  const v = await ask({title:"Quitter l'assistant ?", html:'<p>Votre brouillon est enregistré dans ce navigateur : vous pourrez le reprendre depuis Mes vidéos.</p>',
+    buttons:[{label:'Garder le brouillon et quitter', value:'keep', focus:true}, {label:'Supprimer le brouillon', value:'del', kind:'danger'}, {label:'Rester', value:null, kind:'ghost'}]});
+  if (v === 'keep') { saveDraftSoon.flush(); go('videos'); }
+  if (v === 'del') { clearDraft(); toast('Brouillon supprimé.'); go('videos'); }
+});
+$('#next').addEventListener('click', () => {
+  const n = curStep(); if (!n) return;
+  clearStepErrors();
+  if (n < 4) { const p = stepProblem(n); if (p) return showProblem(p); return go('nouvelle/' + (n + 1)); }
+  launch();
+});
+
+/* --- liaison formulaire ↔ brouillon --- */
+const radio = n => { const el = $(`#s-new input[name="${n}"]:checked`); return el ? el.value : ''; };
+const setRadio = (n, v) => $$(`#s-new input[name="${n}"]`).forEach(i => i.checked = i.value === v);
+function readForm(){
+  const f = draft.f;
+  f.type = radio('type') || f.type; f.deal = radio('deal') || f.deal;
+  ['city','area','price','surface','rooms','beds','highlights','agency','phone'].forEach(k => f[k] = $('#' + k).value);
+  f.showPrice = $('#showPrice').checked; f.nologo = $('#nologo').checked;
+  f.music = radio('music') || f.music; f.voice = radio('voice') || f.voice; f.lang = radio('lang') || f.lang;
+  f.formats = FMT_ORDER.filter(x => $(`#s-new input[name=fmt][value="${x}"]`).checked);
+  if (!f.formats.includes(f.preview)) f.preview = f.formats[0] || '16:9';
+}
+function fillForm(){
+  const f = draft.f;
+  setRadio('type', f.type); setRadio('deal', f.deal); setRadio('music', f.music); setRadio('voice', f.voice); setRadio('lang', f.lang);
+  ['city','area','price','surface','rooms','beds','highlights','agency','phone'].forEach(k => { const el = $('#' + k); if (el.value !== (f[k] || '')) el.value = f[k] || ''; });
+  $('#showPrice').checked = f.showPrice !== false; $('#nologo').checked = !!f.nologo;
+  $$('#s-new input[name=fmt]').forEach(i => i.checked = f.formats.includes(i.value));
+  renderLogo('#logo-prev', '#logo-rm', f.logo);
+  updatePriceLabel(); updatePricePlaceholder();
+}
+function resetWizardUI(){
+  $$('#s-new input[type=text],#s-new input[type=tel],#s-new textarea').forEach(i => i.value = '');
+  $('#thumbs').innerHTML = ''; $('#msgs1').innerHTML = ''; $('#rights').checked = false;
+  $('#logo-file').value = ''; renderLogo('#logo-prev', '#logo-rm', null); clearStepErrors();
+}
+function onFormChange(e){
+  if (!draft || !curStep()) return;
+  const t = e.target;
+  if (t.id === 'rights' || t.type === 'file') { if (t.id === 'rights' && t.checked) $('#err4').textContent = ''; return; }
+  readForm(); saveDraftSoon();
+  if (t.getAttribute('aria-invalid') === 'true') { const p = stepProblem(curStep()); if (!p || p.el !== t) { setFieldErr(t, $('#' + t.getAttribute('aria-describedby')), ''); } }
+  if (t.name === 'fmt' && draft.f.formats.length) $('#err3').textContent = '';
+  if (t.name === 'deal') updatePriceLabel();
+  if (t.name === 'lang' || t.name === 'voice') { stopVoice(); labelPlays(); }
+  renderPreviews(); renderEstimate();
+}
+$('#s-new').addEventListener('input', onFormChange);
+$('#s-new').addEventListener('change', onFormChange);
+function updatePriceLabel(){ const d = draft ? draft.f.deal : 'Vente'; $('#price-l').textContent = d === 'Vente' ? 'Prix' : d === 'Location' ? 'Loyer par mois' : 'Tarif (par nuit ou par semaine)'; }
+function updatePricePlaceholder(){ const d = draft ? draft.f.deal : 'Vente'; const ex = cur === 'mad' ? {Vente:'2 500 000 DH', Location:'8 000 DH / mois', 'Location saisonnière':'1 200 DH / nuit'} : {Vente:'350 000 €', Location:'1 100 € / mois', 'Location saisonnière':'150 € / nuit'}; $('#price').placeholder = 'ex. : ' + (ex[d] || ex.Vente); }
+
+/* --- étape 1 : photos --- */
+const drop = $('#drop'), files = $('#files');
+drop.addEventListener('click', () => files.click());
+drop.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); files.click(); } });
+const isFileDrag = e => e.dataTransfer && [...(e.dataTransfer.types || [])].includes('Files');
+['dragenter','dragover'].forEach(t => drop.addEventListener(t, e => { if (!isFileDrag(e)) return; e.preventDefault(); drop.classList.add('over'); }));
+['dragleave','drop'].forEach(t => drop.addEventListener(t, () => drop.classList.remove('over')));
+drop.addEventListener('drop', e => { if (!isFileDrag(e)) return; e.preventDefault(); addFiles(e.dataTransfer.files); });
+files.addEventListener('change', () => { const l = [...files.files]; files.value = ''; addFiles(l); });
+
+function loadImg(src){ return new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => rej(new Error('decode')); i.src = src; }); }
+/* réduit une image ; type 'image/png' garde la transparence */
+async function shrink(src, max, type, q){
+  const img = await loadImg(src);
+  let w = img.naturalWidth, h = img.naturalHeight;
+  if (!w || !h) { w = h = 300; }
+  const s = Math.min(1, max / Math.max(w, h));
+  const c = document.createElement('canvas'); c.width = Math.max(1, Math.round(w * s)); c.height = Math.max(1, Math.round(h * s));
+  const ctx = c.getContext('2d');
+  if (type === 'image/jpeg') { ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height); }
+  ctx.drawImage(img, 0, 0, c.width, c.height);
+  return {src:c.toDataURL(type, q), w:img.naturalWidth || w, h:img.naturalHeight || h};
+}
+async function readFile(file, max, type, q){ const url = URL.createObjectURL(file); try { return await shrink(url, max, type, q); } finally { URL.revokeObjectURL(url); } }
+const IMG_EXT = ['jpg','jpeg','png','webp','gif','avif','bmp','heic','heif','tif','tiff'];
+let adding = false;
 async function addFiles(list){
-  const imgs=[...list].filter(f=>f.type.startsWith('image/'));
-  const room=CONFIG.maxPhotos-draft.photos.length;
-  if(imgs.length>room) $('#err0').textContent=`Maximum ${CONFIG.maxPhotos} photos : ${imgs.length-room} ignorée(s).`;
-  else $('#err0').textContent='';
-  for(const f of imgs.slice(0,Math.max(0,room))){
-    try{ const p=await shrink(f); if(p.w<800) $('#err0').textContent=`« ${f.name} » est petite (${p.w}px) : la vidéo risque d'être floue.`; draft.photos.push(p);}catch(e){}
+  if (!draft || adding) return;
+  adding = true;
+  const msgs = [];
+  const room = () => CONFIG.maxPhotos - draft.photos.length;
+  let skipped = 0;
+  $('#err1').textContent = '';
+  for (const f of list) {
+    const name = f.name || 'fichier', ext = (name.split('.').pop() || '').toLowerCase();
+    const heic = /hei[cf]/i.test(f.type) || ext === 'heic' || ext === 'heif';
+    if (!(f.type || '').startsWith('image/') && !IMG_EXT.includes(ext)) { msgs.push(['err', `« ${name} » n'est pas une photo. Formats acceptés : JPG, PNG ou WEBP.`]); continue; }
+    const key = `${name}|${f.size}|${f.lastModified}`;
+    if (draft.photos.some(p => p.key === key)) { msgs.push(['info', `« ${name} » est déjà dans la liste.`]); continue; }
+    if (room() <= 0) { skipped++; continue; }
+    try {
+      const p = await readFile(f, 640, 'image/jpeg', .72);
+      draft.photos.push({src:p.src, w:p.w, h:p.h, name, key});
+      renderThumbs();
+    } catch (err) {
+      msgs.push(['err', heic ? `« ${name} » est au format HEIC (iPhone), que ce navigateur ne sait pas lire. Exportez-la en JPG, ou réglez l'iPhone sur « Le plus compatible » (Réglages › Appareil photo › Formats).` : `« ${name} » n'a pas pu être lue (fichier abîmé ou format non pris en charge). Essayez de l'exporter en JPG.`]);
+    }
   }
-  renderThumbs();
+  if (skipped) msgs.push(['warn', `Maximum ${CONFIG.maxPhotos} photos par vidéo : ${pl(skipped, 'photo ignorée', 'photos ignorées')}.`]);
+  $('#msgs1').innerHTML = msgs.map(([k, t]) => `<li class="${k}">${esc(t)}</li>`).join('');
+  adding = false;
+  renderThumbs(); saveDraftSoon(); renderPreviews(); renderEstimate();
 }
 function renderThumbs(){
-  $('#thumbs').innerHTML=draft.photos.map((p,i)=>`<div class="thumb"><img src="${p.src}" alt=""><span class="n">${i+1}</span>
-    <button class="rm" data-rm="${i}" aria-label="Retirer">×</button>
-    <div class="mv">${i>0?`<button data-mv="${i}" data-d="-1" aria-label="Avancer">←</button>`:''}${i<draft.photos.length-1?`<button data-mv="${i}" data-d="1" aria-label="Reculer">→</button>`:''}</div></div>`).join('');
+  if (!draft) return;
+  const ph = draft.photos, n = ph.length;
+  $('#thumbs').innerHTML = ph.map((p, i) => `<li class="thumb" draggable="true" data-i="${i}">
+    <img src="${p.src}" alt="Photo ${i + 1}${i === 0 ? ', couverture' : ''} : ${esc(p.name)}">
+    <span class="n">${i + 1}${i === 0 ? '<em>Couverture</em>' : ''}</span>
+    ${p.w < CONFIG.goodWidth ? `<span class="q" title="${p.w} px de large">${p.w}\u00a0px</span>` : ''}
+    <button type="button" class="rm" data-rm="${i}" aria-label="Retirer la photo ${i + 1}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <span class="mv"><button type="button" data-mv="${i}" data-d="-1" aria-label="Déplacer la photo ${i + 1} vers la gauche" ${i === 0 ? 'disabled' : ''}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" data-mv="${i}" data-d="1" aria-label="Déplacer la photo ${i + 1} vers la droite" ${i === n - 1 ? 'disabled' : ''}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></span>
+  </li>`).join('');
+  const small = ph.filter(p => p.w < CONFIG.goodWidth).length, vert = ph.filter(p => p.h > p.w).length;
+  const secs = n * CONFIG.secPerPhoto;
+  $('#count').innerHTML = `<span><b>${n}</b> / ${CONFIG.maxPhotos} photos${n < CONFIG.minPhotos ? ` · encore ${CONFIG.minPhotos - n} minimum` : ''}</span><span>${n ? `Vidéo d'environ ${secs}\u00a0s, plus le carton de fin${n > 1 ? '<span class="hint-mouse"> · glissez une miniature pour changer l\'ordre</span><span class="hint-touch"> · flèches pour changer l\'ordre</span>' : ''}` : ''}</span>`;
+  /* messages de qualité (recalculés) */
+  $$('#msgs1 li[data-q]').forEach(li => li.remove());
+  const q = [];
+  if (small) q.push(['warn', `${small > 1 ? `${small} photos font` : '1 photo fait'} moins de ${CONFIG.goodWidth} px de large : ${small > 1 ? 'elles peuvent' : 'elle peut'} paraître moins ${small > 1 ? 'nettes' : 'nette'} (la taille est indiquée sur la miniature).`]);
+  if (vert) q.push(['info', `${vert > 1 ? `${vert} photos verticales seront recadrées` : '1 photo verticale sera recadrée'} pour le format 16:9.`]);
+  $('#msgs1').insertAdjacentHTML('beforeend', q.map(([k, t]) => `<li class="${k}" data-q>${esc(t)}</li>`).join(''));
+  if (n >= CONFIG.minPhotos) $('#err1').textContent = '';
 }
-$('#thumbs').addEventListener('click',e=>{
-  const r=e.target.closest('[data-rm]'); if(r){draft.photos.splice(+r.dataset.rm,1);renderThumbs();return;}
-  const m=e.target.closest('[data-mv]'); if(m){const i=+m.dataset.mv,j=i+ +m.dataset.d;[draft.photos[i],draft.photos[j]]=[draft.photos[j],draft.photos[i]];renderThumbs();}
+function movePhoto(from, to){
+  const ph = draft.photos; if (to < 0 || to >= ph.length || from === to) return;
+  const [p] = ph.splice(from, 1); ph.splice(to, 0, p);
+  renderThumbs(); saveDraftSoon(); renderPreviews();
+}
+$('#thumbs').addEventListener('click', e => {
+  const r = e.target.closest('[data-rm]');
+  if (r) { const i = +r.dataset.rm; draft.photos.splice(i, 1); $$('#msgs1 li:not([data-q])').forEach(li => { if (/Maximum/.test(li.textContent)) li.remove(); }); renderThumbs(); saveDraftSoon(); renderPreviews(); renderEstimate(); const nx = $(`#thumbs [data-rm="${Math.min(i, draft.photos.length - 1)}"]`); (nx || drop).focus(); return; }
+  const m = e.target.closest('[data-mv]');
+  if (m) { const i = +m.dataset.mv, j = i + +m.dataset.d; movePhoto(i, j); const b = $(`#thumbs [data-mv="${j}"][data-d="${m.dataset.d}"]`) || $(`#thumbs [data-mv="${j}"]`); b && b.focus(); }
+});
+let dragIdx = null;
+$('#thumbs').addEventListener('dragstart', e => { const t = e.target.closest('.thumb'); if (!t) return; dragIdx = +t.dataset.i; t.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', String(dragIdx)); } catch(_) {} });
+$('#thumbs').addEventListener('dragover', e => { if (dragIdx === null) return; e.preventDefault(); $$('#thumbs .over').forEach(x => x.classList.remove('over')); const t = e.target.closest('.thumb'); if (t) t.classList.add('over'); });
+$('#thumbs').addEventListener('drop', e => { if (dragIdx === null) return; e.preventDefault(); e.stopPropagation(); const t = e.target.closest('.thumb'); const to = t ? +t.dataset.i : draft.photos.length - 1; const from = dragIdx; dragIdx = null; movePhoto(from, to); toast(`Photo déplacée en position ${to + 1}.`); });
+$('#thumbs').addEventListener('dragend', () => { dragIdx = null; $$('#thumbs .over,#thumbs .dragging').forEach(x => x.classList.remove('over', 'dragging')); });
+
+/* --- logo (étape 3 et compte) : PNG garde la transparence --- */
+async function readLogo(file){
+  if (!file) throw new Error('none');
+  const t = (file.type || '').toLowerCase();
+  if (!/^image\/(png|jpeg|webp|svg\+xml)$/.test(t)) throw new Error('type');
+  const out = t === 'image/jpeg' ? 'image/jpeg' : 'image/png';
+  const p = await readFile(file, 360, out, .9);
+  if (!/^data:image\/(png|jpeg);base64,/.test(p.src)) throw new Error('decode');
+  return {src:p.src, dark:await logoIsDark(p.src)};
+}
+/* logo foncé (pixels opaques sombres) → posé sur une plaque claire dans le carton de fin */
+async function logoIsDark(src){
+  try {
+    const img = await loadImg(src), s = Math.min(1, 64 / Math.max(img.width, img.height));
+    const c = document.createElement('canvas'); c.width = Math.max(1, Math.round(img.width * s)); c.height = Math.max(1, Math.round(img.height * s));
+    const x = c.getContext('2d'); x.drawImage(img, 0, 0, c.width, c.height);
+    const d = x.getImageData(0, 0, c.width, c.height).data; let sum = 0, n = 0;
+    for (let i = 0; i < d.length; i += 4) { if (d[i + 3] < 128) continue; sum += (0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]) / 255; n++; }
+    return n ? sum / n < .38 : false;
+  } catch(e) { return false; }
+}
+const logoErr = e => e.message === 'type' ? 'Format non pris en charge : utilisez un PNG (transparent de préférence), un JPG, un WEBP ou un SVG.' : "Ce logo n'a pas pu être lu. Essayez avec un PNG ou un JPG.";
+function renderLogo(prevSel, rmSel, src){
+  $(prevSel).innerHTML = src ? `<img src="${src}" alt="Logo choisi">` : '<span>Aucun</span>';
+  $(rmSel).hidden = !src;
+}
+$('#logo-btn').addEventListener('click', () => $('#logo-file').click());
+$('#logo-file').addEventListener('change', async e => {
+  const f = e.target.files[0]; e.target.value = ''; if (!f || !draft) return;
+  try { const lg = await readLogo(f); draft.f.logo = lg.src; draft.f.logoDark = lg.dark; $('#logo-err').textContent = ''; renderLogo('#logo-prev', '#logo-rm', draft.f.logo); saveDraftSoon(); renderPreviews(); renderBrandNote(); }
+  catch (err) { $('#logo-err').textContent = logoErr(err); }
+});
+$('#logo-rm').addEventListener('click', () => { draft.f.logo = null; draft.f.logoDark = false; renderLogo('#logo-prev', '#logo-rm', null); saveDraftSoon(); renderPreviews(); renderBrandNote(); $('#logo-btn').focus(); });
+$('#save-kit').addEventListener('click', () => {
+  readForm();
+  const p = acct.profile, old = {agency:p.agency, phone:p.phone, logo:p.logo, logoDark:p.logoDark};
+  p.agency = draft.f.agency.trim(); p.phone = draft.f.phone.trim(); p.logo = draft.f.logo; p.logoDark = !!draft.f.logoDark;
+  if (!saveAcct()) { Object.assign(p, old); return toast('Stockage du navigateur plein : kit de marque non enregistré.'); }
+  draft.f.fromKit = true; renderBrandNote();
+  toast('Kit de marque enregistré : il sera repris dans vos prochaines vidéos.');
+});
+function renderBrandNote(){
+  const p = acct.profile, has = p.agency || p.phone || p.logo;
+  $('#brand-note').textContent = has ? (draft && draft.f.fromKit ? 'Rempli avec votre kit de marque. Les changements faits ici ne valent que pour cette vidéo, sauf si vous les enregistrez.' : 'Votre kit de marque est enregistré dans Mon compte.') : 'Enregistrez votre marque une fois : elle sera reprise à chaque nouvelle vidéo.';
+}
+
+/* --- aperçus en direct --- */
+const L10N = {
+  'Français':{type:{Appartement:'Appartement',Villa:'Villa',Maison:'Maison',Riad:'Riad',Terrain:'Terrain','Local commercial':'Local commercial'}, deal:{Vente:'À vendre',Location:'À louer','Location saisonnière':'Location saisonnière'}, bed:n => n > 1 ? `${n} chambres` : `${n} chambre`, by:'Présenté par', city:'Votre ville', agency:"Nom de l'agence", phone:'Téléphone'},
+  'Anglais':{type:{Appartement:'Apartment',Villa:'Villa',Maison:'House',Riad:'Riad',Terrain:'Land','Local commercial':'Commercial space'}, deal:{Vente:'For sale',Location:'For rent','Location saisonnière':'Holiday rental'}, bed:n => n > 1 ? `${n} bedrooms` : `${n} bedroom`, by:'Presented by', city:'Your city', agency:'Agency name', phone:'Phone'},
+  'Arabe':{type:{Appartement:'شقة',Villa:'فيلا',Maison:'منزل',Riad:'رياض',Terrain:'أرض','Local commercial':'محل تجاري'}, deal:{Vente:'للبيع',Location:'للإيجار','Location saisonnière':'للإيجار الموسمي'}, bed:n => `غرف النوم: ${n}`, by:'تقديم', city:'المدينة', agency:'اسم الوكالة', phone:'الهاتف'}
+};
+function previewFormatButtons(){
+  const fs = (draft.f.formats.length ? draft.f.formats : FMT_ORDER);
+  const pv = fs.includes(draft.f.preview) ? draft.f.preview : fs[0];
+  draft.f.preview = pv;
+  $$('.pvfmt').forEach(g => g.innerHTML = fs.map(x => `<button type="button" data-pv="${x}" aria-pressed="${x === pv}">${x}</button>`).join(''));
+  return pv;
+}
+document.addEventListener('click', e => { const b = e.target.closest('[data-pv]'); if (!b || !draft) return; draft.f.preview = b.dataset.pv; saveDraftSoon(); renderPreviews(); });
+function openingHTML(f, cover, fmt){
+  const L = L10N[f.lang] || L10N['Français'];
+  const place = [f.area.trim(), f.city.trim()].filter(Boolean).join(', ');
+  const meta = [f.showPrice && f.price.trim() ? f.price.trim() : '', f.surface.trim() ? `${f.surface.trim().replace('.', ',')}\u00a0m²` : '', f.beds.trim() && f.type !== 'Terrain' ? L.bed(+f.beds) : ''].filter(Boolean).join(' · ');
+  const rtl = f.lang === 'Arabe' ? ' dir="rtl"' : '';
+  return `<img class="bg" src="${cover || FMT[fmt].poster}" alt=""><div class="shade"></div>
+    <span class="lab">${cover ? 'Votre photo de couverture' : 'Photo de démonstration'}</span>
+    <div class="open"${rtl}><span class="kick">${esc(L.type[f.type] || f.type)} · ${esc(L.deal[f.deal] || f.deal)}</span>
+    <span class="ttl${place ? '' : ' ghost'}">${esc(place || L.city)}</span><span class="rule"></span>${meta ? `<span class="meta">${esc(meta)}</span>` : ''}</div>`;
+}
+function endHTML(f){
+  const L = L10N[f.lang] || L10N['Français'];
+  const ag = f.agency.trim(), ph = f.phone.trim();
+  const ini = (ag || 'IC').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
+  const rtl = f.lang === 'Arabe' ? ' dir="rtl"' : '';
+  return `<span class="lab">Carton de fin</span><div class="endc"${rtl}><span class="by">${esc(L.by)}</span>
+    ${f.logo ? `<span class="lgw${f.logoDark ? ' plate' : ''}"><img class="lg" src="${f.logo}" alt=""></span>` : `<span class="mono" aria-hidden="true">${esc(ini)}</span>`}
+    <span class="ag${ag ? '' : ' ghost'}">${esc(ag || L.agency)}</span><span class="ph${ph ? '' : ' ghost'}">${esc(ph || L.phone)}</span></div>`;
+}
+function setPv(el, fmt, html){ el.className = 'pv' + (el.id.startsWith('pv-end') ? ' end' : '') + (FMT[fmt].cls ? ' ' + FMT[fmt].cls : ''); el.innerHTML = html; }
+function renderPreviews(){
+  if (!draft) return;
+  const n = curStep(), f = draft.f, cover = draft.photos[0] ? draft.photos[0].src : null;
+  const fmt = previewFormatButtons();
+  if (n === 2) { setPv($('#pv-open2'), fmt, openingHTML(f, cover, fmt)); $('#pv-open2-cap').textContent = 'Aperçu indicatif, mis à jour pendant la saisie. Le titre apparaît sur la première photo.'; }
+  if (n === 3) { setPv($('#pv-end3'), fmt, endHTML(f)); $('#pv-end3-cap').textContent = f.logo && f.logoDark ? 'Aperçu indicatif. Logo foncé : il est posé sur un fond clair pour rester lisible.' : 'Aperçu indicatif, mis à jour pendant la saisie.'; }
+  if (n === 4) {
+    const a = document.createElement('div'), b = document.createElement('div'); a.id = 'pv-open4'; b.id = 'pv-end4';
+    setPv(a, fmt, openingHTML(f, cover, fmt)); setPv(b, fmt, endHTML(f));
+    $('#pv-pair4').replaceChildren(a, b);
+  }
+}
+function renderEstimate(){
+  if (!draft) return;
+  const n = draft.photos.length;
+  $('#est3').innerHTML = `Durée estimée : <b>environ ${n * CONFIG.secPerPhoto}\u00a0s</b> (${pl(n, 'photo', 'photos')} × ${CONFIG.secPerPhoto}\u00a0s), plus le carton de fin.`;
+}
+
+/* --- extraits de voix --- */
+const voice = new Audio(); voice.preload = 'none';
+const oggOK = !!voice.canPlayType('audio/ogg; codecs="opus"');
+let voiceBtn = null;
+function stopVoice(){ try { voice.pause(); } catch(e) {} if (voiceBtn) { voiceBtn.setAttribute('aria-pressed', 'false'); voiceBtn.querySelector('span').textContent = 'Écouter'; voiceBtn = null; } }
+voice.addEventListener('ended', stopVoice);
+voice.addEventListener('error', () => { if (voiceBtn) { toast("L'extrait n'a pas pu être lu."); stopVoice(); } });
+$$('.play').forEach(b => {
+  b.addEventListener('click', () => {
+    if (voiceBtn === b) return stopVoice();
+    stopVoice();
+    const lang = draft ? draft.f.lang : 'Français', code = LANG_CODE[lang] || 'fr';
+    voice.src = `assets/voix/${code}-${b.dataset.v}.${oggOK ? 'ogg' : 'mp3'}`;
+    voiceBtn = b; b.setAttribute('aria-pressed', 'true'); b.querySelector('span').textContent = 'Arrêter';
+    const p = voice.play(); if (p && p.catch) p.catch(() => { if (voiceBtn === b) { toast("Lecture bloquée par le navigateur : réessayez."); stopVoice(); } });
+  });
+});
+function labelPlays(){ const lang = draft ? draft.f.lang : 'Français'; $$('.play').forEach(b => b.setAttribute('aria-label', `Écouter un extrait de la voix ${b.dataset.v === 'f' ? 'féminine' : 'masculine'} en ${lang.toLowerCase()}`)); }
+
+/* --- étape 4 : récapitulatif --- */
+function renderRecap(){
+  const f = draft.f, d = draft.photos.length;
+  $('#rthumbs').innerHTML = draft.photos.map((p, i) => `<img src="${p.src}" alt="Photo ${i + 1}">`).join('');
+  const nums = [f.surface && `${f.surface.replace('.', ',')} m²`, f.rooms && pl(+f.rooms, 'pièce', 'pièces'), f.beds && pl(+f.beds, 'chambre', 'chambres')].filter(Boolean).join(' · ');
+  const rows = [
+    ['Photos', `${d} · environ ${d * CONFIG.secPerPhoto} s de vidéo, plus le carton de fin`],
+    ['Bien', `${f.type} · ${f.deal}`],
+    ['Lieu', [f.area.trim(), f.city.trim()].filter(Boolean).join(', ')],
+    ['Prix', f.price.trim() ? `${f.price.trim()}${f.showPrice ? '' : ' (masqué dans la vidéo)'}` : '—'],
+    ['Surface et pièces', nums || '—'],
+    ['Points forts', f.highlights.split('\n').map(s => s.trim()).filter(Boolean).join(', ') || '—'],
+    ['Musique', f.music],
+    ['Voix off', f.voice === 'Aucune' ? 'Aucune' : f.voice],
+    ['Langue', f.lang],
+    ['Formats', f.formats.join(', ') + (f.nologo ? ' · avec et sans logo' : '')],
+    ['Marque', [f.agency.trim(), f.phone.trim(), f.logo ? 'logo' : ''].filter(Boolean).join(' · ') || 'Aucune (carton de fin neutre)'],
+  ];
+  $('#recap').innerHTML = rows.map(([a, b]) => `<dt>${a}</dt><dd>${esc(b)}</dd>`).join('');
+  renderCreditBox();
+}
+function renderCreditBox(){
+  const n = creditsAvail(), box = $('#credit-box');
+  if (n >= 1) box.innerHTML = `<b>Crédits : ${n} disponible${n > 1 ? 's' : ''}</b> → ${n - 1} après la génération.<p class="fine" style="margin-top:4px">Le crédit est réservé pendant la génération et utilisé seulement quand la vidéo est enregistrée.</p>`;
+  else box.innerHTML = `<b>Vous n'avez plus de crédit.</b><p class="fine" style="margin-top:4px">Choisissez une offre : votre brouillon est gardé et vous revenez ici après le paiement.</p>
+    <div class="mini">${OFFERS.map(o => `<a class="btn sm ghost" href="#paiement/${o.id}/reprise">${o.name} · ${money(o[cur], cur)}${o.kind === 'sub' ? ' / mois' : ''}</a>`).join('')}</div>`;
+  updateNextBtn(4);
+}
+
+/* ================= GÉNÉRATION (simulée) ================= */
+async function launch(){
+  if (genBusy) return;
+  const bad = firstBadStep(4); if (bad) return go('nouvelle/' + bad);
+  if (creditsAvail() < 1) return go('paiement/one/reprise');
+  if (!$('#rights').checked) { $('#err4').textContent = 'Cochez la case pour confirmer que vous avez le droit d\'utiliser ces photos.'; $('#rights').focus(); return; }
+  genBusy = true; const btn = $('#next'); btn.disabled = true;
+  try {
+    readForm();
+    const f = draft.f;
+    let cover = null;
+    try { if (draft.photos[0]) cover = (await shrink(draft.photos[0].src, 360, 'image/jpeg', .62)).src; } catch(e) {}
+    const id = 'v' + now().toString(36) + rid(3).toLowerCase();
+    const video = {id, at:now(), startedAt:now(), dur:CONFIG.genMs, status:'processing', cover, photos:draft.photos.length,
+      type:f.type, deal:f.deal, city:f.city.trim(), area:f.area.trim(), price:f.price.trim(), showPrice:f.showPrice !== false,
+      surface:f.surface.trim(), rooms:f.rooms.trim(), beds:f.beds.trim(), highlights:f.highlights.split('\n').map(s => s.trim()).filter(Boolean),
+      music:f.music, voice:f.voice, lang:f.lang, formats:FMT_ORDER.filter(x => f.formats.includes(x)), nologo:!!f.nologo,
+      agency:f.agency.trim(), phone:f.phone.trim(), hasLogo:!!f.logo, contact:acct.profile.email || session.email};
+    acct.videos.push(video);
+    if (!saveAcct()) {
+      acct.videos.pop();
+      $('#err4').textContent = "Le stockage du navigateur est plein : la génération n'a pas été lancée et aucun crédit n'a été utilisé. Supprimez des vidéos de test (Mes vidéos) ou vos données de test (Mon compte), puis réessayez.";
+      return;
+    }
+    clearDraft();
+    go('video/' + id);
+  } finally { genBusy = false; btn.disabled = false; }
+}
+/* fin d'une génération : le crédit n'est retiré qu'ici, et seulement si l'enregistrement réussit */
+function completeJob(v){
+  const backup = JSON.stringify(acct);
+  const lot = debitOne();
+  if (!lot) { v.status = 'failed'; v.err = 'credit'; }
+  else { v.status = 'ready'; v.readyAt = now(); v.lot = lot; }
+  if (saveAcct()) return v.status === 'ready';
+  acct = JSON.parse(backup);
+  const vv = acct.videos.find(x => x.id === v.id);
+  if (vv) { vv.status = 'failed'; vv.err = 'storage'; }
+  saveAcct();
+  return false;
+}
+function tick(){
+  if (!acct) return;
+  let done = null, due, guard = 0;
+  while ((due = acct.videos.find(v => v.status === 'processing' && now() >= v.startedAt + v.dur)) && guard++ < 50) { const ok = completeJob(due); done = {id:due.id, ok}; }
+  updateProgressBits();
+  if (done) {
+    const r = parseHash(), v = acct.videos.find(x => x.id === done.id);
+    renderHeader(navOf(r));
+    if (r.a === 'video' && r.b === done.id) routeVideo(done.id);
+    else if (v) toast(done.ok ? `Votre vidéo « ${v.type} · ${v.city} » est prête.` : `La vidéo « ${v.type} · ${v.city} » n'a pas pu être enregistrée.`);
+    if (r.a === 'videos') renderDash();
+    if (r.a === 'nouvelle' && curStep() === 4) renderCreditBox();
+  }
+}
+function progressOf(v){ return Math.max(0, Math.min(1, (now() - v.startedAt) / v.dur)); }
+function updateProgressBits(){
+  if (!acct) return;
+  acct.videos.forEach(v => {
+    if (v.status !== 'processing') return;
+    const p = progressOf(v);
+    $$(`[data-prog="${v.id}"]`).forEach(i => i.style.width = Math.round(p * 100) + '%');
+    $$(`[data-prog-t="${v.id}"]`).forEach(i => i.textContent = `En cours · ${Math.round(p * 100)} %`);
+  });
+  const r = parseHash();
+  if (r.a === 'video') { const v = acct.videos.find(x => x.id === r.b); if (v && v.status === 'processing') renderProc(v); }
+}
+function renderProc(v){
+  const p = progressOf(v), lis = $$('#gsteps li'), idx = Math.min(lis.length - 1, Math.floor(p * lis.length));
+  lis.forEach((l, i) => l.className = i < idx ? 'done' : i === idx ? 'doing' : '');
+  $('#gbar').style.width = Math.round(p * 100) + '%'; $('#gbar-wrap').setAttribute('aria-valuenow', Math.round(p * 100));
+  const left = Math.max(0, Math.ceil((v.startedAt + v.dur - now()) / 1000));
+  $('#proc-sub').textContent = `${v.type} · ${v.city} — encore environ ${left} s (simulation).`;
+}
+setInterval(tick, 400);
+
+/* ================= ÉCRAN VIDÉO ================= */
+const vid = $('#r-video');
+const canMp4 = !!vid.canPlayType('video/mp4; codecs="avc1.42E01E"');
+const ui = {fmt:'16:9', ver:'logo', tlang:'Français', vid:null};
+function routeVideo(id){
+  const v = acct.videos.find(x => x.id === id);
+  if (!v) { toast('Vidéo introuvable.'); return go('videos', true); }
+  ui.vid = v;
+  $('#v-proc').hidden = v.status !== 'processing';
+  $('#v-ready').hidden = v.status !== 'ready';
+  $('#v-failed').hidden = v.status !== 'failed';
+  renderHeader('');
+  if (v.status === 'processing') { renderProc(v); return showScreen('video', 'Génération en cours', $('#proc-h')); }
+  if (v.status === 'failed') {
+    $('#fail-msg').textContent = v.err === 'credit' ? "Aucun crédit n'était disponible à la fin de la génération." : 'Le stockage du navigateur est plein. Libérez de la place (supprimez des vidéos de test ou vos données de test), puis réessayez.';
+    return showScreen('video', 'Échec de la génération', $('#v-failed h1'));
+  }
+  renderResult(v);
+  showScreen('video', `${v.type} · ${v.city}`, $('#r-title'));
+  fitTexts();
+}
+function renderResult(v){
+  $('#r-eyebrow').innerHTML = `<span class="dot"></span>Prête · créée le ${fmtDate(v.readyAt || v.at)} · ${pl(v.photos, 'photo', 'photos')}`;
+  $('#r-title').textContent = `${v.type} · ${v.city}`;
+  $('#r-sub').textContent = [v.area, v.showPrice !== false ? v.price : '', v.surface && `${String(v.surface).replace('.', ',')} m²`, v.beds && pl(+v.beds, 'chambre', 'chambres')].filter(Boolean).join(' · ') || 'Vidéo de démonstration';
+  const fs = v.formats && v.formats.length ? v.formats : ['16:9'];
+  $('#r-fmts').innerHTML = fs.map(f => `<button type="button" data-f="${f}">${f}<small>${FMT[f].name}</small></button>`).join('');
+  $('#r-ver').hidden = !v.nologo; $('#r-ver-note').hidden = !v.nologo;
+  $('#r-ver').innerHTML = '<button type="button" data-ver="logo">Avec logo</button><button type="button" data-ver="nologo">Sans logo · portails</button>';
+  ui.ver = 'logo';
+  $('#r-dlall').textContent = fs.length > 1 ? `Tout télécharger · ${fs.length} fichiers` : 'Télécharger';
+  $('#r-dlall').hidden = fs.length < 2;
+  setFormat(v, fs.includes(ui.fmt) ? ui.fmt : fs[0]);
+  ui.tlang = v.lang || 'Français';
+  renderTexts(v);
+  const body = `Bonjour,\n\nJe signale un défaut sur cette vidéo et je demande une nouvelle génération.\n\nIdentifiant de la vidéo : ${v.id}\nBien : ${v.type} · ${v.city}\nCréée le : ${fmtDate(v.readyAt || v.at)}\nFormat(s) concerné(s) : \nMoment (seconde) et description du défaut : \n\nCompte : ${session.email}\n`;
+  $('#r-report').href = `mailto:${CONFIG.support}?subject=${encodeURIComponent(`Défaut vidéo ${v.id}`)}&body=${encodeURIComponent(body)}`;
+}
+function setFormat(v, f){
+  ui.fmt = f;
+  const s = demoSrc(f), poster = FMT[f].poster;
+  const want = canMp4 ? s.mp4 : s.webm;
+  if (vid.getAttribute('src') !== want) { vid.pause(); vid.poster = poster; vid.src = want; }
+  $('#player').style.setProperty('--arn', FMT[f].arn);
+  const name = `immoclap-demo-${slug(v.city) || 'video'}-${FMT[f].file}${ui.ver === 'nologo' ? '-sans-logo' : ''}.mp4`;
+  [$('#r-dl'), $('#r-dl2')].forEach(a => { a.href = s.mp4; a.setAttribute('download', name); });
+  $('#r-dl').textContent = `Télécharger le ${f}${ui.ver === 'nologo' ? ' sans logo' : ''}`;
+  $('#r-dl2').textContent = `Télécharger ${f}`;
+  $$('#r-fmts button').forEach(b => b.setAttribute('aria-pressed', b.dataset.f === f ? 'true' : 'false'));
+  $$('#r-ver button').forEach(b => b.setAttribute('aria-pressed', b.dataset.ver === ui.ver ? 'true' : 'false'));
+}
+$('#r-fmts').addEventListener('click', e => { const b = e.target.closest('[data-f]'); if (b && ui.vid) setFormat(ui.vid, b.dataset.f); });
+$('#r-ver').addEventListener('click', e => { const b = e.target.closest('[data-ver]'); if (b && ui.vid) { ui.ver = b.dataset.ver; setFormat(ui.vid, ui.fmt); } });
+$('#r-dlall').addEventListener('click', () => {
+  const v = ui.vid; if (!v) return;
+  v.formats.forEach((f, i) => setTimeout(() => {
+    const a = document.createElement('a'); a.href = demoSrc(f).mp4; a.download = `immoclap-demo-${slug(v.city) || 'video'}-${FMT[f].file}${ui.ver === 'nologo' ? '-sans-logo' : ''}.mp4`;
+    document.body.appendChild(a); a.click(); a.remove();
+  }, i * 600));
+  toast(`${v.formats.length} téléchargements lancés. Si votre navigateur le demande, autorisez les téléchargements multiples.`);
+});
+$('#r-del').addEventListener('click', async () => {
+  const v = ui.vid; if (!v) return;
+  const r = await ask({title:'Supprimer cette vidéo ?', html:`<p>« ${esc(v.type)} · ${esc(v.city)} » sera retirée de vos vidéos. Cette action est définitive et ne rend pas le crédit.</p>`, buttons:[{label:'Supprimer', value:'del', kind:'danger'}, {label:'Annuler', value:null, kind:'ghost', focus:true}]});
+  if (r !== 'del') return;
+  deleteVideo(v.id); toast('Vidéo supprimée.'); go('videos', true);
+});
+function deleteVideo(id){ const i = acct.videos.findIndex(x => x.id === id); if (i < 0) return; const [rm] = acct.videos.splice(i, 1); if (!saveAcct()) { acct.videos.splice(i, 0, rm); toast('Suppression impossible : stockage du navigateur inaccessible.'); } }
+$('#f-retry').addEventListener('click', () => { const v = ui.vid; if (!v) return; v.status = 'processing'; v.startedAt = now() - v.dur; v.err = null; tick(); routeVideo(v.id); });
+$('#f-del').addEventListener('click', () => { const v = ui.vid; if (!v) return; deleteVideo(v.id); go('videos', true); });
+
+/* --- textes prêts à copier --- */
+const isMaroc = v => /\b(dh|mad|dirhams?)\b/i.test(v.price || '') || /marrakech|casablanca|rabat|tanger|agadir|f[eè]s|mekn[eè]s|essaouira|k[ée]nitra|oujda|t[ée]touan|el jadida|mohammedia|bouskoura|dar bouazza|ifrane|sal[ée]|t[ée]mara|benslimane|ouarzazate|nador|safi|taroudant/i.test(v.city || '') || (!/€|eur/i.test(v.price || '') && cur === 'mad');
+const lcFirst = s => s && s.length > 1 && s[1] === s[1].toLowerCase() ? s[0].toLowerCase() + s.slice(1) : s;
+function genTexts(v, lang){
+  const hl = (v.highlights || []), price = v.showPrice !== false ? v.price : '';
+  const contact = [v.agency, v.phone, v.contact && !/@immoclap\.app$/.test(v.contact) ? v.contact : ''].filter(Boolean);
+  const tags = ['immobilier', tag(v.city), tag(v.type === 'Local commercial' ? 'localcommercial' : v.type), {Vente:'avendre', Location:'alouer', 'Location saisonnière':'locationsaisonniere'}[v.deal], v.area && tag(v.area).length <= 20 ? tag(v.area) : '', isMaroc(v) ? 'immobiliermaroc' : 'immobilierfrance', 'visitevideo'].filter(Boolean);
+  const hashtags = [...new Set(tags)].map(t => '#' + t).join(' ');
+  if (lang === 'Anglais') {
+    const L = L10N['Anglais'];
+    const t = L.type[v.type], deal = {Vente:'for sale', Location:'for rent', 'Location saisonnière':'for holiday rental'}[v.deal];
+    const where = `${v.city}${v.area ? `, ${v.area}` : ''}`;
+    const nums = [v.surface && `${v.surface} m²`, v.rooms && `${v.rooms} room${+v.rooms > 1 ? 's' : ''}`, v.beds && `${v.beds} bedroom${+v.beds > 1 ? 's' : ''}`].filter(Boolean).join(', ');
+    const desc = [`${t} ${deal} in ${where}.`, nums && `${nums.charAt(0).toUpperCase() + nums.slice(1)}.`, hl.length && `Highlights: ${hl.join(', ')}.`, price && `${v.deal === 'Vente' ? 'Price' : 'Rent'}: ${price}.`, 'Watch the video tour.', contact.length && `Contact: ${contact.join(' · ')}`].filter(Boolean).join('\n');
+    const social = joinLines([`${t} ${deal} · ${where}`, BL, [nums, hl[0]].filter(Boolean).join(' · '), price && `${v.deal === 'Vente' ? 'Price' : 'Rent'}: ${price}`, BL, `Details and viewings: ${v.phone || 'send us a message'}${v.agency ? ` · ${v.agency}` : ''}`, BL, hashtags]);
+    const wa = `Hello, here is the video tour of a${/^[aeiou]/i.test(t) ? 'n' : ''} ${t.toLowerCase()} ${deal} in ${where}${nums || price ? ` (${[nums, price].filter(Boolean).join(', ')})` : ''}. I'm sending the video right after this message. Would you like to arrange a viewing?${contact.length ? `\n\n${contact.join(' · ')}` : ''}`;
+    return {desc, social, wa};
+  }
+  if (lang === 'Arabe') {
+    const L = L10N['Arabe'];
+    const t = L.type[v.type], deal = L.deal[v.deal];
+    const where = `${v.city}${v.area ? ` (${v.area})` : ''}`;
+    const nums = [v.surface && `المساحة: ${v.surface} م²`, v.rooms && `عدد الغرف: ${v.rooms}`, v.beds && `غرف النوم: ${v.beds}`].filter(Boolean).join(' · ');
+    const desc = [`${t} ${deal} في ${where}.`, nums, hl.length && `المميزات: ${hl.join('، ')}.`, price && `السعر: ${price}`, 'شاهدوا جولة الفيديو.', contact.length && `للتواصل: ${contact.join(' · ')}`].filter(Boolean).join('\n');
+    const social = joinLines([`${t} ${deal} · ${where}`, BL, nums, price && `السعر: ${price}`, BL, `للمزيد من المعلومات وتحديد موعد الزيارة: ${v.phone || 'راسلونا'}${v.agency ? ` · ${v.agency}` : ''}`, BL, `#عقارات ${hashtags}`]);
+    const wa = `مرحبا، أشارككم جولة بالفيديو ل${t} ${deal} في ${where}${nums || price ? ` (${[nums, price].filter(Boolean).join('، ')})` : ''}. سأرسل لكم الفيديو بعد هذه الرسالة. هل ترغبون في تحديد موعد للزيارة؟${contact.length ? `\n\n${contact.join(' · ')}` : ''}`;
+    return {desc, social, wa};
+  }
+  const art = {Appartement:'un appartement', Villa:'une villa', Maison:'une maison', Riad:'un riad', Terrain:'un terrain', 'Local commercial':'un local commercial'}[v.type] || v.type;
+  const deal = {Vente:'à vendre', Location:'à louer', 'Location saisonnière':'en location saisonnière'}[v.deal];
+  const where = `${v.city}${v.area ? `, ${v.area}` : ''}`;
+  const surf = v.surface && `${String(v.surface).replace('.', ',')} m²`;
+  let nums = [surf, v.rooms && pl(+v.rooms, 'pièce', 'pièces')].filter(Boolean).join(', ');
+  if (v.beds) nums += (nums ? (v.rooms ? ' dont ' : ', ') : '') + pl(+v.beds, 'chambre', 'chambres');
+  nums = nums.replace(/\u00a0/g, ' ');
+  const priceL = v.deal === 'Vente' ? 'Prix' : v.deal === 'Location' ? 'Loyer' : 'Tarif';
+  const desc = [`${v.type} ${deal} à ${where}.`, nums && `${nums.charAt(0).toUpperCase() + nums.slice(1)}.`, hl.length && `Les points forts : ${hl.map((h, i) => i ? lcFirst(h) : h).join(', ')}.`, price && `${priceL} : ${price}.`, 'Découvrez la visite en vidéo.', contact.length && `Contact : ${contact.join(' · ')}`].filter(Boolean).join('\n');
+  const social = joinLines([`${v.type} ${deal} · ${v.area ? v.area + ', ' : ''}${v.city}`, BL, [nums, hl[0] && lcFirst(hl[0])].filter(Boolean).join(' · '), price && `${priceL} : ${price}`, BL, `Infos et visites : ${v.phone || 'écrivez-nous en message privé'}${v.agency ? ` · ${v.agency}` : ''}`, BL, hashtags]);
+  const wa = `Bonjour, voici la visite en vidéo d'${art} ${deal} à ${where}${nums || price ? ` (${[nums, price].filter(Boolean).join(', ')})` : ''}. Je vous envoie la vidéo juste après ce message. Souhaitez-vous organiser une visite ?${contact.length ? `\n\n${contact.join(' · ')}` : ''}`;
+  return {desc, social, wa};
+}
+function renderTexts(v){
+  const t = genTexts(v, ui.tlang);
+  $('#t-desc').value = t.desc; $('#t-social').value = t.social; $('#t-wa').value = t.wa;
+  ['t-desc','t-social','t-wa'].forEach(id => { $('#' + id).dir = ui.tlang === 'Arabe' ? 'rtl' : 'ltr'; });
+  $$('#t-lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.l === ui.tlang ? 'true' : 'false'));
+  updateCounts();
+}
+function fitTexts(){ ['t-desc','t-social','t-wa'].forEach(id => { const ta = $('#' + id); if (!ta.offsetParent) return; ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight + 4, 520) + 'px'; }); }
+function updateCounts(){
+  $$('[data-cnt]').forEach(s => { const n = $('#' + s.dataset.cnt).value.length; s.textContent = s.dataset.max ? `${nf0.format(n)} / ${nf0.format(+s.dataset.max)} caractères` : `${nf0.format(n)} caractères`; });
+  $('#t-wa-open').href = 'https://wa.me/?text=' + encodeURIComponent($('#t-wa').value);
+  fitTexts();
+}
+addEventListener('resize', debounce(fitTexts, 150));
+$('#t-lang').addEventListener('click', e => { const b = e.target.closest('[data-l]'); if (b && ui.vid) { ui.tlang = b.dataset.l; renderTexts(ui.vid); } });
+['t-desc','t-social','t-wa'].forEach(id => $('#' + id).addEventListener('input', updateCounts));
+document.addEventListener('click', async e => {
+  const b = e.target.closest('[data-copy]'); if (!b) return;
+  const ta = $('#' + b.dataset.copy), text = ta.value;
+  let ok = false;
+  try { await navigator.clipboard.writeText(text); ok = true; }
+  catch (_) { try { ta.focus(); ta.select(); ok = document.execCommand('copy'); } catch (__) { ok = false; } }
+  if (ok) { const old = 'Copier'; b.textContent = 'Copié ✓'; toast('Texte copié.'); setTimeout(() => b.textContent = old, 2000); }
+  else toast('Copie impossible : sélectionnez le texte et copiez-le à la main.');
 });
 
-/* logo */
-$('#logo-btn').addEventListener('click',()=>$('#logo-file').click());
-$('#logo-file').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const p=await shrink(f,200,.9);draft.logo=p.src;$('#logo-prev').style.backgroundImage=`url('${p.src}')`;}catch(_){}});
-
-function collect(){
-  return {
-    type:val('type'), deal:val('deal'), city:$('#city').value.trim(), area:$('#area').value.trim(),
-    price:$('#price').value.trim(), surface:$('#surface').value, rooms:$('#rooms').value, beds:$('#beds').value,
-    highlights:$('#highlights').value.split('\n').map(s=>s.trim()).filter(Boolean),
-    music:val('music'), voice:val('voice'), lang:val('lang'), formats:vals('fmt'),
-    agency:$('#agency').value.trim(), phone:$('#phone').value.trim(),
-  };
+/* ================= PAIEMENT (TEST) ================= */
+const TEST_CARDS = {'4242424242424242':'ok', '4000000000000002':'declined', '4000000000009995':'funds'};
+const ccNum = $('#cc-num'), ccExp = $('#cc-exp');
+let payCtx = null;
+ccNum.addEventListener('input', () => { ccNum.value = ccNum.value.replace(/\D/g, '').slice(0, 16).replace(/(.{4})(?=.)/g, '$1 '); });
+ccExp.addEventListener('input', () => { let v = ccExp.value.replace(/\D/g, '').slice(0, 4); if (v.length > 2) v = v.slice(0, 2) + '/' + v.slice(2); ccExp.value = v; });
+function routePay(id, resume){
+  const o = offerById(id);
+  if (!o) return go('videos', true);
+  if (o.kind === 'sub' && acct.sub && acct.sub.id === o.id) { toast(`${o.name} est déjà votre formule.`); return go('compte', true); }
+  if (!pay.busy || !payCtx || payCtx.offer.id !== id) {
+    payCtx = {offer:o, resume, change:o.kind === 'sub' && !!acct.sub};
+    $('#f-pay').reset(); $('#pay-err').textContent = '';
+    $$('#f-pay .ferr').forEach(x => x.textContent = ''); $$('#f-pay [aria-invalid]').forEach(x => x.setAttribute('aria-invalid', 'false'));
+  }
+  $('#pay-back').href = resume ? '#nouvelle/4' : o.kind === 'sub' && acct.sub ? '#compte' : '#videos';
+  renderPaySummary();
+  renderHeader('');
+  showScreen('pay', 'Paiement (test)');
 }
-function renderRecap(){
-  const d=collect();
-  const rows=[
-    ['Photos',`${draft.photos.length}`],
-    ['Bien',`${d.type} · ${d.deal}`],
-    ['Lieu',[d.area,d.city].filter(Boolean).join(', ')],
-    ['Prix',d.price||'—'],
-    ['Surface / pièces',[d.surface&&d.surface+' m²',d.rooms&&d.rooms+' pièces',d.beds&&d.beds+' ch.'].filter(Boolean).join(' · ')||'—'],
-    ['Points forts',d.highlights.join(', ')||'—'],
-    ['Musique',d.music],
-    ['Voix off',d.voice==='Aucune'?'Aucune':`${d.voice} (${d.lang})`],
-    ['Formats',d.formats.join(', ')],
-    ['Marque',[d.agency,d.phone,draft.logo?'logo ajouté':''].filter(Boolean).join(' · ')||'—'],
-    ['Crédits',`${state.credits} disponible(s) → ${Math.max(0,state.credits-1)} après`],
-  ];
-  $('#recap').innerHTML=rows.map(([a,b])=>`<dt>${a}</dt><dd>${esc(b)}</dd>`).join('');
+function renderPaySummary(){
+  if (!payCtx) return;
+  const o = payCtx.offer, p = o[cur];
+  const lines = [];
+  if (o.kind === 'sub') {
+    lines.push(`${o.credits} vidéos par mois, renouvelé chaque mois. Sans engagement : résiliable à tout moment depuis Mon compte.`);
+    if (payCtx.change && acct.sub) lines.push(`Changement de formule : ${o.name} remplace ${offerById(acct.sub.id).name} dès aujourd'hui et vos crédits actuels sont conservés. En production, le montant exact du changement est affiché sur la page de paiement.`);
+    lines.push("Prix de lancement conservé tant que l'abonnement reste actif sans interruption (100 premiers abonnés).");
+  } else lines.push(`${pl(o.credits, 'crédit', 'crédits')}, valable${o.credits > 1 ? 's' : ''} 12 mois. 1 crédit = 1 vidéo en 3 formats.`);
+  if (payCtx.resume) lines.push('Votre brouillon est gardé : vous revenez au récapitulatif juste après.');
+  $('#pay-sum').innerHTML = `<div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap">
+      <div><p class="eyebrow" style="margin-bottom:4px">${o.kind === 'sub' ? 'Abonnement mensuel' : 'Achat de crédits'}</p><h2 class="h3" style="font-size:24px">${o.name}</h2></div>
+      <div class="cur" role="group" aria-label="Devise"><button type="button" data-c="eur">€</button><button type="button" data-c="mad">DH</button></div></div>
+    <p class="bigp" style="font-family:var(--serif);font-size:34px;margin:8px 0 2px">${moneyBig(p, cur)}${o.kind === 'sub' ? ' <small>/ mois</small>' : ''}</p>
+    <p class="fine">TVA éventuelle calculée au paiement selon votre pays.</p>
+    <ul class="fine" style="margin:10px 0 0 18px">${lines.map(l => `<li>${esc(l)}</li>`).join('')}</ul>`;
+  $('#pay-ok').textContent = pay.busy ? 'Paiement en cours…' : `Payer ${money(p, cur)}${o.kind === 'sub' ? ' / mois' : ''} (test)`;
+  syncCur();
+}
+$('#f-pay').addEventListener('submit', e => {
+  e.preventDefault();
+  if (pay.busy || !payCtx) return;
+  const num = ccNum.value.replace(/\D/g, ''), exp = ccExp.value, cvc = $('#cc-cvc').value.replace(/\D/g, ''), name = $('#cc-name');
+  const fields = [[name, '#cc-name-err'], [ccNum, '#cc-num-err'], [ccExp, '#cc-exp-err'], [$('#cc-cvc'), '#cc-cvc-err']];
+  fields.forEach(([i, er]) => setFieldErr(i, $(er), ''));
+  $('#pay-err').textContent = ''; $('#pay-cgv-err').textContent = '';
+  const fail = (el, er, m) => { setFieldErr(el, $(er), m); el.focus(); };
+  if (!name.value.trim()) return fail(name, '#cc-name-err', 'Indiquez le nom sur la carte.');
+  if (num.length < 16) return fail(ccNum, '#cc-num-err', 'Numéro de carte incomplet (16 chiffres).');
+  const m = exp.match(/^(\d{2})\/(\d{2})$/);
+  if (!m || +m[1] < 1 || +m[1] > 12) return fail(ccExp, '#cc-exp-err', "Date d'expiration invalide (MM/AA).");
+  const d = new Date(), y = 2000 + +m[2];
+  if (y < d.getFullYear() || (y === d.getFullYear() && +m[1] < d.getMonth() + 1)) return fail(ccExp, '#cc-exp-err', 'Cette carte a expiré.');
+  if (cvc.length < 3) return fail($('#cc-cvc'), '#cc-cvc-err', 'CVC invalide (3 ou 4 chiffres).');
+  const result = TEST_CARDS[num];
+  if (!result) return fail(ccNum, '#cc-num-err', 'Mode test : seules les cartes de test sont acceptées (4242 4242 4242 4242). N\'entrez jamais une vraie carte.');
+  if (!$('#pay-cgv').checked) { $('#pay-cgv-err').textContent = 'Cochez la case pour accepter les CGV et demander l\'exécution immédiate.'; $('#pay-cgv').focus(); return; }
+  const ctx = {offer:payCtx.offer, resume:payCtx.resume, email:session.email, last4:num.slice(-4)};
+  pay.busy = true; renderHeader('');
+  $('#pay-ok').disabled = true; $('#pay-ok').textContent = 'Paiement en cours…'; $('#pay-cancel').disabled = true;
+  pay.timer = setTimeout(() => finishPay(ctx, result), CONFIG.payMs);
+});
+function finishPay(ctx, result){
+  pay.busy = false; pay.timer = null;
+  $('#pay-ok').disabled = false; $('#pay-cancel').disabled = false;
+  const here = parseHash().a === 'paiement';
+  renderPaySummary();
+  if (!session || session.email !== ctx.email) return;
+  if (result !== 'ok') {
+    const msg = result === 'declined' ? 'Paiement refusé par la banque (carte de test refusée). Aucun montant débité : essayez une autre carte.' : 'Fonds insuffisants (carte de test). Aucun montant débité.';
+    if (here) { $('#pay-err').textContent = msg; ccNum.focus(); } else toast(msg);
+    renderHeader('');
+    return;
+  }
+  const backup = JSON.stringify(acct), o = ctx.offer;
+  const change = o.kind === 'sub' && !!acct.sub;
+  const order = makeOrder(o, o.kind === 'sub' ? (change ? 'change' : 'sub') : 'once', now(), ctx.last4);
+  acct.lots.push({id:'L' + rid(6), n:o.credits, left:o.credits, at:now(), exp:addMonths(now(), CONFIG.creditMonths), src:o.id, sub:o.kind === 'sub', order:order.id});
+  if (o.kind === 'sub') acct.sub = {id:o.id, start:now(), renew:addMonths(now(), 1), status:'active', next:null};
+  if (!saveAcct()) {
+    acct = JSON.parse(backup);
+    const msg = "Le navigateur n'a pas pu enregistrer cet achat de test (stockage plein). Rien n'a été débité. Libérez de la place puis réessayez.";
+    if (here) $('#pay-err').textContent = msg; else toast(msg);
+    return;
+  }
+  $('#f-pay').reset();
+  toast(`Paiement de test accepté : +${pl(o.credits, 'crédit', 'crédits')} (commande ${order.id}).`);
+  renderHeader('');
+  if (!here) return;
+  if (ctx.resume && draft) return go('nouvelle/4', true);
+  go(o.kind === 'sub' ? 'compte' : 'videos', true);
+}
+$('#pay-cancel').addEventListener('click', () => {
+  if (pay.busy) return;
+  const back = payCtx && payCtx.resume ? 'nouvelle/4' : payCtx && payCtx.change ? 'compte' : 'videos';
+  $('#f-pay').reset(); payCtx = null;
+  if (prevHash && !/^#paiement/.test(prevHash) && !/^#connexion/.test(prevHash)) history.back(); else go(back, true);
+});
+if (!CONFIG.testMode) {
+  /* production : redirection vers la page de paiement du prestataire (le brouillon reste enregistré) */
+  window.addEventListener('hashchange', () => {
+    const r = parseHash(); if (r.a !== 'paiement' || !session) return;
+    const link = CONFIG.checkout[r.b]; if (!link) return;
+    const u = new URL(link); u.searchParams.set('customer_email', session.email); location.href = u.toString();
+  });
 }
 
-/* ===== Génération (simulée) ===== */
-function generate(){
-  const d=collect();
-  state.credits-=1; save(); renderHeader();
-  show('s-gen');
-  const lis=$$('#gsteps li'); lis.forEach(l=>l.className='');
-  $('#gbar').style.width='0';
-  let i=0;
-  const tick=()=>{
-    if(i>0) lis[i-1].className='done';
-    if(i<lis.length){ lis[i].className='doing'; $('#gbar').style.width=((i+1)/lis.length*100)+'%'; i++; setTimeout(tick,1300); }
-    else{
-      const v={id:'v'+Date.now().toString(36), at:Date.now(), photos:draft.photos.length, cover:draft.photos[0]?.src||null, ...d};
-      state.videos.push(v); save();
-      openResult(v);
-    }
-  };
+/* ================= COMPTE ================= */
+function renderAccount(){
+  const p = acct.profile;
+  $('#acct-mail').textContent = `Connecté avec ${session.email}`;
+  $('#k-first').value = p.first || ''; $('#k-agency').value = p.agency || ''; $('#k-phone').value = p.phone || ''; $('#k-email').value = p.email || '';
+  $('#k-auto').checked = p.auto !== false;
+  kitLogo = p.logo || null; kitLogoDark = !!p.logoDark; renderLogo('#k-logo-prev', '#k-logo-rm', kitLogo);
+  setFieldErr($('#k-email'), $('#k-email-err'), ''); $('#k-logo-err').textContent = '';
+  renderPlanCard(); renderOrders();
+}
+let kitLogo = null, kitLogoDark = false;
+$('#k-logo-btn').addEventListener('click', () => $('#k-logo-file').click());
+$('#k-logo-file').addEventListener('change', async e => {
+  const f = e.target.files[0]; e.target.value = ''; if (!f) return;
+  try { const lg = await readLogo(f); kitLogo = lg.src; kitLogoDark = lg.dark; $('#k-logo-err').textContent = ''; renderLogo('#k-logo-prev', '#k-logo-rm', kitLogo); }
+  catch (err) { $('#k-logo-err').textContent = logoErr(err); }
+});
+$('#k-logo-rm').addEventListener('click', () => { kitLogo = null; kitLogoDark = false; renderLogo('#k-logo-prev', '#k-logo-rm', null); $('#k-logo-btn').focus(); });
+$('#f-kit').addEventListener('submit', e => {
+  e.preventDefault();
+  const em = $('#k-email').value.trim();
+  if (em && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) { setFieldErr($('#k-email'), $('#k-email-err'), 'Adresse e-mail invalide.'); $('#k-email').focus(); return; }
+  setFieldErr($('#k-email'), $('#k-email-err'), '');
+  const p = acct.profile, old = JSON.stringify(p);
+  Object.assign(p, {first:$('#k-first').value.trim(), agency:$('#k-agency').value.trim(), phone:$('#k-phone').value.trim(), email:em, logo:kitLogo, logoDark:kitLogoDark, auto:$('#k-auto').checked});
+  if (!saveAcct()) { acct.profile = JSON.parse(old); return toast('Stockage du navigateur plein : profil non enregistré.'); }
+  toast(p.auto ? 'Profil enregistré : votre marque sera reprise dans chaque nouvelle vidéo.' : 'Profil enregistré.');
+});
+function renderPlanCard(){
+  const s = acct.sub, n = creditsAvail(), ex = nextExpiry(), rs = reserved();
+  let html = `<h2>Formule et crédits</h2><p class="fine">Mode test : dates et renouvellements simulés.</p>
+    <dl class="kv"><dt>Crédits disponibles</dt><dd><b>${n}</b>${rs ? ` (+${rs} réservé${rs > 1 ? 's' : ''} pour une génération en cours)` : ''}</dd>
+    <dt>Prochaine expiration</dt><dd>${ex ? `${pl(ex.n, 'crédit expire', 'crédits expirent')} le ${fmtDate(ex.date)}` : '—'}</dd>`;
+  if (!s) {
+    html += `<dt>Formule</dt><dd>À la carte (sans abonnement)</dd></dl>
+      <p class="fine">Vous publiez chaque mois ? Un abonnement revient moins cher par vidéo.</p>
+      <div class="row-act">${OFFERS.filter(o => o.kind === 'sub').map(o => `<a class="btn sm ghost" href="#paiement/${o.id}">S'abonner à ${o.name} · ${money(o[cur], cur)} / mois</a>`).join('')}</div>`;
+  } else {
+    const o = offerById(s.id), other = OFFERS.find(x => x.kind === 'sub' && x.id !== s.id);
+    html += `<dt>Formule</dt><dd>${o.name} · ${money(o[cur], cur)} / mois · ${o.credits} vidéos par mois</dd>
+      <dt>Statut</dt><dd>${s.status === 'canceling' ? `<span class="pill err">Résilié</span> reste actif jusqu'au ${fmtDate(s.renew)}` : '<span class="pill ok">Actif</span>'}</dd>
+      <dt>${s.status === 'canceling' ? 'Fin' : 'Prochain renouvellement'}</dt><dd>${fmtDate(s.renew)}${s.next ? ` · passage à ${offerById(s.next).name} prévu` : ''}</dd>
+      <dt>Prix de lancement</dt><dd>Conservé tant que l'abonnement reste actif sans interruption.</dd></dl>
+      <p class="fine">Crédits d'abonnement reportés tant que l'abonnement est actif, dans la limite de 12 mois.</p>
+      <div class="row-act">
+        ${s.status === 'canceling' ? '<button class="btn sm" type="button" id="sub-resume">Reprendre l\'abonnement</button>' : '<button class="btn sm danger" type="button" id="sub-cancel">Résilier</button>'}
+        ${s.next ? '<button class="btn sm ghost" type="button" id="sub-next-cancel">Garder ' + esc(o.name) + '</button>' : `<button class="btn sm ghost" type="button" data-plan="${other.id}">Passer à ${other.name} · ${money(other[cur], cur)} / mois</button>`}
+      </div>
+      <div class="testtools">Outil de test : avancer d'un mois pour voir le renouvellement${s.status === 'canceling' ? ' (ici : la fin de l\'abonnement)' : ''}.<br><button class="btn sm ghost" type="button" id="sub-sim">Simuler le renouvellement</button></div>`;
+  }
+  const lots = acct.lots.filter(l => l.n > 0).slice().reverse();
+  if (lots.length) {
+    html += `<h3 class="subh" style="font-size:19px;margin:22px 0 4px">Détail des crédits</h3><ul class="lots">${lots.map(l => {
+      const o = offerById(l.src), exp = l.exp <= now();
+      return `<li><span><b>${esc(o ? o.name : 'Crédits repris')}</b> <span class="meta">· ${l.sub ? 'abonnement · ' : ''}reçu le ${fmtDate(l.at)}</span></span><span class="meta">${l.ended ? "expirés (fin d'abonnement)" : exp ? 'expirés' : `${l.left} / ${l.n} restant${l.left > 1 ? 's' : ''} · jusqu'au ${fmtDate(l.exp)}`}</span></li>`;
+    }).join('')}</ul>`;
+  }
+  $('#plan-card').innerHTML = html;
+}
+document.addEventListener('click', async e => {
+  const t = e.target;
+  if (t.closest('#sub-cancel')) {
+    const s = acct.sub, o = offerById(s.id);
+    const v = await ask({title:`Résilier ${o.name} ?`, html:`<p>L'abonnement reste actif jusqu'au ${fmtDate(s.renew)}, puis il s'arrête. Aucun nouveau prélèvement.</p><p>Vos crédits d'abonnement restent utilisables jusqu'à cette date. Les crédits achetés à l'unité ou en pack restent valables 12 mois.</p><p>Le prix de lancement est perdu si l'abonnement est interrompu.</p>`,
+      buttons:[{label:'Résilier', value:'ok', kind:'danger'}, {label:'Garder mon abonnement', value:null, kind:'ghost', focus:true}]});
+    if (v !== 'ok') return;
+    s.status = 'canceling'; s.next = null;
+    if (!saveAcct()) { s.status = 'active'; return toast('Stockage du navigateur plein : résiliation non enregistrée.'); }
+    toast(`Abonnement résilié : actif jusqu'au ${fmtDate(s.renew)}.`); renderPlanCard(); $('#sub-resume') && $('#sub-resume').focus();
+  }
+  if (t.closest('#sub-resume')) { acct.sub.status = 'active'; if (!saveAcct()) { acct.sub.status = 'canceling'; return toast('Stockage plein.'); } toast('Abonnement repris.'); renderPlanCard(); $('#sub-cancel') && $('#sub-cancel').focus(); }
+  if (t.closest('#sub-next-cancel')) { acct.sub.next = null; saveAcct(); toast('Changement de formule annulé.'); renderPlanCard(); }
+  if (t.closest('#sub-sim')) { const backup = JSON.stringify(acct); renewSub(false); if (!saveAcct()) { acct = JSON.parse(backup); return toast('Stockage du navigateur plein.'); } renderPlanCard(); renderOrders(); renderHeader('compte'); }
+  const rc = t.closest('[data-receipt]'); if (rc) openReceipt(rc.dataset.receipt);
+});
+function renderOrders(){
+  const os = acct.orders.slice().reverse();
+  const kindL = {once:'Achat', sub:'Abonnement', change:'Changement de formule', renew:'Renouvellement (simulé)'};
+  $('#orders-card').innerHTML = `<h2>Commandes et reçus</h2><p class="fine">Le numéro de commande est à indiquer pour toute demande de remboursement. En production, le reçu officiel est envoyé par notre prestataire de paiement.</p>
+    ${os.length ? `<ul class="orders">${os.map(o => `<li><span><b>${esc(o.name)}</b> <span class="meta">· ${kindL[o.kind] || ''} · ${fmtDate(o.at)}</span><br><span class="meta">N° ${esc(o.id)} · ${money(o[o.cur] ?? o.eur, o.cur || 'eur')} · payée (test)</span></span><button class="btn sm ghost" type="button" data-receipt="${esc(o.id)}">Reçu</button></li>`).join('')}</ul>` : '<p class="muted small" style="margin-top:10px">Aucune commande pour l\'instant.</p>'}`;
+}
+function receiptHTML(o){
+  const c = o.cur || 'eur', amt = o[c] ?? o.eur, p = acct.profile;
+  const offer = offerById(o.offer);
+  const what = offer && offer.kind === 'sub' ? `Abonnement ${o.name} · ${o.credits} crédits vidéo pour un mois` : `${o.name} · ${pl(o.credits, 'crédit vidéo', 'crédits vidéo')} (valables 12 mois)`;
+  return `<div class="receipt"><div class="rtop"><div><div style="font-family:var(--serif);font-size:24px">Immo<span style="color:var(--gold)">Clap</span></div><div class="fine">Reçu de test</div></div><span class="stamp">Test · non valable</span></div>
+    <p><b>Commande n° ${esc(o.id)}</b><br>Date : ${fmtDateTime(o.at)}<br>Client : ${esc(p.agency ? p.agency + ' · ' : '')}${esc(session.email)}</p>
+    <table><tr><td>${esc(what)}</td><td>${money(amt, c)}</td></tr>
+    <tr><td>TVA</td><td>calculée au paiement selon le pays</td></tr>
+    <tr class="tot"><td>Total (simulation)</td><td>${money(amt, c)}</td></tr></table>
+    <p class="fine">Mode test : aucun paiement réel, rien n'a été débité${o.last4 ? ` (carte de test •••• ${esc(o.last4)})` : ''}.</p>
+    <p class="fine" style="margin-top:8px">En production, la vente est conclue avec notre prestataire de paiement, qui agit comme revendeur (Merchant of Record) ; son nom figure sur la page de paiement et sur le reçu officiel.</p>
+    <p class="fine" style="margin-top:8px">Service fourni par ImmoClap · Julien Wail COLLY, entrepreneur individuel (immatriculation en cours) · Lot Zohour Targa, Tranche 20, N° 91, Targa, Marrakech, Maroc · contact.immoclap@gmail.com</p></div>`;
+}
+function openReceipt(id){
+  const o = acct.orders.find(x => x.id === id); if (!o) return;
+  $('#rcpt').innerHTML = receiptHTML(o);
+  $('#rcpt-dlg').dataset.id = id;
+  $('#rcpt-dlg').showModal();
+}
+$('#rcpt-print').addEventListener('click', () => {
+  const o = acct.orders.find(x => x.id === $('#rcpt-dlg').dataset.id); if (!o) return;
+  $('#print-area').innerHTML = receiptHTML(o);
+  $('#rcpt-dlg').close();
+  document.body.classList.add('printing');
+  setTimeout(() => { try { window.print(); } finally { document.body.classList.remove('printing'); } }, 50);
+});
+$('#wipe').addEventListener('click', async () => {
+  if (isBusy()) return toast('Attendez la fin de la génération ou du paiement en cours.');
+  const v = await ask({title:'Supprimer mes données de test ?', html:`<p>Crédits, vidéos, commandes, brouillon et kit de marque du compte ${esc(session.email)} seront effacés de ce navigateur. Vous serez déconnecté.</p>`, buttons:[{label:'Tout supprimer', value:'ok', kind:'danger'}, {label:'Annuler', value:null, kind:'ghost', focus:true}]});
+  if (v !== 'ok') return;
+  LS.del(K.acct(session.email)); LS.del(K.draft(session.email));
+  draft = null;
+  logout();
+  toast('Données de test supprimées.');
+});
+
+/* ================= AIDE + EXEMPLE ================= */
+function closeHelp(){ $('#help-menu').hidden = true; $('#help-btn').setAttribute('aria-expanded', 'false'); }
+$('#help-btn').addEventListener('click', e => { e.stopPropagation(); const open = $('#help-menu').hidden; $('#help-menu').hidden = !open; $('#help-btn').setAttribute('aria-expanded', String(open)); if (open) $('#help-menu a').focus(); });
+document.addEventListener('click', e => { if (!e.target.closest('#help')) closeHelp(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#help-menu').hidden) { closeHelp(); $('#help-btn').focus(); } });
+$('#help-demo').addEventListener('click', () => { closeHelp(); openDemo(); });
+const demoVid = $('#demo-video');
+function setDemo(name){
+  $$('#demo-seg button').forEach(b => b.setAttribute('aria-pressed', b.dataset.d === name ? 'true' : 'false'));
+  demoVid.poster = `assets/videos/${name}-poster.jpg`;
+  demoVid.src = `assets/videos/${name}-9x16.${canMp4 ? 'mp4' : 'webm'}`;
+}
+function openDemo(){ setDemo('villa-marrakech'); $('#demo-dlg').showModal(); }
+$('#demo-seg').addEventListener('click', e => { const b = e.target.closest('[data-d]'); if (b) setDemo(b.dataset.d); });
+$('#demo-dlg').addEventListener('close', () => demoVid.pause());
+
+/* ================= DÉMARRAGE ================= */
+migrateLegacy();
+(() => {
+  const s = LS.json(K.session);
+  if (s && s.email) login(s.email, {silent:true});
   tick();
-}
-
-/* ===== Résultat ===== */
-const vid=$('#r-video');
-const canMp4=!!vid.canPlayType('video/mp4; codecs="avc1.42E01E"');
-function setFormat(v,f){
-  const s=DEMOS[f]; const src=canMp4?s.mp4:s.webm;
-  vid.src=src; $('#r-dl').href=s.mp4; $('#r-dl').setAttribute('download',`immoclap-${(v.city||'video').toLowerCase().replace(/[^a-z0-9]+/g,'-')}-${f.replace(':','x')}.mp4`);
-  $$('#r-fmts button').forEach(b=>b.classList.toggle('ghost',b.dataset.f!==f));
-}
-function openResult(v){
-  if(!v)return;
-  $('#r-title').textContent=`${v.type} · ${v.city}`;
-  $('#r-sub').textContent=[v.area,v.price,v.surface&&v.surface+' m²'].filter(Boolean).join(' · ')||new Date(v.at).toLocaleString('fr-FR');
-  $('#r-fmts').innerHTML=v.formats.map(f=>`<button class="btn sm" data-f="${f}">${f}</button>`).join('');
-  $$('#r-fmts button').forEach(b=>b.addEventListener('click',()=>setFormat(v,b.dataset.f)));
-  setFormat(v,v.formats[0]);
-  show('s-result');
-}
-$('#back-dash').addEventListener('click',()=>{vid.pause();route();});
-$('#r-new').addEventListener('click',()=>{vid.pause();startNew();});
-
-/* ===== Navigation ===== */
-function renderHeader(){ $('#credits').textContent=state.credits; }
-function route(){
-  if(!state.user){ $('#who').hidden=true; show('s-login'); return; }
-  renderDash(); show('s-dash');
-}
-route();
+  if (!location.hash || location.hash === '#') go(session ? 'videos' : 'connexion', true); else render();
+})();
 </script>
 </body>
 </html>

@@ -4,64 +4,116 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Politique de remboursement — ImmoClap</title>
+<meta name="description" content="Vidéo défectueuse refaite gratuitement, crédits non utilisés, abonnements : la politique de remboursement d'ImmoClap.">
 <meta name="robots" content="noindex">
+<link rel="canonical" href="https://immoclap.netlify.app/remboursement.html">
+<meta name="theme-color" content="#0B0A09">
+<link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/fonts.css">
 <style>
-:root{--bg:#0B0A09;--bg2:#181614;--line:#2A2622;--fg:#F3EFE7;--muted:#B4AA9D;--dim:#7d746a;--gold:#F6BC28;--gold2:#E5C99E}
+:root{--bg:#0B0A09;--bg2:#181614;--card:#201D1A;--line:#2A2622;--line2:#3a342e;--fg:#F3EFE7;--muted:#B4AA9D;--dim:#9a9085;--gold:#F6BC28;--gold2:#E5C99E;--serif:"Newsreader",Georgia,serif;--sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
 a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+.skip{position:fixed;left:16px;top:-60px;z-index:200;background:var(--gold);color:#16120a;font-weight:600;padding:10px 16px;border-radius:8px;text-decoration:none}
+.skip:focus{top:12px}
 .wrap{max-width:780px;margin:0 auto;padding:0 20px}
-header{border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:68px;max-width:1100px;margin:0 auto;padding:0 20px}
-.logo{display:flex;align-items:center;gap:10px;font-family:Newsreader,Georgia,serif;font-size:22px;font-weight:500;text-decoration:none}
+header{border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;background:rgba(11,10,9,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px;max-width:1100px;margin:0 auto;padding:0 20px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:22px;font-weight:500;text-decoration:none;min-height:44px}
 .logo span{color:var(--gold)}
-.back{font-size:14px;color:var(--muted);text-decoration:none}
-.back:hover{color:var(--fg)}
+.navl{display:flex;align-items:center;gap:22px;font-size:14px}
+.navl a{color:var(--muted);text-decoration:none;padding:10px 0}
+.navl a:hover{color:var(--fg)}
+.navl .back{color:var(--fg)}
 main{padding:70px 0 90px}
 .eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
-h1{font-family:Newsreader,Georgia,serif;font-weight:400;font-size:clamp(38px,6vw,58px);line-height:1.05;letter-spacing:-.02em;margin:14px 0 10px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(38px,6vw,58px);line-height:1.05;letter-spacing:-.02em;margin:14px 0 10px}
+h1 .it{font-style:italic;position:relative;display:inline-block}
+h1 .it::after{content:"";position:absolute;left:2%;right:2%;bottom:-.08em;height:2px;border-radius:2px;background:var(--gold);opacity:.9}
 .upd{color:var(--dim);font-size:14px;margin-bottom:40px}
-h2{font-family:Newsreader,Georgia,serif;font-weight:400;font-size:26px;margin:44px 0 12px;padding-top:24px;border-top:1px solid var(--line)}
+.intro{font-size:18px;color:var(--muted)}
+h2{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.2;margin:44px 0 12px;padding-top:24px;border-top:1px solid var(--line)}
 h3{font-size:16px;font-weight:600;margin:22px 0 6px}
 p,li{color:var(--muted);font-size:16px}
 p+p{margin-top:12px}
-ul{margin:10px 0 0 20px;display:flex;flex-direction:column;gap:6px}
+ul,ol{margin:10px 0 0 22px;display:flex;flex-direction:column;gap:6px}
 strong{color:var(--fg);font-weight:500}
-.todo{background:rgba(246,188,40,.15);color:var(--gold);padding:1px 6px;border-radius:4px}
+main a{text-decoration:underline;text-underline-offset:3px;color:var(--fg)}
 .box{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-top:16px}
-footer{border-top:1px solid var(--line);padding:30px 20px;text-align:center;font-size:13px;color:var(--dim)}
-footer a{color:var(--muted);margin:0 10px;text-decoration:none}
-footer a:hover{color:var(--fg)}
+.box.gold{border-color:rgba(246,188,40,.5);background:linear-gradient(135deg,rgba(246,188,40,.07),transparent 60%)}
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:15px}
+th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--fg);font-weight:500}
+td{color:var(--muted)}
+thead th{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);font-weight:500}
+.tbl{overflow-x:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--gold);color:#16120a!important;font-weight:600;font-size:16px;min-height:44px;padding:13px 24px;border-radius:10px;text-decoration:none!important}
+.btn.ghost{background:transparent;color:var(--fg)!important;border:1px solid var(--line2)}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.steps{list-style:none;margin:16px 0 0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;position:relative;padding:0 0 0 48px;margin-top:18px}
+.steps li::before{content:counter(s,upper-roman);position:absolute;left:0;top:-2px;font-family:var(--serif);font-style:italic;font-size:22px;color:var(--gold)}
+.steps li b{display:block;color:var(--fg);font-weight:500}
+footer{border-top:1px solid var(--line);padding:34px 20px 40px;text-align:center;font-size:13px;color:var(--dim)}
+footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px}
+footer nav a{color:var(--muted);text-decoration:none;display:inline-block;padding:6px 0}
+footer nav a:hover{color:var(--fg)}
+footer p{max-width:760px;margin:14px auto 0;line-height:1.6;color:var(--dim);font-size:13px}
+footer p a{color:var(--muted)}
+@media (max-width:720px){
+  .navl .hide-m{display:none}
+  main{padding:48px 0 70px}
+  .intro{font-size:16px}
+}
 </style>
 </head>
 <body>
+<a class="skip" href="#contenu">Aller au contenu</a>
 <header><div class="nav">
-<a href="index.html" class="logo"><svg width="26" height="26" viewBox="0 0 100 100" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F3EFE7"/><stop offset="1" stop-color="#F6BC28"/></linearGradient></defs><path d="M14 42 L50 14 L86 42 V86 H14 Z" stroke="url(#g)" stroke-width="5"/><path d="M40 40 L64 54 L40 68 Z" stroke="url(#g)" stroke-width="5"/></svg><b style="font-weight:500">Immo<span>Clap</span></b></a>
-<a href="index.html" class="back">← Retour au site</a>
+<a href="index.html" class="logo" aria-label="ImmoClap, accueil"><svg width="26" height="26" viewBox="0 0 100 100" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F3EFE7"/><stop offset="1" stop-color="#F6BC28"/></linearGradient></defs><path d="M14 42 L50 14 L86 42 V86 H14 Z" stroke="url(#g)" stroke-width="5"/><path d="M40 40 L64 54 L40 68 Z" stroke="url(#g)" stroke-width="5"/></svg><b style="font-weight:500">Immo<span>Clap</span></b></a>
+<nav class="navl" aria-label="Navigation">
+<a class="hide-m" href="index.html#exemples">Exemples</a><a class="hide-m" href="index.html#tarifs">Tarifs</a><a class="hide-m" href="guide.html">Guide</a><a class="hide-m" href="a-propos.html">À propos</a><a class="back" href="index.html">← Retour au site</a>
+</nav>
 </div></header>
-<main><div class="wrap">
+<main id="contenu"><div class="wrap">
 <div class="eyebrow">Informations légales</div>
 <h1>Politique de remboursement</h1>
-<p class="upd">Dernière mise à jour : 2 octobre 2026</p>
+<p class="upd">Dernière mise à jour&nbsp;: 6 octobre 2026</p>
 
-<p>Voici comment se passent les remboursements.</p>
+<p class="intro">Voici, simplement, ce qui se passe si une vidéo ne convient pas ou si vous changez d'avis.</p>
 
 <h2>Regardez avant d'acheter</h2>
-<p>Des vidéos d'exemple sont disponibles sur le site : vous voyez le rendu avant de payer.</p>
+<p>Des vidéos de démonstration sont visibles sur le site&nbsp;: vous voyez le rendu avant de payer. Il n'y a pas d'essai gratuit.</p>
 
-<h2>Vidéo défectueuse : on la refait</h2>
-<p>Si une vidéo présente un défaut (déformation visible, plan raté, erreur de texte ou de logo), écrivez-nous dans les <strong>14 jours</strong> à <a href="mailto:contact.immoclap@gmail.com">contact.immoclap@gmail.com</a> avec le nom du bien. Nous la régénérons gratuitement. Si le défaut persiste après deux tentatives, la vidéo vous est remboursée ou recréditée.</p>
+<h2>Vidéo défectueuse&nbsp;: on la refait</h2>
+<div class="box gold"><p>Si une vidéo présente un défaut (déformation visible, plan raté, erreur de texte ou de logo), écrivez-nous dans les <strong>14 jours</strong> à <a href="mailto:contact.immoclap@gmail.com">contact.immoclap@gmail.com</a> avec le nom du bien. Nous la régénérons <strong>gratuitement</strong>. Si le défaut est toujours là après deux nouvelles tentatives, la vidéo vous est <strong>remboursée ou recréditée</strong>, à votre choix.</p></div>
 
-<h2>Crédits non utilisés</h2>
-<p>Un achat (vidéo à l'unité ou pack) dont <strong>aucun crédit n'a été utilisé</strong> peut être remboursé intégralement sur simple demande dans les 14 jours suivant l'achat.</p>
-<p>Une fois qu'une vidéo a été générée avec un crédit, ce crédit n'est plus remboursable, sauf défaut (voir ci-dessus). Pour un pack entamé, les crédits restants non utilisés peuvent être remboursés au prorata du prix payé, sur demande dans les 14 jours suivant l'achat.</p>
+<h2>Crédits non utilisés (vidéo à l'unité et packs)</h2>
+<p>Un achat dont <strong>aucun crédit n'a été utilisé</strong> est remboursé intégralement sur simple demande dans les 14 jours suivant l'achat.</p>
+<p>Pour un pack entamé, les crédits restants non utilisés sont remboursés au prorata du prix payé, sur demande dans les 14 jours suivant l'achat. Un crédit qui a servi à générer une vidéo n'est plus remboursable, sauf défaut (voir ci-dessus).</p>
+
+<h2>Abonnements (Solo et Agence)</h2>
+<ul>
+<li><strong>Résiliation</strong>&nbsp;: à tout moment, avec le lien de gestion reçu par e-mail ou en nous écrivant. Elle prend effet à la fin du mois payé&nbsp;: aucun nouveau prélèvement n'a lieu ensuite.</li>
+<li><strong>Mois entamé</strong>&nbsp;: il n'est pas remboursé.</li>
+<li><strong>Crédits d'abonnement</strong>&nbsp;: ils sont reportés d'un mois sur l'autre tant que l'abonnement est actif, dans la limite de 12 mois. Après une résiliation, ils restent utilisables jusqu'à la fin du mois payé, puis expirent. Ils ne sont pas remboursables, sauf vidéo défectueuse.</li>
+<li><strong>Prix de lancement</strong>&nbsp;: réservé aux 100 premiers abonnés, il est conservé tant que l'abonnement reste actif sans interruption. Après une résiliation, une nouvelle souscription se fait au prix en vigueur.</li>
+</ul>
 
 <h2>Comment demander un remboursement</h2>
-<p>Écrivez à <a href="mailto:contact.immoclap@gmail.com">contact.immoclap@gmail.com</a> en indiquant l'e-mail utilisé pour la commande et le numéro de commande (présent sur votre reçu). Les remboursements acceptés sont effectués par Lemon Squeezy, notre revendeur agréé, sur le moyen de paiement d'origine. Le délai d'apparition sur votre compte est généralement de 5 à 10 jours.</p>
-<p>Merci de nous contacter avant d'ouvrir un litige auprès de votre banque : nous trouvons presque toujours une solution rapidement.</p>
+<p>Écrivez à <a href="mailto:contact.immoclap@gmail.com">contact.immoclap@gmail.com</a> en indiquant l'e-mail utilisé pour la commande et le numéro de commande figurant sur votre reçu. Les remboursements acceptés sont effectués par notre prestataire de paiement, qui agit comme revendeur (Merchant of Record)&nbsp;; son nom figure sur la page de paiement et sur le reçu, sur le moyen de paiement d'origine. Comptez en général 5 à 10 jours pour les voir apparaître sur votre compte.</p>
+<p>Merci de nous contacter avant d'ouvrir une contestation auprès de votre banque&nbsp;: nous trouvons presque toujours une solution rapidement.</p>
+
 </div></main>
-<footer><a href="mentions-legales.html">Mentions légales</a><a href="cgv.html">CGV</a><a href="confidentialite.html">Confidentialité</a><a href="remboursement.html">Remboursement</a><div style="margin-top:12px">© 2026 ImmoClap · <a href="mailto:contact.immoclap@gmail.com" style="margin:0">contact.immoclap@gmail.com</a></div></footer>
+<footer>
+<nav aria-label="Liens du pied de page"><a href="a-propos.html">À propos</a><a href="guide.html">Guide photos</a><a href="mailto:contact.immoclap@gmail.com">Contact</a><a href="mentions-legales.html">Mentions légales</a><a href="cgv.html">CGV</a><a href="confidentialite.html">Confidentialité</a><a href="remboursement.html">Remboursement</a></nav>
+<p>© 2026 ImmoClap · Julien Wail COLLY, entrepreneur individuel (immatriculation en cours) · Lot Zohour Targa, Tranche 20, N° 91, Targa, Marrakech, Maroc · <a href="mailto:contact.immoclap@gmail.com">contact.immoclap@gmail.com</a></p>
+</footer>
 </body>
 </html>

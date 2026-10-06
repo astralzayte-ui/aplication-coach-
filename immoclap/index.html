@@ -3,95 +3,137 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ImmoClap — Vos biens immobiliers en vidéo cinématique</title>
-<meta name="description" content="Déposez les photos de votre bien : ImmoClap crée une vidéo cinématique avec votre logo, une voix off et de la musique, en 5 minutes. Payez à la vidéo ou au mois, sans engagement.">
+<title>ImmoClap — Vidéo immobilière par IA, à partir de vos photos</title>
+<meta name="description" content="Vos photos d'annonce deviennent une vidéo animée par IA&nbsp;: 3 formats, musique, voix off en français, arabe ou anglais. Pour la France et le Maroc.">
+<link rel="canonical" href="https://immoclap.netlify.app/">
+<link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<meta property="og:title" content="ImmoClap — Vos biens méritent mieux que des photos">
-<meta property="og:description" content="Vos photos deviennent une vidéo cinématique en 5 minutes. Sans engagement.">
-<meta property="og:image" content="https://immoclap.netlify.app/assets/exemples/marrakech.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://immoclap.netlify.app/">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="ImmoClap">
+<meta property="og:title" content="ImmoClap — Faites visiter avant la visite">
+<meta property="og:description" content="Vos photos d'annonce deviennent une vidéo immobilière animée par IA, avec musique et voix off. France et Maroc.">
+<meta property="og:image" content="https://immoclap.netlify.app/assets/exemples/og-immoclap.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ImmoClap&nbsp;: image de démonstration d'une villa à Marrakech générée par IA">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0B0A09">
+<link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ImmoClap",
+  "url": "https://immoclap.netlify.app/",
+  "logo": "https://immoclap.netlify.app/assets/apple-touch-icon.png",
+  "description": "Service en ligne qui transforme les photos d'un bien immobilier en vidéo animée par IA, pour les agences et les propriétaires en France et au Maroc.",
+  "email": "contact.immoclap@gmail.com",
+  "foundingDate": "2026",
+  "founder": {"@type": "Person", "name": "Julien Wail COLLY"},
+  "address": {"@type": "PostalAddress", "streetAddress": "Lot Zohour Targa, Tranche 20, N° 91, Targa", "addressLocality": "Marrakech", "addressCountry": "MA"},
+  "sameAs": ["https://www.instagram.com/immoclap", "https://www.instagram.com/immoclap.fr", "https://www.tiktok.com/@immoclap", "https://www.tiktok.com/@immoclap.fr"]
+}
+</script>
 <style>
 :root{
-  --bg:#0B0A09; --bg2:#181614; --card:#201D1A; --line:#2A2622;
-  --fg:#F3EFE7; --muted:#B4AA9D; --dim:#7d746a; --gold:#F6BC28; --gold2:#E5C99E;
-  --serif:"Newsreader",Georgia,serif; --sans:"Inter",system-ui,-apple-system,sans-serif;
-  --r:14px; --max:1200px;
+  --bg:#0B0A09; --bg2:#181614; --card:#201D1A; --line:#2A2622; --line2:#3a342e;
+  --fg:#F3EFE7; --muted:#B4AA9D; --dim:#9a9085; --gold:#F6BC28; --gold2:#E5C99E;
+  --serif:"Newsreader",Georgia,serif; --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:14px; --max:1200px; --hh:106px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:var(--hh)}
 body{background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-img{display:block;max-width:100%}
+img,video{display:block;max-width:100%}
+picture{display:block}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:fixed;left:16px;top:-60px;z-index:200;background:var(--gold);color:#16120a;font-weight:600;padding:10px 16px;border-radius:8px;transition:top .2s}
+.skip:focus{top:12px}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
 section{position:relative;padding:120px 0}
 .alt{background:var(--bg2)}
 .center{text-align:center}
 
 /* ---------- typo ---------- */
-.eyebrow{display:flex;align-items:center;justify-content:center;gap:14px;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:28px}
+.eyebrow{display:flex;align-items:center;justify-content:center;gap:14px;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;flex-wrap:wrap;text-align:center}
 .eyebrow i{font-family:var(--serif);font-size:18px;letter-spacing:0;text-transform:none;color:var(--fg)}
 .eyebrow b{display:inline-block;width:28px;height:1px;background:var(--dim)}
 h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em}
 h1{font-size:clamp(44px,7.4vw,96px);line-height:1}
-h2{font-size:clamp(36px,5.4vw,68px);line-height:1.05}
-h3{font-size:clamp(22px,2.2vw,28px);line-height:1.2}
+h2{font-size:clamp(34px,5.2vw,64px);line-height:1.06}
+h3{font-size:clamp(21px,2.1vw,26px);line-height:1.2}
 .it{display:inline-block;position:relative;font-style:italic}
-.swash{position:absolute;left:2%;bottom:-.22em;width:96%;height:.32em;overflow:visible}
-.swash path{fill:none;stroke:var(--gold2);stroke-width:2;stroke-linecap:round;stroke-dasharray:600;stroke-dashoffset:600}
-.drawn .swash path,.swash.on path{transition:stroke-dashoffset 1.2s cubic-bezier(.6,0,.2,1);stroke-dashoffset:0}
-.lead{color:var(--muted);font-size:18px;max-width:640px;margin:28px auto 0}
+.swash{position:absolute;left:2%;bottom:-.22em;width:96%;height:.32em;overflow:visible;pointer-events:none}
+.swash path{fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-dasharray:600;stroke-dashoffset:600}
+.swash.on path{transition:stroke-dashoffset 1.2s cubic-bezier(.6,0,.2,1);stroke-dashoffset:0}
+.lead{color:var(--muted);font-size:18px;max-width:660px;margin:28px auto 0}
 .lead strong{color:var(--fg);font-weight:500}
 
 /* ---------- buttons ---------- */
-.btn{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#16120a;font-weight:600;font-size:16px;padding:15px 26px;border-radius:10px;transition:transform .2s,box-shadow .2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--gold);color:#16120a;font-weight:600;font-size:16px;min-height:44px;padding:13px 24px;border-radius:10px;transition:transform .2s,box-shadow .2s,background .2s}
 .btn:hover{transform:translateY(-1px);box-shadow:0 10px 30px -10px rgba(246,188,40,.55)}
-.btn svg{transition:transform .2s}
-.btn:hover svg{transform:translateX(4px)}
-.btn.sm{padding:10px 18px;font-size:14px}
-.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
-.link{display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid var(--dim);padding-bottom:2px;font-size:15px}
+.btn svg{transition:transform .2s;flex:none}
+.btn:hover svg.ar{transform:translateX(4px)}
+.btn.sm{padding:9px 16px;font-size:14px;min-height:40px}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line2)}
+.btn.ghost:hover{border-color:var(--gold);box-shadow:none}
+.btn[disabled]{opacity:.6;cursor:wait;transform:none}
+.link{display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid var(--dim);padding:6px 0 2px;font-size:15px}
 .link:hover{border-color:var(--gold)}
 
 /* ---------- header ---------- */
 header{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
-header.scrolled{background:rgba(11,10,9,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
-.logo{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:24px;font-weight:500}
-.logo svg{width:30px;height:30px}
+header.scrolled{background:rgba(11,10,9,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
+.topbar{background:var(--gold);color:#16120a;font-size:13px;font-weight:500;text-align:center;padding:7px 16px;line-height:1.4}
+.topbar button{font-weight:700;text-decoration:underline;text-underline-offset:3px;padding:4px 6px;min-height:28px;color:#16120a}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:24px;font-weight:500;min-height:44px}
+.logo svg{width:30px;height:30px;flex:none}
 .logo .wm span{color:var(--gold)}
-.menu{display:flex;gap:30px;font-size:14px;color:var(--muted)}
-.menu a{position:relative;padding:4px 0;transition:color .2s}
+.menu{display:flex;gap:26px;font-size:14px;color:var(--muted)}
+.menu a{position:relative;padding:8px 0;transition:color .2s}
 .menu a:hover,.menu a.active{color:var(--fg)}
-.menu a.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--fg)}
-.nav-r{display:flex;align-items:center;gap:20px;font-size:14px}
-.nav-r .login{color:var(--muted)}
-.nav-r .login:hover{color:var(--fg)}
-.burger{display:none;width:40px;height:40px;align-items:center;justify-content:center}
+.menu a.active::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1px;background:var(--gold)}
+.nav-r{display:flex;align-items:center;gap:12px;font-size:14px}
+.burger{display:none;width:44px;height:44px;align-items:center;justify-content:center;border-radius:10px}
+.burger .ic-x{display:none}
+.burger[aria-expanded="true"] .ic-x{display:block}
+.burger[aria-expanded="true"] .ic-m{display:none}
 .progress{position:absolute;left:0;bottom:-1px;height:1px;background:var(--gold);width:0}
 .mob{display:none}
 
 /* ---------- hero ---------- */
-.hero{padding:170px 0 90px;text-align:center;overflow:hidden}
-.hero .eyebrow{margin-bottom:26px}
+.hero{padding:calc(var(--hh) + 84px) 0 90px;text-align:center;overflow:hidden}
 .hero h1 .w{display:inline-block;opacity:0;transform:translateY(20px);filter:blur(8px);transition:opacity .7s,transform .7s cubic-bezier(.2,.7,.2,1),filter .7s}
 .hero h1.go .w{opacity:1;transform:none;filter:none}
 .fade{opacity:0;transform:translateY(14px);transition:opacity .8s,transform .8s}
 .fade.in{opacity:1;transform:none}
 .hero .cta{margin-top:38px;display:flex;flex-direction:column;align-items:center;gap:16px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 .trust{font-size:13px;color:var(--dim)}
 .showreel{position:relative;margin:70px auto 0;max-width:1060px;border-radius:18px;padding:10px;background:#000;border:1px solid var(--line);box-shadow:0 40px 120px -40px rgba(246,188,40,.25)}
-.showreel .frame{position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden}
-.showreel img{width:100%;height:100%;object-fit:cover;animation:kb 18s ease-in-out infinite alternate}
-@keyframes kb{from{transform:scale(1.02) translate(0,0)}to{transform:scale(1.14) translate(-2%,-2%)}}
-.showreel .shade{position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.55))}
-.play{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:rgba(11,10,9,.55);border:1px solid rgba(246,188,40,.6);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;transition:transform .25s}
+.showreel .frame{position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#000}
+.showreel video{width:100%;height:100%;object-fit:cover}
+.showreel .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent 25%,transparent 60%,rgba(0,0,0,.55));pointer-events:none}
+.chip-demo{position:absolute;left:14px;top:14px;z-index:2;display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;background:rgba(11,10,9,.78);color:var(--fg);padding:6px 10px;border-radius:6px;border:1px solid rgba(246,188,40,.45)}
+.chip-demo::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.play{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:rgba(11,10,9,.55);border:1px solid rgba(246,188,40,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;transition:transform .25s;color:var(--gold)}
 .play:hover{transform:scale(1.07)}
 .play svg{width:28px;height:28px;margin-left:4px}
-.showreel .cap{position:absolute;left:24px;bottom:20px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--fg);opacity:.85}
+.showreel .cap{position:absolute;left:20px;right:70px;bottom:16px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg);opacity:.9;text-align:left}
+.vpause{position:absolute;right:14px;bottom:12px;z-index:2;width:36px;height:36px;border-radius:50%;background:rgba(11,10,9,.7);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center}
+.vpause svg{width:14px;height:14px}
+.vpause .i-play{display:none}
+.vpause[aria-pressed="true"] .i-play{display:block}
+.vpause[aria-pressed="true"] .i-pause{display:none}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);max-width:880px;margin:64px auto 0;border-top:1px solid var(--line)}
 .stat{padding:28px 10px}
 .stat+.stat{border-left:1px solid var(--line)}
@@ -102,594 +144,648 @@ header.scrolled{background:rgba(11,10,9,.82);backdrop-filter:blur(14px);-webkit-
 .rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
 
-/* ---------- II features ---------- */
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:56px 48px;margin-top:72px}
-.feat-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-.tag{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+/* ---------- II principe ---------- */
 .panel{background:#0e0d0c;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
-.feat h3{margin-top:22px}
-.feat p{color:var(--muted);margin-top:8px}
-.vid{position:relative;aspect-ratio:16/9;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#000;transition:all .4s}
-.vid .box{position:relative;height:100%;overflow:hidden;transition:aspect-ratio .5s ease, width .5s ease}
-.vid img{width:100%;height:100%;object-fit:cover;animation:kb 14s ease-in-out infinite alternate}
-.fmt{display:flex;justify-content:center;gap:6px;padding:12px;border-top:1px solid var(--line)}
-.fmt button{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);padding:6px 12px;border-radius:6px}
-.fmt button.on{color:var(--fg);background:var(--card)}
-.ba{position:relative;aspect-ratio:16/9;overflow:hidden;user-select:none;touch-action:pan-y;cursor:ew-resize}
-.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.ba .after{filter:saturate(1.25) brightness(1.08) sepia(.18) contrast(1.05)}
+.ba-wrap{max-width:980px;margin:64px auto 0}
+.ba{position:relative;aspect-ratio:16/9;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:pan-y;cursor:ew-resize;background:#000}
+.ba video,.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;-webkit-user-drag:none}
 .ba .clip{position:absolute;inset:0;overflow:hidden;clip-path:inset(0 50% 0 0)}
-.ba .clip img{filter:saturate(.75) brightness(.92)}
-.ba .handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--fg);transform:translateX(-1px)}
-.ba .knob{position:absolute;top:50%;left:50%;width:44px;height:44px;margin:-22px;border-radius:50%;background:var(--fg);color:#111;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600}
-.lbl{position:absolute;top:14px;font-size:10px;letter-spacing:.25em;background:rgba(11,10,9,.7);padding:5px 10px;border-radius:5px}
+.ba .handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--fg);transform:translateX(-1px);pointer-events:none}
+.ba .knob{position:absolute;top:50%;left:50%;width:48px;height:48px;margin:-24px;border-radius:50%;background:var(--fg);color:#111;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.lbl{position:absolute;top:14px;font-size:10px;font-weight:600;letter-spacing:.22em;background:rgba(11,10,9,.78);padding:6px 10px;border-radius:5px;pointer-events:none}
 .lbl.l{left:14px}.lbl.r{right:14px}
-.bubble{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-family:var(--serif);font-style:italic;background:rgba(11,10,9,.75);padding:7px 14px;border-radius:8px;font-size:15px;white-space:nowrap}
-.browser .bar{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line)}
-.browser .bar i{width:9px;height:9px;border-radius:50%;background:#3a352f}
-.browser .url{flex:1;margin-left:10px;background:var(--card);border-radius:20px;font-size:11px;color:var(--muted);padding:5px 14px;text-align:center}
-.browser .page{position:relative;aspect-ratio:16/8.1;overflow:hidden}
-.browser .page img{width:100%;height:100%;object-fit:cover}
-.browser .ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.65),transparent 70%);padding:28px;display:flex;flex-direction:column;justify-content:flex-end}
-.browser .ov small{font-size:10px;letter-spacing:.25em;color:var(--gold2)}
-.browser .ov strong{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.1}
-.browser .ov span{font-size:13px;color:var(--muted)}
-.dash{padding:26px}
-.dash .hd{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
-.dash .hd b{color:var(--fg);font-weight:500}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}
-.kpis small{display:block;font-size:10px;letter-spacing:.2em;color:var(--dim)}
-.kpis b{font-family:var(--serif);font-weight:400;font-size:28px}
-.spark{margin-top:20px;height:110px;width:100%}
-.spark path.l{fill:none;stroke:var(--gold);stroke-width:2;stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset 2s ease}
-.in .spark path.l{stroke-dashoffset:0}
-.spark path.a{fill:url(#ga);opacity:0;transition:opacity 1.5s .8s}
-.in .spark path.a{opacity:1}
+.ba-cap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 18px;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
+.ba-cap b{color:var(--fg);font-weight:500}
+.pts{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1060px;margin:64px auto 0}
+.pt{border-top:1px solid var(--line);padding-top:24px}
+.pt svg{width:26px;height:26px;color:var(--gold)}
+.pt h3{margin-top:16px}
+.pt p{color:var(--muted);margin-top:8px;font-size:15px}
 
-/* ---------- III how ---------- */
-.device{max-width:960px;margin:64px auto 0;border-radius:20px;padding:12px;background:#000;border:1px solid var(--line);box-shadow:0 30px 100px -40px rgba(246,188,40,.22)}
-.screen{position:relative;aspect-ratio:16/9.4;border-radius:12px;background:#0e0d0c;overflow:hidden}
-.scr{position:absolute;inset:0;padding:4% 5%;opacity:0;visibility:hidden;transition:opacity .6s,visibility .6s}
+/* ---------- III étapes ---------- */
+.device{position:relative;max-width:960px;margin:64px auto 0;border-radius:20px;padding:12px;background:#000;border:1px solid var(--line);box-shadow:0 30px 100px -40px rgba(246,188,40,.22)}
+.device .chip-demo{left:auto;right:24px;top:-14px}
+.screen{position:relative;aspect-ratio:16/9.6;border-radius:12px;background:#0e0d0c;overflow:hidden}
+.scr{position:absolute;inset:0;padding:4.5% 5.5%;opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s;display:flex;flex-direction:column}
 .scr.on{opacity:1;visibility:visible}
-.up-h{text-align:center}
-.up-h h4{font-family:var(--serif);font-weight:400;font-size:clamp(16px,2vw,22px)}
-.up-h p{font-size:clamp(10px,1vw,12px);color:var(--muted)}
-.drop{margin:3% 0;border:1px dashed var(--gold);border-radius:10px;background:rgba(246,188,40,.04);text-align:center;padding:2.2% 0;font-size:clamp(10px,1vw,12px);color:var(--muted)}
-.thumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:1.2%}
-.thumbs div{aspect-ratio:4/3;border-radius:5px;background-size:cover;background-position:center;opacity:0;transform:scale(.9);transition:opacity .4s,transform .4s}
-.thumbs div.on{opacity:1;transform:none}
-.up-f{position:absolute;left:5%;right:5%;bottom:5%;display:flex;justify-content:space-between;align-items:center;font-size:clamp(10px,1vw,12px);color:var(--muted)}
-.up-f span.b{background:var(--card);padding:6px 14px;border-radius:6px;color:var(--fg)}
-.ed{display:grid;grid-template-columns:28% 1fr;gap:3%;height:100%}
-.ed .side{display:grid;grid-template-columns:1fr 1fr;gap:6px;align-content:start}
-.ed .side div{aspect-ratio:4/3;border-radius:5px;background-size:cover;background-position:center;position:relative}
-.ed .side div::after{content:attr(data-n);position:absolute;top:4px;left:4px;width:16px;height:16px;border-radius:50%;background:rgba(0,0,0,.7);font-size:9px;display:flex;align-items:center;justify-content:center}
-.ed .side div.sel{outline:2px solid var(--gold);outline-offset:1px}
-.ed .main{display:flex;flex-direction:column;justify-content:center;gap:10px}
-.ed .main .pv{position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden}
-.ed .main .pv img{width:100%;height:100%;object-fit:cover;animation:kb 10s ease-in-out infinite alternate}
-.tl{height:4px;border-radius:2px;background:var(--line);overflow:hidden}
-.tl i{display:block;height:100%;width:0;background:var(--gold)}
-.scr.on .tl i{animation:tl 4s linear forwards}
-@keyframes tl{to{width:100%}}
-.ed .meta{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
-.out{display:flex;flex-direction:column;height:100%;justify-content:center;align-items:center;gap:4%}
-.outs{display:flex;align-items:flex-end;justify-content:center;gap:3%;width:100%}
+.scr-h small{display:block;font-size:clamp(9px,1vw,11px);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.scr-h h4{font-family:var(--serif);font-weight:400;font-size:clamp(17px,2.3vw,28px);margin-top:4px}
+.scr-h p{font-size:clamp(10px,1.1vw,13px);color:var(--muted)}
+.drop{margin:2.5% 0;border:1px dashed var(--gold);border-radius:10px;background:rgba(246,188,40,.04);text-align:center;padding:1.8% 0;font-size:clamp(10px,1.1vw,13px);color:var(--muted)}
+.thumbs{display:grid;grid-template-columns:repeat(7,1fr);gap:1.4%}
+.thumbs picture{position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;opacity:0;transform:scale(.9);transition:opacity .4s,transform .4s}
+.thumbs picture.on{opacity:1;transform:none}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.thumbs .n{position:absolute;left:4px;top:4px;background:rgba(0,0,0,.7);font-size:clamp(8px,.9vw,10px);padding:1px 6px;border-radius:5px}
+.scr-f{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-size:clamp(10px,1.1vw,13px);color:var(--muted)}
+.fake-btn{background:var(--gold);color:#16120a;font-weight:600;padding:6px 16px;border-radius:7px}
+.fake-btn.g{background:var(--card);color:var(--fg)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:2.5% 4%;margin-top:3%}
+.ff label{display:block;font-size:clamp(9px,1vw,12px);color:var(--muted);margin-bottom:4px}
+.ff div{background:var(--card);border:1px solid var(--line);border-radius:7px;padding:1.2% 3%;font-size:clamp(10px,1.15vw,14px);min-height:2.2em;display:flex;align-items:center}
+.ff.full{grid-column:span 2}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{border:1px solid var(--line2);border-radius:8px;padding:3px 10px;font-size:clamp(9px,1.05vw,13px);color:var(--muted)}
+.chips span.on{border-color:var(--gold);color:var(--fg);background:rgba(246,188,40,.08)}
+.style-rows{display:flex;flex-direction:column;gap:3.2%;margin-top:3%}
+.style-rows label{display:block;font-size:clamp(9px,1vw,12px);color:var(--muted);margin-bottom:5px}
+.gen{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:3%}
+.ring{width:clamp(36px,6vw,64px);height:clamp(36px,6vw,64px);border-radius:50%;border:3px solid var(--line2);border-top-color:var(--gold);animation:spin 1.1s linear infinite;animation-play-state:paused}
+.scr.on .ring{animation-play-state:running}
+.device.off .ring{animation-play-state:paused}
+@keyframes spin{to{transform:rotate(360deg)}}
+.gsteps{list-style:none;display:flex;flex-direction:column;gap:6px;font-size:clamp(10px,1.15vw,14px);color:var(--dim);text-align:left}
+.gsteps li::before{content:"○";margin-right:8px}
+.gsteps li.ok{color:var(--fg)}
+.gsteps li.ok::before{content:"✓";color:var(--gold)}
+.gbar{width:46%;height:4px;border-radius:2px;background:var(--line);overflow:hidden}
+.gbar i{display:block;height:100%;width:0;background:var(--gold)}
+.scr.on .gbar i{animation:fillw 4.6s linear forwards}
+@keyframes fillw{to{width:100%}}
+.outs{display:flex;align-items:flex-end;justify-content:center;gap:3%;width:100%;margin-top:3%}
 .o{display:flex;flex-direction:column;align-items:center;gap:8px}
-.o .im{border-radius:8px;overflow:hidden;position:relative}
+.o .im{border-radius:8px;overflow:hidden;position:relative;background:#000}
 .o .im img{width:100%;height:100%;object-fit:cover}
-.o .im em{position:absolute;inset:auto 0 0;padding:6px;font-family:var(--serif);font-size:clamp(8px,1vw,12px);text-align:center;background:linear-gradient(transparent,rgba(0,0,0,.7));font-style:normal;letter-spacing:.15em}
-.o small{font-size:clamp(9px,1vw,12px);color:var(--muted)}
-.o1 .im{width:clamp(140px,34vw,330px);aspect-ratio:16/9}
-.o2 .im{width:clamp(60px,12vw,130px);aspect-ratio:9/16}
-.o3 .im{width:clamp(80px,15vw,160px);aspect-ratio:1}
-.dl{background:var(--gold);color:#16120a;font-weight:600;font-size:clamp(10px,1.1vw,13px);padding:8px 40px;border-radius:7px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1060px;margin:56px auto 0}
-.step{text-align:center;cursor:pointer}
-.step .bar{height:1px;background:var(--line);position:relative;overflow:hidden}
+.o small{font-size:clamp(9px,1vw,12px);color:var(--muted);text-align:center}
+.o1 .im{width:clamp(130px,30vw,300px);aspect-ratio:16/9}
+.o2 .im{width:clamp(56px,10.5vw,112px);aspect-ratio:9/16}
+.o3 .im{width:clamp(76px,14vw,150px);aspect-ratio:1}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;max-width:1100px;margin:52px auto 0}
+.step{text-align:left;display:block;width:100%;padding:0 0 6px}
+.step .bar{height:2px;background:var(--line);position:relative;overflow:hidden;border-radius:1px}
 .step .bar i{position:absolute;inset:0 auto 0 0;width:0;background:var(--gold)}
 .step.done .bar i{width:100%}
-.step.on .bar i{animation:fill 5s linear forwards}
-@keyframes fill{to{width:100%}}
-.step .n{font-family:var(--serif);font-size:54px;line-height:1;margin-top:26px;color:var(--dim);transition:color .3s}
-.step h3{margin-top:10px;color:var(--dim);transition:color .3s}
-.step p{color:var(--dim);margin-top:10px;font-size:15px;transition:color .3s}
-.step.on .n,.step.on h3{color:var(--fg)}
-.step.on p{color:var(--muted)}
+.step.on .bar i{animation:fillw 5s linear forwards}
+.steps.paused .step.on .bar i{animation-play-state:paused}
+.step .n{display:block;font-family:var(--serif);font-size:42px;line-height:1;margin-top:20px;color:var(--dim);transition:color .3s}
+.step .t{display:block;font-family:var(--serif);font-size:21px;margin-top:8px;color:var(--dim);transition:color .3s}
+.step .d{display:block;color:var(--dim);margin-top:8px;font-size:14px;line-height:1.5;transition:color .3s}
+.step.on .n,.step.on .t{color:var(--fg)}
+.step.on .d{color:var(--muted)}
+.step:hover .t{color:var(--fg)}
+.step-detail{display:none}
 
-/* ---------- IV studio ---------- */
-.tabs{display:flex;justify-content:center;gap:34px;margin-top:54px;flex-wrap:wrap}
-.tabs button{font-size:13px;letter-spacing:.25em;text-transform:uppercase;color:var(--dim);padding:8px 2px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
-.tabs button.on{color:var(--fg);border-color:var(--gold)}
-.studio{max-width:1120px;margin:36px auto 0;border-radius:18px;padding:10px;background:#000;border:1px solid var(--line)}
-.app{border-radius:10px;background:#0e0d0c;overflow:hidden;font-size:13px}
-.app-top{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--line);gap:12px}
-.app-top .ad b{display:block;font-weight:600}
-.app-top .ad small{color:#7fb37f;font-size:11px}
-.app-top .acts{display:flex;align-items:center;gap:10px}
-.chip{border:1px solid var(--line);border-radius:7px;padding:6px 12px;font-size:12px;white-space:nowrap}
-.chip.g{background:var(--gold);border-color:var(--gold);color:#16120a;font-weight:600}
-.app-body{display:grid;grid-template-columns:64px 270px 1fr;min-height:430px}
-.rail{border-right:1px solid var(--line);padding:12px 6px;display:flex;flex-direction:column;gap:6px}
-.rail div{text-align:center;font-size:10px;color:var(--dim);padding:8px 2px;border-radius:8px}
-.rail div.on{background:var(--card);color:var(--fg)}
-.rail svg{display:block;margin:0 auto 4px;width:16px;height:16px}
-.pane{border-right:1px solid var(--line);padding:16px;overflow:hidden}
-.pane h5{font-size:14px;font-weight:600;margin-bottom:4px}
-.pane .sub{font-size:11px;color:var(--dim);margin-bottom:14px}
-.pv-wrap{padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:center}
-.pv-wrap .pv{position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden}
-.pv-wrap .pv img{width:100%;height:100%;object-fit:cover;animation:kb 12s ease-in-out infinite alternate}
-.pv-over{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:rgba(0,0,0,.25);opacity:0;transition:opacity .4s}
-.pv-over.on{opacity:1}
-.pv-over b{font-family:var(--serif);font-weight:400;font-size:clamp(18px,2.6vw,32px);letter-spacing:.12em;text-transform:uppercase}
-.pv-over span{font-size:11px;letter-spacing:.3em;color:var(--gold2);margin-top:6px}
-.pv-logo{position:absolute;right:14px;bottom:14px;display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.55);padding:6px 10px;border-radius:6px;font-family:var(--serif);opacity:0;transition:opacity .4s}
-.pv-logo.on{opacity:1}
-.pv-logo svg{width:16px;height:16px}
-.pv-bar{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--muted)}
-.pv-bar .tl{flex:1}
-.pv-bar .tl i{animation:tl 9s linear infinite}
-.ph{display:none}.ph.on{display:block}
-.shots{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.shots div{position:relative;aspect-ratio:4/3;border-radius:6px;background-size:cover;background-position:center}
-.shots div span{position:absolute;left:6px;top:6px;background:rgba(0,0,0,.7);font-size:10px;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.shots div em{position:absolute;right:6px;bottom:6px;background:rgba(0,0,0,.7);font-size:10px;font-style:normal;padding:2px 7px;border-radius:10px}
-.shots div.off{filter:grayscale(1) brightness(.5)}
-.row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px;border-radius:8px;border:1px solid var(--line);margin-bottom:8px}
-.row.on{border-color:var(--gold)}
-.row b{font-weight:500;display:block}
-.row small{color:var(--dim);font-size:11px}
-.row .pl{width:26px;height:26px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;flex:none}
-.field{margin-bottom:12px}
-.field label{display:block;font-size:11px;color:var(--dim);margin-bottom:4px}
-.field div{background:var(--card);border-radius:7px;padding:8px 10px}
-.swatches{display:flex;gap:8px}
-.swatches i{width:26px;height:26px;border-radius:6px;border:1px solid var(--line)}
+/* ---------- IV réglages ---------- */
+.tabs{display:flex;justify-content:center;gap:8px;margin:54px auto 0;flex-wrap:wrap}
+.tabs button{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding:12px 16px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--fg);border-color:var(--gold)}
+.tabs button:hover{color:var(--fg)}
+.studio{max-width:1100px;margin:28px auto 0;border-radius:18px;padding:10px;background:#000;border:1px solid var(--line)}
+.studio-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);border-radius:10px;background:#0e0d0c;overflow:hidden;overflow:clip;min-height:470px}
+.opts-pane{padding:30px 28px;border-right:1px solid var(--line)}
+.tp[hidden]{display:none}
+.tp h3{font-size:24px}
+.tp>p{color:var(--muted);font-size:14px;margin-top:6px}
+.grp{margin-top:20px}
+.grp-l{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;display:block}
+.optlist{display:flex;flex-direction:column;gap:8px}
+.optrow{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;padding:11px 14px;border:1px solid var(--line);border-radius:10px;transition:border-color .2s,background .2s;min-height:44px}
+.optrow b{display:block;font-weight:500;font-size:15px}
+.optrow small{display:block;color:var(--muted);font-size:13px;line-height:1.4;margin-top:2px}
+.optrow .dot{flex:none;width:18px;height:18px;border-radius:50%;border:1.5px solid var(--line2);position:relative}
+.optrow[aria-checked="true"]{border-color:var(--gold);background:rgba(246,188,40,.06)}
+.optrow[aria-checked="true"] .dot{border-color:var(--gold)}
+.optrow[aria-checked="true"] .dot::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--gold)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{padding:9px 14px;border:1px solid var(--line);border-radius:10px;font-size:14px;color:var(--muted);min-height:40px;transition:border-color .2s,color .2s}
+.pill[aria-checked="true"]{border-color:var(--gold);color:var(--fg);background:rgba(246,188,40,.06)}
+.note{font-size:13px;color:var(--dim);margin-top:16px;line-height:1.5}
+.pv-pane{padding:26px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:radial-gradient(circle at 50% 40%,#16130f,#0b0a09 70%)}
+.pv{position:relative;width:100%;max-width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#000;transition:width .45s ease,max-width .45s ease}
+.pv.r916{width:auto;height:min(400px,62vh);aspect-ratio:9/16}
+.pv.r11{width:auto;height:min(360px,56vh);aspect-ratio:1/1}
+.pv video{width:100%;height:100%;object-fit:cover}
+.pv .chip-demo{font-size:10px;padding:5px 8px;left:10px;top:10px}
+.pv-tag{position:absolute;right:10px;bottom:10px;z-index:2;font-size:11px;background:rgba(11,10,9,.78);padding:5px 9px;border-radius:6px;color:var(--fg);max-width:60%;text-align:right}
+.endcard{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;background:rgba(11,10,9,.86);opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s;padding:16px}
+.endcard.on{opacity:1;visibility:visible}
+.endcard .lg{width:56px;height:56px;border-radius:12px;border:1.5px dashed var(--gold2);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gold2);letter-spacing:.06em}
+.endcard b{font-family:var(--serif);font-weight:400;font-size:clamp(20px,2.6vw,30px)}
+.endcard span{font-size:clamp(11px,3.4vw,14px);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
+.pv-cap{font-size:12px;color:var(--dim);text-align:center}
 
-/* ---------- V examples ---------- */
-.ex{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:64px}
-.ex .c{cursor:pointer}
-.lb{position:fixed;inset:0;z-index:110;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.88);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
-.lb.on{opacity:1;visibility:visible}
-.lb-in{width:100%;max-width:1000px}
-.lb-v{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000}
-.lb-v img,.lb-v video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.lb-v video{display:none;background:#000}
-.lb.isvid .lb-v video{display:block}.lb.isvid .lb-v img,.lb.isvid .lb-t,.lb.isvid .lb-bar{display:none}
-.lb.portrait .lb-in{max-width:min(420px,calc((100vh - 140px)*9/16))}
-.lb.portrait .lb-v{aspect-ratio:9/16}
-.cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.showreel video{width:100%;height:100%;object-fit:cover;display:block}
-.lb.on .lb-v img{animation:lbk 12s linear forwards}
-@keyframes lbk{0%{transform:scale(1.25) translate(4%,2%)}100%{transform:scale(1.02) translate(-2%,-1%)}}
-.lb-t{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(transparent 40%,rgba(0,0,0,.55));padding:20px}
-.lb-t b{font-family:var(--serif);font-weight:400;font-size:clamp(22px,4vw,44px);letter-spacing:.06em;opacity:0;transform:translateY(12px)}
-.lb.on .lb-t b{animation:lbt 1.2s .6s forwards}
-@keyframes lbt{to{opacity:1;transform:none}}
-.lb-logo{position:absolute;right:14px;bottom:14px;display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.55);padding:6px 10px;border-radius:6px;font-family:var(--serif);font-size:14px}
-.lb-logo svg{width:16px;height:16px}
-.lb-bar{position:absolute;left:0;bottom:0;height:3px;background:var(--gold);width:0}
-.lb.on .lb-bar{animation:tl 12s linear forwards}
-.lb-f{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:16px;flex-wrap:wrap}
-.lb-f small{font-size:11px;letter-spacing:.3em;color:var(--dim)}
-.lb .x{position:absolute;top:16px;right:16px;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);font-size:22px;color:var(--fg)}
-.ex .c.big{grid-column:span 2}
-.ex .im{position:relative;aspect-ratio:16/10;border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
-.ex .big .im{aspect-ratio:16/8.6}
-.ex .im img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
-.ex .c:hover img{transform:scale(1.06)}
-.ex .pp{position:absolute;left:16px;bottom:16px;width:46px;height:46px;border-radius:50%;background:rgba(11,10,9,.6);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
-.ex h3{text-align:center;margin-top:18px}
-.ex small{display:block;text-align:center;font-size:11px;letter-spacing:.3em;color:var(--dim);margin-top:6px}
+/* ---------- V exemples ---------- */
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:64px}
+.excard .im{position:relative;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#000}
+.excard .im img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.excard .main{position:absolute;inset:0;display:block;width:100%;height:100%}
+.excard .main:hover img,.excard .main:focus-visible img{transform:scale(1.05)}
+.excard .main:focus-visible{outline-offset:-4px}
+.excard .pp{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(11,10,9,.6);border:1px solid rgba(246,188,40,.6);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);color:var(--gold)}
+.excard .pp svg{width:22px;height:22px;margin-left:3px}
+.excard h3{margin-top:18px}
+.excard .meta{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);margin-top:6px}
+.excard .fm{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.ex-note{text-align:center;color:var(--dim);font-size:13px;margin-top:28px}
 
-/* ---------- VI compare ---------- */
-.cmp{max-width:980px;margin:70px auto 0;display:grid;grid-template-columns:1.2fr 1fr 1fr;align-items:stretch}
+/* ---------- VI comparatif ---------- */
+.cmp{max-width:980px;margin:70px auto 0;display:grid;grid-template-columns:1.25fr 1fr 1fr;align-items:stretch}
 .cmp .col{display:flex;flex-direction:column}
-.cmp .cell{padding:0 20px;border-bottom:1px solid var(--line);height:76px;display:flex;align-items:center;line-height:1.3}
-.cmp .h{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);justify-content:center;text-align:center;height:100px}
-.cmp .v{justify-content:center;text-align:center}
+.cmp .cell{padding:0 18px;border-bottom:1px solid var(--line);min-height:72px;display:flex;align-items:center;line-height:1.3}
+.cmp .h{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);justify-content:center;text-align:center;min-height:96px}
+.cmp .v{justify-content:center;text-align:center;color:var(--muted)}
 .cmp .k{color:var(--fg)}
-.cmp s{color:var(--dim)}
-.cmp .us{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 30px 80px -30px rgba(0,0,0,.8);margin-top:-18px;margin-bottom:-18px;padding:18px 0}
+.cmp .us{background:var(--card);border:1px solid var(--line2);border-radius:16px;box-shadow:0 30px 80px -30px rgba(0,0,0,.8);margin-top:-18px;margin-bottom:-18px;padding:18px 0}
 .cmp .us .h{font-family:var(--serif);font-size:30px;letter-spacing:0;text-transform:none;color:var(--fg)}
-.cmp .us .v{font-family:var(--serif);font-size:22px}
-.cmp .us .cell:last-child,.cmp .col .cell:last-child{border-bottom:0}
-.ok{color:var(--gold)}
+.cmp .us .v{font-family:var(--serif);font-size:21px;color:var(--fg)}
+.cmp .col .cell:last-child{border-bottom:0}
+.ok{color:var(--gold)!important}
+.cmp-note{max-width:980px;margin:44px auto 0;font-size:13px;color:var(--dim);line-height:1.6;text-align:center}
+.cmp-note a{text-decoration:underline;text-underline-offset:3px;color:var(--muted);display:inline-block;padding:3px 0}
 
-/* ---------- VII pricing ---------- */
+/* ---------- VII tarifs ---------- */
 .toggles{display:flex;justify-content:center;gap:14px;margin-top:40px;flex-wrap:wrap}
 .seg{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:4px}
-.seg button{padding:8px 18px;border-radius:7px;font-size:14px;color:var(--muted)}
-.seg button.on{background:var(--fg);color:#111}
-.seg button em{font-style:normal;font-size:11px;color:var(--gold);margin-left:4px}
-.seg button.on em{color:#8a6200}
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;align-items:stretch}
-.plans.four{grid-template-columns:repeat(4,1fr);gap:18px}
-.plans.four .plan{padding:30px 22px}
-.plans.four .price{font-size:46px}
-.plan{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:34px 30px;display:flex;flex-direction:column;position:relative}
-.alt .plan{background:var(--bg)}
-.subs{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:24px auto 0}
-.subs .plan{padding:28px 30px}
-.subs-t{text-align:center;margin-top:64px}
-.subs-t p{color:var(--muted);margin-top:10px}
-@media(max-width:760px){.subs{grid-template-columns:1fr;max-width:460px}}
-.plan.pop{border-color:var(--gold);box-shadow:0 30px 90px -40px rgba(246,188,40,.4)}
-.plan .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gold);color:#16120a;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:5px 12px;border-radius:20px;white-space:nowrap}
+.seg button{padding:9px 18px;border-radius:7px;font-size:14px;color:var(--muted);min-height:40px}
+.seg button[aria-pressed="true"]{background:var(--fg);color:#111}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px;align-items:stretch}
+.plan{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:34px 28px 28px;display:flex;flex-direction:column;position:relative}
+.plan.hl{border-color:rgba(246,188,40,.55)}
+.badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gold);color:#16120a;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:20px;white-space:nowrap}
+.badge.soft{background:var(--card);color:var(--gold);border:1px solid rgba(246,188,40,.6)}
 .plan h3{font-size:26px}
 .plan .d{color:var(--muted);font-size:14px;margin-top:4px;min-height:44px}
-.price{margin:22px 0 4px;font-family:var(--serif);font-size:52px;line-height:1}
+.price{margin:20px 0 2px;font-family:var(--serif);font-size:52px;line-height:1;white-space:nowrap}
 .price small{font-family:var(--sans);font-size:15px;color:var(--muted)}
-.per{font-size:13px;color:var(--dim);min-height:20px}
-.plan ul{list-style:none;margin:24px 0 30px;display:flex;flex-direction:column;gap:11px;font-size:15px;color:var(--muted);flex:1}
+.ttc{font-size:13px;color:var(--muted);min-height:20px}
+.per{font-size:13px;color:var(--dim);min-height:20px;margin-top:2px}
+.plan ul{list-style:none;margin:22px 0 26px;display:flex;flex-direction:column;gap:10px;font-size:15px;color:var(--muted);flex:1}
 .plan li{display:flex;gap:10px}
-.plan li::before{content:"";flex:none;width:16px;height:16px;margin-top:4px;background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23F6BC28' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8.5l3.2 3L13 4.5'/%3E%3C/svg%3E")}
-.plan .btn{justify-content:center}
-.unit{text-align:center;margin-top:34px;color:var(--muted)}
-.unit b{color:var(--fg);font-weight:500}
+.plan li::before,.incl li::before{content:"";flex:none;width:16px;height:16px;margin-top:4px;background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23F6BC28' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8.5l3.2 3L13 4.5'/%3E%3C/svg%3E")}
+.plan .btn{width:100%}
+.subs-t{text-align:center;margin-top:72px}
+.subs-t p{color:var(--muted);margin:10px auto 0;max-width:620px}
+.plans.subs{grid-template-columns:1fr 1fr;max-width:800px;margin:44px auto 0}
+.taxline{text-align:center;margin-top:30px;color:var(--muted);font-size:14px}
+.incl{margin:72px auto 0;max-width:1000px;border:1px solid var(--line);border-radius:18px;padding:40px 36px;background:var(--bg2)}
+.incl h3{text-align:center;font-size:30px}
+.incl>p{text-align:center;color:var(--muted);margin-top:6px}
+.incl ul{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:14px 36px;margin-top:30px}
+.incl li{display:flex;gap:10px;color:var(--muted);font-size:15px}
+.incl li b{color:var(--fg);font-weight:500}
+.guar{margin:24px auto 0;max-width:1000px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;border:1px solid rgba(246,188,40,.5);border-radius:18px;padding:30px 32px;background:linear-gradient(135deg,rgba(246,188,40,.08),transparent 60%)}
+.guar svg{width:40px;height:40px;color:var(--gold)}
+.guar h3{font-size:26px}
+.guar p{color:var(--muted);margin-top:6px;font-size:15px}
+.guar a{color:var(--fg);text-decoration:underline;text-underline-offset:3px;display:inline-block;padding:4px 0}
+.pay-note{text-align:center;color:var(--dim);font-size:13px;max-width:720px;margin:26px auto 0;line-height:1.6}
+.pay-note a{text-decoration:underline;text-underline-offset:3px;color:var(--muted);display:inline-block;padding:3px 0}
 
 /* ---------- VIII faq ---------- */
-.faq{max-width:820px;margin:60px auto 0}
+.faq{max-width:840px;margin:60px auto 0}
 .q{border-bottom:1px solid var(--line)}
-.q button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:26px 0;text-align:left;font-family:var(--serif);font-size:clamp(19px,2vw,24px)}
-.q .pm{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:transform .3s,border-color .3s}
+.q h3{font-size:inherit;font-family:inherit;letter-spacing:inherit}
+.q button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 0;text-align:left;font-family:var(--serif);font-size:clamp(19px,2vw,23px);line-height:1.3}
+.q .pm{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;transition:transform .3s,border-color .3s;font-family:var(--sans);font-size:18px}
 .q.open .pm{transform:rotate(45deg);border-color:var(--gold)}
 .q .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease}
 .q.open .a{grid-template-rows:1fr}
 .q .a>div{overflow:hidden}
-.q .a p{color:var(--muted);padding:0 50px 26px 0}
+.q .a p{color:var(--muted);padding:0 50px 24px 0}
+.q .a p+p{margin-top:-12px}
+.q .a a{color:var(--fg);text-decoration:underline;text-underline-offset:3px;display:inline-block;padding:2px 0;line-height:1.3}
 
 /* ---------- final + footer ---------- */
 .final{text-align:center;padding:150px 0}
-.final .btn{margin-top:44px}
+.final p{color:var(--muted);max-width:560px;margin:26px auto 0}
+.final .cta-row{margin-top:40px}
 footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px solid var(--line)}
-.fcols{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:40px}
-.fcols h6{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--dim);font-weight:500;margin-bottom:18px}
-.fcols a{display:block;color:var(--muted);font-size:14px;margin-bottom:11px}
-.fcols a:hover{color:var(--fg)}
-.fcols a.logo{display:flex;font-size:24px;color:var(--fg);margin:0}
-.fcols p{color:var(--muted);font-size:14px;max-width:300px;margin-top:16px}
+.fcols{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:40px}
+.fcols h2{font-family:var(--sans);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--dim);font-weight:500;margin-bottom:12px}
+.fcols a:not(.logo){display:block;color:var(--muted);font-size:14px;padding:6px 0}
+.fcols a:not(.logo):hover{color:var(--fg)}
+.fcols p{color:var(--muted);font-size:14px;max-width:320px;margin-top:16px}
 .socials{display:flex;gap:10px;margin-top:22px}
-.socials a{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0}
+.socials a{width:44px;height:44px;border:1px solid var(--line2);border-radius:50%;display:flex!important;align-items:center;justify-content:center;padding:0!important}
 .socials a:hover{border-color:var(--gold)}
-.socials svg{width:16px;height:16px}
-.fbot{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid var(--line);margin-top:60px;padding-top:24px;font-size:13px;color:var(--dim);flex-wrap:wrap}
+.socials svg{width:18px;height:18px}
+.fbot{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;border-top:1px solid var(--line);margin-top:60px;padding-top:24px;font-size:13px;color:var(--dim);flex-wrap:wrap}
+.fbot p{max-width:760px;line-height:1.6}
+.fbot a{color:var(--muted);display:inline-block;padding:4px 0}
 .giant{font-family:var(--serif);font-size:clamp(70px,18vw,300px);line-height:.8;letter-spacing:-.04em;color:#1a1714;text-align:center;margin-top:30px;white-space:nowrap;user-select:none;transform:translateY(12%)}
 
-/* ---------- modal ---------- */
-.modal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+/* ---------- aide flottante ---------- */
+.help{position:fixed;right:18px;bottom:18px;z-index:60}
+.help[inert]{visibility:hidden}
+.help-btn{width:52px;height:52px;border-radius:50%;background:var(--card);border:1px solid rgba(246,188,40,.6);color:var(--gold);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,.5);font-family:var(--serif);font-size:24px}
+.help-btn .ic-x{display:none}
+.help-btn[aria-expanded="true"] .ic-x{display:block}
+.help-btn[aria-expanded="true"] .ic-q{display:none}
+.help-pop{position:absolute;right:0;bottom:64px;width:min(300px,calc(100vw - 36px));background:var(--bg2);border:1px solid var(--line2);border-radius:14px;padding:18px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.help-pop[hidden]{display:none}
+.help-pop h2{font-family:var(--serif);font-size:22px;font-weight:400}
+.help-pop p{font-size:13px;color:var(--muted);margin:4px 0 12px}
+.help-pop a,.help-pop button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:11px 12px;border-radius:9px;font-size:14px;border:1px solid var(--line);margin-top:8px;min-height:44px}
+.help-pop a:hover,.help-pop button:hover{border-color:var(--gold)}
+.help-pop svg{width:16px;height:16px;color:var(--gold);flex:none}
+
+/* ---------- visionneuse ---------- */
+.lb{position:fixed;inset:0;z-index:110;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.9);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.lb.on{opacity:1;visibility:visible}
+.lb[hidden],.modal[hidden]{display:none}
+.lb-in{width:100%;max-width:1000px}
+.lb.portrait .lb-in{max-width:min(420px,calc((100vh - 170px)*9/16))}
+.lb-v{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000}
+.lb.portrait .lb-v{aspect-ratio:9/16}
+.lb-v video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+.lb-f{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:14px;flex-wrap:wrap}
+.lb-f div{min-width:0}
+.lb-f b{display:block;font-family:var(--serif);font-weight:400;font-size:20px}
+.lb-f small{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.lb-ctl{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;align-items:center;gap:10px;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,.7))}
+.lb-ctl button{flex:none;width:40px;height:40px;border-radius:50%;background:rgba(11,10,9,.75);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;color:var(--fg)}
+.lb-ctl svg{width:15px;height:15px}
+.lb-ctl .i-play,.lb-ctl .i-off{display:none}
+.lb-ctl button.is-paused .i-play,.lb-ctl button.is-muted .i-off{display:block}
+.lb-ctl button.is-paused .i-pause,.lb-ctl button.is-muted .i-on{display:none}
+.lb-prog{flex:1;height:3px;border-radius:2px;background:rgba(243,239,231,.25);overflow:hidden}
+.lb-prog i{display:block;height:100%;width:0;background:var(--gold)}
+.lb .x{position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line2);font-size:24px;color:var(--fg);background:rgba(11,10,9,.6);z-index:2}
+
+/* ---------- fenêtre liste d'attente ---------- */
+.modal{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
 .modal.on{opacity:1;visibility:visible}
-.mbox{position:relative;width:100%;max-width:420px;background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:40px 32px 32px;text-align:center;transform:translateY(16px);transition:transform .3s}
+.mbox{position:relative;width:100%;max-width:440px;max-height:calc(100vh - 32px);overflow:auto;background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:40px 30px 28px;text-align:center;transform:translateY(16px);transition:transform .3s}
 .modal.on .mbox{transform:none}
-.mbox .x{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;color:var(--muted);font-size:20px}
-.mbox h3{font-size:30px}
-.mbox>p{color:var(--muted);font-size:14px;margin-top:8px}
-.gbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:26px;padding:13px;border-radius:10px;background:var(--fg);color:#111;font-weight:600}
-.or{display:flex;align-items:center;gap:12px;margin:20px 0;color:var(--dim);font-size:13px}
-.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
-.mbox input{width:100%;padding:13px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit;font-size:15px}
-.mbox input:focus{outline:none;border-color:var(--gold)}
-.mbox .btn{width:100%;justify-content:center;margin-top:10px}
-.mbox .fine{font-size:12px;color:var(--dim);margin-top:16px}
-.mbox .okmsg{display:none;color:var(--fg);margin-top:18px}
-.mbox.sent form,.mbox.sent .gbtn,.mbox.sent .or{display:none}
-.mbox.sent .okmsg{display:block}
+.mbox .x{position:absolute;top:10px;right:10px;width:44px;height:44px;border-radius:50%;color:var(--muted);font-size:22px}
+.mbox .x:hover{color:var(--fg)}
+.mbox h2{font-size:32px;line-height:1.1}
+.mbox h2 .it{color:var(--gold2)}
+.mbox .intro{color:var(--muted);font-size:15px;margin-top:12px}
+.mbox form{margin-top:22px;text-align:left}
+.mbox label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+.mbox input[type=email]{width:100%;padding:13px 14px;border-radius:10px;border:1px solid var(--line2);background:var(--bg);color:var(--fg);font:inherit;font-size:16px;min-height:48px}
+.mbox input[type=email]:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(246,188,40,.2)}
+.mbox .btn{width:100%;margin-top:12px}
+.mbox .fine{font-size:12px;color:var(--dim);margin-top:16px;line-height:1.55;text-align:left}
+.mbox .fine a{color:var(--muted);text-decoration:underline;text-underline-offset:2px;display:inline-block;padding:3px 0}
+.msg{display:none;margin-top:14px;font-size:14px;line-height:1.5;text-align:left;border-radius:10px;padding:12px 14px}
+.msg.err{display:block;color:#ffd7cf;background:rgba(220,80,60,.12);border:1px solid rgba(220,80,60,.4)}
+.msg.err a{color:#fff;text-decoration:underline}
+.okbox{display:none;margin-top:22px}
+.okbox p{color:var(--fg);font-size:16px}
+.okbox .btn{margin-top:18px}
+.mbox.sent form,.mbox.sent .intro,.mbox.sent .fine{display:none}
+.mbox.sent .okbox{display:block}
 
 /* ---------- responsive ---------- */
+@media (max-width:1060px){
+  .menu{gap:18px}
+}
 @media (max-width:980px){
-  .menu,.nav-r .login{display:none}
+  .menu,.nav-r .ex-btn{display:none}
   .burger{display:flex}
-  .mob{position:fixed;inset:72px 0 auto;z-index:49;background:rgba(11,10,9,.97);border-bottom:1px solid var(--line);padding:16px 24px 28px;flex-direction:column;gap:4px}
+  .mob{position:fixed;inset:var(--hh) 0 0;z-index:49;overflow:auto;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 24px 28px;flex-direction:column}
   .mob.on{display:flex}
-  .mob a{padding:12px 0;border-bottom:1px solid var(--line);color:var(--muted)}
-  .mob .btn{margin-top:16px;justify-content:center;color:#16120a}
-  .grid2{grid-template-columns:1fr}
-  .app-body{grid-template-columns:52px 1fr}
-  .pane{display:none}
-  .plans,.plans.four{grid-template-columns:1fr 1fr;max-width:none}
+  .mob a{padding:14px 0;border-bottom:1px solid var(--line);color:var(--fg);font-family:var(--serif);font-size:22px}
+  .mob .btn{margin-top:20px;font-family:var(--sans);font-size:16px;color:#16120a;border:0}
+  .pts{grid-template-columns:1fr;gap:8px;max-width:620px}
+  .studio-in{grid-template-columns:1fr}
+  .pv-pane{order:-1;border-bottom:1px solid var(--line);position:sticky;top:var(--hh);z-index:3;align-self:start}
+  .opts-pane{border-right:0}
+  .plans{grid-template-columns:1fr 1fr}
+  .plans>.plan:first-child{grid-column:span 2}
+  .plans.subs>.plan:first-child{grid-column:auto}
   .fcols{grid-template-columns:1fr 1fr}
   .fcols>div:first-child{grid-column:span 2}
+  .steps{grid-template-columns:repeat(5,1fr);gap:10px}
+  .step .t,.step .d{display:none}
+  .step .n{font-size:32px;margin-top:14px;text-align:center}
+  .step-detail{display:block;text-align:center;max-width:520px;margin:22px auto 0;min-height:96px}
+  .step-detail b{display:block;font-family:var(--serif);font-weight:400;font-size:24px}
+  .step-detail span{display:block;color:var(--muted);margin-top:6px}
 }
 @media (max-width:720px){
-  .plans,.plans.four{grid-template-columns:1fr;max-width:460px;margin-left:auto;margin-right:auto}
+  :root{--hh:112px}
   section{padding:84px 0}
   .wrap{padding:0 16px}
-  .hero{padding:130px 0 64px}
+  .hero{padding:calc(var(--hh) + 46px) 0 64px}
   .lead{font-size:16px}
-  .nav-r .btn{display:none}
+  .nav{height:64px}
+  .logo{font-size:21px}
+  .logo svg{width:26px;height:26px}
+  .nav-r .btn.sm{padding:8px 12px;font-size:13px}
+  .showreel{margin-top:48px;padding:6px}
+  .showreel .cap{display:none}
+  .play{width:64px;height:64px;margin:-32px 0 0 -32px}
   .stats{grid-template-columns:1fr}
+  .stat{padding:20px 10px}
   .stat+.stat{border-left:0;border-top:1px solid var(--line)}
-  .stat b{font-size:38px}
-  .steps{grid-template-columns:1fr;gap:28px}
-  .ex{grid-template-columns:1fr}
-  .ex .c.big{grid-column:auto}
-  .ex .big .im{aspect-ratio:16/10}
-  .cmp{grid-template-columns:1fr 1fr 1fr;font-size:13px}
-  .cmp .cell{padding:0 8px;height:64px}
-  .cmp .h{font-size:9px;letter-spacing:.15em;height:80px}
-  .cmp .us .h{font-size:18px}
-  .cmp .us .v{font-size:15px}
-  .kpis{grid-template-columns:1fr 1fr}
-  .screen{aspect-ratio:4/3.9}
-  .ed{grid-template-columns:1fr;grid-template-rows:auto 1fr}
-  .ed .side{grid-template-columns:repeat(5,1fr);order:2}
-  .ed .side div:nth-child(n+6){display:none}
+  .stat b{font-size:36px}
+  .screen{aspect-ratio:3/3.3}
+  .thumbs{grid-template-columns:repeat(4,1fr);gap:2%}
+  .fgrid{grid-template-columns:1fr;gap:2%}
+  .ff.full{grid-column:auto}
+  .ff.hide-m{display:none}
+  .outs{flex-wrap:wrap}
+  .o1 .im{width:72vw}.o2 .im{width:22vw}.o3 .im{width:30vw}
   .o3{display:none}
-  .o1 .im{width:52vw}.o2 .im{width:19vw}
-  .ed .main .meta:first-child{display:none}
-  .thumbs{grid-template-columns:repeat(4,1fr)}
-  .thumbs div:nth-child(n+9){display:none}
-  .app-top .acts .chip:not(.g){display:none}
-  .tabs{gap:6px 14px}
-  .tabs button{font-size:11px;letter-spacing:.15em}
+  .ex{grid-template-columns:1fr;gap:44px}
+  .tabs{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;gap:0;margin-left:-16px;margin-right:-16px;padding:0 16px;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs{justify-content:flex-start;justify-content:safe center}
+  .tabs button{font-size:12px;letter-spacing:.1em;padding:12px 10px}
+  .hide-s{display:none}
+  .studio{padding:6px}
+  .opts-pane{padding:22px 18px}
+  .pv-pane{padding:16px}
+  .pv.r916{height:min(300px,40vh)}
+  .pv.r11{height:min(300px,40vh);width:auto}
+  .pv-cap{font-size:11px}
+  .cmp{grid-template-columns:1.1fr 1fr 1fr;font-size:13px}
+  .cmp .cell{padding:0 8px;min-height:64px}
+  .cmp .h{font-size:9px;letter-spacing:.12em;min-height:80px}
+  .cmp .us .h{font-size:19px}
+  .cmp .us .v{font-size:15px}
+  .plans,.plans.subs{grid-template-columns:1fr;max-width:460px;margin-left:auto;margin-right:auto}
+  .plans>.plan:first-child{grid-column:auto}
+  .plan{padding:32px 22px 24px}
+  .incl{padding:30px 20px}
+  .incl ul{grid-template-columns:1fr}
+  .guar{grid-template-columns:1fr;padding:26px 22px}
   .q .a p{padding-right:0}
   .final{padding:100px 0}
+  .fcols{grid-template-columns:1fr}
+  .fcols>div:first-child{grid-column:auto}
+  .help{right:12px;bottom:12px}
+  .help-btn{width:48px;height:48px}
+  .mbox{padding:40px 20px 24px}
+}
+@media (max-width:400px){
+  .topbar{font-size:12px}
 }
 @media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rv,.fade,.hero h1 .w{opacity:1!important;transform:none!important;filter:none!important}
+  .swash path{stroke-dashoffset:0}
 }
 </style>
 </head>
 <body>
+<a class="skip" href="#contenu">Aller au contenu</a>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <linearGradient id="lg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F3EFE7"/><stop offset="1" stop-color="#F6BC28"/></linearGradient>
     <symbol id="mark" viewBox="0 0 100 100"><g fill="none" stroke="url(#lg)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 42 L50 14 L86 42 V86 H14 Z"/><path d="M40 40 L64 54 L40 68 Z"/></g></symbol>
     <symbol id="arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="tri" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="currentColor"/></symbol>
-    <symbol id="sw" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M2 14 C 80 4, 200 2, 298 9"/></symbol>
+    <symbol id="mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13l8.5-6.5"/></g></symbol>
+    <symbol id="book" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M4 20.5A2.5 2.5 0 016.5 18H20v3H6.5"/></g></symbol>
   </defs>
 </svg>
 
-<!-- ================= HEADER ================= -->
+<!-- ================= EN-TÊTE ================= -->
 <header id="top">
+  <div class="topbar">Lancement en cours&nbsp;: les commandes ouvrent très bientôt. <button type="button" data-open data-offre="bandeau">Être prévenu</button></div>
   <div class="wrap nav">
-    <a href="#" class="logo" aria-label="ImmoClap, accueil"><svg><use href="#mark"/></svg><span class="wm">Immo<span>Clap</span></span></a>
+    <a href="#top" class="logo" aria-label="ImmoClap, haut de page"><svg aria-hidden="true"><use href="#mark"/></svg><span class="wm">Immo<span>Clap</span></span></a>
     <nav class="menu" aria-label="Navigation principale">
-      <a href="#produit">Produit</a>
-      <a href="#comment">Comment ça marche</a>
+      <a href="#principe">Le principe</a>
+      <a href="#etapes">Étapes</a>
+      <a href="#reglages">Réglages</a>
       <a href="#exemples">Exemples</a>
       <a href="#tarifs">Tarifs</a>
       <a href="#faq">FAQ</a>
     </nav>
     <div class="nav-r">
-      <a href="#" class="login" data-open>Se connecter</a>
-      <a href="#" class="btn sm" data-open>Créer ma vidéo <svg width="14" height="14"><use href="#arrow"/></svg></a>
-      <button class="burger" aria-label="Menu" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 22 22"><path d="M3 7h16M3 15h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+      <button type="button" class="btn ghost sm ex-btn" data-video="assets/videos/villa-marrakech-9x16" data-ratio="9x16" data-title="Villa avec piscine, Marrakech">Voir un exemple</button>
+      <button type="button" class="btn sm" data-open data-offre="en-tête">Être prévenu<span class="sr-only"> de l'ouverture</span></button>
+      <button type="button" class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mob">
+        <svg class="ic-m" width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 7h16M3 15h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <svg class="ic-x" width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M5 5l12 12M17 5L5 17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
     </div>
   </div>
-  <div class="progress"></div>
+  <div class="progress" aria-hidden="true"></div>
 </header>
-<nav class="mob" aria-label="Menu mobile">
-  <a href="#produit">Produit</a><a href="#comment">Comment ça marche</a><a href="#exemples">Exemples</a><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a>
-  <a href="#" data-open>Se connecter</a>
-  <a href="#" class="btn" data-open>Créer ma vidéo <svg width="14" height="14"><use href="#arrow"/></svg></a>
+<nav class="mob" id="mob" aria-label="Menu mobile">
+  <a href="#principe">Le principe</a><a href="#etapes">Étapes</a><a href="#reglages">Réglages</a><a href="#exemples">Exemples</a><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a>
+  <button type="button" class="btn" data-open data-offre="menu mobile">Être prévenu de l'ouverture <svg class="ar" width="14" height="14" aria-hidden="true"><use href="#arrow"/></svg></button>
 </nav>
 
-<main>
-<!-- ================= I. HERO ================= -->
-<section class="hero">
+<main id="contenu" tabindex="-1">
+<!-- ================= I. HAUT DE PAGE ================= -->
+<section class="hero" aria-labelledby="h1">
   <div class="wrap">
-    <div class="eyebrow fade">Vidéos immobilières · Photos → vidéo en 5 min</div>
+    <div class="eyebrow fade">Vidéo immobilière par IA · France et Maroc</div>
     <h1 id="h1">
-      <span class="l1">Vos biens méritent mieux</span><br>
-      <span class="it l2">que des photos.<svg class="swash" id="sw1" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span>
+      <span class="l1">Faites visiter</span><br>
+      <span class="it l2">avant la visite.<svg class="swash" id="sw1" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span>
     </h1>
-    <p class="lead fade">Déposez les photos de votre bien. En quelques minutes, vous obtenez une vidéo cinématique avec votre logo, une voix off et de la musique. <strong>Sans vidéaste. Sans facture à 500&nbsp;€. Sans attendre.</strong></p>
+    <p class="lead fade">Envoyez de 3 à 12 photos d'un appartement, d'une villa ou d'un riad. ImmoClap anime chaque image comme un plan de caméra et vous rend une vidéo de 15 à 60&nbsp;secondes, avec musique, voix off en français, en arabe ou en anglais, et les coordonnées de votre agence à la fin. <strong>Pas de tournage, pas de vidéaste à faire venir.</strong></p>
     <div class="cta fade">
-      <div class="cta-row"><a href="#" class="btn" data-open>Créer ma vidéo <svg width="16" height="16"><use href="#arrow"/></svg></a><a href="#" class="btn ghost" data-play="assets/exemples/marrakech.jpg" data-video="assets/videos/villa-marrakech-9x16.mp4" data-title="Villa Palmeraie, Marrakech"><svg width="14" height="14"><use href="#tri"/></svg> Voir un exemple</a></div>
-      <div class="trust">Paiement à la vidéo · Sans engagement · Prête en quelques minutes</div>
+      <div class="cta-row">
+        <button type="button" class="btn" data-open data-offre="hero">Être prévenu de l'ouverture <svg class="ar" width="16" height="16" aria-hidden="true"><use href="#arrow"/></svg></button>
+        <button type="button" class="btn ghost" data-video="assets/videos/villa-marrakech-9x16" data-ratio="9x16" data-title="Villa avec piscine, Marrakech"><svg width="14" height="14" aria-hidden="true"><use href="#tri"/></svg> Voir un exemple</button>
+      </div>
+      <div class="trust">Sans engagement · À la vidéo ou au mois · Vidéo prête en quelques minutes</div>
     </div>
     <div class="showreel fade">
       <div class="frame">
-        <video poster="assets/exemples/marrakech.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Vidéo de démonstration : villa à Marrakech"><source src="assets/videos/villa-marrakech-16x9.webm" type="video/webm"><source src="assets/videos/villa-marrakech-16x9.mp4" type="video/mp4"></video>
+        <span class="chip-demo">Vidéo de démonstration</span>
+        <video id="heroVid" poster="assets/exemples/villa-t0.webp" autoplay muted loop playsinline preload="metadata" aria-label="Vidéo de démonstration générée par IA&nbsp;: villa avec piscine à Marrakech"><source src="assets/videos/villa-marrakech-16x9.webm" type="video/webm"><source src="assets/videos/villa-marrakech-16x9.mp4" type="video/mp4"></video>
         <div class="shade"></div>
-        <button class="play" data-play="assets/exemples/marrakech.jpg" data-video="assets/videos/villa-marrakech-9x16.mp4" data-title="Villa Palmeraie, Marrakech" aria-label="Voir la vidéo de démonstration"><svg style="color:var(--gold)"><use href="#tri"/></svg></button>
-        <div class="cap">Chaque plan commence par une simple photo</div>
+        <button type="button" class="play" data-video="assets/videos/villa-marrakech-9x16" data-ratio="9x16" data-title="Villa avec piscine, Marrakech" aria-label="Regarder la démonstration en grand, avec le son"><svg aria-hidden="true"><use href="#tri"/></svg></button>
+        <div class="cap">Démonstration générée par IA · villa à Marrakech</div>
+        <button type="button" class="vpause" id="heroPause" aria-pressed="false" aria-label="Mettre la vidéo en pause"><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l8 5-8 5z" fill="currentColor"/></svg></button>
       </div>
     </div>
     <div class="stats">
-      <div class="stat"><b><span data-count="5">0</span> min</b><span>des photos à la vidéo</span></div>
-      <div class="stat"><b><span data-count="3">0</span> formats</b><span>portails, Reels, carré</span></div>
-      <div class="stat"><b><span data-count="0">0</span> €</b><span>de vidéaste</span></div>
+      <div class="stat"><b>3 à <span data-count="12">12</span></b><span>photos par vidéo</span></div>
+      <div class="stat"><b><span data-count="3">3</span> formats</b><span>16:9 · 9:16 · 1:1</span></div>
+      <div class="stat"><b><span data-count="3">3</span> langues</b><span>de voix off&nbsp;: FR · AR · EN</span></div>
     </div>
   </div>
 </section>
 
-<!-- ================= II. PRODUIT ================= -->
-<section class="alt" id="produit">
+<!-- ================= II. LE PRINCIPE ================= -->
+<section class="alt" id="principe" aria-labelledby="t-principe">
   <div class="wrap">
-    <div class="eyebrow rv"><i>II</i><b></b>Ce que vous obtenez</div>
-    <h2 class="center rv">Un seul envoi.<br><span class="it">Tout pour votre annonce.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
-    <p class="lead center rv">Tout ce qu'il faut pour lancer un bien, à partir des photos que vous avez déjà.</p>
+    <div class="eyebrow rv"><i>II</i><b></b>Le principe</div>
+    <h2 class="center rv" id="t-principe">La caméra bouge.<br><span class="it">Le bien ne change pas.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
+    <p class="lead center rv">Chaque photo devient un court plan&nbsp;: un travelling, un panoramique, une légère montée. L'IA crée le mouvement, pas la pièce. Si un plan déforme quelque chose, on le refait gratuitement.</p>
 
-    <div class="grid2">
-      <div class="feat rv">
-        <div class="feat-top"><span class="tag">Vidéo du bien</span><a href="#exemples" class="link">Voir des exemples <svg width="14" height="14"><use href="#arrow"/></svg></a></div>
-        <div class="panel">
-          <div class="vid"><div class="box" id="fbox" style="aspect-ratio:16/9;width:100%"><img src="assets/exemples/paris.jpg" alt="Salon haussmannien à Paris (démonstration)"></div></div>
-          <div class="fmt" id="fmt"><button class="on" data-r="16/9">Écran large</button><button data-r="9/16">Téléphone</button><button data-r="1/1">Carré</button></div>
+    <div class="ba-wrap rv">
+      <div class="panel">
+        <div class="ba" id="ba">
+          <video id="baVid" muted loop playsinline preload="none" poster="assets/exemples/penthouse-t0.webp" aria-hidden="true" tabindex="-1"><source src="assets/exemples/plan-penthouse.webm" type="video/webm"><source src="assets/exemples/plan-penthouse.mp4" type="video/mp4"></video>
+          <div class="clip"><picture><source srcset="assets/exemples/penthouse-t0.webp" type="image/webp"><img src="assets/exemples/penthouse-t0.jpg" draggable="false" width="1080" height="608" alt="Image de départ&nbsp;: terrasse d'un penthouse face à la mer à Casablanca, image de démonstration générée par IA" loading="lazy" decoding="async"></picture></div>
+          <div class="handle"></div>
+          <div class="knob" id="knob" role="slider" tabindex="0" aria-label="Comparer l'image fixe et le plan animé" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50 % image fixe">‹&nbsp;›</div>
+          <span class="lbl l">IMAGE FIXE</span><span class="lbl r">PLAN ANIMÉ</span>
         </div>
-        <h3>Une vidéo cinématique, calée sur la musique</h3>
-        <p>Un mouvement de caméra sur chaque photo, des transitions fluides, votre logo.</p>
+        <div class="ba-cap"><span><b>Démonstration</b> · penthouse à Casablanca, image et plan générés par IA</span><span>Glissez le curseur</span></div>
       </div>
+    </div>
 
-      <div class="feat rv">
-        <div class="feat-top"><span class="tag">Photos sublimées</span><a href="#studio" class="link">Voir le studio <svg width="14" height="14"><use href="#arrow"/></svg></a></div>
-        <div class="panel">
-          <div class="ba" id="ba">
-            <img class="after" src="assets/exemples/fes.jpg" alt="Patio de riad à Fès, après retouche (démonstration)">
-            <div class="clip"><img src="assets/exemples/fes.jpg" alt="Patio de riad à Fès, avant retouche"></div>
-            <div class="handle"></div><div class="knob">‹ ›</div>
-            <span class="lbl l">AVANT</span><span class="lbl r">APRÈS</span>
-            <div class="bubble">« Lumière chaude de fin de journée »</div>
-          </div>
-          <div class="fmt"><span class="tag" style="font-size:10px">Retouches signalées « image retouchée par IA »</span></div>
-        </div>
-        <h3>Retouchez une photo en une phrase</h3>
-        <p>Lumière, ciel, ambiance. Le bien lui-même ne change jamais.</p>
+    <div class="pts">
+      <div class="pt rv">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/><path d="M3 3l18 18"/></svg>
+        <h3>Aucun tournage à organiser</h3>
+        <p>Vous partez des photos de l'annonce. Personne à faire venir, pas de propriétaire à déranger une seconde fois.</p>
       </div>
-
-      <div class="feat rv">
-        <div class="feat-top"><span class="tag">Page du bien</span></div>
-        <div class="panel browser">
-          <div class="bar"><i></i><i></i><i></i><div class="url">immoclap.com/biens/penthouse-anfa</div></div>
-          <div class="page">
-            <img src="assets/exemples/casablanca.jpg" alt="Terrasse de penthouse à Casablanca (démonstration)">
-            <div class="ov"><small>CASABLANCA · ANFA</small><strong>Penthouse vue océan</strong><span>4 pièces · 180 m² · Terrasse 90 m²</span></div>
-          </div>
-        </div>
-        <h3>Une page web pour chaque bien</h3>
-        <p>Vidéo, photos et contact, prête à partager en un lien.</p>
+      <div class="pt rv">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg>
+        <h3>Une voix dans la langue du client</h3>
+        <p>Voix off féminine ou masculine, en français, en arabe ou en anglais. Ou la musique seule, si vous préférez.</p>
       </div>
-
-      <div class="feat rv">
-        <div class="feat-top"><span class="tag">Statistiques</span></div>
-        <div class="panel dash">
-          <div class="hd"><b>Penthouse vue océan</b><span>30 derniers jours</span></div>
-          <div class="kpis">
-            <div><small>VUES</small><b data-count="1284">0</b></div>
-            <div><small>VISITEURS</small><b data-count="862">0</b></div>
-            <div><small>LECTURES</small><b data-count="611">0</b></div>
-            <div><small>CONTACTS</small><b data-count="14">0</b></div>
-          </div>
-          <svg class="spark" viewBox="0 0 400 110" preserveAspectRatio="none">
-            <defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6BC28" stop-opacity=".25"/><stop offset="1" stop-color="#F6BC28" stop-opacity="0"/></linearGradient></defs>
-            <path class="a" d="M0 92 C40 88 60 70 100 74 S160 50 200 56 S270 28 300 34 S360 12 400 8 V110 H0Z"/>
-            <path class="l" d="M0 92 C40 88 60 70 100 74 S160 50 200 56 S270 28 300 34 S360 12 400 8"/>
-          </svg>
-        </div>
-        <h3>Puis regardez les résultats</h3>
-        <p>Vues, lectures et demandes de contact, bien par bien.</p>
+      <div class="pt rv">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="12" height="8" rx="1.5"/><rect x="16" y="4" width="6" height="11" rx="1.5"/><rect x="7" y="16" width="6" height="6" rx="1.5"/></svg>
+        <h3>Prête pour WhatsApp comme pour les portails</h3>
+        <p>WhatsApp, Instagram, TikTok, Avito, Mubawab, SeLoger, Leboncoin&nbsp;: vous publiez le bon cadrage partout, et une version sans logo si un portail l'exige.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= III. COMMENT ================= -->
-<section id="comment">
+<!-- ================= III. ÉTAPES ================= -->
+<section id="etapes" aria-labelledby="t-etapes">
   <div class="wrap">
-    <div class="eyebrow rv"><i>III</i><b></b>Comment ça marche</div>
-    <h2 class="center rv">Des photos en entrée.<br><span class="it">Une vidéo en sortie.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
+    <div class="eyebrow rv"><i>III</i><b></b>Les étapes</div>
+    <h2 class="center rv" id="t-etapes">Cinq étapes,<br><span class="it">rien à monter vous-même.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
+    <p class="lead center rv">Voici le parcours de l'espace client, qui ouvre très bientôt. Quelques minutes de saisie, puis la génération se fait sans vous.</p>
 
-    <div class="device rv">
+    <div class="device rv" aria-hidden="true">
+      <span class="chip-demo">Aperçu · démonstration</span>
       <div class="screen">
         <div class="scr on" data-s="0">
-          <div class="up-h"><h4>Déposez vos photos</h4><p>Vous pourrez les réordonner et les modifier ensuite.</p></div>
-          <div class="drop">⇪ Déposez vos photos ici · ou cliquez pour parcourir</div>
-          <div class="thumbs" id="thumbs"></div>
-          <div class="up-f"><span id="cnt">0 photo sur 12</span><span class="b">Continuer</span></div>
+          <div class="scr-h"><small>Étape 1 sur 5</small><h4>Les photos du bien</h4><p>De 3 à 12 photos, dans l'ordre de la visite.</p></div>
+          <div class="drop">Ajoutez vos photos · JPG, PNG ou WEBP</div>
+          <div class="thumbs" id="thumbs">
+            <picture><source srcset="assets/exemples/villa-facade-480.webp" type="image/webp"><img src="assets/exemples/villa-facade-480.jpg" width="480" height="270" alt="" loading="lazy" decoding="async"><span class="n">1</span></picture>
+            <picture><source srcset="assets/exemples/villa-salon-480.webp" type="image/webp"><img src="assets/exemples/villa-salon-480.jpg" width="480" height="270" alt="" loading="lazy" decoding="async"><span class="n">2</span></picture>
+            <picture><source srcset="assets/exemples/villa-repas-480.webp" type="image/webp"><img src="assets/exemples/villa-repas-480.jpg" width="480" height="270" alt="" loading="lazy" decoding="async"><span class="n">3</span></picture>
+            <picture><source srcset="assets/exemples/villa-cuisine-480.webp" type="image/webp"><img src="assets/exemples/villa-cuisine-480.jpg" width="480" height="270" alt="" loading="lazy" decoding="async"><span class="n">4</span></picture>
+            <picture><source srcset="assets/exemples/villa-chambre-480.webp" type="image/webp"><img src="assets/exemples/villa-chambre-480.jpg" width="480" height="270" alt="" loading="lazy" decoding="async"><span class="n">5</span></picture>
+            <picture><source srcset="assets/exemples/villa-bain-480.webp" type="image/webp"><img src="assets/exemples/villa-bain-480.jpg" width="480" height="270" alt="" loading="lazy" decoding="async"><span class="n">6</span></picture>
+            <picture><source srcset="assets/exemples/villa-piscine-480.webp" type="image/webp"><img src="assets/exemples/villa-piscine-480.jpg" width="480" height="270" alt="" loading="lazy" decoding="async"><span class="n">7</span></picture>
+          </div>
+          <div class="scr-f"><span id="cnt">0 photo sur 12 maximum</span><span class="fake-btn">Continuer</span></div>
         </div>
         <div class="scr" data-s="1">
-          <div class="ed">
-            <div class="side" id="side"></div>
-            <div class="main">
-              <div class="meta"><span>Plan 3 sur 16</span><span>Mouvement : travelling avant</span></div>
-              <div class="pv"><img src="assets/exemples/bordeaux.jpg" alt="Maison d'architecte près de Bordeaux (démonstration)"></div>
-              <div class="tl"><i></i></div>
-              <div class="meta"><span>Montage en cours…</span><span>0:42 / 1:10</span></div>
-            </div>
+          <div class="scr-h"><small>Étape 2 sur 5</small><h4>Le bien</h4><p>Ces informations servent au texte à l'écran et à la voix off.</p></div>
+          <div class="fgrid">
+            <div class="ff full"><label>Type de bien</label><div class="chips" style="background:none;border:0;padding:0"><span>Appartement</span><span class="on">Villa</span><span>Maison</span><span>Riad</span></div></div>
+            <div class="ff"><label>Transaction</label><div>Vente</div></div>
+            <div class="ff"><label>Ville</label><div>Marrakech</div></div>
+            <div class="ff hide-m"><label>Chambres</label><div>4</div></div>
+            <div class="ff hide-m"><label>Surface</label><div>350 m²</div></div>
+            <div class="ff full"><label>Points forts</label><div>Piscine · Jardin · Cuisine ouverte</div></div>
           </div>
+          <div class="scr-f"><span class="fake-btn g">Retour</span><span class="fake-btn">Continuer</span></div>
         </div>
         <div class="scr" data-s="2">
-          <div class="out">
-            <div class="outs">
-              <div class="o o1"><div class="im"><img src="assets/exemples/marrakech.jpg" alt=""><em>VILLA PALMERAIE</em></div><small>Écran large · SeLoger, Avito, YouTube</small></div>
-              <div class="o o2"><div class="im"><img src="assets/exemples/marrakech.jpg" alt=""><em>VILLA</em></div><small>Téléphone · Reels, TikTok</small></div>
-              <div class="o o3"><div class="im"><img src="assets/exemples/marrakech.jpg" alt=""><em>VILLA</em></div><small>Carré · Instagram</small></div>
-            </div>
-            <span class="dl">⤓ Télécharger les 3 versions</span>
+          <div class="scr-h"><small>Étape 3 sur 5</small><h4>Le style</h4><p>Musique, voix, formats et votre marque.</p></div>
+          <div class="style-rows">
+            <div><label>Ambiance musicale</label><div class="chips"><span class="on">Élégante</span><span>Dynamique</span><span>Chaleureuse</span><span>Orientale moderne</span></div></div>
+            <div><label>Voix off</label><div class="chips"><span class="on">Voix féminine</span><span>Voix masculine</span><span>Aucune</span><span style="border:0">·</span><span class="on">Français</span><span>Arabe</span><span>Anglais</span></div></div>
+            <div><label>Formats</label><div class="chips"><span class="on">16:9</span><span class="on">9:16</span><span>1:1</span></div></div>
+            <div><label>Carton de fin</label><div class="chips"><span class="on">Logo</span><span class="on">Votre agence</span><span class="on">+212 6 00 00 00 00</span></div></div>
           </div>
+          <div class="scr-f"><span class="fake-btn g">Retour</span><span class="fake-btn">Continuer</span></div>
+        </div>
+        <div class="scr" data-s="3">
+          <div class="gen">
+            <div class="ring"></div>
+            <div class="scr-h" style="text-align:center"><small>Étape 4 sur 5</small><h4>Votre vidéo se prépare</h4><p>1 crédit utilisé · en quelques minutes</p></div>
+            <ul class="gsteps" id="gsteps"><li>Analyse des photos</li><li>Mouvements de caméra</li><li>Musique et voix off</li><li>Texte, logo et coordonnées</li><li>Montage des formats</li></ul>
+            <div class="gbar"><i></i></div>
+          </div>
+        </div>
+        <div class="scr" data-s="4">
+          <div class="scr-h" style="text-align:center"><small>Étape 5 sur 5</small><h4>Prête à télécharger</h4><p>Un fichier par format, avec ou sans logo.</p></div>
+          <div class="outs">
+            <div class="o o1"><div class="im"><picture><source srcset="assets/exemples/villa-piscine-480.webp" type="image/webp"><img src="assets/exemples/villa-piscine-480.jpg" width="480" height="270" alt="" loading="lazy" decoding="async"></picture></div><small>16:9 · portails</small></div>
+            <div class="o o2"><div class="im"><picture><source srcset="assets/exemples/villa-piscine-480.webp" type="image/webp"><img src="assets/exemples/villa-piscine-480.jpg" width="480" height="270" alt="" loading="lazy" decoding="async"></picture></div><small>9:16 · Reels, TikTok</small></div>
+            <div class="o o3"><div class="im"><picture><source srcset="assets/exemples/villa-piscine-480.webp" type="image/webp"><img src="assets/exemples/villa-piscine-480.jpg" width="480" height="270" alt="" loading="lazy" decoding="async"></picture></div><small>1:1 · fil Instagram</small></div>
+          </div>
+          <div class="scr-f" style="justify-content:center;gap:10px"><span class="fake-btn">Télécharger</span><span class="fake-btn g">Créer une autre vidéo</span></div>
         </div>
       </div>
     </div>
 
-    <div class="steps" id="steps">
-      <div class="step on" data-i="0"><div class="bar"><i></i></div><div class="n">1</div><h3>Déposez vos photos</h3><p>Depuis votre téléphone ou votre ordinateur. Sans brief, sans liste de plans.</p></div>
-      <div class="step" data-i="1"><div class="bar"><i></i></div><div class="n">2</div><h3>ImmoClap monte la vidéo</h3><p>Mouvement de caméra sur chaque photo, musique en rythme, premier montage en quelques minutes.</p></div>
-      <div class="step" data-i="2"><div class="bar"><i></i></div><div class="n">3</div><h3>Publiez partout</h3><p>Tous les formats pour chaque réseau et chaque portail immobilier.</p></div>
+    <div class="steps" id="steps" role="group" aria-label="Les cinq étapes">
+      <button type="button" class="step on" data-i="0" aria-current="step"><span class="bar"><i></i></span><span class="n">1</span><span class="t">Vos photos</span><span class="d">De 3 à 12 photos, dans l'ordre où l'on visite le bien.</span></button>
+      <button type="button" class="step" data-i="1"><span class="bar"><i></i></span><span class="n">2</span><span class="t">Le bien</span><span class="d">Type, ville, surface, points forts&nbsp;: de quoi écrire le texte et la voix off.</span></button>
+      <button type="button" class="step" data-i="2"><span class="bar"><i></i></span><span class="n">3</span><span class="t">Le style</span><span class="d">Ambiance musicale, voix, langue, formats, logo et téléphone.</span></button>
+      <button type="button" class="step" data-i="3"><span class="bar"><i></i></span><span class="n">4</span><span class="t">La génération</span><span class="d">1 crédit. L'IA anime chaque photo et assemble la vidéo en quelques minutes.</span></button>
+      <button type="button" class="step" data-i="4"><span class="bar"><i></i></span><span class="n">5</span><span class="t">Le téléchargement</span><span class="d">Vos fichiers vidéo, prêts à publier ou à envoyer sur WhatsApp.</span></button>
     </div>
+    <div class="step-detail" id="stepDetail" aria-live="polite"><b></b><span></span></div>
   </div>
 </section>
 
-<!-- ================= IV. STUDIO ================= -->
-<section class="alt" id="studio">
+<!-- ================= IV. RÉGLAGES ================= -->
+<section class="alt" id="reglages" aria-labelledby="t-reglages">
   <div class="wrap">
-    <div class="eyebrow rv"><i>IV</i><b></b>Le studio</div>
-    <h2 class="center rv">Le studio ImmoClap.<br><span class="it">Tout sur un seul écran.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
-    <p class="lead center rv">Votre premier montage arrive en quelques minutes. Modifiez ensuite tout ce que vous voulez.</p>
+    <div class="eyebrow rv"><i>IV</i><b></b>Vos réglages</div>
+    <h2 class="center rv" id="t-reglages">Quatre réglages,<br><span class="it">pas une minute de montage.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
+    <p class="lead center rv">Ce sont exactement les choix proposés à l'étape « Le style ». Touchez une option pour voir ce qu'elle change.</p>
 
-    <div class="tabs rv" id="tabs">
-      <button class="on" data-t="plans">Plans</button><button data-t="musique">Musique</button><button data-t="texte">Texte</button><button data-t="voix">Voix off</button><button data-t="marque">Image de marque</button>
+    <div class="tabs rv" role="tablist" aria-label="Réglages de la vidéo">
+      <button type="button" role="tab" id="tab-musique" aria-controls="tp-musique" aria-selected="true">Musique</button>
+      <button type="button" role="tab" id="tab-voix" aria-controls="tp-voix" aria-selected="false" tabindex="-1">Voix off</button>
+      <button type="button" role="tab" id="tab-formats" aria-controls="tp-formats" aria-selected="false" tabindex="-1">Formats</button>
+      <button type="button" role="tab" id="tab-marque" aria-controls="tp-marque" aria-selected="false" tabindex="-1"><span class="hide-s">Votre </span>marque</button>
     </div>
 
     <div class="studio rv">
-      <div class="app">
-        <div class="app-top">
-          <div class="ad"><b>Villa Palmeraie, Marrakech</b><small>✓ Votre vidéo est à jour</small></div>
-          <div class="acts"><span class="chip">Large · Carré · Téléphone</span><span class="chip">Télécharger</span><span class="chip g">Partager</span></div>
+      <div class="studio-in">
+        <div class="opts-pane">
+          <div class="tp" id="tp-musique" role="tabpanel" aria-labelledby="tab-musique" tabindex="0">
+            <h3>Ambiance musicale</h3>
+            <p>Quatre ambiances, toutes libres de droits pour vos annonces et vos réseaux.</p>
+            <div class="grp"><div class="optlist" role="radiogroup" aria-label="Ambiance musicale" data-k="music">
+              <button type="button" class="optrow" role="radio" aria-checked="true" data-v="Élégante"><span><b>Élégante</b><small>Conseillée pour les biens haut de gamme.</small></span><span class="dot"></span></button>
+              <button type="button" class="optrow" role="radio" aria-checked="false" data-v="Dynamique"><span><b>Dynamique</b><small>Pour les vidéos courtes des réseaux.</small></span><span class="dot"></span></button>
+              <button type="button" class="optrow" role="radio" aria-checked="false" data-v="Chaleureuse"><span><b>Chaleureuse</b><small>Pour les maisons et appartements familiaux.</small></span><span class="dot"></span></button>
+              <button type="button" class="optrow" role="radio" aria-checked="false" data-v="Orientale moderne"><span><b>Orientale moderne</b><small>Pour les riads, les villas et la clientèle au Maroc.</small></span><span class="dot"></span></button>
+            </div></div>
+          </div>
+          <div class="tp" id="tp-voix" role="tabpanel" aria-labelledby="tab-voix" tabindex="0" hidden>
+            <h3>Voix off</h3>
+            <p>La voix lit un court texte écrit à partir des informations du bien.</p>
+            <div class="grp"><span class="grp-l" id="gl-voice">Voix</span><div class="pills" role="radiogroup" aria-labelledby="gl-voice" data-k="voice">
+              <button type="button" class="pill" role="radio" aria-checked="true" data-v="Voix féminine">Féminine</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="Voix masculine">Masculine</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="Aucune voix">Aucune</button>
+            </div></div>
+            <div class="grp"><span class="grp-l" id="gl-lang">Langue</span><div class="pills" role="radiogroup" aria-labelledby="gl-lang" data-k="lang">
+              <button type="button" class="pill" role="radio" aria-checked="true" data-v="Français">Français</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="Arabe"><span lang="ar">العربية</span> · Arabe</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="Anglais"><span lang="en">English</span> · Anglais</button>
+            </div></div>
+            <p class="note">Avec « Aucune », la vidéo garde seulement la musique.</p>
+          </div>
+          <div class="tp" id="tp-formats" role="tabpanel" aria-labelledby="tab-formats" tabindex="0" hidden>
+            <h3>Formats</h3>
+            <p>Cochez ceux qu'il vous faut&nbsp;: ils sont tous compris dans le même crédit.</p>
+            <div class="grp"><div class="optlist" role="radiogroup" aria-label="Aperçu du format" data-k="fmt">
+              <button type="button" class="optrow" role="radio" aria-checked="true" data-v="16x9"><span><b>16:9 · horizontal</b><small>Idéal pour SeLoger, Leboncoin, Avito, Mubawab et votre site.</small></span><span class="dot"></span></button>
+              <button type="button" class="optrow" role="radio" aria-checked="false" data-v="9x16"><span><b>9:16 · vertical</b><small>Idéal pour les Reels, TikTok, les statuts WhatsApp et les stories.</small></span><span class="dot"></span></button>
+              <button type="button" class="optrow" role="radio" aria-checked="false" data-v="1x1"><span><b>1:1 · carré</b><small>Idéal pour le fil Instagram et Facebook.</small></span><span class="dot"></span></button>
+            </div></div>
+          </div>
+          <div class="tp" id="tp-marque" role="tabpanel" aria-labelledby="tab-marque" tabindex="0" hidden>
+            <h3>Votre marque</h3>
+            <p>Un carton de fin avec votre logo, le nom de l'agence et votre téléphone.</p>
+            <div class="grp"><span class="grp-l" id="gl-brand">Version</span><div class="optlist" role="radiogroup" aria-labelledby="gl-brand" data-k="brand">
+              <button type="button" class="optrow" role="radio" aria-checked="true" data-v="avec"><span><b>Avec logo</b><small>Pour vos réseaux, WhatsApp et votre site.</small></span><span class="dot"></span></button>
+              <button type="button" class="optrow" role="radio" aria-checked="false" data-v="sans"><span><b>Sans logo</b><small>Pour les portails qui refusent les coordonnées dans les médias.</small></span><span class="dot"></span></button>
+            </div></div>
+            <p class="note">Le logo est facultatif&nbsp;: sans fichier, le carton affiche seulement le nom et le téléphone.</p>
+          </div>
         </div>
-        <div class="app-body">
-          <div class="rail" id="rail">
-            <div class="on" data-t="plans"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="M2 10l3.5-3 3 2.5L11 7l3 3"/></svg>Plans</div>
-            <div data-t="musique"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 12V3l7-1.5v9"/><circle cx="4.5" cy="12" r="1.8"/><circle cx="11.5" cy="10.5" r="1.8"/></svg>Musique</div>
-            <div data-t="texte"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 3h10M8 3v10"/></svg>Texte</div>
-            <div data-t="voix"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="6" y="2" width="4" height="8" rx="2"/><path d="M3.5 8a4.5 4.5 0 009 0M8 12.5V14"/></svg>Voix</div>
-            <div data-t="marque"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 7L8 3l5 4v6H3z"/></svg>Marque</div>
+        <div class="pv-pane">
+          <div class="pv" id="pv">
+            <span class="chip-demo">Démonstration</span>
+            <span class="pv-tag" id="pvTag" aria-live="polite">Ambiance&nbsp;: Élégante</span>
+            <video id="pvVid" muted loop playsinline preload="none" poster="assets/exemples/villa-piscine.webp" aria-label="Aperçu de démonstration&nbsp;: villa à Marrakech"></video>
+            <div class="endcard" id="endcard" aria-hidden="true"><span class="lg">LOGO</span><b>Votre agence</b><span>+212 6 00 00 00 00</span></div>
           </div>
-          <div class="pane">
-            <div class="ph on" data-p="plans">
-              <h5>Plans</h5><div class="sub">8 dans la vidéo · 10 photos</div>
-              <div class="shots">
-                <div style="background-image:url(assets/exemples/marrakech.jpg)"><span>1</span><em>Fondu</em></div>
-                <div style="background-image:url(assets/exemples/fes.jpg)"><span>2</span><em>Coupe</em></div>
-                <div style="background-image:url(assets/exemples/paris.jpg)"><span>3</span><em>Coupe</em></div>
-                <div style="background-image:url(assets/exemples/casablanca.jpg)"><span>4</span><em>Fondu</em></div>
-                <div style="background-image:url(assets/exemples/bordeaux.jpg)"><span>5</span><em>Coupe</em></div>
-                <div style="background-image:url(assets/exemples/marrakech.jpg);background-position:right"><span>6</span><em>Coupe</em></div>
-                <div class="off" style="background-image:url(assets/exemples/paris.jpg);background-position:left"><em>Hors vidéo</em></div>
-                <div class="off" style="background-image:url(assets/exemples/fes.jpg);background-position:right"><em>Hors vidéo</em></div>
-              </div>
-            </div>
-            <div class="ph" data-p="musique">
-              <h5>Musique</h5><div class="sub">Libre de droits · calée sur le montage</div>
-              <div class="row on"><div><b>Golden Hour</b><small>Luxe · 1:12</small></div><span class="pl">▶</span></div>
-              <div class="row"><div><b>Riad Morning</b><small>Chaleureux · 1:05</small></div><span class="pl">▶</span></div>
-              <div class="row"><div><b>Skyline</b><small>Moderne · 0:58</small></div><span class="pl">▶</span></div>
-              <div class="row"><div><b>Soft Light</b><small>Doux · 1:20</small></div><span class="pl">▶</span></div>
-              <div class="row"><div><b>Open House</b><small>Dynamique · 0:45</small></div><span class="pl">▶</span></div>
-            </div>
-            <div class="ph" data-p="texte">
-              <h5>Texte</h5><div class="sub">Titres animés sur la vidéo</div>
-              <div class="field"><label>Titre</label><div>Villa Palmeraie</div></div>
-              <div class="field"><label>Ville</label><div>Marrakech</div></div>
-              <div class="field"><label>Infos</label><div>5 chambres · 420 m² · Piscine</div></div>
-              <div class="field"><label>Prix</label><div>Sur demande</div></div>
-            </div>
-            <div class="ph" data-p="voix">
-              <h5>Voix off</h5><div class="sub">Générée à partir de votre texte</div>
-              <div class="field"><label>Script</label><div style="font-size:12px;line-height:1.5">Au cœur de la palmeraie, une villa baignée de lumière, sa piscine et ses jardins…</div></div>
-              <div class="row on"><div><b>Voix féminine</b><small>Français · posée</small></div><span class="pl">▶</span></div>
-              <div class="row"><div><b>Voix masculine</b><small>Français · chaleureuse</small></div><span class="pl">▶</span></div>
-            </div>
-            <div class="ph" data-p="marque">
-              <h5>Image de marque</h5><div class="sub">Votre agence sur chaque vidéo</div>
-              <div class="field"><label>Logo</label><div style="display:flex;align-items:center;gap:8px"><svg width="18" height="18"><use href="#mark"/></svg>Votre agence</div></div>
-              <div class="field"><label>Couleurs</label><div class="swatches"><i style="background:#0B0A09"></i><i style="background:#F3EFE7"></i><i style="background:#F6BC28"></i></div></div>
-              <div class="field"><label>Carton de fin</label><div>Nom · téléphone · e-mail de l'agent</div></div>
-            </div>
-          </div>
-          <div class="pv-wrap">
-            <div class="pv">
-              <img src="assets/exemples/marrakech.jpg" alt="Aperçu de la vidéo (démonstration)">
-              <div class="pv-over" id="ovt"><b>Villa Palmeraie</b><span>MARRAKECH · 5 CHAMBRES · 420 M²</span></div>
-              <div class="pv-logo" id="ovl"><svg><use href="#mark"/></svg>Votre agence</div>
-            </div>
-            <div class="pv-bar"><span>0:07</span><div class="tl"><i></i></div><span>1:10</span></div>
-          </div>
+          <p class="pv-cap" id="pvCap">Aperçu&nbsp;: vidéo de démonstration générée par IA. La musique et la voix ne sont pas jouées ici.</p>
         </div>
       </div>
     </div>
@@ -697,183 +793,330 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
 </section>
 
 <!-- ================= V. EXEMPLES ================= -->
-<section id="exemples">
+<section id="exemples" aria-labelledby="t-exemples">
   <div class="wrap">
     <div class="eyebrow rv"><i>V</i><b></b>Exemples</div>
-    <h2 class="center rv">Voyez ce que<br><span class="it">vous obtiendrez.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
-    <p class="lead center rv">Des vidéos de démonstration. Appuyez sur lecture.</p>
+    <h2 class="center rv" id="t-exemples">Deux biens,<br><span class="it">deux démonstrations.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
+    <p class="lead center rv">Deux extraits de 10&nbsp;secondes générés par IA. Regardez-les en vertical, comme sur un téléphone, ou en horizontal, comme sur un portail.</p>
     <div class="ex">
-      <div class="c big rv" data-play="assets/exemples/marrakech.jpg" data-video="assets/videos/villa-marrakech-9x16.mp4" data-title="Villa Palmeraie, Marrakech"><div class="im"><img src="assets/exemples/marrakech.jpg" alt="Villa Palmeraie, Marrakech" loading="lazy"><span class="pp"><svg width="16" height="16" style="color:var(--fg)"><use href="#tri"/></svg></span></div><h3>Villa Palmeraie, Marrakech</h3><small>VIDÉO DE DÉMONSTRATION</small></div>
-      <div class="c rv" data-play="assets/exemples/paris.jpg" data-title="Haussmannien, Paris 8e"><div class="im"><img src="assets/exemples/paris.jpg" alt="Appartement haussmannien, Paris" loading="lazy"><span class="pp"><svg width="16" height="16" style="color:var(--fg)"><use href="#tri"/></svg></span></div><h3>Haussmannien, Paris 8e</h3><small>VIDÉO DE DÉMONSTRATION</small></div>
-      <div class="c rv" data-play="assets/exemples/fes.jpg" data-title="Riad Médina, Fès"><div class="im"><img src="assets/exemples/fes.jpg" alt="Riad, Fès" loading="lazy"><span class="pp"><svg width="16" height="16" style="color:var(--fg)"><use href="#tri"/></svg></span></div><h3>Riad Médina, Fès</h3><small>VIDÉO DE DÉMONSTRATION</small></div>
-      <div class="c rv" data-play="assets/exemples/casablanca.jpg" data-video="assets/videos/penthouse-casablanca-9x16.mp4" data-title="Penthouse Anfa, Casablanca"><div class="im"><img src="assets/exemples/casablanca.jpg" alt="Penthouse, Casablanca" loading="lazy"><span class="pp"><svg width="16" height="16" style="color:var(--fg)"><use href="#tri"/></svg></span></div><h3>Penthouse Anfa, Casablanca</h3><small>VIDÉO DE DÉMONSTRATION</small></div>
-      <div class="c rv" data-play="assets/exemples/bordeaux.jpg" data-title="Maison d'architecte, Bordeaux"><div class="im"><img src="assets/exemples/bordeaux.jpg" alt="Maison d'architecte, Bordeaux" loading="lazy"><span class="pp"><svg width="16" height="16" style="color:var(--fg)"><use href="#tri"/></svg></span></div><h3>Maison d'architecte, Bordeaux</h3><small>VIDÉO DE DÉMONSTRATION</small></div>
+      <article class="excard rv">
+        <div class="im">
+          <button type="button" class="main" data-video="assets/videos/villa-marrakech-9x16" data-ratio="9x16" data-title="Villa avec piscine, Marrakech" aria-label="Lire la démonstration&nbsp;: villa avec piscine à Marrakech, format vertical">
+            <picture><source srcset="assets/exemples/villa-piscine.webp" type="image/webp"><img src="assets/exemples/villa-piscine.jpg" width="1080" height="608" alt="" loading="lazy" decoding="async"></picture>
+            <span class="pp"><svg aria-hidden="true"><use href="#tri"/></svg></span>
+          </button>
+          <span class="chip-demo">Démonstration</span>
+        </div>
+        <h3>Villa avec piscine, Marrakech</h3>
+        <div class="meta">Vidéo de démonstration · 10 s · générée par IA</div>
+        <div class="fm">
+          <button type="button" class="btn ghost sm" data-video="assets/videos/villa-marrakech-9x16" data-ratio="9x16" data-title="Villa avec piscine, Marrakech"><svg width="12" height="12" aria-hidden="true"><use href="#tri"/></svg> Vertical 9:16</button>
+          <button type="button" class="btn ghost sm" data-video="assets/videos/villa-marrakech-16x9" data-ratio="16x9" data-title="Villa avec piscine, Marrakech"><svg width="12" height="12" aria-hidden="true"><use href="#tri"/></svg> Horizontal 16:9</button>
+        </div>
+      </article>
+      <article class="excard rv">
+        <div class="im">
+          <button type="button" class="main" data-video="assets/videos/penthouse-casablanca-9x16" data-ratio="9x16" data-title="Penthouse vue mer, Casablanca" aria-label="Lire la démonstration&nbsp;: penthouse vue mer à Casablanca, format vertical">
+            <picture><source srcset="assets/exemples/penthouse-terrasse.webp" type="image/webp"><img src="assets/exemples/penthouse-terrasse.jpg" width="1080" height="608" alt="" loading="lazy" decoding="async"></picture>
+            <span class="pp"><svg aria-hidden="true"><use href="#tri"/></svg></span>
+          </button>
+          <span class="chip-demo">Démonstration</span>
+        </div>
+        <h3>Penthouse vue mer, Casablanca</h3>
+        <div class="meta">Vidéo de démonstration · 10 s · générée par IA</div>
+        <div class="fm">
+          <button type="button" class="btn ghost sm" data-video="assets/videos/penthouse-casablanca-9x16" data-ratio="9x16" data-title="Penthouse vue mer, Casablanca"><svg width="12" height="12" aria-hidden="true"><use href="#tri"/></svg> Vertical 9:16</button>
+          <button type="button" class="btn ghost sm" data-video="assets/videos/penthouse-casablanca-16x9" data-ratio="16x9" data-title="Penthouse vue mer, Casablanca"><svg width="12" height="12" aria-hidden="true"><use href="#tri"/></svg> Horizontal 16:9</button>
+        </div>
+      </article>
     </div>
+    <p class="ex-note rv">Biens fictifs&nbsp;: images et vidéos de démonstration générées par IA. Ces extraits montrent le mouvement de caméra&nbsp;; la vidéo livrée ajoute la voix off et le carton de fin choisis.</p>
   </div>
 </section>
 
-<!-- ================= VI. CALCUL ================= -->
-<section class="alt">
+<!-- ================= VI. COMPARATIF ================= -->
+<section class="alt" id="comparatif" aria-labelledby="t-cmp">
   <div class="wrap">
-    <div class="eyebrow rv"><i>VI</i><b></b>Le calcul</div>
-    <h2 class="center rv">Oubliez le tournage à 500&nbsp;€.<br><span class="it">Et la semaine d'attente.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
-    <div class="cmp rv">
-      <div class="col"><div class="cell h"></div><div class="cell k">Prix par bien</div><div class="cell k">Délai</div><div class="cell k">Formats</div><div class="cell k">Engagement</div><div class="cell k">Voix off et musique</div></div>
-      <div class="col"><div class="cell h">Vidéaste<br>traditionnel</div><div class="cell v"><s>350 – 2 000 €</s></div><div class="cell v">3 à 7 jours</div><div class="cell v">1</div><div class="cell v">Devis par bien</div><div class="cell v">En option</div></div>
-      <div class="col us"><div class="cell h">ImmoClap</div><div class="cell v">Dès 14 €</div><div class="cell v">5 minutes</div><div class="cell v">3</div><div class="cell v">Aucun</div><div class="cell v ok">Incluses</div></div>
+    <div class="eyebrow rv"><i>VI</i><b></b>Face au tournage</div>
+    <h2 class="center rv" id="t-cmp">Un vidéaste ou ImmoClap&nbsp;:<br><span class="it">faites le compte.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
+    <div class="cmp rv" aria-hidden="true">
+      <div class="col">
+        <div class="cell h"></div>
+        <div class="cell k">Coût d'une vidéo</div>
+        <div class="cell k">Livraison</div>
+        <div class="cell k">Déplacement sur place</div>
+        <div class="cell k">Formats livrés</div>
+        <div class="cell k">Voix off FR · AR · EN</div>
+        <div class="cell k">Engagement</div>
+      </div>
+      <div class="col">
+        <div class="cell h">Vidéaste<br>immobilier</div>
+        <div class="cell v">280 à 500&nbsp;€<sup>*</sup></div>
+        <div class="cell v">Plusieurs jours</div>
+        <div class="cell v">Oui, sur rendez-vous</div>
+        <div class="cell v">Selon devis</div>
+        <div class="cell v">En option</div>
+        <div class="cell v">Devis à chaque bien</div>
+      </div>
+      <div class="col us">
+        <div class="cell h">ImmoClap</div>
+        <div class="cell v" data-cmp-price>Dès 9,90&nbsp;€</div>
+        <div class="cell v">Quelques minutes</div>
+        <div class="cell v">Non</div>
+        <div class="cell v ok">3, inclus</div>
+        <div class="cell v ok">Incluse</div>
+        <div class="cell v">Aucun</div>
+      </div>
     </div>
+    <div class="sr-only"><table>
+      <caption>Comparaison entre un vidéaste immobilier et ImmoClap</caption>
+      <thead><tr><th scope="col">Critère</th><th scope="col">Vidéaste immobilier</th><th scope="col">ImmoClap</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Coût d'une vidéo</th><td>280 à 500 € (prix de départ relevés en France, voir la note)</td><td data-cmp-price>Dès 9,90 €</td></tr>
+        <tr><th scope="row">Livraison</th><td>Plusieurs jours</td><td>Quelques minutes</td></tr>
+        <tr><th scope="row">Déplacement sur place</th><td>Oui, sur rendez-vous</td><td>Non</td></tr>
+        <tr><th scope="row">Formats livrés</th><td>Selon devis</td><td>3, inclus</td></tr>
+        <tr><th scope="row">Voix off en français, arabe et anglais</th><td>En option</td><td>Incluse</td></tr>
+        <tr><th scope="row">Engagement</th><td>Devis à chaque bien</td><td>Aucun</td></tr>
+      </tbody>
+    </table></div>
+    <p class="cmp-note rv">* Prix de départ publiés en France, relevés le 6 octobre 2026&nbsp;: <a href="https://shoootin.com/service/video" target="_blank" rel="noopener">Shoootin</a> (dès 280&nbsp;€, déplacement et montage compris), <a href="https://minutedrone.com/combien-coute-une-video-immobiliere-par-drone" target="_blank" rel="noopener">Minutedrone</a> (350&nbsp;€ la demi-journée), <a href="https://ohmydrone.fr/tarifs/" target="_blank" rel="noopener">Oh My Drone</a> (500&nbsp;€ HT jusqu'à 100&nbsp;m²). Le prix final dépend de la surface et des options. « Dès 9,90&nbsp;€ » (90&nbsp;DH)&nbsp;: abonnement Agence, 10 vidéos par mois.</p>
   </div>
 </section>
 
 <!-- ================= VII. TARIFS ================= -->
-<section id="tarifs">
+<section id="tarifs" aria-labelledby="t-tarifs">
   <div class="wrap">
     <div class="eyebrow rv"><i>VII</i><b></b>Tarifs</div>
-    <h2 class="center rv">Payez à la vidéo.<br><span class="it">Sans engagement.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
-    <p class="lead center rv">Achetez des crédits quand un mandat arrive, ou abonnez-vous si vous publiez chaque mois. 1 crédit = 1 vidéo, en 3 formats. Prix HT.</p>
+    <h2 class="center rv" id="t-tarifs">À la vidéo<br><span class="it">ou au mois.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
+    <p class="lead center rv">Des crédits quand un mandat arrive, un abonnement si vous publiez chaque mois. 1 crédit = 1 vidéo, livrée dans les 3 formats.</p>
     <div class="toggles rv">
-      <div class="seg" id="cur"><button class="on" data-c="eur">France · €</button><button data-c="mad">Maroc · DH</button></div>
+      <div class="seg" id="cur" role="group" aria-label="Devise">
+        <button type="button" data-c="eur" aria-pressed="true">France · €</button>
+        <button type="button" data-c="mad" aria-pressed="false">Maroc · DH</button>
+      </div>
     </div>
     <div class="plans">
       <div class="plan rv">
         <h3>1 vidéo</h3><div class="d">Pour un mandat ponctuel.</div>
-        <div class="price" data-eur="19" data-mad="149"></div><div class="per" data-unit-eur="la vidéo" data-unit-mad="la vidéo"></div>
-        <ul><li>1 vidéo sans filigrane</li><li>3 formats</li><li>Logo de l'agence</li><li>Musique et voix off</li></ul>
-        <a href="#" class="btn ghost" data-open>Commander</a>
+        <div class="price" data-eur="19" data-mad="149" data-n="1"></div>
+        <div class="ttc"></div><div class="per">1 crédit, valable 12 mois</div>
+        <ul><li>Une vidéo de 15 à 60 s</li><li>Les 3 formats</li><li>Musique, voix off et carton de fin</li></ul>
+        <button type="button" class="btn ghost" data-open data-offre="1 vidéo">Être prévenu</button>
       </div>
-      <div class="plan pop rv">
-        <span class="badge">Le plus choisi</span>
+      <div class="plan hl rv">
+        <span class="badge" data-disc="5"></span>
         <h3>Pack 5</h3><div class="d">Pour l'agent qui rentre des mandats chaque mois.</div>
-        <div class="price" data-eur="79" data-mad="599"></div><div class="per" data-each-eur="16 € la vidéo" data-each-mad="120 DH la vidéo"></div>
-        <ul><li>5 vidéos sans filigrane</li><li>Logo et couleurs de l'agence</li><li>Voix off et musique</li><li>Crédits valables 12 mois</li></ul>
-        <a href="#" class="btn" data-open>Choisir le pack 5 <svg width="14" height="14"><use href="#arrow"/></svg></a>
+        <div class="price" data-eur="79" data-mad="599" data-n="5"></div>
+        <div class="ttc"></div><div class="per" data-each="5"></div>
+        <ul><li>5 crédits, valables 12 mois</li><li>Les 3 formats à chaque vidéo</li><li>Musique, voix off et carton de fin</li></ul>
+        <button type="button" class="btn" data-open data-offre="Pack 5">Être prévenu <svg class="ar" width="14" height="14" aria-hidden="true"><use href="#arrow"/></svg></button>
       </div>
-      <div class="plan rv">
+      <div class="plan hl rv">
+        <span class="badge" data-disc="10"></span>
         <h3>Pack 10</h3><div class="d">Pour les agences et les gros volumes.</div>
-        <div class="price" data-eur="139" data-mad="999"></div><div class="per" data-each-eur="14 € la vidéo" data-each-mad="100 DH la vidéo"></div>
-        <ul><li>10 vidéos sans filigrane</li><li>Plusieurs agents</li><li>Voix off et musique</li><li>Crédits valables 12 mois</li><li>Support prioritaire</li></ul>
-        <a href="#" class="btn ghost" data-open>Choisir le pack 10</a>
+        <div class="price" data-eur="139" data-mad="999" data-n="10"></div>
+        <div class="ttc"></div><div class="per" data-each="10"></div>
+        <ul><li>10 crédits, valables 12 mois</li><li>Les 3 formats à chaque vidéo</li><li>Musique, voix off et carton de fin</li></ul>
+        <button type="button" class="btn" data-open data-offre="Pack 10">Être prévenu <svg class="ar" width="14" height="14" aria-hidden="true"><use href="#arrow"/></svg></button>
       </div>
     </div>
-    <div class="subs-t rv"><h3>Vous publiez chaque mois ? Passez à l'abonnement.</h3><p>Sans engagement, résiliable en un clic. Prix de lancement gardé à vie pour les 100 premiers abonnés.</p></div>
+
+    <div class="subs-t rv"><h3>Vous publiez chaque mois&nbsp;? Passez à l'abonnement.</h3><p>Sans engagement&nbsp;: résiliable à tout moment, effet à la fin du mois payé. Prix de lancement conservé pour les 100 premiers abonnés, tant que l'abonnement reste actif sans interruption.</p></div>
     <div class="plans subs">
-      <div class="plan rv">
+      <div class="plan hl rv">
+        <span class="badge soft">Prix de lancement</span>
         <h3>Solo</h3><div class="d">Pour l'agent indépendant ou le mandataire.</div>
-        <div class="price" data-eur="39" data-mad="349"></div><div class="per" data-month>par mois · 3 vidéos</div>
-        <ul><li>3 vidéos par mois, 3 formats</li><li>Logo de l'agence</li><li>Crédits non utilisés reportés</li></ul>
-        <a href="#" class="btn ghost" data-open>S'abonner</a>
+        <div class="price" data-eur="39" data-mad="349" data-n="3" data-month></div>
+        <div class="ttc"></div><div class="per" data-each="3"></div>
+        <ul><li>3 vidéos par mois, 3 formats</li><li>Crédits non utilisés reportés tant que l'abonnement est actif (12 mois maximum)</li><li>Résiliable à tout moment</li></ul>
+        <button type="button" class="btn ghost" data-open data-offre="Solo">Être prévenu</button>
       </div>
-      <div class="plan pop rv">
-        <span class="badge">Prix de lancement</span>
-        <h3>Agence</h3><div class="d">Pour les agences qui rentrent des mandats chaque semaine.</div>
-        <div class="price" data-eur="99" data-mad="899"></div><div class="per" data-month>par mois · 10 vidéos</div>
-        <ul><li>10 vidéos par mois, 3 formats</li><li>Plusieurs agents</li><li>Crédits non utilisés reportés</li><li>Support prioritaire</li></ul>
-        <a href="#" class="btn" data-open>S'abonner <svg width="14" height="14"><use href="#arrow"/></svg></a>
+      <div class="plan hl rv">
+        <span class="badge soft">Prix de lancement</span>
+        <h3>Agence</h3><div class="d">Pour les agences qui publient chaque semaine.</div>
+        <div class="price" data-eur="99" data-mad="899" data-n="10" data-month></div>
+        <div class="ttc"></div><div class="per" data-each="10"></div>
+        <ul><li>10 vidéos par mois, 3 formats</li><li>Crédits non utilisés reportés tant que l'abonnement est actif (12 mois maximum)</li><li>Résiliable à tout moment</li></ul>
+        <button type="button" class="btn" data-open data-offre="Agence">Être prévenu <svg class="ar" width="14" height="14" aria-hidden="true"><use href="#arrow"/></svg></button>
       </div>
     </div>
-    <p class="unit rv"><a href="#" class="link" data-play="assets/exemples/marrakech.jpg" data-video="assets/videos/villa-marrakech-9x16.mp4" data-title="Villa Palmeraie, Marrakech">Voir une vidéo d'exemple ▸</a><br><br>Jusqu'à 12 photos par vidéo · Crédits valables 12 mois · TVA éventuelle ajoutée au paiement</p>
+    <p class="taxline rv">Prix hors taxes. TVA calculée au paiement selon votre pays. Les commandes ouvrent très bientôt.</p>
+
+    <div class="incl rv">
+      <h3>Tout est inclus</h3>
+      <p>Chaque crédit comprend la même chose, quelle que soit la formule.</p>
+      <ul>
+        <li><span><b>3 formats</b>&nbsp;: 16:9, 9:16 et 1:1</span></li>
+        <li><span><b>15 à 60 secondes</b>&nbsp;: de 3 à 12 photos, environ 5 s par photo</span></li>
+        <li><span><b>4 ambiances musicales</b> libres de droits</span></li>
+        <li><span><b>Voix off</b> féminine ou masculine, en français, arabe ou anglais (ou aucune)</span></li>
+        <li><span><b>Carton de fin</b>&nbsp;: logo, nom de l'agence et téléphone</span></li>
+        <li><span><b>Version sans logo</b> pour les portails</span></li>
+        <li><span><b>Fichiers à télécharger</b>, à publier où vous voulez</span></li>
+        <li><span><b>Facture</b> envoyée à chaque paiement</span></li>
+      </ul>
+    </div>
+    <div class="guar rv">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+      <div>
+        <h3>Garantie plan raté</h3>
+        <p>Une déformation, un plan raté, une faute dans le texte ou le logo&nbsp;? Signalez-le dans les 14 jours&nbsp;: on refait la vidéo gratuitement. Si le défaut est toujours là après deux essais, la vidéo vous est remboursée ou recréditée.</p>
+        <p><a href="remboursement.html">Lire la politique de remboursement</a></p>
+      </div>
+    </div>
+    <p class="pay-note rv">Le paiement passe par notre prestataire de paiement, qui agit comme revendeur (Merchant of Record)&nbsp;: son nom figure sur la page de paiement et sur le reçu. ImmoClap ne voit jamais vos données bancaires. <a href="cgv.html">Conditions générales de vente</a></p>
   </div>
 </section>
 
 <!-- ================= VIII. FAQ ================= -->
-<section class="alt" id="faq">
+<section class="alt" id="faq" aria-labelledby="t-faq">
   <div class="wrap">
     <div class="eyebrow rv"><i>VIII</i><b></b>FAQ</div>
-    <h2 class="center rv">Questions<br><span class="it">fréquentes.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
-    <div class="faq rv">
-      <div class="q"><button aria-expanded="false">Combien de temps faut-il ?<span class="pm">+</span></button><div class="a"><div><p>Environ 5 minutes entre l'envoi de vos photos et votre première vidéo. Vous pouvez ensuite la modifier autant de fois que vous voulez.</p></div></div></div>
-      <div class="q"><button aria-expanded="false">Quelles photos utiliser ?<span class="pm">+</span></button><div class="a"><div><p>Les photos de votre annonce suffisent. Idéalement en format paysage, nettes et bien éclairées : extérieur, pièces de vie, chambres, salle de bain, vue.</p></div></div></div>
-      <div class="q"><button aria-expanded="false">Combien de photos faut-il ?<span class="pm">+</span></button><div class="a"><div><p>Entre 5 et 20 photos. Avec 8 à 12 photos, on obtient une vidéo d'environ une minute.</p></div></div></div>
-      <div class="q"><button aria-expanded="false">Quels formats je reçois ?<span class="pm">+</span></button><div class="a"><div><p>Trois versions : écran large 16:9 (SeLoger, Leboncoin, Avito, YouTube), téléphone 9:16 (Reels, TikTok, Stories) et carré 1:1 (Instagram, Facebook).</p></div></div></div>
-      <div class="q"><button aria-expanded="false">La musique est-elle libre de droits ?<span class="pm">+</span></button><div class="a"><div><p>Oui. Toutes les musiques sont utilisables sur les portails et les réseaux sociaux, sans risque de blocage.</p></div></div></div>
-      <div class="q"><button aria-expanded="false">Puis-je ajouter mon logo ?<span class="pm">+</span></button><div class="a"><div><p>Oui : logo, couleurs de l'agence et carton de fin avec vos coordonnées, sur chaque vidéo.</p></div></div></div>
-      <div class="q"><button aria-expanded="false">L'IA modifie-t-elle mon bien ?<span class="pm">+</span></button><div class="a"><div><p>Non. ImmoClap ajoute uniquement un mouvement de caméra : les volumes, les matériaux et les défauts restent tels qu'ils sont. Les retouches d'ambiance (lumière, ciel) sont toujours signalées « image retouchée par IA ».</p></div></div></div>
-      <div class="q"><button aria-expanded="false">Puis-je voir un exemple avant d'acheter ?<span class="pm">+</span></button><div class="a"><div><p>Oui. Cliquez sur « Voir un exemple » en haut de la page ou sur les vidéos de la section Exemples : ce sont des vidéos de démonstration réalisées avec ImmoClap. Vous payez ensuite à la vidéo ou au mois, sans engagement.</p></div></div></div>
+    <h2 class="center rv" id="t-faq">Vos questions,<br><span class="it">nos réponses.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
+    <div class="faq rv" id="faqList">
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa1" id="fq1">Quand pourrai-je commander&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa1" role="region" aria-labelledby="fq1"><div><p>Très bientôt&nbsp;: les comptes et les paiements sont en cours d'ouverture. Laissez votre e-mail et on vous écrit le jour où vous pouvez commander. Il n'y a pas d'essai gratuit, mais vous pouvez regarder les démonstrations de cette page avant de décider.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa2" id="fq2">Combien de photos par vidéo&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa2" role="region" aria-labelledby="fq2"><div><p>De 3 à 12 photos par vidéo. Avec 8 à 12 photos, vous montrez le bien en entier&nbsp;: extérieur, pièces de vie, chambres, salle de bain, vue. Notre <a href="guide.html">guide photos</a> explique comment bien les préparer.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa3" id="fq3">Quelle sera la durée de la vidéo&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa3" role="region" aria-labelledby="fq3"><div><p>Environ 5 secondes par photo&nbsp;: de 15 secondes avec 3 photos à 60 secondes avec 12 photos.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa4" id="fq4">Combien de temps dure la génération&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa4" role="region" aria-labelledby="fq4"><div><p>Quelques minutes, sans rien faire de votre côté. Le délai varie selon le nombre de photos et la charge des serveurs.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa5" id="fq5">Quel format pour WhatsApp, Instagram ou un portail&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa5" role="region" aria-labelledby="fq5"><div><p>16:9 pour les portails (SeLoger, Leboncoin, Avito, Mubawab) et votre site&nbsp;; 9:16 pour les Reels, TikTok et les statuts WhatsApp&nbsp;; 1:1 pour le fil Instagram et Facebook. Chaque vidéo existe aussi en version sans logo pour les portails qui l'exigent.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa6" id="fq6">Dans quelles langues est la voix off&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa6" role="region" aria-labelledby="fq6"><div><p>En français, en arabe ou en anglais, avec une voix féminine ou masculine. Vous pouvez aussi choisir « Aucune » et garder seulement la musique.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa7" id="fq7">L'IA peut-elle modifier mon bien&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa7" role="region" aria-labelledby="fq7"><div><p>Elle ne doit pas&nbsp;: elle ajoute un mouvement de caméra, sans changer les pièces, les volumes ni les matériaux. Il peut arriver qu'un plan présente une déformation. Vérifiez toujours la vidéo avant de la publier&nbsp;: un plan raté est refait gratuitement.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa8" id="fq8">Comment se passe le paiement&nbsp;? Aurai-je une facture&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa8" role="region" aria-labelledby="fq8"><div><p>Vous payez par carte sur la page sécurisée de notre prestataire de paiement, qui agit comme revendeur (Merchant of Record)&nbsp;: son nom figure sur la page de paiement et sur le reçu. Il calcule la TVA selon votre pays et vous envoie la facture. ImmoClap ne voit jamais vos données bancaires.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa9" id="fq9">Comment résilier l'abonnement&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa9" role="region" aria-labelledby="fq9"><div><p>À tout moment, avec le lien de gestion reçu par e-mail ou en nous écrivant. La résiliation prend effet à la fin du mois payé&nbsp;; le mois entamé n'est pas remboursé. Vos crédits d'abonnement restent utilisables jusqu'à cette date.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa10" id="fq10">Combien de temps mes crédits sont-ils valables&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa10" role="region" aria-labelledby="fq10"><div><p>12 mois à partir de l'achat pour l'unité et les packs. Pour les abonnements, les crédits non utilisés sont reportés d'un mois sur l'autre tant que l'abonnement est actif, dans la limite de 12 mois.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa11" id="fq11">Puis-je publier la vidéo partout avec sa musique&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa11" role="region" aria-labelledby="fq11"><div><p>Oui. Les musiques sont libres de droits pour la promotion du bien et de votre activité&nbsp;: portails, site, réseaux sociaux, WhatsApp.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa12" id="fq12">Qui est derrière ImmoClap&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa12" role="region" aria-labelledby="fq12"><div><p>Julien Wail COLLY, entrepreneur individuel installé à Marrakech. ImmoClap est né en 2026. Tout est expliqué sur la page <a href="a-propos.html">À propos</a>.</p></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- ================= FINAL ================= -->
-<section class="final">
+<!-- ================= FIN ================= -->
+<section class="final" aria-labelledby="t-final">
   <div class="wrap">
-    <h2 class="rv">Prêt à devenir<br><span class="it">l'agence qui fait de la vidéo&nbsp;?<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
-    <a href="#" class="btn rv" data-open>Créer ma vidéo <svg width="16" height="16"><use href="#arrow"/></svg></a>
+    <h2 class="rv" id="t-final">Un mandat signé cette semaine&nbsp;?<br><span class="it">Montrez-le en mouvement.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
+    <p class="rv">Les commandes ouvrent très bientôt. Laissez votre e-mail&nbsp;: on vous écrit le jour de l'ouverture.</p>
+    <div class="cta-row rv">
+      <button type="button" class="btn" data-open data-offre="bas de page">Être prévenu de l'ouverture <svg class="ar" width="16" height="16" aria-hidden="true"><use href="#arrow"/></svg></button>
+      <button type="button" class="btn ghost" data-video="assets/videos/penthouse-casablanca-9x16" data-ratio="9x16" data-title="Penthouse vue mer, Casablanca"><svg width="14" height="14" aria-hidden="true"><use href="#tri"/></svg> Voir un exemple</button>
+    </div>
   </div>
 </section>
 </main>
 
-<!-- ================= FOOTER ================= -->
+<!-- ================= PIED DE PAGE ================= -->
 <footer>
   <div class="wrap">
     <div class="fcols">
       <div>
-        <a href="#" class="logo" style="margin:0"><svg><use href="#mark"/></svg><span class="wm">Immo<span>Clap</span></span></a>
-        <p>Les photos de vos biens immobiliers deviennent des vidéos cinématiques, en 5 minutes.</p>
+        <a href="#top" class="logo"><svg aria-hidden="true"><use href="#mark"/></svg><span class="wm">Immo<span>Clap</span></span></a>
+        <p>Vidéos immobilières animées par IA à partir de vos photos, pour les agences et les propriétaires, en France et au Maroc.</p>
         <div class="socials">
-          <a href="https://www.instagram.com/immoclap" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
-          <a href="https://www.tiktok.com/@immoclap" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v11.5a3.5 3.5 0 11-3.5-3.5"/><path d="M14 3c.5 2.8 2.3 4.5 5 4.8"/></svg></a>
-          <a href="https://www.youtube.com/@immoclap" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.5l5 2.5-5 2.5z" fill="currentColor"/></svg></a>
+          <a href="https://www.instagram.com/immoclap" target="_blank" rel="noopener" aria-label="Instagram @immoclap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+          <a href="https://www.tiktok.com/@immoclap" target="_blank" rel="noopener" aria-label="TikTok @immoclap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 11-3.5-3.5"/><path d="M14 3c.5 2.8 2.3 4.5 5 4.8"/></svg></a>
         </div>
       </div>
-      <div><h6>Produit</h6><a href="#produit">Fonctionnalités</a><a href="#studio">Studio</a><a href="#exemples">Exemples</a><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a></div>
-      <div><h6>Réseaux</h6><a href="https://www.instagram.com/immoclap" target="_blank" rel="noopener">Instagram @immoclap</a><a href="https://www.instagram.com/immoclap.fr" target="_blank" rel="noopener">Instagram @immoclap.fr</a><a href="https://www.tiktok.com/@immoclap" target="_blank" rel="noopener">TikTok @immoclap</a><a href="https://www.tiktok.com/@immoclap.fr" target="_blank" rel="noopener">TikTok @immoclap.fr</a><a href="https://www.youtube.com/@immoclap" target="_blank" rel="noopener">YouTube @immoclap</a></div>
-      <div><h6>Contact</h6><a href="mailto:contact.immoclap@gmail.com">contact.immoclap@gmail.com</a><a href="#" data-open>Se connecter</a><h6 style="margin-top:26px">Légal</h6><a href="mentions-legales.html">Mentions légales</a><a href="cgv.html">CGV</a><a href="confidentialite.html">Confidentialité</a><a href="remboursement.html">Remboursement</a></div>
+      <div><h2>Le site</h2><a href="#principe">Le principe</a><a href="#etapes">Les étapes</a><a href="#reglages">Vos réglages</a><a href="#exemples">Exemples</a><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a></div>
+      <div><h2>ImmoClap</h2><a href="a-propos.html">À propos</a><a href="guide.html">Guide photos</a><a href="mailto:contact.immoclap@gmail.com">Contact</a><a href="https://www.instagram.com/immoclap" target="_blank" rel="noopener">Instagram @immoclap</a><a href="https://www.instagram.com/immoclap.fr" target="_blank" rel="noopener">Instagram @immoclap.fr</a><a href="https://www.tiktok.com/@immoclap" target="_blank" rel="noopener">TikTok @immoclap</a><a href="https://www.tiktok.com/@immoclap.fr" target="_blank" rel="noopener">TikTok @immoclap.fr</a></div>
+      <div><h2>Légal</h2><a href="mentions-legales.html">Mentions légales</a><a href="cgv.html">CGV</a><a href="confidentialite.html">Confidentialité</a><a href="remboursement.html">Remboursement</a></div>
     </div>
-    <div class="fbot"><span>© 2026 ImmoClap. Tous droits réservés.</span><a href="#top">Retour en haut ↑</a></div>
+    <div class="fbot">
+      <p>© 2026 ImmoClap · Julien Wail COLLY, entrepreneur individuel (immatriculation en cours) · Lot Zohour Targa, Tranche 20, N° 91, Targa, Marrakech, Maroc · <a href="mailto:contact.immoclap@gmail.com">contact.immoclap@gmail.com</a><br>Photos et vidéos de démonstration générées par IA&nbsp;: elles ne représentent aucun bien réel.</p>
+    </div>
   </div>
   <div class="giant" aria-hidden="true">ImmoClap</div>
 </footer>
 
-<!-- ================= APERÇU VIDÉO ================= -->
-<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Aperçu vidéo">
-  <button class="x" aria-label="Fermer">×</button>
+<!-- ================= AIDE ================= -->
+<div class="help" id="help">
+  <div class="help-pop" id="helpPop" hidden role="region" aria-labelledby="helpT">
+    <h2 id="helpT">Besoin d'aide&nbsp;?</h2>
+    <p>Une question avant l'ouverture des commandes&nbsp;? Écrivez-nous, on répond vite.</p>
+    <a href="mailto:contact.immoclap@gmail.com"><svg aria-hidden="true"><use href="#mail"/></svg>contact.immoclap@gmail.com</a>
+    <a href="guide.html"><svg aria-hidden="true"><use href="#book"/></svg>Guide&nbsp;: bien préparer ses photos</a>
+    <button type="button" data-video="assets/videos/villa-marrakech-9x16" data-ratio="9x16" data-title="Villa avec piscine, Marrakech"><svg aria-hidden="true"><use href="#tri"/></svg>Voir un exemple</button>
+  </div>
+  <button type="button" class="help-btn" id="helpBtn" aria-expanded="false" aria-controls="helpPop" aria-label="Aide">
+    <span class="ic-q" aria-hidden="true">?</span>
+    <svg class="ic-x" width="18" height="18" viewBox="0 0 22 22" aria-hidden="true"><path d="M5 5l12 12M17 5L5 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </button>
+</div>
+
+<!-- ================= VISIONNEUSE ================= -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-labelledby="lbTitle" hidden>
+  <button type="button" class="x" aria-label="Fermer la vidéo">×</button>
   <div class="lb-in">
-    <div class="lb-v"><img id="lbimg" src="assets/exemples/marrakech.jpg" alt=""><video id="lbvid" controls playsinline preload="none"></video><div class="lb-t"><b id="lbtitle"></b></div><div class="lb-logo"><svg><use href="#mark"/></svg>Immo<span style="color:var(--gold)">Clap</span></div><div class="lb-bar"></div></div>
-    <div class="lb-f"><small>APERÇU · VIDÉO DE DÉMONSTRATION</small><a href="#" class="btn sm" data-open>Créer la mienne <svg width="14" height="14"><use href="#arrow"/></svg></a></div>
+    <div class="lb-v"><span class="chip-demo">Vidéo de démonstration</span><video id="lbvid" playsinline preload="none"></video>
+      <div class="lb-ctl">
+        <button type="button" id="lbPlay" aria-label="Mettre en pause"><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l8 5-8 5z" fill="currentColor"/></svg></button>
+        <div class="lb-prog" aria-hidden="true"><i id="lbProg"></i></div>
+        <button type="button" id="lbMute" aria-label="Couper le son"><svg class="i-on" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6h3l4-3v10l-4-3H2z" fill="currentColor"/><path d="M11.5 5.5a3.5 3.5 0 010 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="i-off" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6h3l4-3v10l-4-3H2z" fill="currentColor"/><path d="M11 6l4 4M15 6l-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+      </div>
+    </div>
+    <div class="lb-f">
+      <div><b id="lbTitle">Démonstration</b><small id="lbMeta">Générée par IA · 10 s</small></div>
+      <button type="button" class="btn sm" data-open data-offre="visionneuse">Être prévenu de l'ouverture</button>
+    </div>
   </div>
 </div>
 
-<!-- ================= MODAL ================= -->
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mt">
+<!-- ================= LISTE D'ATTENTE ================= -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mt" hidden>
   <div class="mbox" id="mbox">
-    <button class="x" aria-label="Fermer">×</button>
-    <svg width="44" height="44" style="margin:0 auto 14px;display:block"><use href="#mark"/></svg>
-    <h3 id="mt">Créez votre<br><span class="it" style="color:var(--gold2)">première vidéo.</span></h3>
-    <p>Les comptes ouvrent très bientôt. Laissez votre e-mail : on vous écrit dès que vous pouvez commander.</p>
-    
-    <form name="inscription" method="POST" data-netlify="true" netlify-honeypot="bot" id="form">
+    <button type="button" class="x" aria-label="Fermer">×</button>
+    <svg width="44" height="44" style="margin:0 auto 14px;display:block" aria-hidden="true"><use href="#mark"/></svg>
+    <h2 id="mt">Les commandes ouvrent<br><span class="it">très bientôt.</span></h2>
+    <p class="intro">Laissez votre e-mail&nbsp;: on vous prévient dès que vous pouvez commander. Aucun engagement.</p>
+    <form name="inscription" method="POST" action="/merci.html" data-netlify="true" netlify-honeypot="bot" id="form" novalidate>
       <input type="hidden" name="form-name" value="inscription">
       <input type="hidden" name="source" id="src">
-      <p hidden><label>Ne pas remplir <input name="bot"></label></p>
-      <input type="email" name="email" placeholder="Votre e-mail professionnel" required autocomplete="email">
-      <button class="btn" type="submit" style="margin-top:12px">Être prévenu</button>
+      <input type="hidden" name="offre" id="offre">
+      <p hidden><label>Ne pas remplir <input name="bot" tabindex="-1" autocomplete="off"></label></p>
+      <label for="email">Votre e-mail</label>
+      <input type="email" id="email" name="email" placeholder="vous@agence.com" required autocomplete="email" aria-describedby="formMsg mfine">
+      <button class="btn" type="submit" id="formBtn">Me prévenir</button>
+      <div class="msg" id="formMsg" role="alert"></div>
     </form>
-    <p class="okmsg">Merci ! On vous écrit à cette adresse dès l'ouverture des commandes.</p>
-    <p class="fine">Paiement à la vidéo ou au mois, sans engagement. En continuant, vous acceptez nos <a href="cgv.html" style="text-decoration:underline">CGV</a> et notre <a href="confidentialite.html" style="text-decoration:underline">politique de confidentialité</a>.</p>
+    <p class="fine" id="mfine">Votre e-mail sert uniquement à vous prévenir de l'ouverture des commandes. Il n'est ni vendu ni partagé, et vous pouvez demander sa suppression à tout moment. Détails dans notre <a href="confidentialite.html">politique de confidentialité</a>.</p>
+    <div class="okbox" id="okbox" role="status">
+      <p><strong>C'est noté, merci.</strong></p>
+      <p style="color:var(--muted);font-size:15px;margin-top:8px">On vous écrit à cette adresse dès l'ouverture des commandes.</p>
+      <button type="button" class="btn ghost" id="okClose">Fermer</button>
+    </div>
   </div>
 </div>
 
 <script>
 (()=>{
+'use strict';
 const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const NB=' ';
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const testVid=document.createElement('video');
+const canMp4=!!testVid.canPlayType && testVid.canPlayType('video/mp4; codecs="avc1.42E01E"')!=='';
+const vsrc=base=>base+(canMp4?'.mp4':'.webm');
 
-/* header + progression */
+/* en-tête + barre de progression */
 const hdr=$('header'), prog=$('.progress');
 const onScroll=()=>{const y=scrollY;hdr.classList.toggle('scrolled',y>20);
   const h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?y/h*100:0)+'%';};
 addEventListener('scroll',onScroll,{passive:true});onScroll();
+const setHH=()=>document.documentElement.style.setProperty('--hh',hdr.offsetHeight+'px');
+setHH();addEventListener('resize',setHH);
 
 /* menu mobile */
-const burger=$('.burger'), mob=$('.mob');
-burger.addEventListener('click',()=>{const o=mob.classList.toggle('on');burger.setAttribute('aria-expanded',o)});
-$$('.mob a').forEach(a=>a.addEventListener('click',()=>mob.classList.remove('on')));
+const burger=$('.burger'), mob=$('#mob');
+const menuOpen=o=>{mob.classList.toggle('on',o);burger.setAttribute('aria-expanded',String(o));burger.setAttribute('aria-label',o?'Fermer le menu':'Ouvrir le menu');document.body.style.overflow=o?'hidden':'';
+  ['main','footer','#help','.topbar'].forEach(q=>{const el=$(q);if(el)o?el.setAttribute('inert',''):el.removeAttribute('inert');});if(o)$('a',mob).focus();};
+burger.addEventListener('click',()=>menuOpen(!mob.classList.contains('on')));
+$$('a,button',mob).forEach(a=>a.addEventListener('click',()=>menuOpen(false)));
+addEventListener('resize',()=>{if(innerWidth>980&&mob.classList.contains('on'))menuOpen(false)});
 
-/* hero : mots en whoosh */
+/* titre : apparition mot à mot */
 const h1=$('#h1');
 $$('.l1,.l2',h1).forEach(el=>{
-  const nodes=[...el.childNodes];
-  nodes.forEach(n=>{if(n.nodeType===3){const frag=document.createDocumentFragment();
+  [...el.childNodes].forEach(n=>{if(n.nodeType===3){const frag=document.createDocumentFragment();
     n.textContent.split(/(\s+)/).forEach(t=>{if(!t)return;if(/^\s+$/.test(t)){frag.append(t);return;}
       const s=document.createElement('span');s.className='w';s.textContent=t;frag.append(s);});
     el.replaceChild(frag,n);}});
@@ -882,117 +1125,215 @@ const words=$$('.w',h1);
 words.forEach((w,i)=>w.style.transitionDelay=(i*60)+'ms');
 requestAnimationFrame(()=>setTimeout(()=>{
   h1.classList.add('go');
-  const t=words.length*60+500;
+  const t=reduce?0:words.length*60+500;
   setTimeout(()=>$('#sw1').classList.add('on'),t);
-  $$('.hero .fade').forEach((f,i)=>setTimeout(()=>f.classList.add('in'),f.classList.contains('eyebrow')?0:t+200+i*120));
+  $$('.hero .fade').forEach((f,i)=>setTimeout(()=>f.classList.add('in'),f.classList.contains('eyebrow')?0:(reduce?0:t+200+i*120)));
 },120));
 
-/* compteurs */
+/* compteurs (valeurs réelles uniquement) */
 const count=el=>{const end=+el.dataset.count;if(el.dataset.done)return;el.dataset.done=1;
-  if(reduce||end===0){el.textContent=end.toLocaleString('fr-FR');return;}
-  const d=1400,s=performance.now();const step=n=>{const p=Math.min((n-s)/d,1),e=1-Math.pow(1-p,3);
-    el.textContent=Math.round(end*e).toLocaleString('fr-FR');if(p<1)requestAnimationFrame(step);};requestAnimationFrame(step);};
+  if(reduce){el.textContent=end;return;}
+  const d=1100,s=performance.now();const step=n=>{const p=Math.min((n-s)/d,1),e=1-Math.pow(1-p,3);
+    el.textContent=Math.max(1,Math.round(end*e));if(p<1)requestAnimationFrame(step);};requestAnimationFrame(step);};
+const st=$('.stats');
+new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){$$('[data-count]',st).forEach(count);o.disconnect();}}),{threshold:.4}).observe(st);
 
-/* apparition au scroll */
+/* apparition au défilement */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;
   const el=e.target;el.classList.add('in');
-  $$('.swash',el).forEach(s=>setTimeout(()=>s.classList.add('on'),400));
-  $$('[data-count]',el).forEach(count);
-  if(el.matches('[data-count]'))count(el);
-  io.unobserve(el);}),{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+  $$('.swash',el).forEach(s=>setTimeout(()=>s.classList.add('on'),reduce?0:400));
+  io.unobserve(el);}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
 $$('.rv').forEach(el=>io.observe(el));
-const st=$('.stats');new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){$$('[data-count]',st).forEach(count);o.disconnect();}}),{threshold:.4}).observe(st);
 
-/* lien actif dans le menu */
+/* lien actif */
 const links=$$('.menu a');
-const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}}),{rootMargin:'-45% 0px -50% 0px'});
-$$('section[id]').forEach(s=>so.observe(s));
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>{const on=a.getAttribute('href')==='#'+e.target.id;a.classList.toggle('active',on);on?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current');});}}),{rootMargin:'-45% 0px -50% 0px'});
+$$('main section[id]').forEach(s=>so.observe(s));
 
-/* formats vidéo */
-const fbox=$('#fbox');
-$$('#fmt button').forEach(b=>b.addEventListener('click',()=>{
-  $$('#fmt button').forEach(x=>x.classList.toggle('on',x===b));
-  const r=b.dataset.r;fbox.style.aspectRatio=r;fbox.style.width=r==='16/9'?'100%':'auto';}));
+/* vidéos : lecture seulement quand elles sont visibles */
+const heroVid=$('#heroVid'), heroPause=$('#heroPause');
+let heroUserPaused=reduce;
+if(reduce){heroVid.removeAttribute('autoplay');heroVid.pause();heroPause.setAttribute('aria-pressed','true');heroPause.setAttribute('aria-label','Lire la vidéo');}
+heroPause.addEventListener('click',()=>{heroUserPaused=!heroUserPaused;heroPause.setAttribute('aria-pressed',String(heroUserPaused));heroPause.setAttribute('aria-label',heroUserPaused?'Lire la vidéo':'Mettre la vidéo en pause');heroUserPaused?heroVid.pause():heroVid.play().catch(()=>{});});
+const vis=new Map();
+const visIO=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;vis.set(v,e.isIntersecting);
+  if(e.isIntersecting){if(v===heroVid&&heroUserPaused)return;if(!reduce||v!==heroVid)v.play().catch(()=>{});}
+  else v.pause();}),{threshold:.2});
+[heroVid,$('#baVid'),$('#pvVid')].forEach(v=>visIO.observe(v));
 
-/* avant / après */
-const ba=$('#ba'), clip=$('.clip',ba), hd=$('.handle',ba), kn=$('.knob',ba);
-const setBA=x=>{const r=ba.getBoundingClientRect();let p=(x-r.left)/r.width*100;p=Math.max(2,Math.min(98,p));
-  clip.style.clipPath=`inset(0 ${100-p}% 0 0)`;hd.style.left=p+'%';kn.style.left=p+'%';};
-let drag=false;
-ba.addEventListener('pointerdown',e=>{drag=true;ba.setPointerCapture(e.pointerId);setBA(e.clientX)});
-ba.addEventListener('pointermove',e=>{if(drag)setBA(e.clientX)});
+/* curseur image fixe / plan animé */
+const ba=$('#ba'), clip=$('.clip',ba), hd=$('.handle',ba), kn=$('#knob');
+let pos=50;
+const setPos=p=>{pos=Math.max(2,Math.min(98,p));clip.style.clipPath=`inset(0 ${100-pos}% 0 0)`;hd.style.left=pos+'%';kn.style.left=pos+'%';
+  kn.setAttribute('aria-valuenow',Math.round(pos));kn.setAttribute('aria-valuetext',Math.round(pos)+' % image fixe');};
+const setX=x=>{const r=ba.getBoundingClientRect();setPos((x-r.left)/r.width*100);};
+let drag=false, auto=!reduce, baVisible=false, t=0;
+ba.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse')e.preventDefault();drag=true;auto=false;ba.setPointerCapture(e.pointerId);setX(e.clientX)});
+ba.addEventListener('dragstart',e=>e.preventDefault());
+ba.addEventListener('pointermove',e=>{if(drag)setX(e.clientX)});
 ba.addEventListener('pointerup',()=>drag=false);ba.addEventListener('pointercancel',()=>drag=false);
-if(!reduce){let t=0,auto=true;ba.addEventListener('pointerdown',()=>auto=false,{once:true});
-  (function wig(){if(!auto)return;t+=.02;const r=ba.getBoundingClientRect();if(r.width)setBA(r.left+r.width*(.5+Math.sin(t)*.18));requestAnimationFrame(wig)})();}
+kn.addEventListener('keydown',e=>{const k=e.key;let p=pos;
+  if(k==='ArrowLeft'||k==='ArrowDown')p-=5;else if(k==='ArrowRight'||k==='ArrowUp')p+=5;else if(k==='Home')p=2;else if(k==='End')p=98;else return;
+  e.preventDefault();auto=false;setPos(p);});
+const wig=()=>{if(!auto||!baVisible)return;t+=.016;setPos(50+Math.sin(t)*18);requestAnimationFrame(wig);};
+new IntersectionObserver(es=>es.forEach(e=>{baVisible=e.isIntersecting;if(baVisible&&auto)requestAnimationFrame(wig);}),{threshold:.2}).observe(ba);
 
-/* comment ça marche */
-const imgs=['marrakech','fes','paris','casablanca','bordeaux'];
-const th=$('#thumbs');
-for(let i=0;i<12;i++){const d=document.createElement('div');d.style.backgroundImage=`url(assets/exemples/${imgs[i%5]}.jpg)`;d.style.backgroundPosition=['center','left','right','top','bottom'][Math.floor(i/5)%5];th.append(d);}
-const side=$('#side');
-for(let i=0;i<10;i++){const d=document.createElement('div');d.dataset.n=i+1;d.style.backgroundImage=`url(assets/exemples/${imgs[(i+2)%5]}.jpg)`;if(i===2)d.className='sel';side.append(d);}
-const scrs=$$('.scr'), steps=$$('.step'), cnt=$('#cnt');
-let cur=0,timer=null,fill=null;
-const fillThumbs=()=>{clearInterval(fill);const all=$$('div',th);all.forEach(d=>d.classList.remove('on'));const ds=all.filter(d=>getComputedStyle(d).display!=='none');let k=0;cnt.textContent=`0 photo sur ${ds.length}`;
-  fill=setInterval(()=>{if(k>=ds.length){clearInterval(fill);return;}ds[k].classList.add('on');k++;cnt.textContent=`${k} photo${k>1?'s':''} sur ${ds.length}`;},220);};
-const show=i=>{cur=i;scrs.forEach((s,j)=>s.classList.toggle('on',j===i));
-  steps.forEach((s,j)=>{s.classList.remove('on','done');void s.offsetWidth;if(j<i)s.classList.add('done');if(j===i)s.classList.add('on');});
-  if(i===0)fillThumbs();
-  clearTimeout(timer);timer=setTimeout(()=>show((cur+1)%3),5000);};
-steps.forEach((s,i)=>s.addEventListener('click',()=>show(i)));
-new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){show(0);o.disconnect();}}),{threshold:.3}).observe($('#comment .device'));
+/* étapes */
+const scrs=$$('.scr'), steps=$$('.step'), stepsBox=$('#steps'), cnt=$('#cnt'), detail=$('#stepDetail');
+const thumbs=$$('#thumbs picture'), gl=$$('#gsteps li');
+let cur=0,timer=null,fill=null,gtim=[],stepsVisible=false,stepsStarted=false;
+const fillThumbs=()=>{clearInterval(fill);thumbs.forEach(d=>d.classList.remove('on'));let k=0;cnt.textContent='0 photo sur 12 maximum';
+  fill=setInterval(()=>{if(k>=thumbs.length){clearInterval(fill);return;}thumbs[k].classList.add('on');k++;cnt.textContent=`${k} photo${k>1?'s':''} · 12 maximum`;},reduce?1:260);};
+const genSteps=()=>{gtim.forEach(clearTimeout);gl.forEach(l=>l.classList.remove('ok'));gl.forEach((l,i)=>gtim.push(setTimeout(()=>l.classList.add('ok'),reduce?0:400+i*850)));};
+const show=(i,user)=>{cur=i;scrs.forEach((s,j)=>s.classList.toggle('on',j===i));
+  steps.forEach((s,j)=>{s.classList.remove('on','done');void s.offsetWidth;if(j<i)s.classList.add('done');if(j===i)s.classList.add('on');j===i?s.setAttribute('aria-current','step'):s.removeAttribute('aria-current');});
+  detail.querySelector('b').textContent=(i+1)+'. '+$('.t',steps[i]).textContent;detail.querySelector('span').textContent=$('.d',steps[i]).textContent;
+  if(i===0)fillThumbs();if(i===3)genSteps();
+  clearTimeout(timer);if(stepsVisible&&!reduce)timer=setTimeout(()=>show((cur+1)%5),5000);};
+steps.forEach((s,i)=>{s.setAttribute('aria-label',`Étape ${i+1} : ${$('.t',s).textContent}. ${$('.d',s).textContent}`);s.addEventListener('click',()=>show(i,true));});
+new IntersectionObserver(es=>es.forEach(e=>{stepsVisible=e.isIntersecting;stepsBox.classList.toggle('paused',!stepsVisible);e.target.classList.toggle('off',!stepsVisible);
+  if(stepsVisible){if(!stepsStarted){stepsStarted=true;show(0);}else show(cur);}else clearTimeout(timer);}),{threshold:.25}).observe($('#etapes .device'));
+show(0);
 
-/* studio */
-const ovt=$('#ovt'), ovl=$('#ovl');
-const tab=t=>{$$('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));
-  $$('#rail div').forEach(b=>b.classList.toggle('on',b.dataset.t===t));
-  $$('.ph').forEach(p=>p.classList.toggle('on',p.dataset.p===t));
-  ovt.classList.toggle('on',t==='texte');ovl.classList.toggle('on',t==='marque');};
-$$('#tabs button,#rail div').forEach(b=>b.addEventListener('click',()=>tab(b.dataset.t)));
+/* réglages : onglets */
+const tabs=$$('[role=tab]'), panels=$$('[role=tabpanel]');
+const pv=$('#pv'), pvVid=$('#pvVid'), pvTag=$('#pvTag'), endcard=$('#endcard');
+const S={music:'Élégante',voice:'Voix féminine',lang:'Français',fmt:'16x9',brand:'avec',tab:'musique'};
+const POSTERS={'16x9':'assets/exemples/villa-piscine.webp','9x16':'assets/videos/villa-marrakech-poster.jpg','1x1':'assets/exemples/villa-piscine.webp'};
+let pvBase='';
+const setVideo=fmt=>{const base='assets/videos/villa-marrakech-'+fmt;if(base===pvBase)return;pvBase=base;pvVid.poster=POSTERS[fmt];
+  pvVid.onerror=null;pvVid.src=vsrc(base);
+  pvVid.onerror=()=>{if(fmt!=='16x9'){pvVid.onerror=null;pvVid.src=vsrc('assets/videos/villa-marrakech-16x9');}};
+  if(vis.get(pvVid))pvVid.play().catch(()=>{});};
+const render=()=>{
+  pv.classList.toggle('r916',S.fmt==='9x16');pv.classList.toggle('r11',S.fmt==='1x1');setVideo(S.fmt);
+  const showEnd=S.tab==='marque'&&S.brand==='avec';endcard.classList.toggle('on',showEnd);
+  let tag='';
+  if(S.tab==='musique')tag='Ambiance\u00a0: '+S.music;
+  else if(S.tab==='voix')tag=S.voice==='Aucune voix'?'Sans voix off · musique seule':S.voice+' · '+S.lang;
+  else if(S.tab==='formats')tag={'16x9':'Format 16:9','9x16':'Format 9:16','1x1':'Format 1:1'}[S.fmt];
+  else tag=S.brand==='avec'?'Carton de fin · avec logo':'Version sans logo';
+  pvTag.textContent=tag;};
+const selectTab=(tab,focus)=>{tabs.forEach(t=>{const on=t===tab;t.setAttribute('aria-selected',String(on));t.tabIndex=on?0:-1;});
+  panels.forEach(p=>p.hidden=p.id!==tab.getAttribute('aria-controls'));S.tab=tab.id.replace('tab-','');if(focus)tab.focus();render();};
+tabs.forEach((t,i)=>{t.addEventListener('click',()=>selectTab(t));
+  t.addEventListener('keydown',e=>{let j=null;if(e.key==='ArrowRight')j=(i+1)%tabs.length;else if(e.key==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;else if(e.key==='Home')j=0;else if(e.key==='End')j=tabs.length-1;
+    if(j!==null){e.preventDefault();selectTab(tabs[j],true);}});});
+$$('[role=radiogroup]').forEach(g=>{const items=$$('[role=radio]',g);
+  const pick=(it,focus)=>{items.forEach(x=>{const on=x===it;x.setAttribute('aria-checked',String(on));x.tabIndex=on?0:-1;});S[g.dataset.k]=it.dataset.v;if(focus)it.focus();render();};
+  items.forEach((it,i)=>{it.tabIndex=it.getAttribute('aria-checked')==='true'?0:-1;it.addEventListener('click',()=>pick(it));
+    it.addEventListener('keydown',e=>{let j=null;if(e.key==='ArrowDown'||e.key==='ArrowRight')j=(i+1)%items.length;else if(e.key==='ArrowUp'||e.key==='ArrowLeft')j=(i-1+items.length)%items.length;
+      if(j!==null){e.preventDefault();pick(items[j],true);}});});});
+render();
 
 /* tarifs */
+const fmtN=n=>Number.isInteger(n)?n.toLocaleString('fr-FR'):n.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2});
 let c='eur';
-const fmt=n=>n.toLocaleString('fr-FR');
-const price=()=>{$$('.price[data-eur]').forEach(el=>{el.innerHTML=`${fmt(+el.dataset[c])} <small>${c==='eur'?'€':'DH'} HT</small>`;});
-  $$('[data-each-eur]').forEach(el=>el.textContent='soit '+el.dataset['each'+(c==='eur'?'Eur':'Mad')]);
-  $$('[data-unit-eur]').forEach(el=>el.textContent='paiement unique');};
-$$('#cur button').forEach(b=>b.addEventListener('click',()=>{c=b.dataset.c;$$('#cur button').forEach(x=>x.classList.toggle('on',x===b));price();}));
-try{if((navigator.language||'').toLowerCase().includes('ma')||Intl.DateTimeFormat().resolvedOptions().timeZone==='Africa/Casablanca'){c='mad';$$('#cur button').forEach(x=>x.classList.toggle('on',x.dataset.c==='mad'));}}catch(e){}
+const priceEls=$$('.price[data-eur]');
+const unit={eur:19,mad:149};
+const price=()=>{const sym=c==='eur'?'€':'DH';
+  priceEls.forEach(el=>{const v=+el.dataset[c], plan=el.closest('.plan'), n=+el.dataset.n;
+    el.innerHTML=`${fmtN(v)}${NB}<small>${sym} HT${el.hasAttribute('data-month')?' / mois':''}</small>`;
+    const ttc=$('.ttc',plan);ttc.textContent=c==='eur'?`soit ${fmtN(Math.round(v*120)/100)}${NB}€ TTC en France`:'hors taxes';
+    const each=$('[data-each]',plan);if(each){const pu=Math.round(v/n*100)/100;each.textContent=`soit ${fmtN(pu)}${NB}${sym} la vidéo`;}
+    const b=$('[data-disc]',plan);if(b){const pu=v/n;const pct=Math.round((1-pu/unit[c])*100);b.textContent=`−${pct}${NB}% par vidéo`;}
+  });
+  $$('[data-cmp-price]').forEach(el=>el.textContent=c==='eur'?'Dès 9,90'+NB+'€':'Dès 90'+NB+'DH');
+  $$('#cur button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.c===c)));};
+$$('#cur button').forEach(b=>b.addEventListener('click',()=>{c=b.dataset.c;store.set('immoclap_cur',c);price();}));
+const saved=store.get('immoclap_cur');
+if(saved==='eur'||saved==='mad')c=saved;
+else{try{const lang=(navigator.language||'').toLowerCase();if(lang.endsWith('-ma')||Intl.DateTimeFormat().resolvedOptions().timeZone==='Africa/Casablanca')c='mad';}catch(e){}}
 price();
 
 /* FAQ */
-$$('.q button').forEach(b=>b.addEventListener('click',()=>{const q=b.parentElement,o=!q.classList.contains('open');
+$$('.q button').forEach(b=>b.addEventListener('click',()=>{const q=b.closest('.q'),o=!q.classList.contains('open');
   $$('.q').forEach(x=>{x.classList.remove('open');$('button',x).setAttribute('aria-expanded','false')});
   if(o){q.classList.add('open');b.setAttribute('aria-expanded','true');}}));
 
-/* fenêtre de connexion */
-const modal=$('#modal'), mbox=$('#mbox');
-const open=e=>{e&&e.preventDefault();mob.classList.remove('on');modal.classList.add('on');document.body.style.overflow='hidden';setTimeout(()=>$('input[type=email]',modal).focus(),250);};
-const close=()=>{modal.classList.remove('on');document.body.style.overflow='';};
-$$('[data-open]').forEach(el=>el.addEventListener('click',open));
-$('.x',modal).addEventListener('click',close);
-modal.addEventListener('click',e=>{if(e.target===modal)close()});
-addEventListener('keydown',e=>{if(e.key==='Escape')close()});
-$('#form').addEventListener('submit',e=>{e.preventDefault();const f=e.target;
-  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(f)).toString()})
-  .finally(()=>mbox.classList.add('sent'));});
-/* aperçu vidéo */
-const lb=$('#lb'), lbimg=$('#lbimg'), lbt=$('#lbtitle');
-const lbvid=$('#lbvid');
-const lbOpen=el=>{lbimg.src=el.dataset.play;lbimg.alt=el.dataset.title;lbt.textContent=el.dataset.title;
-  const v=el.dataset.video;lb.classList.toggle('isvid',!!v);lb.classList.toggle('portrait',!!(v&&v.includes('9x16')));
-  if(v){const src=lbvid.canPlayType('video/mp4; codecs="avc1.42E01E"')?v:v.replace('.mp4','.webm');lbvid.src=src;lbvid.currentTime=0;lbvid.play().catch(()=>{lbvid.muted=true;lbvid.play().catch(()=>{})});}else{lbvid.pause();lbvid.removeAttribute('src');}
-  lb.classList.remove('on');void lb.offsetWidth;lb.classList.add('on');document.body.style.overflow='hidden';};
-const lbClose=()=>{lb.classList.remove('on');lbvid.pause();if(!modal.classList.contains('on'))document.body.style.overflow='';};
-$$('[data-play]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();lbOpen(el)}));
-$('.x',lb).addEventListener('click',lbClose);
-lb.addEventListener('click',e=>{if(e.target===lb)lbClose()});
-$$('[data-open]',lb).forEach(el=>el.addEventListener('click',lbClose,true));
-addEventListener('keydown',e=>{if(e.key==='Escape')lbClose()});
-})();
+/* fenêtres : piège de focus, Échap, retour du focus */
+const bg=[$('header'),$('#mob'),$('main'),$('footer'),$('#help'),$('.skip')];
+const focusables=c=>$$('a[href],button:not([disabled]),input:not([type=hidden]):not([tabindex="-1"]),[tabindex]:not([tabindex="-1"])',c).filter(el=>el.offsetParent!==null||el===document.activeElement);
+const stack=[];
+const openLayer=(el,first)=>{const prev=document.activeElement;stack.push({el,prev});el.hidden=false;void el.offsetWidth;el.classList.add('on');
+  bg.forEach(b=>b&&b.setAttribute('inert',''));stack.forEach(s=>{if(s.el!==el)s.el.setAttribute('inert','')});document.body.style.overflow='hidden';
+  setTimeout(()=>{(first&&first.offsetParent!==null?first:focusables(el)[0]||el).focus();},60);};
+const closeLayer=el=>{const i=stack.findIndex(s=>s.el===el);if(i<0)return;const {prev}=stack[i];stack.splice(i,1);el.classList.remove('on');
+  setTimeout(()=>{if(!el.classList.contains('on'))el.hidden=true;},300);
+  if(stack.length){const top=stack[stack.length-1].el;top.removeAttribute('inert');}
+  else{bg.forEach(b=>b&&b.removeAttribute('inert'));document.body.style.overflow='';}
+  if(prev&&document.contains(prev)&&!prev.closest('[inert]')&&prev.getClientRects().length)prev.focus();
+  else{const bu=$('.burger');(bu&&bu.getClientRects().length&&getComputedStyle(bu).display!=='none'?bu:$('#contenu')).focus();}};
+addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    if(stack.length){e.preventDefault();const top=stack[stack.length-1].el;top===modal?closeModal():closeLb();return;}
+    if(mob.classList.contains('on')){menuOpen(false);burger.focus();return;}
+    if(!helpPop.hidden){helpToggle(false);helpBtn.focus();return;}
+  }
+  if(e.key==='Tab'&&stack.length){const top=stack[stack.length-1].el;const f=focusables(top);if(!f.length)return;
+    const a=f[0],z=f[f.length-1];
+    if(!top.contains(document.activeElement)){e.preventDefault();a.focus();}
+    else if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}
+    else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();}}
+},true);
 
-/* source de la visite (?v=video12, ?v=wa-ma) gardée et jointe au formulaire */
-try{const v=new URLSearchParams(location.search).get('v');if(v)localStorage.setItem('immoclap_src',v.slice(0,40));const sv=localStorage.getItem('immoclap_src');if(sv)document.getElementById('src').value=sv;}catch(e){}
+/* liste d'attente */
+const modal=$('#modal'), mbox=$('#mbox'), form=$('#form'), email=$('#email'), msg=$('#formMsg'), fbtn=$('#formBtn');
+const openModal=src=>{if(lb.classList.contains('on'))closeLb(true);if(mob.classList.contains('on'))menuOpen(false);helpToggle(false);
+  $('#offre').value=(src&&src.dataset&&src.dataset.offre)||'';msg.className='msg';msg.textContent='';
+  openLayer(modal,mbox.classList.contains('sent')?$('#okClose'):email);};
+const closeModal=()=>closeLayer(modal);
+$$('[data-open]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();openModal(el)}));
+$('.x',modal).addEventListener('click',closeModal);
+$('#okClose').addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+const CONTACT='contact.immoclap@gmail.com';
+const showErr=html=>{msg.className='msg err';msg.innerHTML=html;};
+form.addEventListener('submit',e=>{e.preventDefault();
+  const v=email.value.trim();
+  if(!v||!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){showErr('Indiquez une adresse e-mail valide, par exemple vous@agence.com.');email.setAttribute('aria-invalid','true');email.focus();return;}
+  email.removeAttribute('aria-invalid');msg.className='msg';msg.textContent='';
+  fbtn.disabled=true;const label=fbtn.textContent;fbtn.textContent='Envoi en cours…';
+  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(form)).toString()})
+  .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);mbox.classList.add('sent');setTimeout(()=>$('#okClose').focus(),30);})
+  .catch(()=>showErr(`L'envoi n'a pas abouti. Réessayez dans un instant, ou écrivez-nous à <a href="mailto:${CONTACT}">${CONTACT}</a>.`))
+  .finally(()=>{fbtn.disabled=false;fbtn.textContent=label;});
+});
+
+/* visionneuse */
+const lb=$('#lb'), lbvid=$('#lbvid');
+const lbOpen=el=>{const base=el.dataset.video, ratio=el.dataset.ratio||'9x16';
+  if(!helpPop.hidden)helpToggle(false);
+  lb.classList.toggle('portrait',ratio==='9x16');
+  $('#lbTitle').textContent=el.dataset.title||'Démonstration';
+  $('#lbMeta').textContent=(ratio==='9x16'?'Vertical 9:16':'Horizontal 16:9')+' · générée par IA · 10 s';
+  lbvid.poster=ratio==='9x16'?base.replace('-9x16','-poster')+'.jpg':'';
+  lbvid.src=vsrc(base);lbvid.muted=false;
+  openLayer(lb,$('.x',lb));
+  lbvid.play().catch(()=>{lbvid.muted=true;lbvid.play().catch(()=>{})});};
+const closeLb=silent=>{lbvid.pause();closeLayer(lb);};
+$$('[data-video]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();lbOpen(el)}));
+$('.x',lb).addEventListener('click',()=>closeLb());
+const lbPlay=$('#lbPlay'), lbMute=$('#lbMute'), lbProg=$('#lbProg');
+const syncCtl=()=>{lbPlay.classList.toggle('is-paused',lbvid.paused);lbPlay.setAttribute('aria-label',lbvid.paused?'Lire la vidéo':'Mettre en pause');
+  lbMute.classList.toggle('is-muted',lbvid.muted);lbMute.setAttribute('aria-label',lbvid.muted?'Activer le son':'Couper le son');};
+['play','pause','volumechange','loadstart'].forEach(ev=>lbvid.addEventListener(ev,syncCtl));
+lbvid.addEventListener('timeupdate',()=>{lbProg.style.width=(lbvid.duration?lbvid.currentTime/lbvid.duration*100:0)+'%';});
+lbvid.addEventListener('ended',()=>{lbvid.currentTime=0;lbvid.play().catch(()=>{});});
+lbPlay.addEventListener('click',()=>{lbvid.paused?lbvid.play().catch(()=>{}):lbvid.pause();});
+lbMute.addEventListener('click',()=>{lbvid.muted=!lbvid.muted;});
+lbvid.addEventListener('click',()=>{lbvid.paused?lbvid.play().catch(()=>{}):lbvid.pause();});
+lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});
+
+/* aide flottante */
+const helpBtn=$('#helpBtn'), helpPop=$('#helpPop');
+const helpToggle=o=>{helpPop.hidden=!o;helpBtn.setAttribute('aria-expanded',String(o));helpBtn.setAttribute('aria-label',o?"Fermer l'aide":'Aide');};
+helpBtn.addEventListener('click',()=>{const o=helpPop.hidden;helpToggle(o);if(o)$('a',helpPop).focus();});
+document.addEventListener('click',e=>{if(!helpPop.hidden&&!e.target.closest('#help'))helpToggle(false);});
+
+/* origine de la visite (?v=video12, ?v=wa-ma), gardée dans le navigateur et jointe au formulaire */
+try{const v=new URLSearchParams(location.search).get('v');if(v)store.set('immoclap_src',v.slice(0,40));const sv=store.get('immoclap_src');if(sv)$('#src').value=sv;}catch(e){}
+})();
 </script>
 </body>
 </html>

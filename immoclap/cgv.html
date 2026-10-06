@@ -4,104 +4,163 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Conditions générales de vente — ImmoClap</title>
+<meta name="description" content="Conditions générales de vente du service ImmoClap : crédits, packs, abonnements, livraison, remboursement.">
 <meta name="robots" content="noindex">
+<link rel="canonical" href="https://immoclap.netlify.app/cgv.html">
+<meta name="theme-color" content="#0B0A09">
+<link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/fonts.css">
 <style>
-:root{--bg:#0B0A09;--bg2:#181614;--line:#2A2622;--fg:#F3EFE7;--muted:#B4AA9D;--dim:#7d746a;--gold:#F6BC28;--gold2:#E5C99E}
+:root{--bg:#0B0A09;--bg2:#181614;--card:#201D1A;--line:#2A2622;--line2:#3a342e;--fg:#F3EFE7;--muted:#B4AA9D;--dim:#9a9085;--gold:#F6BC28;--gold2:#E5C99E;--serif:"Newsreader",Georgia,serif;--sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
 a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+.skip{position:fixed;left:16px;top:-60px;z-index:200;background:var(--gold);color:#16120a;font-weight:600;padding:10px 16px;border-radius:8px;text-decoration:none}
+.skip:focus{top:12px}
 .wrap{max-width:780px;margin:0 auto;padding:0 20px}
-header{border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:68px;max-width:1100px;margin:0 auto;padding:0 20px}
-.logo{display:flex;align-items:center;gap:10px;font-family:Newsreader,Georgia,serif;font-size:22px;font-weight:500;text-decoration:none}
+header{border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;background:rgba(11,10,9,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px;max-width:1100px;margin:0 auto;padding:0 20px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:22px;font-weight:500;text-decoration:none;min-height:44px}
 .logo span{color:var(--gold)}
-.back{font-size:14px;color:var(--muted);text-decoration:none}
-.back:hover{color:var(--fg)}
+.navl{display:flex;align-items:center;gap:22px;font-size:14px}
+.navl a{color:var(--muted);text-decoration:none;padding:10px 0}
+.navl a:hover{color:var(--fg)}
+.navl .back{color:var(--fg)}
 main{padding:70px 0 90px}
 .eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
-h1{font-family:Newsreader,Georgia,serif;font-weight:400;font-size:clamp(38px,6vw,58px);line-height:1.05;letter-spacing:-.02em;margin:14px 0 10px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(38px,6vw,58px);line-height:1.05;letter-spacing:-.02em;margin:14px 0 10px}
+h1 .it{font-style:italic;position:relative;display:inline-block}
+h1 .it::after{content:"";position:absolute;left:2%;right:2%;bottom:-.08em;height:2px;border-radius:2px;background:var(--gold);opacity:.9}
 .upd{color:var(--dim);font-size:14px;margin-bottom:40px}
-h2{font-family:Newsreader,Georgia,serif;font-weight:400;font-size:26px;margin:44px 0 12px;padding-top:24px;border-top:1px solid var(--line)}
+.intro{font-size:18px;color:var(--muted)}
+h2{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.2;margin:44px 0 12px;padding-top:24px;border-top:1px solid var(--line)}
 h3{font-size:16px;font-weight:600;margin:22px 0 6px}
 p,li{color:var(--muted);font-size:16px}
 p+p{margin-top:12px}
-ul{margin:10px 0 0 20px;display:flex;flex-direction:column;gap:6px}
+ul,ol{margin:10px 0 0 22px;display:flex;flex-direction:column;gap:6px}
 strong{color:var(--fg);font-weight:500}
-.todo{background:rgba(246,188,40,.15);color:var(--gold);padding:1px 6px;border-radius:4px}
+main a{text-decoration:underline;text-underline-offset:3px;color:var(--fg)}
 .box{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-top:16px}
-footer{border-top:1px solid var(--line);padding:30px 20px;text-align:center;font-size:13px;color:var(--dim)}
-footer a{color:var(--muted);margin:0 10px;text-decoration:none}
-footer a:hover{color:var(--fg)}
+.box.gold{border-color:rgba(246,188,40,.5);background:linear-gradient(135deg,rgba(246,188,40,.07),transparent 60%)}
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:15px}
+th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--fg);font-weight:500}
+td{color:var(--muted)}
+thead th{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);font-weight:500}
+.tbl{overflow-x:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--gold);color:#16120a!important;font-weight:600;font-size:16px;min-height:44px;padding:13px 24px;border-radius:10px;text-decoration:none!important}
+.btn.ghost{background:transparent;color:var(--fg)!important;border:1px solid var(--line2)}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.steps{list-style:none;margin:16px 0 0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;position:relative;padding:0 0 0 48px;margin-top:18px}
+.steps li::before{content:counter(s,upper-roman);position:absolute;left:0;top:-2px;font-family:var(--serif);font-style:italic;font-size:22px;color:var(--gold)}
+.steps li b{display:block;color:var(--fg);font-weight:500}
+footer{border-top:1px solid var(--line);padding:34px 20px 40px;text-align:center;font-size:13px;color:var(--dim)}
+footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px}
+footer nav a{color:var(--muted);text-decoration:none;display:inline-block;padding:6px 0}
+footer nav a:hover{color:var(--fg)}
+footer p{max-width:760px;margin:14px auto 0;line-height:1.6;color:var(--dim);font-size:13px}
+footer p a{color:var(--muted)}
+@media (max-width:720px){
+  .navl .hide-m{display:none}
+  main{padding:48px 0 70px}
+  .intro{font-size:16px}
+}
 </style>
 </head>
 <body>
+<a class="skip" href="#contenu">Aller au contenu</a>
 <header><div class="nav">
-<a href="index.html" class="logo"><svg width="26" height="26" viewBox="0 0 100 100" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F3EFE7"/><stop offset="1" stop-color="#F6BC28"/></linearGradient></defs><path d="M14 42 L50 14 L86 42 V86 H14 Z" stroke="url(#g)" stroke-width="5"/><path d="M40 40 L64 54 L40 68 Z" stroke="url(#g)" stroke-width="5"/></svg><b style="font-weight:500">Immo<span>Clap</span></b></a>
-<a href="index.html" class="back">← Retour au site</a>
+<a href="index.html" class="logo" aria-label="ImmoClap, accueil"><svg width="26" height="26" viewBox="0 0 100 100" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F3EFE7"/><stop offset="1" stop-color="#F6BC28"/></linearGradient></defs><path d="M14 42 L50 14 L86 42 V86 H14 Z" stroke="url(#g)" stroke-width="5"/><path d="M40 40 L64 54 L40 68 Z" stroke="url(#g)" stroke-width="5"/></svg><b style="font-weight:500">Immo<span>Clap</span></b></a>
+<nav class="navl" aria-label="Navigation">
+<a class="hide-m" href="index.html#exemples">Exemples</a><a class="hide-m" href="index.html#tarifs">Tarifs</a><a class="hide-m" href="guide.html">Guide</a><a class="hide-m" href="a-propos.html">À propos</a><a class="back" href="index.html">← Retour au site</a>
+</nav>
 </div></header>
-<main><div class="wrap">
+<main id="contenu"><div class="wrap">
 <div class="eyebrow">Informations légales</div>
 <h1>Conditions générales de vente</h1>
-<p class="upd">Dernière mise à jour : 2 octobre 2026</p>
+<p class="upd">Dernière mise à jour&nbsp;: 6 octobre 2026</p>
 
-<p>Les présentes conditions générales de vente (« CGV ») s'appliquent à toute utilisation du service ImmoClap et à tout achat effectué sur le Site. En créant un compte ou en passant commande, le client les accepte sans réserve.</p>
+<p>Les présentes conditions générales de vente (« CGV ») s'appliquent à toute commande passée sur le Site et à toute utilisation du service ImmoClap. Elles s'appliqueront dès l'ouverture des commandes, qui n'est pas encore effective. En passant commande, le client les accepte.</p>
 
-<h2>1. Le service</h2>
-<p>ImmoClap permet de transformer les photos d'un bien immobilier en vidéo : ajout de mouvements de caméra, montage, musique, textes, voix off et logo, déclinés en plusieurs formats (16:9, 9:16, 1:1). Le service est fourni en ligne, sous forme de contenu numérique.</p>
+<h2>1. Le vendeur</h2>
+<div class="box"><p>Le service est fourni par <strong>Julien Wail COLLY</strong>, entrepreneur individuel exerçant sous le nom commercial <strong>ImmoClap</strong> (statut d'auto-entrepreneur, immatriculation en cours).<br>Adresse&nbsp;: Lot Zohour Targa, Tranche 20, N° 91, Targa, Marrakech, Maroc<br>E-mail&nbsp;: <a href="mailto:contact.immoclap@gmail.com">contact.immoclap@gmail.com</a></p></div>
+<p style="margin-top:16px">La vente est conclue par l'intermédiaire de notre prestataire de paiement, qui agit comme revendeur (Merchant of Record)&nbsp;; son nom figure sur la page de paiement et sur le reçu. Ce revendeur encaisse le paiement, émet la facture et applique les taxes&nbsp;; ses conditions d'achat, affichées sur la page de paiement, s'appliquent également.</p>
 
-<h2>2. Clients</h2>
-<p>Le service s'adresse principalement aux professionnels de l'immobilier (agences, agents, promoteurs, gestionnaires) et aux particuliers propriétaires. Le client garantit l'exactitude des informations fournies lors de son inscription.</p>
+<h2>2. Le service</h2>
+<p>ImmoClap transforme de 3 à 12 photos d'un bien immobilier en vidéo de 15 à 60 secondes (environ 5 secondes par photo)&nbsp;: mouvements de caméra générés par intelligence artificielle, montage, musique (4 ambiances), voix off facultative (féminine ou masculine, en français, en arabe ou en anglais), textes et carton de fin (logo, nom de l'agence, téléphone). Chaque vidéo est livrée dans trois formats (16:9, 9:16, 1:1), avec et sans logo. Le service est fourni en ligne, sous forme de contenu numérique.</p>
 
-<h2>3. Exemples</h2>
-<p>Des vidéos d'exemple, présentées comme des démonstrations, sont consultables gratuitement sur le Site avant tout achat. Il n'y a pas d'essai gratuit : chaque vidéo est payée avant sa génération.</p>
+<h2>3. Clients</h2>
+<p>Le service s'adresse aux professionnels de l'immobilier (agences, agents, mandataires, promoteurs, gestionnaires) et aux particuliers propriétaires. Le client garantit l'exactitude des informations qu'il fournit.</p>
 
-<h2>4. Prix et paiement</h2>
-<p>Les prix sont indiqués hors taxes sur la page Tarifs, en euros (€) ou en dirhams (DH). Les taxes éventuelles (TVA selon le pays du client) sont calculées et ajoutées au moment du paiement.</p>
-<p>Les paiements sont traités par <strong>Lemon Squeezy</strong>, revendeur agréé (« Merchant of Record ») : c'est Lemon Squeezy qui encaisse le paiement, émet la facture et applique la TVA. Les <a href="https://www.lemonsqueezy.com/buyer-terms" target="_blank" rel="noopener">conditions acheteur de Lemon Squeezy</a> s'appliquent également.</p>
+<h2>4. Démonstrations</h2>
+<p>Des vidéos de démonstration, signalées comme telles, sont consultables gratuitement sur le Site avant tout achat. Il n'y a pas d'essai gratuit&nbsp;: chaque vidéo est payée avant sa génération.</p>
 
-<h2>5. Crédits, packs et abonnements</h2>
+<h2>5. Prix et paiement</h2>
+<p>Les prix sont indiqués hors taxes sur la page Tarifs, en euros (€) ou en dirhams (DH). Les taxes applicables (TVA selon le pays du client) sont calculées et ajoutées au moment du paiement&nbsp;; un prix TTC indicatif est affiché pour la France. Le paiement se fait par carte sur la page sécurisée du prestataire de paiement.</p>
+<table>
+<thead><tr><th scope="col">Formule</th><th scope="col">Prix HT</th><th scope="col">Contenu</th></tr></thead>
+<tbody>
+<tr><th scope="row">1 vidéo</th><td>19 € · 149 DH</td><td>1 crédit</td></tr>
+<tr><th scope="row">Pack 5</th><td>79 € · 599 DH</td><td>5 crédits</td></tr>
+<tr><th scope="row">Pack 10</th><td>139 € · 999 DH</td><td>10 crédits</td></tr>
+<tr><th scope="row">Abonnement Solo</th><td>39 € · 349 DH par mois</td><td>3 crédits par mois</td></tr>
+<tr><th scope="row">Abonnement Agence</th><td>99 € · 899 DH par mois</td><td>10 crédits par mois</td></tr>
+</tbody>
+</table>
+
+<h2>6. Crédits, packs et abonnements</h2>
 <ul>
-<li>Le client achète des crédits, à l'unité, par pack (5 ou 10) ou par abonnement mensuel (Solo : 3 crédits par mois ; Agence : 10 crédits par mois). 1 crédit = 1 vidéo, livrée en 3 formats.</li>
-<li>L'abonnement est sans engagement : il se renouvelle chaque mois et peut être résilié à tout moment depuis l'espace client ou le lien reçu par e-mail ; la résiliation prend effet à la fin du mois en cours, sans remboursement du mois entamé. Les crédits d'abonnement non utilisés sont reportés tant que l'abonnement est actif, dans la limite de 12 mois.</li>
-<li>Prix de lancement : les 100 premiers abonnés conservent leur prix tant que leur abonnement reste actif sans interruption. Toute autre modification de prix est annoncée par e-mail au moins 30 jours avant de s'appliquer.</li>
-<li>Une vidéo est générée à partir de 12 photos maximum.</li>
-<li>Les crédits sont valables 12 mois à compter de l'achat. Les crédits non utilisés à l'issue de ce délai sont perdus.</li>
-<li>Les crédits sont personnels au compte et ne peuvent être ni revendus ni échangés contre de l'argent.</li>
+<li>1 crédit = 1 vidéo de 3 à 12 photos, livrée dans les 3 formats.</li>
+<li>Les crédits achetés à l'unité ou en pack sont valables 12 mois à compter de l'achat. Passé ce délai, les crédits non utilisés sont perdus.</li>
+<li>L'abonnement est sans engagement. Il se renouvelle chaque mois et peut être résilié à tout moment, avec le lien de gestion reçu par e-mail ou en écrivant à <a href="mailto:contact.immoclap@gmail.com">contact.immoclap@gmail.com</a>. La résiliation prend effet à la fin du mois payé&nbsp;; le mois entamé n'est pas remboursé.</li>
+<li>Les crédits d'abonnement non utilisés sont reportés d'un mois sur l'autre tant que l'abonnement est actif, dans la limite de 12 mois. Après une résiliation, ils restent utilisables jusqu'à la fin du mois payé.</li>
+<li>Prix de lancement&nbsp;: les 100 premiers abonnés conservent leur prix tant que leur abonnement reste actif sans interruption. Toute autre modification de prix est annoncée par e-mail au moins 30 jours avant de s'appliquer.</li>
+<li>Les crédits sont personnels au compte. Ils ne peuvent être ni revendus ni échangés contre de l'argent.</li>
 </ul>
 
-<h2>6. Livraison</h2>
-<p>La vidéo est générée en ligne et mise à disposition dans l'espace client, généralement en quelques minutes. Ce délai est indicatif et peut varier selon le nombre de photos et la charge des serveurs. Le client est invité à télécharger ses vidéos : elles sont conservées au moins 30 jours.</p>
+<h2>7. Livraison</h2>
+<p>La vidéo est générée en ligne et mise à disposition dans l'espace client, en général en quelques minutes. Ce délai est indicatif&nbsp;: il varie selon le nombre de photos et la charge des serveurs. Le client télécharge ses vidéos&nbsp;; elles sont conservées au moins 30 jours.</p>
 
-<h2>7. Engagements du client sur les photos</h2>
+<h2>8. Engagements du client sur les photos</h2>
 <ul>
-<li>Le client garantit détenir les droits sur les photos qu'il envoie (photos prises par lui, son agence, ou avec l'accord du photographe) et l'accord du propriétaire du bien.</li>
+<li>Le client garantit détenir les droits sur les photos qu'il envoie (photos prises par lui, par son agence, ou avec l'accord du photographe) et l'accord du propriétaire du bien.</li>
 <li>Les photos ne doivent pas montrer de personnes identifiables sans leur accord, ni de contenu illicite.</li>
 <li>Le client reste seul responsable de l'utilisation des vidéos dans ses annonces, notamment au regard des règles sur la publicité immobilière et les pratiques commerciales trompeuses.</li>
 </ul>
 
-<h2>8. Ce que fait — et ne fait pas — l'IA</h2>
-<p>ImmoClap ajoute un mouvement de caméra et un habillage (musique, textes, logo). Le service <strong>ne modifie pas volontairement</strong> les caractéristiques du bien (surfaces, volumes, matériaux, défauts, vis-à-vis). L'intelligence artificielle peut toutefois produire des imperfections visuelles : le client vérifie chaque vidéo avant publication et peut demander une nouvelle génération en cas de défaut.</p>
+<h2>9. Ce que fait l'IA, et ce qu'elle ne doit pas faire</h2>
+<p>ImmoClap ajoute un mouvement de caméra et un habillage (musique, voix, textes, logo). Le service <strong>ne modifie pas volontairement</strong> les caractéristiques du bien (surfaces, volumes, matériaux, défauts, vis-à-vis). L'intelligence artificielle peut toutefois produire des imperfections visuelles&nbsp;: le client vérifie chaque vidéo avant publication. Une vidéo défectueuse est régénérée gratuitement, puis remboursée ou recréditée si le défaut persiste, selon la <a href="remboursement.html">politique de remboursement</a>.</p>
 
-<h2>9. Droits sur les vidéos</h2>
-<p>Une fois la vidéo livrée (et payée), le client peut l'utiliser librement pour la promotion du bien concerné et de son activité, sur tous supports (portails immobiliers, site web, réseaux sociaux). Les musiques fournies sont libres de droits pour ces usages. ImmoClap peut, sauf refus écrit du client, utiliser une vidéo à titre d'exemple sur son site ou ses réseaux.</p>
+<h2>10. Droits sur les vidéos</h2>
+<p>Une fois la vidéo livrée et payée, le client peut l'utiliser librement pour la promotion du bien concerné et de son activité, sur tous supports (portails immobiliers, site web, réseaux sociaux, messageries). Les musiques fournies sont libres de droits pour ces usages. ImmoClap peut, sauf refus écrit du client, utiliser une vidéo à titre d'exemple sur son site ou ses réseaux.</p>
 
-<h2>10. Droit de rétractation</h2>
-<p>Pour les clients consommateurs, le contenu numérique étant fourni immédiatement après la commande, le client reconnaît, en validant sa commande, demander l'exécution immédiate du service et renoncer à son droit de rétractation, conformément à l'article L221-28 13° du Code de la consommation. Voir aussi notre <a href="remboursement.html">politique de remboursement</a>.</p>
+<h2>11. Droit de rétractation</h2>
+<p>Le contenu numérique est fourni dès la génération. Avant le paiement, le client consommateur est invité à demander expressément l'exécution immédiate du service et à reconnaître qu'il perd ainsi son droit de rétractation pour les vidéos générées (article L221-28 13° du Code de la consommation). Les crédits non utilisés restent remboursables dans les conditions de la <a href="remboursement.html">politique de remboursement</a>.</p>
 
-<h2>11. Responsabilité</h2>
-<p>ImmoClap s'engage à fournir le service avec soin, dans le cadre d'une obligation de moyens. Sa responsabilité ne saurait être engagée en cas d'interruption due à un prestataire technique, de force majeure, ou d'usage des vidéos non conforme aux présentes CGV. En tout état de cause, la responsabilité d'ImmoClap est limitée au montant payé par le client au cours des 12 derniers mois.</p>
+<h2>12. Responsabilité</h2>
+<p>ImmoClap fournit le service avec soin, dans le cadre d'une obligation de moyens. Sa responsabilité ne peut être engagée en cas d'interruption due à un prestataire technique, de force majeure, ou d'usage des vidéos non conforme aux présentes CGV. Dans tous les cas, elle est limitée au montant payé par le client au cours des 12 derniers mois, sauf disposition légale impérative contraire.</p>
 
-<h2>12. Données personnelles</h2>
-<p>Le traitement des données est décrit dans notre <a href="confidentialite.html">politique de confidentialité</a>.</p>
+<h2>13. Données personnelles</h2>
+<p>Le traitement des données est décrit dans la <a href="confidentialite.html">politique de confidentialité</a>.</p>
 
-<h2>13. Modification des CGV</h2>
-<p>ImmoClap peut modifier les présentes CGV. Les CGV applicables sont celles en vigueur à la date de la commande ; les abonnés sont informés par e-mail de toute modification importante.</p>
+<h2>14. Modification des CGV</h2>
+<p>ImmoClap peut modifier les présentes CGV. Les CGV applicables sont celles en vigueur à la date de la commande&nbsp;; les abonnés sont informés par e-mail de toute modification importante.</p>
 
-<h2>14. Droit applicable et litiges</h2>
-<p>Les présentes CGV sont soumises au droit marocain, sans préjudice des dispositions protectrices impératives dont bénéficient les consommateurs dans leur pays de résidence. En cas de litige, le client contacte d'abord ImmoClap à <a href="mailto:contact.immoclap@gmail.com">contact.immoclap@gmail.com</a> pour une solution amiable. Les consommateurs résidant dans l'Union européenne peuvent également recourir gratuitement à un médiateur de la consommation.</p>
+<h2>15. Réclamations, médiation et droit applicable</h2>
+<p>Pour toute réclamation, écrivez d'abord à <a href="mailto:contact.immoclap@gmail.com">contact.immoclap@gmail.com</a> pour trouver une solution amiable.</p>
+<p><strong>Médiation de la consommation</strong>&nbsp;: ImmoClap n'a pas encore adhéré à un service de médiation de la consommation. Les coordonnées du médiateur seront indiquées ici dès l'adhésion. En attendant, le client consommateur conserve la possibilité de saisir la juridiction compétente.</p>
+<p>Les présentes CGV sont soumises au droit marocain, sans préjudice des dispositions impératives plus protectrices dont bénéficie le consommateur dans son pays de résidence.</p>
+
 </div></main>
-<footer><a href="mentions-legales.html">Mentions légales</a><a href="cgv.html">CGV</a><a href="confidentialite.html">Confidentialité</a><a href="remboursement.html">Remboursement</a><div style="margin-top:12px">© 2026 ImmoClap · <a href="mailto:contact.immoclap@gmail.com" style="margin:0">contact.immoclap@gmail.com</a></div></footer>
+<footer>
+<nav aria-label="Liens du pied de page"><a href="a-propos.html">À propos</a><a href="guide.html">Guide photos</a><a href="mailto:contact.immoclap@gmail.com">Contact</a><a href="mentions-legales.html">Mentions légales</a><a href="cgv.html">CGV</a><a href="confidentialite.html">Confidentialité</a><a href="remboursement.html">Remboursement</a></nav>
+<p>© 2026 ImmoClap · Julien Wail COLLY, entrepreneur individuel (immatriculation en cours) · Lot Zohour Targa, Tranche 20, N° 91, Targa, Marrakech, Maroc · <a href="mailto:contact.immoclap@gmail.com">contact.immoclap@gmail.com</a></p>
+</footer>
 </body>
 </html>
