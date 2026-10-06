@@ -353,6 +353,8 @@ textarea{resize:vertical;min-height:96px}
 .orders li b{font-weight:600}
 .testtools{border:1px dashed rgba(246,188,40,.45);border-radius:var(--r2);padding:12px 14px;margin-top:16px;font-size:13px;color:var(--gold2)}
 .testtools .btn{margin-top:8px}
+.paytest{border-left:2px solid rgba(246,188,40,.45);padding:2px 0 2px 12px;margin:0 0 18px}
+.paytest b{color:var(--fg);font-weight:600}
 .sim{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
 .sim .btn{font-size:13px;padding:8px 10px}
 
@@ -803,8 +805,8 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
       <h1 id="pay-h" tabindex="-1">Paiement</h1>
       <div class="card" style="text-align:left;margin:16px 0" id="pay-sum"></div>
       <form class="card" id="f-pay" style="text-align:left" novalidate autocomplete="off">
-        <p class="notice" style="margin-bottom:18px">Paiement de test : <b>aucune carte n'est demandée</b> et rien n'est débité. Le bouton « Payer » simule un paiement accepté. Les deux boutons du dessous simulent un échec.</p>
-        <p class="fine" style="margin:-6px 0 16px">Ne saisissez jamais de carte sur cette page. Le vrai test de carte se fera sur la page de paiement sécurisée de notre prestataire, en mode test, avec la carte de test 4242 4242 4242 4242, une fois le paiement branché. Aucune vraie carte ne sera débitée en mode test.</p>
+        <p class="notice" style="margin-bottom:12px">Paiement simulé : <b>aucune carte n'est demandée sur cette page</b> et rien n'est débité. Le bouton « Payer » simule un paiement accepté, les deux boutons du dessous simulent un échec.</p>
+        <p class="fine paytest"><b>Et le vrai test de carte ?</b> Il se fera sur la page de paiement sécurisée de notre prestataire, une fois le paiement branché : en mode test, avec la carte de test 4242 4242 4242 4242 (date d'expiration future, code au choix). Aucune vraie carte n'est débitée en mode test. Il n'y a volontairement aucun champ de carte ici : vos données de carte ne se saisissent que sur la page du prestataire.</p>
         <label class="check"><input type="checkbox" id="pay-cgv" aria-describedby="pay-cgv-err"> <span>J'accepte les <a href="cgv.html" target="_blank" rel="noopener">CGV</a> et la <a href="remboursement.html" target="_blank" rel="noopener">politique de remboursement</a>. Je demande l'exécution immédiate du service et je reconnais perdre mon droit de rétractation pour chaque crédit dès que la vidéo correspondante est générée.</span></label>
         <p class="ferr" id="pay-cgv-err"></p>
         <p class="err" id="pay-err" role="alert"></p>
@@ -2120,7 +2122,7 @@ function renderPlanCard(){
       <dt>Statut</dt><dd>${s.status === 'canceling' ? `<span class="pill err">Résilié</span> reste actif jusqu'au ${fmtDate(s.renew)}` : '<span class="pill ok">Actif</span>'}</dd>
       <dt>${s.status === 'canceling' ? 'Fin' : 'Prochain renouvellement'}</dt><dd>${fmtDate(s.renew)}${s.next ? ` · passage à ${offerById(s.next).name} prévu` : ''}</dd>
       <dt>Prix de lancement</dt><dd>Conservé tant que l'abonnement reste actif sans interruption.</dd></dl>
-      <p class="fine">${ending ? `Résiliation : vos crédits d'abonnement restent utilisables jusqu'au ${fmtDate(s.renew)}, puis ils expirent. Aucun nouveau prélèvement.` : "Crédits d'abonnement reportés tant que l'abonnement est actif, dans la limite de 12 mois."}</p>
+      <p class="fine">${ending ? `Résiliation : vos crédits d'abonnement restent utilisables jusqu'au ${fmtDate(s.renew)}, puis ils expirent. Aucun nouveau prélèvement.` : "Crédits d'abonnement reportés tant que l'abonnement est actif, dans la limite de 12 mois. Résiliable à tout moment : depuis Mon compte (bouton Résilier ci-dessous), avec le lien de gestion reçu par e-mail, ou en nous écrivant."}</p>
       <div class="row-act">
         ${ending ? '<button class="btn sm" type="button" id="sub-resume">Reprendre l\'abonnement</button>' : '<button class="btn sm danger" type="button" id="sub-cancel">Résilier</button>'}
         ${ending ? '' : s.next ? '<button class="btn sm ghost" type="button" id="sub-next-cancel">Garder ' + esc(o.name) + '</button>' : `<button class="btn sm ghost" type="button" data-plan="${other.id}">Passer à ${other.name} · ${moneyT(other[c], c)} / mois</button>`}
