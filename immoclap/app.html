@@ -804,6 +804,7 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
       <div class="card" style="text-align:left;margin:16px 0" id="pay-sum"></div>
       <form class="card" id="f-pay" style="text-align:left" novalidate autocomplete="off">
         <p class="notice" style="margin-bottom:18px">Paiement de test : <b>aucune carte n'est demandée</b> et rien n'est débité. Le bouton « Payer » simule un paiement accepté. Les deux boutons du dessous simulent un échec.</p>
+        <p class="fine" style="margin:-6px 0 16px">Ne saisissez jamais de carte sur cette page. Le vrai test de carte se fera sur la page de paiement sécurisée de notre prestataire, en mode test, avec la carte de test 4242 4242 4242 4242, une fois le paiement branché. Aucune vraie carte ne sera débitée en mode test.</p>
         <label class="check"><input type="checkbox" id="pay-cgv" aria-describedby="pay-cgv-err"> <span>J'accepte les <a href="cgv.html" target="_blank" rel="noopener">CGV</a> et la <a href="remboursement.html" target="_blank" rel="noopener">politique de remboursement</a>. Je demande l'exécution immédiate du service et je reconnais perdre mon droit de rétractation pour chaque crédit dès que la vidéo correspondante est générée.</span></label>
         <p class="ferr" id="pay-cgv-err"></p>
         <p class="err" id="pay-err" role="alert"></p>
@@ -1120,7 +1121,7 @@ function onExternalAcct(){
   else if (r.a === 'paiement' && !pay.busy) renderPaySummary();
   else if (r.a === 'video') {
     const v = acct.videos.find(x => x.id === r.b);
-    if (!v) { toast('Cette vidéo a été supprimée dans un autre onglet.'); return go('videos', true); }
+    if (!v) { toast('Cette vidéo a été supprimée dans un autre onglet.'); return exitTo('videos'); }
     if (!ui.vid || ui.vid.status !== v.status) routeVideo(r.b); else ui.vid = v;
   }
 }
@@ -1137,12 +1138,22 @@ function onExternalDraft(){
 const SCREENS = {login:'s-login', dash:'s-dash', new:'s-new', video:'s-video', account:'s-account', pay:'s-pay'};
 let lastRoute = '';
 function parseHash(){ const h = decodeURIComponent(location.hash.replace(/^#\/?/, '')); const [a, b, c] = h.split('/'); return {a:a || '', b:b || '', c:c || '', raw:h}; }
-let navReplace = false, flowDepth = 0, flowPre = false, afterBack = null, rendered = false;
+let navReplace = false, pendFrom, flowDepth = 0, flowPre = false, afterBack = null, rendered = false;
+/* hash de l'entrée d'historique qui précède l'entrée courante (connu seulement si on y est arrivé en avançant) */
+function entryFrom(){ try { const st = history.state; return st && typeof st.from === 'string' ? st.from : null; } catch(e) { return null; } }
 function go(h, replace){
   const target = '#' + h;
   if (location.hash === target) { render(); return; }
   navReplace = !!replace;
+  /* entrée précédente de la future entrée : la même que celle de l'entrée remplacée, ou l'entrée qu'on quitte */
+  pendFrom = replace ? entryFrom() : (location.hash || null);
   if (replace) location.replace(target); else location.hash = h;
+}
+/* quitter un écran de passage (paiement) : si l'entrée précédente est déjà la destination, on y revient
+   (pas de doublon derrière le bouton Retour) ; sinon l'entrée courante est remplacée par la destination */
+function exitTo(dest){
+  if (entryFrom() === '#' + dest) { afterBack = null; history.back(); }
+  else go(dest, true);
 }
 /* « parcours » = assistant + paiement lancé depuis le récap. Chaque entrée d'historique garde sa
    profondeur dans le parcours : en sortant (génération lancée, Annuler), on remonte d'un coup
@@ -1150,21 +1161,30 @@ function go(h, replace){
 const isFlow = r => r.a === 'nouvelle' || (r.a === 'paiement' && r.c === 'reprise');
 function stampHistory(r){
   let st = null; try { st = history.state; } catch(e) {}
-  if (st && typeof st.flow === 'number') { flowDepth = st.flow; flowPre = !!st.pre; navReplace = false; rendered = true; return; }
+  if (st && typeof st.flow === 'number') { flowDepth = st.flow; flowPre = !!st.pre; navReplace = false; pendFrom = undefined; rendered = true; return; }
   let d = 0, pre = false;
   if (isFlow(r)) {
     if (flowDepth > 0) { d = navReplace ? flowDepth : flowDepth + 1; pre = flowPre; }
     else { d = 1; pre = rendered && !navReplace; }
   }
-  navReplace = false; rendered = true; flowDepth = d; flowPre = pre;
-  try { history.replaceState(Object.assign({}, st, {flow:d, pre}), ''); } catch(e) {}
+  const from = pendFrom !== undefined ? pendFrom : rendered ? prevHash : null;
+  navReplace = false; pendFrom = undefined; rendered = true; flowDepth = d; flowPre = pre;
+  try { history.replaceState(Object.assign({}, st, {flow:d, pre, from}), ''); } catch(e) {}
 }
+/* sortie du parcours. Si une entrée précède le parcours, on y revient puis on avance vers la cible :
+   les étapes mortes sont retirées de l'historique (Retour comme Suivant). Sinon, la première étape
+   est remplacée par la cible. */
 function leaveFlow(target){
-  const steps = target === 'videos' && flowPre ? flowDepth : flowDepth - 1;
-  if (steps > 0) { afterBack = target; history.go(-steps); }
-  else go(target, true);
+  const steps = flowPre ? flowDepth : flowDepth - 1;
+  if (steps > 0) { afterBack = {t:target, push:flowPre}; history.go(-steps); }
+  else exitTo(target);
 }
-addEventListener('popstate', () => { if (!afterBack) return; const t = afterBack; afterBack = null; flowDepth = 0; flowPre = false; go(t, true); });
+addEventListener('popstate', () => {
+  if (!afterBack) return;
+  const a = afterBack; afterBack = null; flowDepth = 0; flowPre = false;
+  if (location.hash === '#' + a.t) return; /* déjà sur la cible : l'événement hashchange affiche l'écran */
+  if (a.push) go(a.t); else exitTo(a.t);
+});
 let prevHash = null;
 addEventListener('hashchange', e => { try { prevHash = new URL(e.oldURL).hash || null; } catch(_) { prevHash = null; } render(); });
 function showScreen(name, title, focusEl){
@@ -1276,7 +1296,7 @@ function renderOffers(){
       else if (acct.sub) btn = `<button class="btn sm ghost full" type="button" data-plan="${o.id}">${subEnding() && o.eur < offerById(acct.sub.id).eur ? `Annuler la résiliation et passer à ${o.name}` : `Passer à ${o.name}`}</button>`;
       else btn = `<a class="btn sm ghost full" href="#paiement/${o.id}">S'abonner</a>`;
     } else btn = `<a class="btn sm ghost full" href="#paiement/${o.id}">Acheter</a>`;
-    const sub = o.kind === 'sub' ? `${o.credits} vidéos par mois. Crédits reportés tant que l'abonnement est actif (12 mois maximum). Résiliable à tout moment : depuis Mon compte, avec le lien de gestion reçu par e-mail ou en nous écrivant.` : '';
+    const sub = o.kind === 'sub' ? `${o.credits} vidéos par mois. Crédits reportés tant que l'abonnement est actif (12 mois maximum). Résiliable à tout moment : depuis Mon compte, avec le lien de gestion reçu par e-mail, ou en nous écrivant.` : '';
     return `<div class="offer${isCur ? ' cur-plan' : ''}"><div class="ot"><h4 class="h3">${o.name}</h4>${pill}</div>
       <div class="p">${moneyBig(price, cur)}${o.kind === 'sub' ? ' <small>/ mois</small>' : ''}</div><div class="t">${tt}</div><div class="u">${per}</div>
       <div class="d">${o.d}${sub ? '<br>' + sub : ''}</div>${btn}</div>`;
@@ -1873,17 +1893,17 @@ $('#r-del').addEventListener('click', async () => {
   const v = ui.vid; if (!v) return;
   const r = await ask({title:'Supprimer cette vidéo ?', html:`<p>« ${esc(v.type)} · ${esc(v.city)} » sera retirée de vos vidéos. Cette action est définitive et ne rend pas le crédit.</p>`, buttons:[{label:'Supprimer', value:'del', kind:'danger'}, {label:'Annuler', value:null, kind:'ghost', focus:true}]});
   if (r !== 'del') return;
-  deleteVideo(v.id); toast('Vidéo supprimée.'); go('videos', true);
+  deleteVideo(v.id); toast('Vidéo supprimée.'); exitTo('videos');
 });
 function deleteVideo(id){ refreshAcct(); const i = acct.videos.findIndex(x => x.id === id); if (i < 0) return; const [rm] = acct.videos.splice(i, 1); if (!saveAcct()) { acct.videos.splice(i, 0, rm); toast('Suppression impossible : stockage du navigateur inaccessible.'); } }
 $('#f-retry').addEventListener('click', () => {
   if (!ui.vid) return;
   refreshAcct();
-  const v = acct.videos.find(x => x.id === ui.vid.id); if (!v) return go('videos', true);
+  const v = acct.videos.find(x => x.id === ui.vid.id); if (!v) return exitTo('videos');
   if (v.status === 'failed') { v.status = 'processing'; v.startedAt = now() - v.dur; v.err = null; saveAcct(); }
   tick(); routeVideo(v.id);
 });
-$('#f-del').addEventListener('click', () => { const v = ui.vid; if (!v) return; deleteVideo(v.id); go('videos', true); });
+$('#f-del').addEventListener('click', () => { const v = ui.vid; if (!v) return; deleteVideo(v.id); exitTo('videos'); });
 
 /* --- textes prêts à copier --- */
 const isMaroc = v => /\b(dh|mad|dirhams?)\b/i.test(v.price || '') || /marrakech|casablanca|rabat|tanger|agadir|f[eè]s|mekn[eè]s|essaouira|k[ée]nitra|oujda|t[ée]touan|el jadida|mohammedia|bouskoura|dar bouazza|ifrane|sal[ée]|t[ée]mara|benslimane|ouarzazate|nador|safi|taroudant/i.test(v.city || '') || (!/€|eur/i.test(v.price || '') && cur === 'mad');
@@ -1957,13 +1977,13 @@ document.addEventListener('click', async e => {
 let payCtx = null;
 function routePay(id, resume){
   const o = offerById(id);
-  if (!o) return go('videos', true);
+  if (!o) return exitTo('videos');
   /* un paiement est en cours : on reste sur l'offre réellement payée */
   if (pay.busy && pay.ctx && pay.ctx.offer.id !== id) {
     toast('Un paiement est en cours : attendez la fin.');
     return go('paiement/' + pay.ctx.offer.id + (pay.ctx.resume ? '/reprise' : ''), true);
   }
-  if (!pay.busy && o.kind === 'sub' && acct.sub && acct.sub.id === o.id) { toast(`${o.name} est déjà votre formule.`); return go('compte', true); }
+  if (!pay.busy && o.kind === 'sub' && acct.sub && acct.sub.id === o.id) { toast(`${o.name} est déjà votre formule.`); return exitTo('compte'); }
   if (!pay.busy || !payCtx || payCtx.offer.id !== id) {
     payCtx = {offer:o, resume, change:o.kind === 'sub' && !!acct.sub};
     $('#f-pay').reset(); $('#pay-err').textContent = ''; $('#pay-cgv-err').textContent = '';
@@ -1978,7 +1998,7 @@ function renderPaySummary(){
   const o = payCtx.offer, c = pay.busy && pay.ctx ? pay.ctx.cur : cur, p = o[c];
   const lines = [];
   if (o.kind === 'sub') {
-    lines.push(`${o.credits} vidéos par mois, renouvelé chaque mois. Sans engagement : résiliable à tout moment depuis Mon compte, avec le lien de gestion reçu par e-mail ou en nous écrivant.`);
+    lines.push(`${o.credits} vidéos par mois, renouvelé chaque mois. Sans engagement : résiliable à tout moment depuis Mon compte, avec le lien de gestion reçu par e-mail, ou en nous écrivant.`);
     if (payCtx.change && acct.sub) lines.push(`Changement de formule : ${o.name} remplace ${offerById(acct.sub.id).name} dès aujourd'hui et vos crédits actuels sont conservés. En production, le montant exact du changement est affiché sur la page de paiement.`);
     lines.push("Prix de lancement conservé tant que l'abonnement reste actif sans interruption (100 premiers abonnés).");
     lines.push(`L'abonnement est facturé en ${c === 'eur' ? 'euros' : 'dirhams'} : cette devise reste la même à chaque renouvellement.`);
@@ -2035,15 +2055,18 @@ function finishPay(ctx, result){
   toast(`Paiement de test accepté : +${pl(o.credits, 'crédit', 'crédits')} (commande ${order.id}).`);
   renderHeader('');
   if (!here) return;
-  if (ctx.resume && draft) return go('nouvelle/4', true);
-  go(o.kind === 'sub' ? 'compte' : 'videos', true);
+  /* l'entrée #paiement disparaît : retour à l'entrée précédente si c'est la destination, sinon remplacement */
+  exitTo(ctx.resume && draft ? 'nouvelle/4' : o.kind === 'sub' ? 'compte' : 'videos');
 }
-$('#pay-cancel').addEventListener('click', () => {
-  if (pay.busy) return;
+/* Annuler et « ← Retour » : on revient là d'où l'on venait, sans empiler d'entrée */
+function leavePay(){
   const back = payCtx && payCtx.resume ? 'nouvelle/4' : payCtx && payCtx.change ? 'compte' : 'videos';
-  $('#f-pay').reset(); payCtx = null;
-  if (prevHash && !/^#paiement/.test(prevHash) && !/^#connexion/.test(prevHash)) history.back(); else go(back, true);
-});
+  if (!pay.busy) { $('#f-pay').reset(); payCtx = null; }
+  const from = entryFrom();
+  if (from && !/^#(paiement|connexion)/.test(from)) { afterBack = null; history.back(); } else go(back, true);
+}
+$('#pay-cancel').addEventListener('click', () => { if (!pay.busy) leavePay(); });
+$('#pay-back').addEventListener('click', e => { if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; e.preventDefault(); leavePay(); });
 if (!CONFIG.testMode) {
   /* production : redirection vers la page de paiement du prestataire (le brouillon reste enregistré) */
   window.addEventListener('hashchange', () => {

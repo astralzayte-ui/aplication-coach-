@@ -298,6 +298,8 @@ header.scrolled{background:rgba(11,10,9,.86);backdrop-filter:blur(14px);-webkit-
 .cmp .us{background:var(--card);border:1px solid var(--line2);border-radius:16px;box-shadow:0 30px 80px -30px rgba(0,0,0,.8);margin-top:-18px;margin-bottom:-18px;padding:18px 0}
 .cmp .us .h{font-family:var(--serif);font-size:30px;letter-spacing:0;text-transform:none;color:var(--fg)}
 .cmp .us .v{font-family:var(--serif);font-size:21px;color:var(--fg)}
+.cmp .stk{flex-direction:column;gap:2px}
+.cmp .stk small{font-family:var(--sans);font-size:13px;color:var(--muted)}
 .cmp .col .cell:last-child{border-bottom:0}
 .ok{color:var(--gold)!important}
 .cmp-note{max-width:980px;margin:44px auto 0;font-size:13px;color:var(--dim);line-height:1.6;text-align:center}
@@ -407,6 +409,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
 .lb-ctl button{flex:none;width:40px;height:40px;border-radius:50%;background:rgba(11,10,9,.75);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;color:var(--fg)}
 .lb-ctl svg{width:15px;height:15px}
 .lb-ctl .i-play,.lb-ctl .i-off{display:none}
+.lb-ctl button[hidden]{display:none}
 .lb-ctl button.is-paused .i-play,.lb-ctl button.is-muted .i-off{display:block}
 .lb-ctl button.is-paused .i-pause,.lb-ctl button.is-muted .i-on{display:none}
 .lb-prog{flex:1;height:3px;border-radius:2px;background:rgba(243,239,231,.25);overflow:hidden}
@@ -508,6 +511,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
   .cmp .h{font-size:9px;letter-spacing:.12em;min-height:80px}
   .cmp .us .h{font-size:19px}
   .cmp .us .v{font-size:15px}
+  .cmp .stk small{font-size:11px}
   .plans,.plans.subs{grid-template-columns:1fr;max-width:460px;margin-left:auto;margin-right:auto}
   .plans>.plan:first-child{grid-column:auto}
   .plan{padding:32px 22px 24px}
@@ -774,7 +778,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
           </div>
           <div class="tp" id="tp-formats" role="tabpanel" aria-labelledby="tab-formats" tabindex="0" hidden>
             <h3>Formats</h3>
-            <p>Cochez ceux qu'il vous faut&nbsp;: ils sont tous compris dans le même crédit.</p>
+            <p>Choisissez un format pour voir l'aperçu&nbsp;; dans l'app, vous cochez ceux qu'il vous faut. Ils sont tous compris dans le même crédit.</p>
             <div class="grp"><div class="optlist" role="radiogroup" aria-label="Aperçu du format" data-k="fmt">
               <button type="button" class="optrow" role="radio" aria-checked="true" data-v="16x9"><span><b>16:9 · horizontal</b><small>Idéal pour SeLoger, Leboncoin, Avito, Mubawab et votre site.</small></span><span class="dot"></span></button>
               <button type="button" class="optrow" role="radio" aria-checked="false" data-v="9x16"><span><b>9:16 · vertical</b><small>Idéal pour les Reels, TikTok, les statuts WhatsApp et les stories.</small></span><span class="dot"></span></button>
@@ -825,7 +829,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
         <div class="meta">Vidéo de démonstration · 10 s · générée par IA</div>
         <div class="fm">
           <button type="button" class="btn ghost sm" data-video="assets/videos/villa-marrakech-9x16" data-ratio="9x16" data-title="Villa avec piscine, Marrakech"><svg width="12" height="12" aria-hidden="true"><use href="#tri"/></svg> Vertical 9:16</button>
-          <button type="button" class="btn ghost sm" data-video="assets/videos/villa-marrakech-16x9" data-ratio="16x9" data-title="Villa avec piscine, Marrakech"><svg width="12" height="12" aria-hidden="true"><use href="#tri"/></svg> Horizontal 16:9</button>
+          <button type="button" class="btn ghost sm" data-video="assets/videos/villa-marrakech-16x9" data-ratio="16x9" data-audio="0" data-title="Villa avec piscine, Marrakech"><svg width="12" height="12" aria-hidden="true"><use href="#tri"/></svg> Horizontal 16:9</button>
         </div>
       </article>
       <article class="excard rv">
@@ -840,7 +844,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
         <div class="meta">Vidéo de démonstration · 10 s · générée par IA</div>
         <div class="fm">
           <button type="button" class="btn ghost sm" data-video="assets/videos/penthouse-casablanca-9x16" data-ratio="9x16" data-title="Penthouse vue mer, Casablanca"><svg width="12" height="12" aria-hidden="true"><use href="#tri"/></svg> Vertical 9:16</button>
-          <button type="button" class="btn ghost sm" data-video="assets/videos/penthouse-casablanca-16x9" data-ratio="16x9" data-title="Penthouse vue mer, Casablanca"><svg width="12" height="12" aria-hidden="true"><use href="#tri"/></svg> Horizontal 16:9</button>
+          <button type="button" class="btn ghost sm" data-video="assets/videos/penthouse-casablanca-16x9" data-ratio="16x9" data-audio="0" data-title="Penthouse vue mer, Casablanca"><svg width="12" height="12" aria-hidden="true"><use href="#tri"/></svg> Horizontal 16:9</button>
         </div>
       </article>
     </div>
@@ -856,45 +860,45 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
     <div class="cmp rv" aria-hidden="true">
       <div class="col">
         <div class="cell h"></div>
-        <div class="cell k">Point de départ</div>
+        <div class="cell k">Ce que vous fournissez</div>
         <div class="cell k">Voix off FR · AR · EN</div>
-        <div class="cell k">Formats et version sans logo</div>
+        <div class="cell k">Prête pour WhatsApp, Avito, Mubawab, SeLoger</div>
+        <div class="cell k">Logo et coordonnées en fin de vidéo</div>
         <div class="cell k">Façon de payer</div>
-        <div class="cell k">Prix de départ</div>
-        <div class="cell k">Mise à disposition</div>
+        <div class="cell k">Prix au mois pour une agence</div>
       </div>
       <div class="col">
         <div class="cell h">Vidéaste<br>immobilier</div>
-        <div class="cell v">Un tournage sur place</div>
+        <div class="cell v">Un brief et l'accès au bien</div>
         <div class="cell v">Non indiquée<sup>*</sup></div>
-        <div class="cell v">Selon l'offre</div>
+        <div class="cell v">Selon le montage</div>
+        <div class="cell v">Selon l'offre<sup>*</sup></div>
         <div class="cell v">Forfait par bien</div>
-        <div class="cell v">249 à 500&nbsp;€<sup>*</sup></div>
-        <div class="cell v">Quelques jours</div>
+        <div class="cell v">219 à 500&nbsp;€ par bien<sup>*</sup></div>
       </div>
       <div class="col us">
         <div class="cell h">ImmoClap</div>
-        <div class="cell v">Vos photos d'annonce</div>
+        <div class="cell v">Vos photos existantes</div>
         <div class="cell v ok">Incluse, au choix</div>
-        <div class="cell v ok">3 formats, avec ou sans logo</div>
+        <div class="cell v ok">Vertical, horizontal et carré</div>
+        <div class="cell v ok">Logo, agence et téléphone</div>
         <div class="cell v">À la vidéo ou au mois</div>
-        <div class="cell v" data-cmp-price>Dès 9,90&nbsp;€ HT</div>
-        <div class="cell v">Quelques minutes</div>
+        <div class="cell v stk"><span data-cmp-month>99&nbsp;€ HT / mois</span><small data-cmp-price>Dès 9,90&nbsp;€ la vidéo</small></div>
       </div>
     </div>
     <div class="sr-only"><table>
       <caption>Deux façons de montrer un bien&nbsp;: vidéaste immobilier ou ImmoClap</caption>
       <thead><tr><th scope="col">Critère</th><th scope="col">Vidéaste immobilier</th><th scope="col">ImmoClap</th></tr></thead>
       <tbody>
-        <tr><th scope="row">Point de départ</th><td>Un tournage sur place</td><td>Vos photos d'annonce</td></tr>
-        <tr><th scope="row">Voix off en français, arabe ou anglais</th><td>Non indiquée dans les offres citées en note</td><td>Incluse, au choix</td></tr>
-        <tr><th scope="row">Formats et version sans logo</th><td>Selon l'offre</td><td>3 formats, avec ou sans logo</td></tr>
-        <tr><th scope="row">Façon de payer</th><td>Forfait par bien</td><td>À la vidéo ou au mois</td></tr>
-        <tr><th scope="row">Prix de départ</th><td>249 à 500 € (prix publiés en France, voir la note)</td><td data-cmp-price>Dès 9,90 € HT</td></tr>
-        <tr><th scope="row">Mise à disposition</th><td>Quelques jours</td><td>Quelques minutes</td></tr>
+        <tr><th scope="row">Ce que vous fournissez</th><td>Un brief et l'accès au bien pour le tournage</td><td>Vos photos existantes, de 3 à 12</td></tr>
+        <tr><th scope="row">Voix off en français, arabe ou anglais</th><td>Non indiquée dans les offres citées en note</td><td>Incluse, voix féminine ou masculine, au choix</td></tr>
+        <tr><th scope="row">Prête pour WhatsApp, Avito, Mubawab et SeLoger</th><td>Selon le montage commandé</td><td>Vertical 9:16, horizontal 16:9 et carré 1:1, avec ou sans logo, dans le même crédit</td></tr>
+        <tr><th scope="row">Logo et coordonnées en fin de vidéo</th><td>Selon l'offre (voir la note)</td><td>Inclus&nbsp;: logo, nom de l'agence et téléphone</td></tr>
+        <tr><th scope="row">Façon de payer</th><td>Forfait par bien</td><td>À la vidéo, en pack ou au mois</td></tr>
+        <tr><th scope="row">Prix au mois pour une agence</th><td>219 à 500 € par bien (prix publiés en France, voir la note)</td><td><span data-cmp-month>99&nbsp;€ HT / mois</span> pour 10 vidéos, <span data-cmp-price>dès 9,90&nbsp;€ la vidéo</span></td></tr>
       </tbody>
     </table></div>
-    <p class="cmp-note rv">* Offres publiées en France, relevées le 6 octobre 2026&nbsp;: <a href="https://shoootin.com/service/video" target="_blank" rel="noopener">Shoootin</a> (dès 249&nbsp;€ HT la Visite guidée), <a href="https://minutedrone.com/combien-coute-une-video-immobiliere-par-drone" target="_blank" rel="noopener">Minutedrone</a> (350&nbsp;€ la demi-journée de prise de vue, hors montage et déplacement), <a href="https://ohmydrone.fr/tarifs/" target="_blank" rel="noopener">Oh My Drone</a> (500&nbsp;€ HT, livraison sous 5 jours ouvrés). Aucune des trois ne mentionne de voix off. Le prix final dépend du bien et des options. « Dès 9,90&nbsp;€ HT » (90&nbsp;DH)&nbsp;: abonnement Agence, 10 vidéos par mois.</p>
+    <p class="cmp-note rv">* Offres publiées en France, relevées le 6 octobre 2026&nbsp;: <a href="https://shoootin.com/service/video" target="_blank" rel="noopener">Shoootin</a> (tarifs vidéo «&nbsp;à partir de 219&nbsp;€&nbsp;» en résidentiel&nbsp;; logo animé inclus, carte de visite finale en option), <a href="https://minutedrone.com/combien-coute-une-video-immobiliere-par-drone" target="_blank" rel="noopener">Minutedrone</a> (350&nbsp;€ la vidéo pour une demi-journée de prise de vue, montage indiqué à part à 220&nbsp;€), <a href="https://ohmydrone.fr/tarifs/" target="_blank" rel="noopener">Oh My Drone</a> (500&nbsp;€ HT pour un bien jusqu'à 100&nbsp;m², logo inclus). Aucune des trois ne mentionne de voix off. Le prix final dépend du bien et des options. Côté ImmoClap, abonnement Agence&nbsp;: 99&nbsp;€ HT par mois pour 10 vidéos, soit dès 9,90&nbsp;€ HT la vidéo en France, et 899&nbsp;DH par mois, soit «&nbsp;Dès 89,90&nbsp;DH&nbsp;» la vidéo au Maroc (prix hors taxes).</p>
   </div>
 </section>
 
@@ -913,24 +917,24 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
     <div class="plans">
       <div class="plan rv">
         <h3>1 vidéo</h3><div class="d">Pour un mandat ponctuel.</div>
-        <div class="price" data-eur="19" data-mad="149" data-n="1"></div>
-        <div class="ttc"></div><div class="per">1 crédit, valable 12 mois</div>
+        <div class="price" data-eur="19" data-mad="149" data-n="1">19&nbsp;<small>€ HT</small></div>
+        <div class="ttc">soit 22,80&nbsp;€ TTC en France</div><div class="per">1 crédit, valable 12 mois</div>
         <ul><li>Une vidéo de 15 à 60 s</li><li>Les 3 formats</li><li>Musique, voix off et carton de fin</li></ul>
         <button type="button" class="btn ghost" data-open data-offre="1 vidéo">Être prévenu</button>
       </div>
       <div class="plan hl rv">
-        <span class="badge" data-disc="5"></span>
+        <span class="badge" data-disc="5">−17&nbsp;% par vidéo</span>
         <h3>Pack 5</h3><div class="d">Pour l'agent qui rentre des mandats chaque mois.</div>
-        <div class="price" data-eur="79" data-mad="599" data-n="5"></div>
-        <div class="ttc"></div><div class="per" data-each="5"></div>
+        <div class="price" data-eur="79" data-mad="599" data-n="5">79&nbsp;<small>€ HT</small></div>
+        <div class="ttc">soit 94,80&nbsp;€ TTC en France</div><div class="per" data-each="5">soit 15,80&nbsp;€ la vidéo</div>
         <ul><li>5 crédits, valables 12 mois</li><li>Les 3 formats à chaque vidéo</li><li>Musique, voix off et carton de fin</li></ul>
         <button type="button" class="btn" data-open data-offre="Pack 5">Être prévenu <svg class="ar" width="14" height="14" aria-hidden="true"><use href="#arrow"/></svg></button>
       </div>
       <div class="plan hl rv">
-        <span class="badge" data-disc="10"></span>
+        <span class="badge" data-disc="10">−27&nbsp;% par vidéo</span>
         <h3>Pack 10</h3><div class="d">Pour les agences et les gros volumes.</div>
-        <div class="price" data-eur="139" data-mad="999" data-n="10"></div>
-        <div class="ttc"></div><div class="per" data-each="10"></div>
+        <div class="price" data-eur="139" data-mad="999" data-n="10">139&nbsp;<small>€ HT</small></div>
+        <div class="ttc">soit 166,80&nbsp;€ TTC en France</div><div class="per" data-each="10">soit 13,90&nbsp;€ la vidéo</div>
         <ul><li>10 crédits, valables 12 mois</li><li>Les 3 formats à chaque vidéo</li><li>Musique, voix off et carton de fin</li></ul>
         <button type="button" class="btn" data-open data-offre="Pack 10">Être prévenu <svg class="ar" width="14" height="14" aria-hidden="true"><use href="#arrow"/></svg></button>
       </div>
@@ -941,16 +945,16 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
       <div class="plan hl rv">
         <span class="badge soft">Prix de lancement</span>
         <h3>Solo</h3><div class="d">Pour l'agent indépendant ou le mandataire.</div>
-        <div class="price" data-eur="39" data-mad="349" data-n="3" data-month></div>
-        <div class="ttc"></div><div class="per" data-each="3"></div>
+        <div class="price" data-eur="39" data-mad="349" data-n="3" data-month>39&nbsp;<small>€ HT / mois</small></div>
+        <div class="ttc">soit 46,80&nbsp;€ TTC en France</div><div class="per" data-each="3">soit 13&nbsp;€ la vidéo</div>
         <ul><li>3 vidéos par mois, 3 formats</li><li>Crédits non utilisés reportés tant que l'abonnement est actif (12 mois maximum)</li><li>Résiliable à tout moment</li></ul>
         <button type="button" class="btn ghost" data-open data-offre="Solo">Être prévenu</button>
       </div>
       <div class="plan hl rv">
         <span class="badge soft">Prix de lancement</span>
         <h3>Agence</h3><div class="d">Pour les agences qui publient chaque semaine.</div>
-        <div class="price" data-eur="99" data-mad="899" data-n="10" data-month></div>
-        <div class="ttc"></div><div class="per" data-each="10"></div>
+        <div class="price" data-eur="99" data-mad="899" data-n="10" data-month>99&nbsp;<small>€ HT / mois</small></div>
+        <div class="ttc">soit 118,80&nbsp;€ TTC en France</div><div class="per" data-each="10">soit 9,90&nbsp;€ la vidéo</div>
         <ul><li>10 vidéos par mois, 3 formats</li><li>Crédits non utilisés reportés tant que l'abonnement est actif (12 mois maximum)</li><li>Résiliable à tout moment</li></ul>
         <button type="button" class="btn" data-open data-offre="Agence">Être prévenu <svg class="ar" width="14" height="14" aria-hidden="true"><use href="#arrow"/></svg></button>
       </div>
@@ -997,9 +1001,9 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa6" id="fq6">Dans quelles langues est la voix off&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa6" role="region" aria-labelledby="fq6"><div><p>En français, en arabe ou en anglais, avec une voix féminine ou masculine. Vous pouvez aussi choisir « Aucune » et garder seulement la musique.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa7" id="fq7">L'IA peut-elle modifier mon bien&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa7" role="region" aria-labelledby="fq7"><div><p>Elle ne doit pas&nbsp;: elle ajoute un mouvement de caméra, sans changer les pièces, les volumes ni les matériaux. Il peut arriver qu'un plan présente une déformation. Vérifiez toujours la vidéo avant de la publier&nbsp;: un plan raté est refait gratuitement.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa8" id="fq8">Comment se passe le paiement&nbsp;? Aurai-je une facture&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa8" role="region" aria-labelledby="fq8"><div><p>Vous payez par carte sur la page sécurisée de notre prestataire de paiement, qui agit comme revendeur (Merchant of Record)&nbsp;: son nom figure sur la page de paiement et sur le reçu. Il calcule la TVA selon votre pays et vous envoie la facture. ImmoClap ne voit jamais vos données bancaires.</p></div></div></div>
-      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa9" id="fq9">Comment résilier l'abonnement&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa9" role="region" aria-labelledby="fq9"><div><p>À tout moment, avec le lien de gestion reçu par e-mail ou en nous écrivant. La résiliation prend effet à la fin du mois payé&nbsp;; le mois entamé n'est pas remboursé. Vos crédits d'abonnement restent utilisables jusqu'à cette date.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa9" id="fq9">Comment résilier l'abonnement&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa9" role="region" aria-labelledby="fq9"><div><p>À tout moment&nbsp;: depuis Mon compte, avec le lien de gestion reçu par e-mail, ou en nous écrivant. La résiliation prend effet à la fin du mois payé et vos crédits d'abonnement restent utilisables jusqu'à cette date. Un mois entamé n'est pas remboursé, sauf le premier&nbsp;: il est remboursé intégralement si vous le demandez dans les 14 jours suivant la souscription et qu'aucun crédit de l'abonnement n'a été utilisé (<a href="remboursement.html">politique de remboursement</a>).</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa10" id="fq10">Combien de temps mes crédits sont-ils valables&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa10" role="region" aria-labelledby="fq10"><div><p>12 mois à partir de l'achat pour l'unité et les packs. Pour les abonnements, les crédits non utilisés sont reportés d'un mois sur l'autre tant que l'abonnement est actif, dans la limite de 12 mois.</p></div></div></div>
-      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa11" id="fq11">Quels droits ai-je sur la musique de la vidéo&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa11" role="region" aria-labelledby="fq11"><div><p>La musique est fournie avec la vidéo, pour un usage précis&nbsp;: faire connaître le bien concerné et votre activité. Les usages couverts sont listés à l'<a href="cgv.html#droits">article 10 des CGV</a>. Pour un autre projet, écrivez-nous avant.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa11" id="fq11">Quels droits ai-je sur la musique de la vidéo&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa11" role="region" aria-labelledby="fq11"><div><p>La musique est fournie avec la vidéo, pour un usage précis&nbsp;: faire connaître le bien concerné et votre activité. Les usages couverts sont listés à l'<a href="cgv.html#art10">article 10 des CGV</a>. Pour un autre projet, écrivez-nous avant.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa12" id="fq12">Qui est derrière ImmoClap&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa12" role="region" aria-labelledby="fq12"><div><p>Julien Wail COLLY, entrepreneur individuel installé à Marrakech. ImmoClap est né en 2026. Tout est expliqué sur la page <a href="a-propos.html">À propos</a>.</p></div></div></div>
     </div>
   </div>
@@ -1122,7 +1126,10 @@ setHH();addEventListener('resize',setHH);
 /* menu mobile */
 const burger=$('.burger'), mob=$('#mob');
 const menuOpen=o=>{mob.classList.toggle('on',o);burger.setAttribute('aria-expanded',String(o));burger.setAttribute('aria-label',o?'Fermer le menu':'Ouvrir le menu');document.body.style.overflow=o?'hidden':'';
-  ['main','footer','#help','.topbar'].forEach(q=>{const el=$(q);if(el)o?el.setAttribute('inert',''):el.removeAttribute('inert');});if(o)$('a',mob).focus();};
+  menuBg().forEach(el=>o?el.setAttribute('inert',''):el.removeAttribute('inert'));if(o)$('a',mob).focus();};
+/* tant que le menu est ouvert, seuls le menu et le bouton qui le ferme restent atteignables */
+function menuBg(){return [$('.skip'),$('main'),$('footer'),$('#help'),$('.topbar'),$('header .logo'),$('header .menu'),...$$('header .nav-r > :not(.burger)')].filter(Boolean);}
+const menuTrap=()=>[burger,...$$('a[href],button:not([disabled])',mob)];
 burger.addEventListener('click',()=>menuOpen(!mob.classList.contains('on')));
 $$('a,button',mob).forEach(a=>a.addEventListener('click',()=>menuOpen(false)));
 addEventListener('resize',()=>{if(innerWidth>980&&mob.classList.contains('on'))menuOpen(false)});
@@ -1256,11 +1263,13 @@ const unit={eur:19,mad:149};
 const price=()=>{const sym=c==='eur'?'€':'DH';
   priceEls.forEach(el=>{const v=+el.dataset[c], plan=el.closest('.plan'), n=+el.dataset.n;
     el.innerHTML=`${fmtN(v)}${NB}<small>${sym} HT${el.hasAttribute('data-month')?' / mois':''}</small>`;
-    const ttc=$('.ttc',plan);ttc.textContent=c==='eur'?`soit ${fmtN(Math.round(v*120)/100)}${NB}€ TTC en France`:'hors taxes';
+    const ttc=$('.ttc',plan);ttc.textContent=c==='eur'?`soit ${fmtN(Math.round(v*120)/100)}${NB}€ TTC en France`:'';
     const each=$('[data-each]',plan);if(each){const pu=Math.round(v/n*100)/100;each.textContent=`soit ${fmtN(pu)}${NB}${sym} la vidéo`;}
     const b=$('[data-disc]',plan);if(b){const pu=v/n;const pct=Math.round((1-pu/unit[c])*100);b.textContent=`−${pct}${NB}% par vidéo`;}
   });
-  $$('[data-cmp-price]').forEach(el=>el.textContent=c==='eur'?'Dès 9,90'+NB+'€ HT':'Dès 90'+NB+'DH');
+  const ag=$('.price[data-month][data-n="10"]'), am=+ag.dataset[c], an=+ag.dataset.n;
+  $$('[data-cmp-month]').forEach(el=>el.textContent=`${fmtN(am)}${NB}${sym} HT / mois`);
+  $$('[data-cmp-price]').forEach(el=>el.textContent=`${el.tagName==='SMALL'?'Dès':'dès'} ${fmtN(Math.round(am/an*100)/100)}${NB}${sym} la vidéo`);
   $$('#cur button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.c===c)));};
 $$('#cur button').forEach(b=>b.addEventListener('click',()=>{c=b.dataset.c;store.set('immoclap_cur',c);price();}));
 const saved=store.get('immoclap_cur');
@@ -1292,6 +1301,11 @@ addEventListener('keydown',e=>{
     if(mob.classList.contains('on')){menuOpen(false);burger.focus();return;}
     if(!helpPop.hidden){helpToggle(false);helpBtn.focus();return;}
   }
+  if(e.key==='Tab'&&!stack.length&&mob.classList.contains('on')){const f=menuTrap(),a=f[0],z=f[f.length-1];
+    if(!f.includes(document.activeElement)){e.preventDefault();(e.shiftKey?z:a).focus();}
+    else if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}
+    else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();}
+    return;}
   if(e.key==='Tab'&&stack.length){const top=stack[stack.length-1].el;const f=focusables(top);if(!f.length)return;
     const a=f[0],z=f[f.length-1];
     if(!top.contains(document.activeElement)){e.preventDefault();a.focus();}
@@ -1302,8 +1316,10 @@ addEventListener('keydown',e=>{
 /* liste d'attente */
 const modal=$('#modal'), mbox=$('#mbox'), form=$('#form'), email=$('#email'), msg=$('#formMsg'), fbtn=$('#formBtn');
 const openModal=src=>{if(lb.classList.contains('on'))closeLb(true);if(mob.classList.contains('on'))menuOpen(false);helpToggle(false);
-  $('#offre').value=(src&&src.dataset&&src.dataset.offre)||'';msg.className='msg';msg.textContent='';
-  openLayer(modal,mbox.classList.contains('sent')?$('#okClose'):email);};
+  if(mbox.classList.contains('sent')){mbox.classList.remove('sent');email.value='';}
+  $('#offre').value=(src&&src.dataset&&src.dataset.offre)||'';msg.className='msg';msg.textContent='';email.removeAttribute('aria-invalid');
+  fbtn.disabled=false;
+  openLayer(modal,email);};
 const closeModal=()=>closeLayer(modal);
 $$('[data-open]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();openModal(el)}));
 $('.x',modal).addEventListener('click',closeModal);
@@ -1328,15 +1344,22 @@ const lbOpen=el=>{const base=el.dataset.video, ratio=el.dataset.ratio||'9x16';
   if(!helpPop.hidden)helpToggle(false);
   lb.classList.toggle('portrait',ratio==='9x16');
   $('#lbTitle').textContent=el.dataset.title||'Démonstration';
-  $('#lbMeta').textContent=(ratio==='9x16'?'Vertical 9:16':'Horizontal 16:9')+' · générée par IA · 10 s';
+  const noAudio=el.dataset.audio==='0';
+  $('#lbMeta').textContent=(ratio==='9x16'?'Vertical 9:16':'Horizontal 16:9')+' · générée par IA · 10 s'+(noAudio?' · sans son':'');
+  setAudioUI(!noAudio);
   lbvid.poster=ratio==='9x16'?base.replace('-9x16','-poster')+'.jpg':'';
-  lbvid.src=vsrc(base);lbvid.muted=false;
+  lbvid.src=vsrc(base);lbvid.muted=noAudio;
   openLayer(lb,$('.x',lb));
   lbvid.play().catch(()=>{lbvid.muted=true;lbvid.play().catch(()=>{})});};
 const closeLb=silent=>{lbvid.pause();closeLayer(lb);};
 $$('[data-video]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();lbOpen(el)}));
 $('.x',lb).addEventListener('click',()=>closeLb());
 const lbPlay=$('#lbPlay'), lbMute=$('#lbMute'), lbProg=$('#lbProg');
+/* bouton son : masqué quand la vidéo n'a pas de piste audio (data-audio="0", sinon détection par le navigateur) */
+function setAudioUI(has){lbMute.hidden=!has;}
+lbvid.addEventListener('loadedmetadata',()=>{const at=lbvid.audioTracks;
+  if(lbvid.mozHasAudio===false||(at&&at.length===0))setAudioUI(false);});
+lbvid.addEventListener('timeupdate',()=>{if(!lbMute.hidden&&lbvid.currentTime>1.5&&!lbvid.muted&&typeof lbvid.webkitAudioDecodedByteCount==='number'&&lbvid.webkitAudioDecodedByteCount===0)setAudioUI(false);});
 const syncCtl=()=>{lbPlay.classList.toggle('is-paused',lbvid.paused);lbPlay.setAttribute('aria-label',lbvid.paused?'Lire la vidéo':'Mettre en pause');
   lbMute.classList.toggle('is-muted',lbvid.muted);lbMute.setAttribute('aria-label',lbvid.muted?'Activer le son':'Couper le son');};
 ['play','pause','volumechange','loadstart'].forEach(ev=>lbvid.addEventListener(ev,syncCtl));
