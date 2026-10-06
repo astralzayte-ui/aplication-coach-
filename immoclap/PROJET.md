@@ -74,6 +74,11 @@ Dernière mise à jour : 05/10/2026. À tenir à jour à chaque décision import
 - Le 06/10 : étapes 1 à 7 seulement (le temps d'économiser). Fondateur : 1 auto-entrepreneur, 2 e-mail Lemon Squeezy, 3 compte Polar (sans Finance→Account), 4 produits sandbox + liens. Claude : 5 paiement test Polar, 6 vrais comptes clients, 7 génération Higgsfield branchée (sans générer de payant). Rappel programmé 06/10 09:00 UTC (trig_01KBT5rcABkf7toEUnTotNoZ).
 - Étapes 8 et suivantes (recharge Higgsfield, domaine, examen Polar, prospection, Metricool) : après.
 
+## À faire quand le fondateur dit « reprends » (mis en pause le 06/10)
+- Finitions site + app (workflow immoclap-finitions) puis contrôle et mise en ligne.
+- Nouveau : à l'arrivée sur le site (et dans l'app), demander le pays (Maroc / France) → afficher les prix en DH ou en € selon la réponse (mémorisé ; la bascule €/DH reste disponible).
+- Polar : organisation « ImmoClap » (individuel), devise par défaut EUR ; ajouter un prix en MAD par produit si Polar le permet.
+
 ## Chantier futur : WhatsApp (décidé le 06/10)
 - But : chatbot WhatsApp qui répond aux clients (questions fréquentes : prix, délai, fonctionnement) et passe la main au fondateur pour le reste ; Claude lit les conversations, les analyse (routine quotidienne + à la demande) et propose des réponses (envoi seulement avec accord au début).
 - Technique : API WhatsApp Cloud en « coexistence » (même numéro que l'appli WhatsApp Business du téléphone, historique synchronisé, ouvert à tous les pays depuis mai 2026) ; webhook = fonction Netlify qui stocke les messages ; IA du chatbot = Gemini ; jeton Meta en secret d'environnement (jamais dans le chat).
