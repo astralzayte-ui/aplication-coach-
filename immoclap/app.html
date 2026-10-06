@@ -168,6 +168,7 @@ textarea{resize:vertical;min-height:96px}
 .offer .p{font-family:var(--serif);font-size:32px;line-height:1.1;margin-top:4px}
 .offer .p small,.bigp small{font-family:var(--sans);font-size:13px;color:var(--muted);letter-spacing:.02em}
 .offer .u{font-size:13px;color:var(--gold2);min-height:20px}
+.offer .t{font-size:12px;color:var(--dim);margin-top:-2px}
 .offer .d{font-size:13px;color:var(--muted);flex:1;margin-bottom:10px}
 .sub-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:28px 0 12px}
 .sub-h p{font-size:13px;color:var(--muted)}
@@ -270,7 +271,6 @@ textarea{resize:vertical;min-height:96px}
 .pv .lgw.plate{background:#F3EFE7;border-radius:2cqw;padding:2.2cqw 3.4cqw}
 .pv .lg{max-width:34cqw;max-height:20cqw;object-fit:contain}
 .pv.r916 .lg{max-width:56cqw;max-height:30cqw}
-.pv .mono{width:15cqw;height:15cqw;min-width:40px;min-height:40px;border-radius:50%;border:1px solid var(--gold2);display:grid;place-items:center;font-family:var(--serif);font-size:16px;font-size:max(14px,6cqw);color:var(--gold2)}
 .pv .ag{font-family:var(--serif);font-size:22px;font-size:max(16px,6cqw);line-height:1.1;overflow-wrap:anywhere}
 .pv .ph{font-size:13px;font-size:max(11px,3.4cqw);letter-spacing:.05em;color:var(--gold2)}
 .pv .ghost{color:rgba(255,255,255,.5);font-style:italic}
@@ -282,6 +282,7 @@ textarea{resize:vertical;min-height:96px}
 .hello{font-size:15px;color:var(--muted);margin-bottom:6px}
 .pv-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
 .pv-pair .pv.r916{max-width:100%}
+.pv-pair .pv .lab{display:none}
 @media(max-width:520px){.pv-pair{grid-template-columns:1fr}}
 
 /* récap */
@@ -352,6 +353,8 @@ textarea{resize:vertical;min-height:96px}
 .orders li b{font-weight:600}
 .testtools{border:1px dashed rgba(246,188,40,.45);border-radius:var(--r2);padding:12px 14px;margin-top:16px;font-size:13px;color:var(--gold2)}
 .testtools .btn{margin-top:8px}
+.sim{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.sim .btn{font-size:13px;padding:8px 10px}
 
 /* pied de page, aide, dialogues, toast */
 .foot{border-top:1px solid var(--line);padding:24px 0 calc(28px + env(safe-area-inset-bottom));font-size:13px;color:var(--muted)}
@@ -434,7 +437,7 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
           <p class="ferr" id="login-err" aria-live="polite"></p>
         </div>
         <button class="btn full" type="submit">Continuer</button>
-        <p class="fine" style="text-align:center">En mode test, pas de lien par e-mail : la connexion est immédiate. En continuant, vous acceptez les <a href="cgv.html">CGV</a> et la <a href="confidentialite.html">politique de confidentialité</a>.</p>
+        <p class="fine" style="text-align:center">En mode test, pas de lien par e-mail : la connexion est immédiate. En continuant, vous acceptez les <a href="cgv.html">CGV</a>. Vos données sont traitées comme indiqué dans notre <a href="confidentialite.html">politique de confidentialité</a>.</p>
       </form>
     </div>
   </section>
@@ -464,7 +467,7 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
     <div class="offers" id="offers-once"></div>
     <div class="sub-h"><h3>Abonnement mensuel</h3><p>Sans engagement. Prix de lancement conservé pour les 100 premiers abonnés, tant que l'abonnement reste actif sans interruption.</p></div>
     <div class="offers" id="offers-sub"></div>
-    <p class="fine" style="margin-top:16px">Prix HT · TVA éventuelle calculée au paiement selon votre pays. Chaque vidéo comprend musique, voix off, logo et carton de fin, plus une version sans logo pour les portails. Le paiement passe par notre prestataire de paiement, qui agit comme revendeur (Merchant of Record) ; son nom figure sur la page de paiement et sur le reçu.</p>
+    <p class="fine" style="margin-top:16px">Prix HT. En France, la TVA de 20 % s'ajoute (prix TTC indiqué sous chaque prix en euros) ; ailleurs, la TVA éventuelle est calculée au paiement selon votre pays. Chaque vidéo comprend musique, voix off, logo et carton de fin et, sur demande, une version sans logo pour les portails. Le paiement passe par notre prestataire de paiement, qui agit comme revendeur (Merchant of Record) ; son nom figure sur la page de paiement et sur le reçu.</p>
     <p class="fine" style="margin-top:8px">Plus de 10 vidéos par mois ? <a href="mailto:contact.immoclap@gmail.com?subject=Volume%20de%20vid%C3%A9os" style="color:var(--gold2)">Écrivez-nous</a>.</p>
   </section>
 
@@ -501,6 +504,7 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
       </div>
       <input type="file" id="files" accept="image/*,.heic,.heif" multiple hidden>
       <div class="count" id="count" aria-live="polite"></div>
+      <p class="fine" id="adding" aria-live="polite" style="margin-top:6px"></p>
       <ul class="msgs" id="msgs1" aria-live="polite"></ul>
       <ul class="thumbs" id="thumbs" aria-label="Photos de la vidéo, dans l'ordre"></ul>
       <p class="err" id="err1" role="alert"></p>
@@ -511,20 +515,21 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
       <div class="stephead">
         <p class="eyebrow">Étape 2 sur 4</p>
         <h1 class="sh" tabindex="-1">Le bien</h1>
-        <p class="muted">Ces informations forment le titre d'ouverture de la vidéo et vos textes d'annonce. Seule la ville est obligatoire.</p>
+        <p class="muted">Ces informations forment le titre d'ouverture de la vidéo et vos textes d'annonce. Le type de bien et la ville sont obligatoires.</p>
       </div>
       <div class="split">
         <div>
           <fieldset class="field">
-            <legend>Type de bien <span class="req" aria-hidden="true">*</span></legend>
+            <legend>Type de bien <span class="req" aria-hidden="true">*</span><span class="sr">(obligatoire)</span></legend>
             <div class="opts">
-              <label class="opt"><input type="radio" name="type" value="Appartement"><span>Appartement</span></label>
-              <label class="opt"><input type="radio" name="type" value="Villa"><span>Villa</span></label>
-              <label class="opt"><input type="radio" name="type" value="Maison"><span>Maison</span></label>
-              <label class="opt"><input type="radio" name="type" value="Riad"><span>Riad</span></label>
-              <label class="opt"><input type="radio" name="type" value="Terrain"><span>Terrain</span></label>
-              <label class="opt"><input type="radio" name="type" value="Local commercial"><span>Local commercial</span></label>
+              <label class="opt"><input type="radio" name="type" aria-describedby="type-err" value="Appartement"><span>Appartement</span></label>
+              <label class="opt"><input type="radio" name="type" aria-describedby="type-err" value="Villa"><span>Villa</span></label>
+              <label class="opt"><input type="radio" name="type" aria-describedby="type-err" value="Maison"><span>Maison</span></label>
+              <label class="opt"><input type="radio" name="type" aria-describedby="type-err" value="Riad"><span>Riad</span></label>
+              <label class="opt"><input type="radio" name="type" aria-describedby="type-err" value="Terrain"><span>Terrain</span></label>
+              <label class="opt"><input type="radio" name="type" aria-describedby="type-err" value="Local commercial"><span>Local commercial</span></label>
             </div>
+            <p class="ferr" id="type-err"></p>
           </fieldset>
           <fieldset class="field">
             <legend>Transaction</legend>
@@ -582,7 +587,7 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
             <p class="ferr" id="logo-err" aria-live="polite"></p>
           </div>
           <button type="button" class="lnk" id="save-kit">Enregistrer dans mon kit de marque</button>
-          <label class="check" style="margin-top:18px"><input type="checkbox" id="nologo"> <span>Version sans logo pour les portails<small>En plus, une copie de chaque format sans logo ni coordonnées : certains portails les refusent.</small></span></label>
+          <label class="check" style="margin-top:18px"><input type="checkbox" id="nologo"> <span>Version sans logo pour les portails<small>Sur demande, incluse dans le crédit : une copie de chaque format sans logo ni coordonnées, pour les portails qui les refusent.</small></span></label>
         </div>
         <div class="pv-col" role="group" aria-label="Aperçu du carton de fin">
           <div class="pv-h"><b>Aperçu du carton de fin</b><div class="seg pvfmt" role="group" aria-label="Format de l'aperçu"></div></div>
@@ -651,7 +656,7 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
         </div>
       </div>
       <div class="card credit-box" id="credit-box"></div>
-      <label class="check"><input type="checkbox" id="rights" aria-describedby="err4"> <span>Je détiens les droits sur ces photos et l'accord du propriétaire du bien (<a href="cgv.html" target="_blank" rel="noopener">CGV, article 7</a>).</span></label>
+      <label class="check"><input type="checkbox" id="rights" aria-describedby="err4"> <span>Je détiens les droits sur ces photos et l'accord du propriétaire du bien (<a href="cgv.html#art8" target="_blank" rel="noopener">CGV, article 8</a>).</span></label>
       <p class="err" id="err4" role="alert"></p>
     </div>
 
@@ -705,6 +710,7 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
               <a class="btn full" id="r-dl" download>Télécharger</a>
               <button class="btn ghost full" type="button" id="r-dlall">Tout télécharger</button>
               <p class="fine">Fichiers MP4. Les vidéos sont conservées au moins 30 jours : pensez à les télécharger.</p>
+              <p class="fine" id="r-nover-note" hidden>Version sans logo non demandée pour cette vidéo (option de l'étape « Le style »).</p>
               <p class="fine" id="r-ver-note" hidden>Mode test : la démonstration n'a pas de carton de fin, les deux versions renvoient au même fichier.</p>
             </div>
           </div>
@@ -797,17 +803,12 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
       <h1 id="pay-h" tabindex="-1">Paiement</h1>
       <div class="card" style="text-align:left;margin:16px 0" id="pay-sum"></div>
       <form class="card" id="f-pay" style="text-align:left" novalidate autocomplete="off">
-        <p class="notice" style="margin-bottom:18px">Paiement de test : <b>n'entrez jamais une vraie carte.</b> Rien n'est envoyé ni enregistré.<br>Acceptée : <b>4242 4242 4242 4242</b> · Refusée : <b>4000 0000 0000 0002</b> · Fonds insuffisants : <b>4000 0000 0000 9995</b>. Date future, CVC au choix.</p>
-        <div class="field"><label for="cc-name">Nom sur la carte</label><input type="text" id="cc-name" placeholder="ex. : Agence Test" autocomplete="off" aria-describedby="cc-name-err"><p class="ferr" id="cc-name-err"></p></div>
-        <div class="field"><label for="cc-num">Numéro de carte (test)</label><input type="text" id="cc-num" inputmode="numeric" placeholder="ex. : 4242 4242 4242 4242" maxlength="19" autocomplete="off" aria-describedby="cc-num-err"><p class="ferr" id="cc-num-err"></p></div>
-        <div class="grid2" style="grid-template-columns:1fr 1fr">
-          <div class="field"><label for="cc-exp">Expiration</label><input type="text" id="cc-exp" inputmode="numeric" placeholder="MM/AA" maxlength="5" autocomplete="off" aria-describedby="cc-exp-err"><p class="ferr" id="cc-exp-err"></p></div>
-          <div class="field"><label for="cc-cvc">CVC</label><input type="text" id="cc-cvc" inputmode="numeric" placeholder="ex. : 123" maxlength="4" autocomplete="off" aria-describedby="cc-cvc-err"><p class="ferr" id="cc-cvc-err"></p></div>
-        </div>
+        <p class="notice" style="margin-bottom:18px">Paiement de test : <b>aucune carte n'est demandée</b> et rien n'est débité. Le bouton « Payer » simule un paiement accepté. Les deux boutons du dessous simulent un échec.</p>
         <label class="check"><input type="checkbox" id="pay-cgv" aria-describedby="pay-cgv-err"> <span>J'accepte les <a href="cgv.html" target="_blank" rel="noopener">CGV</a> et la <a href="remboursement.html" target="_blank" rel="noopener">politique de remboursement</a>. Je demande l'exécution immédiate du service et je reconnais perdre mon droit de rétractation pour chaque crédit dès que la vidéo correspondante est générée.</span></label>
         <p class="ferr" id="pay-cgv-err"></p>
         <p class="err" id="pay-err" role="alert"></p>
-        <button class="btn full" type="submit" id="pay-ok" style="margin-top:16px">Payer</button>
+        <button class="btn full" type="button" id="pay-ok" data-sim="ok" style="margin-top:16px">Payer</button>
+        <div class="sim"><button class="btn ghost" type="button" data-sim="declined">Simuler un refus</button><button class="btn ghost" type="button" data-sim="funds">Simuler fonds insuffisants</button></div>
         <button class="btn ghost full" type="button" id="pay-cancel" style="margin-top:10px">Annuler</button>
         <p class="fine" style="margin-top:14px;text-align:center">En production, le paiement se fait sur la page de notre prestataire de paiement, qui agit comme revendeur (Merchant of Record) ; son nom figure sur la page de paiement et sur le reçu. Vos données de carte ne passent jamais par ImmoClap.</p>
       </form>
@@ -898,12 +899,15 @@ const nf0 = new Intl.NumberFormat('fr-FR', {maximumFractionDigits:0});
 const nf2 = new Intl.NumberFormat('fr-FR', {minimumFractionDigits:2, maximumFractionDigits:2});
 const moneyBig = (v, c) => `${Number.isInteger(v) ? nf0.format(v) : nf2.format(v)}\u00a0${c === 'eur' ? '€' : 'DH'} <small>HT</small>`;
 const money = (v, c, ht=true) => `${Number.isInteger(v) ? nf0.format(v) : nf2.format(v)}\u00a0${c === 'eur' ? '€' : 'DH'}${ht ? '\u00a0HT' : ''}`;
+/* prix TTC indicatif pour la France (TVA 20 %), comme sur le site */
+const ttc = (v, c) => c === 'eur' ? `${nf2.format(Math.round(v * 120) / 100)}\u00a0€\u00a0TTC` : '';
+const moneyT = (v, c) => money(v, c) + (c === 'eur' ? ` (${ttc(v, c)})` : '');
 const fmtDate = t => new Date(t).toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'});
 const fmtDateTime = t => new Date(t).toLocaleString('fr-FR', {day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit'});
 function addMonths(t, n){ const d = new Date(t), day = d.getDate(); d.setDate(1); d.setMonth(d.getMonth() + n); const last = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate(); d.setDate(Math.min(day, last)); return d.getTime(); }
 const slug = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const tag = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
-const debounce = (fn, ms) => { let t; const f = (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; f.flush = () => { clearTimeout(t); fn(); }; return f; };
+const debounce = (fn, ms) => { let t = null; const f = (...a) => { clearTimeout(t); t = setTimeout(() => { t = null; fn(...a); }, ms); }; f.flush = () => { if (t === null) return; clearTimeout(t); t = null; fn(); }; f.pending = () => t !== null; return f; };
 const BL = {}; /* ligne vide dans joinLines */
 function joinLines(arr){ const out = []; for (const x of arr) { if (x === BL) { if (out.length && out[out.length - 1] !== BL) out.push(BL); } else if (x) out.push(x); } while (out.length && out[out.length - 1] === BL) out.pop(); return out.map(x => x === BL ? '' : x).join('\n'); }
 const rid = n => Math.random().toString(36).slice(2, 2 + n).toUpperCase().padEnd(n, '0');
@@ -923,13 +927,29 @@ let cur = (() => { const s = LS.get(K.cur); if (s === 'eur' || s === 'mad') retu
 function newAcct(email){
   return {v:2, created:now(), profile:{first:'', agency:'', phone:'', email, logo:null, auto:true}, lots:[], sub:null, videos:[], orders:[]};
 }
-function saveAcct(){ return session && acct ? LS.set(K.acct(session.email), JSON.stringify(acct)) : false; }
+/* acctRaw = dernière version lue ou écrite : sert à voir si un autre onglet a modifié le compte */
+let acctRaw = null;
+function saveAcct(){
+  if (!session || !acct) return false;
+  const raw = JSON.stringify(acct), ok = LS.set(K.acct(session.email), raw);
+  if (ok) acctRaw = raw;
+  return ok;
+}
 function loadAcct(email){
-  const a = LS.json(K.acct(email));
+  const raw = LS.get(K.acct(email)); acctRaw = raw;
+  let a = null; try { a = JSON.parse(raw); } catch(e) {}
   if (!a || typeof a !== 'object') return newAcct(email);
   a.profile = Object.assign({first:'', agency:'', phone:'', email, logo:null, auto:true}, a.profile || {});
   a.lots = Array.isArray(a.lots) ? a.lots : []; a.videos = Array.isArray(a.videos) ? a.videos : []; a.orders = Array.isArray(a.orders) ? a.orders : [];
   return a;
+}
+/* relit le compte stocké s'il a changé (autre onglet) ; à appeler avant toute opération sur les crédits */
+function refreshAcct(){
+  if (!session) return false;
+  const raw = LS.get(K.acct(session.email));
+  if (raw === acctRaw) return false;
+  acct = loadAcct(session.email);
+  return true;
 }
 /* ancienne version : un seul état partagé entre tous les comptes → rangé dans le compte qui était connecté */
 function migrateLegacy(){
@@ -948,16 +968,20 @@ function migrateLegacy(){
 }
 
 /* ---------- crédits ---------- */
-const activeLots = () => acct.lots.filter(l => l.left > 0 && l.exp > now());
+/* après une résiliation, les crédits d'abonnement s'arrêtent à la fin de la période payée */
+const subEnding = () => !!(acct.sub && acct.sub.status === 'canceling');
+const lotExp = l => l.sub && subEnding() ? Math.min(l.exp, acct.sub.renew) : l.exp;
+const activeLots = () => acct.lots.filter(l => l.left > 0 && lotExp(l) > now());
 const creditsTotal = () => activeLots().reduce((s, l) => s + l.left, 0);
 const reserved = () => acct.videos.filter(v => v.status === 'processing').length;
 const creditsAvail = () => Math.max(0, creditsTotal() - reserved());
 function nextExpiry(){
-  const ls = activeLots().sort((a, b) => a.exp - b.exp); if (!ls.length) return null;
-  const day = new Date(ls[0].exp).toDateString();
-  return {date:ls[0].exp, n:ls.filter(l => new Date(l.exp).toDateString() === day).reduce((s, l) => s + l.left, 0)};
+  const ls = activeLots().sort((a, b) => lotExp(a) - lotExp(b)); if (!ls.length) return null;
+  const e0 = lotExp(ls[0]), day = new Date(e0).toDateString();
+  return {date:e0, end:ls[0].sub && e0 < ls[0].exp, n:ls.filter(l => new Date(lotExp(l)).toDateString() === day).reduce((s, l) => s + l.left, 0)};
 }
-function debitOne(){ const l = activeLots().sort((a, b) => a.exp - b.exp)[0]; if (!l) return null; l.left -= 1; return l.id; }
+const endNote = ex => ex && ex.end ? " (fin de l'abonnement)" : '';
+function debitOne(){ const l = activeLots().sort((a, b) => lotExp(a) - lotExp(b))[0]; if (!l) return null; l.left -= 1; return l.id; }
 
 /* abonnement : renouvellements passés (temps réel) et fin après résiliation */
 function subHousekeeping(){
@@ -976,15 +1000,16 @@ function renewSub(silent){
   }
   if (s.next) { s.id = s.next; s.next = null; }
   const o = offerById(s.id), at = s.renew;
-  const order = makeOrder(o, 'renew', at, null);
+  const order = makeOrder(o, 'renew', at, s.cur || cur);
   acct.lots.push({id:'L' + rid(6), n:o.credits, left:o.credits, at, exp:addMonths(at, CONFIG.creditMonths), src:o.id, sub:true, order:order.id});
   s.renew = addMonths(s.renew, 1);
   if (!silent) toast(`Renouvellement simulé : +${pl(o.credits, 'crédit', 'crédits')}.`);
 }
-function makeOrder(o, kind, at, last4){
+/* c = devise figée au paiement (jamais la devise affichée au moment où la commande est écrite) */
+function makeOrder(o, kind, at, c){
   const d = new Date(at || now());
   const id = `IC-T${String(d.getFullYear()).slice(2)}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}-${rid(4)}`;
-  const order = {id, at:at || now(), offer:o.id, name:o.name, credits:o.credits, eur:o.eur, mad:o.mad, cur, kind, last4:last4 || null};
+  const order = {id, at:at || now(), offer:o.id, name:o.name, credits:o.credits, eur:o.eur, mad:o.mad, cur:c || cur, kind};
   acct.orders.push(order);
   return order;
 }
@@ -1010,7 +1035,7 @@ function ask({title, html, buttons}){
 document.addEventListener('click', e => { const c = e.target.closest('[data-close]'); if (c) c.closest('dialog').close(); });
 
 /* ---------- état « occupé » : paiement ou génération ---------- */
-const pay = {busy:false, timer:null};
+const pay = {busy:false, timer:null, ctx:null};
 let genBusy = false;
 const isBusy = () => pay.busy || (acct && reserved() > 0);
 addEventListener('beforeunload', e => { if (pay.busy) { e.preventDefault(); e.returnValue = ''; } });
@@ -1056,26 +1081,90 @@ $('#logout').addEventListener('click', async () => {
   }
   logout();
 });
-function logout(){
+function logout(msg){
   if (draft) saveDraftSoon.flush();
   stopVoice(); $('#r-video').pause();
-  session = null; acct = null; draft = null;
+  session = null; acct = null; draft = null; acctRaw = null;
   LS.del(K.session);
   resetWizardUI();
   $('#email').value = '';
-  toast('Vous êtes déconnecté.');
+  toast(msg || 'Vous êtes déconnecté.');
   go('connexion', true);
+}
+
+/* ---------- plusieurs onglets ouverts sur le même compte ---------- */
+addEventListener('storage', e => {
+  if (e.storageArea && e.storageArea !== localStorage) return;
+  if (e.key === K.session || e.key === null) {
+    const s = LS.json(K.session), em = s && s.email ? String(s.email).toLowerCase() : null;
+    if (!em && session) return logout('Vous avez été déconnecté dans un autre onglet.');
+    if (em && (!session || session.email !== em)) {
+      const had = !!session;
+      login(em, {silent:true});
+      toast(had ? 'Compte changé dans un autre onglet.' : 'Connecté dans un autre onglet.');
+      const r = parseHash();
+      return r.a === 'connexion' ? go(afterLogin(), true) : render();
+    }
+    if (e.key === K.session) return;
+  }
+  if (!session) return;
+  if (e.key === null || e.key === K.acct(session.email)) { if (refreshAcct()) onExternalAcct(); }
+  if (e.key === null || e.key === K.draft(session.email)) onExternalDraft();
+});
+function onExternalAcct(){
+  const r = parseHash();
+  renderHeader(navOf(r));
+  if (r.a === 'videos') renderDash();
+  else if (r.a === 'compte') { renderPlanCard(); renderOrders(); }
+  else if (r.a === 'nouvelle' && curStep() === 4) renderCreditBox();
+  else if (r.a === 'paiement' && !pay.busy) renderPaySummary();
+  else if (r.a === 'video') {
+    const v = acct.videos.find(x => x.id === r.b);
+    if (!v) { toast('Cette vidéo a été supprimée dans un autre onglet.'); return go('videos', true); }
+    if (!ui.vid || ui.vid.status !== v.status) routeVideo(r.b); else ui.vid = v;
+  }
+}
+function onExternalDraft(){
+  const d = loadDraft(), r = parseHash();
+  if (r.a !== 'nouvelle') { draft = d; if (r.a === 'videos') renderDash(); return; }
+  if (!d) { draft = null; resetWizardUI(); toast('Ce brouillon a été lancé ou supprimé dans un autre onglet.'); return leaveFlow('videos'); }
+  draft = d;
+  fillForm(); renderThumbs(); renderPreviews(); renderEstimate();
+  if (curStep() === 4) renderRecap();
 }
 
 /* ---------- routeur (une URL par écran) ---------- */
 const SCREENS = {login:'s-login', dash:'s-dash', new:'s-new', video:'s-video', account:'s-account', pay:'s-pay'};
 let lastRoute = '';
 function parseHash(){ const h = decodeURIComponent(location.hash.replace(/^#\/?/, '')); const [a, b, c] = h.split('/'); return {a:a || '', b:b || '', c:c || '', raw:h}; }
+let navReplace = false, flowDepth = 0, flowPre = false, afterBack = null, rendered = false;
 function go(h, replace){
   const target = '#' + h;
   if (location.hash === target) { render(); return; }
+  navReplace = !!replace;
   if (replace) location.replace(target); else location.hash = h;
 }
+/* « parcours » = assistant + paiement lancé depuis le récap. Chaque entrée d'historique garde sa
+   profondeur dans le parcours : en sortant (génération lancée, Annuler), on remonte d'un coup
+   au lieu de laisser des étapes mortes derrière le bouton Retour. */
+const isFlow = r => r.a === 'nouvelle' || (r.a === 'paiement' && r.c === 'reprise');
+function stampHistory(r){
+  let st = null; try { st = history.state; } catch(e) {}
+  if (st && typeof st.flow === 'number') { flowDepth = st.flow; flowPre = !!st.pre; navReplace = false; rendered = true; return; }
+  let d = 0, pre = false;
+  if (isFlow(r)) {
+    if (flowDepth > 0) { d = navReplace ? flowDepth : flowDepth + 1; pre = flowPre; }
+    else { d = 1; pre = rendered && !navReplace; }
+  }
+  navReplace = false; rendered = true; flowDepth = d; flowPre = pre;
+  try { history.replaceState(Object.assign({}, st, {flow:d, pre}), ''); } catch(e) {}
+}
+function leaveFlow(target){
+  const steps = target === 'videos' && flowPre ? flowDepth : flowDepth - 1;
+  if (steps > 0) { afterBack = target; history.go(-steps); }
+  else go(target, true);
+}
+addEventListener('popstate', () => { if (!afterBack) return; const t = afterBack; afterBack = null; flowDepth = 0; flowPre = false; go(t, true); });
 let prevHash = null;
 addEventListener('hashchange', e => { try { prevHash = new URL(e.oldURL).hash || null; } catch(_) { prevHash = null; } render(); });
 function showScreen(name, title, focusEl){
@@ -1088,6 +1177,7 @@ function showScreen(name, title, focusEl){
 }
 function render(){
   const r = parseHash();
+  stampHistory(r);
   $$('dialog[open]').forEach(d => { if (d.id !== 'dlg') d.close(); });
   closeHelp();
   if (r.a !== 'video') $('#r-video').pause();
@@ -1116,25 +1206,25 @@ function helloName(){ const p = acct.profile; return p.first ? `Bonjour ${p.firs
 function planLabel(){
   const s = acct.sub;
   if (!s) return {t:'À la carte', s:`<button type="button" data-scroll="buy">Voir les abonnements</button>`};
-  const o = offerById(s.id);
+  const o = offerById(s.id), c = s.cur || cur;
   if (s.status === 'canceling') return {t:o.name, s:`Résilié · actif jusqu'au ${fmtDate(s.renew)}`};
-  return {t:o.name, s:`${money(o[cur], cur)} / mois · renouvelé le ${fmtDate(s.renew)}${s.next ? ` (passage à ${offerById(s.next).name})` : ''}`};
+  return {t:o.name, s:`${moneyT(o[c], c)} / mois · renouvelé le ${fmtDate(s.renew)}${s.next ? ` (passage à ${offerById(s.next).name})` : ''}`};
 }
 function renderDash(){
   $('#hello').textContent = helloName();
   /* brouillon */
   const db = $('#draft-banner');
   if (draft && draftHasContent()) {
-    const f = draft.f, c = draft.photos[0];
+    const f = draft.f, c = draft.photos[0], where = f.city ? ' · ' + [f.type, f.city].filter(Boolean).map(esc).join(', ') : '';
     db.innerHTML = `<div class="draft"><div class="dthumb" style="${c ? `background-image:url('${c.src}')` : ''}"></div>
-      <div class="dtxt"><b>Brouillon en cours</b><span class="muted small">${pl(draft.photos.length, 'photo', 'photos')}${f.city ? ' · ' + esc(f.type) + ', ' + esc(f.city) : ''} · étape ${draft.step || 1} sur 4 · modifié le ${fmtDateTime(draft.updated)}</span></div>
+      <div class="dtxt"><b>Brouillon en cours</b><span class="muted small">${pl(draft.photos.length, 'photo', 'photos')}${where} · étape ${draft.step || 1} sur 4 · modifié le ${fmtDateTime(draft.updated)}</span></div>
       <div class="dact"><a class="btn sm" href="#nouvelle/${draft.step || 1}">Reprendre</a><button type="button" class="btn sm ghost" id="draft-del">Supprimer</button></div></div>`;
   } else db.innerHTML = '';
   /* tuiles */
   const n = creditsAvail(), ex = nextExpiry(), rs = reserved(), pln = planLabel();
   let cs = '';
   if (rs) cs += `${rs} réservé${rs > 1 ? 's' : ''} pour une génération en cours.<br>`;
-  if (ex) cs += `Dont ${ex.n} expire${ex.n > 1 ? 'nt' : ''} le ${fmtDate(ex.date)}.`;
+  if (ex) cs += `Dont ${ex.n} expire${ex.n > 1 ? 'nt' : ''} le ${fmtDate(ex.date)}${endNote(ex)}.`;
   else if (!rs) cs += `<button type="button" data-scroll="buy">Acheter des crédits</button>`;
   const ready = acct.videos.filter(v => v.status === 'ready').length;
   $('#tiles').innerHTML = `
@@ -1178,16 +1268,17 @@ function renderOffers(){
     if (o.kind === 'sub') pill = '<span class="pill gold">Prix de lancement</span>';
     if (o.credits > 1) per = `soit ${money(Math.round(price / o.credits * 100) / 100, cur)} la vidéo`;
     else per = 'Crédit valable 12 mois';
+    const tt = cur === 'eur' ? `soit ${ttc(price, cur)} en France` : 'hors taxes';
     const isCur = acct.sub && acct.sub.id === o.id;
     let btn;
     if (o.kind === 'sub') {
       if (isCur) btn = `<button class="btn sm ghost full" type="button" disabled>Formule actuelle</button>`;
-      else if (acct.sub) btn = `<button class="btn sm ghost full" type="button" data-plan="${o.id}">Passer à ${o.name}</button>`;
+      else if (acct.sub) btn = `<button class="btn sm ghost full" type="button" data-plan="${o.id}">${subEnding() && o.eur < offerById(acct.sub.id).eur ? `Annuler la résiliation et passer à ${o.name}` : `Passer à ${o.name}`}</button>`;
       else btn = `<a class="btn sm ghost full" href="#paiement/${o.id}">S'abonner</a>`;
     } else btn = `<a class="btn sm ghost full" href="#paiement/${o.id}">Acheter</a>`;
-    const sub = o.kind === 'sub' ? `${o.credits} vidéos par mois. Crédits reportés tant que l'abonnement est actif (12 mois maximum). Résiliable depuis Mon compte.` : '';
+    const sub = o.kind === 'sub' ? `${o.credits} vidéos par mois. Crédits reportés tant que l'abonnement est actif (12 mois maximum). Résiliable à tout moment : depuis Mon compte, avec le lien de gestion reçu par e-mail ou en nous écrivant.` : '';
     return `<div class="offer${isCur ? ' cur-plan' : ''}"><div class="ot"><h4 class="h3">${o.name}</h4>${pill}</div>
-      <div class="p">${moneyBig(price, cur)}${o.kind === 'sub' ? ' <small>/ mois</small>' : ''}</div><div class="u">${per}</div>
+      <div class="p">${moneyBig(price, cur)}${o.kind === 'sub' ? ' <small>/ mois</small>' : ''}</div><div class="t">${tt}</div><div class="u">${per}</div>
       <div class="d">${o.d}${sub ? '<br>' + sub : ''}</div>${btn}</div>`;
   };
   $('#offers-once').innerHTML = OFFERS.filter(o => o.kind === 'once').map(card).join('');
@@ -1196,7 +1287,7 @@ function renderOffers(){
 }
 function syncCur(){ $$('.cur button').forEach(b => b.setAttribute('aria-pressed', b.dataset.c === cur ? 'true' : 'false')); }
 document.addEventListener('click', e => {
-  const b = e.target.closest('.cur button'); if (!b) return;
+  const b = e.target.closest('.cur button'); if (!b || b.disabled) return;
   cur = b.dataset.c; LS.set(K.cur, cur); syncCur();
   const r = parseHash();
   if (r.a === 'videos') renderDash();
@@ -1207,16 +1298,25 @@ document.addEventListener('click', e => {
 
 /* ---------- changement de formule ---------- */
 async function planChange(id){
-  const s = acct.sub, o = offerById(id);
-  if (!s) return go('paiement/' + id);
-  if (s.id === id) return;
-  const curO = offerById(s.id);
+  const s0 = acct.sub, o = offerById(id);
+  if (!s0) return go('paiement/' + id);
+  if (s0.id === id) return;
+  const curO = offerById(s0.id), c = s0.cur || cur;
   if (o.eur > curO.eur) return go('paiement/' + id);
-  const v = await ask({title:`Passer à ${o.name} ?`, html:`<p>Le changement s'appliquera au prochain renouvellement, le ${fmtDate(s.renew)} : ${money(o[cur], cur)} par mois pour ${o.credits} vidéos.</p><p>D'ici là, vous gardez la formule ${curO.name} et vos crédits.</p>`, buttons:[{label:`Passer à ${o.name}`, value:'ok'}, {label:'Annuler', value:null, kind:'ghost', focus:true}]});
+  const ending = s0.status === 'canceling';
+  const v = await ask(ending
+    ? {title:`Annuler la résiliation et passer à ${o.name} ?`, html:`<p>Votre résiliation sera annulée : l'abonnement reprendra le ${fmtDate(s0.renew)} avec la formule ${o.name}, à ${moneyT(o[c], c)} par mois pour ${o.credits} vidéos, puis chaque mois jusqu'à une nouvelle résiliation.</p><p>D'ici là, vous gardez la formule ${curO.name} et vos crédits.</p>`,
+       buttons:[{label:`Annuler la résiliation et passer à ${o.name}`, value:'ok'}, {label:'Ne rien changer', value:null, kind:'ghost', focus:true}]}
+    : {title:`Passer à ${o.name} ?`, html:`<p>Le changement s'appliquera au prochain renouvellement, le ${fmtDate(s0.renew)} : ${moneyT(o[c], c)} par mois pour ${o.credits} vidéos.</p><p>D'ici là, vous gardez la formule ${curO.name} et vos crédits.</p>`,
+       buttons:[{label:`Passer à ${o.name}`, value:'ok'}, {label:'Annuler', value:null, kind:'ghost', focus:true}]});
   if (v !== 'ok') return;
-  s.next = id; if (s.status === 'canceling') s.status = 'active';
-  if (!saveAcct()) { s.next = null; return toast('Stockage du navigateur plein : changement non enregistré.'); }
-  toast(`Passage à ${o.name} prévu le ${fmtDate(s.renew)}.`);
+  refreshAcct();
+  const s = acct.sub;
+  if (!s || s.id !== s0.id || s.status !== s0.status) { toast('Votre formule a changé dans un autre onglet : vérifiez-la avant de recommencer.'); return render(); }
+  const old = {next:s.next, status:s.status};
+  s.next = id; if (ending) s.status = 'active';
+  if (!saveAcct()) { Object.assign(s, old); return toast('Stockage du navigateur plein : changement non enregistré.'); }
+  toast(ending ? `Résiliation annulée : passage à ${o.name} le ${fmtDate(s.renew)}.` : `Passage à ${o.name} prévu le ${fmtDate(s.renew)}.`);
   render();
 }
 
@@ -1224,7 +1324,7 @@ async function planChange(id){
 function newDraft(){
   const p = acct.profile, auto = p.auto !== false;
   return {v:1, created:now(), updated:now(), step:1, photos:[], f:{
-    type:'Appartement', deal:'Vente', city:'', area:'', price:'', showPrice:true, surface:'', rooms:'', beds:'', highlights:'',
+    type:'', deal:'Vente', city:'', area:'', price:'', showPrice:true, surface:'', rooms:'', beds:'', highlights:'',
     music:'Élégante', voice:'Voix féminine', lang:'Français', formats:['16:9','9:16','1:1'], nologo:false,
     agency:auto ? p.agency : '', phone:auto ? p.phone : '', logo:auto ? p.logo : null, logoDark:auto ? !!p.logoDark : false, fromKit:auto && !!(p.agency || p.phone || p.logo), preview:'16:9'}};
 }
@@ -1243,13 +1343,18 @@ function saveDraft(){
   else { el.textContent = 'Brouillon non enregistré (stockage plein)'; if (!draftWarned) { toast("Stockage du navigateur plein : le brouillon ne sera pas conservé si vous fermez la page."); draftWarned = true; } }
   return ok;
 }
-const saveDraftSoon = debounce(saveDraft, 300);
+const saveDraftDeb = debounce(saveDraft, 300);
+/* « Enregistrement… » tant que l'écriture attend ; « Brouillon enregistré » seulement après la vraie écriture */
+const saveDraftSoon = Object.assign(() => { if (draft && session) $('#saved').textContent = 'Enregistrement…'; saveDraftDeb(); }, {flush:() => saveDraftDeb.flush()});
+/* fermeture, rechargement, passage à une autre appli (mobile) : on écrit tout de suite */
+addEventListener('pagehide', () => saveDraftSoon.flush());
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') saveDraftSoon.flush(); });
 function clearDraft(){ draft = null; if (session) LS.del(K.draft(session.email)); resetWizardUI(); }
 function draftHasContent(){ if (!draft) return false; const f = draft.f; return draft.photos.length > 0 || !!(f.city || f.area || f.price || f.surface || f.highlights); }
 
 async function startNew(){
   if (draft && draftHasContent()) {
-    const v = await ask({title:'Un brouillon est en cours', html:`<p>${pl(draft.photos.length, 'photo', 'photos')}${draft.f.city ? ' · ' + esc(draft.f.type) + ', ' + esc(draft.f.city) : ''}. Voulez-vous le reprendre ?</p>`,
+    const v = await ask({title:'Un brouillon est en cours', html:`<p>${pl(draft.photos.length, 'photo', 'photos')}${draft.f.city ? ' · ' + [draft.f.type, draft.f.city].filter(Boolean).map(esc).join(', ') : ''}. Voulez-vous le reprendre ?</p>`,
       buttons:[{label:'Reprendre le brouillon', value:'resume', focus:true}, {label:'Nouvelle vidéo (efface le brouillon)', value:'new', kind:'ghost'}]});
     if (v === 'resume') return go('nouvelle/' + (draft.step || 1));
     if (v !== 'new') return;
@@ -1265,6 +1370,7 @@ function stepProblem(n){
   const f = draft.f;
   if (n === 1 && draft.photos.length < CONFIG.minPhotos) return {msg:`Ajoutez au moins ${CONFIG.minPhotos} photos (encore ${CONFIG.minPhotos - draft.photos.length}).`, el:$('#drop'), errEl:$('#err1')};
   if (n === 2) {
+    if (!f.type) return {msg:'Choisissez le type de bien.', el:$('#s-new input[name=type]'), errEl:$('#type-err')};
     if (!f.city.trim()) return {msg:'Indiquez la ville.', el:$('#city'), errEl:$('#city-err'), field:true};
     if (f.surface && (!surfRe.test(f.surface.trim()) || parseFloat(f.surface.replace(',', '.')) <= 0)) return {msg:'Surface : un nombre positif, sans unité (ex. : 120).', el:$('#surface'), errEl:$('#surface-err'), field:true};
     if (f.rooms && (!intRe.test(f.rooms.trim()) || +f.rooms < 1)) return {msg:'Pièces : un nombre entier, au moins 1.', el:$('#rooms'), errEl:$('#rooms-err'), field:true};
@@ -1275,13 +1381,13 @@ function stepProblem(n){
   return null;
 }
 function firstBadStep(upTo){ for (let i = 1; i < upTo; i++) if (stepProblem(i)) return i; return null; }
-function clearStepErrors(){ ['err1','err2','err3','err4','city-err','surface-err','rooms-err','beds-err','logo-err'].forEach(id => { const el = $('#' + id); if (el) el.textContent = ''; }); $$('#s-new [aria-invalid]').forEach(i => i.setAttribute('aria-invalid', 'false')); }
+function clearStepErrors(){ ['err1','err2','err3','err4','type-err','city-err','surface-err','rooms-err','beds-err','logo-err'].forEach(id => { const el = $('#' + id); if (el) el.textContent = ''; }); $$('#s-new [aria-invalid]').forEach(i => i.setAttribute('aria-invalid', 'false')); }
 function showProblem(p){ if (p.field) setFieldErr(p.el, p.errEl, p.msg); else p.errEl.textContent = p.msg; if (p.el) p.el.focus(); }
 
 function routeWizard(r){
   let n = parseInt(r.b, 10);
-  /* sans brouillon, une étape avancée (ex. bouton Retour après une génération) ramène à Mes vidéos */
-  if (!draft) { if (n > 1) return go('videos', true); draft = newDraft(); saveDraft(); }
+  /* sans brouillon, une étape avancée (entrée d'historique périmée) ramène à Mes vidéos, d'un seul coup */
+  if (!draft) { if (n > 1) return leaveFlow('videos'); draft = newDraft(); saveDraft(); }
   if (!(n >= 1 && n <= 4)) return go('nouvelle/' + (draft.step || 1), true);
   const bad = firstBadStep(n);
   if (bad) return go('nouvelle/' + bad, true);
@@ -1308,16 +1414,16 @@ const curStep = () => { const r = parseHash(); return r.a === 'nouvelle' ? (pars
 function updateNextBtn(n){
   const b = $('#next');
   if (n < 4) { b.textContent = 'Continuer'; return; }
-  b.textContent = creditsAvail() >= 1 ? 'Générer la vidéo · 1 crédit' : `Acheter 1 crédit · ${money(offerById('one')[cur], cur)}`;
+  b.textContent = creditsAvail() >= 1 ? 'Générer la vidéo · 1 crédit' : `Acheter 1 crédit · ${moneyT(offerById('one')[cur], cur)}`;
 }
 $('#prev').addEventListener('click', async () => {
   const n = curStep();
   if (n > 1) return go('nouvelle/' + (n - 1));
-  if (!draftHasContent()) { clearDraft(); return go('videos'); }
+  if (!draftHasContent()) { clearDraft(); return leaveFlow('videos'); }
   const v = await ask({title:"Quitter l'assistant ?", html:'<p>Votre brouillon est enregistré dans ce navigateur : vous pourrez le reprendre depuis Mes vidéos.</p>',
     buttons:[{label:'Garder le brouillon et quitter', value:'keep', focus:true}, {label:'Supprimer le brouillon', value:'del', kind:'danger'}, {label:'Rester', value:null, kind:'ghost'}]});
-  if (v === 'keep') { saveDraftSoon.flush(); go('videos'); }
-  if (v === 'del') { clearDraft(); toast('Brouillon supprimé.'); go('videos'); }
+  if (v === 'keep') { saveDraftSoon.flush(); leaveFlow('videos'); }
+  if (v === 'del') { clearDraft(); toast('Brouillon supprimé.'); leaveFlow('videos'); }
 });
 $('#next').addEventListener('click', () => {
   const n = curStep(); if (!n) return;
@@ -1359,6 +1465,7 @@ function onFormChange(e){
   readForm(); saveDraftSoon();
   if (t.getAttribute('aria-invalid') === 'true') { const p = stepProblem(curStep()); if (!p || p.el !== t) { setFieldErr(t, $('#' + t.getAttribute('aria-describedby')), ''); } }
   if (t.name === 'fmt' && draft.f.formats.length) $('#err3').textContent = '';
+  if (t.name === 'type' && draft.f.type) $('#type-err').textContent = '';
   if (t.name === 'deal') updatePriceLabel();
   if (t.name === 'lang' || t.name === 'voice') { stopVoice(); labelPlays(); }
   renderPreviews(); renderEstimate();
@@ -1393,32 +1500,46 @@ async function shrink(src, max, type, q){
 }
 async function readFile(file, max, type, q){ const url = URL.createObjectURL(file); try { return await shrink(url, max, type, q); } finally { URL.revokeObjectURL(url); } }
 const IMG_EXT = ['jpg','jpeg','png','webp','gif','avif','bmp','heic','heif','tif','tiff'];
+/* les fichiers ajoutés pendant une lecture en cours sont mis en file d'attente, jamais ignorés */
 let adding = false;
+const addQueue = [];
+function setAddingNote(){ $('#adding').textContent = adding ? `Lecture des photos en cours… ${addQueue.length ? `encore ${addQueue.length + 1} à ajouter, patientez.` : 'patientez.'}` : ''; }
 async function addFiles(list){
-  if (!draft || adding) return;
+  if (!draft) return;
+  addQueue.push(...list);
+  if (adding) { setAddingNote(); return; }
   adding = true;
-  const msgs = [];
-  const room = () => CONFIG.maxPhotos - draft.photos.length;
+  const d = draft, msgs = [];
+  const room = () => CONFIG.maxPhotos - d.photos.length;
   let skipped = 0;
   $('#err1').textContent = '';
-  for (const f of list) {
-    const name = f.name || 'fichier', ext = (name.split('.').pop() || '').toLowerCase();
-    const heic = /hei[cf]/i.test(f.type) || ext === 'heic' || ext === 'heif';
-    if (!(f.type || '').startsWith('image/') && !IMG_EXT.includes(ext)) { msgs.push(['err', `« ${name} » n'est pas une photo. Formats acceptés : JPG, PNG ou WEBP.`]); continue; }
-    const key = `${name}|${f.size}|${f.lastModified}`;
-    if (draft.photos.some(p => p.key === key)) { msgs.push(['info', `« ${name} » est déjà dans la liste.`]); continue; }
-    if (room() <= 0) { skipped++; continue; }
-    try {
-      const p = await readFile(f, 640, 'image/jpeg', .72);
-      draft.photos.push({src:p.src, w:p.w, h:p.h, name, key});
-      renderThumbs();
-    } catch (err) {
-      msgs.push(['err', heic ? `« ${name} » est au format HEIC (iPhone), que ce navigateur ne sait pas lire. Exportez-la en JPG, ou réglez l'iPhone sur « Le plus compatible » (Réglages › Appareil photo › Formats).` : `« ${name} » n'a pas pu être lue (fichier abîmé ou format non pris en charge). Essayez de l'exporter en JPG.`]);
+  try {
+    while (addQueue.length) {
+      if (draft !== d) { addQueue.length = 0; break; }
+      setAddingNote();
+      const f = addQueue.shift();
+      const name = f.name || 'fichier', ext = (name.split('.').pop() || '').toLowerCase();
+      const heic = /hei[cf]/i.test(f.type) || ext === 'heic' || ext === 'heif';
+      if (!(f.type || '').startsWith('image/') && !IMG_EXT.includes(ext)) { msgs.push(['err', `« ${name} » n'est pas une photo. Formats acceptés : JPG, PNG ou WEBP.`]); continue; }
+      const key = `${name}|${f.size}|${f.lastModified}`;
+      if (d.photos.some(p => p.key === key)) { msgs.push(['info', `« ${name} » est déjà dans la liste.`]); continue; }
+      if (room() <= 0) { skipped++; continue; }
+      try {
+        const p = await readFile(f, 640, 'image/jpeg', .72);
+        if (draft !== d) continue;
+        if (room() <= 0) { skipped++; continue; }
+        d.photos.push({src:p.src, w:p.w, h:p.h, name, key});
+        renderThumbs(); saveDraftSoon();
+      } catch (err) {
+        msgs.push(['err', heic ? `« ${name} » est au format HEIC (iPhone), que ce navigateur ne sait pas lire. Exportez-la en JPG, ou réglez l'iPhone sur « Le plus compatible » (Réglages › Appareil photo › Formats).` : `« ${name} » n'a pas pu être lue (fichier abîmé ou format non pris en charge). Essayez de l'exporter en JPG.`]);
+      }
     }
+  } finally {
+    adding = false; setAddingNote();
   }
+  if (draft !== d) return;
   if (skipped) msgs.push(['warn', `Maximum ${CONFIG.maxPhotos} photos par vidéo : ${pl(skipped, 'photo ignorée', 'photos ignorées')}.`]);
   $('#msgs1').innerHTML = msgs.map(([k, t]) => `<li class="${k}">${esc(t)}</li>`).join('');
-  adding = false;
   renderThumbs(); saveDraftSoon(); renderPreviews(); renderEstimate();
 }
 function renderThumbs(){
@@ -1493,7 +1614,7 @@ $('#logo-file').addEventListener('change', async e => {
 });
 $('#logo-rm').addEventListener('click', () => { draft.f.logo = null; draft.f.logoDark = false; renderLogo('#logo-prev', '#logo-rm', null); saveDraftSoon(); renderPreviews(); renderBrandNote(); $('#logo-btn').focus(); });
 $('#save-kit').addEventListener('click', () => {
-  readForm();
+  readForm(); refreshAcct();
   const p = acct.profile, old = {agency:p.agency, phone:p.phone, logo:p.logo, logoDark:p.logoDark};
   p.agency = draft.f.agency.trim(); p.phone = draft.f.phone.trim(); p.logo = draft.f.logo; p.logoDark = !!draft.f.logoDark;
   if (!saveAcct()) { Object.assign(p, old); return toast('Stockage du navigateur plein : kit de marque non enregistré.'); }
@@ -1507,9 +1628,9 @@ function renderBrandNote(){
 
 /* --- aperçus en direct --- */
 const L10N = {
-  'Français':{type:{Appartement:'Appartement',Villa:'Villa',Maison:'Maison',Riad:'Riad',Terrain:'Terrain','Local commercial':'Local commercial'}, deal:{Vente:'À vendre',Location:'À louer','Location saisonnière':'Location saisonnière'}, bed:n => n > 1 ? `${n} chambres` : `${n} chambre`, by:'Présenté par', city:'Votre ville', agency:"Nom de l'agence", phone:'Téléphone'},
-  'Anglais':{type:{Appartement:'Apartment',Villa:'Villa',Maison:'House',Riad:'Riad',Terrain:'Land','Local commercial':'Commercial space'}, deal:{Vente:'For sale',Location:'For rent','Location saisonnière':'Holiday rental'}, bed:n => n > 1 ? `${n} bedrooms` : `${n} bedroom`, by:'Presented by', city:'Your city', agency:'Agency name', phone:'Phone'},
-  'Arabe':{type:{Appartement:'شقة',Villa:'فيلا',Maison:'منزل',Riad:'رياض',Terrain:'أرض','Local commercial':'محل تجاري'}, deal:{Vente:'للبيع',Location:'للإيجار','Location saisonnière':'للإيجار الموسمي'}, bed:n => `غرف النوم: ${n}`, by:'تقديم', city:'المدينة', agency:'اسم الوكالة', phone:'الهاتف'}
+  'Français':{type:{Appartement:'Appartement',Villa:'Villa',Maison:'Maison',Riad:'Riad',Terrain:'Terrain','Local commercial':'Local commercial'}, deal:{Vente:'À vendre',Location:'À louer','Location saisonnière':'Location saisonnière'}, bed:n => n > 1 ? `${n} chambres` : `${n} chambre`, by:'Présenté par', ptype:'Type de bien', city:'Votre ville', agency:"Nom de l'agence", phone:'Téléphone'},
+  'Anglais':{type:{Appartement:'Apartment',Villa:'Villa',Maison:'House',Riad:'Riad',Terrain:'Land','Local commercial':'Commercial space'}, deal:{Vente:'For sale',Location:'For rent','Location saisonnière':'Holiday rental'}, bed:n => n > 1 ? `${n} bedrooms` : `${n} bedroom`, by:'Presented by', ptype:'Property type', city:'Your city', agency:'Agency name', phone:'Phone'},
+  'Arabe':{type:{Appartement:'شقة',Villa:'فيلا',Maison:'منزل',Riad:'رياض',Terrain:'أرض','Local commercial':'محل تجاري'}, deal:{Vente:'للبيع',Location:'للإيجار','Location saisonnière':'للإيجار الموسمي'}, bed:n => `غرف النوم: ${n}`, by:'تقديم', ptype:'نوع العقار', city:'المدينة', agency:'اسم الوكالة', phone:'الهاتف'}
 };
 function previewFormatButtons(){
   const fs = (draft.f.formats.length ? draft.f.formats : FMT_ORDER);
@@ -1526,16 +1647,15 @@ function openingHTML(f, cover, fmt){
   const rtl = f.lang === 'Arabe' ? ' dir="rtl"' : '';
   return `<img class="bg" src="${cover || FMT[fmt].poster}" alt=""><div class="shade"></div>
     <span class="lab">${cover ? 'Votre photo de couverture' : 'Photo de démonstration'}</span>
-    <div class="open"${rtl}><span class="kick">${esc(L.type[f.type] || f.type)} · ${esc(L.deal[f.deal] || f.deal)}</span>
+    <div class="open"${rtl}><span class="kick">${f.type ? esc(L.type[f.type] || f.type) : `<span class="ghost">${esc(L.ptype)}</span>`} · ${esc(L.deal[f.deal] || f.deal)}</span>
     <span class="ttl${place ? '' : ' ghost'}">${esc(place || L.city)}</span><span class="rule"></span>${meta ? `<span class="meta">${esc(meta)}</span>` : ''}</div>`;
 }
 function endHTML(f){
   const L = L10N[f.lang] || L10N['Français'];
   const ag = f.agency.trim(), ph = f.phone.trim();
-  const ini = (ag || 'IC').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
   const rtl = f.lang === 'Arabe' ? ' dir="rtl"' : '';
   return `<span class="lab">Carton de fin</span><div class="endc"${rtl}><span class="by">${esc(L.by)}</span>
-    ${f.logo ? `<span class="lgw${f.logoDark ? ' plate' : ''}"><img class="lg" src="${f.logo}" alt=""></span>` : `<span class="mono" aria-hidden="true">${esc(ini)}</span>`}
+    ${f.logo ? `<span class="lgw${f.logoDark ? ' plate' : ''}"><img class="lg" src="${f.logo}" alt=""></span>` : ''}
     <span class="ag${ag ? '' : ' ghost'}">${esc(ag || L.agency)}</span><span class="ph${ph ? '' : ' ghost'}">${esc(ph || L.phone)}</span></div>`;
 }
 function setPv(el, fmt, html){ el.className = 'pv' + (el.id.startsWith('pv-end') ? ' end' : '') + (FMT[fmt].cls ? ' ' + FMT[fmt].cls : ''); el.innerHTML = html; }
@@ -1601,7 +1721,8 @@ function renderCreditBox(){
   const n = creditsAvail(), box = $('#credit-box');
   if (n >= 1) box.innerHTML = `<b>Crédits : ${n} disponible${n > 1 ? 's' : ''}</b> → ${n - 1} après la génération.<p class="fine" style="margin-top:4px">Le crédit est réservé pendant la génération et utilisé seulement quand la vidéo est enregistrée.</p>`;
   else box.innerHTML = `<b>Vous n'avez plus de crédit.</b><p class="fine" style="margin-top:4px">Choisissez une offre : votre brouillon est gardé et vous revenez ici après le paiement.</p>
-    <div class="mini">${OFFERS.map(o => `<a class="btn sm ghost" href="#paiement/${o.id}/reprise">${o.name} · ${money(o[cur], cur)}${o.kind === 'sub' ? ' / mois' : ''}</a>`).join('')}</div>`;
+    <div class="mini">${OFFERS.map(o => `<a class="btn sm ghost" href="#paiement/${o.id}/reprise">${o.name} · ${moneyT(o[cur], cur)}${o.kind === 'sub' ? ' / mois' : ''}</a>`).join('')}</div>
+    <p class="fine" style="margin-top:10px">${cur === 'eur' ? 'Prix HT ; entre parenthèses, le prix TTC en France (TVA 20 %).' : 'Prix hors taxes.'}</p>`;
   updateNextBtn(4);
 }
 
@@ -1609,6 +1730,7 @@ function renderCreditBox(){
 async function launch(){
   if (genBusy) return;
   const bad = firstBadStep(4); if (bad) return go('nouvelle/' + bad);
+  if (refreshAcct()) { renderHeader(''); renderCreditBox(); }
   if (creditsAvail() < 1) return go('paiement/one/reprise');
   if (!$('#rights').checked) { $('#err4').textContent = 'Cochez la case pour confirmer que vous avez le droit d\'utiliser ces photos.'; $('#rights').focus(); return; }
   genBusy = true; const btn = $('#next'); btn.disabled = true;
@@ -1617,6 +1739,8 @@ async function launch(){
     const f = draft.f;
     let cover = null;
     try { if (draft.photos[0]) cover = (await shrink(draft.photos[0].src, 360, 'image/jpeg', .62)).src; } catch(e) {}
+    /* un autre onglet a pu utiliser le dernier crédit pendant ce temps */
+    if (refreshAcct() && creditsAvail() < 1) { renderHeader(''); renderCreditBox(); toast('Votre dernier crédit vient d\'être utilisé dans un autre onglet.'); return; }
     const id = 'v' + now().toString(36) + rid(3).toLowerCase();
     const video = {id, at:now(), startedAt:now(), dur:CONFIG.genMs, status:'processing', cover, photos:draft.photos.length,
       type:f.type, deal:f.deal, city:f.city.trim(), area:f.area.trim(), price:f.price.trim(), showPrice:f.showPrice !== false,
@@ -1630,11 +1754,14 @@ async function launch(){
       return;
     }
     clearDraft();
-    go('video/' + id);
+    leaveFlow('video/' + id);
   } finally { genBusy = false; btn.disabled = false; }
 }
 /* fin d'une génération : le crédit n'est retiré qu'ici, et seulement si l'enregistrement réussit */
-function completeJob(v){
+function completeJob(id){
+  refreshAcct();
+  const v = acct.videos.find(x => x.id === id);
+  if (!v || v.status !== 'processing') return !!v && v.status === 'ready'; /* déjà terminée dans un autre onglet */
   const backup = JSON.stringify(acct);
   const lot = debitOne();
   if (!lot) { v.status = 'failed'; v.err = 'credit'; }
@@ -1649,7 +1776,7 @@ function completeJob(v){
 function tick(){
   if (!acct) return;
   let done = null, due, guard = 0;
-  while ((due = acct.videos.find(v => v.status === 'processing' && now() >= v.startedAt + v.dur)) && guard++ < 50) { const ok = completeJob(due); done = {id:due.id, ok}; }
+  while ((due = acct.videos.find(v => v.status === 'processing' && now() >= v.startedAt + v.dur)) && guard++ < 50) { const id = due.id, ok = completeJob(id); done = {id, ok}; }
   updateProgressBits();
   if (done) {
     const r = parseHash(), v = acct.videos.find(x => x.id === done.id);
@@ -1708,7 +1835,7 @@ function renderResult(v){
   $('#r-sub').textContent = [v.area, v.showPrice !== false ? v.price : '', v.surface && `${String(v.surface).replace('.', ',')} m²`, v.beds && pl(+v.beds, 'chambre', 'chambres')].filter(Boolean).join(' · ') || 'Vidéo de démonstration';
   const fs = v.formats && v.formats.length ? v.formats : ['16:9'];
   $('#r-fmts').innerHTML = fs.map(f => `<button type="button" data-f="${f}">${f}<small>${FMT[f].name}</small></button>`).join('');
-  $('#r-ver').hidden = !v.nologo; $('#r-ver-note').hidden = !v.nologo;
+  $('#r-ver').hidden = !v.nologo; $('#r-ver-note').hidden = !v.nologo; $('#r-nover-note').hidden = !!v.nologo;
   $('#r-ver').innerHTML = '<button type="button" data-ver="logo">Avec logo</button><button type="button" data-ver="nologo">Sans logo · portails</button>';
   ui.ver = 'logo';
   $('#r-dlall').textContent = fs.length > 1 ? `Tout télécharger · ${fs.length} fichiers` : 'Télécharger';
@@ -1748,8 +1875,14 @@ $('#r-del').addEventListener('click', async () => {
   if (r !== 'del') return;
   deleteVideo(v.id); toast('Vidéo supprimée.'); go('videos', true);
 });
-function deleteVideo(id){ const i = acct.videos.findIndex(x => x.id === id); if (i < 0) return; const [rm] = acct.videos.splice(i, 1); if (!saveAcct()) { acct.videos.splice(i, 0, rm); toast('Suppression impossible : stockage du navigateur inaccessible.'); } }
-$('#f-retry').addEventListener('click', () => { const v = ui.vid; if (!v) return; v.status = 'processing'; v.startedAt = now() - v.dur; v.err = null; tick(); routeVideo(v.id); });
+function deleteVideo(id){ refreshAcct(); const i = acct.videos.findIndex(x => x.id === id); if (i < 0) return; const [rm] = acct.videos.splice(i, 1); if (!saveAcct()) { acct.videos.splice(i, 0, rm); toast('Suppression impossible : stockage du navigateur inaccessible.'); } }
+$('#f-retry').addEventListener('click', () => {
+  if (!ui.vid) return;
+  refreshAcct();
+  const v = acct.videos.find(x => x.id === ui.vid.id); if (!v) return go('videos', true);
+  if (v.status === 'failed') { v.status = 'processing'; v.startedAt = now() - v.dur; v.err = null; saveAcct(); }
+  tick(); routeVideo(v.id);
+});
 $('#f-del').addEventListener('click', () => { const v = ui.vid; if (!v) return; deleteVideo(v.id); go('videos', true); });
 
 /* --- textes prêts à copier --- */
@@ -1820,19 +1953,20 @@ document.addEventListener('click', async e => {
 });
 
 /* ================= PAIEMENT (TEST) ================= */
-const TEST_CARDS = {'4242424242424242':'ok', '4000000000000002':'declined', '4000000000009995':'funds'};
-const ccNum = $('#cc-num'), ccExp = $('#cc-exp');
+/* Aucun champ de carte : trois boutons simulent le résultat. En production, redirection vers le prestataire. */
 let payCtx = null;
-ccNum.addEventListener('input', () => { ccNum.value = ccNum.value.replace(/\D/g, '').slice(0, 16).replace(/(.{4})(?=.)/g, '$1 '); });
-ccExp.addEventListener('input', () => { let v = ccExp.value.replace(/\D/g, '').slice(0, 4); if (v.length > 2) v = v.slice(0, 2) + '/' + v.slice(2); ccExp.value = v; });
 function routePay(id, resume){
   const o = offerById(id);
   if (!o) return go('videos', true);
-  if (o.kind === 'sub' && acct.sub && acct.sub.id === o.id) { toast(`${o.name} est déjà votre formule.`); return go('compte', true); }
+  /* un paiement est en cours : on reste sur l'offre réellement payée */
+  if (pay.busy && pay.ctx && pay.ctx.offer.id !== id) {
+    toast('Un paiement est en cours : attendez la fin.');
+    return go('paiement/' + pay.ctx.offer.id + (pay.ctx.resume ? '/reprise' : ''), true);
+  }
+  if (!pay.busy && o.kind === 'sub' && acct.sub && acct.sub.id === o.id) { toast(`${o.name} est déjà votre formule.`); return go('compte', true); }
   if (!pay.busy || !payCtx || payCtx.offer.id !== id) {
     payCtx = {offer:o, resume, change:o.kind === 'sub' && !!acct.sub};
-    $('#f-pay').reset(); $('#pay-err').textContent = '';
-    $$('#f-pay .ferr').forEach(x => x.textContent = ''); $$('#f-pay [aria-invalid]').forEach(x => x.setAttribute('aria-invalid', 'false'));
+    $('#f-pay').reset(); $('#pay-err').textContent = ''; $('#pay-cgv-err').textContent = '';
   }
   $('#pay-back').href = resume ? '#nouvelle/4' : o.kind === 'sub' && acct.sub ? '#compte' : '#videos';
   renderPaySummary();
@@ -1841,63 +1975,56 @@ function routePay(id, resume){
 }
 function renderPaySummary(){
   if (!payCtx) return;
-  const o = payCtx.offer, p = o[cur];
+  const o = payCtx.offer, c = pay.busy && pay.ctx ? pay.ctx.cur : cur, p = o[c];
   const lines = [];
   if (o.kind === 'sub') {
-    lines.push(`${o.credits} vidéos par mois, renouvelé chaque mois. Sans engagement : résiliable à tout moment depuis Mon compte.`);
+    lines.push(`${o.credits} vidéos par mois, renouvelé chaque mois. Sans engagement : résiliable à tout moment depuis Mon compte, avec le lien de gestion reçu par e-mail ou en nous écrivant.`);
     if (payCtx.change && acct.sub) lines.push(`Changement de formule : ${o.name} remplace ${offerById(acct.sub.id).name} dès aujourd'hui et vos crédits actuels sont conservés. En production, le montant exact du changement est affiché sur la page de paiement.`);
     lines.push("Prix de lancement conservé tant que l'abonnement reste actif sans interruption (100 premiers abonnés).");
+    lines.push(`L'abonnement est facturé en ${c === 'eur' ? 'euros' : 'dirhams'} : cette devise reste la même à chaque renouvellement.`);
   } else lines.push(`${pl(o.credits, 'crédit', 'crédits')}, valable${o.credits > 1 ? 's' : ''} 12 mois. 1 crédit = 1 vidéo en 3 formats.`);
   if (payCtx.resume) lines.push('Votre brouillon est gardé : vous revenez au récapitulatif juste après.');
+  const dis = pay.busy ? ' disabled' : '';
   $('#pay-sum').innerHTML = `<div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap">
       <div><p class="eyebrow" style="margin-bottom:4px">${o.kind === 'sub' ? 'Abonnement mensuel' : 'Achat de crédits'}</p><h2 class="h3" style="font-size:24px">${o.name}</h2></div>
-      <div class="cur" role="group" aria-label="Devise"><button type="button" data-c="eur">€</button><button type="button" data-c="mad">DH</button></div></div>
-    <p class="bigp" style="font-family:var(--serif);font-size:34px;margin:8px 0 2px">${moneyBig(p, cur)}${o.kind === 'sub' ? ' <small>/ mois</small>' : ''}</p>
-    <p class="fine">TVA éventuelle calculée au paiement selon votre pays.</p>
+      <div class="cur" role="group" aria-label="Devise"><button type="button" data-c="eur"${dis}>€</button><button type="button" data-c="mad"${dis}>DH</button></div></div>
+    <p class="bigp" style="font-family:var(--serif);font-size:34px;margin:8px 0 2px">${moneyBig(p, c)}${o.kind === 'sub' ? ' <small>/ mois</small>' : ''}</p>
+    <p class="fine">${c === 'eur' ? `Soit ${ttc(p, c)}${o.kind === 'sub' ? ' par mois' : ''} en France (TVA 20 %). Ailleurs, TVA éventuelle calculée au paiement selon votre pays.` : 'Prix hors taxes. TVA éventuelle calculée au paiement selon votre pays.'}</p>
     <ul class="fine" style="margin:10px 0 0 18px">${lines.map(l => `<li>${esc(l)}</li>`).join('')}</ul>`;
-  $('#pay-ok').textContent = pay.busy ? 'Paiement en cours…' : `Payer ${money(p, cur)}${o.kind === 'sub' ? ' / mois' : ''} (test)`;
+  $('#pay-ok').textContent = pay.busy ? 'Paiement en cours…' : `Payer ${money(p, c)}${c === 'eur' ? ` · ${ttc(p, c)} en France` : ''}${o.kind === 'sub' ? ' / mois' : ''} (test)`;
+  $$('#f-pay [data-sim], #pay-cancel').forEach(b => b.disabled = pay.busy);
   syncCur();
+  if (pay.busy && pay.ctx) $$('#pay-sum .cur button').forEach(b => b.setAttribute('aria-pressed', b.dataset.c === pay.ctx.cur ? 'true' : 'false'));
 }
-$('#f-pay').addEventListener('submit', e => {
-  e.preventDefault();
+$('#f-pay').addEventListener('submit', e => e.preventDefault());
+$$('#f-pay [data-sim]').forEach(b => b.addEventListener('click', () => startPay(b.dataset.sim)));
+function startPay(result){
   if (pay.busy || !payCtx) return;
-  const num = ccNum.value.replace(/\D/g, ''), exp = ccExp.value, cvc = $('#cc-cvc').value.replace(/\D/g, ''), name = $('#cc-name');
-  const fields = [[name, '#cc-name-err'], [ccNum, '#cc-num-err'], [ccExp, '#cc-exp-err'], [$('#cc-cvc'), '#cc-cvc-err']];
-  fields.forEach(([i, er]) => setFieldErr(i, $(er), ''));
   $('#pay-err').textContent = ''; $('#pay-cgv-err').textContent = '';
-  const fail = (el, er, m) => { setFieldErr(el, $(er), m); el.focus(); };
-  if (!name.value.trim()) return fail(name, '#cc-name-err', 'Indiquez le nom sur la carte.');
-  if (num.length < 16) return fail(ccNum, '#cc-num-err', 'Numéro de carte incomplet (16 chiffres).');
-  const m = exp.match(/^(\d{2})\/(\d{2})$/);
-  if (!m || +m[1] < 1 || +m[1] > 12) return fail(ccExp, '#cc-exp-err', "Date d'expiration invalide (MM/AA).");
-  const d = new Date(), y = 2000 + +m[2];
-  if (y < d.getFullYear() || (y === d.getFullYear() && +m[1] < d.getMonth() + 1)) return fail(ccExp, '#cc-exp-err', 'Cette carte a expiré.');
-  if (cvc.length < 3) return fail($('#cc-cvc'), '#cc-cvc-err', 'CVC invalide (3 ou 4 chiffres).');
-  const result = TEST_CARDS[num];
-  if (!result) return fail(ccNum, '#cc-num-err', 'Mode test : seules les cartes de test sont acceptées (4242 4242 4242 4242). N\'entrez jamais une vraie carte.');
   if (!$('#pay-cgv').checked) { $('#pay-cgv-err').textContent = 'Cochez la case pour accepter les CGV et demander l\'exécution immédiate.'; $('#pay-cgv').focus(); return; }
-  const ctx = {offer:payCtx.offer, resume:payCtx.resume, email:session.email, last4:num.slice(-4)};
-  pay.busy = true; renderHeader('');
-  $('#pay-ok').disabled = true; $('#pay-ok').textContent = 'Paiement en cours…'; $('#pay-cancel').disabled = true;
+  /* offre et devise figées au clic */
+  const ctx = {offer:payCtx.offer, resume:payCtx.resume, email:session.email, cur};
+  pay.busy = true; pay.ctx = ctx; renderHeader('');
+  renderPaySummary();
   pay.timer = setTimeout(() => finishPay(ctx, result), CONFIG.payMs);
-});
+}
 function finishPay(ctx, result){
-  pay.busy = false; pay.timer = null;
-  $('#pay-ok').disabled = false; $('#pay-cancel').disabled = false;
+  pay.busy = false; pay.timer = null; pay.ctx = null;
   const here = parseHash().a === 'paiement';
   renderPaySummary();
-  if (!session || session.email !== ctx.email) return;
+  if (!session || session.email !== ctx.email) { toast('Paiement de test abandonné : vous avez changé de compte. Rien n\'a été débité.'); return; }
   if (result !== 'ok') {
-    const msg = result === 'declined' ? 'Paiement refusé par la banque (carte de test refusée). Aucun montant débité : essayez une autre carte.' : 'Fonds insuffisants (carte de test). Aucun montant débité.';
-    if (here) { $('#pay-err').textContent = msg; ccNum.focus(); } else toast(msg);
+    const msg = result === 'declined' ? 'Paiement refusé par la banque (simulation). Aucun montant débité.' : 'Fonds insuffisants (simulation). Aucun montant débité.';
+    if (here) { $('#pay-err').textContent = msg; $('#pay-ok').focus(); } else toast(msg);
     renderHeader('');
     return;
   }
+  refreshAcct();
   const backup = JSON.stringify(acct), o = ctx.offer;
   const change = o.kind === 'sub' && !!acct.sub;
-  const order = makeOrder(o, o.kind === 'sub' ? (change ? 'change' : 'sub') : 'once', now(), ctx.last4);
+  const order = makeOrder(o, o.kind === 'sub' ? (change ? 'change' : 'sub') : 'once', now(), ctx.cur);
   acct.lots.push({id:'L' + rid(6), n:o.credits, left:o.credits, at:now(), exp:addMonths(now(), CONFIG.creditMonths), src:o.id, sub:o.kind === 'sub', order:order.id});
-  if (o.kind === 'sub') acct.sub = {id:o.id, start:now(), renew:addMonths(now(), 1), status:'active', next:null};
+  if (o.kind === 'sub') acct.sub = {id:o.id, start:now(), renew:addMonths(now(), 1), status:'active', next:null, cur:ctx.cur};
   if (!saveAcct()) {
     acct = JSON.parse(backup);
     const msg = "Le navigateur n'a pas pu enregistrer cet achat de test (stockage plein). Rien n'a été débité. Libérez de la place puis réessayez.";
@@ -1949,6 +2076,7 @@ $('#f-kit').addEventListener('submit', e => {
   const em = $('#k-email').value.trim();
   if (em && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) { setFieldErr($('#k-email'), $('#k-email-err'), 'Adresse e-mail invalide.'); $('#k-email').focus(); return; }
   setFieldErr($('#k-email'), $('#k-email-err'), '');
+  refreshAcct(); /* ne pas écraser un achat fait dans un autre onglet */
   const p = acct.profile, old = JSON.stringify(p);
   Object.assign(p, {first:$('#k-first').value.trim(), agency:$('#k-agency').value.trim(), phone:$('#k-phone').value.trim(), email:em, logo:kitLogo, logoDark:kitLogoDark, auto:$('#k-auto').checked});
   if (!saveAcct()) { acct.profile = JSON.parse(old); return toast('Stockage du navigateur plein : profil non enregistré.'); }
@@ -1958,29 +2086,29 @@ function renderPlanCard(){
   const s = acct.sub, n = creditsAvail(), ex = nextExpiry(), rs = reserved();
   let html = `<h2>Formule et crédits</h2><p class="fine">Mode test : dates et renouvellements simulés.</p>
     <dl class="kv"><dt>Crédits disponibles</dt><dd><b>${n}</b>${rs ? ` (+${rs} réservé${rs > 1 ? 's' : ''} pour une génération en cours)` : ''}</dd>
-    <dt>Prochaine expiration</dt><dd>${ex ? `${pl(ex.n, 'crédit expire', 'crédits expirent')} le ${fmtDate(ex.date)}` : '—'}</dd>`;
+    <dt>Prochaine expiration</dt><dd>${ex ? `${pl(ex.n, 'crédit expire', 'crédits expirent')} le ${fmtDate(ex.date)}${endNote(ex)}` : '—'}</dd>`;
   if (!s) {
     html += `<dt>Formule</dt><dd>À la carte (sans abonnement)</dd></dl>
       <p class="fine">Vous publiez chaque mois ? Un abonnement revient moins cher par vidéo.</p>
-      <div class="row-act">${OFFERS.filter(o => o.kind === 'sub').map(o => `<a class="btn sm ghost" href="#paiement/${o.id}">S'abonner à ${o.name} · ${money(o[cur], cur)} / mois</a>`).join('')}</div>`;
+      <div class="row-act">${OFFERS.filter(o => o.kind === 'sub').map(o => `<a class="btn sm ghost" href="#paiement/${o.id}">S'abonner à ${o.name} · ${moneyT(o[cur], cur)} / mois</a>`).join('')}</div>`;
   } else {
-    const o = offerById(s.id), other = OFFERS.find(x => x.kind === 'sub' && x.id !== s.id);
-    html += `<dt>Formule</dt><dd>${o.name} · ${money(o[cur], cur)} / mois · ${o.credits} vidéos par mois</dd>
+    const o = offerById(s.id), other = OFFERS.find(x => x.kind === 'sub' && x.id !== s.id), c = s.cur || cur, ending = s.status === 'canceling';
+    html += `<dt>Formule</dt><dd>${o.name} · ${moneyT(o[c], c)} / mois · ${o.credits} vidéos par mois</dd>
       <dt>Statut</dt><dd>${s.status === 'canceling' ? `<span class="pill err">Résilié</span> reste actif jusqu'au ${fmtDate(s.renew)}` : '<span class="pill ok">Actif</span>'}</dd>
       <dt>${s.status === 'canceling' ? 'Fin' : 'Prochain renouvellement'}</dt><dd>${fmtDate(s.renew)}${s.next ? ` · passage à ${offerById(s.next).name} prévu` : ''}</dd>
       <dt>Prix de lancement</dt><dd>Conservé tant que l'abonnement reste actif sans interruption.</dd></dl>
-      <p class="fine">Crédits d'abonnement reportés tant que l'abonnement est actif, dans la limite de 12 mois.</p>
+      <p class="fine">${ending ? `Résiliation : vos crédits d'abonnement restent utilisables jusqu'au ${fmtDate(s.renew)}, puis ils expirent. Aucun nouveau prélèvement.` : "Crédits d'abonnement reportés tant que l'abonnement est actif, dans la limite de 12 mois."}</p>
       <div class="row-act">
-        ${s.status === 'canceling' ? '<button class="btn sm" type="button" id="sub-resume">Reprendre l\'abonnement</button>' : '<button class="btn sm danger" type="button" id="sub-cancel">Résilier</button>'}
-        ${s.next ? '<button class="btn sm ghost" type="button" id="sub-next-cancel">Garder ' + esc(o.name) + '</button>' : `<button class="btn sm ghost" type="button" data-plan="${other.id}">Passer à ${other.name} · ${money(other[cur], cur)} / mois</button>`}
+        ${ending ? '<button class="btn sm" type="button" id="sub-resume">Reprendre l\'abonnement</button>' : '<button class="btn sm danger" type="button" id="sub-cancel">Résilier</button>'}
+        ${ending ? '' : s.next ? '<button class="btn sm ghost" type="button" id="sub-next-cancel">Garder ' + esc(o.name) + '</button>' : `<button class="btn sm ghost" type="button" data-plan="${other.id}">Passer à ${other.name} · ${moneyT(other[c], c)} / mois</button>`}
       </div>
       <div class="testtools">Outil de test : avancer d'un mois pour voir le renouvellement${s.status === 'canceling' ? ' (ici : la fin de l\'abonnement)' : ''}.<br><button class="btn sm ghost" type="button" id="sub-sim">Simuler le renouvellement</button></div>`;
   }
   const lots = acct.lots.filter(l => l.n > 0).slice().reverse();
   if (lots.length) {
     html += `<h3 class="subh" style="font-size:19px;margin:22px 0 4px">Détail des crédits</h3><ul class="lots">${lots.map(l => {
-      const o = offerById(l.src), exp = l.exp <= now();
-      return `<li><span><b>${esc(o ? o.name : 'Crédits repris')}</b> <span class="meta">· ${l.sub ? 'abonnement · ' : ''}reçu le ${fmtDate(l.at)}</span></span><span class="meta">${l.ended ? "expirés (fin d'abonnement)" : exp ? 'expirés' : `${l.left} / ${l.n} restant${l.left > 1 ? 's' : ''} · jusqu'au ${fmtDate(l.exp)}`}</span></li>`;
+      const o = offerById(l.src), le = lotExp(l), exp = le <= now();
+      return `<li><span><b>${esc(o ? o.name : 'Crédits repris')}</b> <span class="meta">· ${l.sub ? 'abonnement · ' : ''}reçu le ${fmtDate(l.at)}</span></span><span class="meta">${l.ended ? "expirés (fin d'abonnement)" : exp ? 'expirés' : `${l.left} / ${l.n} restant${l.left > 1 ? 's' : ''} · jusqu'au ${fmtDate(le)}${le < l.exp ? " (fin de l'abonnement)" : ''}`}</span></li>`;
     }).join('')}</ul>`;
   }
   $('#plan-card').innerHTML = html;
@@ -1992,13 +2120,16 @@ document.addEventListener('click', async e => {
     const v = await ask({title:`Résilier ${o.name} ?`, html:`<p>L'abonnement reste actif jusqu'au ${fmtDate(s.renew)}, puis il s'arrête. Aucun nouveau prélèvement.</p><p>Vos crédits d'abonnement restent utilisables jusqu'à cette date. Les crédits achetés à l'unité ou en pack restent valables 12 mois.</p><p>Le prix de lancement est perdu si l'abonnement est interrompu.</p>`,
       buttons:[{label:'Résilier', value:'ok', kind:'danger'}, {label:'Garder mon abonnement', value:null, kind:'ghost', focus:true}]});
     if (v !== 'ok') return;
-    s.status = 'canceling'; s.next = null;
-    if (!saveAcct()) { s.status = 'active'; return toast('Stockage du navigateur plein : résiliation non enregistrée.'); }
-    toast(`Abonnement résilié : actif jusqu'au ${fmtDate(s.renew)}.`); renderPlanCard(); $('#sub-resume') && $('#sub-resume').focus();
+    refreshAcct();
+    const s2 = acct.sub; if (!s2 || s2.id !== s.id) { toast('Votre formule a changé dans un autre onglet.'); return render(); }
+    const old = {status:s2.status, next:s2.next};
+    s2.status = 'canceling'; s2.next = null;
+    if (!saveAcct()) { Object.assign(s2, old); return toast('Stockage du navigateur plein : résiliation non enregistrée.'); }
+    toast(`Abonnement résilié : actif jusqu'au ${fmtDate(s2.renew)}.`); renderHeader('compte'); renderPlanCard(); $('#sub-resume') && $('#sub-resume').focus();
   }
-  if (t.closest('#sub-resume')) { acct.sub.status = 'active'; if (!saveAcct()) { acct.sub.status = 'canceling'; return toast('Stockage plein.'); } toast('Abonnement repris.'); renderPlanCard(); $('#sub-cancel') && $('#sub-cancel').focus(); }
-  if (t.closest('#sub-next-cancel')) { acct.sub.next = null; saveAcct(); toast('Changement de formule annulé.'); renderPlanCard(); }
-  if (t.closest('#sub-sim')) { const backup = JSON.stringify(acct); renewSub(false); if (!saveAcct()) { acct = JSON.parse(backup); return toast('Stockage du navigateur plein.'); } renderPlanCard(); renderOrders(); renderHeader('compte'); }
+  if (t.closest('#sub-resume')) { refreshAcct(); if (!acct.sub) return render(); acct.sub.status = 'active'; if (!saveAcct()) { acct.sub.status = 'canceling'; return toast('Stockage plein.'); } toast('Abonnement repris.'); renderPlanCard(); $('#sub-cancel') && $('#sub-cancel').focus(); }
+  if (t.closest('#sub-next-cancel')) { refreshAcct(); if (!acct.sub) return render(); acct.sub.next = null; saveAcct(); toast('Changement de formule annulé.'); renderPlanCard(); }
+  if (t.closest('#sub-sim')) { refreshAcct(); const backup = JSON.stringify(acct); renewSub(false); if (!saveAcct()) { acct = JSON.parse(backup); return toast('Stockage du navigateur plein.'); } renderPlanCard(); renderOrders(); renderHeader('compte'); }
   const rc = t.closest('[data-receipt]'); if (rc) openReceipt(rc.dataset.receipt);
 });
 function renderOrders(){
@@ -2010,13 +2141,13 @@ function renderOrders(){
 function receiptHTML(o){
   const c = o.cur || 'eur', amt = o[c] ?? o.eur, p = acct.profile;
   const offer = offerById(o.offer);
-  const what = offer && offer.kind === 'sub' ? `Abonnement ${o.name} · ${o.credits} crédits vidéo pour un mois` : `${o.name} · ${pl(o.credits, 'crédit vidéo', 'crédits vidéo')} (valables 12 mois)`;
+  const what = offer && offer.kind === 'sub' ? `Abonnement ${o.name} · ${o.credits} crédits vidéo pour un mois` : `${o.name} · ${pl(o.credits, 'crédit vidéo', 'crédits vidéo')} (valable${o.credits > 1 ? 's' : ''} 12 mois)`;
   return `<div class="receipt"><div class="rtop"><div><div style="font-family:var(--serif);font-size:24px">Immo<span style="color:var(--gold)">Clap</span></div><div class="fine">Reçu de test</div></div><span class="stamp">Test · non valable</span></div>
     <p><b>Commande n° ${esc(o.id)}</b><br>Date : ${fmtDateTime(o.at)}<br>Client : ${esc(p.agency ? p.agency + ' · ' : '')}${esc(session.email)}</p>
     <table><tr><td>${esc(what)}</td><td>${money(amt, c)}</td></tr>
-    <tr><td>TVA</td><td>calculée au paiement selon le pays</td></tr>
+    <tr><td>TVA</td><td>${c === 'eur' ? `France : 20 %, soit ${ttc(amt, c)} · ailleurs : selon le pays` : 'calculée au paiement selon le pays'}</td></tr>
     <tr class="tot"><td>Total (simulation)</td><td>${money(amt, c)}</td></tr></table>
-    <p class="fine">Mode test : aucun paiement réel, rien n'a été débité${o.last4 ? ` (carte de test •••• ${esc(o.last4)})` : ''}.</p>
+    <p class="fine">Mode test : aucun paiement réel, rien n'a été débité.</p>
     <p class="fine" style="margin-top:8px">En production, la vente est conclue avec notre prestataire de paiement, qui agit comme revendeur (Merchant of Record) ; son nom figure sur la page de paiement et sur le reçu officiel.</p>
     <p class="fine" style="margin-top:8px">Service fourni par ImmoClap · Julien Wail COLLY, entrepreneur individuel (immatriculation en cours) · Lot Zohour Targa, Tranche 20, N° 91, Targa, Marrakech, Maroc · contact.immoclap@gmail.com</p></div>`;
 }

@@ -132,6 +132,8 @@ header.scrolled{background:rgba(11,10,9,.86);backdrop-filter:blur(14px);-webkit-
 .vpause{position:absolute;right:14px;bottom:12px;z-index:2;width:36px;height:36px;border-radius:50%;background:rgba(11,10,9,.7);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center}
 .vpause svg{width:14px;height:14px}
 .vpause .i-play{display:none}
+.pv .vpause{left:10px;right:auto;bottom:10px;z-index:3;width:32px;height:32px}
+.ba .vpause{z-index:3}
 .vpause[aria-pressed="true"] .i-play{display:block}
 .vpause[aria-pressed="true"] .i-pause{display:none}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);max-width:880px;margin:64px auto 0;border-top:1px solid var(--line)}
@@ -224,6 +226,14 @@ header.scrolled{background:rgba(11,10,9,.86);backdrop-filter:blur(14px);-webkit-
 .step.on .d{color:var(--muted)}
 .step:hover .t{color:var(--fg)}
 .step-detail{display:none}
+.steps.manual .step.on .bar i{animation:none;width:100%}
+.steps-ctl{display:flex;justify-content:center;margin-top:26px}
+.steps-ctl button{display:inline-flex;align-items:center;gap:9px;min-height:36px;padding:6px 16px;border:1px solid var(--line2);border-radius:999px;font-size:13px;color:var(--muted)}
+.steps-ctl button:hover{color:var(--fg);border-color:var(--gold)}
+.steps-ctl svg{width:12px;height:12px}
+.steps-ctl .i-play{display:none}
+.steps-ctl [aria-pressed="true"] .i-play{display:block}
+.steps-ctl [aria-pressed="true"] .i-pause{display:none}
 
 /* ---------- IV réglages ---------- */
 .tabs{display:flex;justify-content:center;gap:8px;margin:54px auto 0;flex-wrap:wrap}
@@ -340,7 +350,8 @@ header.scrolled{background:rgba(11,10,9,.86);backdrop-filter:blur(14px);-webkit-
 .q.open .pm{transform:rotate(45deg);border-color:var(--gold)}
 .q .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease}
 .q.open .a{grid-template-rows:1fr}
-.q .a>div{overflow:hidden}
+.q .a>div{overflow:hidden;visibility:hidden;transition:visibility 0s .4s}
+.q.open .a>div{visibility:visible;transition:visibility 0s}
 .q .a p{color:var(--muted);padding:0 50px 24px 0}
 .q .a p+p{margin-top:-12px}
 .q .a a{color:var(--fg);text-decoration:underline;text-underline-offset:3px;display:inline-block;padding:2px 0;line-height:1.3}
@@ -574,7 +585,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
       <span class="l1">Faites visiter</span><br>
       <span class="it l2">avant la visite.<svg class="swash" id="sw1" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span>
     </h1>
-    <p class="lead fade">Envoyez de 3 à 12 photos d'un appartement, d'une villa ou d'un riad. ImmoClap anime chaque image comme un plan de caméra et vous rend une vidéo de 15 à 60&nbsp;secondes, avec musique, voix off en français, en arabe ou en anglais, et les coordonnées de votre agence à la fin. <strong>Pas de tournage, pas de vidéaste à faire venir.</strong></p>
+    <p class="lead fade">Envoyez de 3 à 12 photos d'un appartement, d'une villa ou d'un riad. ImmoClap leur donne du mouvement et vous rend une vidéo de 15 à 60&nbsp;secondes, avec musique, voix off en français, en arabe ou en anglais, et les coordonnées de votre agence à la fin. <strong>Les photos de votre annonce suffisent.</strong></p>
     <div class="cta fade">
       <div class="cta-row">
         <button type="button" class="btn" data-open data-offre="hero">Être prévenu de l'ouverture <svg class="ar" width="16" height="16" aria-hidden="true"><use href="#arrow"/></svg></button>
@@ -605,7 +616,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
   <div class="wrap">
     <div class="eyebrow rv"><i>II</i><b></b>Le principe</div>
     <h2 class="center rv" id="t-principe">La caméra bouge.<br><span class="it">Le bien ne change pas.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
-    <p class="lead center rv">Chaque photo devient un court plan&nbsp;: un travelling, un panoramique, une légère montée. L'IA crée le mouvement, pas la pièce. Si un plan déforme quelque chose, on le refait gratuitement.</p>
+    <p class="lead center rv">L'IA crée le mouvement, pas la pièce. Elle fait avancer, pivoter ou s'élever la caméra dans l'espace que vous avez photographié, sans rien y ajouter. Si un plan déforme quelque chose, on le refait gratuitement.</p>
 
     <div class="ba-wrap rv">
       <div class="panel">
@@ -615,6 +626,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
           <div class="handle"></div>
           <div class="knob" id="knob" role="slider" tabindex="0" aria-label="Comparer l'image fixe et le plan animé" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50 % image fixe">‹&nbsp;›</div>
           <span class="lbl l">IMAGE FIXE</span><span class="lbl r">PLAN ANIMÉ</span>
+          <button type="button" class="vpause" data-vid="baVid" aria-pressed="false" aria-label="Mettre le plan animé en pause"><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l8 5-8 5z" fill="currentColor"/></svg></button>
         </div>
         <div class="ba-cap"><span><b>Démonstration</b> · penthouse à Casablanca, image et plan générés par IA</span><span>Glissez le curseur</span></div>
       </div>
@@ -714,6 +726,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
       <button type="button" class="step" data-i="4"><span class="bar"><i></i></span><span class="n">5</span><span class="t">Le téléchargement</span><span class="d">Vos fichiers vidéo, prêts à publier ou à envoyer sur WhatsApp.</span></button>
     </div>
     <div class="step-detail" id="stepDetail" aria-live="polite"><b></b><span></span></div>
+    <div class="steps-ctl"><button type="button" id="stepsToggle" aria-pressed="false"><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l8 5-8 5z" fill="currentColor"/></svg><span>Arrêter le défilement</span></button></div>
   </div>
 </section>
 
@@ -783,6 +796,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
             <span class="chip-demo">Démonstration</span>
             <span class="pv-tag" id="pvTag" aria-live="polite">Ambiance&nbsp;: Élégante</span>
             <video id="pvVid" muted loop playsinline preload="none" poster="assets/exemples/villa-piscine.webp" aria-label="Aperçu de démonstration&nbsp;: villa à Marrakech"></video>
+            <button type="button" class="vpause pv-pause" data-vid="pvVid" aria-pressed="false" aria-label="Mettre l'aperçu en pause"><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l8 5-8 5z" fill="currentColor"/></svg></button>
             <div class="endcard" id="endcard" aria-hidden="true"><span class="lg">LOGO</span><b>Votre agence</b><span>+212 6 00 00 00 00</span></div>
           </div>
           <p class="pv-cap" id="pvCap">Aperçu&nbsp;: vidéo de démonstration générée par IA. La musique et la voix ne sont pas jouées ici.</p>
@@ -838,49 +852,49 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
 <section class="alt" id="comparatif" aria-labelledby="t-cmp">
   <div class="wrap">
     <div class="eyebrow rv"><i>VI</i><b></b>Face au tournage</div>
-    <h2 class="center rv" id="t-cmp">Un vidéaste ou ImmoClap&nbsp;:<br><span class="it">faites le compte.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
+    <h2 class="center rv" id="t-cmp">Deux façons<br><span class="it">de montrer un bien.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
     <div class="cmp rv" aria-hidden="true">
       <div class="col">
         <div class="cell h"></div>
-        <div class="cell k">Coût d'une vidéo</div>
-        <div class="cell k">Livraison</div>
-        <div class="cell k">Déplacement sur place</div>
-        <div class="cell k">Formats livrés</div>
+        <div class="cell k">Point de départ</div>
         <div class="cell k">Voix off FR · AR · EN</div>
-        <div class="cell k">Engagement</div>
+        <div class="cell k">Formats et version sans logo</div>
+        <div class="cell k">Façon de payer</div>
+        <div class="cell k">Prix de départ</div>
+        <div class="cell k">Mise à disposition</div>
       </div>
       <div class="col">
         <div class="cell h">Vidéaste<br>immobilier</div>
-        <div class="cell v">280 à 500&nbsp;€<sup>*</sup></div>
-        <div class="cell v">Plusieurs jours</div>
-        <div class="cell v">Oui, sur rendez-vous</div>
-        <div class="cell v">Selon devis</div>
-        <div class="cell v">En option</div>
-        <div class="cell v">Devis à chaque bien</div>
+        <div class="cell v">Un tournage sur place</div>
+        <div class="cell v">Non indiquée<sup>*</sup></div>
+        <div class="cell v">Selon l'offre</div>
+        <div class="cell v">Forfait par bien</div>
+        <div class="cell v">249 à 500&nbsp;€<sup>*</sup></div>
+        <div class="cell v">Quelques jours</div>
       </div>
       <div class="col us">
         <div class="cell h">ImmoClap</div>
-        <div class="cell v" data-cmp-price>Dès 9,90&nbsp;€</div>
+        <div class="cell v">Vos photos d'annonce</div>
+        <div class="cell v ok">Incluse, au choix</div>
+        <div class="cell v ok">3 formats, avec ou sans logo</div>
+        <div class="cell v">À la vidéo ou au mois</div>
+        <div class="cell v" data-cmp-price>Dès 9,90&nbsp;€ HT</div>
         <div class="cell v">Quelques minutes</div>
-        <div class="cell v">Non</div>
-        <div class="cell v ok">3, inclus</div>
-        <div class="cell v ok">Incluse</div>
-        <div class="cell v">Aucun</div>
       </div>
     </div>
     <div class="sr-only"><table>
-      <caption>Comparaison entre un vidéaste immobilier et ImmoClap</caption>
+      <caption>Deux façons de montrer un bien&nbsp;: vidéaste immobilier ou ImmoClap</caption>
       <thead><tr><th scope="col">Critère</th><th scope="col">Vidéaste immobilier</th><th scope="col">ImmoClap</th></tr></thead>
       <tbody>
-        <tr><th scope="row">Coût d'une vidéo</th><td>280 à 500 € (prix de départ relevés en France, voir la note)</td><td data-cmp-price>Dès 9,90 €</td></tr>
-        <tr><th scope="row">Livraison</th><td>Plusieurs jours</td><td>Quelques minutes</td></tr>
-        <tr><th scope="row">Déplacement sur place</th><td>Oui, sur rendez-vous</td><td>Non</td></tr>
-        <tr><th scope="row">Formats livrés</th><td>Selon devis</td><td>3, inclus</td></tr>
-        <tr><th scope="row">Voix off en français, arabe et anglais</th><td>En option</td><td>Incluse</td></tr>
-        <tr><th scope="row">Engagement</th><td>Devis à chaque bien</td><td>Aucun</td></tr>
+        <tr><th scope="row">Point de départ</th><td>Un tournage sur place</td><td>Vos photos d'annonce</td></tr>
+        <tr><th scope="row">Voix off en français, arabe ou anglais</th><td>Non indiquée dans les offres citées en note</td><td>Incluse, au choix</td></tr>
+        <tr><th scope="row">Formats et version sans logo</th><td>Selon l'offre</td><td>3 formats, avec ou sans logo</td></tr>
+        <tr><th scope="row">Façon de payer</th><td>Forfait par bien</td><td>À la vidéo ou au mois</td></tr>
+        <tr><th scope="row">Prix de départ</th><td>249 à 500 € (prix publiés en France, voir la note)</td><td data-cmp-price>Dès 9,90 € HT</td></tr>
+        <tr><th scope="row">Mise à disposition</th><td>Quelques jours</td><td>Quelques minutes</td></tr>
       </tbody>
     </table></div>
-    <p class="cmp-note rv">* Prix de départ publiés en France, relevés le 6 octobre 2026&nbsp;: <a href="https://shoootin.com/service/video" target="_blank" rel="noopener">Shoootin</a> (dès 280&nbsp;€, déplacement et montage compris), <a href="https://minutedrone.com/combien-coute-une-video-immobiliere-par-drone" target="_blank" rel="noopener">Minutedrone</a> (350&nbsp;€ la demi-journée), <a href="https://ohmydrone.fr/tarifs/" target="_blank" rel="noopener">Oh My Drone</a> (500&nbsp;€ HT jusqu'à 100&nbsp;m²). Le prix final dépend de la surface et des options. « Dès 9,90&nbsp;€ » (90&nbsp;DH)&nbsp;: abonnement Agence, 10 vidéos par mois.</p>
+    <p class="cmp-note rv">* Offres publiées en France, relevées le 6 octobre 2026&nbsp;: <a href="https://shoootin.com/service/video" target="_blank" rel="noopener">Shoootin</a> (dès 249&nbsp;€ HT la Visite guidée), <a href="https://minutedrone.com/combien-coute-une-video-immobiliere-par-drone" target="_blank" rel="noopener">Minutedrone</a> (350&nbsp;€ la demi-journée de prise de vue, hors montage et déplacement), <a href="https://ohmydrone.fr/tarifs/" target="_blank" rel="noopener">Oh My Drone</a> (500&nbsp;€ HT, livraison sous 5 jours ouvrés). Aucune des trois ne mentionne de voix off. Le prix final dépend du bien et des options. « Dès 9,90&nbsp;€ HT » (90&nbsp;DH)&nbsp;: abonnement Agence, 10 vidéos par mois.</p>
   </div>
 </section>
 
@@ -979,13 +993,13 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa2" id="fq2">Combien de photos par vidéo&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa2" role="region" aria-labelledby="fq2"><div><p>De 3 à 12 photos par vidéo. Avec 8 à 12 photos, vous montrez le bien en entier&nbsp;: extérieur, pièces de vie, chambres, salle de bain, vue. Notre <a href="guide.html">guide photos</a> explique comment bien les préparer.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa3" id="fq3">Quelle sera la durée de la vidéo&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa3" role="region" aria-labelledby="fq3"><div><p>Environ 5 secondes par photo&nbsp;: de 15 secondes avec 3 photos à 60 secondes avec 12 photos.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa4" id="fq4">Combien de temps dure la génération&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa4" role="region" aria-labelledby="fq4"><div><p>Quelques minutes, sans rien faire de votre côté. Le délai varie selon le nombre de photos et la charge des serveurs.</p></div></div></div>
-      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa5" id="fq5">Quel format pour WhatsApp, Instagram ou un portail&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa5" role="region" aria-labelledby="fq5"><div><p>16:9 pour les portails (SeLoger, Leboncoin, Avito, Mubawab) et votre site&nbsp;; 9:16 pour les Reels, TikTok et les statuts WhatsApp&nbsp;; 1:1 pour le fil Instagram et Facebook. Chaque vidéo existe aussi en version sans logo pour les portails qui l'exigent.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa5" id="fq5">Quel format choisir pour WhatsApp, Avito ou SeLoger&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa5" role="region" aria-labelledby="fq5"><div><p>Au Maroc, beaucoup de biens se montrent d'abord sur WhatsApp&nbsp;: le vertical 9:16 remplit l'écran du téléphone, en statut comme en message direct. Sur Avito, Mubawab, SeLoger, Leboncoin ou votre site, l'horizontal 16:9 s'affiche le mieux. Le carré 1:1 sert au fil Instagram et Facebook.</p><p>Les trois formats sont compris dans le même crédit. Le tableau plateforme par plateforme est dans le <a href="guide.html#formats">guide photos</a>.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa6" id="fq6">Dans quelles langues est la voix off&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa6" role="region" aria-labelledby="fq6"><div><p>En français, en arabe ou en anglais, avec une voix féminine ou masculine. Vous pouvez aussi choisir « Aucune » et garder seulement la musique.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa7" id="fq7">L'IA peut-elle modifier mon bien&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa7" role="region" aria-labelledby="fq7"><div><p>Elle ne doit pas&nbsp;: elle ajoute un mouvement de caméra, sans changer les pièces, les volumes ni les matériaux. Il peut arriver qu'un plan présente une déformation. Vérifiez toujours la vidéo avant de la publier&nbsp;: un plan raté est refait gratuitement.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa8" id="fq8">Comment se passe le paiement&nbsp;? Aurai-je une facture&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa8" role="region" aria-labelledby="fq8"><div><p>Vous payez par carte sur la page sécurisée de notre prestataire de paiement, qui agit comme revendeur (Merchant of Record)&nbsp;: son nom figure sur la page de paiement et sur le reçu. Il calcule la TVA selon votre pays et vous envoie la facture. ImmoClap ne voit jamais vos données bancaires.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa9" id="fq9">Comment résilier l'abonnement&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa9" role="region" aria-labelledby="fq9"><div><p>À tout moment, avec le lien de gestion reçu par e-mail ou en nous écrivant. La résiliation prend effet à la fin du mois payé&nbsp;; le mois entamé n'est pas remboursé. Vos crédits d'abonnement restent utilisables jusqu'à cette date.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa10" id="fq10">Combien de temps mes crédits sont-ils valables&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa10" role="region" aria-labelledby="fq10"><div><p>12 mois à partir de l'achat pour l'unité et les packs. Pour les abonnements, les crédits non utilisés sont reportés d'un mois sur l'autre tant que l'abonnement est actif, dans la limite de 12 mois.</p></div></div></div>
-      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa11" id="fq11">Puis-je publier la vidéo partout avec sa musique&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa11" role="region" aria-labelledby="fq11"><div><p>Oui. Les musiques sont libres de droits pour la promotion du bien et de votre activité&nbsp;: portails, site, réseaux sociaux, WhatsApp.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa11" id="fq11">Quels droits ai-je sur la musique de la vidéo&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa11" role="region" aria-labelledby="fq11"><div><p>La musique est fournie avec la vidéo, pour un usage précis&nbsp;: faire connaître le bien concerné et votre activité. Les usages couverts sont listés à l'<a href="cgv.html#droits">article 10 des CGV</a>. Pour un autre projet, écrivez-nous avant.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa12" id="fq12">Qui est derrière ImmoClap&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa12" role="region" aria-labelledby="fq12"><div><p>Julien Wail COLLY, entrepreneur individuel installé à Marrakech. ImmoClap est né en 2026. Tout est expliqué sur la page <a href="a-propos.html">À propos</a>.</p></div></div></div>
     </div>
   </div>
@@ -1150,15 +1164,19 @@ const links=$$('.menu a');
 const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>{const on=a.getAttribute('href')==='#'+e.target.id;a.classList.toggle('active',on);on?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current');});}}),{rootMargin:'-45% 0px -50% 0px'});
 $$('main section[id]').forEach(s=>so.observe(s));
 
-/* vidéos : lecture seulement quand elles sont visibles */
+/* vidéos : lecture seulement quand elles sont visibles ; à l'arrêt si l'utilisateur préfère moins d'animations */
 const heroVid=$('#heroVid'), heroPause=$('#heroPause');
-let heroUserPaused=reduce;
-if(reduce){heroVid.removeAttribute('autoplay');heroVid.pause();heroPause.setAttribute('aria-pressed','true');heroPause.setAttribute('aria-label','Lire la vidéo');}
-heroPause.addEventListener('click',()=>{heroUserPaused=!heroUserPaused;heroPause.setAttribute('aria-pressed',String(heroUserPaused));heroPause.setAttribute('aria-label',heroUserPaused?'Lire la vidéo':'Mettre la vidéo en pause');heroUserPaused?heroVid.pause():heroVid.play().catch(()=>{});});
-const vis=new Map();
+heroPause.dataset.vid='heroVid';
+const vis=new Map(), userPaused=new Map();
+const vbtns=$$('.vpause[data-vid]');
+const setPausedUI=(b,p)=>{b.setAttribute('aria-pressed',String(p));const lbl=b.dataset.vid==='baVid'?'le plan animé':b.dataset.vid==='pvVid'?"l'aperçu":'la vidéo';b.setAttribute('aria-label',(p?'Lire ':'Mettre en pause ')+lbl);};
+vbtns.forEach(b=>{const v=$('#'+b.dataset.vid);userPaused.set(v,reduce);setPausedUI(b,reduce);
+  b.addEventListener('pointerdown',e=>e.stopPropagation());
+  b.addEventListener('click',e=>{e.stopPropagation();const p=!userPaused.get(v);userPaused.set(v,p);setPausedUI(b,p);p?v.pause():v.play().catch(()=>{});});});
+if(reduce){heroVid.removeAttribute('autoplay');heroVid.pause();}
+const canPlay=v=>vis.get(v)&&!userPaused.get(v);
 const visIO=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;vis.set(v,e.isIntersecting);
-  if(e.isIntersecting){if(v===heroVid&&heroUserPaused)return;if(!reduce||v!==heroVid)v.play().catch(()=>{});}
-  else v.pause();}),{threshold:.2});
+  if(canPlay(v))v.play().catch(()=>{});else v.pause();}),{threshold:.2});
 [heroVid,$('#baVid'),$('#pvVid')].forEach(v=>visIO.observe(v));
 
 /* curseur image fixe / plan animé */
@@ -1181,15 +1199,19 @@ new IntersectionObserver(es=>es.forEach(e=>{baVisible=e.isIntersecting;if(baVisi
 /* étapes */
 const scrs=$$('.scr'), steps=$$('.step'), stepsBox=$('#steps'), cnt=$('#cnt'), detail=$('#stepDetail');
 const thumbs=$$('#thumbs picture'), gl=$$('#gsteps li');
-let cur=0,timer=null,fill=null,gtim=[],stepsVisible=false,stepsStarted=false;
+let cur=0,timer=null,fill=null,gtim=[],stepsVisible=false,stepsStarted=false,autoSteps=!reduce;
+const stepsTgl=$('#stepsToggle');
+const setAuto=on=>{autoSteps=on;stepsBox.classList.toggle('manual',!on);stepsTgl.setAttribute('aria-pressed',String(!on));stepsTgl.querySelector('span').textContent=on?'Arrêter le défilement':'Reprendre le défilement';clearTimeout(timer);if(on&&stepsVisible)timer=setTimeout(()=>show((cur+1)%5),5000);};
 const fillThumbs=()=>{clearInterval(fill);thumbs.forEach(d=>d.classList.remove('on'));let k=0;cnt.textContent='0 photo sur 12 maximum';
   fill=setInterval(()=>{if(k>=thumbs.length){clearInterval(fill);return;}thumbs[k].classList.add('on');k++;cnt.textContent=`${k} photo${k>1?'s':''} · 12 maximum`;},reduce?1:260);};
 const genSteps=()=>{gtim.forEach(clearTimeout);gl.forEach(l=>l.classList.remove('ok'));gl.forEach((l,i)=>gtim.push(setTimeout(()=>l.classList.add('ok'),reduce?0:400+i*850)));};
-const show=(i,user)=>{cur=i;scrs.forEach((s,j)=>s.classList.toggle('on',j===i));
+const show=(i,user)=>{if(user&&autoSteps)setAuto(false);cur=i;scrs.forEach((s,j)=>s.classList.toggle('on',j===i));
   steps.forEach((s,j)=>{s.classList.remove('on','done');void s.offsetWidth;if(j<i)s.classList.add('done');if(j===i)s.classList.add('on');j===i?s.setAttribute('aria-current','step'):s.removeAttribute('aria-current');});
   detail.querySelector('b').textContent=(i+1)+'. '+$('.t',steps[i]).textContent;detail.querySelector('span').textContent=$('.d',steps[i]).textContent;
   if(i===0)fillThumbs();if(i===3)genSteps();
-  clearTimeout(timer);if(stepsVisible&&!reduce)timer=setTimeout(()=>show((cur+1)%5),5000);};
+  clearTimeout(timer);if(stepsVisible&&autoSteps)timer=setTimeout(()=>show((cur+1)%5),5000);};
+stepsTgl.addEventListener('click',()=>{const on=!autoSteps;setAuto(on);if(on)show(cur);});
+setAuto(autoSteps);
 steps.forEach((s,i)=>{s.setAttribute('aria-label',`Étape ${i+1} : ${$('.t',s).textContent}. ${$('.d',s).textContent}`);s.addEventListener('click',()=>show(i,true));});
 new IntersectionObserver(es=>es.forEach(e=>{stepsVisible=e.isIntersecting;stepsBox.classList.toggle('paused',!stepsVisible);e.target.classList.toggle('off',!stepsVisible);
   if(stepsVisible){if(!stepsStarted){stepsStarted=true;show(0);}else show(cur);}else clearTimeout(timer);}),{threshold:.25}).observe($('#etapes .device'));
@@ -1204,7 +1226,7 @@ let pvBase='';
 const setVideo=fmt=>{const base='assets/videos/villa-marrakech-'+fmt;if(base===pvBase)return;pvBase=base;pvVid.poster=POSTERS[fmt];
   pvVid.onerror=null;pvVid.src=vsrc(base);
   pvVid.onerror=()=>{if(fmt!=='16x9'){pvVid.onerror=null;pvVid.src=vsrc('assets/videos/villa-marrakech-16x9');}};
-  if(vis.get(pvVid))pvVid.play().catch(()=>{});};
+  if(canPlay(pvVid))pvVid.play().catch(()=>{});};
 const render=()=>{
   pv.classList.toggle('r916',S.fmt==='9x16');pv.classList.toggle('r11',S.fmt==='1x1');setVideo(S.fmt);
   const showEnd=S.tab==='marque'&&S.brand==='avec';endcard.classList.toggle('on',showEnd);
@@ -1238,7 +1260,7 @@ const price=()=>{const sym=c==='eur'?'€':'DH';
     const each=$('[data-each]',plan);if(each){const pu=Math.round(v/n*100)/100;each.textContent=`soit ${fmtN(pu)}${NB}${sym} la vidéo`;}
     const b=$('[data-disc]',plan);if(b){const pu=v/n;const pct=Math.round((1-pu/unit[c])*100);b.textContent=`−${pct}${NB}% par vidéo`;}
   });
-  $$('[data-cmp-price]').forEach(el=>el.textContent=c==='eur'?'Dès 9,90'+NB+'€':'Dès 90'+NB+'DH');
+  $$('[data-cmp-price]').forEach(el=>el.textContent=c==='eur'?'Dès 9,90'+NB+'€ HT':'Dès 90'+NB+'DH');
   $$('#cur button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.c===c)));};
 $$('#cur button').forEach(b=>b.addEventListener('click',()=>{c=b.dataset.c;store.set('immoclap_cur',c);price();}));
 const saved=store.get('immoclap_cur');
