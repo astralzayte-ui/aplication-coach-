@@ -841,7 +841,7 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
 <footer class="foot">
   <div class="wrap">
     <nav aria-label="Informations légales">
-      <a href="cgv.html">CGV</a><a href="confidentialite.html">Confidentialité</a><a href="remboursement.html">Remboursement</a><a href="mentions-legales.html">Mentions légales</a><a href="mailto:contact.immoclap@gmail.com">Contact</a><a href="index.html">Retour au site</a>
+      <a href="cgv.html">CGV</a><a href="confidentialite.html">Confidentialité</a><a href="remboursement.html">Remboursement</a><a href="mentions-legales.html">Mentions légales</a><a href="mailto:contact.immoclap@gmail.com">Contact</a><a href="index.html">Retour au site</a><button type="button" class="pays-l" data-pays-open>Changer de pays&nbsp;<span id="pays-now"></span></button>
     </nav>
     <span>© 2026 ImmoClap · <a href="https://www.instagram.com/immoclap/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/@immoclap" target="_blank" rel="noopener">TikTok</a></span>
   </div>
@@ -875,6 +875,17 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
   <video id="demo-video" controls playsinline preload="none"></video>
   <p class="fine" style="margin-top:10px">Démonstration générée par IA à partir de photos.</p>
   <div class="dbtns"><button class="btn ghost" type="button" data-close>Fermer</button></div>
+</dialog>
+
+<dialog id="pays-dlg" aria-labelledby="pays-h" aria-describedby="pays-t">
+  <button type="button" class="dlg-x" data-close aria-label="Fermer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <h2 id="pays-h">Vous êtes au Maroc ou en France&nbsp;?</h2>
+  <p class="dtext" id="pays-t">Nous affichons les prix dans votre devise.</p>
+  <div class="pays" role="group" aria-labelledby="pays-h">
+    <button type="button" data-pays="mad"><span class="pi" aria-hidden="true">DH</span><span><b>Maroc</b> <span class="pc">· prix en DH</span></span></button>
+    <button type="button" data-pays="eur"><span class="pi" aria-hidden="true">€</span><span><b>France</b> <span class="pc">· prix en €</span></span></button>
+  </div>
+  <p class="pays-note">Vous pourrez changer à tout moment avec le lien « Changer de pays », en bas de page.</p>
 </dialog>
 
 <div id="print-area" aria-hidden="true"></div>
