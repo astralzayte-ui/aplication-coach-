@@ -217,6 +217,8 @@ automatiquement par Claude via Metricool. Pas de Cowork (décidé le 05/10).
    et part le 1ᵉʳ novembre)
 ```
 Lui s'occupe du reste (agent, LLC, Stripe, Higgs, YouTube).
+**Au LANCEMENT (pas au go) :** refaire les hooks sur les formats
+concurrents espionnés (skill pub, étapes 1 à 4).
 
 **🔴 08/10 — NETLIFY BLOQUÉ jusqu'au 1ᵉʳ novembre :** le plan gratuit a
 épuisé ses crédits du mois (trop de mises en ligne). Le site reste EN LIGNE
