@@ -205,6 +205,19 @@ LE MÊME dans toutes les vidéos (l'image de marque). 🔴 Jamais présenté
 comme le fondateur ni comme un client · 🔴 étiquette « contenu IA » mise
 automatiquement par Claude via Metricool. Pas de Cowork (décidé le 05/10).
 
+**▶ QUAND IL DIT « GO » (prévu le 09/10) — la part de Claude :**
+```
+1. écrire + brancher les e-mails Brevo (expéditeur SILENCE,
+   silenceworlwide@gmail.com) : bienvenue avec le code −10 % (popup +
+   pied de page, seulement si la case est cochée), J+10 « il te va
+   comment ? », J+90 relance
+2. préparer toutes les modifs du site en local
+3. UNE seule mise en ligne avec boutique/outils/publier.sh
+   (Netlify bloqué jusqu'au 1ᵉʳ/11 : si toujours bloqué, tout est prêt
+   et part le 1ᵉʳ novembre)
+```
+Lui s'occupe du reste (agent, LLC, Stripe, Higgs, YouTube).
+
 **🔴 08/10 — NETLIFY BLOQUÉ jusqu'au 1ᵉʳ novembre :** le plan gratuit a
 épuisé ses crédits du mois (trop de mises en ligne). Le site reste EN LIGNE
 mais plus aucune mise à jour ne passe. En attente : l'adresse e-mail
