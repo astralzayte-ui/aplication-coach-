@@ -205,6 +205,15 @@ LE MÊME dans toutes les vidéos (l'image de marque). 🔴 Jamais présenté
 comme le fondateur ni comme un client · 🔴 étiquette « contenu IA » mise
 automatiquement par Claude via Metricool. Pas de Cowork (décidé le 05/10).
 
+**🔴 08/10 — NETLIFY BLOQUÉ jusqu'au 1ᵉʳ novembre :** le plan gratuit a
+épuisé ses crédits du mois (trop de mises en ligne). Le site reste EN LIGNE
+mais plus aucune mise à jour ne passe. En attente : l'adresse e-mail
+corrigée (silenceworlwide@gmail.com, sans le d) — elle est dans le code,
+pas encore sur le site. → grouper les mises en ligne, une par session.
+
+**E-mail de la marque : silenceworlwide@gmail.com (SANS le « d » de world).**
+Corrigé partout le 08/10.
+
 **08/10 — Brevo (e-mails) :** compte créé, plan GRATUIT (300/jour),
 nom du compte « immoclap » (expéditeur à mettre : SILENCE). Clé rangée
 dans les Secrets réseau (hôte api.brevo.com, en-tête api-key) ✅ TESTÉE
