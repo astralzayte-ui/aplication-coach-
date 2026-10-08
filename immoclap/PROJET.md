@@ -75,6 +75,9 @@ Dernière mise à jour : 05/10/2026. À tenir à jour à chaque décision import
 - Le 06/10 : étapes 1 à 7 seulement (le temps d'économiser). Fondateur : 1 auto-entrepreneur, 2 e-mail Lemon Squeezy, 3 compte Polar (sans Finance→Account), 4 produits sandbox + liens. Claude : 5 paiement test Polar, 6 vrais comptes clients, 7 génération Higgsfield branchée (sans générer de payant). Rappel programmé 06/10 09:00 UTC (trig_01KBT5rcABkf7toEUnTotNoZ).
 - Étapes 8 et suivantes (recharge Higgsfield, domaine, examen Polar, prospection, Metricool) : après.
 
+## 🔔 À RAPPELER À CHAQUE RÉPONSE (demandé le 08/10) — NE PAS COMMENCER SANS « GO »
+- Enrichir le « logiciel de montage » de l'app : bibliothèque de musiques (plusieurs morceaux par ambiance, écoute avant choix), plus d'options de montage (transitions, textes, styles, durée, ordre des plans…), pour rendre le produit attractif et en tirer des angles marketing. À proposer après la fin des points 1 à 4 ; rappeler au fondateur à chaque fin de réponse tant qu'il n'a pas dit « go ».
+
 ## À faire quand le fondateur dit « reprends » (mis en pause le 06/10)
 - Finitions site + app (workflow immoclap-finitions) puis contrôle et mise en ligne.
 - Nouveau : à l'ouverture du site (et de l'app), fenêtre « Vous êtes au Maroc ou en France ? » → prix en DH ou en € selon la réponse (mémorisé ; on peut changer ensuite). Seulement Maroc et France.
