@@ -78,6 +78,11 @@ Dernière mise à jour : 08/10/2026. À tenir à jour à chaque décision import
 - Le 06/10 : étapes 1 à 7 seulement (le temps d'économiser). Fondateur : 1 auto-entrepreneur, 2 e-mail Lemon Squeezy, 3 compte Polar (sans Finance→Account), 4 produits sandbox + liens. Claude : 5 paiement test Polar, 6 vrais comptes clients, 7 génération Higgsfield branchée (sans générer de payant). Rappel programmé 06/10 09:00 UTC (trig_01KBT5rcABkf7toEUnTotNoZ).
 - Étapes 8 et suivantes (recharge Higgsfield, domaine, examen Polar, prospection, Metricool) : après.
 
+## Décisions du 08/10 (soir) — À DISCUTER AVANT DE CODER
+- Nouvel objectif : 3 000 € NETS par mois (dans la poche du fondateur), au lieu du million en 1 an.
+- À l'arrivée : 1) choix du pays (Maroc/France) puis 2) choix de la langue (arabe / français / anglais). Après le choix du pays, plus de bascule €/DH visible (le client ne voit pas l'autre prix). Gros chantier : traduire site + app en arabe (sens droite-gauche) et en anglais.
+- Le fondateur trouve la présentation de l'abonnement pas claire (« il m'apporte quoi ? ») → à refaire après décision sur l'offre (abonnements seuls / vidéos seules / mélange). Proposition de Claude : 3 offres (1 vidéo 19 € pour essayer + Solo 39 €/mois + Agence 99 €/mois), supprimer les packs 5 et 10.
+
 ## 🔔 À RAPPELER À CHAQUE RÉPONSE (demandé le 08/10) — NE PAS COMMENCER SANS « GO »
 - Enrichir le « logiciel de montage » de l'app : bibliothèque de musiques (plusieurs morceaux par ambiance, écoute avant choix), plus d'options de montage (transitions, textes, styles, durée, ordre des plans…), pour rendre le produit attractif et en tirer des angles marketing. À proposer après la fin des points 1 à 4 ; rappeler au fondateur à chaque fin de réponse tant qu'il n'a pas dit « go ».
 
