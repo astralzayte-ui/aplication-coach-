@@ -350,8 +350,8 @@ input[type=range]{width:100%;accent-color:var(--gold);min-height:36px;cursor:poi
 .mt-allcam{display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;margin:12px 0}
 .mt-allcam label{margin:0;color:var(--fg);font-size:14px}
 .mt-allcam select{width:auto;flex:1;min-width:180px;max-width:320px;padding:9px 12px}
-.mt-strip{list-style:none;display:flex;gap:10px;overflow-x:auto;padding:4px 2px 12px;margin:0 -2px 8px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
-.mt-card{flex:0 0 164px;scroll-snap-align:start;background:var(--bg);border:1px solid var(--line2);border-radius:var(--r2);overflow:hidden;display:flex;flex-direction:column;transition:border-color .15s}
+.mt-strip{position:relative;list-style:none;display:flex;gap:10px;overflow-x:auto;padding:4px 2px 12px;margin:0 -2px 8px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.mt-card{position:relative;flex:0 0 178px;scroll-snap-align:start;background:var(--bg);border:1px solid var(--line2);border-radius:var(--r2);overflow:hidden;display:flex;flex-direction:column;transition:border-color .15s}
 .mt-card.now{border-color:var(--gold)}
 .mt-card.over{outline:2px solid var(--gold);outline-offset:1px}
 .mt-card.dragging{opacity:.4}
@@ -381,7 +381,11 @@ input[type=range]{width:100%;accent-color:var(--gold);min-height:36px;cursor:poi
 .mt-agent{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .mt-agent .ap{width:64px;height:64px;border-radius:50%;border:1px solid var(--line2);background:var(--card) center/cover no-repeat;display:grid;place-items:center;font-size:11px;color:var(--muted);flex:none;overflow:hidden}
 .mt-agent .ap img{width:100%;height:100%;object-fit:cover}
-.mt-dis{opacity:.5}
+.mt-dis input{opacity:.5;cursor:not-allowed}
+.check.mt-dis>span{color:var(--muted)}
+.opt.mt-dis span,fieldset.mt-dis .opt span{color:var(--muted);border-style:dashed;cursor:not-allowed}
+.check.mt-chk{margin-bottom:18px}
+@media(min-width:861px){.mt-stage.r916{max-width:min(250px,calc((100vh - 330px) * .5625));min-width:180px}}
 /* lecteur de l'aperçu */
 .mt-pcol .pv-h{margin-bottom:8px}
 .mt-player{width:100%}
@@ -390,7 +394,7 @@ input[type=range]{width:100%;accent-color:var(--gold);min-height:36px;cursor:poi
 .mt-stage.r11{aspect-ratio:1/1;max-width:360px}
 @media(max-width:860px){.mt-stage.r916{max-width:210px}.mt-stage.r11{max-width:280px}}
 .mt-layer{position:absolute;inset:0;overflow:hidden;visibility:hidden;background:#000}
-.mt-layer img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:50% 50%;backface-visibility:hidden}
+.mt-layer>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:50% 50%;backface-visibility:hidden}
 .mt-layer.mt-endl{background:radial-gradient(circle at 50% 38%,#26221e 0,#0B0A09 72%)}
 .mt-black{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;z-index:2}
 .mt-bug{position:absolute;z-index:4;width:15cqw;height:calc(7cqw * var(--k));display:flex;align-items:center;justify-content:flex-end;opacity:0;pointer-events:none}
@@ -403,7 +407,10 @@ input[type=range]{width:100%;accent-color:var(--gold);min-height:36px;cursor:poi
 .mt-sub.ss-bande span{background:rgba(0,0,0,.78)}
 .mt-sub.ss-ombre span{text-shadow:0 0 3px #000,0 0 3px #000,0 1px 10px rgba(0,0,0,.95)}
 .mt-sub.ss-accent span{background:var(--acc);color:var(--acc-ink)}
-.mt-mark{position:absolute;left:50%;top:2.6cqw;transform:translateX(-50%);z-index:6;font-size:9px;letter-spacing:.16em;text-transform:uppercase;background:rgba(11,10,9,.72);color:#fff;padding:3px 7px;border-radius:5px;pointer-events:none;white-space:nowrap}
+.mt-mark{position:absolute;right:3cqw;top:3cqw;z-index:6;font-size:9px;letter-spacing:.16em;text-transform:uppercase;background:rgba(11,10,9,.72);color:#fff;padding:3px 7px;border-radius:5px;pointer-events:none;white-space:nowrap}
+.mt-stage.bug-b .mt-sub{bottom:calc(8cqw + 7cqw * var(--k))}
+.mt-stage.rtl .mt-mark{right:auto;left:3cqw}
+.mt-stage.bug-tr .mt-mark{top:calc(5cqw + 7cqw * var(--k))}
 .mt-big{position:absolute;inset:0;margin:auto;width:64px;height:64px;border-radius:50%;background:rgba(11,10,9,.74);border:1px solid rgba(255,255,255,.4);display:grid;place-items:center;color:#fff;z-index:7;transition:transform .15s,background .15s}
 .mt-big:hover{background:rgba(11,10,9,.9);transform:scale(1.05)}
 .mt-empty{position:absolute;inset:0;display:grid;place-items:center;padding:16px;text-align:center;font-size:13px;color:var(--muted);z-index:1}
@@ -770,8 +777,8 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
                   <label for="m-vol">Volume de la musique</label>
                   <div class="mt-rangew"><input type="range" id="m-vol" min="0" max="100" step="5" aria-describedby="m-vol-v"><output id="m-vol-v" for="m-vol"></output></div>
                 </div>
-                <label class="check field" id="m-duck-l"><input type="checkbox" id="m-duck"> <span>Baisser la musique pendant la voix off<small id="m-duck-note">La voix reste bien audible, la musique remonte ensuite.</small></span></label>
-                <fieldset class="field">
+                <label class="check mt-chk" id="m-duck-l"><input type="checkbox" id="m-duck"> <span>Baisser la musique pendant la voix off<small id="m-duck-note">La voix reste bien audible, la musique remonte ensuite.</small></span></label>
+                <fieldset class="field" id="m-start-fs">
                   <legend>Début de la musique</legend>
                   <div class="opts">
                     <label class="opt"><input type="radio" name="mstart" value="debut"><span>Début du morceau (0 s)</span></label>
@@ -798,7 +805,7 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
                   <label class="opt"><input type="radio" name="glen" value="plan"><span>Plan par plan</span></label>
                 </div>
               </fieldset>
-              <label class="check field" id="m-beat-l"><input type="checkbox" id="m-beat" aria-describedby="m-beat-note"> <span>Caler les plans sur le tempo de la musique<small id="m-beat-note"></small></span></label>
+              <label class="check mt-chk" id="m-beat-l"><input type="checkbox" id="m-beat" aria-describedby="m-beat-note"> <span>Caler les plans sur le tempo de la musique<small id="m-beat-note"></small></span></label>
               <fieldset class="field">
                 <legend>Transitions entre les plans</legend>
                 <div class="opts">
@@ -832,7 +839,7 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
                 </div>
                 <p class="fine" style="margin-top:8px">Extraits de démonstration générés par IA (quelques secondes) : la voix finale peut légèrement différer.</p>
               </fieldset>
-              <label class="check field" id="m-subs-l"><input type="checkbox" id="m-subs" aria-describedby="m-subs-note"> <span>Sous-titres de la voix off<small id="m-subs-note">Utiles sur les réseaux, où beaucoup de vidéos sont regardées sans le son.</small></span></label>
+              <label class="check mt-chk" id="m-subs-l"><input type="checkbox" id="m-subs" aria-describedby="m-subs-note"> <span>Sous-titres de la voix off<small id="m-subs-note">Utiles sur les réseaux, où beaucoup de vidéos sont regardées sans le son.</small></span></label>
               <fieldset class="field" id="m-substyle">
                 <legend>Style des sous-titres</legend>
                 <div class="opts">
@@ -2269,13 +2276,13 @@ function trackOf(f){
 const fmtT = s => { s = Math.max(0, Math.round(s)); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; };
 const fmtS = s => `${(Math.round(s * 10) / 10).toLocaleString('fr-FR')} s`;
 /* départ « refrain » : valeur du fichier si fournie, sinon début de la 9e mesure (32 temps), calé pour finir avant la fin du morceau */
-function musicStart(f, track, total){
-  if (!track || f.mstart !== 'refrain') return 0;
+function refrainAt(track, total){
+  if (!track) return 0;
   let s = track.refrain || (track.bpm ? 32 * 60 / track.bpm : 0);
-  if (track.duree && s + total > track.duree) s = Math.max(0, track.duree - total);
-  return s;
+  if (track.duree && s + total > track.duree) s = track.duree - total;
+  return s >= 4 ? s : 0; /* morceau trop court pour démarrer plus loin : on reste au début */
 }
-const refrainOK = t => !!(t && (t.refrain || t.bpm));
+const musicStart = (f, track, total) => f.mstart === 'refrain' ? refrainAt(track, total) : 0;
 
 /* ---------- le montage : durées, mouvements, transitions ---------- */
 const includedOf = photos => photos.filter(p => !p.off);
@@ -2359,8 +2366,10 @@ const MT = {
     const fs = c.formats && c.formats.length ? c.formats : FMT_ORDER;
     let fmt = c.fmt(); if (!fs.includes(fmt)) fmt = fs[0];
     this.fmt = fmt;
-    $('#mt-fmts').innerHTML = fs.map(x => `<button type="button" data-mtf="${x}" aria-pressed="${x === fmt}">${x}</button>`).join('');
-    this.stage.className = 'mt-stage' + (FMT[fmt].cls ? ' ' + FMT[fmt].cls : '');
+    const fsig = fs.join(','), seg = $('#mt-fmts');
+    if (seg.dataset.sig !== fsig) { seg.dataset.sig = fsig; seg.innerHTML = fs.map(x => `<button type="button" data-mtf="${x}">${x}</button>`).join(''); } /* pas de reconstruction : un clic en cours n'est pas perdu */
+    $$('#mt-fmts button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mtf === fmt)));
+    this.stage.className = 'mt-stage' + (FMT[fmt].cls ? ' ' + FMT[fmt].cls : '') + (c.logo && f.logoPos === 'tr' ? ' bug-tr' : '') + (c.logo && (f.logoPos === 'br' || f.logoPos === 'bl') ? ' bug-b' : '') + (f.lang === 'Arabe' ? ' rtl' : '');
     this.stage.style.cssText = accentVars(f.accent);
     /* plans : une couche par photo (réutilisée), puis le carton de fin */
     const sig = P.shots.map(s => s.key + ':' + s.src.length).join('|');
@@ -2398,7 +2407,7 @@ const MT = {
     /* musique */
     const tid = P.track ? P.track.id : '';
     if (tid !== this.trackId) {
-      this.trackId = tid; this.music.pause();
+      this.trackId = tid; this.music.pause(); this.blocked = false;
       if (tid) { this.music.src = trackUrl(P.track); this.music.preload = 'auto'; this.music.loop = true; } else this.music.removeAttribute('src');
       this.nextSync = 0;
     }
@@ -2531,7 +2540,7 @@ const MT = {
         try { this.music.currentTime = want; } catch(e) {}
         this.nextSync = now + 1000;
       }
-      if (this.music.paused && !this.blocked) { const pr = this.music.play(); if (pr && pr.catch) pr.catch(() => { if (this.playing && !this.blocked) { this.blocked = true; toast('Le navigateur a bloqué le son de l\'aperçu : touchez « Lecture » pour l\'activer.'); } }); }
+      if (this.music.paused && !this.blocked) { const pr = this.music.play(); if (pr && pr.catch) pr.catch(err => { if (this.playing && !this.blocked && err && err.name === 'NotAllowedError') { this.blocked = true; toast('Le navigateur a bloqué le son de l\'aperçu : touchez « Lecture » pour l\'activer.'); } }); }
     } else if (!this.music.paused) this.music.pause();
     /* voix off : l'extrait choisi, posé après le titre */
     const inV = this.vStart >= 0 && t >= this.vStart && t < this.vEnd - .05;
@@ -2562,6 +2571,7 @@ $('#mt-mute').addEventListener('click', e => {
 });
 $('#mt-fmts').addEventListener('click', e => { const b = e.target.closest('[data-mtf]'); if (!b || !MT.c) return; MT.c.setFmt(b.dataset.mtf); MT.refresh(); });
 MT.voice.addEventListener('loadedmetadata', () => { if (MT.c) MT.refresh(); });
+MT.music.addEventListener('error', () => { if (!MT.trackId || !MT.music.getAttribute('src')) return; MT.blocked = true; if (MT.playing) toast('Ce morceau n\'a pas pu être chargé : l\'aperçu continue sans musique.'); });
 RM.addEventListener && RM.addEventListener('change', () => MT.refresh());
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') { MT.pause(); stopLib(); } });
 const draftCtx = () => draft ? {f:draft.f, photos:draft.photos, logo:draft.f.logo, agentPhoto:draft.f.agentPhoto, formats:draft.f.formats, editable:true,
@@ -2656,12 +2666,12 @@ function renderStudioLive(hint){
   $$('#m-tracks .mt-tr').forEach(li => li.classList.toggle('on', !!li.querySelector('input:checked')));
   $('#m-duck').disabled = !vOn; $('#m-duck-l').classList.toggle('mt-dis', !vOn);
   $('#m-duck-note').textContent = vOn ? 'La voix reste bien audible, la musique remonte ensuite.' : 'Sans voix off, la musique garde son volume.';
-  const rOK = refrainOK(tr), rIn = $('#s-new input[name=mstart][value=refrain]');
+  $('#m-start-fs').hidden = !tr;
+  const rs = refrainAt(tr, P.total), rOK = rs > 0, rIn = $('#s-new input[name=mstart][value=refrain]');
   rIn.disabled = !rOK; rIn.closest('.opt').classList.toggle('mt-dis', !rOK);
-  if (!rOK && f.mstart === 'refrain') rIn.checked = false;
-  const rs = rOK ? musicStart(Object.assign({}, f, {mstart:'refrain'}), tr, P.total) : 0;
-  $('#m-refrain-l').textContent = rOK ? `${tr.refrain ? 'Refrain' : 'Au cœur du morceau'} (≈ ${Math.round(rs)} s)` : 'Refrain';
-  $('#m-start-note').textContent = rOK ? (tr.refrain ? '' : 'Calé sur le tempo du morceau (9e mesure).') : tr ? 'Indisponible pour ce morceau (tempo inconnu).' : 'Disponible quand un morceau à tempo connu est choisi.';
+  if (!rOK && f.mstart === 'refrain') { rIn.checked = false; setRadio('mstart', 'debut'); }
+  $('#m-refrain-l').textContent = rOK ? `${tr.refrain ? 'Refrain' : 'Au cœur du morceau'} (≈\u00a0${Math.round(rs)}\u00a0s)` : 'Refrain';
+  $('#m-start-note').textContent = rOK ? (tr.refrain ? '' : 'Départ calé sur une mesure du morceau, d\'après son tempo.') : !tr ? 'Disponible quand un morceau est choisi.' : !(tr.refrain || tr.bpm) ? 'Indisponible pour ce morceau : son tempo n\'est pas connu.' : 'Indisponible : le morceau est trop court pour démarrer plus loin avec cette durée de vidéo.';
   /* plans */
   const bOK = !!(tr && tr.bpm);
   $('#m-beat').disabled = !bOK; $('#m-beat-l').classList.toggle('mt-dis', !bOK);
@@ -2780,7 +2790,7 @@ function montageRows(f, photos, trackTitle){
   const ms = musicStart(f, tr, P.total);
   return [
     ['Musique', f.music === 'Aucune' ? 'Aucune' : [f.music, tt ? `« ${tt} »` : 'morceau choisi dans l\'ambiance', `volume ${f.vol} %`, vOn && f.duck !== false ? 'baissée sous la voix' : '', ms ? `départ à ${Math.round(ms)} s` : ''].filter(Boolean).join(' · ')],
-    ['Montage', `${n} plans · ${TRANS[f.trans].l}${f.beat && tr && tr.bpm ? ' · calé sur le tempo' : ''} · ${f.lenMode === 'plan' ? 'durées plan par plan' : `plans ${LENS[f.glen].l.toLowerCase()}s`} · environ ${fmtT(P.total)}`],
+    ['Montage', `${n} plans · ${TRANS[f.trans].l}${f.beat && tr && tr.bpm ? ' · calé sur le tempo' : ''} · ${f.lenMode === 'plan' ? 'durées plan par plan' : `plans ${{court:'courts', normal:'normaux', long:'longs'}[f.glen]}`} · environ ${fmtT(P.total)}`],
     ['Mouvements', camsTxt || '—'],
     ['Habillage', [`titre ${TITLES[f.title].toLowerCase()}`, f.badge ? `pastille « ${BADGES[f.badge]} »` : 'sans pastille', vOn && f.subs ? `sous-titres (${SUBST[f.subStyle]})` : 'sans sous-titres', f.logo || f.hasLogo ? `logo : ${LOGOPOS[f.logoPos]}` : '', `couleur ${f.accent}`].filter(Boolean).join(' · ')],
     ['Carton de fin', [String(f.agency || '').trim(), String(f.agentName || '').trim(), String(f.phone || '').trim(), String(f.endEmail || '').trim(), f.logo || f.hasLogo ? 'logo' : '', f.agentPhoto || f.hasAgentPhoto ? 'photo de l\'agent' : ''].filter(Boolean).join(' · ') || 'Neutre (sans coordonnées)'],
@@ -2815,7 +2825,7 @@ $('#r-replay').addEventListener('click', () => { const v = ui.vid; if (!v) retur
 /* --- étape 4 : récapitulatif --- */
 function renderRecap(){
   const f = draft.f, d = draft.photos.length;
-  $('#rthumbs').innerHTML = draft.photos.map((p, i) => `<img src="${p.src}" alt="Photo ${i + 1}">`).join('');
+  $('#rthumbs').innerHTML = draft.photos.map((p, i) => `<img src="${p.src}" alt="Photo ${i + 1}${p.off ? ' (exclue du montage)' : ''}"${p.off ? ' style="opacity:.35"' : ''}>`).join('');
   const nums = [f.surface && `${f.surface.replace('.', ',')} m²`, f.rooms && pl(+f.rooms, 'pièce', 'pièces'), f.beds && pl(+f.beds, 'chambre', 'chambres')].filter(Boolean).join(' · ');
   const rows = [
     ['Photos', `${d}${d > includedOf(draft.photos).length ? ` (${includedOf(draft.photos).length} dans le montage)` : ''} · environ ${fmtT(buildPlan(f, draft.photos).total)} avec le carton de fin`],

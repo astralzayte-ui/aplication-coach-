@@ -83,6 +83,11 @@ Dernière mise à jour : 08/10/2026. À tenir à jour à chaque décision import
 - À l'arrivée : 1) choix du pays (Maroc/France) puis 2) choix de la langue (arabe / français / anglais). Après le choix du pays, plus de bascule €/DH visible (le client ne voit pas l'autre prix). Gros chantier : traduire site + app en arabe (sens droite-gauche) et en anglais — le fondateur dit « débrouille-toi, fais-le maintenant » (08/10). Bascule €/DH retirée ; seul un petit lien « changer de pays » en pied de page.
 - Le fondateur trouve la présentation de l'abonnement pas claire (« il m'apporte quoi ? ») → à refaire après décision sur l'offre (abonnements seuls / vidéos seules / mélange). Proposition de Claude : 3 offres (1 vidéo 19 € pour essayer + Solo 39 €/mois + Agence 99 €/mois), supprimer les packs 5 et 10.
 
+## ⏸️ En pause (08/10 au soir) — à reprendre quand le fondateur dit « reprends »
+1. Studio de montage (musiques Lyria si gratuites, frise des plans, mouvements, transitions, habillage, aperçu en direct, préréglages) : workflow arrêté en cours → relancer le script scratchpad/studio-montage.js avec resumeFromRunId wf_a7795583-0b4 (si le scratchpad a disparu : réécrire à partir de cette description).
+2. Ensuite : nouveaux prix (15 € / 29 € / 79 € ; 129 / 249 / 699 DH), abonnement expliqué, plus de bascule €/DH, langues FR/AR/EN → script scratchpad/prix-langues.js.
+3. Puis mise en ligne (brouillon puis publication) et envoyer le lien direct au fondateur.
+
 ## Prochaines étapes (ordre du fondateur, 08/10)
 1. Inscription auto-entrepreneur. 2. Ouvrir l'encaissement (Polar). 3. Prochaine dépense = test Higgsfield : photos de villa générées avec Gemini (prompts dans `tests-higgsfield/PROMPTS-VILLA.md`), puis ~7 vidéos : 3 photos × Kling 2.5 et Kling 3.0 (+1 à refaire) → choisir le modèle (qualité vs coût/marge).
 - ✅ Prix VALIDÉS le 08/10 : 1 vidéo 15 € / 129 DH ; Solo 3 vidéos 29 €/mois / 249 DH (mis en avant « Recommandé ») ; Agence 10 vidéos 79 €/mois / 699 DH ; packs 5 et 10 supprimés.
