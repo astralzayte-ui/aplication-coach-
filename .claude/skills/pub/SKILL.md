@@ -311,6 +311,10 @@ vidéo 07 · source « pubs concurrentes » · angle « qualité » · hook n°1
 
 ### Les sources — décidé le 08/10 : on part de ce qui marche chez eux
 
+🔴 **Toujours 80 / 20 — décidé le 08/10, pour TOUS les projets.** Au
+départ, le but est de vendre, pas de tout mesurer. Ne pas reproposer le
+40 / 60 (8 vidéos par source).
+
 ```
 VAGUE 1        80 %  32 vidéos  FORMATS COPIÉS sur les concurrents
 (jours 1-20)                    (leurs vidéos qui percent + leurs pubs
