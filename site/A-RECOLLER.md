@@ -9,7 +9,7 @@
 ## 1. Ses informations — à mettre partout
 
 ```
-E-mail            silenceworldwide@gmail.com
+E-mail            silenceworlwide@gmail.com
 WhatsApp          +212 728 861 105     (https://wa.me/212728861105)
 Instagram         @silence.worldwide
 TikTok France     @silence.worldwide

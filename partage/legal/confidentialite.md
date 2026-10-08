@@ -16,7 +16,7 @@
 
 **[Nom de la société]**, [adresse] — voir les *Mentions légales*.
 
-Pour toute question ou pour exercer tes droits : **silenceworldwide@gmail.com**
+Pour toute question ou pour exercer tes droits : **silenceworlwide@gmail.com**
 
 ---
 
@@ -93,7 +93,7 @@ récupérer          obtenir tes données dans un fichier lisible
 retirer            annuler ton consentement aux nouveautés
 ```
 
-**Écris à silenceworldwide@gmail.com.** Nous répondons **sous un mois**.
+**Écris à silenceworlwide@gmail.com.** Nous répondons **sous un mois**.
 
 Si notre réponse ne te convient pas, tu peux saisir la **CNIL** —
 `cnil.fr` — 3 place de Fontenoy, 75334 Paris Cedex 07.

@@ -22,7 +22,7 @@ du contrat.)*
 **[Nom de la société]**
 [Adresse postale complète]
 Téléphone : +212 728 861 105
-E-mail : silenceworldwide@gmail.com
+E-mail : silenceworlwide@gmail.com
 
 ---
 

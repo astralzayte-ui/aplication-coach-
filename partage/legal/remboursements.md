@@ -20,7 +20,7 @@ Tu as **14 jours** à compter de la réception pour nous renvoyer un article,
 
 ### Comment faire
 
-1. Écris-nous sur WhatsApp au **+212 728 861 105** ou par e-mail à **silenceworldwide@gmail.com**, avec ton numéro de commande. Tu peux aussi utiliser le [formulaire de rétractation](retractation.html).
+1. Écris-nous sur WhatsApp au **+212 728 861 105** ou par e-mail à **silenceworlwide@gmail.com**, avec ton numéro de commande. Tu peux aussi utiliser le [formulaire de rétractation](retractation.html).
 2. Renvoie l'article **dans les 14 jours** qui suivent, non porté, non lavé, avec ses étiquettes.
 
 🔴 **Les frais de renvoi sont à ta charge.**

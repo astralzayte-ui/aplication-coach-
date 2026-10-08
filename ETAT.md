@@ -101,7 +101,7 @@ pas de scripts vidéo, pas de site, pas de marge réelle.
 | Gemini | clé dans les Identifiants API |
 | Photos provisoires | `flourishing-dasik-35d194.netlify.app` ⚠️ **jamais public** |
 | Metricool | connecteur branché — marque `SILENCE | Menswear`, id **7079823** |
-| E-mail | **silenceworldwide@gmail.com** |
+| E-mail | **silenceworlwide@gmail.com** |
 | WhatsApp | **+212 728 861 105** |
 | Responsable publication | **Julien Wail Colly** |
 | Instagram | `silence.worldwide` — compte professionnel ✅ |

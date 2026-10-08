@@ -4,7 +4,7 @@
 window.CONFIG = {
   whatsapp: '212728861105',
   whatsappAffiche: '+212 728 861 105',
-  email: 'silenceworldwide@gmail.com',
+  email: 'silenceworlwide@gmail.com',
   instagram: 'silence.worldwide',
   tiktok: 'silence.worldwide',
   tiktokMaroc: 'silence.worldwide_maroc',
