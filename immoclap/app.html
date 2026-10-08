@@ -422,10 +422,10 @@ input[type=range]{width:100%;accent-color:var(--gold);min-height:36px;cursor:poi
 #mt-dlg .mt-stage{--ar:1.7778;width:min(100%,calc(56vh * var(--ar)))}
 #mt-dlg .mt-stage.r916{--ar:.5625;max-width:none}
 #mt-dlg .mt-stage.r11{--ar:1;max-width:none}
-.mt-recap{margin-top:16px}
-.mt-recap dl{display:grid;grid-template-columns:110px 1fr;gap:6px 12px;font-size:13.5px;margin:10px 0 14px}
-.mt-recap dt{color:var(--muted)}
-.mt-recap dd{overflow-wrap:anywhere}
+.mt-recap-dl{display:grid;grid-template-columns:96px 1fr;gap:6px 12px;font-size:13.5px;margin:0 0 14px}
+.mt-recap-dl dt{color:var(--muted)}
+.mt-recap-dl dd{overflow-wrap:anywhere}
+#mt-dlg{position:fixed}
 
 /* récap */
 .recap-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px;align-items:start}
@@ -643,7 +643,7 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
     <ol class="steps" id="steps">
       <li><a href="#nouvelle/1" data-s="1">1 · Photos</a></li>
       <li><a href="#nouvelle/2" data-s="2">2 · Le bien</a></li>
-      <li><a href="#nouvelle/3" data-s="3">3 · Le style</a></li>
+      <li><a href="#nouvelle/3" data-s="3">3 · Montage</a></li>
       <li><a href="#nouvelle/4" data-s="4">4 · Récap</a></li>
     </ol>
 
@@ -652,7 +652,7 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
       <div class="stephead">
         <p class="eyebrow">Étape 1 sur 4</p>
         <h1 class="sh" tabindex="-1">Les photos du bien</h1>
-        <p class="muted">De 3 à 12 photos, dans l'ordre de la visite. Chaque photo devient un plan d'environ 5 secondes.</p>
+        <p class="muted">De 3 à 12 photos, dans l'ordre de la visite. Chaque photo devient un plan d'environ 5 secondes (réglable au montage).</p>
       </div>
       <div class="tip">
         <span class="ic" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2V17h5v-1.1c0-.8.4-1.5 1-2A6 6 0 0012 3z"/></svg></span>
@@ -728,79 +728,236 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
       <p class="err" id="err2" role="alert"></p>
     </div>
 
-    <!-- Étape 3 -->
+    <!-- Étape 3 : studio de montage -->
     <div class="step" data-step="3" hidden>
       <div class="stephead">
         <p class="eyebrow">Étape 3 sur 4</p>
-        <h1 class="sh" tabindex="-1">Le style</h1>
-        <p class="muted">Votre marque, le son et les formats.</p>
+        <h1 class="sh" tabindex="-1">Studio de montage</h1>
+        <p class="muted">Tout est déjà réglé avec « Recommandé » : vous pouvez continuer tout de suite, ou choisir la musique, l'ordre des plans, les mouvements et l'habillage, avec l'aperçu en direct.</p>
+      </div>
+      <div class="mt-pre-w" role="group" aria-labelledby="mt-pre-l">
+        <p class="lab" id="mt-pre-l">Préréglages en un clic</p>
+        <div class="mt-pre" id="mt-pre">
+          <button type="button" data-preset="recommande" aria-pressed="false"><b>Recommandé</b><small>Équilibré, pour tous les biens</small></button>
+          <button type="button" data-preset="luxe" aria-pressed="false"><b>Luxe</b><small>Fondus, avancées lentes, titre serif</small></button>
+          <button type="button" data-preset="reseaux" aria-pressed="false"><b>Réseaux sociaux</b><small>Dynamique, coupes sur le tempo, vertical</small></button>
+          <button type="button" data-preset="saison" aria-pressed="false"><b>Location saisonnière</b><small>Chaleureuse, pastille « À louer »</small></button>
+        </div>
+        <p class="mt-pre-note" id="mt-pre-note" aria-live="polite"></p>
       </div>
       <div class="split">
-        <div>
-          <h2 class="subh">Votre marque</h2>
-          <p class="brand-note" id="brand-note"></p>
-          <div class="grid2">
-            <div class="field"><label for="agency">Nom de l'agence</label><input type="text" id="agency" placeholder="ex. : Agence du Centre" maxlength="50" autocomplete="organization"></div>
-            <div class="field"><label for="phone">Téléphone affiché</label><input type="tel" id="phone" placeholder="ex. : +212 6 12 34 56 78" maxlength="25" autocomplete="tel"></div>
-          </div>
-          <div class="field">
-            <p class="lab" id="logo-l">Logo (facultatif · PNG transparent conseillé)</p>
-            <div class="logo-row" role="group" aria-labelledby="logo-l">
-              <div class="logo-prev" id="logo-prev"><span>Aucun</span></div>
-              <button type="button" class="btn ghost sm" id="logo-btn">Choisir un logo</button>
-              <button type="button" class="btn ghost sm" id="logo-rm" hidden>Retirer</button>
-              <input type="file" id="logo-file" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden>
+        <div class="mt-settings">
+          <details class="mt-sec" id="sec-music">
+            <summary><h2>Musique</h2><span class="mt-sum" id="sum-music"></span></summary>
+            <div class="mt-body">
+              <fieldset class="field">
+                <legend>Ambiance</legend>
+                <div class="opts">
+                  <label class="opt"><input type="radio" name="music" value="Élégante"><span>Élégante</span></label>
+                  <label class="opt"><input type="radio" name="music" value="Dynamique"><span>Dynamique</span></label>
+                  <label class="opt"><input type="radio" name="music" value="Chaleureuse"><span>Chaleureuse</span></label>
+                  <label class="opt"><input type="radio" name="music" value="Orientale moderne"><span>Orientale moderne</span></label>
+                  <label class="opt"><input type="radio" name="music" value="Aucune"><span>Aucune musique</span></label>
+                </div>
+              </fieldset>
+              <div id="m-more">
+                <fieldset class="field" id="m-lib" hidden>
+                  <legend>Morceau</legend>
+                  <ul class="mt-tracks" id="m-tracks"></ul>
+                </fieldset>
+                <p class="fine" id="m-lib-note" style="margin:-6px 0 16px"></p>
+                <div class="field">
+                  <label for="m-vol">Volume de la musique</label>
+                  <div class="mt-rangew"><input type="range" id="m-vol" min="0" max="100" step="5" aria-describedby="m-vol-v"><output id="m-vol-v" for="m-vol"></output></div>
+                </div>
+                <label class="check field" id="m-duck-l"><input type="checkbox" id="m-duck"> <span>Baisser la musique pendant la voix off<small id="m-duck-note">La voix reste bien audible, la musique remonte ensuite.</small></span></label>
+                <fieldset class="field">
+                  <legend>Début de la musique</legend>
+                  <div class="opts">
+                    <label class="opt"><input type="radio" name="mstart" value="debut"><span>Début du morceau (0 s)</span></label>
+                    <label class="opt"><input type="radio" name="mstart" value="refrain" aria-describedby="m-start-note"><span id="m-refrain-l">Refrain</span></label>
+                  </div>
+                  <p class="fine" id="m-start-note" style="margin-top:6px"></p>
+                </fieldset>
+              </div>
             </div>
-            <p class="ferr" id="logo-err" aria-live="polite"></p>
-          </div>
-          <button type="button" class="lnk" id="save-kit">Enregistrer dans mon kit de marque</button>
-          <label class="check" style="margin-top:18px"><input type="checkbox" id="nologo"> <span>Version sans logo pour les portails<small>Sur demande, incluse dans le crédit : une copie de chaque format sans logo ni coordonnées, pour les portails qui les refusent.</small></span></label>
+          </details>
+
+          <details class="mt-sec" id="sec-plans">
+            <summary><h2>Plans et transitions</h2><span class="mt-sum" id="sum-plans"></span></summary>
+            <div class="mt-body">
+              <p class="fine">Vos photos de l'étape 1, dans l'ordre du montage.<span class="hint-mouse"> Glissez une vignette pour la déplacer, ou utilisez les flèches.</span><span class="hint-touch"> Flèches pour changer l'ordre.</span> Chaque plan a son mouvement de caméra.</p>
+              <div class="mt-allcam"><label for="m-camall">Mouvement pour tous les plans</label><select id="m-camall"></select></div>
+              <ol class="mt-strip" id="mt-strip" aria-label="Plans du montage, dans l'ordre"></ol>
+              <fieldset class="field">
+                <legend>Durée des plans</legend>
+                <div class="opts">
+                  <label class="opt"><input type="radio" name="glen" value="court"><span>Courts · 3 s</span></label>
+                  <label class="opt"><input type="radio" name="glen" value="normal"><span>Normaux · 5 s</span></label>
+                  <label class="opt"><input type="radio" name="glen" value="long"><span>Longs · 7 s</span></label>
+                  <label class="opt"><input type="radio" name="glen" value="plan"><span>Plan par plan</span></label>
+                </div>
+              </fieldset>
+              <label class="check field" id="m-beat-l"><input type="checkbox" id="m-beat" aria-describedby="m-beat-note"> <span>Caler les plans sur le tempo de la musique<small id="m-beat-note"></small></span></label>
+              <fieldset class="field">
+                <legend>Transitions entre les plans</legend>
+                <div class="opts">
+                  <label class="opt"><input type="radio" name="trans" value="coupe"><span>Coupe franche</span></label>
+                  <label class="opt"><input type="radio" name="trans" value="fondu"><span>Fondu</span></label>
+                  <label class="opt"><input type="radio" name="trans" value="noir"><span>Fondu noir</span></label>
+                  <label class="opt"><input type="radio" name="trans" value="glisse"><span>Glissé</span></label>
+                </div>
+              </fieldset>
+              <p class="estimate" id="est3" style="margin:-4px 0 14px"></p>
+            </div>
+          </details>
+
+          <details class="mt-sec" id="sec-voice">
+            <summary><h2>Voix off et sous-titres</h2><span class="mt-sum" id="sum-voice"></span></summary>
+            <div class="mt-body">
+              <fieldset class="field">
+                <legend>Langue des textes et de la voix</legend>
+                <div class="opts">
+                  <label class="opt"><input type="radio" name="lang" value="Français"><span>Français</span></label>
+                  <label class="opt"><input type="radio" name="lang" value="Arabe"><span>Arabe</span></label>
+                  <label class="opt"><input type="radio" name="lang" value="Anglais"><span>Anglais</span></label>
+                </div>
+              </fieldset>
+              <fieldset class="field">
+                <legend>Voix off</legend>
+                <div class="vrow">
+                  <label class="opt"><input type="radio" name="voice" value="Aucune"><span>Aucune</span></label>
+                  <div class="vopt"><label class="opt"><input type="radio" name="voice" value="Voix féminine"><span>Voix féminine</span></label><button type="button" class="play" data-v="f" aria-pressed="false"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg><span>Écouter</span></button></div>
+                  <div class="vopt"><label class="opt"><input type="radio" name="voice" value="Voix masculine"><span>Voix masculine</span></label><button type="button" class="play" data-v="m" aria-pressed="false"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg><span>Écouter</span></button></div>
+                </div>
+                <p class="fine" style="margin-top:8px">Extraits de démonstration générés par IA (quelques secondes) : la voix finale peut légèrement différer.</p>
+              </fieldset>
+              <label class="check field" id="m-subs-l"><input type="checkbox" id="m-subs" aria-describedby="m-subs-note"> <span>Sous-titres de la voix off<small id="m-subs-note">Utiles sur les réseaux, où beaucoup de vidéos sont regardées sans le son.</small></span></label>
+              <fieldset class="field" id="m-substyle">
+                <legend>Style des sous-titres</legend>
+                <div class="opts">
+                  <label class="opt"><input type="radio" name="substyle" value="bande"><span>Bandeau sombre</span></label>
+                  <label class="opt"><input type="radio" name="substyle" value="ombre"><span>Texte ombré</span></label>
+                  <label class="opt"><input type="radio" name="substyle" value="accent"><span>Couleur de la marque</span></label>
+                </div>
+              </fieldset>
+            </div>
+          </details>
+
+          <details class="mt-sec" id="sec-look">
+            <summary><h2>Titre et habillage</h2><span class="mt-sum" id="sum-look"></span></summary>
+            <div class="mt-body">
+              <fieldset class="field">
+                <legend>Style du titre d'ouverture</legend>
+                <div class="opts">
+                  <label class="opt"><input type="radio" name="title" value="serif"><span style="font-family:var(--serif);font-size:16px">Élégant serif</span></label>
+                  <label class="opt"><input type="radio" name="title" value="sans"><span style="font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:.02em">Moderne sans-serif</span></label>
+                  <label class="opt"><input type="radio" name="title" value="minimal"><span style="font-family:var(--serif);font-style:italic;font-weight:300;font-size:16px">Minimal</span></label>
+                </div>
+              </fieldset>
+              <fieldset class="field">
+                <legend>Pastille d'annonce</legend>
+                <div class="opts" id="m-badges"></div>
+              </fieldset>
+              <fieldset class="field">
+                <legend>Couleur d'accent de la marque</legend>
+                <div class="mt-swatches" id="m-swatches"></div>
+                <div class="mt-hex"><label class="sr" for="mt-hex">Code couleur hexadécimal</label><input type="text" id="mt-hex" maxlength="7" placeholder="ex. : #F6BC28" spellcheck="false" autocomplete="off" autocapitalize="characters" aria-describedby="mt-hex-note"><i id="mt-hex-sw" aria-hidden="true"></i></div>
+                <p class="fine" id="mt-hex-note" aria-live="polite" style="margin-top:8px"></p>
+              </fieldset>
+              <fieldset class="field">
+                <legend>Logo pendant la vidéo</legend>
+                <div class="opts">
+                  <label class="opt"><input type="radio" name="logopos" value="none" aria-describedby="m-logopos-note"><span>Aucun</span></label>
+                  <label class="opt"><input type="radio" name="logopos" value="tr" aria-describedby="m-logopos-note"><span>Coin haut droit</span></label>
+                  <label class="opt"><input type="radio" name="logopos" value="br" aria-describedby="m-logopos-note"><span>Coin bas droit</span></label>
+                  <label class="opt"><input type="radio" name="logopos" value="bl" aria-describedby="m-logopos-note"><span>Coin bas gauche</span></label>
+                </div>
+                <p class="fine" id="m-logopos-note" style="margin-top:6px"></p>
+              </fieldset>
+            </div>
+          </details>
+
+          <details class="mt-sec" id="sec-brand">
+            <summary><h2>Carton de fin et marque</h2><span class="mt-sum" id="sum-brand"></span></summary>
+            <div class="mt-body">
+              <p class="brand-note" id="brand-note" style="margin:0 0 14px"></p>
+              <div class="grid2">
+                <div class="field"><label for="agency">Nom de l'agence</label><input type="text" id="agency" placeholder="ex. : Agence du Centre" maxlength="50" autocomplete="organization"></div>
+                <div class="field"><label for="agentName">Nom de l'agent (facultatif)</label><input type="text" id="agentName" placeholder="ex. : Sara Benali" maxlength="50" autocomplete="name"></div>
+                <div class="field"><label for="phone">Téléphone affiché</label><input type="tel" id="phone" placeholder="ex. : +212 6 12 34 56 78" maxlength="25" autocomplete="tel"></div>
+                <div class="field"><label for="endEmail">E-mail affiché (facultatif)</label><input type="email" id="endEmail" placeholder="ex. : contact@agence.com" maxlength="80" autocomplete="email" aria-describedby="endEmail-err"><p class="ferr" id="endEmail-err"></p></div>
+              </div>
+              <div class="field">
+                <p class="lab" id="logo-l">Logo (facultatif · PNG transparent conseillé)</p>
+                <div class="logo-row" role="group" aria-labelledby="logo-l">
+                  <div class="logo-prev" id="logo-prev"><span>Aucun</span></div>
+                  <button type="button" class="btn ghost sm" id="logo-btn">Choisir un logo</button>
+                  <button type="button" class="btn ghost sm" id="logo-rm" hidden>Retirer</button>
+                  <input type="file" id="logo-file" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden>
+                </div>
+                <p class="ferr" id="logo-err" aria-live="polite"></p>
+              </div>
+              <div class="field">
+                <p class="lab" id="ap-l">Photo de l'agent (facultatif, carton de fin)</p>
+                <div class="mt-agent" role="group" aria-labelledby="ap-l">
+                  <div class="ap" id="ap-prev"><span>Aucune</span></div>
+                  <button type="button" class="btn ghost sm" id="ap-btn">Choisir une photo</button>
+                  <button type="button" class="btn ghost sm" id="ap-rm" hidden>Retirer</button>
+                  <input type="file" id="ap-file" accept="image/png,image/jpeg,image/webp" hidden>
+                </div>
+                <p class="ferr" id="ap-err" aria-live="polite"></p>
+              </div>
+              <button type="button" class="lnk" id="save-kit">Enregistrer dans mon kit de marque</button>
+              <label class="check" style="margin:16px 0 14px"><input type="checkbox" id="nologo"> <span>Version sans logo pour les portails<small>Sur demande, incluse dans le crédit : une copie de chaque format sans logo ni coordonnées, pour les portails qui les refusent.</small></span></label>
+            </div>
+          </details>
+
+          <details class="mt-sec" id="sec-fmt">
+            <summary><h2>Formats</h2><span class="mt-sum" id="sum-fmt"></span></summary>
+            <div class="mt-body">
+              <fieldset class="field">
+                <legend>Formats à livrer <span class="req" aria-hidden="true">*</span> · tous inclus dans le crédit</legend>
+                <div class="fmts">
+                  <label class="fmt"><input type="checkbox" name="fmt" value="16:9" aria-describedby="err3"><span class="box"><span class="shape" style="width:30px;height:17px" aria-hidden="true"></span><span><b>16:9 · Écran large</b><small>Idéal pour SeLoger, Leboncoin, Avito, Mubawab et votre site.</small></span></span></label>
+                  <label class="fmt"><input type="checkbox" name="fmt" value="9:16" aria-describedby="err3"><span class="box"><span class="shape" style="width:14px;height:25px" aria-hidden="true"></span><span><b>9:16 · Vertical</b><small>Idéal pour les Reels, TikTok, les statuts WhatsApp et les stories.</small></span></span></label>
+                  <label class="fmt"><input type="checkbox" name="fmt" value="1:1" aria-describedby="err3"><span class="box"><span class="shape" style="width:21px;height:21px" aria-hidden="true"></span><span><b>1:1 · Carré</b><small>Idéal pour le fil Instagram et Facebook.</small></span></span></label>
+                </div>
+              </fieldset>
+            </div>
+          </details>
         </div>
-        <div class="pv-col" role="group" aria-label="Aperçu du carton de fin">
-          <div class="pv-h"><b>Aperçu du carton de fin</b><div class="seg pvfmt" role="group" aria-label="Format de l'aperçu"></div></div>
-          <div class="pv end" id="pv-end3"></div>
-          <p class="pv-cap" id="pv-end3-cap">Aperçu indicatif, mis à jour pendant la saisie.</p>
+
+        <div class="pv-col mt-pcol" role="region" aria-labelledby="mt-pv-h">
+          <div class="pv-h"><b id="mt-pv-h">Aperçu du montage</b></div>
+          <div id="mt-host">
+            <div class="mt-player" id="mt-player">
+              <div class="mt-stage" id="mt-stage">
+                <div class="mt-layers" id="mt-layers"></div>
+                <div class="mt-black" id="mt-black"></div>
+                <div class="mt-ttl" id="mt-ttl"></div>
+                <span class="mt-badge" id="mt-badge" hidden></span>
+                <span class="mt-bug" id="mt-bug" hidden></span>
+                <p class="mt-sub" id="mt-sub" aria-hidden="true"><span></span></p>
+                <span class="mt-mark" aria-hidden="true">Aperçu</span>
+                <p class="mt-empty" id="mt-empty" hidden></p>
+                <button type="button" class="mt-big" id="mt-big" aria-label="Lire l'aperçu du montage"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+              </div>
+              <div class="mt-ctrl">
+                <button type="button" id="mt-play" aria-label="Lire l'aperçu du montage"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path class="i-play" d="M8 5v14l11-7z"/><path class="i-pause" d="M7 5h4v14H7zM13 5h4v14h-4z" style="display:none"/></svg></button>
+                <button type="button" id="mt-restart" aria-label="Recommencer l'aperçu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v5h5"/></svg></button>
+                <input type="range" id="mt-seek" min="0" max="10" step="0.05" value="0" aria-label="Position dans l'aperçu">
+                <span class="mt-time" id="mt-time" aria-hidden="true">0:00 / 0:00</span>
+                <button type="button" id="mt-mute" aria-pressed="false" aria-label="Couper le son de l'aperçu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path class="i-on" d="M16.5 8.5a5 5 0 010 7M19 6a8.5 8.5 0 010 12"/><path class="i-off" d="M17 9l5 6M22 9l-5 6" style="display:none"/></svg></button>
+              </div>
+              <div class="mt-fmts"><div class="seg" id="mt-fmts" role="group" aria-label="Format de l'aperçu"></div></div>
+              <p class="mt-now" id="mt-now"></p>
+              <p class="mt-label">Aperçu du montage — la vidéo finale est générée par l'IA à partir de vos photos (mouvements de caméra réels).</p>
+              <p class="mt-rm" id="mt-rm" hidden>Animations réduites sur cet appareil : l'aperçu montre des images fixes, sans mouvement ni transition.</p>
+            </div>
+          </div>
         </div>
       </div>
-
-      <h2 class="subh">Le son</h2>
-      <fieldset class="field">
-        <legend>Ambiance musicale</legend>
-        <div class="opts">
-          <label class="opt"><input type="radio" name="music" value="Élégante"><span>Élégante</span></label>
-          <label class="opt"><input type="radio" name="music" value="Dynamique"><span>Dynamique</span></label>
-          <label class="opt"><input type="radio" name="music" value="Chaleureuse"><span>Chaleureuse</span></label>
-          <label class="opt"><input type="radio" name="music" value="Orientale moderne"><span>Orientale moderne</span></label>
-        </div>
-      </fieldset>
-      <fieldset class="field">
-        <legend>Langue des textes et de la voix</legend>
-        <div class="opts">
-          <label class="opt"><input type="radio" name="lang" value="Français"><span>Français</span></label>
-          <label class="opt"><input type="radio" name="lang" value="Arabe"><span>Arabe</span></label>
-          <label class="opt"><input type="radio" name="lang" value="Anglais"><span>Anglais</span></label>
-        </div>
-      </fieldset>
-      <fieldset class="field">
-        <legend>Voix off</legend>
-        <div class="vrow">
-          <label class="opt"><input type="radio" name="voice" value="Aucune"><span>Aucune</span></label>
-          <div class="vopt"><label class="opt"><input type="radio" name="voice" value="Voix féminine"><span>Voix féminine</span></label><button type="button" class="play" data-v="f" aria-pressed="false"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg><span>Écouter</span></button></div>
-          <div class="vopt"><label class="opt"><input type="radio" name="voice" value="Voix masculine"><span>Voix masculine</span></label><button type="button" class="play" data-v="m" aria-pressed="false"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg><span>Écouter</span></button></div>
-        </div>
-        <p class="fine" style="margin-top:8px">Extraits de démonstration générés par IA (environ 5 s) : la voix finale peut légèrement différer.</p>
-      </fieldset>
-
-      <h2 class="subh">Formats</h2>
-      <fieldset class="field">
-        <legend>Formats à livrer <span class="req" aria-hidden="true">*</span> · tous inclus dans le crédit</legend>
-        <div class="fmts">
-          <label class="fmt"><input type="checkbox" name="fmt" value="16:9" aria-describedby="err3"><span class="box"><span class="shape" style="width:30px;height:17px" aria-hidden="true"></span><span><b>16:9 · Écran large</b><small>Idéal pour SeLoger, Leboncoin, Avito, Mubawab et votre site.</small></span></span></label>
-          <label class="fmt"><input type="checkbox" name="fmt" value="9:16" aria-describedby="err3"><span class="box"><span class="shape" style="width:14px;height:25px" aria-hidden="true"></span><span><b>9:16 · Vertical</b><small>Idéal pour les Reels, TikTok, les statuts WhatsApp et les stories.</small></span></span></label>
-          <label class="fmt"><input type="checkbox" name="fmt" value="1:1" aria-describedby="err3"><span class="box"><span class="shape" style="width:21px;height:21px" aria-hidden="true"></span><span><b>1:1 · Carré</b><small>Idéal pour le fil Instagram et Facebook.</small></span></span></label>
-        </div>
-      </fieldset>
-      <p class="estimate" id="est3"></p>
       <p class="err" id="err3" role="alert"></p>
     </div>
 
@@ -815,11 +972,12 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
         <div class="card recap">
           <div class="rthumbs" id="rthumbs"></div>
           <dl id="recap"></dl>
-          <div class="edit"><a class="lnk" href="#nouvelle/1">Modifier les photos</a><a class="lnk" href="#nouvelle/2">Modifier le bien</a><a class="lnk" href="#nouvelle/3">Modifier le style</a></div>
+          <div class="edit"><a class="lnk" href="#nouvelle/1">Modifier les photos</a><a class="lnk" href="#nouvelle/2">Modifier le bien</a><a class="lnk" href="#nouvelle/3">Modifier le montage</a></div>
         </div>
         <div>
           <div class="pv-pair" id="pv-pair4"></div>
           <p class="pv-cap">Ouverture et carton de fin (aperçu indicatif).</p>
+          <div style="text-align:center;margin-top:12px"><button type="button" class="btn ghost sm" id="r4-replay"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>Revoir l'aperçu du montage</button></div>
         </div>
       </div>
       <div class="card credit-box" id="credit-box"></div>
@@ -877,9 +1035,15 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
               <a class="btn full" id="r-dl" download>Télécharger</a>
               <button class="btn ghost full" type="button" id="r-dlall">Tout télécharger</button>
               <p class="fine">Fichiers MP4. Les vidéos sont conservées au moins 30 jours : pensez à les télécharger.</p>
-              <p class="fine" id="r-nover-note" hidden>Version sans logo non demandée pour cette vidéo (option de l'étape « Le style »).</p>
+              <p class="fine" id="r-nover-note" hidden>Version sans logo non demandée pour cette vidéo (option de l'étape « Montage »).</p>
               <p class="fine" id="r-ver-note" hidden>Mode test : la démonstration n'a pas de carton de fin, les deux versions renvoient au même fichier.</p>
             </div>
+          </div>
+          <div class="card" id="r-mt" hidden>
+            <h2>Votre montage</h2>
+            <dl class="mt-recap-dl" id="r-mt-dl"></dl>
+            <button type="button" class="btn ghost full" id="r-replay"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>Revoir l'aperçu du montage</button>
+            <p class="fine" id="r-replay-note" style="margin-top:8px"></p>
           </div>
           <div class="card">
             <h2>Un défaut ?</h2>
@@ -928,7 +1092,7 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
     <div class="acct">
       <div class="card" id="kit">
         <h2>Profil et kit de marque</h2>
-        <p class="fine">Le nom de l'agence, le téléphone et le logo composent le carton de fin. Si la case du bas est cochée, l'assistant les pré-remplit à l'étape « Le style », où vous pouvez encore les changer pour une vidéo.</p>
+        <p class="fine">Le nom de l'agence, le téléphone et le logo composent le carton de fin. Si la case du bas est cochée, l'assistant les pré-remplit à l'étape « Montage » (avec la couleur, la photo, le nom de l'agent et l'e-mail enregistrés depuis cette étape), où vous pouvez encore les changer pour une vidéo.</p>
         <form id="f-kit" novalidate>
           <div class="grid2">
             <div class="field"><label for="k-first">Prénom</label><input type="text" id="k-first" autocomplete="given-name" maxlength="40" placeholder="ex. : Sara"></div>
@@ -1021,6 +1185,13 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
   <video id="demo-video" controls playsinline preload="none"></video>
   <p class="fine" style="margin-top:10px">Démonstration générée par IA à partir de photos.</p>
   <div class="dbtns"><button class="btn ghost" type="button" data-close>Fermer</button></div>
+</dialog>
+
+<dialog id="mt-dlg" aria-labelledby="mt-dlg-h">
+  <button type="button" class="dlg-x" data-close aria-label="Fermer l'aperçu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <h2 id="mt-dlg-h">Aperçu du montage</h2>
+  <div id="mt-dlg-host"></div>
+  <div class="dbtns" style="margin-top:14px"><button class="btn ghost" type="button" data-close>Fermer</button></div>
 </dialog>
 
 <dialog id="pays-dlg" aria-labelledby="pays-h" aria-describedby="pays-t">
@@ -1689,7 +1860,7 @@ function routeWizard(r){
   if (n === 4) renderRecap();
   updateNextBtn(n);
   renderHeader('');
-  const titles = ['Les photos', 'Le bien', 'Le style', 'Récapitulatif'];
+  const titles = ['Les photos', 'Le bien', 'Montage', 'Récapitulatif'];
   showScreen('new', `Étape ${n} sur 4 · ${titles[n - 1]}`, $(`.step[data-step="${n}"] h1`));
   if (stepNotice === n) { const p = stepProblem(n); if (p) showProblem(p); }
   stepNotice = 0;
@@ -2375,7 +2546,7 @@ $('#f-kit').addEventListener('submit', e => {
   const p = acct.profile, old = JSON.stringify(p);
   Object.assign(p, {first:$('#k-first').value.trim(), agency:$('#k-agency').value.trim(), phone:$('#k-phone').value.trim(), email:em, logo:kitLogo, logoDark:kitLogoDark, auto:$('#k-auto').checked});
   if (!saveAcct()) { acct.profile = JSON.parse(old); return toast('Stockage du navigateur plein : profil non enregistré.'); }
-  toast(p.auto ? "Profil enregistré : il pré-remplira l'étape « Le style » de l'assistant." : 'Profil enregistré.');
+  toast(p.auto ? "Profil enregistré : il pré-remplira l'étape « Montage » de l'assistant." : 'Profil enregistré.');
 });
 function renderPlanCard(){
   const s = acct.sub, n = creditsAvail(), ex = nextExpiry(), rs = reserved();
