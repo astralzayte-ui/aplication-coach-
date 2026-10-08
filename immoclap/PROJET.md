@@ -82,6 +82,7 @@ Dernière mise à jour : 05/10/2026. À tenir à jour à chaque décision import
 ## Réseaux (06/10)
 - TikTok v44.5 : plus d'option gratuite « compte pro » ; lien cliquable = compte Entreprise vérifié (papiers) ou 1 000 abonnés. En attendant : lien en texte dans la bio. Dès réception de l'attestation/carte AE → l'envoyer à TikTok (certification entreprise).
 - Bios proposées : Insta « 🎬 Vos biens immobiliers en vidéo / 📸 Vos photos → une vidéo en quelques minutes / 🏠 Agences & propriétaires · France · Maroc / 👇 Ouverture très bientôt » (lien ?v=bio-insta) ; TikTok « 🎬 Vos photos de biens → une vidéo pro / 🏠 Agences FR · MA / 👇 Ouverture bientôt » (?v=bio-tiktok).
+- 08/10 : bios TikTok/Insta redirigées vers le WhatsApp du fondateur (au lieu du site). Avantage : contacts entrants = consentement pour WhatsApp plus tard. Suivi : utiliser un lien wa.me avec message pré-rempli par réseau (ex. « Bonjour, je viens de TikTok ») pour savoir d'où vient chaque contact.
 - Polar : compte créé le 06/10 (org ImmoClap, slug immoclap). Reste : créer les 5 produits en € (pas besoin du sandbox : test avec codes -100 % avant « go live »).
 - Lemon Squeezy : e-mail de contestation à envoyer (site pas fini au moment de la demande, nouvel examen dans quelques jours).
 - AE : 1er dossier AE-260626-721646 rejeté (prénom arabe coupé, adresse incomplète, activité 20015 vague) → refaire la demande (ou agence CIH).
