@@ -78,14 +78,14 @@ Dernière mise à jour : 08/10/2026. À tenir à jour à chaque décision import
 - Le 06/10 : étapes 1 à 7 seulement (le temps d'économiser). Fondateur : 1 auto-entrepreneur, 2 e-mail Lemon Squeezy, 3 compte Polar (sans Finance→Account), 4 produits sandbox + liens. Claude : 5 paiement test Polar, 6 vrais comptes clients, 7 génération Higgsfield branchée (sans générer de payant). Rappel programmé 06/10 09:00 UTC (trig_01KBT5rcABkf7toEUnTotNoZ).
 - Étapes 8 et suivantes (recharge Higgsfield, domaine, examen Polar, prospection, Metricool) : après.
 
-## Décisions du 08/10 (soir) — À DISCUTER AVANT DE CODER
+## Décisions du 08/10 (soir) — validées, à coder
 - Nouvel objectif : 3 000 € NETS par mois (dans la poche du fondateur), au lieu du million en 1 an.
-- À l'arrivée : 1) choix du pays (Maroc/France) puis 2) choix de la langue (arabe / français / anglais). Après le choix du pays, plus de bascule €/DH visible (le client ne voit pas l'autre prix). Gros chantier : traduire site + app en arabe (sens droite-gauche) et en anglais.
+- À l'arrivée : 1) choix du pays (Maroc/France) puis 2) choix de la langue (arabe / français / anglais). Après le choix du pays, plus de bascule €/DH visible (le client ne voit pas l'autre prix). Gros chantier : traduire site + app en arabe (sens droite-gauche) et en anglais — le fondateur dit « débrouille-toi, fais-le maintenant » (08/10). Bascule €/DH retirée ; seul un petit lien « changer de pays » en pied de page.
 - Le fondateur trouve la présentation de l'abonnement pas claire (« il m'apporte quoi ? ») → à refaire après décision sur l'offre (abonnements seuls / vidéos seules / mélange). Proposition de Claude : 3 offres (1 vidéo 19 € pour essayer + Solo 39 €/mois + Agence 99 €/mois), supprimer les packs 5 et 10.
 
 ## Prochaines étapes (ordre du fondateur, 08/10)
 1. Inscription auto-entrepreneur. 2. Ouvrir l'encaissement (Polar). 3. Prochaine dépense = test Higgsfield : photos de villa générées avec Gemini (prompts dans `tests-higgsfield/PROMPTS-VILLA.md`), puis ~7 vidéos : 3 photos × Kling 2.5 et Kling 3.0 (+1 à refaire) → choisir le modèle (qualité vs coût/marge).
-- Prix proposés le 08/10 (PAS encore validés) : 1 vidéo 15 € / 129 DH ; Solo 3 vidéos 29 €/mois / 249 DH (mis en avant « Recommandé ») ; Agence 10 vidéos 79 €/mois / 699 DH ; packs 5 et 10 supprimés.
+- ✅ Prix VALIDÉS le 08/10 : 1 vidéo 15 € / 129 DH ; Solo 3 vidéos 29 €/mois / 249 DH (mis en avant « Recommandé ») ; Agence 10 vidéos 79 €/mois / 699 DH ; packs 5 et 10 supprimés.
 
 ## 🔔 À RAPPELER À CHAQUE RÉPONSE (demandé le 08/10) — NE PAS COMMENCER SANS « GO »
 - Enrichir le « logiciel de montage » de l'app : bibliothèque de musiques (plusieurs morceaux par ambiance, écoute avant choix), plus d'options de montage (transitions, textes, styles, durée, ordre des plans…), pour rendre le produit attractif et en tirer des angles marketing. À proposer après la fin des points 1 à 4 ; rappeler au fondateur à chaque fin de réponse tant qu'il n'a pas dit « go ».
