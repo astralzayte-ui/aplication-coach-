@@ -205,6 +205,13 @@ LE MÊME dans toutes les vidéos (l'image de marque). 🔴 Jamais présenté
 comme le fondateur ni comme un client · 🔴 étiquette « contenu IA » mise
 automatiquement par Claude via Metricool. Pas de Cowork (décidé le 05/10).
 
+**08/10 — Brevo (e-mails) :** compte créé, plan GRATUIT (300/jour),
+nom du compte « immoclap » (expéditeur à mettre : SILENCE). Clé rangée
+par lui dans les identifiants de l'environnement → visible seulement à
+la PROCHAINE session (BREVO_API_KEY). À faire alors : vérifier l'accès,
+brancher popup → e-mail de bienvenue + J+10 + J+90. Téléphone à vérifier
+dans Brevo avant le 1er envoi.
+
 **Décidé le 08/10 — le plan pub :** au LANCEMENT seulement (pas avant),
 vague 1 = 80 % de formats copiés sur les concurrents qui marchent + 20 %
 de nos idées · Gemini regarde les vidéos tout seul (testé, 0 €) · s'il
