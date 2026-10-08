@@ -2153,6 +2153,642 @@ $$('.play').forEach(b => {
 });
 function labelPlays(){ const lang = draft ? draft.f.lang : 'Français'; $$('.play').forEach(b => b.setAttribute('aria-label', `Écouter un extrait de la voix ${b.dataset.v === 'f' ? 'féminine' : 'masculine'} en ${lang.toLowerCase()}`)); }
 
+/* ================= STUDIO DE MONTAGE (étape 3) =================
+   Réglages enregistrés dans draft.f ; réglages par plan (mouvement, durée, exclusion) sur chaque photo
+   de draft.photos (l'ordre des plans = l'ordre des photos, aucune image dupliquée).
+   L'aperçu est une simulation dans le navigateur : la vraie vidéo est générée côté serveur. */
+const AMB = [{id:'elegante', l:'Élégante'}, {id:'dynamique', l:'Dynamique'}, {id:'chaleureuse', l:'Chaleureuse'}, {id:'orientale', l:'Orientale moderne'}];
+const ambId = label => (AMB.find(a => a.l === label) || {}).id || '';
+const CAMS = {auto:'Auto (recommandé)', avancee:'Avancée', recul:'Recul', 'pan-g':'Panoramique gauche', 'pan-d':'Panoramique droite', travelling:'Travelling', orbite:'Orbite douce', fixe:'Fixe'};
+const CAM_AUTO_CYCLE = ['pan-d', 'avancee', 'travelling', 'recul', 'pan-g', 'orbite'];
+const CAM_SHORT = {avancee:'Avancée', recul:'Recul', 'pan-g':'Pano. gauche', 'pan-d':'Pano. droite', travelling:'Travelling', orbite:'Orbite', fixe:'Fixe', tilt:'Panoramique vertical'};
+const LENS = {court:{l:'Court', s:3}, normal:{l:'Normal', s:5}, long:{l:'Long', s:7}};
+const TRANS = {coupe:{l:'Coupe franche', T:0}, fondu:{l:'Fondu', T:.8}, noir:{l:'Fondu noir', T:1}, glisse:{l:'Glissé', T:.6}};
+const TITLES = {serif:'Élégant serif', sans:'Moderne sans-serif', minimal:'Minimal'};
+const BADGES = {'':'Aucune', nouveaute:'Nouveauté', exclu:'Exclusivité', baisse:'Prix en baisse', vendu:'Vendu', loue:'Loué', alouer:'À louer', visite:'Visite libre'};
+const BADGE_L = {
+  'Français':{nouveaute:'Nouveauté', exclu:'Exclusivité', baisse:'Prix en baisse', vendu:'Vendu', loue:'Loué', alouer:'À louer', visite:'Visite libre'},
+  'Anglais':{nouveaute:'New listing', exclu:'Exclusive', baisse:'Price reduced', vendu:'Sold', loue:'Let', alouer:'For rent', visite:'Open house'},
+  'Arabe':{nouveaute:'جديد', exclu:'حصري', baisse:'تخفيض في السعر', vendu:'تم البيع', loue:'تم الإيجار', alouer:'للإيجار', visite:'زيارة مفتوحة'}
+};
+const SUBST = {bande:'bandeau sombre', ombre:'texte ombré', accent:'couleur de la marque'};
+const LOGOPOS = {none:'aucun', tr:'coin haut droit', br:'coin bas droit', bl:'coin bas gauche'};
+const PALETTE = [['#F6BC28','Doré'], ['#E5C99E','Sable'], ['#F3EFE7','Crème'], ['#E07A5F','Terracotta'], ['#8FB996','Sauge'], ['#7FB2E5','Bleu ciel'], ['#C9A0DC','Lavande'], ['#EF6461','Corail']];
+/* phrase réellement dite dans les extraits de voix (assets/voix) : sous-titres de l'aperçu */
+const SUB_TXT = {'Français':'Bienvenue dans ce bien, lumineux et calme.', 'Anglais':'Welcome to this home, bright and peaceful.', 'Arabe':'مرحبا بكم في هذا العقار، المشرق والهادئ.'};
+const VOICE_DUR = {fr:{f:6.2, m:6.2}, en:{f:3.9, m:3.5}, ar:{f:4.2, m:3.7}};
+const END_D = 4;
+const STUDIO_DEF = {preset:'recommande', track:'', vol:70, duck:true, mstart:'debut', trans:'fondu', beat:false, lenMode:'global', glen:'normal', cam:'auto',
+  title:'serif', badge:'', subs:false, subStyle:'bande', logoPos:'br', accent:'#F6BC28', endEmail:'', agentName:'', agentPhoto:null};
+const PRESETS = {
+  recommande:{l:'Recommandé', music:'Élégante', vol:70, trans:'fondu', beat:false, glen:'normal', cam:'auto', title:'serif', badge:'', subs:false},
+  luxe:{l:'Luxe', music:'Élégante', vol:65, trans:'fondu', beat:false, glen:'long', cam:'avancee', title:'serif', badge:'', subs:false},
+  reseaux:{l:'Réseaux sociaux', music:'Dynamique', vol:80, trans:'coupe', beat:true, glen:'court', cam:'auto', title:'sans', badge:'', subs:true, fmt:'9:16'},
+  saison:{l:'Location saisonnière', music:'Chaleureuse', vol:70, trans:'glisse', beat:false, glen:'normal', cam:'auto', title:'minimal', badge:'alouer', subs:false},
+};
+const RM = matchMedia('(prefers-reduced-motion: reduce)');
+function ensureStudio(f){
+  for (const k in STUDIO_DEF) if (f[k] === undefined) f[k] = STUDIO_DEF[k];
+  if (!['Élégante','Dynamique','Chaleureuse','Orientale moderne','Aucune'].includes(f.music)) f.music = 'Élégante';
+  if (!TRANS[f.trans]) f.trans = 'fondu';
+  if (!LENS[f.glen]) f.glen = 'normal';
+  if (!CAMS[f.cam]) f.cam = 'auto';
+  if (!TITLES[f.title]) f.title = 'serif';
+  if (!(f.badge in BADGES)) f.badge = '';
+  if (!SUBST[f.subStyle]) f.subStyle = 'bande';
+  if (!LOGOPOS[f.logoPos]) f.logoPos = 'br';
+  f.accent = normHex(f.accent) || '#F6BC28';
+  f.vol = Math.max(0, Math.min(100, Math.round(+f.vol || 0)));
+  return f;
+}
+
+/* ---------- couleurs : contraste vérifié ---------- */
+function normHex(v){ let h = String(v || '').trim().replace(/^#/, ''); if (/^[0-9a-f]{3}$/i.test(h)) h = h.split('').map(c => c + c).join(''); return /^[0-9a-f]{6}$/i.test(h) ? '#' + h.toUpperCase() : ''; }
+const hexRgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+const relLum = h => { const a = hexRgb(h).map(v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }); return .2126 * a[0] + .7152 * a[1] + .0722 * a[2]; };
+const contrast = (a, b) => { const x = relLum(a), y = relLum(b); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); };
+const mixHex = (a, b, w) => '#' + hexRgb(a).map((v, i) => Math.round(v * (1 - w) + hexRgb(b)[i] * w).toString(16).padStart(2, '0')).join('').toUpperCase();
+const VIDEO_DARK = '#141210'; /* fond sombre sous les textes de la vidéo (dégradé du titre, carton de fin) */
+function accentInfo(hex){
+  hex = normHex(hex) || '#F6BC28';
+  const inks = ['#16120A', '#000000', '#FFFFFF'], ink = inks.reduce((a, b) => contrast(hex, b) > contrast(hex, a) ? b : a);
+  let txt = hex, w = 0;
+  while (contrast(txt, VIDEO_DARK) < 4.5 && w < 1) { w = Math.min(1, w + .08); txt = mixHex(hex, '#FFFFFF', w); }
+  return {acc:hex, ink, txt, badgeC:contrast(hex, ink), txtC:contrast(txt, VIDEO_DARK), lifted:w > 0};
+}
+const accentVars = hex => { const a = accentInfo(hex); return `--acc:${a.acc};--acc-t:${a.txt};--acc-ink:${a.ink}`; };
+const ratio = x => (Math.floor(x * 10) / 10).toLocaleString('fr-FR') + ':1';
+
+/* ---------- bibliothèque musicale (assets/musique/pistes.json, facultatif) ---------- */
+let TRACKS = [];
+const mp3OK = !!new Audio().canPlayType('audio/mpeg'), oggAny = !!new Audio().canPlayType('audio/ogg');
+async function loadTracks(){
+  try {
+    const r = await fetch('assets/musique/pistes.json', {cache:'no-cache'});
+    if (!r.ok) throw new Error('http');
+    const j = await r.json();
+    const okPath = s => typeof s === 'string' && /^assets\/musique\/[\w.-]+\.(mp3|ogg)$/i.test(s);
+    TRACKS = (Array.isArray(j) ? j : []).filter(t => t && typeof t.id === 'string' && /^[\w-]{1,60}$/.test(t.id) && AMB.some(a => a.id === t.ambiance) && (okPath(t.mp3) || okPath(t.ogg)))
+      .map(t => ({id:t.id, titre:String(t.titre || t.id).slice(0, 80), ambiance:t.ambiance, duree:+t.duree_s > 0 ? +t.duree_s : 0, bpm:+t.bpm >= 40 && +t.bpm <= 220 ? +t.bpm : 0,
+        mp3:okPath(t.mp3) ? t.mp3 : '', ogg:okPath(t.ogg) ? t.ogg : '', source:String(t.source || '').slice(0, 120), licence:String(t.licence || '').slice(0, 160), refrain:+t.refrain_s > 0 ? +t.refrain_s : 0}))
+      .filter(t => (t.mp3 && mp3OK) || (t.ogg && oggAny));
+  } catch(e) { TRACKS = []; }
+  if (draft && curStep() === 3) renderStudio();
+  MT.refresh();
+}
+const trackUrl = t => t.mp3 && mp3OK ? t.mp3 : t.ogg;
+const tracksOf = label => TRACKS.filter(t => t.ambiance === ambId(label));
+function trackOf(f){
+  if (!f || f.music === 'Aucune') return null;
+  const list = tracksOf(f.music);
+  return list.find(t => t.id === f.track) || list[0] || null;
+}
+const fmtT = s => { s = Math.max(0, Math.round(s)); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; };
+const fmtS = s => `${(Math.round(s * 10) / 10).toLocaleString('fr-FR')} s`;
+/* départ « refrain » : valeur du fichier si fournie, sinon début de la 9e mesure (32 temps), calé pour finir avant la fin du morceau */
+function musicStart(f, track, total){
+  if (!track || f.mstart !== 'refrain') return 0;
+  let s = track.refrain || (track.bpm ? 32 * 60 / track.bpm : 0);
+  if (track.duree && s + total > track.duree) s = Math.max(0, track.duree - total);
+  return s;
+}
+const refrainOK = t => !!(t && (t.refrain || t.bpm));
+
+/* ---------- le montage : durées, mouvements, transitions ---------- */
+const includedOf = photos => photos.filter(p => !p.off);
+const coverOf = photos => { const p = photos.find(x => !x.off) || photos[0]; return p ? p.src : null; };
+function camOf(p, f, i){
+  const c = p.cam || f.cam || 'auto';
+  if (c !== 'auto') return c;
+  if (p.pt || (p.h && p.w && p.h > p.w * 1.05)) return 'tilt';
+  return i === 0 ? 'avancee' : CAM_AUTO_CYCLE[(i - 1) % CAM_AUTO_CYCLE.length];
+}
+const lenOf = (p, f) => f.lenMode === 'plan' ? (LENS[p.len] ? p.len : f.glen) : f.glen;
+function buildPlan(f, photos){
+  const track = trackOf(f), beat = f.beat && track && track.bpm ? 60 / track.bpm : 0;
+  const snap = d => beat ? Math.max(2, Math.round(d / beat)) * beat : d;
+  let t = 0;
+  const shots = includedOf(photos).map((p, i) => {
+    const d = snap(LENS[lenOf(p, f)].s), s = {p, src:p.src, key:p.key, cam:camOf(p, f, i), d, t0:t};
+    t += d; return s;
+  });
+  const endD = snap(END_D);
+  return {shots, endT0:t, total:t + endD, track, beat, T:RM.matches ? 0 : TRANS[f.trans].T, trans:RM.matches ? 'coupe' : f.trans};
+}
+/* mouvement de caméra simulé (zoom/translation de la photo, en % de la taille de l'image) */
+function camAt(cam, u){
+  switch (cam) {
+    case 'avancee': return [1.02 + .16 * u, 0, 0, 0];
+    case 'recul': return [1.18 - .16 * u, 0, 0, 0];
+    case 'pan-g': return [1.16, -5 + 10 * u, 0, 0];
+    case 'pan-d': return [1.16, 5 - 10 * u, 0, 0];
+    case 'travelling': return [1.14 + .05 * u, 4 - 8 * u, 1 - 2 * u, 0];
+    case 'orbite': return [1.22, -4 + 8 * u, 0, 1.6 - 3.2 * u];
+    case 'tilt': return [1.16, 0, 5 - 10 * u, 0];
+    default: return [1.03, 0, 0, 0];
+  }
+}
+const ease = u => .5 - Math.cos(Math.PI * Math.max(0, Math.min(1, u))) / 2;
+
+/* ---------- habillage (titre, pastille, carton de fin) : aperçus fixes et lecteur ---------- */
+function titleParts(f, ghost){
+  const L = L10N[f.lang] || L10N['Français'];
+  const place = [String(f.area || '').trim(), String(f.city || '').trim()].filter(Boolean).join(', ');
+  const surf = String(f.surface || '').trim(), beds = String(f.beds || '').trim(), price = String(f.price || '').trim();
+  const meta = [f.showPrice !== false && price ? price : '', surf ? `${surf.replace('.', ',')} m²` : '', beds && f.type !== 'Terrain' ? L.bed(+beds) : ''].filter(Boolean).join(' · ');
+  const kick = f.type ? esc(L.type[f.type] || f.type) : ghost ? `<span class="ghost">${esc(L.ptype)}</span>` : '';
+  return {kick:[kick, esc(L.deal[f.deal] || f.deal || '')].filter(Boolean).join(' · '), place:place ? esc(place) : ghost ? `<span class="ghost">${esc(L.city)}</span>` : '', meta:esc(meta), rtl:f.lang === 'Arabe'};
+}
+function titleHTML(f, ghost){
+  const t = titleParts(f, ghost), st = TITLES[f.title] ? f.title : 'serif';
+  return `<div class="tsh"></div><div class="tw"${t.rtl ? ' dir="rtl"' : ''}>${st !== 'minimal' ? `<span class="kick">${t.kick}</span>` : ''}<span class="ttl">${t.place}</span><span class="rule"></span>${t.meta ? `<span class="meta">${t.meta}</span>` : ''}</div>`;
+}
+const titleClass = f => 'mt-ttl ts-' + (f.title === 'sans' ? 'sans' : f.title === 'minimal' ? 'min' : 'serif');
+const badgeText = f => f.badge ? (BADGE_L[f.lang] || BADGE_L['Français'])[f.badge] || '' : '';
+function endInner(f, logo, ap, ghost){
+  const L = L10N[f.lang] || L10N['Français'];
+  const ag = String(f.agency || '').trim(), ph = String(f.phone || '').trim(), an = String(f.agentName || '').trim(), em = String(f.endEmail || '').trim();
+  const lg = logo ? `<span class="lgw${f.logoDark ? ' plate' : ''}"><img class="lg" src="${logo}" alt=""></span>` : '';
+  const apI = ap ? `<img class="ap" src="${ap}" alt="">` : '';
+  return `<div class="mt-endc"${f.lang === 'Arabe' ? ' dir="rtl"' : ''}><span class="by">${esc(L.by)}</span>
+    ${lg || apI ? `<span class="lgrow">${lg}${apI}</span>` : ''}
+    ${ag ? `<span class="ag">${esc(ag)}</span>` : ghost ? `<span class="ag ghost">${esc(L.agency)}</span>` : ''}
+    ${an ? `<span class="an">${esc(an)}</span>` : ''}<span class="rule"></span>
+    ${ph ? `<span class="ph">${esc(ph)}</span>` : ghost ? `<span class="ph ghost">${esc(L.phone)}</span>` : ''}
+    ${em ? `<span class="em">${esc(em)}</span>` : ''}</div>`;
+}
+
+/* ---------- lecteur de l'aperçu ---------- */
+const MT = {
+  src:null, c:null, plan:null, t:0, playing:false, raf:0, last:0, muted:false, vfmt:'16:9', fmt:'16:9',
+  layers:[], byKey:new Map(), sig:'', endEl:null, state:[], shotIdx:-2, lastSec:-1, nextSync:0,
+  music:new Audio(), voice:new Audio(), ac:null, gain:null, acFail:false, gv:0, trackId:'', voiceUrl:'',
+  vStart:0, vEnd:0, titleEnd:0, blocked:false,
+  el:$('#mt-player'), stage:$('#mt-stage'), box:$('#mt-layers'), black:$('#mt-black'), ttl:$('#mt-ttl'), badge:$('#mt-badge'), bug:$('#mt-bug'), sub:$('#mt-sub'),
+  ctx(){ return this.src ? this.src() : null; },
+  mount(host){ if (this.el.parentNode !== host) { this.pause(); host.appendChild(this.el); } },
+  visible(){ return this.el.isConnected && this.el.getClientRects().length > 0; },
+  refresh(hint){
+    const c = this.ctx(); this.c = c;
+    if (!c) return;
+    const f = c.f, P = this.plan = buildPlan(f, c.photos);
+    /* format */
+    const fs = c.formats && c.formats.length ? c.formats : FMT_ORDER;
+    let fmt = c.fmt(); if (!fs.includes(fmt)) fmt = fs[0];
+    this.fmt = fmt;
+    $('#mt-fmts').innerHTML = fs.map(x => `<button type="button" data-mtf="${x}" aria-pressed="${x === fmt}">${x}</button>`).join('');
+    this.stage.className = 'mt-stage' + (FMT[fmt].cls ? ' ' + FMT[fmt].cls : '');
+    this.stage.style.cssText = accentVars(f.accent);
+    /* plans : une couche par photo (réutilisée), puis le carton de fin */
+    const sig = P.shots.map(s => s.key + ':' + s.src.length).join('|');
+    if (sig !== this.sig) {
+      this.sig = sig;
+      const keep = new Map();
+      this.layers = P.shots.map(s => {
+        let el = this.byKey.get(s.key);
+        if (!el || el._src !== s.src) { el = document.createElement('div'); el.className = 'mt-layer'; el.innerHTML = `<img src="${s.src}" alt="" decoding="async">`; el._src = s.src; }
+        keep.set(s.key, el); return el;
+      });
+      this.byKey = keep;
+      if (!this.endEl) { this.endEl = document.createElement('div'); this.endEl.className = 'mt-layer mt-endl'; }
+      this.box.replaceChildren(...this.layers, this.endEl);
+      this.state = [];
+    }
+    /* textes */
+    this.endEl.innerHTML = endInner(f, c.logo, c.agentPhoto, c.editable);
+    this.ttl.className = titleClass(f); this.ttl.innerHTML = titleHTML(f, c.editable);
+    const bt = badgeText(f); this.badge.hidden = !bt; this.badge.textContent = bt; if (f.lang === 'Arabe') this.badge.dir = 'rtl'; else this.badge.removeAttribute('dir');
+    const showBug = !!c.logo && f.logoPos !== 'none';
+    this.bug.hidden = !showBug;
+    if (showBug) { this.bug.className = `mt-bug ${f.logoPos}${f.logoDark ? ' plate' : ''}`; if (this.bug._src !== c.logo) { this.bug.innerHTML = `<img src="${c.logo}" alt="">`; this.bug._src = c.logo; } }
+    this.sub.className = 'mt-sub ss-' + f.subStyle; this.sub.firstChild.textContent = SUB_TXT[f.lang] || SUB_TXT['Français'];
+    if (f.lang === 'Arabe') this.sub.dir = 'rtl'; else this.sub.removeAttribute('dir');
+    /* temps forts : titre sur le premier plan, puis la voix off (et ses sous-titres) */
+    const d0 = P.shots[0] ? P.shots[0].d : 0;
+    this.titleEnd = Math.max(1.6, Math.min(4.6, d0 - P.T / 2 - .15));
+    const code = LANG_CODE[f.lang] || 'fr', vk = f.voice === 'Voix masculine' ? 'm' : 'f';
+    const vOn = f.voice !== 'Aucune';
+    const vurl = vOn ? `assets/voix/${code}-${vk}.${oggOK ? 'ogg' : 'mp3'}` : '';
+    if (vurl !== this.voiceUrl) { this.voiceUrl = vurl; this.voice.pause(); if (vurl) { this.voice.src = vurl; this.voice.preload = 'auto'; } else this.voice.removeAttribute('src'); }
+    const vd = isFinite(this.voice.duration) && this.voice.duration > 0 ? this.voice.duration : (VOICE_DUR[code] || VOICE_DUR.fr)[vk];
+    this.vStart = vOn ? Math.min(this.titleEnd + .3, Math.max(0, P.endT0 - vd)) : -1; this.vEnd = vOn ? this.vStart + vd : -1;
+    /* musique */
+    const tid = P.track ? P.track.id : '';
+    if (tid !== this.trackId) {
+      this.trackId = tid; this.music.pause();
+      if (tid) { this.music.src = trackUrl(P.track); this.music.preload = 'auto'; this.music.loop = true; } else this.music.removeAttribute('src');
+      this.nextSync = 0;
+    }
+    this.mStart = musicStart(f, P.track, P.total);
+    /* état vide, mouvement réduit */
+    const empty = !P.shots.length;
+    $('#mt-empty').hidden = !empty; $('#mt-empty').textContent = empty ? 'Ajoutez des photos à l\'étape 1 pour voir le montage.' : '';
+    $('#mt-big').hidden = empty || this.playing;
+    $('#mt-rm').hidden = !RM.matches;
+    $('#mt-seek').max = String(Math.max(.1, Math.round(P.total * 100) / 100));
+    if (this.t > P.total) this.t = P.total;
+    if (!this.playing && hint) {
+      if (hint === 'title') this.t = Math.min(1.4, P.total);
+      else if (hint === 'end') this.t = Math.min(P.total, P.endT0 + Math.min(1.2, (P.total - P.endT0) / 2));
+      else if (hint === 'voice' && this.vStart >= 0) this.t = this.vStart + .6;
+      else if (typeof hint === 'number' && P.shots[hint]) this.t = P.shots[hint].t0 + Math.min(1, P.shots[hint].d / 2);
+    }
+    this.state = [];
+    this.draw(this.t);
+    if (this.playing) this.syncAudio(true);
+  },
+  draw(t){
+    const P = this.plan; if (!P) return;
+    const n = P.shots.length, T = P.T, half = T / 2, L = this.layers.concat(this.endEl ? [this.endEl] : []);
+    const B = k => k < n ? P.shots[k].t0 : P.endT0;
+    let c = n; for (let k = 0; k < n; k++) if (t < B(k + 1)) { c = k; break; }
+    let out = -1, inn = -1, q = 0;
+    if (T > 0 && n) {
+      if (c > 0 && t - B(c) < half) { out = c - 1; inn = c; q = (t - B(c) + half) / T; }
+      else if (c < n && B(c + 1) - t < half) { out = c; inn = c + 1; q = (t - B(c + 1) + half) / T; }
+    }
+    let black = 0;
+    const st = L.map(() => null);
+    if (out < 0) st[c] = {o:1, x:0};
+    else if (P.trans === 'fondu') { st[out] = {o:1, x:0}; st[inn] = {o:q, x:0}; }
+    else if (P.trans === 'noir') { if (q < .5) { st[out] = {o:1, x:0}; black = q * 2; } else { st[inn] = {o:1, x:0}; black = (1 - q) * 2; } }
+    else if (P.trans === 'glisse') { const e = ease(q); st[out] = {o:1, x:-e * 100}; st[inn] = {o:1, x:(1 - e) * 100}; }
+    else st[t < B(inn) ? out : inn] = {o:1, x:0};
+    L.forEach((el, k) => {
+      const s = st[k], prev = this.state[k];
+      if (!s) { if (prev !== 'off') { el.style.visibility = 'hidden'; el.style.willChange = 'auto'; this.state[k] = 'off'; } return; }
+      el.style.visibility = 'visible'; el.style.opacity = s.o; el.style.transform = s.x ? `translate3d(${s.x}%,0,0)` : '';
+      if (prev !== 'on') { el.style.willChange = 'opacity,transform'; this.state[k] = 'on'; }
+      if (k < n) {
+        const sh = P.shots[k], u = RM.matches ? 0 : (t - (sh.t0 - half)) / (sh.d + T);
+        const m = RM.matches ? [1, 0, 0, 0] : camAt(sh.cam, ease(u));
+        el.firstChild.style.transform = `scale(${m[0].toFixed(4)}) translate(${m[1].toFixed(3)}%,${m[2].toFixed(3)}%)${m[3] ? ` rotate(${m[3].toFixed(3)}deg)` : ''}`;
+      }
+    });
+    this.black.style.opacity = black;
+    /* titre d'ouverture, pastille, logo, sous-titres */
+    const fade = (a, b, x, r = .35) => x < a || x > b ? 0 : Math.min(1, (x - a) / r, (b - x) / r);
+    const ta = n ? fade(.3, this.titleEnd, t) : 0;
+    this.ttl.style.opacity = ta; this.ttl.style.transform = RM.matches || ta >= 1 ? '' : `translateY(${((1 - ta) * 1.5).toFixed(2)}cqw)`;
+    const shotsEnd = P.endT0 - half;
+    if (!this.badge.hidden) this.badge.style.opacity = n ? fade(.3, shotsEnd, t, .3) : 0;
+    if (!this.bug.hidden) this.bug.style.opacity = n ? fade(0, shotsEnd, t, .3) * .95 : 0;
+    const f = this.c.f, subOn = f.subs && this.vStart >= 0;
+    this.sub.style.opacity = subOn ? fade(this.vStart, this.vEnd, t, .15) : 0;
+    /* barre de temps */
+    $('#mt-seek').value = String(Math.round(t * 100) / 100);
+    const sec = Math.floor(t);
+    if (sec !== this.lastSec || this.shotIdx !== c) {
+      this.lastSec = sec;
+      $('#mt-time').textContent = `${fmtT(t)} / ${fmtT(P.total)}`;
+      $('#mt-seek').setAttribute('aria-valuetext', `${fmtT(t)} sur ${fmtT(P.total)}`);
+    }
+    if (this.shotIdx !== c) {
+      this.shotIdx = c;
+      $('#mt-now').textContent = !n ? '' : c >= n ? 'Carton de fin' : `Plan ${c + 1} sur ${n} · ${RM.matches ? 'image fixe' : CAM_SHORT[P.shots[c].cam] || ''} · ${fmtS(P.shots[c].d)}`;
+      $$('#mt-strip .mt-card').forEach(card => card.classList.toggle('now', +card.dataset.k === c && this.playing));
+    }
+  },
+  loop(now){
+    const M = MT;
+    if (!M.playing) return;
+    const dt = Math.min(.1, (now - M.last) / 1000); M.last = now;
+    M.t += dt;
+    if (M.t >= M.plan.total) { M.t = M.plan.total; M.draw(M.t); M.pause(true); return; }
+    M.draw(M.t); M.syncAudio(false);
+    M.raf = requestAnimationFrame(M.loop);
+  },
+  play(){
+    if (!this.plan || !this.plan.shots.length) return;
+    hush('player');
+    if (this.t >= this.plan.total - .05) this.t = 0;
+    this.playing = true; this.last = performance.now(); this.blocked = false;
+    this.graph();
+    this.syncAudio(true);
+    this.ui();
+    cancelAnimationFrame(this.raf); this.raf = requestAnimationFrame(this.loop);
+  },
+  pause(ended){
+    if (!this.playing && this.music.paused && this.voice.paused) return;
+    this.playing = false; cancelAnimationFrame(this.raf);
+    try { this.music.pause(); this.voice.pause(); } catch(e) {}
+    this.ui();
+    $$('#mt-strip .mt-card.now').forEach(c => c.classList.remove('now'));
+    if (ended === true) $('#mt-now').textContent = 'Fin de l\'aperçu · « Recommencer » pour le revoir';
+  },
+  seek(t){ this.t = Math.max(0, Math.min(this.plan ? this.plan.total : 0, t)); this.draw(this.t); if (this.playing) this.syncAudio(true); },
+  ui(){
+    const p = this.playing;
+    $('#mt-play').setAttribute('aria-label', p ? 'Mettre l\'aperçu en pause' : 'Lire l\'aperçu du montage');
+    $('#mt-play .i-play').style.display = p ? 'none' : ''; $('#mt-play .i-pause').style.display = p ? '' : 'none';
+    $('#mt-big').hidden = p || !this.plan || !this.plan.shots.length;
+  },
+  /* volume par Web Audio (le volume d'un élément audio est ignoré sur iPhone) */
+  graph(){
+    if (this.ac || this.acFail) { if (this.ac && this.ac.state === 'suspended') this.ac.resume().catch(() => {}); return; }
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) { this.acFail = true; return; }
+    try {
+      this.ac = new AC();
+      const s = this.ac.createMediaElementSource(this.music);
+      this.gain = this.ac.createGain(); this.gain.gain.value = 0;
+      s.connect(this.gain); this.gain.connect(this.ac.destination);
+      if (this.ac.state === 'suspended') this.ac.resume().catch(() => {});
+    } catch(e) { this.acFail = true; this.ac = null; this.gain = null; }
+  },
+  setGain(v){ v = Math.max(0, Math.min(1, v)); if (this.gain) this.gain.gain.value = v; else this.music.volume = v; },
+  syncAudio(force){
+    const P = this.plan, f = this.c && this.c.f; if (!P || !f) return;
+    const t = this.t, now = performance.now();
+    /* musique : position = début choisi + temps de l'aperçu (en boucle si le morceau est court) */
+    if (P.track && this.playing) {
+      const dur = isFinite(this.music.duration) && this.music.duration > 0 ? this.music.duration : P.track.duree || 0;
+      let want = this.mStart + t; if (dur) want %= dur;
+      if (force || this.music.paused || (now > this.nextSync && this.music.readyState >= 2 && Math.abs(this.music.currentTime - want) > .35)) {
+        try { this.music.currentTime = want; } catch(e) {}
+        this.nextSync = now + 1000;
+      }
+      if (this.music.paused && !this.blocked) { const pr = this.music.play(); if (pr && pr.catch) pr.catch(() => { if (this.playing && !this.blocked) { this.blocked = true; toast('Le navigateur a bloqué le son de l\'aperçu : touchez « Lecture » pour l\'activer.'); } }); }
+    } else if (!this.music.paused) this.music.pause();
+    /* voix off : l'extrait choisi, posé après le titre */
+    const inV = this.vStart >= 0 && t >= this.vStart && t < this.vEnd - .05;
+    if (this.playing && inV) {
+      if (this.voice.paused) { try { this.voice.currentTime = Math.max(0, t - this.vStart); } catch(e) {} const pr = this.voice.play(); if (pr && pr.catch) pr.catch(() => {}); }
+      else if (force) { try { this.voice.currentTime = Math.max(0, t - this.vStart); } catch(e) {} }
+    } else if (!this.voice.paused) this.voice.pause();
+    this.voice.muted = this.muted;
+    /* volume : réglage, baisse sous la voix, fondu de sortie */
+    let g = this.muted ? 0 : f.vol / 100;
+    if (f.duck !== false && this.vStart >= 0 && t > this.vStart - .4 && t < this.vEnd + .3) g *= .3;
+    if (t < .4) g *= t / .4;
+    if (t > P.total - 1.6) g *= Math.max(0, (P.total - t) / 1.6);
+    this.gv = force ? g : this.gv + (g - this.gv) * .18;
+    this.setGain(this.gv);
+  },
+};
+MT.music.preload = 'none'; MT.voice.preload = 'none';
+$('#mt-play').addEventListener('click', () => MT.playing ? MT.pause() : MT.play());
+$('#mt-big').addEventListener('click', () => { MT.play(); $('#mt-play').focus(); });
+$('#mt-restart').addEventListener('click', () => { MT.t = 0; MT.state = []; if (MT.playing) MT.seek(0); else MT.play(); });
+$('#mt-seek').addEventListener('input', e => MT.seek(parseFloat(e.target.value) || 0));
+$('#mt-mute').addEventListener('click', e => {
+  MT.muted = !MT.muted; const b = e.currentTarget;
+  b.setAttribute('aria-pressed', String(MT.muted)); b.setAttribute('aria-label', MT.muted ? 'Remettre le son de l\'aperçu' : 'Couper le son de l\'aperçu');
+  b.querySelector('.i-on').style.display = MT.muted ? 'none' : ''; b.querySelector('.i-off').style.display = MT.muted ? '' : 'none';
+  if (MT.playing) MT.syncAudio(true);
+});
+$('#mt-fmts').addEventListener('click', e => { const b = e.target.closest('[data-mtf]'); if (!b || !MT.c) return; MT.c.setFmt(b.dataset.mtf); MT.refresh(); });
+MT.voice.addEventListener('loadedmetadata', () => { if (MT.c) MT.refresh(); });
+RM.addEventListener && RM.addEventListener('change', () => MT.refresh());
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') { MT.pause(); stopLib(); } });
+const draftCtx = () => draft ? {f:draft.f, photos:draft.photos, logo:draft.f.logo, agentPhoto:draft.f.agentPhoto, formats:draft.f.formats, editable:true,
+  fmt:() => draft.f.preview || '16:9', setFmt:x => { draft.f.preview = x; saveDraftSoon(); renderPreviews(); }} : null;
+MT.src = draftCtx;
+
+/* un seul son à la fois : extrait de voix, écoute d'un morceau, aperçu */
+function hush(who){ if (who !== 'player') MT.pause(); if (who !== 'lib') stopLib(); if (who !== 'voice') stopVoice(); }
+
+/* écoute d'un morceau de la bibliothèque */
+const lib = new Audio(); lib.preload = 'none';
+let libBtn = null;
+function stopLib(){ try { lib.pause(); } catch(e) {} if (libBtn) { libBtn.setAttribute('aria-pressed', 'false'); libBtn.querySelector('span').textContent = 'Écouter'; libBtn = null; } }
+lib.addEventListener('ended', stopLib);
+lib.addEventListener('error', () => { if (libBtn) { toast("Ce morceau n'a pas pu être lu."); stopLib(); } });
+$('#m-tracks').addEventListener('click', e => {
+  const b = e.target.closest('[data-listen]'); if (!b) return;
+  if (libBtn === b) return stopLib();
+  hush('lib');
+  const t = TRACKS.find(x => x.id === b.dataset.listen); if (!t) return;
+  lib.src = trackUrl(t); lib.volume = Math.max(.15, (draft ? draft.f.vol : 70) / 100);
+  libBtn = b; b.setAttribute('aria-pressed', 'true'); b.querySelector('span').textContent = 'Pause';
+  const p = lib.play(); if (p && p.catch) p.catch(() => { if (libBtn === b) { toast('Lecture bloquée par le navigateur : réessayez.'); stopLib(); } });
+});
+
+/* ---------- interface du studio ---------- */
+function renderStudio(){
+  if (!draft) return;
+  ensureStudio(draft.f);
+  if (!$('#m-camall').options.length) $('#m-camall').innerHTML = Object.entries(CAMS).map(([k, l]) => `<option value="${k}">${l}</option>`).join('');
+  if (!$('#m-badges').children.length) $('#m-badges').innerHTML = Object.entries(BADGES).map(([k, l]) => `<label class="opt"><input type="radio" name="badge" value="${k}"><span>${l}</span></label>`).join('');
+  if (!$('#m-swatches').children.length) $('#m-swatches').innerHTML = PALETTE.map(([h, n]) => `<label class="mt-swatch" title="${n}"><input type="radio" name="accent" value="${h}" aria-label="${n} (${h})"><span style="background:${h}"></span></label>`).join('');
+  fillStudio(); renderTracks(); renderStrip(); renderStudioLive();
+}
+function fillStudio(){
+  const f = draft.f;
+  setRadio('mstart', f.mstart); setRadio('trans', f.trans); setRadio('glen', f.lenMode === 'plan' ? 'plan' : f.glen); setRadio('title', f.title);
+  setRadio('badge', f.badge); setRadio('substyle', f.subStyle); setRadio('logopos', f.logoPos); setRadio('accent', f.accent);
+  $('#m-vol').value = f.vol; $('#m-vol-v').textContent = f.vol + ' %';
+  $('#m-duck').checked = f.duck !== false; $('#m-beat').checked = !!f.beat; $('#m-subs').checked = !!f.subs;
+  $('#m-camall').value = f.cam;
+  if (document.activeElement !== $('#mt-hex')) { $('#mt-hex').value = f.accent; setFieldErr($('#mt-hex'), null, ''); }
+  ['agentName','endEmail'].forEach(k => { const el = $('#' + k); if (el.value !== (f[k] || '')) el.value = f[k] || ''; });
+  renderAgentPhoto();
+}
+function renderTracks(){
+  const f = draft.f, list = tracksOf(f.music), none = f.music === 'Aucune', tr = trackOf(f);
+  $('#m-more').hidden = none;
+  $('#m-lib').hidden = none || !list.length;
+  if (libBtn && !list.some(t => t.id === libBtn.dataset.listen)) stopLib();
+  $('#m-tracks').innerHTML = list.map(t => {
+    const meta = [t.duree ? fmtT(t.duree) : '', t.bpm ? `${Math.round(t.bpm)} BPM` : '', t.licence].filter(Boolean).map(esc).join(' · ');
+    const playing = libBtn && libBtn.dataset.listen === t.id;
+    return `<li class="mt-tr${tr && tr.id === t.id ? ' on' : ''}"><label><input type="radio" name="track" value="${esc(t.id)}"${tr && tr.id === t.id ? ' checked' : ''}><span class="tt"><b>${esc(t.titre)}</b>${meta ? `<small>${meta}</small>` : ''}</span></label>
+      <button type="button" class="mt-listen" data-listen="${esc(t.id)}" aria-pressed="${playing ? 'true' : 'false'}" aria-label="Écouter « ${esc(t.titre)} »"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg><span>${playing ? 'Pause' : 'Écouter'}</span></button></li>`;
+  }).join('');
+  if (libBtn) { const nb = $(`#m-tracks [data-listen="${CSS.escape(libBtn.dataset.listen)}"]`); if (nb) libBtn = nb; }
+  $('#m-lib-note').textContent = none ? '' : list.length ? (list.some(t => t.source) ? `Morceaux libres de droits pour vos vidéos. Source : ${[...new Set(list.map(t => t.source).filter(Boolean))].join(', ')}.` : 'Morceaux libres de droits pour vos vidéos.') : 'Le morceau est choisi pour vous dans cette ambiance : la bibliothèque à écouter arrive bientôt.';
+}
+function renderStrip(){
+  const f = draft.f, ph = draft.photos, P = buildPlan(f, ph), inc = includedOf(ph).length;
+  let k = -1;
+  const byKey = new Map(P.shots.map((s, i) => [s.key, {s, i}]));
+  $('#mt-strip').innerHTML = ph.map((p, i) => {
+    const sh = byKey.get(p.key), n = i + 1, on = !p.off; if (on) k++;
+    const cam = p.cam || f.cam;
+    return `<li class="mt-card${on ? '' : ' off'}" data-i="${i}" data-k="${on ? k : -1}" draggable="true" aria-label="Plan ${n}${on ? '' : ', exclu du montage'}">
+      <div class="th"><img src="${p.src}" alt=""><span class="n">${n}${i === ph.findIndex(x => !x.off) ? ' · titre' : ''}</span>${sh ? `<span class="d">${fmtS(sh.s.d)}</span>` : '<span class="x">Exclu</span>'}</div>
+      <div class="mt-cb">
+        <label class="sr" for="cam-${i}">Mouvement de caméra du plan ${n}</label>
+        <select id="cam-${i}" data-cam="${i}"${on ? '' : ' disabled'}>${Object.entries(CAMS).map(([v, l]) => `<option value="${v}"${v === cam ? ' selected' : ''}>${v === 'auto' && sh ? `Auto · ${CAM_SHORT[sh.s.cam]}` : l}</option>`).join('')}</select>
+        ${f.lenMode === 'plan' ? `<label class="sr" for="len-${i}">Durée du plan ${n}</label><select id="len-${i}" data-len="${i}"${on ? '' : ' disabled'}>${Object.entries(LENS).map(([v, o]) => `<option value="${v}"${v === lenOf(p, f) ? ' selected' : ''}>${o.l} · ${o.s} s</option>`).join('')}</select>` : ''}
+        <div class="row">
+          <button type="button" data-smv="${i}" data-d="-1" aria-label="Avancer le plan ${n} (plus tôt)"${i === 0 ? ' disabled' : ''}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button type="button" data-smv="${i}" data-d="1" aria-label="Reculer le plan ${n} (plus tard)"${i === ph.length - 1 ? ' disabled' : ''}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          <label class="mt-inc"><input type="checkbox" data-inc="${i}"${on ? ' checked' : ''}${on && inc <= CONFIG.minPhotos ? ' disabled' : ''}> Inclus<span class="sr"> : plan ${n}</span></label>
+        </div>
+      </div></li>`;
+  }).join('');
+}
+/* résumés, notes et état des préréglages (sans reconstruire les champs) */
+function renderStudioLive(hint){
+  if (!draft) return;
+  const f = draft.f, P = buildPlan(f, draft.photos), tr = P.track, n = P.shots.length, vOn = f.voice !== 'Aucune';
+  /* préréglages */
+  const pr = presetOf(f, draft.photos);
+  $$('#mt-pre [data-preset]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.preset === pr)));
+  $('#mt-pre-note').textContent = pr ? (pr === 'recommande' ? 'Réglages « Recommandé » : prêts à générer, vous pouvez continuer.' : `Préréglage « ${PRESETS[pr].l} » : modifiable ci-dessous.`) : 'Réglages personnalisés.';
+  /* musique */
+  $('#m-vol-v').textContent = f.vol + ' %';
+  $('#sum-music').textContent = f.music === 'Aucune' ? 'Aucune musique' : [f.music, tr ? `« ${tr.titre} »` : '', `${f.vol} %`].filter(Boolean).join(' · ');
+  $$('#m-tracks .mt-tr').forEach(li => li.classList.toggle('on', !!li.querySelector('input:checked')));
+  $('#m-duck').disabled = !vOn; $('#m-duck-l').classList.toggle('mt-dis', !vOn);
+  $('#m-duck-note').textContent = vOn ? 'La voix reste bien audible, la musique remonte ensuite.' : 'Sans voix off, la musique garde son volume.';
+  const rOK = refrainOK(tr), rIn = $('#s-new input[name=mstart][value=refrain]');
+  rIn.disabled = !rOK; rIn.closest('.opt').classList.toggle('mt-dis', !rOK);
+  if (!rOK && f.mstart === 'refrain') rIn.checked = false;
+  const rs = rOK ? musicStart(Object.assign({}, f, {mstart:'refrain'}), tr, P.total) : 0;
+  $('#m-refrain-l').textContent = rOK ? `${tr.refrain ? 'Refrain' : 'Au cœur du morceau'} (≈ ${Math.round(rs)} s)` : 'Refrain';
+  $('#m-start-note').textContent = rOK ? (tr.refrain ? '' : 'Calé sur le tempo du morceau (9e mesure).') : tr ? 'Indisponible pour ce morceau (tempo inconnu).' : 'Disponible quand un morceau à tempo connu est choisi.';
+  /* plans */
+  const bOK = !!(tr && tr.bpm);
+  $('#m-beat').disabled = !bOK; $('#m-beat-l').classList.toggle('mt-dis', !bOK);
+  $('#m-beat-note').textContent = bOK ? `${Math.round(tr.bpm)} BPM : chaque plan dure un nombre entier de temps, les coupes tombent sur la musique.` : f.music === 'Aucune' ? 'Choisissez une musique pour caler les plans.' : 'Indisponible : le tempo de ce morceau n\'est pas connu.';
+  $('#sum-plans').textContent = `${n} plan${n > 1 ? 's' : ''} · ${TRANS[f.trans].l} · ${fmtT(P.total)}`;
+  renderEstimate();
+  /* voix */
+  $('#m-subs').disabled = !vOn; $('#m-subs-l').classList.toggle('mt-dis', !vOn);
+  $('#m-subs-note').textContent = vOn ? 'Utiles sur les réseaux, où beaucoup de vidéos sont regardées sans le son.' : 'Choisissez une voix off pour ajouter des sous-titres.';
+  $('#m-substyle').disabled = !vOn || !f.subs; $('#m-substyle').classList.toggle('mt-dis', !vOn || !f.subs);
+  $('#sum-voice').textContent = vOn ? [f.voice, f.lang, f.subs ? 'sous-titres' : ''].filter(Boolean).join(' · ') : `Sans voix off · ${f.lang}`;
+  /* habillage */
+  const a = accentInfo(f.accent);
+  $('#mt-hex-sw').style.background = a.acc;
+  if (!$('#mt-hex').matches('[aria-invalid=true]')) $('#mt-hex-note').textContent = a.lifted
+    ? `Contraste vérifié : pastille ${ratio(a.badgeC)}. Couleur trop sombre pour les textes sur la vidéo : une version plus claire est utilisée pour eux (${ratio(a.txtC)}).`
+    : `Contraste vérifié : textes sur la vidéo ${ratio(a.txtC)}, pastille ${ratio(a.badgeC)} (minimum 4,5:1).`;
+  $('#m-logopos-note').textContent = f.logo ? (f.logoPos === 'none' ? 'Le logo reste sur le carton de fin.' : 'Discret, dans le coin choisi, pendant toute la vidéo ; il reste aussi sur le carton de fin.') : 'Ajoutez un logo (carton de fin et marque) pour l\'afficher pendant la vidéo.';
+  $('#sum-look').innerHTML = `<span class="mt-sw" style="background:${a.acc}"></span>${esc([TITLES[f.title], f.badge ? `« ${BADGES[f.badge]} »` : ''].filter(Boolean).join(' · '))}`;
+  /* marque, formats */
+  $('#sum-brand').textContent = [f.agency.trim(), f.phone.trim(), f.logo ? 'logo' : ''].filter(Boolean).join(' · ') || 'Carton de fin neutre';
+  $('#sum-fmt').textContent = f.formats.length ? f.formats.join(' · ') : 'Aucun format choisi';
+  if (MT.src === draftCtx) MT.refresh(hint);
+}
+function presetOf(f, photos){
+  return Object.keys(PRESETS).find(id => {
+    const p = PRESETS[id];
+    return f.music === p.music && f.trans === p.trans && !!f.beat === p.beat && f.title === p.title && f.badge === p.badge && !!f.subs === p.subs
+      && f.lenMode !== 'plan' && f.glen === p.glen && includedOf(photos).every(ph => (ph.cam || f.cam) === p.cam);
+  }) || '';
+}
+function applyPreset(id){
+  const p = PRESETS[id], f = draft.f; if (!p) return;
+  Object.assign(f, {music:p.music, track:'', vol:p.vol, trans:p.trans, beat:p.beat, lenMode:'global', glen:p.glen, cam:p.cam, title:p.title, badge:p.badge, subs:p.subs, preset:id});
+  if (p.subs && f.voice === 'Aucune') f.voice = 'Voix féminine';
+  draft.photos.forEach(ph => { delete ph.cam; delete ph.len; });
+  if (p.fmt) { if (!f.formats.includes(p.fmt)) f.formats = FMT_ORDER.filter(x => x === p.fmt || f.formats.includes(x)); f.preview = p.fmt; }
+}
+$('#mt-pre').addEventListener('click', e => {
+  const b = e.target.closest('[data-preset]'); if (!b || !draft) return;
+  applyPreset(b.dataset.preset);
+  fillForm(); renderStudio(); renderPreviews(); saveDraftSoon();
+  $('#err3').textContent = '';
+  toast(`Préréglage « ${PRESETS[b.dataset.preset].l} » appliqué : tout reste modifiable.`);
+});
+/* frise des plans */
+const strip = $('#mt-strip');
+strip.addEventListener('change', e => {
+  const t = e.target, f = draft && draft.f; if (!f) return;
+  if (t.dataset.cam !== undefined) { const p = draft.photos[+t.dataset.cam]; if (t.value === f.cam) delete p.cam; else p.cam = t.value; }
+  else if (t.dataset.len !== undefined) { draft.photos[+t.dataset.len].len = t.value; }
+  else if (t.dataset.inc !== undefined) {
+    const p = draft.photos[+t.dataset.inc];
+    if (!t.checked && includedOf(draft.photos).length <= CONFIG.minPhotos) { t.checked = true; toast(`Gardez au moins ${CONFIG.minPhotos} plans dans le montage.`); return; }
+    p.off = !t.checked; if (!p.off) delete p.off;
+  } else return;
+  saveDraftSoon();
+  const i = +(t.dataset.cam ?? t.dataset.len ?? t.dataset.inc), id = t.id;
+  renderStrip(); renderThumbs();
+  const k = includedOf(draft.photos).indexOf(draft.photos[i]);
+  renderStudioLive(k >= 0 ? k : undefined); renderPreviews();
+  const back = id ? $('#' + id) : $(`#mt-strip [data-inc="${i}"]`); back && back.focus();
+});
+strip.addEventListener('click', e => {
+  const m = e.target.closest('[data-smv]'); if (!m || !draft) return;
+  const i = +m.dataset.smv, j = i + +m.dataset.d;
+  movePhoto(i, j);
+  const b = $(`#mt-strip [data-smv="${j}"][data-d="${m.dataset.d}"]`) || $(`#mt-strip [data-smv="${j}"]`); b && b.focus();
+  toast(`Plan déplacé en position ${j + 1}.`);
+});
+let sDrag = null;
+strip.addEventListener('dragstart', e => { const c = e.target.closest('.mt-card'); if (!c || e.target.closest('select,button,input,label')) { e.preventDefault(); return; } sDrag = +c.dataset.i; c.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', String(sDrag)); } catch(_) {} });
+strip.addEventListener('dragover', e => { if (sDrag === null) return; e.preventDefault(); $$('#mt-strip .over').forEach(x => x.classList.remove('over')); const c = e.target.closest('.mt-card'); if (c) c.classList.add('over'); });
+strip.addEventListener('drop', e => { if (sDrag === null) return; e.preventDefault(); const c = e.target.closest('.mt-card'), to = c ? +c.dataset.i : draft.photos.length - 1, from = sDrag; sDrag = null; if (from !== to) { movePhoto(from, to); toast(`Plan déplacé en position ${to + 1}.`); } });
+strip.addEventListener('dragend', () => { sDrag = null; $$('#mt-strip .over,#mt-strip .dragging').forEach(x => x.classList.remove('over', 'dragging')); });
+$('#m-camall').addEventListener('change', e => {
+  if (!draft) return;
+  draft.f.cam = e.target.value; draft.photos.forEach(p => delete p.cam);
+  saveDraftSoon(); renderStrip(); renderStudioLive(0);
+  toast(`Mouvement « ${CAMS[e.target.value]} » appliqué à tous les plans.`);
+});
+/* couleur d'accent : code hexadécimal */
+$('#mt-hex').addEventListener('input', e => {
+  if (!draft) return;
+  const v = normHex(e.target.value), raw = e.target.value.trim();
+  if (!v) { if (raw.replace('#', '').length >= 6) { setFieldErr(e.target, null, 'x'); $('#mt-hex-note').textContent = 'Code couleur invalide : 6 caractères de 0 à 9 et de A à F (ex. : #F6BC28).'; } return; }
+  setFieldErr(e.target, null, '');
+  draft.f.accent = v; setRadio('accent', v); saveDraftSoon(); renderStudioLive('title'); renderPreviews();
+});
+$('#mt-hex').addEventListener('blur', e => { if (!draft) return; e.target.value = draft.f.accent; setFieldErr(e.target, null, ''); renderStudioLive(); });
+/* photo de l'agent (carton de fin) */
+function renderAgentPhoto(){ const s = draft && draft.f.agentPhoto; $('#ap-prev').innerHTML = s ? `<img src="${s}" alt="Photo de l'agent choisie">` : '<span>Aucune</span>'; $('#ap-rm').hidden = !s; }
+$('#ap-btn').addEventListener('click', () => $('#ap-file').click());
+$('#ap-file').addEventListener('change', async e => {
+  const file = e.target.files[0]; e.target.value = ''; if (!file || !draft) return;
+  try {
+    if (!/^image\/(png|jpeg|webp)$/i.test(file.type || '')) throw new Error('type');
+    const p = await readFile(file, 220, 'image/jpeg', .8);
+    draft.f.agentPhoto = p.src; $('#ap-err').textContent = ''; renderAgentPhoto(); saveDraftSoon(); renderStudioLive('end');
+  } catch(err) { $('#ap-err').textContent = err.message === 'type' ? 'Format non pris en charge : utilisez un JPG, un PNG ou un WEBP.' : "Cette photo n'a pas pu être lue. Essayez avec un JPG."; }
+});
+$('#ap-rm').addEventListener('click', () => { if (!draft) return; draft.f.agentPhoto = null; renderAgentPhoto(); saveDraftSoon(); renderStudioLive('end'); $('#ap-btn').focus(); });
+/* ouvrir une section ouvre l'aperçu au bon moment */
+$$('.mt-sec').forEach(d => d.addEventListener('toggle', () => {
+  if (!d.open || MT.playing || MT.src !== draftCtx) return;
+  const h = {'sec-brand':'end', 'sec-look':'title', 'sec-voice':'voice'}[d.id]; if (h) MT.refresh(h);
+}));
+
+/* ---------- résumé du montage (récapitulatif, écran vidéo) ---------- */
+function montageRows(f, photos, trackTitle){
+  const P = buildPlan(f, photos), n = P.shots.length, tr = P.track;
+  const tt = trackTitle || (tr ? tr.titre : '');
+  const camCount = {}; P.shots.forEach(s => { const l = CAM_SHORT[s.cam] || s.cam; camCount[l] = (camCount[l] || 0) + 1; });
+  const camsTxt = (photos.some(p => !p.off && (p.cam || f.cam) !== 'auto') ? '' : 'Auto · ') + Object.entries(camCount).map(([l, c]) => `${l}${c > 1 ? ` ×${c}` : ''}`).join(', ');
+  const vOn = f.voice !== 'Aucune';
+  const ms = musicStart(f, tr, P.total);
+  return [
+    ['Musique', f.music === 'Aucune' ? 'Aucune' : [f.music, tt ? `« ${tt} »` : 'morceau choisi dans l\'ambiance', `volume ${f.vol} %`, vOn && f.duck !== false ? 'baissée sous la voix' : '', ms ? `départ à ${Math.round(ms)} s` : ''].filter(Boolean).join(' · ')],
+    ['Montage', `${n} plans · ${TRANS[f.trans].l}${f.beat && tr && tr.bpm ? ' · calé sur le tempo' : ''} · ${f.lenMode === 'plan' ? 'durées plan par plan' : `plans ${LENS[f.glen].l.toLowerCase()}s`} · environ ${fmtT(P.total)}`],
+    ['Mouvements', camsTxt || '—'],
+    ['Habillage', [`titre ${TITLES[f.title].toLowerCase()}`, f.badge ? `pastille « ${BADGES[f.badge]} »` : 'sans pastille', vOn && f.subs ? `sous-titres (${SUBST[f.subStyle]})` : 'sans sous-titres', f.logo || f.hasLogo ? `logo : ${LOGOPOS[f.logoPos]}` : '', `couleur ${f.accent}`].filter(Boolean).join(' · ')],
+    ['Carton de fin', [String(f.agency || '').trim(), String(f.agentName || '').trim(), String(f.phone || '').trim(), String(f.endEmail || '').trim(), f.logo || f.hasLogo ? 'logo' : '', f.agentPhoto || f.hasAgentPhoto ? 'photo de l\'agent' : ''].filter(Boolean).join(' · ') || 'Neutre (sans coordonnées)'],
+  ];
+}
+/* ---------- revoir l'aperçu (récapitulatif, écran vidéo) ---------- */
+const K_FRAMES = (e, id) => `immoclap_frames:${e}:${id}`;
+function videoCtx(v){
+  const fr = LS.json(K_FRAMES(session.email, v.id));
+  if (!v.m || !fr || !Array.isArray(fr.p) || !fr.p.length) return null;
+  const f = ensureStudio(Object.assign({}, v, v.m, {highlights:'', logo:fr.logo || null, agentPhoto:fr.ap || null, lenMode:'plan'}));
+  const photos = fr.p.map((src, i) => { const s = (v.m.shots || [])[i] || {}; return {src, key:'f' + i, cam:CAMS[s.cam] || s.cam === 'tilt' ? s.cam : 'auto', len:LENS[s.len] ? s.len : 'normal', pt:s.pt ? 1 : 0}; });
+  const fs = v.formats && v.formats.length ? v.formats : ['16:9'];
+  return () => ({f, photos, logo:f.logo, agentPhoto:f.agentPhoto, formats:fs, editable:false, fmt:() => MT.vfmt, setFmt:x => { MT.vfmt = x; }});
+}
+function openMontage(src, title){
+  MT.pause(); MT.src = src; MT.t = 0; MT.state = []; MT.shotIdx = -2;
+  $('#mt-dlg-h').textContent = title || 'Aperçu du montage';
+  MT.mount($('#mt-dlg-host'));
+  $('#mt-dlg').showModal();
+  MT.refresh();
+  $('#mt-play').focus();
+}
+$('#mt-dlg').addEventListener('close', () => {
+  MT.pause(); MT.src = draftCtx; MT.t = 0; MT.state = []; MT.shotIdx = -2;
+  MT.mount($('#mt-host'));
+  if (draft) MT.refresh();
+});
+$('#r4-replay').addEventListener('click', () => { if (draft) openMontage(draftCtx, 'Aperçu du montage'); });
+$('#r-replay').addEventListener('click', () => { const v = ui.vid; if (!v) return; const src = videoCtx(v); if (!src) return toast('Aperçu indisponible : les images de ce montage ne sont plus dans ce navigateur.'); MT.vfmt = ui.fmt; openMontage(src, `Aperçu du montage · ${v.type} · ${v.city}`); });
+
 /* --- étape 4 : récapitulatif --- */
 function renderRecap(){
   const f = draft.f, d = draft.photos.length;
