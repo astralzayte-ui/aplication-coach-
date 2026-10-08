@@ -1025,7 +1025,7 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
         <div class="res-main">
           <div class="seg" id="r-fmts" role="group" aria-label="Format affiché"></div>
           <div class="player" id="player"><span class="tag">Démonstration</span><video id="r-video" controls playsinline preload="metadata"></video></div>
-          <p class="fine" style="margin-top:12px">Mode test : cette vidéo de démonstration a été réalisée avec d'autres photos (villa à Marrakech). Quand les comptes ouvriront, la vidéo sera générée à partir de vos photos, avec votre titre et votre carton de fin.</p>
+          <p class="fine" style="margin-top:12px">Mode test : cette vidéo de démonstration a été réalisée avec d'autres photos (villa à Marrakech). Quand les comptes ouvriront, la vidéo sera générée à partir de vos photos, avec votre titre et votre carton de fin. Votre montage avec vos photos : « Revoir l'aperçu du montage ».</p>
         </div>
         <div class="res-side">
           <div class="card">
@@ -1434,7 +1434,7 @@ $('#logout').addEventListener('click', async () => {
 });
 function logout(msg){
   if (draft) saveDraftSoon.flush();
-  stopVoice(); $('#r-video').pause();
+  stopVoice(); stopLib(); MT.pause(); $('#r-video').pause();
   session = null; acct = null; draft = null; acctRaw = null;
   LS.del(K.session);
   resetWizardUI();
@@ -1487,6 +1487,7 @@ function onExternalDraft(){
   if (!d) { draft = null; resetWizardUI(); toast('Ce brouillon a été lancé ou supprimé dans un autre onglet.'); return leaveFlow('videos'); }
   draft = d;
   fillForm(); renderThumbs(); renderPreviews(); renderEstimate();
+  if (curStep() === 3) renderStudio();
   if (curStep() === 4) renderRecap();
 }
 
@@ -1562,7 +1563,8 @@ function render(){
   $$('dialog[open]').forEach(d => { if (d.id !== 'dlg' && d.id !== 'pays-dlg') d.close(); }); /* le choix du pays reste ouvert pendant une redirection */
   closeHelp();
   if (r.a !== 'video') $('#r-video').pause();
-  if (r.a !== 'nouvelle') stopVoice();
+  if (r.a !== 'nouvelle') { stopVoice(); stopLib(); }
+  if (!(r.a === 'nouvelle' && r.b === '3')) { stopLib(); if (!$('#mt-dlg').open) MT.pause(); }
   if (lastRoute === 'nouvelle' && r.a !== 'nouvelle' && draft) { saveDraftSoon.flush(); if (r.a !== 'paiement' && draftHasContent()) toast('Brouillon enregistré : reprenez-le depuis Mes vidéos.'); }
   if (!session) {
     renderHeader('');
@@ -1603,7 +1605,7 @@ function renderDash(){
   /* brouillon */
   const db = $('#draft-banner');
   if (draft && draftHasContent()) {
-    const f = draft.f, c = draft.photos[0], where = f.city ? ' · ' + [f.type, f.city].filter(Boolean).map(esc).join(', ') : '';
+    const f = draft.f, c = draft.photos.find(p => !p.off) || draft.photos[0], where = f.city ? ' · ' + [f.type, f.city].filter(Boolean).map(esc).join(', ') : '';
     db.innerHTML = `<div class="draft"><div class="dthumb" style="${c ? `background-image:url('${c.src}')` : ''}"></div>
       <div class="dtxt"><b>Brouillon en cours</b><span class="muted small">${pl(draft.photos.length, 'photo', 'photos')}${where} · étape ${draft.step || 1} sur 4 · modifié le ${fmtDateTime(draft.updated)}</span></div>
       <div class="dact"><a class="btn sm" href="#nouvelle/${draft.step || 1}">Reprendre</a><button type="button" class="btn sm ghost" id="draft-del">Supprimer</button></div></div>`;
@@ -1780,11 +1782,14 @@ function newDraft(){
   return {v:1, created:now(), updated:now(), step:1, photos:[], f:{
     type:'', deal:'Vente', city:'', area:'', price:'', showPrice:true, surface:'', rooms:'', beds:'', highlights:'',
     music:'Élégante', voice:'Voix féminine', lang:'Français', formats:['16:9','9:16','1:1'], nologo:false,
-    agency:auto ? p.agency : '', phone:auto ? p.phone : '', logo:auto ? p.logo : null, logoDark:auto ? !!p.logoDark : false, fromKit:auto && !!(p.agency || p.phone || p.logo), preview:'16:9'}};
+    agency:auto ? p.agency : '', phone:auto ? p.phone : '', logo:auto ? p.logo : null, logoDark:auto ? !!p.logoDark : false, fromKit:auto && !!(p.agency || p.phone || p.logo), preview:'16:9',
+    ...STUDIO_DEF,
+    accent:auto && p.accent ? p.accent : STUDIO_DEF.accent, agentName:auto ? p.agentName || '' : '', endEmail:auto ? p.endEmail || '' : '', agentPhoto:auto ? p.agentPhoto || null : null}};
 }
 function loadDraft(){
   const d = LS.json(K.draft(session.email));
   if (!d || !d.f || !Array.isArray(d.photos)) return null;
+  ensureStudio(d.f);
   return d;
 }
 let draftWarned = false;
@@ -1831,12 +1836,16 @@ function stepProblem(n){
     if (f.beds && !intRe.test(f.beds.trim())) return {msg:'Chambres : un nombre entier positif.', el:$('#beds'), errEl:$('#beds-err'), field:true};
     if (f.beds && f.rooms && +f.beds > +f.rooms) return {msg:'Il ne peut pas y avoir plus de chambres que de pièces.', el:$('#beds'), errEl:$('#beds-err'), field:true};
   }
-  if (n === 3 && !f.formats.length) return {msg:'Choisissez au moins un format.', el:$('input[name=fmt]'), errEl:$('#err3')};
+  if (n === 3) {
+    if (includedOf(draft.photos).length < CONFIG.minPhotos) return {msg:`Gardez au moins ${CONFIG.minPhotos} plans dans le montage (Plans et transitions).`, el:$('#mt-strip input[data-inc]:not(:checked)') || $('#mt-strip'), errEl:$('#err3')};
+    if (f.endEmail && f.endEmail.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.endEmail.trim())) return {msg:'E-mail affiché : adresse invalide (ex. : contact@agence.com).', el:$('#endEmail'), errEl:$('#endEmail-err'), field:true};
+    if (!f.formats.length) return {msg:'Choisissez au moins un format.', el:$('input[name=fmt]'), errEl:$('#err3')};
+  }
   return null;
 }
 function firstBadStep(upTo){ for (let i = 1; i < upTo; i++) if (stepProblem(i)) return i; return null; }
-function clearStepErrors(){ ['err1','err2','err3','err4','type-err','city-err','surface-err','rooms-err','beds-err','logo-err'].forEach(id => { const el = $('#' + id); if (el) el.textContent = ''; }); $$('#s-new [aria-invalid]').forEach(i => i.setAttribute('aria-invalid', 'false')); }
-function showProblem(p){ if (p.field) setFieldErr(p.el, p.errEl, p.msg); else p.errEl.textContent = p.msg; if (p.el) p.el.focus(); }
+function clearStepErrors(){ ['err1','err2','err3','err4','type-err','city-err','surface-err','rooms-err','beds-err','logo-err','endEmail-err','ap-err'].forEach(id => { const el = $('#' + id); if (el) el.textContent = ''; }); $$('#s-new [aria-invalid]').forEach(i => i.setAttribute('aria-invalid', 'false')); }
+function showProblem(p){ if (p.field) setFieldErr(p.el, p.errEl, p.msg); else p.errEl.textContent = p.msg; const d = p.el && p.el.closest && p.el.closest('details'); if (d) d.open = true; if (p.el) p.el.focus(); }
 
 function routeWizard(r){
   let n = parseInt(r.b, 10);
@@ -1856,7 +1865,8 @@ function routeWizard(r){
   });
   $('#prev').textContent = n === 1 ? 'Annuler' : 'Retour';
   renderThumbs(); renderPreviews(); renderEstimate();
-  if (n === 3) { renderBrandNote(); labelPlays(); }
+  if (n === 3) { renderBrandNote(); labelPlays(); renderStudio(); if (!studioOpened) { studioOpened = true; if (matchMedia('(min-width: 861px)').matches) $('#sec-music').open = true; } }
+  else MT.pause();
   if (n === 4) renderRecap();
   updateNextBtn(n);
   renderHeader('');
@@ -1865,7 +1875,7 @@ function routeWizard(r){
   if (stepNotice === n) { const p = stepProblem(n); if (p) showProblem(p); }
   stepNotice = 0;
 }
-let stepNotice = 0;
+let stepNotice = 0, studioOpened = false;
 const navOf = r => r.a === 'videos' || r.a === 'compte' ? r.a : '';
 const curStep = () => { const r = parseHash(); return r.a === 'nouvelle' ? (parseInt(r.b, 10) || 1) : 0; };
 function updateNextBtn(n){
@@ -1890,14 +1900,20 @@ $('#next').addEventListener('click', () => {
 });
 
 /* --- liaison formulaire ↔ brouillon --- */
-const radio = n => { const el = $(`#s-new input[name="${n}"]:checked`); return el ? el.value : ''; };
+const radio = n => { const el = $(`#s-new input[name="${n}"]:checked`); return el ? el.value : n === 'badge' ? undefined : ''; };
 const setRadio = (n, v) => $$(`#s-new input[name="${n}"]`).forEach(i => i.checked = i.value === v);
 function readForm(){
   const f = draft.f;
   f.type = radio('type') || f.type; f.deal = radio('deal') || f.deal;
-  ['city','area','price','surface','rooms','beds','highlights','agency','phone'].forEach(k => f[k] = $('#' + k).value);
+  ['city','area','price','surface','rooms','beds','highlights','agency','phone','agentName','endEmail'].forEach(k => f[k] = $('#' + k).value);
   f.showPrice = $('#showPrice').checked; f.nologo = $('#nologo').checked;
   f.music = radio('music') || f.music; f.voice = radio('voice') || f.voice; f.lang = radio('lang') || f.lang;
+  /* studio */
+  f.track = radio('track') || f.track; f.mstart = radio('mstart') || 'debut'; f.trans = radio('trans') || f.trans;
+  const gl = radio('glen'); if (gl) { f.lenMode = gl === 'plan' ? 'plan' : 'global'; if (gl !== 'plan') f.glen = gl; }
+  f.title = radio('title') || f.title; f.badge = radio('badge') ?? f.badge; f.subStyle = radio('substyle') || f.subStyle; f.logoPos = radio('logopos') || f.logoPos;
+  const ac = radio('accent'); if (ac) f.accent = ac;
+  f.vol = +$('#m-vol').value; f.duck = $('#m-duck').checked; f.beat = $('#m-beat').checked; f.subs = $('#m-subs').checked;
   f.formats = FMT_ORDER.filter(x => $(`#s-new input[name=fmt][value="${x}"]`).checked);
   if (!f.formats.includes(f.preview)) f.preview = f.formats[0] || '16:9';
 }
@@ -1908,23 +1924,38 @@ function fillForm(){
   $('#showPrice').checked = f.showPrice !== false; $('#nologo').checked = !!f.nologo;
   $$('#s-new input[name=fmt]').forEach(i => i.checked = f.formats.includes(i.value));
   renderLogo('#logo-prev', '#logo-rm', f.logo);
+  fillStudio();
   updatePriceLabel(); updatePricePlaceholder();
 }
 function resetWizardUI(){
   $$('#s-new input[type=text],#s-new input[type=tel],#s-new textarea').forEach(i => i.value = '');
   $('#thumbs').innerHTML = ''; $('#msgs1').innerHTML = ''; $('#rights').checked = false;
   $('#logo-file').value = ''; renderLogo('#logo-prev', '#logo-rm', null); clearStepErrors();
+  $('#ap-file').value = ''; $('#ap-prev').innerHTML = '<span>Aucune</span>'; $('#ap-rm').hidden = true;
+  $('#mt-strip').innerHTML = ''; $('#m-tracks').innerHTML = '';
+  if (MT.src === draftCtx) { MT.pause(); MT.t = 0; MT.state = []; }
 }
 function onFormChange(e){
   if (!draft || !curStep()) return;
   const t = e.target;
   if (t.id === 'rights' || t.type === 'file') { if (t.id === 'rights' && t.checked) $('#err4').textContent = ''; return; }
+  if (t.closest('#mt-strip') || t.id === 'mt-hex' || t.id === 'm-camall') return; /* gérés à part */
+  const oldMusic = draft.f.music;
   readForm(); saveDraftSoon();
+  if (t.name === 'music' && draft.f.music !== oldMusic) { draft.f.track = ''; if (draft.f.music === 'Aucune') stopLib(); renderTracks(); }
+  if (t.name === 'glen') renderStrip();
+  if (t.name === 'trans' || t.name === 'track' || t.id === 'm-beat' || t.name === 'music' || t.name === 'voice' || t.name === 'lang') renderStrip();
   if (t.getAttribute('aria-invalid') === 'true') { const p = stepProblem(curStep()); if (!p || p.el !== t) { setFieldErr(t, $('#' + t.getAttribute('aria-describedby')), ''); } }
   if (t.name === 'fmt' && draft.f.formats.length) $('#err3').textContent = '';
   if (t.name === 'type' && draft.f.type) $('#type-err').textContent = '';
   if (t.name === 'deal') updatePriceLabel();
   if (t.name === 'lang' || t.name === 'voice') { stopVoice(); labelPlays(); }
+  if (curStep() === 3) {
+    const hint = ['title','badge','accent','logopos'].includes(t.name) ? 'title' : ['agency','phone','agentName','endEmail'].includes(t.id) ? 'end' : t.id === 'm-subs' || t.name === 'substyle' || t.name === 'voice' || t.name === 'lang' ? 'voice' : undefined;
+    if (t.id === 'endEmail' && t.getAttribute('aria-invalid') === 'true' && !stepProblem(3)) setFieldErr(t, $('#endEmail-err'), '');
+    renderStudioLive(e.type === 'change' || hint === 'end' || hint === 'title' ? hint : undefined);
+    if (t.name !== 'fmt') { renderEstimate(); return; }
+  }
   renderPreviews(); renderEstimate();
 }
 $('#s-new').addEventListener('input', onFormChange);
@@ -2004,13 +2035,13 @@ function renderThumbs(){
   const ph = draft.photos, n = ph.length;
   $('#thumbs').innerHTML = ph.map((p, i) => `<li class="thumb" draggable="true" data-i="${i}">
     <img src="${p.src}" alt="Photo ${i + 1}${i === 0 ? ', couverture' : ''} : ${esc(p.name)}">
-    <span class="n">${i + 1}${i === 0 ? '<em>Couverture</em>' : ''}</span>
+    <span class="n">${i + 1}${i === 0 ? '<em>Couverture</em>' : ''}${p.off ? '<em>Exclue du montage</em>' : ''}</span>
     ${p.w < CONFIG.goodWidth ? `<span class="q" title="${p.w} px de large">${p.w}\u00a0px</span>` : ''}
     <button type="button" class="rm" data-rm="${i}" aria-label="Retirer la photo ${i + 1}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     <span class="mv"><button type="button" data-mv="${i}" data-d="-1" aria-label="Déplacer la photo ${i + 1} vers la gauche" ${i === 0 ? 'disabled' : ''}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" data-mv="${i}" data-d="1" aria-label="Déplacer la photo ${i + 1} vers la droite" ${i === n - 1 ? 'disabled' : ''}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></span>
   </li>`).join('');
   const small = ph.filter(p => p.w < CONFIG.goodWidth).length, vert = ph.filter(p => p.h > p.w).length;
-  const secs = n * CONFIG.secPerPhoto;
+  const secs = Math.round(buildPlan(draft.f, ph).endT0);
   $('#count').innerHTML = `<span><b>${n}</b> / ${CONFIG.maxPhotos} photos${n < CONFIG.minPhotos ? ` · encore ${CONFIG.minPhotos - n} minimum` : ''}</span><span>${n ? `Vidéo d'environ ${secs}\u00a0s, plus le carton de fin${n > 1 ? '<span class="hint-mouse"> · glissez une miniature pour changer l\'ordre</span><span class="hint-touch"> · flèches pour changer l\'ordre</span>' : ''}` : ''}</span>`;
   /* messages de qualité (recalculés) */
   $$('#msgs1 li[data-q]').forEach(li => li.remove());
@@ -2023,7 +2054,9 @@ function renderThumbs(){
 function movePhoto(from, to){
   const ph = draft.photos; if (to < 0 || to >= ph.length || from === to) return;
   const [p] = ph.splice(from, 1); ph.splice(to, 0, p);
-  renderThumbs(); saveDraftSoon(); renderPreviews();
+  renderThumbs(); saveDraftSoon();
+  if (curStep() === 3) { renderStrip(); renderStudioLive(Math.max(0, includedOf(draft.photos).indexOf(p))); }
+  renderPreviews();
 }
 $('#thumbs').addEventListener('click', e => {
   const r = e.target.closest('[data-rm]');
@@ -2066,20 +2099,21 @@ function renderLogo(prevSel, rmSel, src){
 $('#logo-btn').addEventListener('click', () => $('#logo-file').click());
 $('#logo-file').addEventListener('change', async e => {
   const f = e.target.files[0]; e.target.value = ''; if (!f || !draft) return;
-  try { const lg = await readLogo(f); draft.f.logo = lg.src; draft.f.logoDark = lg.dark; $('#logo-err').textContent = ''; renderLogo('#logo-prev', '#logo-rm', draft.f.logo); saveDraftSoon(); renderPreviews(); renderBrandNote(); }
+  try { const lg = await readLogo(f); draft.f.logo = lg.src; draft.f.logoDark = lg.dark; $('#logo-err').textContent = ''; renderLogo('#logo-prev', '#logo-rm', draft.f.logo); saveDraftSoon(); renderBrandNote(); renderStudioLive('end'); }
   catch (err) { $('#logo-err').textContent = logoErr(err); }
 });
-$('#logo-rm').addEventListener('click', () => { draft.f.logo = null; draft.f.logoDark = false; renderLogo('#logo-prev', '#logo-rm', null); saveDraftSoon(); renderPreviews(); renderBrandNote(); $('#logo-btn').focus(); });
+$('#logo-rm').addEventListener('click', () => { draft.f.logo = null; draft.f.logoDark = false; renderLogo('#logo-prev', '#logo-rm', null); saveDraftSoon(); renderBrandNote(); renderStudioLive('end'); $('#logo-btn').focus(); });
 $('#save-kit').addEventListener('click', () => {
   readForm(); refreshAcct();
-  const p = acct.profile, old = {agency:p.agency, phone:p.phone, logo:p.logo, logoDark:p.logoDark};
+  const p = acct.profile, old = {agency:p.agency, phone:p.phone, logo:p.logo, logoDark:p.logoDark, accent:p.accent, agentName:p.agentName, endEmail:p.endEmail, agentPhoto:p.agentPhoto};
   p.agency = draft.f.agency.trim(); p.phone = draft.f.phone.trim(); p.logo = draft.f.logo; p.logoDark = !!draft.f.logoDark;
+  p.accent = draft.f.accent; p.agentName = draft.f.agentName.trim(); p.endEmail = draft.f.endEmail.trim(); p.agentPhoto = draft.f.agentPhoto || null;
   if (!saveAcct()) { Object.assign(p, old); return toast('Stockage du navigateur plein : kit de marque non enregistré.'); }
   draft.f.fromKit = true; renderBrandNote();
   toast(p.auto !== false ? 'Kit de marque enregistré : cette étape sera pré-remplie la prochaine fois.' : 'Kit de marque enregistré dans Mon compte.');
 });
 function renderBrandNote(){
-  const p = acct.profile, has = p.agency || p.phone || p.logo;
+  const p = acct.profile, has = p.agency || p.phone || p.logo || p.agentName || p.endEmail || p.agentPhoto;
   $('#brand-note').textContent = has ? (draft && draft.f.fromKit ? 'Pré-rempli avec votre kit de marque. Les changements faits ici ne valent que pour cette vidéo, sauf si vous les enregistrez.' : 'Votre kit de marque est enregistré dans Mon compte.') : p.auto !== false ? 'Astuce : enregistrez-la dans votre kit de marque, cette étape sera pré-remplie la prochaine fois.' : "Vous pouvez l'enregistrer dans votre kit de marque (Mon compte).";
 }
 
@@ -2098,40 +2132,29 @@ function previewFormatButtons(){
 }
 document.addEventListener('click', e => { const b = e.target.closest('[data-pv]'); if (!b || !draft) return; draft.f.preview = b.dataset.pv; saveDraftSoon(); renderPreviews(); });
 function openingHTML(f, cover, fmt){
-  const L = L10N[f.lang] || L10N['Français'];
-  const place = [f.area.trim(), f.city.trim()].filter(Boolean).join(', ');
-  const meta = [f.showPrice && f.price.trim() ? f.price.trim() : '', f.surface.trim() ? `${f.surface.trim().replace('.', ',')}\u00a0m²` : '', f.beds.trim() && f.type !== 'Terrain' ? L.bed(+f.beds) : ''].filter(Boolean).join(' · ');
-  const rtl = f.lang === 'Arabe' ? ' dir="rtl"' : '';
-  return `<img class="bg" src="${cover || FMT[fmt].poster}" alt=""><div class="shade"></div>
+  const bt = badgeText(f);
+  return `<img class="bg" src="${cover || FMT[fmt].poster}" alt="">
     <span class="lab">${cover ? 'Votre photo de couverture' : 'Photo de démonstration'}</span>
-    <div class="open"${rtl}><span class="kick">${f.type ? esc(L.type[f.type] || f.type) : `<span class="ghost">${esc(L.ptype)}</span>`} · ${esc(L.deal[f.deal] || f.deal)}</span>
-    <span class="ttl${place ? '' : ' ghost'}">${esc(place || L.city)}</span><span class="rule"></span>${meta ? `<span class="meta">${esc(meta)}</span>` : ''}</div>`;
+    <div class="${titleClass(f)}">${titleHTML(f, true)}</div>${bt ? `<span class="mt-badge"${f.lang === 'Arabe' ? ' dir="rtl"' : ''}>${esc(bt)}</span>` : ''}`;
 }
-function endHTML(f){
-  const L = L10N[f.lang] || L10N['Français'];
-  const ag = f.agency.trim(), ph = f.phone.trim();
-  const rtl = f.lang === 'Arabe' ? ' dir="rtl"' : '';
-  return `<span class="lab">Carton de fin</span><div class="endc"${rtl}><span class="by">${esc(L.by)}</span>
-    ${f.logo ? `<span class="lgw${f.logoDark ? ' plate' : ''}"><img class="lg" src="${f.logo}" alt=""></span>` : ''}
-    <span class="ag${ag ? '' : ' ghost'}">${esc(ag || L.agency)}</span><span class="ph${ph ? '' : ' ghost'}">${esc(ph || L.phone)}</span></div>`;
-}
-function setPv(el, fmt, html){ el.className = 'pv' + (el.id.startsWith('pv-end') ? ' end' : '') + (FMT[fmt].cls ? ' ' + FMT[fmt].cls : ''); el.innerHTML = html; }
+function endHTML(f){ return `<span class="lab">Carton de fin</span>${endInner(f, f.logo, f.agentPhoto, true)}`; }
+function setPv(el, fmt, html, f){ el.className = 'pv' + (el.id.startsWith('pv-end') ? ' end' : '') + (FMT[fmt].cls ? ' ' + FMT[fmt].cls : ''); el.style.cssText = accentVars(f ? f.accent : ''); el.innerHTML = html; }
 function renderPreviews(){
   if (!draft) return;
-  const n = curStep(), f = draft.f, cover = draft.photos[0] ? draft.photos[0].src : null;
+  const n = curStep(), f = draft.f, cover = coverOf(draft.photos);
   const fmt = previewFormatButtons();
-  if (n === 2) { setPv($('#pv-open2'), fmt, openingHTML(f, cover, fmt)); $('#pv-open2-cap').textContent = 'Aperçu indicatif, mis à jour pendant la saisie. Le titre apparaît sur la première photo.'; }
-  if (n === 3) { setPv($('#pv-end3'), fmt, endHTML(f)); $('#pv-end3-cap').textContent = f.logo && f.logoDark ? 'Aperçu indicatif. Logo foncé : il est posé sur un fond clair pour rester lisible.' : 'Aperçu indicatif, mis à jour pendant la saisie.'; }
+  if (n === 2) { setPv($('#pv-open2'), fmt, openingHTML(f, cover, fmt), f); $('#pv-open2-cap').textContent = 'Aperçu indicatif, mis à jour pendant la saisie. Le titre apparaît sur la première photo ; son style se choisit à l\'étape Montage.'; }
+  if (n === 3) renderStudioLive();
   if (n === 4) {
     const a = document.createElement('div'), b = document.createElement('div'); a.id = 'pv-open4'; b.id = 'pv-end4';
-    setPv(a, fmt, openingHTML(f, cover, fmt)); setPv(b, fmt, endHTML(f));
+    setPv(a, fmt, openingHTML(f, cover, fmt), f); setPv(b, fmt, endHTML(f), f);
     $('#pv-pair4').replaceChildren(a, b);
   }
 }
 function renderEstimate(){
   if (!draft) return;
-  const n = draft.photos.length;
-  $('#est3').innerHTML = `Durée estimée : <b>environ ${n * CONFIG.secPerPhoto}\u00a0s</b> (${pl(n, 'photo', 'photos')} × ${CONFIG.secPerPhoto}\u00a0s), plus le carton de fin.`;
+  const P = buildPlan(draft.f, draft.photos), n = P.shots.length;
+  $('#est3').innerHTML = `Durée totale estimée : <b>${fmtT(P.total)}</b> (${pl(n, 'plan', 'plans')}${P.beat ? ', calés sur le tempo' : ''}, plus ${fmtS(P.total - P.endT0)} de carton de fin).`;
 }
 
 /* --- extraits de voix --- */
@@ -2144,7 +2167,7 @@ voice.addEventListener('error', () => { if (voiceBtn) { toast("L'extrait n'a pas
 $$('.play').forEach(b => {
   b.addEventListener('click', () => {
     if (voiceBtn === b) return stopVoice();
-    stopVoice();
+    hush('voice'); stopVoice();
     const lang = draft ? draft.f.lang : 'Français', code = LANG_CODE[lang] || 'fr';
     voice.src = `assets/voix/${code}-${b.dataset.v}.${oggOK ? 'ogg' : 'mp3'}`;
     voiceBtn = b; b.setAttribute('aria-pressed', 'true'); b.querySelector('span').textContent = 'Arrêter';
@@ -2795,17 +2818,16 @@ function renderRecap(){
   $('#rthumbs').innerHTML = draft.photos.map((p, i) => `<img src="${p.src}" alt="Photo ${i + 1}">`).join('');
   const nums = [f.surface && `${f.surface.replace('.', ',')} m²`, f.rooms && pl(+f.rooms, 'pièce', 'pièces'), f.beds && pl(+f.beds, 'chambre', 'chambres')].filter(Boolean).join(' · ');
   const rows = [
-    ['Photos', `${d} · environ ${d * CONFIG.secPerPhoto} s de vidéo, plus le carton de fin`],
+    ['Photos', `${d}${d > includedOf(draft.photos).length ? ` (${includedOf(draft.photos).length} dans le montage)` : ''} · environ ${fmtT(buildPlan(f, draft.photos).total)} avec le carton de fin`],
     ['Bien', `${f.type} · ${f.deal}`],
     ['Lieu', [f.area.trim(), f.city.trim()].filter(Boolean).join(', ')],
     ['Prix', f.price.trim() ? `${f.price.trim()}${f.showPrice ? '' : ' (masqué dans la vidéo)'}` : '—'],
     ['Surface et pièces', nums || '—'],
     ['Points forts', f.highlights.split('\n').map(s => s.trim()).filter(Boolean).join(', ') || '—'],
-    ['Musique', f.music],
+    ...montageRows(f, draft.photos),
     ['Voix off', f.voice === 'Aucune' ? 'Aucune' : f.voice],
     ['Langue', f.lang],
     ['Formats', f.formats.join(', ') + (f.nologo ? ' · avec et sans logo' : '')],
-    ['Marque', [f.agency.trim(), f.phone.trim(), f.logo ? 'logo' : ''].filter(Boolean).join(' · ') || 'Aucune (carton de fin neutre)'],
   ];
   $('#recap').innerHTML = rows.map(([a, b]) => `<dt>${a}</dt><dd>${esc(b)}</dd>`).join('');
   renderCreditBox();
@@ -2831,7 +2853,11 @@ async function launch(){
     readForm();
     const f = draft.f;
     let cover = null;
-    try { if (draft.photos[0]) cover = (await shrink(draft.photos[0].src, 360, 'image/jpeg', .62)).src; } catch(e) {}
+    const inc = includedOf(draft.photos), P = buildPlan(f, draft.photos);
+    try { if (inc[0]) cover = (await shrink(inc[0].src, 360, 'image/jpeg', .62)).src; } catch(e) {}
+    /* images réduites du montage, rangées à part (pour « revoir l'aperçu ») : le compte reste léger */
+    let frames = null;
+    try { frames = {p:[]}; for (const ph of inc) frames.p.push((await shrink(ph.src, 360, 'image/jpeg', .6)).src); frames.logo = f.logo || null; frames.ap = f.agentPhoto || null; } catch(e) { frames = null; }
     /* un autre onglet a pu utiliser le dernier crédit pendant ce temps */
     if (refreshAcct() && creditsAvail() < 1) { renderHeader(''); renderCreditBox(); toast('Votre dernier crédit vient d\'être utilisé dans un autre onglet.'); return; }
     const id = 'v' + now().toString(36) + rid(3).toLowerCase();
@@ -2839,13 +2865,17 @@ async function launch(){
       type:f.type, deal:f.deal, city:f.city.trim(), area:f.area.trim(), price:f.price.trim(), showPrice:f.showPrice !== false,
       surface:f.surface.trim(), rooms:f.rooms.trim(), beds:f.beds.trim(), highlights:f.highlights.split('\n').map(s => s.trim()).filter(Boolean),
       music:f.music, voice:f.voice, lang:f.lang, formats:FMT_ORDER.filter(x => f.formats.includes(x)), nologo:!!f.nologo,
-      agency:f.agency.trim(), phone:f.phone.trim(), hasLogo:!!f.logo, contact:acct.profile.email || session.email};
+      agency:f.agency.trim(), phone:f.phone.trim(), hasLogo:!!f.logo, contact:acct.profile.email || session.email,
+      m:{track:P.track ? P.track.id : '', trackTitle:P.track ? P.track.titre : '', vol:f.vol, duck:f.duck !== false, mstart:f.mstart, trans:f.trans, beat:!!f.beat, glen:f.glen, cam:f.cam,
+        title:f.title, badge:f.badge, subs:!!f.subs, subStyle:f.subStyle, logoPos:f.logoPos, accent:f.accent, endEmail:f.endEmail.trim(), agentName:f.agentName.trim(), logoDark:!!f.logoDark,
+        hasAgentPhoto:!!f.agentPhoto, total:Math.round(P.total), shots:P.shots.map(sh => ({cam:sh.cam, len:lenOf(sh.p, f), pt:camOf(sh.p, f, 0) === 'tilt' ? 1 : 0}))}};
     acct.videos.push(video);
     if (!saveAcct()) {
       acct.videos.pop();
       $('#err4').textContent = "Le stockage du navigateur est plein : la génération n'a pas été lancée et aucun crédit n'a été utilisé. Supprimez des vidéos de test (Mes vidéos) ou vos données de test (Mon compte), puis réessayez.";
       return;
     }
+    if (frames && !LS.set(K_FRAMES(session.email, id), JSON.stringify(frames))) LS.del(K_FRAMES(session.email, id));
     clearDraft();
     leaveFlow('video/' + id);
   } finally { genBusy = false; btn.disabled = false; }
@@ -2937,7 +2967,19 @@ function renderResult(v){
   ui.tlang = v.lang || 'Français';
   renderTexts(v);
   const body = `Bonjour,\n\nJe signale un défaut sur cette vidéo et je demande une nouvelle génération.\n\nIdentifiant de la vidéo : ${v.id}\nBien : ${v.type} · ${v.city}\nCréée le : ${fmtDate(v.readyAt || v.at)}\nFormat(s) concerné(s) : \nMoment (seconde) et description du défaut : \n\nCompte : ${session.email}\n`;
+  renderResultMontage(v);
   $('#r-report').href = `mailto:${CONFIG.support}?subject=${encodeURIComponent(`Défaut vidéo ${v.id}`)}&body=${encodeURIComponent(body)}`;
+}
+function renderResultMontage(v){
+  const box = $('#r-mt');
+  box.hidden = !v.m;
+  if (!v.m) return;
+  const f = ensureStudio(Object.assign({}, v, v.m, {logo:null, lenMode:'plan'}));
+  const photos = (v.m.shots || []).map((sh, i) => ({src:'', key:'f' + i, cam:sh.cam, len:sh.len, pt:sh.pt}));
+  $('#r-mt-dl').innerHTML = montageRows(f, photos, v.m.trackTitle).map(([a, b]) => `<dt>${a}</dt><dd>${esc(b)}</dd>`).join('');
+  const has = !!videoCtx(v);
+  $('#r-replay').hidden = !has;
+  $('#r-replay-note').textContent = has ? 'Avec vos photos, votre musique et votre habillage. Mode test : la vidéo de démonstration ci-contre a été faite avec d\'autres photos.' : 'Aperçu indisponible : les images de ce montage ne sont plus enregistrées dans ce navigateur.';
 }
 function setFormat(v, f){
   ui.fmt = f;
@@ -2968,7 +3010,7 @@ $('#r-del').addEventListener('click', async () => {
   if (r !== 'del') return;
   deleteVideo(v.id); toast('Vidéo supprimée.'); exitTo('videos');
 });
-function deleteVideo(id){ refreshAcct(); const i = acct.videos.findIndex(x => x.id === id); if (i < 0) return; const [rm] = acct.videos.splice(i, 1); if (!saveAcct()) { acct.videos.splice(i, 0, rm); toast('Suppression impossible : stockage du navigateur inaccessible.'); } }
+function deleteVideo(id){ refreshAcct(); const i = acct.videos.findIndex(x => x.id === id); if (i < 0) return; const [rm] = acct.videos.splice(i, 1); if (!saveAcct()) { acct.videos.splice(i, 0, rm); toast('Suppression impossible : stockage du navigateur inaccessible.'); return; } LS.del(K_FRAMES(session.email, id)); }
 $('#f-retry').addEventListener('click', () => {
   if (!ui.vid) return;
   refreshAcct();
@@ -3271,6 +3313,7 @@ $('#wipe').addEventListener('click', async () => {
   const v = await ask({title:'Supprimer mes données de test ?', html:`<p>Crédits, vidéos, commandes, brouillon et kit de marque du compte ${esc(session.email)} seront effacés de ce navigateur. Vous serez déconnecté.</p>`, buttons:[{label:'Tout supprimer', value:'ok', kind:'danger'}, {label:'Annuler', value:null, kind:'ghost', focus:true}]});
   if (v !== 'ok') return;
   LS.del(K.acct(session.email)); LS.del(K.draft(session.email));
+  try { const pre = K_FRAMES(session.email, ''); Object.keys(localStorage).filter(k => k.startsWith(pre)).forEach(k => LS.del(k)); } catch(e) {}
   draft = null;
   logout();
   toast('Données de test supprimées.');
@@ -3300,6 +3343,7 @@ migrateLegacy();
   tick();
   if (!location.hash || location.hash === '#') go(session ? 'videos' : 'connexion', true); else render();
   updatePaysLink();
+  loadTracks();
   if (!isBot && !curChosen() && !SS.get(PAYS_SEEN)) openPays();
 })();
 </script>
