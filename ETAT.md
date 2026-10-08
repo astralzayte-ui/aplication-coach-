@@ -205,6 +205,11 @@ LE MÊME dans toutes les vidéos (l'image de marque). 🔴 Jamais présenté
 comme le fondateur ni comme un client · 🔴 étiquette « contenu IA » mise
 automatiquement par Claude via Metricool. Pas de Cowork (décidé le 05/10).
 
+**Décidé le 08/10 — le plan pub :** au LANCEMENT seulement (pas avant),
+vague 1 = 80 % de formats copiés sur les concurrents qui marchent + 20 %
+de nos idées · Gemini regarde les vidéos tout seul (testé, 0 €) · s'il
+faut payer des crédits de scraping, il paie (le moins cher d'abord).
+
 **Décidé le 05/10 :** contenu gratuit 80/20 (prix dans 1 vidéo sur 5) ·
 stocks en Europe · TikTok Shop + créateurs affiliés au palier 3 ·
 filière textile réglée au palier 3 · pub payée = seulement la vidéo

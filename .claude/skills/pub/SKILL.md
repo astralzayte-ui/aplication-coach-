@@ -156,14 +156,23 @@ de début, son nombre de versions.
 **Le texte d'une pub ne suffit pas. On regarde la vidéo.**
 
 L'outil : **Gemini** (clé dans les Identifiants API, jamais ailleurs).
-Modèles qui marchent : `gemini-3-flash-preview`, `gemini-flash-latest`,
-`gemini-2.5-flash` — on les essaie dans cet ordre, quota gratuit par jour.
+Modèles qui marchent (08/10) : `gemini-3-flash-preview`, puis
+`gemini-3.1-flash-lite` — `gemini-2.5-flash` est fermé aux nouveaux
+comptes. Quota gratuit par jour.
 
 ```
+TikTok / Insta (mp4) → 1. ScrapeCreators donne le lien de téléchargement
+                       2. on télécharge le mp4
+                       3. on l'envoie DIRECTEMENT dans la requête
+                          (inline_data, vidéos de moins de 20 Mo)
+                       ✅ TESTÉ LE 08/10 : marche, 0 €, sans lui
 lien YouTube         → envoyé tel quel (file_data.file_uri)
-fichier vidéo (mp4)  → envoyé d'abord à l'API Files de Gemini,
-                       puis son file_uri
+                       🟠 les vidéos longues (20 min et +) échouent :
+                       prendre les sous-titres à la place (1 crédit)
 ```
+
+🟢 **Il n'a rien à faire** : pas de prompt à copier-coller dans Gemini,
+Claude envoie les vidéos lui-même, une par une.
 
 *Alternative :* Higgs Field → `video_analysis_create` (crédits Higgs).
 
@@ -300,15 +309,28 @@ les chiffres        Metricool → getAnalyticsDataByMetrics
 vidéo 07 · source « pubs concurrentes » · angle « qualité » · hook n°12 · 80
 ```
 
-### Les sources : parts égales, puis le gagnant prend plus
+### Les sources — décidé le 08/10 : on part de ce qui marche chez eux
 
 ```
-JOURS 1-20     5 sources × 8 vidéos, parts ÉGALES
-               (lui + toi · ses vidéos enregistrées · pubs concurrentes ·
-                vidéos qui percent · avis 1 étoile)
-JOUR 21        on classe par la MOYENNE de rétention 3 s de chaque source
-JOURS 21-40    1ʳᵉ 50 % · 2ᵉ 30 % · les autres 20 %, jamais zéro
+VAGUE 1        80 %  32 vidéos  FORMATS COPIÉS sur les concurrents
+(jours 1-20)                    (leurs vidéos qui percent + leurs pubs
+                                 actives depuis 30 j et plus)
+               20 %   8 vidéos  NOS IDÉES (ses objections, ses vidéos
+                                 enregistrées, les avis 1 étoile)
+JOUR 21        on classe les FORMATS par la moyenne de rétention 3 s,
+               et on compare « copiés » contre « nos idées »
+VAGUE 2        le format qui gagne 50 % · le 2ᵉ 30 % · le reste 20 %
+(jours 21-40)
 ```
+
+**Pourquoi :** ce qui tourne depuis longtemps chez eux est déjà prouvé.
+On ne réinvente pas au départ, on part du prouvé et on garde 20 % pour
+trouver mieux.
+
+🔴 **Copier le format, jamais la vidéo** (rythme, cadrage, place du prix,
+durée). Une vidéo recopiée est cachée par TikTok et c'est illégal.
+🟢 **Leurs vidéos GRATUITES qui percent d'abord** : une pub payée vend
+directement, ce qui tourne mal en gratuit (règle 80/20 du contenu).
 
 🔴 **On ne teste QUE la source et l'angle**, sur les 2 vagues. Le moule
 et le sous-titre (figé) ne bougent pas. 80 vidéos ne tranchent qu'un
