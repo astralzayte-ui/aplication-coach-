@@ -307,7 +307,9 @@ header.scrolled{background:rgba(11,10,9,.86);backdrop-filter:blur(14px);-webkit-
 /* ---------- VI comparatif ---------- */
 .cmp{max-width:980px;margin:70px auto 0;display:grid;grid-template-columns:1.25fr 1fr 1fr;align-items:stretch}
 .cmp .col{display:flex;flex-direction:column}
-.cmp .cell{padding:0 18px;border-bottom:1px solid var(--line);min-height:72px;display:flex;align-items:center;line-height:1.3}
+.cmp .col .cell:last-child{flex:1 0 auto}
+@supports (grid-template-rows:subgrid){.cmp .col{display:grid;grid-row:span 6;grid-template-rows:subgrid}} /* 6 = en-tête + 5 critères : lignes alignées d'une colonne à l'autre */
+.cmp .cell{padding:10px 18px;border-bottom:1px solid var(--line);min-height:72px;display:flex;align-items:center;line-height:1.3}
 .cmp .h{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);justify-content:center;text-align:center;min-height:96px}
 .cmp .v{justify-content:center;text-align:center;color:var(--muted)}
 .cmp .k{color:var(--fg)}
@@ -458,6 +460,23 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
 .mbox.sent form,.mbox.sent .intro,.mbox.sent .fine{display:none}
 .mbox.sent .okbox{display:block}
 
+/* ---------- fenêtre choix du pays ---------- */
+.pbox{max-width:420px}
+.pbox h2{font-size:30px}
+.pch-list{display:grid;gap:12px;margin-top:24px}
+.pch{display:flex;align-items:center;gap:14px;width:100%;min-height:68px;padding:12px 16px;border:1px solid var(--line2);border-radius:12px;background:var(--bg);text-align:left;transition:border-color .2s,background .2s}
+.pch:hover{border-color:var(--gold);background:var(--card)}
+.pch .ci{flex:none;width:42px;height:42px;border-radius:50%;border:1px solid rgba(246,188,40,.6);color:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;letter-spacing:.02em}
+.pch .pl{flex:1;min-width:0;line-height:1.25}
+.pch b{font-family:var(--serif);font-weight:400;font-size:22px;color:var(--fg)}
+.pch small{color:var(--muted);font-size:14px;white-space:nowrap}
+.pch .ar{flex:none;color:var(--muted);transition:transform .2s,color .2s}
+.pch:hover .ar{transform:translateX(3px);color:var(--gold)}
+.pbox .fine{text-align:center}
+.fpays[hidden]{display:none}
+.fpays button{color:var(--muted);text-decoration:underline;text-underline-offset:3px;padding:4px 0;min-height:32px;font-size:13px}
+.fpays button:hover{color:var(--fg)}
+
 /* ---------- responsive ---------- */
 @media (max-width:1060px){
   .menu{gap:18px}
@@ -526,7 +545,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
   .pv.r11{height:min(300px,40vh);width:auto}
   .pv-cap{font-size:11px}
   .cmp{grid-template-columns:1.1fr 1fr 1fr;font-size:13px}
-  .cmp .cell{padding:0 8px;min-height:64px}
+  .cmp .cell{padding:8px;min-height:64px}
   .cmp .h{font-size:9px;letter-spacing:.12em;min-height:80px}
   .cmp .us .h{font-size:19px}
   .cmp .us .v{font-size:15px}
@@ -900,28 +919,25 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
         <div class="cell h"></div>
         <div class="cell k">Ce que vous fournissez</div>
         <div class="cell k">Voix off FR · AR · EN</div>
-        <div class="cell k">Prête pour WhatsApp, Avito, Mubawab, SeLoger</div>
+        <div class="cell k">Musique</div>
         <div class="cell k">Logo et coordonnées en fin de vidéo</div>
         <div class="cell k">Façon de payer</div>
-        <div class="cell k">Prix au mois pour une agence</div>
       </div>
       <div class="col">
         <div class="cell h">Vidéaste<br>immobilier</div>
         <div class="cell v">Un brief et l'accès au bien</div>
         <div class="cell v"><span>Non indiquée<sup>*</sup></span></div>
-        <div class="cell v">Selon le montage</div>
+        <div class="cell v"><span>Incluse ou en option<sup>*</sup></span></div>
         <div class="cell v"><span>Selon l'offre<sup>*</sup></span></div>
-        <div class="cell v">Forfait par bien</div>
-        <div class="cell v"><span>219 à 500&nbsp;€ par bien<sup>*</sup></span></div>
+        <div class="cell v">Un forfait par bien</div>
       </div>
       <div class="col us">
         <div class="cell h">ImmoClap</div>
         <div class="cell v">Vos photos existantes</div>
         <div class="cell v ok">Incluse, au choix</div>
-        <div class="cell v ok">Vertical, horizontal et carré</div>
+        <div class="cell v ok">Incluse, 4 ambiances</div>
         <div class="cell v ok">Logo, agence et téléphone</div>
-        <div class="cell v">À la vidéo ou au mois</div>
-        <div class="cell v stk"><span data-cmp-month>99&nbsp;€ HT / mois</span><small data-cmp-price>Dès 9,90&nbsp;€ la vidéo</small></div>
+        <div class="cell v stk"><span>À la vidéo ou au mois</span><small>Agence&nbsp;: <span data-cmp-month>99&nbsp;€ HT&nbsp;/&nbsp;mois</span>, 10 vidéos</small></div>
       </div>
     </div>
     <div class="sr-only"><table>
@@ -930,13 +946,12 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
       <tbody>
         <tr><th scope="row">Ce que vous fournissez</th><td>Un brief et l'accès au bien pour le tournage</td><td>Vos photos existantes, de 3 à 12</td></tr>
         <tr><th scope="row">Voix off en français, arabe ou anglais</th><td>Non indiquée dans les offres citées en note</td><td>Incluse, voix féminine ou masculine, au choix</td></tr>
-        <tr><th scope="row">Prête pour WhatsApp, Avito, Mubawab et SeLoger</th><td>Selon le montage commandé</td><td>Vertical 9:16, horizontal 16:9 et carré 1:1, avec ou sans logo, dans le même crédit</td></tr>
+        <tr><th scope="row">Musique</th><td>Incluse ou en option selon l'offre (voir la note)</td><td>Incluse, quatre ambiances au choix</td></tr>
         <tr><th scope="row">Logo et coordonnées en fin de vidéo</th><td>Selon l'offre (voir la note)</td><td>Inclus&nbsp;: logo, nom de l'agence et téléphone</td></tr>
-        <tr><th scope="row">Façon de payer</th><td>Forfait par bien</td><td>À la vidéo, en pack ou au mois</td></tr>
-        <tr><th scope="row">Prix au mois pour une agence</th><td>219 à 500 € par bien (prix publiés en France, voir la note)</td><td><span data-cmp-month>99&nbsp;€ HT / mois</span> pour 10 vidéos, <span data-cmp-price>dès 9,90&nbsp;€ la vidéo</span></td></tr>
+        <tr><th scope="row">Façon de payer</th><td>Un forfait par bien</td><td>À la vidéo, en pack ou au mois&nbsp;; abonnement Agence&nbsp;: <span data-cmp-month>99&nbsp;€ HT&nbsp;/&nbsp;mois</span> pour 10 vidéos</td></tr>
       </tbody>
     </table></div>
-    <p class="cmp-note rv">* Offres publiées en France, relevées le 6 octobre 2026&nbsp;: <a href="https://shoootin.com/service/video" target="_blank" rel="noopener">Shoootin</a> (tarifs vidéo «&nbsp;à partir de 219&nbsp;€&nbsp;» en résidentiel&nbsp;; logo animé inclus, carte de visite finale en option), <a href="https://minutedrone.com/combien-coute-une-video-immobiliere-par-drone" target="_blank" rel="noopener">Minutedrone</a> (350&nbsp;€ la vidéo pour une demi-journée de prise de vue, montage indiqué à part à 220&nbsp;€), <a href="https://ohmydrone.fr/tarifs/" target="_blank" rel="noopener">Oh My Drone</a> (500&nbsp;€ HT pour un bien jusqu'à 100&nbsp;m², logo inclus). Aucune des trois ne mentionne de voix off. Le prix final dépend du bien et des options. Côté ImmoClap, abonnement Agence&nbsp;: 99&nbsp;€ HT par mois pour 10 vidéos, soit dès 9,90&nbsp;€ HT la vidéo en France, et 899&nbsp;DH par mois, soit «&nbsp;Dès 89,90&nbsp;DH&nbsp;» la vidéo au Maroc (prix hors taxes).</p>
+    <p class="cmp-note rv">* Offres publiées en France, relevées le 8 octobre 2026&nbsp;: <a href="https://shoootin.com/service/video" target="_blank" rel="noopener">Shoootin</a> (tarifs vidéo «&nbsp;à partir de 219&nbsp;€&nbsp;» en résidentiel&nbsp;; logo animé inclus, carte de visite finale en option, musique de leur catalogue en option dès 79&nbsp;€ ou la vôtre ajoutée sans frais), <a href="https://minutedrone.com/combien-coute-une-video-immobiliere-par-drone" target="_blank" rel="noopener">Minutedrone</a> (350&nbsp;€ la vidéo pour une demi-journée de prise de vue, montage indiqué à part à 220&nbsp;€), <a href="https://ohmydrone.fr/tarifs/" target="_blank" rel="noopener">Oh My Drone</a> (500&nbsp;€ HT pour un bien jusqu'à 100&nbsp;m², logo et musique libre de droits inclus). Aucune des trois ne mentionne de voix off. Le prix final dépend du bien et des options.</p>
   </div>
 </section>
 
@@ -1031,7 +1046,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
     <div class="eyebrow rv"><i>VIII</i><b></b>FAQ</div>
     <h2 class="center rv" id="t-faq">Vos questions,<br><span class="it">nos réponses.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
     <div class="faq rv" id="faqList">
-      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa1" id="fq1">Quand pourrai-je commander&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa1" role="region" aria-labelledby="fq1"><div><p>Très bientôt&nbsp;: les comptes et les paiements sont en cours d'ouverture. Laissez votre e-mail et on vous écrit le jour où vous pouvez commander. Il n'y a pas d'essai gratuit, mais vous pouvez regarder les démonstrations de cette page avant de décider.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa1" id="fq1">Quand pourrai-je commander&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa1" role="region" aria-labelledby="fq1"><div><p>Très bientôt&nbsp;: la génération des vidéos, les comptes clients et le paiement sont en cours de mise en place. Laissez votre e-mail et on vous écrit le jour où vous pouvez commander. Il n'y a pas d'essai gratuit, mais vous pouvez regarder les démonstrations de cette page avant de décider.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa2" id="fq2">Combien de photos par vidéo&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa2" role="region" aria-labelledby="fq2"><div><p>De 3 à 12 photos par vidéo. Avec 8 à 12 photos, vous montrez le bien en entier&nbsp;: extérieur, pièces de vie, chambres, salle de bain, vue. Notre <a href="guide.html">guide photos</a> explique comment bien les préparer.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa3" id="fq3">Quelle sera la durée de la vidéo&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa3" role="region" aria-labelledby="fq3"><div><p>Environ 5 secondes par photo&nbsp;: de 15 secondes avec 3 photos à 60 secondes avec 12 photos.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa4" id="fq4">Combien de temps dure la génération&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa4" role="region" aria-labelledby="fq4"><div><p>Quelques minutes, sans rien faire de votre côté. Le délai varie selon le nombre de photos et la charge des serveurs.</p></div></div></div>
@@ -1078,6 +1093,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
     </div>
     <div class="fbot">
       <p>© 2026 ImmoClap · Julien Wail COLLY, entrepreneur individuel (immatriculation en cours) · Lot Zohour Targa, Tranche 20, N° 91, Targa, Marrakech, Maroc · <a href="mailto:contact.immoclap@gmail.com">contact.immoclap@gmail.com</a><br>Photos et vidéos de démonstration générées par IA&nbsp;: elles ne représentent aucun bien réel.</p>
+      <p class="fpays" id="fpays" hidden><span id="paysNom">Prix affichés en euros (France)</span> · <button type="button" data-pays>Changer de pays</button></p>
     </div>
   </div>
   <div class="giant" aria-hidden="true">ImmoClap</div>
@@ -1139,6 +1155,21 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
       <p style="color:var(--muted);font-size:15px;margin-top:8px">On vous écrit à cette adresse dès l'ouverture des commandes.</p>
       <button type="button" class="btn ghost" id="okClose">Fermer</button>
     </div>
+  </div>
+</div>
+
+<!-- ================= CHOIX DU PAYS (première visite) ================= -->
+<div class="modal" id="pays" role="dialog" aria-modal="true" aria-labelledby="paysT" aria-describedby="paysD" hidden>
+  <div class="mbox pbox">
+    <button type="button" class="x" aria-label="Fermer sans choisir">×</button>
+    <svg width="40" height="40" style="margin:0 auto 14px;display:block" aria-hidden="true"><use href="#mark"/></svg>
+    <h2 id="paysT">Vous êtes au Maroc<br><span class="it">ou en France&nbsp;?</span></h2>
+    <p class="intro" id="paysD">Selon votre réponse, les prix s'affichent en dirhams ou en euros. Vous pourrez changer à tout moment.</p>
+    <div class="pch-list">
+      <button type="button" class="pch" data-c="mad"><span class="ci" aria-hidden="true">DH</span><span class="pl"><b>Maroc</b> <small>· prix en DH</small></span><svg class="ar" width="14" height="14" aria-hidden="true"><use href="#arrow"/></svg></button>
+      <button type="button" class="pch" data-c="eur"><span class="ci" aria-hidden="true">€</span><span class="pl"><b>France</b> <small>· prix en €</small></span><svg class="ar" width="14" height="14" aria-hidden="true"><use href="#arrow"/></svg></button>
+    </div>
+    <p class="fine">Votre choix reste dans ce navigateur.</p>
   </div>
 </div>
 
@@ -1309,10 +1340,10 @@ const price=()=>{const sym=c==='eur'?'€':'DH';
     const each=$('[data-each]',plan);if(each){const pu=Math.round(v/n*100)/100;each.textContent=`soit ${fmtN(pu)}${NB}${sym} la vidéo`;}
     const b=$('[data-disc]',plan);if(b){const pu=v/n;const pct=Math.round((1-pu/unit[c])*100);b.textContent=`−${pct}${NB}% par vidéo`;}
   });
-  const ag=$('.price[data-month][data-n="10"]'), am=+ag.dataset[c], an=+ag.dataset.n;
-  $$('[data-cmp-month]').forEach(el=>el.textContent=`${fmtN(am)}${NB}${sym} HT / mois`);
-  $$('[data-cmp-price]').forEach(el=>el.textContent=`${el.tagName==='SMALL'?'Dès':'dès'} ${fmtN(Math.round(am/an*100)/100)}${NB}${sym} la vidéo`);
-  $$('#cur button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.c===c)));};
+  const am=+$('.price[data-month][data-n="10"]').dataset[c];
+  $$('[data-cmp-month]').forEach(el=>el.textContent=`${fmtN(am)}${NB}${sym} HT${NB}/${NB}mois`);
+  $$('#cur button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.c===c)));
+  $('#paysNom').textContent=c==='mad'?'Prix affichés en dirhams (Maroc)':'Prix affichés en euros (France)';};
 $$('#cur button').forEach(b=>b.addEventListener('click',()=>{c=b.dataset.c;store.set('immoclap_cur',c);price();}));
 const saved=store.get('immoclap_cur');
 if(saved==='eur'||saved==='mad')c=saved;
@@ -1339,7 +1370,7 @@ const closeLayer=el=>{const i=stack.findIndex(s=>s.el===el);if(i<0)return;const 
   else{const bu=$('.burger');(bu&&bu.getClientRects().length&&getComputedStyle(bu).display!=='none'?bu:$('#contenu')).focus();}};
 addEventListener('keydown',e=>{
   if(e.key==='Escape'){
-    if(stack.length){e.preventDefault();const top=stack[stack.length-1].el;top===modal?closeModal():closeLb();return;}
+    if(stack.length){e.preventDefault();const top=stack[stack.length-1].el;top===modal?closeModal():top===pays?closePays():closeLb();return;}
     if(mob.classList.contains('on')){menuOpen(false);burger.focus();return;}
     if(!helpPop.hidden){helpToggle(false);helpBtn.focus();return;}
   }
@@ -1417,6 +1448,24 @@ const helpBtn=$('#helpBtn'), helpPop=$('#helpPop');
 const helpToggle=o=>{helpPop.hidden=!o;helpBtn.setAttribute('aria-expanded',String(o));helpBtn.setAttribute('aria-label',o?"Fermer l'aide":'Aide');};
 helpBtn.addEventListener('click',()=>{const o=helpPop.hidden;helpToggle(o);if(o)$('a',helpPop).focus();});
 document.addEventListener('click',e=>{if(!helpPop.hidden&&!e.target.closest('#help'))helpToggle(false);});
+
+/* choix du pays : demandé à la première visite, mémorisé (clé immoclap_cur partagée avec l'espace client).
+   Fermé sans choisir (Échap, ×, clic dehors) : on garde la détection et on ne redemande pas pendant la session.
+   Jamais affiché aux robots ni aux outils d'aperçu : le contenu de la page reste le même pour tous. */
+const pays=$('#pays');
+const ss={get(k){try{return sessionStorage.getItem(k)}catch(e){return null}},set(k,v){try{sessionStorage.setItem(k,v)}catch(e){}}};
+const closePays=()=>{ss.set('immoclap_pays_vu','1');closeLayer(pays);};
+const openPays=()=>{if(lb.classList.contains('on'))closeLb(true);if(modal.classList.contains('on'))closeModal();if(mob.classList.contains('on'))menuOpen(false);helpToggle(false);
+  if(pays.classList.contains('on'))return;openLayer(pays,$(`.pch[data-c="${c}"]`,pays));};
+$$('.pch',pays).forEach(b=>b.addEventListener('click',()=>{c=b.dataset.c;store.set('immoclap_cur',c);price();closeLayer(pays);}));
+$('.x',pays).addEventListener('click',closePays);
+pays.addEventListener('click',e=>{if(e.target===pays)closePays()});
+$$('[data-pays]').forEach(b=>b.addEventListener('click',openPays));
+$('#fpays').hidden=false;
+/* robots et outils d'aperçu : navigateur piloté, ou nom d'agent typique (les téléphones Cubot ne sont pas des robots) */
+const isBot=()=>{try{if(navigator.webdriver)return true;
+  return /bot\b|crawl|spider|slurp|headless|lighthouse|prerender|phantom|screenshot|preview|facebookexternalhit|facebookcatalog|meta-externalagent|embedly|google-|mediapartners|feedfetcher|vkshare/i.test((navigator.userAgent||'').replace(/cubot/ig,''));}catch(e){return false}};
+if(saved!=='eur'&&saved!=='mad'&&!ss.get('immoclap_pays_vu')&&!isBot())openPays();
 
 /* origine de la visite (?v=video12, ?v=wa-ma), gardée dans le navigateur et jointe au formulaire */
 try{const v=new URLSearchParams(location.search).get('v');if(v)store.set('immoclap_src',v.slice(0,40));const sv=store.get('immoclap_src');if(sv)$('#src').value=sv;}catch(e){}

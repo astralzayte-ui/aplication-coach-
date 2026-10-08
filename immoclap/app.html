@@ -380,19 +380,23 @@ dialog .dtext{color:var(--muted);font-size:15px;line-height:1.55}
 dialog .dtext p+p{margin-top:8px}
 dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin-top:22px}
 #demo-dlg{width:min(440px,calc(100vw - 32px))}
-/* choix du pays (devise des prix) */
-#pays-dlg{width:min(460px,calc(100vw - 32px));padding:26px 22px 22px;position:relative}
-#pays-dlg h2{font-size:clamp(24px,6.4vw,28px);margin:0 40px 8px 0}
-#pays-dlg .dtext{margin-bottom:18px}
-.pays{display:grid;gap:10px}
-.pays button{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:12px 16px;border:1px solid var(--line2);border-radius:var(--r2);background:var(--card);text-align:left;font-size:17px;line-height:1.3;transition:border-color .15s,background .15s}
-.pays button:hover{border-color:var(--gold2);background:rgba(246,188,40,.06)}
-.pays button.on{border-color:var(--gold)}
-.pays .pi{width:40px;height:40px;border-radius:50%;border:1px solid var(--gold2);display:grid;place-items:center;color:var(--gold2);font-weight:600;font-size:14px;letter-spacing:.02em;flex:none}
-.pays b{font-weight:600}
-.pays .pc{color:var(--muted)}
-.pays .now{margin-left:auto;font-size:12px;color:var(--gold)}
-.pays-note{font-size:13px;color:var(--dim);margin-top:14px}
+/* choix du pays (devise des prix) : même présentation que sur le site */
+#pays-dlg{width:min(440px,calc(100vw - 32px));padding:36px 26px 24px;position:relative;text-align:center;border-radius:18px;border-color:var(--line)}
+#pays-dlg .mk{width:38px;height:38px;margin:0 auto 12px}
+#pays-dlg h2{font-size:30px;line-height:1.1;margin:0 0 10px}
+#pays-dlg h2 .it{color:var(--gold2)}
+#pays-dlg .dtext{margin:14px 0 0}
+.pays{display:grid;gap:12px;margin-top:22px}
+.pays button{display:flex;align-items:center;gap:14px;width:100%;min-height:68px;padding:12px 16px;border:1px solid var(--line2);border-radius:12px;background:var(--bg);text-align:left;line-height:1.25;transition:border-color .2s,background .2s}
+.pays button:hover{border-color:var(--gold);background:var(--card)}
+.pays button.on{border-color:var(--gold2)}
+.pays .pi{width:42px;height:42px;border-radius:50%;border:1px solid rgba(246,188,40,.6);display:grid;place-items:center;color:var(--gold);font-weight:600;font-size:14px;letter-spacing:.02em;flex:none}
+.pays .pl{flex:1;min-width:0}
+.pays b{font-family:var(--serif);font-weight:400;font-size:22px;color:var(--fg)}
+.pays .pc{color:var(--muted);font-size:14px;white-space:nowrap}
+.pays .now{flex:none;font-size:12px;color:var(--gold)}
+.pays-note{font-size:13px;color:var(--muted);margin-top:16px;line-height:1.5}
+@media(max-width:420px){#pays-dlg{padding:36px 18px 22px}#pays-dlg h2{font-size:27px}}
 .dlg-x{position:absolute;right:10px;top:10px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:var(--muted)}
 .dlg-x:hover{color:var(--fg);background:var(--card)}
 .cur-wrap{display:flex;align-items:center;gap:6px 14px;flex-wrap:wrap}
@@ -649,8 +653,8 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
       <fieldset class="field">
         <legend>Formats à livrer <span class="req" aria-hidden="true">*</span> · tous inclus dans le crédit</legend>
         <div class="fmts">
-          <label class="fmt"><input type="checkbox" name="fmt" value="16:9" aria-describedby="err3"><span class="box"><span class="shape" style="width:30px;height:17px" aria-hidden="true"></span><span><b>16:9 · Écran large</b><small>Idéal pour SeLoger, Leboncoin, Avito, Mubawab et YouTube.</small></span></span></label>
-          <label class="fmt"><input type="checkbox" name="fmt" value="9:16" aria-describedby="err3"><span class="box"><span class="shape" style="width:14px;height:25px" aria-hidden="true"></span><span><b>9:16 · Vertical</b><small>Idéal pour Reels, TikTok, Stories et WhatsApp.</small></span></span></label>
+          <label class="fmt"><input type="checkbox" name="fmt" value="16:9" aria-describedby="err3"><span class="box"><span class="shape" style="width:30px;height:17px" aria-hidden="true"></span><span><b>16:9 · Écran large</b><small>Idéal pour SeLoger, Leboncoin, Avito, Mubawab et votre site.</small></span></span></label>
+          <label class="fmt"><input type="checkbox" name="fmt" value="9:16" aria-describedby="err3"><span class="box"><span class="shape" style="width:14px;height:25px" aria-hidden="true"></span><span><b>9:16 · Vertical</b><small>Idéal pour les Reels, TikTok, les statuts WhatsApp et les stories.</small></span></span></label>
           <label class="fmt"><input type="checkbox" name="fmt" value="1:1" aria-describedby="err3"><span class="box"><span class="shape" style="width:21px;height:21px" aria-hidden="true"></span><span><b>1:1 · Carré</b><small>Idéal pour le fil Instagram et Facebook.</small></span></span></label>
         </div>
       </fieldset>
@@ -782,7 +786,7 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
     <div class="acct">
       <div class="card" id="kit">
         <h2>Profil et kit de marque</h2>
-        <p class="fine">Enregistrés une fois, le nom, le téléphone et le logo sont repris automatiquement dans chaque nouvelle vidéo.</p>
+        <p class="fine">Le nom de l'agence, le téléphone et le logo composent le carton de fin. Si la case du bas est cochée, l'assistant les pré-remplit à l'étape « Le style », où vous pouvez encore les changer pour une vidéo.</p>
         <form id="f-kit" novalidate>
           <div class="grid2">
             <div class="field"><label for="k-first">Prénom</label><input type="text" id="k-first" autocomplete="given-name" maxlength="40" placeholder="ex. : Sara"></div>
@@ -800,7 +804,7 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
             </div>
             <p class="ferr" id="k-logo-err" aria-live="polite"></p>
           </div>
-          <label class="check"><input type="checkbox" id="k-auto"> <span>Appliquer automatiquement à chaque nouvelle vidéo</span></label>
+          <label class="check"><input type="checkbox" id="k-auto"> <span>Pré-remplir l'assistant avec ces informations</span></label>
           <div class="row-act"><button class="btn" type="submit">Enregistrer</button></div>
         </form>
       </div>
@@ -878,14 +882,15 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
 </dialog>
 
 <dialog id="pays-dlg" aria-labelledby="pays-h" aria-describedby="pays-t">
-  <button type="button" class="dlg-x" data-close aria-label="Fermer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-  <h2 id="pays-h">Vous êtes au Maroc ou en France&nbsp;?</h2>
-  <p class="dtext" id="pays-t">Nous affichons les prix dans votre devise.</p>
+  <button type="button" class="dlg-x" data-close aria-label="Fermer sans choisir"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <img class="mk" src="assets/icon.svg" alt="" width="38" height="38">
+  <h2 id="pays-h">Vous êtes au Maroc<br><span class="it">ou en France&nbsp;?</span></h2>
+  <p class="dtext" id="pays-t">Selon votre réponse, les prix s'affichent en dirhams ou en euros. Vous pourrez changer à tout moment.</p>
   <div class="pays" role="group" aria-labelledby="pays-h">
-    <button type="button" data-pays="mad"><span class="pi" aria-hidden="true">DH</span><span><b>Maroc</b> <span class="pc">· prix en DH</span></span></button>
-    <button type="button" data-pays="eur"><span class="pi" aria-hidden="true">€</span><span><b>France</b> <span class="pc">· prix en €</span></span></button>
+    <button type="button" data-pays="mad"><span class="pi" aria-hidden="true">DH</span><span class="pl"><b>Maroc</b> <span class="pc">· prix en DH</span></span></button>
+    <button type="button" data-pays="eur"><span class="pi" aria-hidden="true">€</span><span class="pl"><b>France</b> <span class="pc">· prix en €</span></span></button>
   </div>
-  <p class="pays-note">Vous pourrez changer à tout moment avec le lien « Changer de pays », en bas de page.</p>
+  <p class="pays-note">Votre choix reste dans ce navigateur. Pour le modifier&nbsp;: «&nbsp;Changer de pays&nbsp;», en bas de page.</p>
 </dialog>
 
 <div id="print-area" aria-hidden="true"></div>
@@ -1133,6 +1138,7 @@ function logout(msg){
 /* ---------- plusieurs onglets ouverts sur le même compte ---------- */
 addEventListener('storage', e => {
   if (e.storageArea && e.storageArea !== localStorage) return;
+  if (e.key === K.cur) { const c = LS.get(K.cur); if ((c === 'eur' || c === 'mad') && c !== cur) { cur = c; refreshPrices(); } return; }
   if (e.key === K.session || e.key === null) {
     const s = LS.json(K.session), em = s && s.email ? String(s.email).toLowerCase() : null;
     if (!em && session) return logout('Vous avez été déconnecté dans un autre onglet.');
@@ -1240,7 +1246,7 @@ function showScreen(name, title, focusEl){
 function render(){
   const r = parseHash();
   const known = stampHistory(r); /* entrée déjà visitée (Retour, Suivant, rechargement) */
-  $$('dialog[open]').forEach(d => { if (d.id !== 'dlg') d.close(); });
+  $$('dialog[open]').forEach(d => { if (d.id !== 'dlg' && d.id !== 'pays-dlg') d.close(); }); /* le choix du pays reste ouvert pendant une redirection */
   closeHelp();
   if (r.a !== 'video') $('#r-video').pause();
   if (r.a !== 'nouvelle') stopVoice();
@@ -1354,16 +1360,82 @@ function renderOffers(){
   $('#offers-sub').innerHTML = OFFERS.filter(o => o.kind === 'sub').map(card).join('');
   syncCur();
 }
-function syncCur(){ $$('.cur button').forEach(b => b.setAttribute('aria-pressed', b.dataset.c === cur ? 'true' : 'false')); }
-document.addEventListener('click', e => {
-  const b = e.target.closest('.cur button'); if (!b || b.disabled) return;
-  cur = b.dataset.c; LS.set(K.cur, cur); syncCur();
+function syncCur(){ $$('.cur button').forEach(b => b.setAttribute('aria-pressed', b.dataset.c === cur ? 'true' : 'false')); updatePaysLink(); }
+function updatePaysLink(){ const el = $('#pays-now'); if (el) el.textContent = cur === 'mad' ? '(prix en DH)' : '(prix en €)'; }
+/* devise choisie (bascule €/DH ou choix du pays) : mémorisée sous la même clé que le site */
+function setCur(c){
+  if (c !== 'eur' && c !== 'mad') return;
+  cur = c; LS.set(K.cur, c);
+  refreshPrices();
+}
+/* réaffiche les prix de l'écran courant (pendant un paiement, le récapitulatif garde la devise figée au clic) */
+function refreshPrices(){
+  syncCur();
+  if (!session || !acct) return;
   const r = parseHash();
   if (r.a === 'videos') renderDash();
   if (r.a === 'paiement') renderPaySummary();
   if (r.a === 'compte') renderPlanCard();
+  if (r.a === 'nouvelle' && curStep() === 4) renderCreditBox();
   updatePricePlaceholder();
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('.cur button'); if (!b || b.disabled) return;
+  setCur(b.dataset.c);
 });
+
+/* ---------- choix du pays : Maroc (DH) ou France (€) ----------
+   Posé une seule fois, à la première visite, si aucune devise n'a été choisie (ici ou sur le site, même clé).
+   Échap, clic à l'extérieur ou « Fermer » : on garde la devise détectée (fuseau horaire) et on ne redemande
+   pas pendant cette visite. Jamais pour les robots et les outils d'aperçu. */
+const SS = { get(k){ try { return sessionStorage.getItem(k); } catch(e) { return null; } }, set(k, v){ try { sessionStorage.setItem(k, v); } catch(e) {} } };
+const PAYS_SEEN = 'immoclap_pays_vu';
+const isBot = (() => { try { const ua = (navigator.userAgent || '').replace(/cubot/ig, ''); return navigator.webdriver === true || /bot\b|bot\/|crawl|spider|slurp|headless|lighthouse|prerender|phantom|screenshot|preview|facebookexternalhit|facebookcatalog|facebot|meta-externalagent|embedly|google-|mediapartners|feedfetcher|vkshare|whatsapp\//i.test(ua); } catch(e) { return true; } })();
+const curChosen = () => { const s = LS.get(K.cur); return s === 'eur' || s === 'mad'; };
+const paysDlg = $('#pays-dlg');
+let paysOpener = null, paysDownOut = false;
+function openPays(){
+  if (paysDlg.open) return;
+  const chosen = curChosen();
+  $$('#pays-dlg [data-pays]').forEach(b => {
+    const on = chosen && b.dataset.pays === cur;
+    b.classList.toggle('on', on);
+    const old = b.querySelector('.now'); if (old) old.remove();
+    if (on) { b.setAttribute('aria-current', 'true'); b.insertAdjacentHTML('beforeend', '<span class="now">Choix actuel</span>'); } else b.removeAttribute('aria-current');
+  });
+  paysOpener = document.activeElement;
+  paysDlg.showModal();
+  const first = $(`#pays-dlg [data-pays="${cur}"]`) || $('#pays-dlg [data-pays]');
+  first.focus();
+}
+const outside = (e, el) => { const r = el.getBoundingClientRect(); return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom; };
+paysDlg.addEventListener('pointerdown', e => { paysDownOut = e.target === paysDlg && outside(e, paysDlg); });
+paysDlg.addEventListener('click', e => {
+  const b = e.target.closest('[data-pays]');
+  if (b) {
+    setCur(b.dataset.pays);
+    paysDlg.close();
+    toast(cur === 'mad' ? 'Maroc : prix affichés en dirhams (DH).' : 'France : prix affichés en euros (€).');
+    return;
+  }
+  if (e.target === paysDlg && paysDownOut && outside(e, paysDlg)) paysDlg.close(); /* clic sur le fond */
+  paysDownOut = false;
+});
+/* focus gardé dans la fenêtre (Tab et Maj+Tab bouclent) */
+paysDlg.addEventListener('keydown', e => {
+  if (e.key !== 'Tab') return;
+  const f = $$('#pays-dlg button:not([disabled])'); if (!f.length) return;
+  const i = f.indexOf(document.activeElement);
+  if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+  else if (!e.shiftKey && (i === -1 || i === f.length - 1)) { e.preventDefault(); f[0].focus(); }
+});
+paysDlg.addEventListener('close', () => {
+  SS.set(PAYS_SEEN, '1');
+  const o = paysOpener; paysOpener = null;
+  const back = o && o !== document.body && o.isConnected && o.getClientRects().length ? o : $('.screen.on h1');
+  if (back) { try { back.focus({preventScroll:true}); } catch(e) { back.focus(); } }
+});
+document.addEventListener('click', e => { if (e.target.closest('[data-pays-open]')) openPays(); });
 
 /* ---------- changement de formule ---------- */
 async function planChange(id){
@@ -1691,11 +1763,11 @@ $('#save-kit').addEventListener('click', () => {
   p.agency = draft.f.agency.trim(); p.phone = draft.f.phone.trim(); p.logo = draft.f.logo; p.logoDark = !!draft.f.logoDark;
   if (!saveAcct()) { Object.assign(p, old); return toast('Stockage du navigateur plein : kit de marque non enregistré.'); }
   draft.f.fromKit = true; renderBrandNote();
-  toast('Kit de marque enregistré : il sera repris dans vos prochaines vidéos.');
+  toast(p.auto !== false ? 'Kit de marque enregistré : cette étape sera pré-remplie la prochaine fois.' : 'Kit de marque enregistré dans Mon compte.');
 });
 function renderBrandNote(){
   const p = acct.profile, has = p.agency || p.phone || p.logo;
-  $('#brand-note').textContent = has ? (draft && draft.f.fromKit ? 'Rempli avec votre kit de marque. Les changements faits ici ne valent que pour cette vidéo, sauf si vous les enregistrez.' : 'Votre kit de marque est enregistré dans Mon compte.') : 'Enregistrez votre marque une fois : elle sera reprise à chaque nouvelle vidéo.';
+  $('#brand-note').textContent = has ? (draft && draft.f.fromKit ? 'Pré-rempli avec votre kit de marque. Les changements faits ici ne valent que pour cette vidéo, sauf si vous les enregistrez.' : 'Votre kit de marque est enregistré dans Mon compte.') : p.auto !== false ? 'Astuce : enregistrez-la dans votre kit de marque, cette étape sera pré-remplie la prochaine fois.' : "Vous pouvez l'enregistrer dans votre kit de marque (Mon compte).";
 }
 
 /* --- aperçus en direct --- */
@@ -1956,6 +2028,12 @@ $('#f-retry').addEventListener('click', () => {
   tick(); routeVideo(v.id);
 });
 $('#f-del').addEventListener('click', () => { const v = ui.vid; if (!v) return; deleteVideo(v.id); exitTo('videos'); });
+/* liens « Mes vidéos » cliqués depuis l'écran vidéo (retour de l'écran, barre du bas, bouton d'en-tête, logo) :
+   si l'entrée précédente est déjà Mes vidéos, on y revient (pas de nouvelle entrée Mes vidéos empilée derrière la vidéo) */
+$$('#s-video a[href="#videos"], #home-link, #who a[data-nav="videos"]').forEach(a => a.addEventListener('click', e => {
+  if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  if (session && parseHash().a === 'video' && entryFrom() === '#videos') { e.preventDefault(); afterBack = null; history.back(); }
+}));
 
 /* --- textes prêts à copier --- */
 const isMaroc = v => /\b(dh|mad|dirhams?)\b/i.test(v.price || '') || /marrakech|casablanca|rabat|tanger|agadir|f[eè]s|mekn[eè]s|essaouira|k[ée]nitra|oujda|t[ée]touan|el jadida|mohammedia|bouskoura|dar bouazza|ifrane|sal[ée]|t[ée]mara|benslimane|ouarzazate|nador|safi|taroudant/i.test(v.city || '') || (!/€|eur/i.test(v.price || '') && cur === 'mad');
@@ -2155,7 +2233,7 @@ $('#f-kit').addEventListener('submit', e => {
   const p = acct.profile, old = JSON.stringify(p);
   Object.assign(p, {first:$('#k-first').value.trim(), agency:$('#k-agency').value.trim(), phone:$('#k-phone').value.trim(), email:em, logo:kitLogo, logoDark:kitLogoDark, auto:$('#k-auto').checked});
   if (!saveAcct()) { acct.profile = JSON.parse(old); return toast('Stockage du navigateur plein : profil non enregistré.'); }
-  toast(p.auto ? 'Profil enregistré : votre marque sera reprise dans chaque nouvelle vidéo.' : 'Profil enregistré.');
+  toast(p.auto ? "Profil enregistré : il pré-remplira l'étape « Le style » de l'assistant." : 'Profil enregistré.');
 });
 function renderPlanCard(){
   const s = acct.sub, n = creditsAvail(), ex = nextExpiry(), rs = reserved();
@@ -2272,6 +2350,8 @@ migrateLegacy();
   if (s && s.email) login(s.email, {silent:true});
   tick();
   if (!location.hash || location.hash === '#') go(session ? 'videos' : 'connexion', true); else render();
+  updatePaysLink();
+  if (!isBot && !curChosen() && !SS.get(PAYS_SEEN)) openPays();
 })();
 </script>
 </body>
