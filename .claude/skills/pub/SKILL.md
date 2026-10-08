@@ -320,8 +320,14 @@ VAGUE 1        80 %  32 vidéos  FORMATS COPIÉS sur les concurrents
 JOUR 21        on classe les FORMATS par la moyenne de rétention 3 s,
                et on compare « copiés » contre « nos idées »
 VAGUE 2        le format qui gagne 50 % · le 2ᵉ 30 % · le reste 20 %
-(jours 21-40)
+(jours 21-40)  + une source « à nous » qui a percé en vague 1 est
+               RETESTÉE avec plus de vidéos
 ```
+
+**Les 8 vidéos « nos idées » :** 3 de ses objections · 3 de ses vidéos
+enregistrées · 2 des avis 1 étoile. 🟠 8 vidéos ne jugent pas 3 sources
+une par une : on les juge **ensemble** contre les copiées, et une vidéo
+qui perce fait **retester sa source** en vague 2.
 
 **Pourquoi :** ce qui tourne depuis longtemps chez eux est déjà prouvé.
 On ne réinvente pas au départ, on part du prouvé et on garde 20 % pour
