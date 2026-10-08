@@ -76,7 +76,8 @@ Dernière mise à jour : 05/10/2026. À tenir à jour à chaque décision import
 
 ## À faire quand le fondateur dit « reprends » (mis en pause le 06/10)
 - Finitions site + app (workflow immoclap-finitions) puis contrôle et mise en ligne.
-- Nouveau : à l'arrivée sur le site (et dans l'app), demander le pays (Maroc / France) → afficher les prix en DH ou en € selon la réponse (mémorisé ; la bascule €/DH reste disponible).
+- Nouveau : à l'ouverture du site (et de l'app), fenêtre « Vous êtes au Maroc ou en France ? » → prix en DH ou en € selon la réponse (mémorisé ; on peut changer ensuite). Seulement Maroc et France.
+- Ordre décidé le 08/10 : d'abord la recherche « est-ce que ça vend » ; puis au « go » du fondateur : 1) finitions + mise en ligne du site, 2) choix du pays, 3) messages WhatsApp seulement s'il faut les modifier (envoyés par le fondateur quand tout est prêt), 4) publications : suivre le skill `pub` (tester plusieurs sources).
 - Polar : organisation « ImmoClap » (individuel), devise par défaut EUR ; ajouter un prix en MAD par produit si Polar le permet.
 
 ## Réseaux (06/10)
