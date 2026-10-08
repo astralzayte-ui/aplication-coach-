@@ -87,6 +87,7 @@ Dernière mise à jour : 08/10/2026. À tenir à jour à chaque décision import
 1. Studio de montage (musiques Lyria si gratuites, frise des plans, mouvements, transitions, habillage, aperçu en direct, préréglages) : workflow arrêté en cours → relancer le script scratchpad/studio-montage.js avec resumeFromRunId wf_a7795583-0b4 (si le scratchpad a disparu : réécrire à partir de cette description).
 2. Ensuite : nouveaux prix (15 € / 29 € / 79 € ; 129 / 249 / 699 DH), abonnement expliqué, plus de bascule €/DH, langues FR/AR/EN → script scratchpad/prix-langues.js.
 3. Puis mise en ligne (brouillon puis publication) et envoyer le lien direct au fondateur.
+4. À venir (le fondateur envoie un fichier) : ajouter sur le site l'envoi d'un e-mail au client avec -10 %, en copiant ce qui a été fait sur un autre projet ; service d'e-mails avec clé API (300 e-mails/mois gratuits) — la clé sera ajoutée dans l'environnement, jamais dans le chat.
 
 ## Prochaines étapes (ordre du fondateur, 08/10)
 1. Inscription auto-entrepreneur. 2. Ouvrir l'encaissement (Polar). 3. Prochaine dépense = test Higgsfield : photos de villa générées avec Gemini (prompts dans `tests-higgsfield/PROMPTS-VILLA.md`), puis ~7 vidéos : 3 photos × Kling 2.5 et Kling 3.0 (+1 à refaire) → choisir le modèle (qualité vs coût/marge).
