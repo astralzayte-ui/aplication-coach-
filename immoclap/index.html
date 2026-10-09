@@ -132,7 +132,6 @@ header.scrolled{background:rgba(11,10,9,.86);backdrop-filter:blur(14px);-webkit-
 .vpause{position:absolute;right:14px;bottom:12px;z-index:2;width:36px;height:36px;border-radius:50%;background:rgba(11,10,9,.7);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center}
 .vpause svg{width:14px;height:14px}
 .vpause .i-play{display:none}
-.pv .vpause{left:10px;right:auto;bottom:10px;z-index:3;width:32px;height:32px}
 .ba .vpause{z-index:3}
 .vpause[aria-pressed="true"] .i-play{display:block}
 .vpause[aria-pressed="true"] .i-pause{display:none}
@@ -252,12 +251,22 @@ header.scrolled{background:rgba(11,10,9,.86);backdrop-filter:blur(14px);-webkit-
 .steps-ctl [aria-pressed="true"] .i-pause{display:none}
 
 /* ---------- IV réglages ---------- */
-.tabs{display:flex;justify-content:center;gap:8px;margin:54px auto 0;flex-wrap:wrap}
+.presets{max-width:1100px;margin:48px auto 0}
+.pre-l{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);text-align:center;margin-bottom:12px}
+.pre-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.pre{text-align:left;padding:14px 16px;border:1px solid var(--line2);border-radius:12px;background:#0e0d0c;min-height:44px;transition:border-color .2s,background .2s}
+.pre b{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px;line-height:1.3}
+.pre small{display:block;color:var(--muted);font-size:13px;line-height:1.4;margin-top:4px}
+.pre:hover{border-color:var(--gold2)}
+.pre[aria-pressed="true"]{border-color:var(--gold);background:rgba(246,188,40,.07)}
+.pre[aria-pressed="true"] b::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.pre-note{font-size:13px;color:var(--muted);text-align:center;margin-top:12px;min-height:21px}
+.tabs{display:flex;justify-content:center;gap:8px;margin:34px auto 0;flex-wrap:wrap}
 .tabs button{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding:12px 16px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
 .tabs button[aria-selected="true"]{color:var(--fg);border-color:var(--gold)}
 .tabs button:hover{color:var(--fg)}
-.studio{max-width:1100px;margin:28px auto 0;border-radius:18px;padding:10px;background:#000;border:1px solid var(--line)}
-.studio-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);border-radius:10px;background:#0e0d0c;overflow:hidden;overflow:clip;min-height:470px}
+.studio{max-width:1100px;margin:22px auto 0;border-radius:18px;padding:10px;background:#000;border:1px solid var(--line)}
+.studio-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);border-radius:10px;background:#0e0d0c;overflow:hidden;overflow:clip;min-height:500px}
 .opts-pane{padding:30px 28px;border-right:1px solid var(--line)}
 .tp[hidden]{display:none}
 .tp h3{font-size:24px}
@@ -265,7 +274,7 @@ header.scrolled{background:rgba(11,10,9,.86);backdrop-filter:blur(14px);-webkit-
 .grp{margin-top:20px}
 .grp-l{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;display:block}
 .optlist{display:flex;flex-direction:column;gap:8px}
-.optrow{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;padding:11px 14px;border:1px solid var(--line);border-radius:10px;transition:border-color .2s,background .2s;min-height:44px}
+.optrow{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;border:1px solid var(--line);border-radius:10px;transition:border-color .2s,background .2s;min-height:44px}
 .optrow b{display:block;font-weight:500;font-size:15px}
 .optrow small{display:block;color:var(--muted);font-size:13px;line-height:1.4;margin-top:2px}
 .optrow .dot{flex:none;width:18px;height:18px;border-radius:50%;border:1.5px solid var(--line2);position:relative}
@@ -273,22 +282,112 @@ header.scrolled{background:rgba(11,10,9,.86);backdrop-filter:blur(14px);-webkit-
 .optrow[aria-checked="true"] .dot{border-color:var(--gold)}
 .optrow[aria-checked="true"] .dot::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--gold)}
 .pills{display:flex;flex-wrap:wrap;gap:8px}
-.pill{padding:9px 14px;border:1px solid var(--line);border-radius:10px;font-size:14px;color:var(--muted);min-height:40px;transition:border-color .2s,color .2s}
+.pill{padding:8px 13px;border:1px solid var(--line);border-radius:10px;font-size:14px;color:var(--muted);min-height:40px;transition:border-color .2s,color .2s}
+.pill:hover{color:var(--fg)}
 .pill[aria-checked="true"]{border-color:var(--gold);color:var(--fg);background:rgba(246,188,40,.06)}
+.pill[aria-disabled="true"]{opacity:.45;cursor:not-allowed}
+.pill.t-serif{font-family:var(--serif);font-size:16px}
+.pill.t-sans{font-weight:700;text-transform:uppercase;font-size:12.5px;letter-spacing:.03em}
+.pill.t-min{font-family:var(--serif);font-style:italic;font-weight:300;font-size:16px}
+.sw{display:flex;flex-wrap:wrap;gap:6px}
+.swb{width:40px;height:40px;border-radius:50%;border:2px solid transparent;padding:4px;transition:border-color .2s}
+.swb i{display:block;width:100%;height:100%;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.swb:hover{border-color:var(--line2)}
+.swb[aria-checked="true"]{border-color:var(--fg)}
 .note{font-size:13px;color:var(--dim);margin-top:16px;line-height:1.5}
-.pv-pane{padding:26px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:radial-gradient(circle at 50% 40%,#16130f,#0b0a09 70%)}
-.pv{position:relative;width:100%;max-width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#000;transition:width .45s ease,max-width .45s ease}
-.pv.r916{width:auto;height:min(400px,62vh);aspect-ratio:9/16}
-.pv.r11{width:auto;height:min(360px,56vh);aspect-ratio:1/1}
-.pv video{width:100%;height:100%;object-fit:cover}
-.pv .chip-demo{font-size:10px;padding:5px 8px;left:10px;top:10px}
-.pv-tag{position:absolute;right:10px;bottom:10px;z-index:2;font-size:11px;background:rgba(11,10,9,.78);padding:5px 9px;border-radius:6px;color:var(--fg);max-width:60%;text-align:right}
-.endcard{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;background:rgba(11,10,9,.86);opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s;padding:16px}
-.endcard.on{opacity:1;visibility:visible}
-.endcard .lg{width:56px;height:56px;border-radius:12px;border:1.5px dashed var(--gold2);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gold2);letter-spacing:.06em}
-.endcard b{font-family:var(--serif);font-weight:400;font-size:clamp(20px,2.6vw,30px)}
-.endcard span{font-size:clamp(11px,3.4vw,14px);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
-.pv-cap{font-size:12px;color:var(--dim);text-align:center}
+.lsn-row{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;margin-top:16px}
+.lsn-row[hidden]{display:none}
+.lsn{display:inline-flex;align-items:center;gap:9px;min-height:40px;padding:8px 14px;border:1px solid var(--line2);border-radius:10px;font-size:14px;color:var(--fg);text-align:left;transition:border-color .2s,background .2s}
+.lsn:hover{border-color:var(--gold)}
+.lsn[aria-pressed="true"]{border-color:var(--gold);background:rgba(246,188,40,.08)}
+.lsn svg{flex:none;width:12px;height:12px;color:var(--gold)}
+.lsn .i-pz,.lsn[aria-pressed="true"] .i-pl{display:none}
+.lsn[aria-pressed="true"] .i-pz{display:block}
+.lsn-cap{font-size:13px;color:var(--muted);font-style:italic;line-height:1.45}
+.strip{list-style:none;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-top:18px}
+.strip button{display:block;width:100%;text-align:center;border-radius:6px}
+.strip .th{position:relative;display:block;aspect-ratio:16/10;border-radius:6px;overflow:hidden;border:1px solid var(--line);background:#000;transition:border-color .2s,box-shadow .2s}
+.strip img{width:100%;height:100%;object-fit:cover}
+.strip .n{position:absolute;left:3px;top:3px;background:rgba(0,0,0,.75);font-size:10px;line-height:1;padding:3px 5px;border-radius:4px}
+.strip .cm{display:block;font-size:11px;line-height:1.25;color:var(--muted);margin-top:5px;overflow-wrap:anywhere}
+.strip li.now .th{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.strip li.now .cm{color:var(--fg)}
+.pv-pane{padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:radial-gradient(circle at 50% 40%,#16130f,#0b0a09 70%)}
+.pv-in{width:100%;display:flex;flex-direction:column;align-items:center;gap:10px;position:sticky;top:calc(var(--hh) + 18px)}
+.mts-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;width:100%;font-size:14px}
+.mts-h b{font-weight:600}
+.mts-h small{font-size:12px;color:var(--dim)}
+.mts{--k:1;--acc:#F6BC28;--acc-t:#F6BC28;--acc-ink:#16120A;container-type:inline-size;position:relative;overflow:hidden;background:#000;border-radius:10px;border:1px solid var(--line);aspect-ratio:16/9;width:100%;margin:0 auto;isolation:isolate;user-select:none;-webkit-user-select:none}
+.mts.r916{--k:1.6;aspect-ratio:9/16;max-width:min(225px,calc(60vh * .5625))}
+.mts.r11{--k:1.2;aspect-ratio:1/1;max-width:min(340px,56vh)}
+.mts-layer{position:absolute;inset:0;overflow:hidden;visibility:hidden;background:#000}
+.mts-layer>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:50% 50%;backface-visibility:hidden}
+.mts-endl{background:radial-gradient(circle at 50% 38%,#26221e 0,#0B0A09 72%)}
+.mts-black{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;z-index:2}
+.mts-ttl{position:absolute;inset:0;pointer-events:none;color:#fff;z-index:3;opacity:0}
+.mts-ttl .tsh{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.5) 58%,rgba(0,0,0,.88))}
+.mts-ttl .tw{position:absolute;left:7cqw;right:7cqw;bottom:calc(7cqw * var(--k));display:flex;flex-direction:column;align-items:flex-start;gap:calc(1.5cqw * var(--k));text-shadow:0 1px 14px rgba(0,0,0,.55)}
+.mts-ttl .kick{font-weight:600;font-size:max(9px,calc(2.5cqw * var(--k)));line-height:1.25;letter-spacing:.2em;text-transform:uppercase;color:var(--acc-t)}
+.mts-ttl .ttl{font-family:var(--serif);font-size:max(15px,calc(6.2cqw * var(--k)));line-height:1.06;overflow-wrap:anywhere}
+.mts-ttl .rule{width:12cqw;height:2px;background:var(--acc)}
+.mts-ttl .meta{font-size:max(10px,calc(3cqw * var(--k)));line-height:1.3;color:#f1ece4}
+.mts-ttl.ts-sans .tw{border-left:max(3px,1cqw) solid var(--acc);padding-left:3cqw;gap:calc(1.1cqw * var(--k))}
+.mts-ttl.ts-sans .tw[dir=rtl]{border-left:0;border-right:max(3px,1cqw) solid var(--acc);padding:0 3cqw 0 0}
+.mts-ttl.ts-sans .ttl{font-family:var(--sans);font-weight:800;text-transform:uppercase;letter-spacing:-.01em;font-size:max(14px,calc(5.8cqw * var(--k)));line-height:1}
+.mts-ttl.ts-sans .kick{letter-spacing:.12em;font-weight:700}
+.mts-ttl.ts-sans .rule{display:none}
+.mts-ttl.ts-min .tsh{background:radial-gradient(ellipse at 50% 50%,rgba(0,0,0,.55) 0,rgba(0,0,0,.25) 70%)}
+.mts-ttl.ts-min .tw{top:0;bottom:0;align-items:center;justify-content:center;text-align:center;gap:calc(1.4cqw * var(--k))}
+.mts-ttl.ts-min .kick{display:none}
+.mts-ttl.ts-min .ttl{font-style:italic;font-weight:300;font-size:max(14px,calc(5.4cqw * var(--k)))}
+.mts-ttl.ts-min .rule{width:6cqw;height:1px}
+.mts-ttl.ts-min .meta{letter-spacing:.18em;text-transform:uppercase;font-size:max(9px,calc(2.2cqw * var(--k)))}
+.mts-badge{position:absolute;left:4cqw;top:4cqw;z-index:4;background:var(--acc);color:var(--acc-ink);font-weight:700;font-size:max(9px,calc(2.2cqw * var(--k)));line-height:1.2;letter-spacing:.1em;text-transform:uppercase;padding:calc(1cqw * var(--k)) calc(2.2cqw * var(--k));border-radius:999px;box-shadow:0 2px 10px rgba(0,0,0,.35);white-space:nowrap;opacity:0}
+.mts-badge[hidden],.mts-bug[hidden]{display:none}
+.mts-badge[dir=rtl]{left:auto;right:4cqw;letter-spacing:0}
+.mts-bug{position:absolute;z-index:4;width:15cqw;height:calc(7cqw * var(--k));display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;border:1.5px dashed rgba(255,255,255,.8);border-radius:1.2cqw;background:rgba(0,0,0,.3);color:#fff;font-size:max(8px,calc(1.9cqw * var(--k)));font-weight:600;letter-spacing:.1em}
+.mts-bug.tr{right:4cqw;top:4cqw}.mts-bug.br{right:4cqw;bottom:4cqw}.mts-bug.bl{left:4cqw;bottom:4cqw}
+.mts-sub{position:absolute;left:6cqw;right:6cqw;bottom:calc(6cqw * var(--k));z-index:5;text-align:center;font-weight:600;font-size:max(11px,calc(3.1cqw * var(--k)));line-height:1.45;color:#fff;opacity:0;pointer-events:none}
+.mts-sub span{padding:.12em .45em;border-radius:4px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.mts-sub.ss-bande span{background:rgba(0,0,0,.78)}
+.mts-sub.ss-ombre span{text-shadow:0 0 3px #000,0 0 3px #000,0 1px 10px rgba(0,0,0,.95)}
+.mts-sub.ss-accent span{background:var(--acc);color:var(--acc-ink)}
+.mts.bug-b .mts-sub{bottom:calc(8cqw + 7cqw * var(--k))}
+.mts-mark{position:absolute;right:3cqw;top:3cqw;z-index:6;font-size:9px;letter-spacing:.16em;text-transform:uppercase;background:rgba(11,10,9,.72);color:#fff;padding:3px 7px;border-radius:5px;pointer-events:none;white-space:nowrap}
+.mts.rtl .mts-mark{right:auto;left:3cqw}
+.mts.bug-tr:not(.rtl) .mts-mark{top:calc(5cqw + 7cqw * var(--k))}
+.mts.rtl.bug-tr .mts-badge{top:calc(6cqw + 7cqw * var(--k))}
+@container (max-width:300px){
+  .mts.badge-on .mts-mark{left:4cqw;right:auto;top:calc(6cqw + 6cqw * var(--k))}
+  .mts.badge-on.rtl .mts-mark{left:auto;right:4cqw}
+  .mts.badge-on.rtl.bug-tr .mts-mark{top:calc(9cqw + 13cqw * var(--k))}
+}
+.mts-endc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(1.6cqw * var(--k));text-align:center;padding:5cqw 7cqw;color:#fff}
+.mts-endc .by{font-size:max(9px,calc(2.2cqw * var(--k)));letter-spacing:.22em;text-transform:uppercase;color:#C9C0B4}
+.mts-endc .lgph{width:calc(14cqw * var(--k));height:calc(8cqw * var(--k));border:1.5px dashed var(--gold2);border-radius:1.4cqw;display:flex;align-items:center;justify-content:center;font-size:max(8px,calc(2cqw * var(--k)));letter-spacing:.1em;color:var(--gold2)}
+.mts-endc .ag{font-family:var(--serif);font-size:max(15px,calc(5.2cqw * var(--k)));line-height:1.1;overflow-wrap:anywhere}
+.mts-endc .ghost{color:rgba(255,255,255,.66);font-style:italic}
+.mts-endc .rule{width:9cqw;height:2px;background:var(--acc)}
+.mts-endc .ph{font-size:max(11px,calc(3.2cqw * var(--k)));letter-spacing:.05em;color:var(--acc-t);white-space:nowrap}
+.mts-endc .em{font-size:max(10px,calc(2.6cqw * var(--k)));color:#E9E3D9;overflow-wrap:anywhere}
+.mts-big{position:absolute;inset:0;margin:auto;width:60px;height:60px;border-radius:50%;background:rgba(11,10,9,.74);border:1px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;color:#fff;z-index:7;transition:transform .15s,background .15s}
+.mts-big[hidden]{display:none}
+.mts-big:hover{background:rgba(11,10,9,.9);transform:scale(1.05)}
+.mts-big svg{width:24px;height:24px;margin-left:3px}
+.mts-ctrl{display:flex;align-items:center;gap:6px;width:100%}
+.mts-ctrl button{width:40px;height:40px;border-radius:10px;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;flex:none;color:var(--fg);transition:border-color .2s}
+.mts-ctrl button:hover{border-color:var(--gold)}
+.mts-ctrl svg{width:15px;height:15px}
+#mtsPlay{background:var(--gold);color:#16120a;border-color:var(--gold)}
+#mtsPlay .i-pl,#mtsPlay.paused .i-pz{display:none}
+#mtsPlay.paused .i-pl{display:block}
+.mts-ctrl input[type=range]{flex:1;min-width:0;height:40px;accent-color:var(--gold);cursor:pointer}
+.mts-time{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.mts-now{font-size:12.5px;color:var(--muted);text-align:center;min-height:19px;width:100%}
+.mts-cap{max-width:780px;margin:18px auto 0;text-align:center;font-size:13px;line-height:1.55;color:var(--gold2)}
+.mts-cap button{font-size:13px;color:var(--fg);text-decoration:underline;text-underline-offset:3px;padding:2px 0}
+.mts-cap button:hover{color:var(--gold)}
+.mts-rm[hidden]{display:none}
 
 /* ---------- V exemples ---------- */
 .ex{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:64px}
@@ -489,9 +588,14 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
   .mob a{padding:14px 0;border-bottom:1px solid var(--line);color:var(--fg);font-family:var(--serif);font-size:22px}
   .mob .btn{margin-top:20px;font-family:var(--sans);font-size:16px;color:#16120a;border:0}
   .pts{grid-template-columns:1fr;gap:8px;max-width:620px}
-  .studio-in{grid-template-columns:1fr}
+  .studio-in{grid-template-columns:1fr;min-height:0}
   .pv-pane{order:-1;border-bottom:1px solid var(--line);position:sticky;top:var(--hh);z-index:3;align-self:start}
   .opts-pane{border-right:0}
+  .pv-in{position:static}
+  .mts{max-width:min(560px,calc((100vh - var(--hh) - 150px) * 1.7778))}
+  .mts.r916{max-width:min(170px,calc((100vh - var(--hh) - 150px) * .5625))}
+  .mts.r11{max-width:min(260px,calc(100vh - var(--hh) - 150px))}
+  .pre-row{grid-template-columns:1fr 1fr}
   .plans{grid-template-columns:1fr 1fr}
   .plans>.plan:first-child{grid-column:span 2}
   .plans.subs>.plan:first-child{grid-column:auto}
@@ -528,22 +632,28 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
   .ff.full{grid-column:auto}
   .ff.hide-m{display:none}
   .recap{grid-template-columns:1fr;gap:10px}
-  .rk .hide-m{display:none}
+  .rk .hide-m,.style-rows .hide-m{display:none}
   .credit{padding:7px 10px}
   .o1 .im{width:52vw}.o2 .im{width:16.5vw}.o3 .im{width:30vw}
   .o3{display:none}
   .ex{grid-template-columns:1fr;gap:44px}
-  .tabs{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;gap:0;margin-left:-16px;margin-right:-16px;padding:0 16px;scrollbar-width:none}
-  .tabs::-webkit-scrollbar{display:none}
-  .tabs{justify-content:flex-start;justify-content:safe center}
-  .tabs button{font-size:12px;letter-spacing:.1em;padding:12px 10px}
+  .presets{margin-top:36px}
+  .pre-row{gap:8px}
+  .pre{padding:11px 12px}
+  .pre b{font-size:14px}
+  .pre small{font-size:12px}
+  .tabs{gap:6px;margin-top:26px}
+  .tabs button{font-size:11.5px;letter-spacing:.08em;padding:9px 13px;min-height:40px;border:1px solid var(--line2);border-radius:999px}
+  .tabs button[aria-selected="true"]{background:rgba(246,188,40,.08)}
   .hide-s{display:none}
   .studio{padding:6px}
   .opts-pane{padding:22px 18px}
-  .pv-pane{padding:16px}
-  .pv.r916{height:min(300px,40vh)}
-  .pv.r11{height:min(300px,40vh);width:auto}
-  .pv-cap{font-size:11px}
+  .pv-pane{padding:12px 14px}
+  .pv-in{gap:8px}
+  .mts.r916{max-width:140px}
+  .mts.r11{max-width:220px}
+  .strip{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .mts-cap{font-size:12.5px}
   .cmp{grid-template-columns:1.1fr 1fr 1fr;font-size:13px}
   .cmp .cell{padding:8px;min-height:64px}
   .cmp .h{font-size:9px;letter-spacing:.12em;min-height:80px}
@@ -627,7 +737,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
       <span class="l1">Faites visiter</span><br>
       <span class="it l2">avant la visite.<svg class="swash" id="sw1" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span>
     </h1>
-    <p class="lead fade">Envoyez de 3 à 12 photos d'un appartement, d'une villa ou d'un riad. ImmoClap leur donne du mouvement et vous rend une vidéo de 15 à 60&nbsp;secondes, avec musique, voix off en français, en arabe ou en anglais, et les coordonnées de votre agence à la fin. <strong>Les photos de votre annonce suffisent.</strong></p>
+    <p class="lead fade">Envoyez de 3 à 12 photos d'un appartement, d'une villa ou d'un riad. ImmoClap leur donne du mouvement et les monte en vidéo, avec musique, voix off en français, en arabe ou en anglais, et les coordonnées de votre agence à la fin. <strong>Les photos de votre annonce suffisent.</strong></p>
     <div class="cta fade">
       <div class="cta-row">
         <button type="button" class="btn" data-open data-offre="hero">Être prévenu de l'ouverture <svg class="ar" width="16" height="16" aria-hidden="true"><use href="#arrow"/></svg></button>
@@ -731,12 +841,13 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
           <div class="scr-f"><span class="fake-btn g">Retour</span><span class="fake-btn">Continuer</span></div>
         </div>
         <div class="scr" data-s="2">
-          <div class="scr-h"><small>Étape 3 sur 4</small><h4>Le style</h4><p>Musique, voix, formats et votre marque.</p></div>
+          <div class="scr-h"><small>Étape 3 sur 4</small><h4>Studio de montage</h4><p>Un préréglage, ou vos choix, avec l'aperçu du montage.</p></div>
           <div class="style-rows">
-            <div><label>Ambiance musicale</label><div class="chips"><span class="on">Élégante</span><span>Dynamique</span><span>Chaleureuse</span><span>Orientale moderne</span></div></div>
-            <div><label>Voix off</label><div class="chips"><span class="on">Voix féminine</span><span>Voix masculine</span><span>Aucune</span><span style="border:0">·</span><span class="on">Français</span><span>Arabe</span><span>Anglais</span></div></div>
+            <div><label>Préréglage</label><div class="chips"><span class="on">Recommandé</span><span>Luxe</span><span>Réseaux sociaux</span><span class="hide-m">Location saisonnière</span></div></div>
+            <div><label>Musique</label><div class="chips"><span class="on">Élégante</span><span>Dynamique</span><span>Chaleureuse</span><span class="hide-m">Orientale moderne</span></div></div>
+            <div><label>Plans et transitions</label><div class="chips"><span class="on">7 plans</span><span class="on">Mouvement auto</span><span class="on">Fondu</span></div></div>
+            <div class="hide-m"><label>Voix off et sous-titres</label><div class="chips"><span class="on">Voix féminine</span><span class="on">Français</span><span>Sous-titres</span></div></div>
             <div><label>Formats</label><div class="chips"><span class="on">16:9</span><span class="on">9:16</span><span>1:1</span></div></div>
-            <div><label>Carton de fin</label><div class="chips"><span class="on">Logo</span><span class="on">Votre agence</span><span class="on">+212 6 00 00 00 00</span></div></div>
           </div>
           <div class="scr-f"><span class="fake-btn g">Retour</span><span class="fake-btn">Continuer</span></div>
         </div>
@@ -744,10 +855,10 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
           <div class="scr-h"><small>Étape 4 sur 4</small><h4>Récapitulatif</h4><p>Vérifiez avant de lancer la génération.</p></div>
           <div class="recap">
             <dl class="rk">
-              <div><dt>Photos</dt><dd>7 photos · environ 35&nbsp;s</dd></div>
+              <div><dt>Photos</dt><dd>7 photos · environ 39&nbsp;s</dd></div>
               <div><dt>Bien</dt><dd>Villa · Vente · Marrakech</dd></div>
               <div class="hide-m"><dt>Détails</dt><dd>4 chambres · 350&nbsp;m²</dd></div>
-              <div><dt>Musique</dt><dd>Élégante</dd></div>
+              <div><dt>Montage</dt><dd>Recommandé · élégante · fondu</dd></div>
               <div><dt>Voix off</dt><dd>Féminine · français</dd></div>
               <div><dt>Formats</dt><dd>16:9 et 9:16</dd></div>
               <div class="hide-m"><dt>Carton de fin</dt><dd>Logo, agence, téléphone</dd></div>
@@ -757,7 +868,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
               <div class="chk"><i>✓</i>Je détiens les droits sur ces photos</div>
             </div>
           </div>
-          <div class="scr-f"><span class="fake-btn g">Retour</span><span class="fake-btn">Lancer la génération</span></div>
+          <div class="scr-f"><span class="fake-btn g">Revoir l'aperçu</span><span class="fake-btn">Lancer la génération</span></div>
         </div>
         <div class="scr" data-s="4">
           <div class="gen">
@@ -782,8 +893,8 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
     <div class="steps" id="steps" role="group" aria-label="Les quatre étapes, puis la vidéo">
       <button type="button" class="step on" data-i="0" aria-current="step"><span class="bar"><i></i></span><span class="n">1</span><span class="t">Vos photos</span><span class="d">De 3 à 12 photos, dans l'ordre où l'on visite le bien.</span></button>
       <button type="button" class="step" data-i="1"><span class="bar"><i></i></span><span class="n">2</span><span class="t">Le bien</span><span class="d">Type, ville, surface, points forts&nbsp;: de quoi écrire le texte et la voix off.</span></button>
-      <button type="button" class="step" data-i="2"><span class="bar"><i></i></span><span class="n">3</span><span class="t">Le style</span><span class="d">Ambiance musicale, voix, langue, formats, logo et téléphone.</span></button>
-      <button type="button" class="step" data-i="3"><span class="bar"><i></i></span><span class="n">4</span><span class="t">Le récapitulatif</span><span class="d">Vous vérifiez tout, puis vous lancez. 1&nbsp;crédit est réservé, utilisé seulement quand la vidéo est prête.</span></button>
+      <button type="button" class="step" data-i="2"><span class="bar"><i></i></span><span class="n">3</span><span class="t">Le montage</span><span class="d">Un préréglage ou vos choix&nbsp;: musique, ordre et mouvements des plans, voix, titre, logo. Un aperçu rejoue le montage.</span></button>
+      <button type="button" class="step" data-i="3"><span class="bar"><i></i></span><span class="n">4</span><span class="t">Le récapitulatif</span><span class="d">Vous vérifiez tout, revoyez l'aperçu si besoin, puis vous lancez. 1&nbsp;crédit est réservé, utilisé seulement quand la vidéo est prête.</span></button>
       <button type="button" class="step long" data-i="4"><span class="bar"><i></i></span><span class="n n-ico"><svg aria-hidden="true"><use href="#tri"/></svg></span><span class="t">La vidéo</span><span class="d">L'IA anime chaque photo et assemble la vidéo en quelques minutes. Puis vous téléchargez un fichier par format.</span></button>
     </div>
     <div class="step-detail" id="stepDetail" aria-live="polite"><b></b><span></span></div>
@@ -795,75 +906,177 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
 <section class="alt" id="reglages" aria-labelledby="t-reglages">
   <div class="wrap">
     <div class="eyebrow rv"><i>IV</i><b></b>Vos réglages</div>
-    <h2 class="center rv" id="t-reglages">Quatre réglages,<br><span class="it">pas une minute de montage.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
-    <p class="lead center rv">Ce sont exactement les choix proposés à l'étape « Le style ». Touchez une option pour voir ce qu'elle change.</p>
+    <h2 class="center rv" id="t-reglages">Tout est prêt d'avance,<br><span class="it">tout reste modifiable.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
+    <p class="lead center rv">Voici les réglages de l'étape «&nbsp;Studio de montage&nbsp;» de l'espace client, qui ouvre très bientôt. Un préréglage remplit tout, vous changez ce que vous voulez, et l'aperçu suit chacun de vos choix.</p>
+
+    <div class="presets rv" role="group" aria-labelledby="pre-l">
+      <p class="pre-l" id="pre-l">Préréglages en un clic</p>
+      <div class="pre-row">
+        <button type="button" class="pre" data-preset="recommande" aria-pressed="true"><b>Recommandé</b><small>Le point de départ, pour tout type de bien</small></button>
+        <button type="button" class="pre" data-preset="luxe" aria-pressed="false"><b>Luxe</b><small>Plans longs, avancées lentes, fondus, titre serif</small></button>
+        <button type="button" class="pre" data-preset="reseaux" aria-pressed="false"><b>Réseaux sociaux</b><small>Plans de 3&nbsp;s, coupes franches, sous-titres, vertical</small></button>
+        <button type="button" class="pre" data-preset="saison" aria-pressed="false"><b>Location saisonnière</b><small>Ambiance chaleureuse, glissés, pastille «&nbsp;À louer&nbsp;»</small></button>
+      </div>
+      <p class="pre-note" id="preNote" aria-live="polite">Réglages «&nbsp;Recommandé&nbsp;»&nbsp;: la vidéo peut partir telle quelle.</p>
+    </div>
 
     <div class="tabs rv" role="tablist" aria-label="Réglages de la vidéo">
       <button type="button" role="tab" id="tab-musique" aria-controls="tp-musique" aria-selected="true">Musique</button>
+      <button type="button" role="tab" id="tab-montage" aria-controls="tp-montage" aria-selected="false" tabindex="-1">Montage</button>
       <button type="button" role="tab" id="tab-voix" aria-controls="tp-voix" aria-selected="false" tabindex="-1">Voix off</button>
-      <button type="button" role="tab" id="tab-formats" aria-controls="tp-formats" aria-selected="false" tabindex="-1">Formats</button>
       <button type="button" role="tab" id="tab-marque" aria-controls="tp-marque" aria-selected="false" tabindex="-1"><span class="hide-s">Votre </span>marque</button>
+      <button type="button" role="tab" id="tab-formats" aria-controls="tp-formats" aria-selected="false" tabindex="-1">Formats</button>
     </div>
 
     <div class="studio rv">
       <div class="studio-in">
         <div class="opts-pane">
           <div class="tp" id="tp-musique" role="tabpanel" aria-labelledby="tab-musique" tabindex="0">
-            <h3>Ambiance musicale</h3>
-            <p>Quatre ambiances, toutes libres de droits pour vos annonces et vos réseaux.</p>
+            <h3>Musique</h3>
+            <p>Quatre ambiances, ou pas de musique du tout. Le volume se règle, et la musique peut baisser d'elle-même pendant la voix off.</p>
             <div class="grp"><div class="optlist" role="radiogroup" aria-label="Ambiance musicale" data-k="music">
-              <button type="button" class="optrow" role="radio" aria-checked="true" data-v="Élégante"><span><b>Élégante</b><small>Conseillée pour les biens haut de gamme.</small></span><span class="dot"></span></button>
+              <button type="button" class="optrow" role="radio" aria-checked="true" data-v="Élégante"><span><b>Élégante</b><small>Pour les biens haut de gamme.</small></span><span class="dot"></span></button>
               <button type="button" class="optrow" role="radio" aria-checked="false" data-v="Dynamique"><span><b>Dynamique</b><small>Pour les vidéos courtes des réseaux.</small></span><span class="dot"></span></button>
-              <button type="button" class="optrow" role="radio" aria-checked="false" data-v="Chaleureuse"><span><b>Chaleureuse</b><small>Pour les maisons et appartements familiaux.</small></span><span class="dot"></span></button>
+              <button type="button" class="optrow" role="radio" aria-checked="false" data-v="Chaleureuse"><span><b>Chaleureuse</b><small>Pour les maisons et les appartements familiaux.</small></span><span class="dot"></span></button>
               <button type="button" class="optrow" role="radio" aria-checked="false" data-v="Orientale moderne"><span><b>Orientale moderne</b><small>Pour les riads, les villas et la clientèle au Maroc.</small></span><span class="dot"></span></button>
+              <button type="button" class="optrow" role="radio" aria-checked="false" data-v="Aucune"><span><b>Aucune musique</b><small>Seulement la voix off, ou une vidéo muette.</small></span><span class="dot"></span></button>
             </div></div>
+            <div class="lsn-row" id="musRow" hidden>
+              <button type="button" class="lsn" id="musBtn" aria-pressed="false" data-l="Écouter"><svg class="i-pl" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5l9 5.5-9 5.5z" fill="currentColor"/></svg><svg class="i-pz" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Écouter</span></button>
+            </div>
+            <p class="note" id="musNote">La bibliothèque de morceaux à écouter est en préparation.</p>
           </div>
+
+          <div class="tp" id="tp-montage" role="tabpanel" aria-labelledby="tab-montage" tabindex="0" hidden>
+            <h3>Plans et transitions</h3>
+            <p>Chaque photo devient un plan. Dans l'espace client, vous changez leur ordre (en les glissant ou avec des flèches), vous en écartez si besoin (3&nbsp;plans au minimum) et vous choisissez le mouvement de chacun.</p>
+            <ol class="strip" id="strip" aria-label="Plans de la démonstration, dans l'ordre"></ol>
+            <div class="grp"><span class="grp-l" id="gl-cam">Mouvement de caméra</span><div class="pills" role="radiogroup" aria-labelledby="gl-cam" data-k="cam">
+              <button type="button" class="pill" role="radio" aria-checked="true" data-v="auto">Auto</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="avancee">Avancée</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="recul">Recul</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="pan-g">Panoramique gauche</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="pan-d">Panoramique droite</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="travelling">Travelling</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="orbite">Orbite douce</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="fixe">Fixe</button>
+            </div></div>
+            <div class="grp"><span class="grp-l" id="gl-len">Durée des plans</span><div class="pills" role="radiogroup" aria-labelledby="gl-len" data-k="len">
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="court">Courts · 3&nbsp;s</button>
+              <button type="button" class="pill" role="radio" aria-checked="true" data-v="normal">Normaux · 5&nbsp;s</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="long">Longs · 7&nbsp;s</button>
+            </div></div>
+            <div class="grp"><span class="grp-l" id="gl-trans">Transitions</span><div class="pills" role="radiogroup" aria-labelledby="gl-trans" data-k="trans">
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="coupe">Coupe franche</button>
+              <button type="button" class="pill" role="radio" aria-checked="true" data-v="fondu">Fondu</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="noir">Fondu noir</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="glisse">Glissé</button>
+            </div></div>
+            <p class="note"><span id="estNote">Durée estimée&nbsp;: 0:39.</span> Ici, le mouvement choisi vaut pour tous les plans&nbsp;; dans l'espace client, il se règle aussi plan par plan, comme la durée.</p>
+          </div>
+
           <div class="tp" id="tp-voix" role="tabpanel" aria-labelledby="tab-voix" tabindex="0" hidden>
-            <h3>Voix off</h3>
-            <p>La voix lit un court texte écrit à partir des informations du bien.</p>
+            <h3>Voix off et sous-titres</h3>
+            <p>Une voix lit un court texte écrit à partir des informations du bien. Les sous-titres reprennent ses mots, pour les vidéos regardées sans le son.</p>
             <div class="grp"><span class="grp-l" id="gl-voice">Voix</span><div class="pills" role="radiogroup" aria-labelledby="gl-voice" data-k="voice">
               <button type="button" class="pill" role="radio" aria-checked="true" data-v="Voix féminine">Féminine</button>
               <button type="button" class="pill" role="radio" aria-checked="false" data-v="Voix masculine">Masculine</button>
-              <button type="button" class="pill" role="radio" aria-checked="false" data-v="Aucune voix">Aucune</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="Aucune">Aucune</button>
             </div></div>
             <div class="grp"><span class="grp-l" id="gl-lang">Langue</span><div class="pills" role="radiogroup" aria-labelledby="gl-lang" data-k="lang">
               <button type="button" class="pill" role="radio" aria-checked="true" data-v="Français">Français</button>
               <button type="button" class="pill" role="radio" aria-checked="false" data-v="Arabe"><span lang="ar">العربية</span> · Arabe</button>
               <button type="button" class="pill" role="radio" aria-checked="false" data-v="Anglais"><span lang="en">English</span> · Anglais</button>
             </div></div>
-            <p class="note">Avec « Aucune », la vidéo garde seulement la musique.</p>
-          </div>
-          <div class="tp" id="tp-formats" role="tabpanel" aria-labelledby="tab-formats" tabindex="0" hidden>
-            <h3>Formats</h3>
-            <p>Choisissez un format pour voir l'aperçu&nbsp;; dans l'app, vous cochez ceux qu'il vous faut. Ils sont tous compris dans le même crédit.</p>
-            <div class="grp"><div class="optlist" role="radiogroup" aria-label="Aperçu du format" data-k="fmt">
-              <button type="button" class="optrow" role="radio" aria-checked="true" data-v="16x9"><span><b>16:9 · horizontal</b><small>Idéal pour SeLoger, Leboncoin, Avito, Mubawab et votre site.</small></span><span class="dot"></span></button>
-              <button type="button" class="optrow" role="radio" aria-checked="false" data-v="9x16"><span><b>9:16 · vertical</b><small>Idéal pour les Reels, TikTok, les statuts WhatsApp et les stories.</small></span><span class="dot"></span></button>
-              <button type="button" class="optrow" role="radio" aria-checked="false" data-v="1x1"><span><b>1:1 · carré</b><small>Idéal pour le fil Instagram et Facebook.</small></span><span class="dot"></span></button>
+            <div class="lsn-row" id="voiceRow">
+              <button type="button" class="lsn" id="voiceBtn" aria-pressed="false" data-l="Écouter l'extrait" aria-describedby="voiceCap"><svg class="i-pl" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5l9 5.5-9 5.5z" fill="currentColor"/></svg><svg class="i-pz" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Écouter l'extrait</span></button>
+              <span class="lsn-cap" id="voiceCap">«&nbsp;<span id="voiceTxt" lang="fr">Bienvenue dans ce bien, lumineux et calme.</span>&nbsp;»</span>
+            </div>
+            <p class="note" id="voiceNote">Extraits de démonstration générés par IA&nbsp;: la voix de la vidéo finale peut légèrement différer.</p>
+            <div class="grp"><span class="grp-l" id="gl-subs">Sous-titres</span><div class="pills" role="radiogroup" aria-labelledby="gl-subs" data-k="subs">
+              <button type="button" class="pill" role="radio" aria-checked="true" data-v="none">Sans</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="bande">Bandeau sombre</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="ombre">Texte ombré</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="accent">Couleur de la marque</button>
             </div></div>
+            <p class="note" id="subsNote" hidden>Sans voix off, pas de sous-titres&nbsp;: choisissez une voix pour les ajouter.</p>
           </div>
+
           <div class="tp" id="tp-marque" role="tabpanel" aria-labelledby="tab-marque" tabindex="0" hidden>
             <h3>Votre marque</h3>
-            <p>Un carton de fin avec votre logo, le nom de l'agence et votre téléphone.</p>
-            <div class="grp"><span class="grp-l" id="gl-brand">Version</span><div class="optlist" role="radiogroup" aria-labelledby="gl-brand" data-k="brand">
-              <button type="button" class="optrow" role="radio" aria-checked="true" data-v="avec"><span><b>Avec logo</b><small>Pour vos réseaux, WhatsApp et votre site.</small></span><span class="dot"></span></button>
-              <button type="button" class="optrow" role="radio" aria-checked="false" data-v="sans"><span><b>Sans logo</b><small>Pour les portails qui refusent les coordonnées dans les médias.</small></span><span class="dot"></span></button>
+            <p>Un titre d'ouverture, une pastille d'annonce, votre couleur, votre logo et un carton de fin à vos coordonnées.</p>
+            <div class="grp"><span class="grp-l" id="gl-title">Titre d'ouverture</span><div class="pills" role="radiogroup" aria-labelledby="gl-title" data-k="title">
+              <button type="button" class="pill t-serif" role="radio" aria-checked="true" data-v="serif">Élégant</button>
+              <button type="button" class="pill t-sans" role="radio" aria-checked="false" data-v="sans">Moderne</button>
+              <button type="button" class="pill t-min" role="radio" aria-checked="false" data-v="minimal">Minimal</button>
             </div></div>
-            <p class="note">Le logo est facultatif&nbsp;: sans fichier, le carton affiche seulement le nom et le téléphone.</p>
+            <div class="grp"><span class="grp-l" id="gl-badge">Pastille d'annonce</span><div class="pills" role="radiogroup" aria-labelledby="gl-badge" data-k="badge">
+              <button type="button" class="pill" role="radio" aria-checked="true" data-v="">Aucune</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="nouveaute">Nouveauté</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="exclu">Exclusivité</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="baisse">Prix en baisse</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="vendu">Vendu</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="loue">Loué</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="alouer">À louer</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="visite">Visite libre</button>
+            </div></div>
+            <div class="grp"><span class="grp-l" id="gl-acc">Couleur de la marque</span><div class="sw" role="radiogroup" aria-labelledby="gl-acc" data-k="accent">
+              <button type="button" class="swb" role="radio" aria-checked="true" data-v="#F6BC28" aria-label="Doré"><i style="background:#F6BC28"></i></button>
+              <button type="button" class="swb" role="radio" aria-checked="false" data-v="#E5C99E" aria-label="Sable"><i style="background:#E5C99E"></i></button>
+              <button type="button" class="swb" role="radio" aria-checked="false" data-v="#F3EFE7" aria-label="Crème"><i style="background:#F3EFE7"></i></button>
+              <button type="button" class="swb" role="radio" aria-checked="false" data-v="#E07A5F" aria-label="Terracotta"><i style="background:#E07A5F"></i></button>
+              <button type="button" class="swb" role="radio" aria-checked="false" data-v="#8FB996" aria-label="Sauge"><i style="background:#8FB996"></i></button>
+              <button type="button" class="swb" role="radio" aria-checked="false" data-v="#7FB2E5" aria-label="Bleu ciel"><i style="background:#7FB2E5"></i></button>
+              <button type="button" class="swb" role="radio" aria-checked="false" data-v="#C9A0DC" aria-label="Lavande"><i style="background:#C9A0DC"></i></button>
+              <button type="button" class="swb" role="radio" aria-checked="false" data-v="#EF6461" aria-label="Corail"><i style="background:#EF6461"></i></button>
+            </div></div>
+            <div class="grp"><span class="grp-l" id="gl-logo">Logo pendant la vidéo</span><div class="pills" role="radiogroup" aria-labelledby="gl-logo" data-k="logo">
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="none">Aucun</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="tr">Haut droit</button>
+              <button type="button" class="pill" role="radio" aria-checked="true" data-v="br">Bas droit</button>
+              <button type="button" class="pill" role="radio" aria-checked="false" data-v="bl">Bas gauche</button>
+            </div></div>
+            <div class="grp"><span class="grp-l" id="gl-brand">Version</span><div class="optlist" role="radiogroup" aria-labelledby="gl-brand" data-k="brand">
+              <button type="button" class="optrow" role="radio" aria-checked="true" data-v="avec"><span><b>Avec logo et carton de fin</b><small>Pour vos réseaux, WhatsApp et votre site.</small></span><span class="dot"></span></button>
+              <button type="button" class="optrow" role="radio" aria-checked="false" data-v="sans"><span><b>Copie sans logo ni coordonnées</b><small>Pour les portails qui les refusent&nbsp;: livrée en plus, sur demande, dans le même crédit.</small></span><span class="dot"></span></button>
+            </div></div>
+            <p class="note">Le carton de fin reprend votre logo, l'agence, le nom et la photo de l'agent, le téléphone et l'e-mail. Ces informations et votre couleur s'enregistrent dans votre kit de marque&nbsp;: la fois suivante, l'étape est déjà remplie. La couleur se choisit aussi par son code, et son contraste est vérifié pour que les textes restent lisibles.</p>
+          </div>
+
+          <div class="tp" id="tp-formats" role="tabpanel" aria-labelledby="tab-formats" tabindex="0" hidden>
+            <h3>Formats</h3>
+            <p>Choisissez un format pour l'aperçu. Dans l'espace client, vous cochez ceux qu'il vous faut&nbsp;: ils sont tous compris dans le même crédit.</p>
+            <div class="grp"><div class="optlist" role="radiogroup" aria-label="Format de l'aperçu" data-k="fmt">
+              <button type="button" class="optrow" role="radio" aria-checked="true" data-v="16x9"><span><b>16:9 · horizontal</b><small>Pour SeLoger, Leboncoin, Avito, Mubawab et votre site.</small></span><span class="dot"></span></button>
+              <button type="button" class="optrow" role="radio" aria-checked="false" data-v="9x16"><span><b>9:16 · vertical</b><small>Pour les Reels, TikTok, les statuts WhatsApp et les stories.</small></span><span class="dot"></span></button>
+              <button type="button" class="optrow" role="radio" aria-checked="false" data-v="1x1"><span><b>1:1 · carré</b><small>Pour le fil Instagram et Facebook.</small></span><span class="dot"></span></button>
+            </div></div>
           </div>
         </div>
-        <div class="pv-pane">
-          <div class="pv" id="pv">
-            <span class="chip-demo">Démonstration</span>
-            <span class="pv-tag" id="pvTag" aria-live="polite">Ambiance&nbsp;: Élégante</span>
-            <video id="pvVid" muted loop playsinline preload="none" poster="assets/exemples/villa-piscine.webp" aria-label="Aperçu de démonstration&nbsp;: villa à Marrakech"></video>
-            <button type="button" class="vpause pv-pause" data-vid="pvVid" aria-pressed="false" aria-label="Mettre l'aperçu en pause"><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l8 5-8 5z" fill="currentColor"/></svg></button>
-            <div class="endcard" id="endcard" aria-hidden="true"><span class="lg">LOGO</span><b>Votre agence</b><span>+212 6 00 00 00 00</span></div>
+
+        <div class="pv-pane"><div class="pv-in">
+          <div class="mts-h"><b>Aperçu du montage</b><small>Simulation · sans le son</small></div>
+          <div class="mts" id="mts">
+            <div class="mts-layers" id="mtsLayers" aria-hidden="true"></div>
+            <div class="mts-black" id="mtsBlack" aria-hidden="true"></div>
+            <div class="mts-ttl" id="mtsTtl" aria-hidden="true"></div>
+            <span class="mts-badge" id="mtsBadge" aria-hidden="true" hidden></span>
+            <span class="mts-bug" id="mtsBug" aria-hidden="true" hidden>LOGO</span>
+            <p class="mts-sub" id="mtsSub" aria-hidden="true"><span></span></p>
+            <span class="mts-mark" aria-hidden="true">Aperçu</span>
+            <button type="button" class="mts-big" id="mtsBig" tabindex="-1" aria-hidden="true" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button>
           </div>
-          <p class="pv-cap" id="pvCap">Aperçu&nbsp;: vidéo de démonstration générée par IA. La musique et la voix ne sont pas jouées ici.</p>
-        </div>
+          <div class="mts-ctrl">
+            <button type="button" id="mtsPlay" aria-label="Mettre l'aperçu en pause"><svg class="i-pz" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-pl" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5l9 5.5-9 5.5z" fill="currentColor"/></svg></button>
+            <button type="button" id="mtsRestart" aria-label="Recommencer l'aperçu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v5h5"/></svg></button>
+            <input type="range" id="mtsSeek" min="0" max="39" step="0.05" value="0" aria-label="Position dans l'aperçu">
+            <span class="mts-time" id="mtsTime" aria-hidden="true">0:00 / 0:39</span>
+          </div>
+          <p class="mts-now" id="mtsNow"></p>
+        </div></div>
       </div>
     </div>
+    <p class="mts-cap rv">Cet aperçu est une simulation dans votre navigateur, à partir de photos de démonstration générées par IA&nbsp;: les mouvements y sont imités par un zoom sur chaque photo. Dans l'espace client, il rejoue le montage avec vos propres photos, avant la génération&nbsp;; la vidéo finale, elle, est animée par l'IA. <span class="mts-rm" id="mtsRm" hidden>Animations réduites sur cet appareil&nbsp;: l'aperçu montre des images fixes, sans mouvement ni transition. </span><button type="button" data-video="assets/videos/villa-marrakech-9x16" data-ratio="9x16" data-title="Villa avec piscine, Marrakech">Voir une vraie vidéo de démonstration</button></p>
   </div>
 </section>
 
@@ -972,7 +1185,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
         <h3>1 vidéo</h3><div class="d">Pour un mandat ponctuel.</div>
         <div class="price" data-eur="19" data-mad="149" data-n="1">19&nbsp;<small>€ HT</small></div>
         <div class="ttc">soit 22,80&nbsp;€ TTC en France</div><div class="per">1 crédit, valable 12 mois</div>
-        <ul><li>Une vidéo de 15 à 60 s</li><li>Les 3 formats</li><li>Musique, voix off et carton de fin</li></ul>
+        <ul><li>Une vidéo de 3 à 12 photos</li><li>Les 3 formats</li><li>Musique, voix off et carton de fin</li></ul>
         <button type="button" class="btn ghost" data-open data-offre="1 vidéo">Être prévenu</button>
       </div>
       <div class="plan hl rv">
@@ -1019,8 +1232,8 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
       <p>Chaque crédit comprend la même chose, quelle que soit la formule.</p>
       <ul>
         <li><span><b>3 formats</b>&nbsp;: 16:9, 9:16 et 1:1</span></li>
-        <li><span><b>15 à 60 secondes</b>&nbsp;: de 3 à 12 photos, environ 5 s par photo</span></li>
-        <li><span><b>4 ambiances musicales</b> libres de droits</span></li>
+        <li><span><b>3 à 12 plans</b>&nbsp;: un par photo, de 3, 5 ou 7&nbsp;s chacun, plus 4&nbsp;s de carton de fin</span></li>
+        <li><span><b>4 ambiances musicales</b>&nbsp;: morceaux originaux générés par IA, non exclusifs</span></li>
         <li><span><b>Voix off</b> féminine ou masculine, en français, arabe ou anglais (ou aucune)</span></li>
         <li><span><b>Carton de fin</b>&nbsp;: logo, nom de l'agence et téléphone</span></li>
         <li><span><b>Version sans logo</b> pour les portails</span></li>
@@ -1048,15 +1261,17 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
     <div class="faq rv" id="faqList">
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa1" id="fq1">Quand pourrai-je commander&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa1" role="region" aria-labelledby="fq1"><div><p>Très bientôt&nbsp;: la génération des vidéos, les comptes clients et le paiement sont en cours de mise en place. Laissez votre e-mail et on vous écrit le jour où vous pouvez commander. Il n'y a pas d'essai gratuit, mais vous pouvez regarder les démonstrations de cette page avant de décider.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa2" id="fq2">Combien de photos par vidéo&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa2" role="region" aria-labelledby="fq2"><div><p>De 3 à 12 photos par vidéo. Avec 8 à 12 photos, vous montrez le bien en entier&nbsp;: extérieur, pièces de vie, chambres, salle de bain, vue. Notre <a href="guide.html">guide photos</a> explique comment bien les préparer.</p></div></div></div>
-      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa3" id="fq3">Quelle sera la durée de la vidéo&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa3" role="region" aria-labelledby="fq3"><div><p>Environ 5 secondes par photo&nbsp;: de 15 secondes avec 3 photos à 60 secondes avec 12 photos.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa3" id="fq3">Quelle sera la durée de la vidéo&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa3" role="region" aria-labelledby="fq3"><div><p>Elle dépend du nombre de photos et de la durée des plans&nbsp;: 3, 5 ou 7&nbsp;secondes chacun, à régler pour toute la vidéo ou plan par plan, plus 4&nbsp;secondes de carton de fin. Avec 7 photos en plans de 5&nbsp;secondes, la vidéo dure environ 40&nbsp;secondes. La durée estimée s'affiche pendant le montage.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa4" id="fq4">Combien de temps dure la génération&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa4" role="region" aria-labelledby="fq4"><div><p>Quelques minutes, sans rien faire de votre côté. Le délai varie selon le nombre de photos et la charge des serveurs.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa5" id="fq5">Quel format choisir pour WhatsApp, Avito ou SeLoger&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa5" role="region" aria-labelledby="fq5"><div><p>Au Maroc, beaucoup de biens se montrent d'abord sur WhatsApp&nbsp;: le vertical 9:16 remplit l'écran du téléphone, en statut comme en message direct. Sur Avito, Mubawab, SeLoger, Leboncoin ou votre site, l'horizontal 16:9 s'affiche le mieux. Le carré 1:1 sert au fil Instagram et Facebook.</p><p>Les trois formats sont compris dans le même crédit. Le tableau plateforme par plateforme est dans le <a href="guide.html#formats">guide photos</a>.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa6" id="fq6">Dans quelles langues est la voix off&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa6" role="region" aria-labelledby="fq6"><div><p>En français, en arabe ou en anglais, avec une voix féminine ou masculine. Vous pouvez aussi choisir « Aucune » et garder seulement la musique.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa13" id="fq13">Puis-je choisir la musique&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa13" role="region" aria-labelledby="fq13"><div><p>Oui. Vous choisissez une ambiance (élégante, dynamique, chaleureuse ou orientale moderne) ou pas de musique du tout, vous réglez son volume, et elle peut baisser pendant la voix off pour laisser la voix bien audible. <span id="faqMus">La bibliothèque de morceaux à écouter avant de choisir est en préparation.</span></p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa14" id="fq14">Puis-je voir le montage avant de lancer la vidéo&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa14" role="region" aria-labelledby="fq14"><div><p>Oui. Dans le studio de montage, un aperçu rejoue la vidéo avec vos propres photos&nbsp;: ordre des plans, durées, transitions, titre, pastille, sous-titres, logo et carton de fin, en 16:9, 9:16 ou 1:1. Il suit chaque réglage, et vous pouvez le revoir au récapitulatif avant de lancer la génération.</p><p>C'est une simulation&nbsp;: les mouvements de caméra y sont imités par un zoom sur la photo. Dans la vidéo finale, c'est l'IA qui crée les vrais mouvements. Vous pouvez essayer un aperçu de démonstration dans la partie <a href="#reglages">Réglages</a>.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa7" id="fq7">L'IA peut-elle modifier mon bien&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa7" role="region" aria-labelledby="fq7"><div><p>Elle ne doit pas&nbsp;: elle ajoute un mouvement de caméra, sans changer les pièces, les volumes ni les matériaux. Il peut arriver qu'un plan présente une déformation. Vérifiez toujours la vidéo avant de la publier&nbsp;: un plan raté est refait gratuitement.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa8" id="fq8">Comment se passe le paiement&nbsp;? Aurai-je une facture&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa8" role="region" aria-labelledby="fq8"><div><p>Vous payez par carte sur la page sécurisée de notre prestataire de paiement, qui agit comme revendeur (Merchant of Record)&nbsp;: son nom figure sur la page de paiement et sur le reçu. Il calcule la TVA selon votre pays et vous envoie la facture. ImmoClap ne voit jamais vos données bancaires.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa9" id="fq9">Comment résilier l'abonnement&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa9" role="region" aria-labelledby="fq9"><div><p>À tout moment&nbsp;: depuis Mon compte, avec le lien de gestion reçu par e-mail, ou en nous écrivant. La résiliation prend effet à la fin du mois payé et vos crédits d'abonnement restent utilisables jusqu'à cette date. Un mois entamé n'est pas remboursé, sauf le premier&nbsp;: il est remboursé intégralement si vous le demandez dans les 14 jours suivant la souscription et qu'aucun crédit de l'abonnement n'a été utilisé (<a href="remboursement.html">politique de remboursement</a>).</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa10" id="fq10">Combien de temps mes crédits sont-ils valables&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa10" role="region" aria-labelledby="fq10"><div><p>12 mois à partir de l'achat pour l'unité et les packs. Pour les abonnements, les crédits non utilisés sont reportés d'un mois sur l'autre tant que l'abonnement est actif, dans la limite de 12 mois.</p></div></div></div>
-      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa11" id="fq11">Quels droits ai-je sur la musique de la vidéo&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa11" role="region" aria-labelledby="fq11"><div><p>La musique est fournie avec la vidéo, pour un usage précis&nbsp;: faire connaître le bien concerné et votre activité. Les usages couverts sont listés à l'<a href="cgv.html#art10">article 10 des CGV</a>. Pour un autre projet, écrivez-nous avant.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa11" id="fq11">Quels droits ai-je sur la musique de la vidéo&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa11" role="region" aria-labelledby="fq11"><div><p>La musique est fournie avec la vidéo, pour un usage précis&nbsp;: faire connaître le bien concerné et votre activité. Les usages couverts sont listés à l'<a href="cgv.html#art10">article 10 des CGV</a>. Pour un autre projet, écrivez-nous avant.</p><p>Ce sont des morceaux originaux générés par intelligence artificielle. Ils ne sont pas exclusifs&nbsp;: un même morceau peut accompagner les vidéos d'autres clients, et l'outil qui les crée peut produire une musique identique ou proche pour d'autres.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa12" id="fq12">Qui est derrière ImmoClap&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa12" role="region" aria-labelledby="fq12"><div><p>Julien Wail COLLY, entrepreneur individuel installé à Marrakech. ImmoClap est né en 2026. Tout est expliqué sur la page <a href="a-propos.html">À propos</a>.</p></div></div></div>
     </div>
   </div>
@@ -1245,7 +1460,7 @@ const heroVid=$('#heroVid'), heroPause=$('#heroPause');
 heroPause.dataset.vid='heroVid';
 const vis=new Map(), userPaused=new Map();
 const vbtns=$$('.vpause[data-vid]');
-const setPausedUI=(b,p)=>{b.setAttribute('aria-pressed',String(p));const lbl=b.dataset.vid==='baVid'?'le plan animé':b.dataset.vid==='pvVid'?"l'aperçu":'la vidéo';b.setAttribute('aria-label',(p?'Lire ':'Mettre en pause ')+lbl);};
+const setPausedUI=(b,p)=>{b.setAttribute('aria-pressed',String(p));const lbl=b.dataset.vid==='baVid'?'le plan animé':'la vidéo';b.setAttribute('aria-label',(p?'Lire ':'Mettre en pause ')+lbl);};
 vbtns.forEach(b=>{const v=$('#'+b.dataset.vid);userPaused.set(v,reduce);setPausedUI(b,reduce);
   b.addEventListener('pointerdown',e=>e.stopPropagation());
   b.addEventListener('click',e=>{e.stopPropagation();const p=!userPaused.get(v);userPaused.set(v,p);setPausedUI(b,p);p?v.pause():v.play().catch(()=>{});});});
@@ -1253,7 +1468,7 @@ if(reduce){heroVid.removeAttribute('autoplay');heroVid.pause();}
 const canPlay=v=>vis.get(v)&&!userPaused.get(v);
 const visIO=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;vis.set(v,e.isIntersecting);
   if(canPlay(v))v.play().catch(()=>{});else v.pause();}),{threshold:.2});
-[heroVid,$('#baVid'),$('#pvVid')].forEach(v=>visIO.observe(v));
+[heroVid,$('#baVid')].forEach(v=>visIO.observe(v));
 
 /* curseur image fixe / plan animé */
 const ba=$('#ba'), clip=$('.clip',ba), hd=$('.handle',ba), kn=$('#knob');
@@ -1297,36 +1512,294 @@ new IntersectionObserver(es=>es.forEach(e=>{stepsVisible=e.isIntersecting;stepsB
   if(stepsVisible){if(!stepsStarted){stepsStarted=true;show(0);}else show(cur);}else clearTimeout(timer);}),{threshold:.25}).observe($('#etapes .device'));
 show(0);
 
-/* réglages : onglets */
-const tabs=$$('[role=tab]'), panels=$$('[role=tabpanel]');
-const pv=$('#pv'), pvVid=$('#pvVid'), pvTag=$('#pvTag'), endcard=$('#endcard');
-const S={music:'Élégante',voice:'Voix féminine',lang:'Français',fmt:'16x9',brand:'avec',tab:'musique'};
-const POSTERS={'16x9':'assets/exemples/villa-piscine.webp','9x16':'assets/videos/villa-marrakech-poster.jpg','1x1':'assets/exemples/villa-piscine.webp'};
-let pvBase='';
-const setVideo=fmt=>{const base='assets/videos/villa-marrakech-'+fmt;if(base===pvBase)return;pvBase=base;pvVid.poster=POSTERS[fmt];
-  pvVid.onerror=null;pvVid.src=vsrc(base);
-  pvVid.onerror=()=>{if(fmt!=='16x9'){pvVid.onerror=null;pvVid.src=vsrc('assets/videos/villa-marrakech-16x9');}};
-  if(canPlay(pvVid))pvVid.play().catch(()=>{});};
-const render=()=>{
-  pv.classList.toggle('r916',S.fmt==='9x16');pv.classList.toggle('r11',S.fmt==='1x1');setVideo(S.fmt);
-  const showEnd=S.tab==='marque'&&S.brand==='avec';endcard.classList.toggle('on',showEnd);
-  let tag='';
-  if(S.tab==='musique')tag='Ambiance\u00a0: '+S.music;
-  else if(S.tab==='voix')tag=S.voice==='Aucune voix'?'Sans voix off · musique seule':S.voice+' · '+S.lang;
-  else if(S.tab==='formats')tag={'16x9':'Format 16:9','9x16':'Format 9:16','1x1':'Format 1:1'}[S.fmt];
-  else tag=S.brand==='avec'?'Carton de fin · avec logo':'Version sans logo';
-  pvTag.textContent=tag;};
-const selectTab=(tab,focus)=>{tabs.forEach(t=>{const on=t===tab;t.setAttribute('aria-selected',String(on));t.tabIndex=on?0:-1;});
-  panels.forEach(p=>p.hidden=p.id!==tab.getAttribute('aria-controls'));S.tab=tab.id.replace('tab-','');if(focus)tab.focus();render();};
-tabs.forEach((t,i)=>{t.addEventListener('click',()=>selectTab(t));
-  t.addEventListener('keydown',e=>{let j=null;if(e.key==='ArrowRight')j=(i+1)%tabs.length;else if(e.key==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;else if(e.key==='Home')j=0;else if(e.key==='End')j=tabs.length-1;
-    if(j!==null){e.preventDefault();selectTab(tabs[j],true);}});});
-$$('[role=radiogroup]').forEach(g=>{const items=$$('[role=radio]',g);
-  const pick=(it,focus)=>{items.forEach(x=>{const on=x===it;x.setAttribute('aria-checked',String(on));x.tabIndex=on?0:-1;});S[g.dataset.k]=it.dataset.v;if(focus)it.focus();render();};
+/* réglages : préréglages, onglets, aperçu du montage (simulation sur des photos de démonstration), écoute.
+   Mêmes choix que l'étape « Studio de montage » de l'espace client (app.html). Aucun son en lecture automatique,
+   un seul son à la fois ; l'aperçu est muet. */
+const RS=$('#reglages');
+const AMB={'Élégante':'elegante','Dynamique':'dynamique','Chaleureuse':'chaleureuse','Orientale moderne':'orientale'};
+const CAM_SHORT={avancee:'Avancée',recul:'Recul','pan-g':'Pano. gauche','pan-d':'Pano. droite',travelling:'Travelling',orbite:'Orbite',fixe:'Fixe'};
+const CAM_CYCLE=['pan-d','avancee','travelling','recul','pan-g','orbite'];
+const LENS={court:3,normal:5,long:7};
+const TRANS={coupe:0,fondu:.8,noir:1,glisse:.6};
+const END_D=4;
+const SHOTS=[['facade','façade'],['salon','salon'],['repas','salle à manger'],['cuisine','cuisine'],['chambre','chambre'],['bain','salle de bain'],['piscine','piscine']];
+const BADGE_L={
+  'Français':{nouveaute:'Nouveauté',exclu:'Exclusivité',baisse:'Prix en baisse',vendu:'Vendu',loue:'Loué',alouer:'À louer',visite:'Visite libre'},
+  'Anglais':{nouveaute:'New listing',exclu:'Exclusive',baisse:'Price reduced',vendu:'Sold',loue:'Let',alouer:'For rent',visite:'Open house'},
+  'Arabe':{nouveaute:'جديد',exclu:'حصري',baisse:'تخفيض في السعر',vendu:'تم البيع',loue:'تم الإيجار',alouer:'للإيجار',visite:'زيارة مفتوحة'}};
+/* phrase réellement dite dans les extraits de voix (assets/voix) */
+const SUB_TXT={'Français':'Bienvenue dans ce bien, lumineux et calme.','Anglais':'Welcome to this home, bright and peaceful.','Arabe':'مرحبا بكم في هذا العقار، المشرق والهادئ.'};
+const LCODE={'Français':'fr','Arabe':'ar','Anglais':'en'};
+const VOICE_DUR={fr:{f:2.9,m:2.9},en:{f:3.9,m:3.5},ar:{f:4.2,m:3.7}};
+const L10N={
+  'Français':{deal:{vente:'Villa · À vendre',location:'Villa · À louer'},meta:'350 m² · 4 chambres',by:'Présenté par',ag:"Nom de l'agence"},
+  'Anglais':{deal:{vente:'Villa · For sale',location:'Villa · For rent'},meta:'350 m² · 4 bedrooms',by:'Presented by',ag:'Agency name'},
+  'Arabe':{deal:{vente:'فيلا · للبيع',location:'فيلا · للإيجار'},meta:'350 m² · غرف النوم: 4',by:'تقديم',ag:'اسم الوكالة'}};
+const PRESETS={
+  recommande:{l:'Recommandé',music:'Élégante',trans:'fondu',len:'normal',cam:'auto',title:'serif',badge:'',subs:false},
+  luxe:{l:'Luxe',music:'Élégante',trans:'fondu',len:'long',cam:'avancee',title:'serif',badge:'',subs:false},
+  reseaux:{l:'Réseaux sociaux',music:'Dynamique',trans:'coupe',len:'court',cam:'auto',title:'sans',badge:'',subs:true,fmt:'9x16'},
+  saison:{l:'Location saisonnière',music:'Chaleureuse',trans:'glisse',len:'normal',cam:'auto',title:'minimal',badge:'alouer',subs:false}};
+const S={music:'Élégante',cam:'auto',len:'normal',trans:'fondu',voice:'Voix féminine',lang:'Français',subs:'none',title:'serif',badge:'',accent:'#F6BC28',logo:'br',brand:'avec',fmt:'16x9',tab:'musique'};
+let paysC=store.get('immoclap_cur')==='mad'?'mad':'eur';
+const fmtT=s=>{s=Math.max(0,Math.round(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');};
+const esc=s=>String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+
+/* couleur : contraste vérifié (pastille et textes sur la vidéo ≥ 4,5:1), comme dans l'espace client */
+const hexRgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const relLum=h=>{const a=hexRgb(h).map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);});return .2126*a[0]+.7152*a[1]+.0722*a[2];};
+const contrast=(a,b)=>{const x=relLum(a),y=relLum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);};
+const mixHex=(a,b,w)=>'#'+hexRgb(a).map((v,i)=>Math.round(v*(1-w)+hexRgb(b)[i]*w).toString(16).padStart(2,'0')).join('').toUpperCase();
+const accentVars=hex=>{const ink=['#16120A','#000000','#FFFFFF'].reduce((a,b)=>contrast(hex,b)>contrast(hex,a)?b:a);
+  let txt=hex,w=0;while(contrast(txt,'#141210')<4.5&&w<1){w=Math.min(1,w+.08);txt=mixHex(hex,'#FFFFFF',w);}
+  return `--acc:${hex};--acc-t:${txt};--acc-ink:${ink}`;};
+
+/* ---------- sons : un seul à la fois, toujours lancés par un clic ---------- */
+const snd=new Audio();snd.preload='none';
+const canA=t=>{try{return !!snd.canPlayType&&snd.canPlayType(t)!==''}catch(e){return false}};
+const opusOK=canA('audio/ogg; codecs="opus"'), mp3OK=canA('audio/mpeg');
+let sndBtn=null;
+const setLsn=(b,on)=>{b.setAttribute('aria-pressed',String(on));$('span',b).textContent=on?'Pause':b.dataset.l;};
+const stopSnd=()=>{if(sndBtn){setLsn(sndBtn,false);sndBtn=null;}try{snd.pause();}catch(e){}};
+const playSnd=(b,url)=>{if(sndBtn===b){stopSnd();return;}stopSnd();if(!url)return;sndBtn=b;setLsn(b,true);
+  try{snd.src=url;snd.currentTime=0;}catch(e){}
+  const p=snd.play();if(p&&p.catch)p.catch(()=>{if(sndBtn===b)stopSnd();});};
+snd.addEventListener('ended',stopSnd);
+snd.addEventListener('error',()=>{if(sndBtn)stopSnd();});
+
+/* ---------- bibliothèque musicale (assets/musique/pistes.json, peut être vide) ---------- */
+let TRACKS=[], tracksAsked=false;
+const okPath=s=>typeof s==='string'&&/^assets\/musique\/[\w.-]+\.(mp3|ogg)$/i.test(s);
+const trackUrl=t=>t.mp3&&mp3OK?t.mp3:(t.ogg&&opusOK?t.ogg:'');
+const loadTracks=()=>{if(tracksAsked)return;tracksAsked=true;
+  fetch('assets/musique/pistes.json',{cache:'no-cache'}).then(r=>r.ok?r.json():[]).then(j=>{
+    const amb=Object.values(AMB);
+    TRACKS=(Array.isArray(j)?j:[]).filter(t=>t&&typeof t.id==='string'&&/^[\w-]{1,60}$/.test(t.id)&&amb.includes(t.ambiance)&&(okPath(t.mp3)||okPath(t.ogg)))
+      .map(t=>({id:t.id,titre:String(t.titre||t.id).slice(0,80),ambiance:t.ambiance,bpm:+t.bpm>=40&&+t.bpm<=220?+t.bpm:0,
+        mp3:okPath(t.mp3)?t.mp3:'',ogg:okPath(t.ogg)?t.ogg:'',source:String(t.source||'').slice(0,120),
+        ia:t.ia===true||/lyria/i.test(String(t.source||''))||/^g[ée]n[ée]r[ée]e?s? par (l')?IA/i.test(String(t.licence||''))}))
+      .filter(t=>trackUrl(t));
+    renderMusic();
+  }).catch(()=>{});};
+const musBtn=$('#musBtn'), musRow=$('#musRow'), musNote=$('#musNote');
+const trackFor=label=>TRACKS.find(t=>t.ambiance===AMB[label])||null;
+function renderMusic(){
+  const none=S.music==='Aucune', tr=none?null:trackFor(S.music);
+  if(sndBtn===musBtn&&(!tr||musBtn.dataset.id!==tr.id))stopSnd();
+  musRow.hidden=!tr;
+  if(tr){musBtn.dataset.id=tr.id;musBtn.dataset.url=trackUrl(tr);musBtn.dataset.l=`Écouter «${NB}${tr.titre}${NB}»`;if(sndBtn!==musBtn)$('span',musBtn).textContent=musBtn.dataset.l;}
+  musNote.textContent=none?'Sans musique, la vidéo garde seulement la voix off, si vous en choisissez une.'
+    :tr?`Extrait de l'ambiance «${NB}${S.music}${NB}»${tr.ia?`, musique générée par IA`:''}${tr.source?`${NB}· source${NB}: ${tr.source}`:''}. Dans l'espace client, les morceaux de chaque ambiance s'écoutent avant de choisir${tr.bpm?`${NB}; avec celui-ci (${Math.round(tr.bpm)}${NB}BPM), les plans peuvent aussi se caler sur le tempo`:''}.`
+    :TRACKS.length?'Pas encore de morceau à écouter dans cette ambiance.':'La bibliothèque de morceaux à écouter est en préparation.';
+  const fm=$('#faqMus');
+  if(fm)fm.textContent=TRACKS.length?"Dans l'espace client, les morceaux de chaque ambiance s'écoutent avant de choisir. Un extrait par ambiance s'écoute aussi plus haut, dans la partie Réglages.":'La bibliothèque de morceaux à écouter avant de choisir est en préparation.';
+}
+musBtn.addEventListener('click',()=>playSnd(musBtn,musBtn.dataset.url));
+
+/* ---------- voix off : extrait réel (assets/voix) ---------- */
+const voiceBtn=$('#voiceBtn');
+const voiceUrl=()=>{const k=S.voice==='Voix masculine'?'m':'f';return `assets/voix/${LCODE[S.lang]}-${k}.${opusOK?'ogg':'mp3'}`;};
+voiceBtn.addEventListener('click',()=>{const was=sndBtn===voiceBtn;playSnd(voiceBtn,voiceUrl());if(!was&&sndBtn===voiceBtn)jump('voice');});
+function renderVoice(){
+  const on=S.voice!=='Aucune';
+  $('#voiceRow').hidden=!on;$('#voiceNote').hidden=!on;$('#subsNote').hidden=on;
+  const vt=$('#voiceTxt');vt.textContent=SUB_TXT[S.lang];vt.lang=LCODE[S.lang];vt.dir=S.lang==='Arabe'?'rtl':'ltr';
+  $$('[data-k="subs"] [role=radio]',RS).forEach(b=>on?b.removeAttribute('aria-disabled'):b.setAttribute('aria-disabled','true'));
+}
+
+/* ---------- aperçu du montage ---------- */
+const reduceM=matchMedia('(prefers-reduced-motion: reduce)');
+const isRM=()=>reduceM.matches;
+const stage=$('#mts'), box=$('#mtsLayers'), blackL=$('#mtsBlack'), ttlEl=$('#mtsTtl'), badgeEl=$('#mtsBadge'), bugEl=$('#mtsBug'), subEl=$('#mtsSub');
+const seekEl=$('#mtsSeek'), timeEl=$('#mtsTime'), nowEl=$('#mtsNow'), bigB=$('#mtsBig'), playB=$('#mtsPlay');
+const webpOK=(()=>{try{return document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp')===0}catch(e){return false}})();
+const imgUrl=k=>`assets/exemples/villa-${k}-960.${webpOK?'webp':'jpg'}`;
+const layers=SHOTS.map(([k])=>{const d=document.createElement('div');d.className='mts-layer';const im=document.createElement('img');im.alt='';im.decoding='async';im.dataset.src=imgUrl(k);d.append(im);return d;});
+const endL=document.createElement('div');endL.className='mts-layer mts-endl';
+box.append(...layers,endL);
+let imgsOn=false;
+const loadImgs=()=>{if(imgsOn)return;imgsOn=true;layers.forEach(d=>{const im=d.firstChild;im.src=im.dataset.src;});};
+/* frise des plans (vignettes déjà utilisées dans « Étapes ») */
+const strip=$('#strip');
+strip.innerHTML=SHOTS.map(([k,l],i)=>`<li data-i="${i}"><button type="button" data-shot="${i}"><span class="sr-only">Voir le plan </span><span class="th"><picture><source srcset="assets/exemples/villa-${k}-480.webp" type="image/webp"><img src="assets/exemples/villa-${k}-480.jpg" width="480" height="270" alt="" loading="lazy" decoding="async"></picture><span class="n">${i+1}</span></span><span class="sr-only"> (${l}), mouvement${NB}: </span><span class="cm"></span></button></li>`).join('');
+const stripLis=$$('li',strip);
+
+const camOf=i=>S.cam!=='auto'?S.cam:(i===0?'avancee':CAM_CYCLE[(i-1)%CAM_CYCLE.length]);
+function buildPlan(){
+  const d=LENS[S.len], rm=isRM();let t=0;
+  const shots=SHOTS.map((s,i)=>{const o={cam:camOf(i),d,t0:t};t+=d;return o;});
+  const end=S.brand==='avec'?END_D:0;
+  return {shots,endT0:t,total:t+end,end:end>0,T:rm?0:TRANS[S.trans],trans:rm?'coupe':S.trans};
+}
+function camAt(cam,u){
+  switch(cam){
+    case 'avancee':return [1.02+.16*u,0,0,0];
+    case 'recul':return [1.18-.16*u,0,0,0];
+    case 'pan-g':return [1.16,-5+10*u,0,0];
+    case 'pan-d':return [1.16,5-10*u,0,0];
+    case 'travelling':return [1.14+.05*u,4-8*u,1-2*u,0];
+    case 'orbite':return [1.22,-4+8*u,0,1.6-3.2*u];
+    default:return [1.03,0,0,0];
+  }
+}
+const ease=u=>.5-Math.cos(Math.PI*Math.max(0,Math.min(1,u)))/2;
+const M={t:0,plan:null,raf:0,last:0,hold:0,run:false,userPaused:reduce,vis:false,state:[],shotIdx:-2,sec:-1,titleEnd:3,vStart:-1,vEnd:-1};
+function refresh(){
+  const P=M.plan=buildPlan(), L=L10N[S.lang], ar=S.lang==='Arabe';
+  stage.className='mts'+(S.fmt==='9x16'?' r916':S.fmt==='1x1'?' r11':'')+(S.brand==='avec'&&S.logo==='tr'?' bug-tr':'')+(S.brand==='avec'&&(S.logo==='br'||S.logo==='bl')?' bug-b':'')+(ar?' rtl':'')+(S.badge?' badge-on':'');
+  stage.style.cssText=accentVars(S.accent);
+  /* titre d'ouverture */
+  const st=S.title==='sans'?'sans':S.title==='minimal'?'min':'serif';
+  ttlEl.className='mts-ttl ts-'+st;
+  ttlEl.innerHTML=`<div class="tsh"></div><div class="tw"${ar?' dir="rtl"':''}>${st!=='min'?`<span class="kick">${esc(L.deal[S.badge==='alouer'||S.badge==='loue'?'location':'vente'])}</span>`:''}<span class="ttl">Marrakech, Palmeraie</span><span class="rule"></span><span class="meta">${esc(L.meta)}</span></div>`;
+  /* pastille, logo, sous-titres */
+  const bt=S.badge?BADGE_L[S.lang][S.badge]:'';badgeEl.hidden=!bt;badgeEl.textContent=bt;ar?badgeEl.setAttribute('dir','rtl'):badgeEl.removeAttribute('dir');
+  const showBug=S.brand==='avec'&&S.logo!=='none';bugEl.hidden=!showBug;bugEl.className='mts-bug '+S.logo;
+  subEl.className='mts-sub ss-'+(S.subs==='none'?'bande':S.subs);subEl.firstChild.textContent=SUB_TXT[S.lang];ar?subEl.setAttribute('dir','rtl'):subEl.removeAttribute('dir');
+  /* carton de fin (exemple : les vraies coordonnées viennent de votre kit de marque) */
+  const ph=paysC==='mad'?'+212 6 00 00 00 00':'+33 6 00 00 00 00', em=paysC==='mad'?'contact@votre-agence.ma':'contact@votre-agence.fr';
+  endL.innerHTML=`<div class="mts-endc"${ar?' dir="rtl"':''}><span class="by">${esc(L.by)}</span><span class="lgph">LOGO</span><span class="ag ghost">${esc(L.ag)}</span><span class="rule"></span><span class="ph" dir="ltr">${ph}</span><span class="em" dir="ltr">${em}</span></div>`;
+  /* temps forts : titre sur le premier plan, puis la voix off et ses sous-titres */
+  const d0=P.shots[0].d;M.titleEnd=Math.max(1.6,Math.min(4.6,d0-P.T/2-.15));
+  if(S.voice!=='Aucune'){const vd=VOICE_DUR[LCODE[S.lang]][S.voice==='Voix masculine'?'m':'f'];M.vStart=Math.min(M.titleEnd+.3,Math.max(0,P.endT0-vd));M.vEnd=M.vStart+vd;}
+  else{M.vStart=-1;M.vEnd=-1;}
+  seekEl.max=String(Math.round(P.total*100)/100);
+  if(M.t>P.total)M.t=P.total;
+  M.state=[];M.shotIdx=-2;M.sec=-1;
+  stripLis.forEach((li,i)=>{$('.cm',li).textContent=CAM_SHORT[P.shots[i].cam];});
+  $('#estNote').textContent=`Durée estimée${NB}: ${fmtT(P.total)} (7${NB}plans de ${LENS[S.len]}${NB}s${P.end?' et le carton de fin':''}).`;
+  $('#mtsRm').hidden=!isRM();
+  draw(M.t);
+}
+function draw(t){
+  const P=M.plan;if(!P)return;
+  const n=P.shots.length,T=P.T,half=T/2,L=layers.concat(P.end?[endL]:[]);
+  const B=k=>k<n?P.shots[k].t0:P.endT0;
+  let c=P.end?n:n-1;for(let k=0;k<n;k++)if(t<B(k+1)){c=k;break;}
+  const last=L.length-1;
+  let out=-1,inn=-1,q=0;
+  if(T>0){
+    if(c>0&&t-B(c)<half){out=c-1;inn=c;q=(t-B(c)+half)/T;}
+    else if(c<last&&B(c+1)-t<half){out=c;inn=c+1;q=(t-B(c+1)+half)/T;}
+  }
+  let black=0;const st=L.map(()=>null);
+  if(out<0)st[c]={o:1,x:0};
+  else if(P.trans==='fondu'){st[out]={o:1,x:0};st[inn]={o:q,x:0};}
+  else if(P.trans==='noir'){if(q<.5){st[out]={o:1,x:0};black=q*2;}else{st[inn]={o:1,x:0};black=(1-q)*2;}}
+  else if(P.trans==='glisse'){const e=ease(q);st[out]={o:1,x:-e*100};st[inn]={o:1,x:(1-e)*100};}
+  else st[t<B(inn)?out:inn]={o:1,x:0};
+  layers.concat([endL]).forEach((el,k)=>{
+    const s=st[k],prev=M.state[k];
+    if(!s){if(prev!=='off'){el.style.visibility='hidden';el.style.willChange='auto';M.state[k]='off';}return;}
+    el.style.visibility='visible';el.style.opacity=s.o;el.style.transform=s.x?`translate3d(${s.x}%,0,0)`:'';
+    if(prev!=='on'){el.style.willChange='opacity,transform';M.state[k]='on';}
+    if(k<n){const sh=P.shots[k],u=isRM()?0:(t-(sh.t0-half))/(sh.d+T),m=isRM()?[1,0,0,0]:camAt(sh.cam,ease(u));
+      el.firstChild.style.transform=`scale(${m[0].toFixed(4)}) translate(${m[1].toFixed(3)}%,${m[2].toFixed(3)}%)${m[3]?` rotate(${m[3].toFixed(3)}deg)`:''}`;}
+  });
+  blackL.style.opacity=black;
+  const fade=(a,b,x,r=.35)=>x<a||x>b?0:Math.min(1,(x-a)/r,(b-x)/r);
+  const shotsEnd=P.end?P.endT0-half:P.total;
+  const ta=fade(.3,M.titleEnd,t);ttlEl.style.opacity=ta;ttlEl.style.transform=isRM()||ta>=1?'':`translateY(${((1-ta)*1.5).toFixed(2)}cqw)`;
+  if(!badgeEl.hidden)badgeEl.style.opacity=fade(.3,shotsEnd,t,.3);
+  if(!bugEl.hidden)bugEl.style.opacity=fade(0,shotsEnd,t,.3)*.95;
+  subEl.style.opacity=S.subs!=='none'&&M.vStart>=0?fade(M.vStart,M.vEnd,t,.15):0;
+  seekEl.value=String(Math.round(t*100)/100);
+  const sec=Math.floor(t);
+  if(sec!==M.sec){M.sec=sec;timeEl.textContent=`${fmtT(sec)} / ${fmtT(P.total)}`;seekEl.setAttribute('aria-valuetext',`${fmtT(sec)} sur ${fmtT(P.total)}`);}
+  if(c!==M.shotIdx){M.shotIdx=c;
+    nowEl.textContent=c>=n?'Carton de fin':`Plan ${c+1} sur ${n} · ${isRM()?'image fixe':CAM_SHORT[P.shots[c].cam]} · ${P.shots[c].d}${NB}s`;
+    stripLis.forEach((li,i)=>li.classList.toggle('now',i===c));}
+}
+function loop(now){
+  if(!M.run)return;
+  const dt=Math.min(.1,(now-M.last)/1000);M.last=now;
+  if(M.hold){if(now>M.hold){M.hold=0;M.t=0;}}
+  else{M.t+=dt;if(M.t>=M.plan.total){M.t=M.plan.total;M.hold=now+1500;}}
+  draw(M.t);M.raf=requestAnimationFrame(loop);
+}
+/* lecture seulement si l'utilisateur ne l'a pas mise en pause, si l'aperçu est visible et l'onglet affiché */
+function syncRun(){
+  const want=!M.userPaused&&M.vis&&!document.hidden;
+  if(want&&!M.run){M.run=true;M.started=true;M.last=performance.now();cancelAnimationFrame(M.raf);M.raf=requestAnimationFrame(loop);}
+  else if(!want&&M.run){M.run=false;cancelAnimationFrame(M.raf);}
+  playB.classList.toggle('paused',M.userPaused);
+  playB.setAttribute('aria-label',M.userPaused?"Lire l'aperçu du montage":"Mettre l'aperçu en pause");
+  bigB.hidden=!(M.userPaused&&!M.started);
+}
+const setPaused=p=>{M.userPaused=p;if(!p)loadImgs();syncRun();};
+playB.addEventListener('click',()=>setPaused(!M.userPaused));
+bigB.addEventListener('click',()=>setPaused(false));
+$('#mtsRestart').addEventListener('click',()=>{M.t=0;M.hold=0;draw(0);setPaused(false);});
+seekEl.addEventListener('input',()=>{M.t=+seekEl.value;M.hold=0;draw(M.t);});
+strip.addEventListener('click',e=>{const b=e.target.closest('[data-shot]');if(!b)return;const i=+b.dataset.shot,sh=M.plan.shots[i];M.t=sh.t0+(i?M.plan.T/2:0);M.hold=0;draw(M.t);});
+/* un réglage modifié : l'aperçu continue, et va au moment où le changement se voit */
+function jump(h){
+  const P=M.plan;if(!P)return;let t=null;
+  if(h==='title')t=Math.min(1.3,P.total);
+  else if(h==='voice'&&M.vStart>=0)t=M.vStart+.5;
+  else if(h==='end'&&P.end)t=P.endT0+.8;
+  else if(h==='shot'){const c=Math.min(M.shotIdx<0?0:M.shotIdx,P.shots.length-1);t=P.shots[c].t0+(c?P.T/2:0);}
+  else if(h==='trans'){const c=Math.min(Math.max(M.shotIdx,0),P.shots.length-2);t=Math.max(0,P.shots[c+1].t0-P.T/2-.5);}
+  else if(h==='start')t=0;
+  if(t===null)return;M.t=t;M.hold=0;draw(t);
+}
+new IntersectionObserver(es=>es.forEach(e=>{M.vis=e.isIntersecting;if(M.vis)loadImgs();syncRun();}),{threshold:.25}).observe(stage);
+new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){loadImgs();loadTracks();o.disconnect();}}),{rootMargin:'700px 0px'}).observe(RS);
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stopSnd();syncRun();});
+const onRM=()=>{refresh();if(isRM()&&!M.userPaused)setPaused(true);};
+if(reduceM.addEventListener)reduceM.addEventListener('change',onRM);else if(reduceM.addListener)reduceM.addListener(onRM);
+
+/* ---------- préréglages ---------- */
+const presetOf=()=>Object.keys(PRESETS).find(id=>{const p=PRESETS[id];
+  return S.music===p.music&&S.trans===p.trans&&S.len===p.len&&S.cam===p.cam&&S.title===p.title&&S.badge===p.badge&&(S.subs!=='none'&&S.voice!=='Aucune')===p.subs;})||'';
+function renderPreset(){
+  const pr=presetOf();
+  $$('.pre',RS).forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.preset===pr)));
+  const txt=pr==='recommande'?`Réglages «${NB}Recommandé${NB}»${NB}: la vidéo peut partir telle quelle.`:pr?`Préréglage «${NB}${PRESETS[pr].l}${NB}» appliqué${NB}: tout reste modifiable.`:'Réglages personnalisés.';
+  const pn=$('#preNote');if(pn.textContent!==txt)pn.textContent=txt;
+}
+$$('.pre',RS).forEach(b=>b.addEventListener('click',()=>{
+  const p=PRESETS[b.dataset.preset];
+  Object.assign(S,{music:p.music,trans:p.trans,len:p.len,cam:p.cam,title:p.title,badge:p.badge});
+  if(p.subs){if(S.subs==='none')S.subs='bande';if(S.voice==='Aucune')S.voice='Voix féminine';}else S.subs='none';
+  if(p.fmt)S.fmt=p.fmt;
+  stopSnd();
+  ['music','trans','len','cam','title','badge','subs','voice','fmt'].forEach(k=>setRadio(k,S[k]));
+  renderAll();jump('start');
+}));
+
+/* ---------- groupes d'options (boutons radio) ---------- */
+const groups={};
+function setRadio(k,v){const items=groups[k];if(!items)return;items.forEach(x=>{const on=x.dataset.v===v;x.setAttribute('aria-checked',String(on));x.tabIndex=on?0:-1;});}
+const HINT={title:'title',badge:'title',accent:'title',subs:'voice',voice:'voice',lang:'voice',cam:'shot',trans:'trans',brand:'end'};
+$$('[role=radiogroup]',RS).forEach(g=>{const k=g.dataset.k,items=$$('[role=radio]',g);groups[k]=items;
+  const pick=(it,focus)=>{
+    if(focus)it.focus();
+    if(it.getAttribute('aria-disabled')==='true')return;
+    items.forEach(x=>{const on=x===it;x.setAttribute('aria-checked',String(on));x.tabIndex=on?0:-1;});
+    if(S[k]===it.dataset.v)return;
+    S[k]=it.dataset.v;
+    if(k==='music'||k==='voice'||k==='lang')stopSnd();
+    renderAll();
+    if(HINT[k]&&!(k==='brand'&&S.brand!=='avec'))jump(HINT[k]);
+  };
   items.forEach((it,i)=>{it.tabIndex=it.getAttribute('aria-checked')==='true'?0:-1;it.addEventListener('click',()=>pick(it));
     it.addEventListener('keydown',e=>{let j=null;if(e.key==='ArrowDown'||e.key==='ArrowRight')j=(i+1)%items.length;else if(e.key==='ArrowUp'||e.key==='ArrowLeft')j=(i-1+items.length)%items.length;
       if(j!==null){e.preventDefault();pick(items[j],true);}});});});
-render();
+function renderAll(){renderMusic();renderVoice();refresh();renderPreset();}
+
+/* ---------- onglets ---------- */
+const tabs=$$('[role=tab]',RS), panels=$$('[role=tabpanel]',RS);
+const TAB_HINT={voix:'voice',marque:'title'};
+const selectTab=(tab,focus)=>{tabs.forEach(t=>{const on=t===tab;t.setAttribute('aria-selected',String(on));t.tabIndex=on?0:-1;});
+  panels.forEach(p=>p.hidden=p.id!==tab.getAttribute('aria-controls'));
+  const was=S.tab;S.tab=tab.id.replace('tab-','');if(focus)tab.focus();
+  if(was!==S.tab){stopSnd();if(TAB_HINT[S.tab])jump(TAB_HINT[S.tab]);}};
+tabs.forEach((t,i)=>{t.addEventListener('click',()=>selectTab(t));
+  t.addEventListener('keydown',e=>{let j=null;if(e.key==='ArrowRight')j=(i+1)%tabs.length;else if(e.key==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;else if(e.key==='Home')j=0;else if(e.key==='End')j=tabs.length-1;
+    if(j!==null){e.preventDefault();selectTab(tabs[j],true);}});});
+const setPaysC=x=>{if(x!==paysC){paysC=x;refresh();}};
+renderAll();syncRun();
 
 /* tarifs */
 const fmtN=n=>Number.isInteger(n)?n.toLocaleString('fr-FR'):n.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -1343,7 +1816,7 @@ const price=()=>{const sym=c==='eur'?'€':'DH';
   const am=+$('.price[data-month][data-n="10"]').dataset[c];
   $$('[data-cmp-month]').forEach(el=>el.textContent=`${fmtN(am)}${NB}${sym} HT${NB}/${NB}mois`);
   $$('#cur button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.c===c)));
-  $('#paysNom').textContent=c==='mad'?'Prix affichés en dirhams (Maroc)':'Prix affichés en euros (France)';};
+  $('#paysNom').textContent=c==='mad'?'Prix affichés en dirhams (Maroc)':'Prix affichés en euros (France)';setPaysC(c);};
 $$('#cur button').forEach(b=>b.addEventListener('click',()=>{c=b.dataset.c;store.set('immoclap_cur',c);price();}));
 const saved=store.get('immoclap_cur');
 if(saved==='eur'||saved==='mad')c=saved;
@@ -1414,7 +1887,7 @@ form.addEventListener('submit',e=>{e.preventDefault();
 /* visionneuse */
 const lb=$('#lb'), lbvid=$('#lbvid');
 const lbOpen=el=>{const base=el.dataset.video, ratio=el.dataset.ratio||'9x16';
-  if(!helpPop.hidden)helpToggle(false);
+  stopSnd();if(!helpPop.hidden)helpToggle(false);
   lb.classList.toggle('portrait',ratio==='9x16');
   $('#lbTitle').textContent=el.dataset.title||'Démonstration';
   const noAudio=el.dataset.audio==='0';

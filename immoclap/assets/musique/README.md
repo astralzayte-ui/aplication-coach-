@@ -22,6 +22,10 @@ Traitement prévu : fondu d'entrée et de sortie, volume normalisé à -16 LUFS,
 - Aucune clause n'interdit l'usage commercial du contenu généré.
 - Chaque son produit par Lyria contient un filigrane SynthID inaudible qui l'identifie comme généré par IA.
 
+Conséquence pour les textes publics (site, FAQ, CGV art. 10, mentions légales, mis à jour le 09/10/2026) :
+on dit « morceaux originaux générés par IA, non exclusifs », jamais « libres de droits » ni « usage commercial autorisé »
+(les conditions n'accordent pas de licence, elles n'interdisent simplement pas cet usage).
+
 ## Format de `pistes.json`
 
 Tableau d'objets :
@@ -35,9 +39,17 @@ Tableau d'objets :
   "bpm": 70,
   "mp3": "assets/musique/elegante-1.mp3",
   "ogg": "assets/musique/elegante-1.ogg",
-  "source": "…",
-  "licence": "…"
+  "source": "Google Lyria 3 Clip (API Gemini), générée le JJ/MM/AAAA",
+  "modele": "lyria-3-clip-preview",
+  "ia": true,
+  "licence": "Générée par IA · non exclusive · pour la promotion du bien (CGV, art. 10)",
+  "licence_detail": "…"
 }
 ```
+
+- `ia` : `true` pour une piste générée par IA. Le site affiche alors « musique générée par IA » sous l'extrait.
+- `licence` : texte COURT (moins de 160 caractères), affiché tel quel dans l'espace client.
+- `licence_detail` : conditions complètes, pour le dossier (non affiché).
+- `source` : la date est celle du fichier brut (date de génération), pas celle du traitement.
 
 `bpm` peut valoir `null`. Si le fichier est absent ou vide, l'app fonctionne quand même.

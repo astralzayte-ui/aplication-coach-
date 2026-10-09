@@ -259,7 +259,7 @@ textarea{resize:vertical;min-height:96px}
 .pv .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .pv .lab{position:absolute;top:8px;left:8px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:rgba(11,10,9,.75);color:#fff;padding:4px 8px;border-radius:6px;z-index:6}
 .pv.end{background:radial-gradient(circle at 50% 38%,#26221e 0,#0B0A09 72%)}
-.pv.end .lab,.pv .mt-badge~.lab{left:auto;right:8px}
+.pv.end .lab,.pv .lab.r{left:auto;right:8px}
 
 /* habillage partagé : aperçus fixes (.pv) et lecteur du montage (.mt-stage) */
 .pv,.mt-stage{--k:1;--acc:#F6BC28;--acc-t:#F6BC28;--acc-ink:#16120A}
@@ -409,6 +409,11 @@ input[type=range]{width:100%;accent-color:var(--gold);min-height:36px;cursor:poi
 .mt-sub.ss-accent span{background:var(--acc);color:var(--acc-ink)}
 .mt-mark{position:absolute;right:3cqw;top:3cqw;z-index:6;font-size:9px;letter-spacing:.16em;text-transform:uppercase;background:rgba(11,10,9,.72);color:#fff;padding:3px 7px;border-radius:5px;pointer-events:none;white-space:nowrap}
 .mt-stage.bug-b .mt-sub{bottom:calc(8cqw + 7cqw * var(--k))}
+/* logo en bas : le titre d'ouverture passe au-dessus de la plaque du logo (4cqw + 7cqw*k), avec une marge */
+.mt-stage.bug-b .mt-ttl:not(.ts-min) .tw,.pv.bug-b .mt-ttl:not(.ts-min) .tw{bottom:calc(9.5cqw * var(--k) + 4cqw)}
+/* logo en haut à droite + pastille à droite (arabe) : la pastille descend sous le logo */
+.mt-stage.bug-tr .mt-badge[dir=rtl],.pv.bug-tr .mt-badge[dir=rtl]{top:calc(6cqw + 7cqw * var(--k))}
+.pv .mt-bug{opacity:.95}
 .mt-stage.rtl .mt-mark{right:auto;left:3cqw}
 .mt-stage.bug-tr .mt-mark{top:calc(5cqw + 7cqw * var(--k))}
 .mt-big{position:absolute;inset:0;margin:auto;width:64px;height:64px;border-radius:50%;background:rgba(11,10,9,.74);border:1px solid rgba(255,255,255,.4);display:grid;place-items:center;color:#fff;z-index:7;transition:transform .15s,background .15s}
@@ -424,6 +429,11 @@ input[type=range]{width:100%;accent-color:var(--gold);min-height:36px;cursor:poi
 .mt-now{font-size:12.5px;color:var(--muted);margin-top:8px;text-align:center;min-height:19px}
 .mt-label{font-size:12.5px;color:var(--gold2);margin-top:8px;line-height:1.45;text-align:center;border-top:1px solid var(--line);padding-top:8px}
 .mt-rm{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center}
+/* aperçu en lecture mais hors de la vue (défilement) : commande flottante pour couper le son */
+.mt-mini{position:fixed;left:16px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:45;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px 0 14px;border-radius:999px;background:var(--gold);color:var(--ink);font-size:14px;font-weight:600;box-shadow:0 10px 30px -8px rgba(0,0,0,.75);white-space:nowrap}
+.mt-mini:hover{background:var(--gold2)}
+.mt-mini[hidden]{display:none}
+@media(max-width:620px){body.has-bar .mt-mini{bottom:calc(94px + env(safe-area-inset-bottom))}}
 #mt-dlg{width:min(620px,calc(100vw - 24px));padding:20px}
 #mt-dlg h2{font-size:24px;margin-bottom:12px;padding-right:40px}
 #mt-dlg .mt-stage{--ar:1.7778;width:min(100%,calc(56vh * var(--ar)))}
@@ -747,7 +757,7 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
         <div class="mt-pre" id="mt-pre">
           <button type="button" data-preset="recommande" aria-pressed="false"><b>Recommandé</b><small>Équilibré, pour tous les biens</small></button>
           <button type="button" data-preset="luxe" aria-pressed="false"><b>Luxe</b><small>Fondus, avancées lentes, titre serif</small></button>
-          <button type="button" data-preset="reseaux" aria-pressed="false"><b>Réseaux sociaux</b><small>Dynamique, coupes sur le tempo, vertical</small></button>
+          <button type="button" data-preset="reseaux" aria-pressed="false"><b>Réseaux sociaux</b><small>Plans de 3 s, coupes franches, sous-titres, vertical</small></button>
           <button type="button" data-preset="saison" aria-pressed="false"><b>Location saisonnière</b><small>Chaleureuse, pastille « À louer »</small></button>
         </div>
         <p class="mt-pre-note" id="mt-pre-note" aria-live="polite"></p>
@@ -948,7 +958,7 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
                 <p class="mt-sub" id="mt-sub" aria-hidden="true"><span></span></p>
                 <span class="mt-mark" aria-hidden="true">Aperçu</span>
                 <p class="mt-empty" id="mt-empty" hidden></p>
-                <button type="button" class="mt-big" id="mt-big" aria-label="Lire l'aperçu du montage"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+                <button type="button" class="mt-big" id="mt-big" tabindex="-1" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
               </div>
               <div class="mt-ctrl">
                 <button type="button" id="mt-play" aria-label="Lire l'aperçu du montage"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path class="i-play" d="M8 5v14l11-7z"/><path class="i-pause" d="M7 5h4v14H7zM13 5h4v14h-4z" style="display:none"/></svg></button>
@@ -959,7 +969,8 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
               </div>
               <div class="mt-fmts"><div class="seg" id="mt-fmts" role="group" aria-label="Format de l'aperçu"></div></div>
               <p class="mt-now" id="mt-now"></p>
-              <p class="mt-label">Aperçu du montage — la vidéo finale est générée par l'IA à partir de vos photos (mouvements de caméra réels).</p>
+              <p class="mt-nomusic mt-rm" id="mt-nomusic" hidden></p>
+              <p class="mt-label">Aperçu du montage — ici, les mouvements de caméra sont seulement simulés : dans la vidéo finale, ils sont générés par l'IA à partir de vos photos.</p>
               <p class="mt-rm" id="mt-rm" hidden>Animations réduites sur cet appareil : l'aperçu montre des images fixes, sans mouvement ni transition.</p>
             </div>
           </div>
@@ -1214,6 +1225,7 @@ dialog .dbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;marg
 </dialog>
 
 <div id="print-area" aria-hidden="true"></div>
+<button type="button" class="mt-mini" id="mt-mini" hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>Mettre l'aperçu en pause</button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
@@ -1571,7 +1583,7 @@ function render(){
   closeHelp();
   if (r.a !== 'video') $('#r-video').pause();
   if (r.a !== 'nouvelle') { stopVoice(); stopLib(); }
-  if (!(r.a === 'nouvelle' && r.b === '3')) { stopLib(); if (!$('#mt-dlg').open) MT.pause(); }
+  if (!(r.a === 'nouvelle' && r.b === '3')) { stopLib(); stopVoice(); if (!$('#mt-dlg').open) MT.pause(); }
   if (lastRoute === 'nouvelle' && r.a !== 'nouvelle' && draft) { saveDraftSoon.flush(); if (r.a !== 'paiement' && draftHasContent()) toast('Brouillon enregistré : reprenez-le depuis Mes vidéos.'); }
   if (!session) {
     renderHeader('');
@@ -2039,10 +2051,10 @@ async function addFiles(list){
 }
 function renderThumbs(){
   if (!draft) return;
-  const ph = draft.photos, n = ph.length;
+  const ph = draft.photos, n = ph.length, first = Math.max(0, ph.findIndex(p => !p.off)); /* couverture = premier plan inclus */
   $('#thumbs').innerHTML = ph.map((p, i) => `<li class="thumb" draggable="true" data-i="${i}">
-    <img src="${p.src}" alt="Photo ${i + 1}${i === 0 ? ', couverture' : ''} : ${esc(p.name)}">
-    <span class="n">${i + 1}${i === 0 ? '<em>Couverture</em>' : ''}${p.off ? '<em>Exclue du montage</em>' : ''}</span>
+    <img src="${p.src}" alt="Photo ${i + 1}${i === first ? ', couverture' : p.off ? ', exclue du montage' : ''} : ${esc(p.name)}">
+    <span class="n">${i + 1}${i === first ? '<em>Couverture</em>' : ''}${p.off ? '<em>Exclue du montage</em>' : ''}</span>
     ${p.w < CONFIG.goodWidth ? `<span class="q" title="${p.w} px de large">${p.w}\u00a0px</span>` : ''}
     <button type="button" class="rm" data-rm="${i}" aria-label="Retirer la photo ${i + 1}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     <span class="mv"><button type="button" data-mv="${i}" data-d="-1" aria-label="Déplacer la photo ${i + 1} vers la gauche" ${i === 0 ? 'disabled' : ''}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" data-mv="${i}" data-d="1" aria-label="Déplacer la photo ${i + 1} vers la droite" ${i === n - 1 ? 'disabled' : ''}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></span>
@@ -2058,6 +2070,8 @@ function renderThumbs(){
   $('#msgs1').insertAdjacentHTML('beforeend', q.map(([k, t]) => `<li class="${k}" data-q>${esc(t)}</li>`).join(''));
   if (n >= CONFIG.minPhotos) $('#err1').textContent = '';
 }
+/* donne le focus au premier élément présent et actif de la liste (sinon il tomberait sur <body>) */
+function focusFirst(sels){ for (const s of sels) { const el = $(s); if (el && !el.disabled) { el.focus(); return el; } } return null; }
 function movePhoto(from, to){
   const ph = draft.photos; if (to < 0 || to >= ph.length || from === to) return;
   const [p] = ph.splice(from, 1); ph.splice(to, 0, p);
@@ -2069,7 +2083,7 @@ $('#thumbs').addEventListener('click', e => {
   const r = e.target.closest('[data-rm]');
   if (r) { const i = +r.dataset.rm; draft.photos.splice(i, 1); $$('#msgs1 li:not([data-q])').forEach(li => { if (/Maximum/.test(li.textContent)) li.remove(); }); renderThumbs(); saveDraftSoon(); renderPreviews(); renderEstimate(); const nx = $(`#thumbs [data-rm="${Math.min(i, draft.photos.length - 1)}"]`); (nx || drop).focus(); return; }
   const m = e.target.closest('[data-mv]');
-  if (m) { const i = +m.dataset.mv, j = i + +m.dataset.d; movePhoto(i, j); const b = $(`#thumbs [data-mv="${j}"][data-d="${m.dataset.d}"]`) || $(`#thumbs [data-mv="${j}"]`); b && b.focus(); }
+  if (m) { const i = +m.dataset.mv, j = i + +m.dataset.d; movePhoto(i, j); focusFirst([`#thumbs [data-mv="${j}"][data-d="${m.dataset.d}"]`, `#thumbs [data-mv="${j}"][data-d="${-m.dataset.d}"]`, `#thumbs [data-rm="${j}"]`]); }
 });
 let dragIdx = null;
 $('#thumbs').addEventListener('dragstart', e => { const t = e.target.closest('.thumb'); if (!t) return; dragIdx = +t.dataset.i; t.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', String(dragIdx)); } catch(_) {} });
@@ -2138,19 +2152,25 @@ function previewFormatButtons(){
   return pv;
 }
 document.addEventListener('click', e => { const b = e.target.closest('[data-pv]'); if (!b || !draft) return; draft.f.preview = b.dataset.pv; saveDraftSoon(); renderPreviews(); });
+/* logo affiché pendant la vidéo (même règle que le lecteur) : coin occupé, et classe du cadre */
+const bugPos = f => f.logo && f.logoPos && f.logoPos !== 'none' ? f.logoPos : '';
+const bugCls = f => { const p = bugPos(f); return p === 'tr' ? ' bug-tr' : p ? ' bug-b' : ''; };
 function openingHTML(f, cover, fmt){
-  const bt = badgeText(f);
+  const bt = badgeText(f), rtl = f.lang === 'Arabe', bp = bugPos(f);
+  /* votre photo : expliqué dans la légende sous l'aperçu (une étiquette sur l'image couvrirait la pastille ou le logo en 9:16).
+     Photo de démonstration (aucune photo) : étiquette dans un coin du haut resté libre */
+  const used = new Set([bt ? (rtl ? 'r' : 'l') : '', bp === 'tr' ? 'r' : '']), side = ['l', 'r'].find(x => !used.has(x));
   return `<img class="bg" src="${cover || FMT[fmt].poster}" alt="">
-    <span class="lab">${cover ? 'Votre photo de couverture' : 'Photo de démonstration'}</span>
-    <div class="${titleClass(f)}">${titleHTML(f, true)}</div>${bt ? `<span class="mt-badge"${f.lang === 'Arabe' ? ' dir="rtl"' : ''}>${esc(bt)}</span>` : ''}`;
+    ${!cover && side ? `<span class="lab${side === 'r' ? ' r' : ''}">Photo de démonstration</span>` : ''}
+    <div class="${titleClass(f)}">${titleHTML(f, true)}</div>${bt ? `<span class="mt-badge"${rtl ? ' dir="rtl"' : ''}>${esc(bt)}</span>` : ''}${bp ? `<span class="mt-bug ${bp}${f.logoDark ? ' plate' : ''}"><img src="${f.logo}" alt=""></span>` : ''}`;
 }
 function endHTML(f){ return `<span class="lab">Carton de fin</span>${endInner(f, f.logo, f.agentPhoto, true)}`; }
-function setPv(el, fmt, html, f){ el.className = 'pv' + (el.id.startsWith('pv-end') ? ' end' : '') + (FMT[fmt].cls ? ' ' + FMT[fmt].cls : ''); el.style.cssText = accentVars(f ? f.accent : ''); el.innerHTML = html; }
+function setPv(el, fmt, html, f){ const end = el.id.startsWith('pv-end'); el.className = 'pv' + (end ? ' end' : '') + (FMT[fmt].cls ? ' ' + FMT[fmt].cls : '') + (!end && f ? bugCls(f) : ''); el.style.cssText = accentVars(f ? f.accent : ''); el.innerHTML = html; }
 function renderPreviews(){
   if (!draft) return;
   const n = curStep(), f = draft.f, cover = coverOf(draft.photos);
   const fmt = previewFormatButtons();
-  if (n === 2) { setPv($('#pv-open2'), fmt, openingHTML(f, cover, fmt), f); $('#pv-open2-cap').textContent = 'Aperçu indicatif, mis à jour pendant la saisie. Le titre apparaît sur la première photo ; son style se choisit à l\'étape Montage.'; }
+  if (n === 2) { setPv($('#pv-open2'), fmt, openingHTML(f, cover, fmt), f); $('#pv-open2-cap').textContent = cover ? 'Aperçu indicatif sur votre photo de couverture (le premier plan du montage), mis à jour pendant la saisie. Le style du titre se choisit à l\'étape Montage.' : 'Aperçu indicatif sur une photo de démonstration : ajoutez vos photos à l\'étape 1.'; }
   if (n === 3) renderStudioLive();
   if (n === 4) {
     const a = document.createElement('div'), b = document.createElement('div'); a.id = 'pv-open4'; b.id = 'pv-end4';
@@ -2206,7 +2226,7 @@ const LOGOPOS = {none:'aucun', tr:'coin haut droit', br:'coin bas droit', bl:'co
 const PALETTE = [['#F6BC28','Doré'], ['#E5C99E','Sable'], ['#F3EFE7','Crème'], ['#E07A5F','Terracotta'], ['#8FB996','Sauge'], ['#7FB2E5','Bleu ciel'], ['#C9A0DC','Lavande'], ['#EF6461','Corail']];
 /* phrase réellement dite dans les extraits de voix (assets/voix) : sous-titres de l'aperçu */
 const SUB_TXT = {'Français':'Bienvenue dans ce bien, lumineux et calme.', 'Anglais':'Welcome to this home, bright and peaceful.', 'Arabe':'مرحبا بكم في هذا العقار، المشرق والهادئ.'};
-const VOICE_DUR = {fr:{f:6.2, m:6.2}, en:{f:3.9, m:3.5}, ar:{f:4.2, m:3.7}};
+const VOICE_DUR = {fr:{f:2.9, m:2.9}, en:{f:3.9, m:3.5}, ar:{f:4.2, m:3.7}}; /* valeur d'attente : la vraie durée du fichier la remplace dès qu'elle est connue */
 const END_D = 4;
 const STUDIO_DEF = {preset:'recommande', track:'', vol:70, duck:true, mstart:'debut', trans:'fondu', beat:false, lenMode:'global', glen:'normal', cam:'auto',
   title:'serif', badge:'', subs:false, subStyle:'bande', logoPos:'br', accent:'#F6BC28', endEmail:'', agentName:'', agentPhoto:null};
@@ -2260,13 +2280,14 @@ async function loadTracks(){
     const okPath = s => typeof s === 'string' && /^assets\/musique\/[\w.-]+\.(mp3|ogg)$/i.test(s);
     TRACKS = (Array.isArray(j) ? j : []).filter(t => t && typeof t.id === 'string' && /^[\w-]{1,60}$/.test(t.id) && AMB.some(a => a.id === t.ambiance) && (okPath(t.mp3) || okPath(t.ogg)))
       .map(t => ({id:t.id, titre:String(t.titre || t.id).slice(0, 80), ambiance:t.ambiance, duree:+t.duree_s > 0 ? +t.duree_s : 0, bpm:+t.bpm >= 40 && +t.bpm <= 220 ? +t.bpm : 0,
-        mp3:okPath(t.mp3) ? t.mp3 : '', ogg:okPath(t.ogg) ? t.ogg : '', source:String(t.source || '').slice(0, 120), licence:String(t.licence || '').slice(0, 160), refrain:+t.refrain_s > 0 ? +t.refrain_s : 0}))
+        mp3:okPath(t.mp3) ? t.mp3 : '', ogg:okPath(t.ogg) ? t.ogg : '', source:String(t.source || '').slice(0, 120), licence:String(t.licence || '').slice(0, 160), refrain:+t.refrain_s > 0 ? +t.refrain_s : 0, ia:t.ia === true}))
       .filter(t => (t.mp3 && mp3OK) || (t.ogg && oggAny));
   } catch(e) { TRACKS = []; }
   if (draft && curStep() === 3) renderStudio();
   MT.refresh();
+  if (parseHash().a === 'video' && ui.vid && ui.vid.status === 'ready') renderResultMontage(ui.vid);
 }
-const trackUrl = t => t.mp3 && mp3OK ? t.mp3 : t.ogg;
+const trackUrl = t => t.ogg && oggOK ? t.ogg : t.mp3 && mp3OK ? t.mp3 : t.ogg; /* ogg/opus d'abord (environ 2 fois plus léger), mp3 en secours */
 const tracksOf = label => TRACKS.filter(t => t.ambiance === ambId(label));
 function trackOf(f){
   if (!f || f.music === 'Aucune') return null;
@@ -2321,13 +2342,17 @@ function camAt(cam, u){
 const ease = u => .5 - Math.cos(Math.PI * Math.max(0, Math.min(1, u))) / 2;
 
 /* ---------- habillage (titre, pastille, carton de fin) : aperçus fixes et lecteur ---------- */
+const hasRtl = s => /[\u0590-\u08FF\uFB1D-\uFDFF\uFE70-\uFEFF]/.test(s);
+/* texte isolé du sens de la phrase : chiffres, prix et téléphones restent dans l'ordre saisi */
+const bdi = s => `<bdi dir="${hasRtl(s) ? 'rtl' : 'ltr'}">${esc(s)}</bdi>`;
 function titleParts(f, ghost){
   const L = L10N[f.lang] || L10N['Français'];
   const place = [String(f.area || '').trim(), String(f.city || '').trim()].filter(Boolean).join(', ');
   const surf = String(f.surface || '').trim(), beds = String(f.beds || '').trim(), price = String(f.price || '').trim();
-  const meta = [f.showPrice !== false && price ? price : '', surf ? `${surf.replace('.', ',')} m²` : '', beds && f.type !== 'Terrain' ? L.bed(+beds) : ''].filter(Boolean).join(' · ');
+  /* chaque donnée est isolée (bdi) : en arabe, « 1 250 000 DH » ou « 320 m² » ne sont pas réordonnés */
+  const meta = [f.showPrice !== false && price ? price : '', surf ? `${surf.replace('.', ',')} m²` : '', beds && f.type !== 'Terrain' ? L.bed(+beds) : ''].filter(Boolean).map(bdi).join(' · ');
   const kick = f.type ? esc(L.type[f.type] || f.type) : ghost ? `<span class="ghost">${esc(L.ptype)}</span>` : '';
-  return {kick:[kick, esc(L.deal[f.deal] || f.deal || '')].filter(Boolean).join(' · '), place:place ? esc(place) : ghost ? `<span class="ghost">${esc(L.city)}</span>` : '', meta:esc(meta), rtl:f.lang === 'Arabe'};
+  return {kick:[kick, esc(L.deal[f.deal] || f.deal || '')].filter(Boolean).join(' · '), place:place ? `<bdi>${esc(place)}</bdi>` : ghost ? `<span class="ghost">${esc(L.city)}</span>` : '', meta, rtl:f.lang === 'Arabe'};
 }
 function titleHTML(f, ghost){
   const t = titleParts(f, ghost), st = TITLES[f.title] ? f.title : 'serif';
@@ -2342,10 +2367,10 @@ function endInner(f, logo, ap, ghost){
   const apI = ap ? `<img class="ap" src="${ap}" alt="">` : '';
   return `<div class="mt-endc"${f.lang === 'Arabe' ? ' dir="rtl"' : ''}><span class="by">${esc(L.by)}</span>
     ${lg || apI ? `<span class="lgrow">${lg}${apI}</span>` : ''}
-    ${ag ? `<span class="ag">${esc(ag)}</span>` : ghost ? `<span class="ag ghost">${esc(L.agency)}</span>` : ''}
-    ${an ? `<span class="an">${esc(an)}</span>` : ''}<span class="rule"></span>
-    ${ph ? `<span class="ph">${esc(ph)}</span>` : ghost ? `<span class="ph ghost">${esc(L.phone)}</span>` : ''}
-    ${em ? `<span class="em">${esc(em)}</span>` : ''}</div>`;
+    ${ag ? `<span class="ag"><bdi>${esc(ag)}</bdi></span>` : ghost ? `<span class="ag ghost">${esc(L.agency)}</span>` : ''}
+    ${an ? `<span class="an"><bdi>${esc(an)}</bdi></span>` : ''}<span class="rule"></span>
+    ${ph ? `<span class="ph" dir="ltr">${esc(ph)}</span>` : ghost ? `<span class="ph ghost">${esc(L.phone)}</span>` : ''}
+    ${em ? `<span class="em" dir="ltr">${esc(em)}</span>` : ''}</div>`;
 }
 
 /* ---------- lecteur de l'aperçu ---------- */
@@ -2361,6 +2386,7 @@ const MT = {
   refresh(hint){
     const c = this.ctx(); this.c = c;
     if (!c) return;
+    const t0 = this.t;
     const f = c.f, P = this.plan = buildPlan(f, c.photos);
     /* format */
     const fs = c.formats && c.formats.length ? c.formats : FMT_ORDER;
@@ -2369,7 +2395,7 @@ const MT = {
     const fsig = fs.join(','), seg = $('#mt-fmts');
     if (seg.dataset.sig !== fsig) { seg.dataset.sig = fsig; seg.innerHTML = fs.map(x => `<button type="button" data-mtf="${x}">${x}</button>`).join(''); } /* pas de reconstruction : un clic en cours n'est pas perdu */
     $$('#mt-fmts button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mtf === fmt)));
-    this.stage.className = 'mt-stage' + (FMT[fmt].cls ? ' ' + FMT[fmt].cls : '') + (c.logo && f.logoPos === 'tr' ? ' bug-tr' : '') + (c.logo && (f.logoPos === 'br' || f.logoPos === 'bl') ? ' bug-b' : '') + (f.lang === 'Arabe' ? ' rtl' : '');
+    this.stage.className = 'mt-stage' + (FMT[fmt].cls ? ' ' + FMT[fmt].cls : '') + bugCls({logo:c.logo, logoPos:f.logoPos}) + (f.lang === 'Arabe' ? ' rtl' : '');
     this.stage.style.cssText = accentVars(f.accent);
     /* plans : une couche par photo (réutilisée), puis le carton de fin */
     const sig = P.shots.map(s => s.key + ':' + s.src.length).join('|');
@@ -2412,6 +2438,7 @@ const MT = {
       this.nextSync = 0;
     }
     this.mStart = musicStart(f, P.track, P.total);
+    this.musicNote();
     /* état vide, mouvement réduit */
     const empty = !P.shots.length;
     $('#mt-empty').hidden = !empty; $('#mt-empty').textContent = empty ? 'Ajoutez des photos à l\'étape 1 pour voir le montage.' : '';
@@ -2419,15 +2446,25 @@ const MT = {
     $('#mt-rm').hidden = !RM.matches;
     $('#mt-seek').max = String(Math.max(.1, Math.round(P.total * 100) / 100));
     if (this.t > P.total) this.t = P.total;
-    if (!this.playing && hint) {
+    if (!this.playing && hint !== undefined && hint !== null) {
       if (hint === 'title') this.t = Math.min(1.4, P.total);
       else if (hint === 'end') this.t = Math.min(P.total, P.endT0 + Math.min(1.2, (P.total - P.endT0) / 2));
       else if (hint === 'voice' && this.vStart >= 0) this.t = this.vStart + .6;
       else if (typeof hint === 'number' && P.shots[hint]) this.t = P.shots[hint].t0 + Math.min(1, P.shots[hint].d / 2);
     }
     this.state = [];
+    this.shotIdx = -2; this.lastSec = -1; /* « Plan x sur N », durée, temps et vignette en cours : toujours redessinés */
     this.draw(this.t);
-    if (this.playing) this.syncAudio(true);
+    /* son : on ne repositionne la musique et la voix que si leur minutage a changé (sinon, une frappe ou un cran de volume = un saut audible) */
+    const asig = [this.trackId, this.voiceUrl, this.mStart.toFixed(2), this.vStart.toFixed(2)].join('|');
+    const resync = asig !== this.asig || Math.abs(this.t - t0) > .01; this.asig = asig;
+    if (this.playing) this.syncAudio(resync);
+  },
+  /* ligne sous l'aperçu quand la musique choisie ne peut pas y être jouée */
+  musicNote(){
+    const f = this.c && this.c.f, P = this.plan, el = $('#mt-nomusic'); if (!f || !P) return;
+    const txt = f.music === 'Aucune' ? '' : !P.track ? 'Aperçu sans musique pour l\'instant : la bibliothèque de morceaux arrive bientôt.' : this.music.error ? 'Ce morceau n\'a pas pu être chargé : l\'aperçu est sans musique.' : '';
+    el.hidden = !txt; el.textContent = txt;
   },
   draw(t){
     const P = this.plan; if (!P) return;
@@ -2494,7 +2531,10 @@ const MT = {
     if (!this.plan || !this.plan.shots.length) return;
     hush('player');
     if (this.t >= this.plan.total - .05) this.t = 0;
-    this.playing = true; this.last = performance.now(); this.blocked = false;
+    this.playing = true; this.last = performance.now();
+    const bad = !!(this.trackId && this.music.error);
+    this.blocked = bad;
+    if (bad) { this.musicNote(); toast('Ce morceau n\'a pas pu être chargé : l\'aperçu continue sans musique.'); }
     this.graph();
     this.syncAudio(true);
     this.ui();
@@ -2514,6 +2554,7 @@ const MT = {
     $('#mt-play').setAttribute('aria-label', p ? 'Mettre l\'aperçu en pause' : 'Lire l\'aperçu du montage');
     $('#mt-play .i-play').style.display = p ? 'none' : ''; $('#mt-play .i-pause').style.display = p ? '' : 'none';
     $('#mt-big').hidden = p || !this.plan || !this.plan.shots.length;
+    if (this.mini) this.mini();
   },
   /* volume par Web Audio (le volume d'un élément audio est ignoré sur iPhone) */
   graph(){
@@ -2536,11 +2577,12 @@ const MT = {
     if (P.track && this.playing) {
       const dur = isFinite(this.music.duration) && this.music.duration > 0 ? this.music.duration : P.track.duree || 0;
       let want = this.mStart + t; if (dur) want %= dur;
+      this.loopDur = dur && this.mStart + P.total > dur ? dur : 0; /* morceau plus court que la vidéo : il reprend au début */
       if (force || this.music.paused || (now > this.nextSync && this.music.readyState >= 2 && Math.abs(this.music.currentTime - want) > .35)) {
         try { this.music.currentTime = want; } catch(e) {}
         this.nextSync = now + 1000;
       }
-      if (this.music.paused && !this.blocked) { const pr = this.music.play(); if (pr && pr.catch) pr.catch(err => { if (this.playing && !this.blocked && err && err.name === 'NotAllowedError') { this.blocked = true; toast('Le navigateur a bloqué le son de l\'aperçu : touchez « Lecture » pour l\'activer.'); } }); }
+      if (this.music.paused && !this.blocked && !this.music.error) { const pr = this.music.play(); if (pr && pr.catch) pr.catch(err => { if (this.playing && !this.blocked && err && err.name === 'NotAllowedError') { this.blocked = true; toast('Le navigateur a bloqué le son de l\'aperçu : touchez « Lecture » pour l\'activer.'); } }); }
     } else if (!this.music.paused) this.music.pause();
     /* voix off : l'extrait choisi, posé après le titre */
     const inV = this.vStart >= 0 && t >= this.vStart && t < this.vEnd - .05;
@@ -2554,6 +2596,8 @@ const MT = {
     if (f.duck !== false && this.vStart >= 0 && t > this.vStart - .4 && t < this.vEnd + .3) g *= .3;
     if (t < .4) g *= t / .4;
     if (t > P.total - 1.6) g *= Math.max(0, (P.total - t) / 1.6);
+    /* reprise d'un morceau court : petit fondu de part et d'autre du raccord, au lieu d'une coupure sèche */
+    if (P.track && this.loopDur) { const pos = (this.mStart + t) % this.loopDur; g *= Math.min(1, (this.loopDur - pos) / .8, this.mStart + t >= this.loopDur ? pos / .5 : 1); }
     this.gv = force ? g : this.gv + (g - this.gv) * .18;
     this.setGain(this.gv);
   },
@@ -2571,20 +2615,44 @@ $('#mt-mute').addEventListener('click', e => {
 });
 $('#mt-fmts').addEventListener('click', e => { const b = e.target.closest('[data-mtf]'); if (!b || !MT.c) return; MT.c.setFmt(b.dataset.mtf); MT.refresh(); });
 MT.voice.addEventListener('loadedmetadata', () => { if (MT.c) MT.refresh(); });
-MT.music.addEventListener('error', () => { if (!MT.trackId || !MT.music.getAttribute('src')) return; MT.blocked = true; if (MT.playing) toast('Ce morceau n\'a pas pu être chargé : l\'aperçu continue sans musique.'); });
+MT.music.addEventListener('error', () => { if (!MT.trackId || !MT.music.getAttribute('src')) return; MT.blocked = true; MT.musicNote(); if (MT.playing) toast('Ce morceau n\'a pas pu être chargé : l\'aperçu continue sans musique.'); });
 RM.addEventListener && RM.addEventListener('change', () => MT.refresh());
-document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') { MT.pause(); stopLib(); } });
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') { MT.pause(); stopLib(); stopVoice(); } });
 const draftCtx = () => draft ? {f:draft.f, photos:draft.photos, logo:draft.f.logo, agentPhoto:draft.f.agentPhoto, formats:draft.f.formats, editable:true,
   fmt:() => draft.f.preview || '16:9', setFmt:x => { draft.f.preview = x; saveDraftSoon(); renderPreviews(); }} : null;
 MT.src = draftCtx;
 
-/* un seul son à la fois : extrait de voix, écoute d'un morceau, aperçu */
-function hush(who){ if (who !== 'player') MT.pause(); if (who !== 'lib') stopLib(); if (who !== 'voice') stopVoice(); }
+/* un seul son à la fois : extrait de voix, écoute d'un morceau, aperçu, vidéo d'exemple, vidéo de démonstration */
+function hush(who){
+  if (who !== 'player') MT.pause(); if (who !== 'lib') stopLib(); if (who !== 'voice') stopVoice();
+  ['demo-video', 'r-video'].forEach(id => { const v = $('#' + id); if (v && id !== who && !v.paused) v.pause(); });
+}
+['demo-video', 'r-video'].forEach(id => $('#' + id).addEventListener('play', () => hush(id)));
+/* aperçu qui joue hors de la vue (défilement, surtout sur téléphone) : une commande flottante permet de couper le son,
+   sans arrêter la lecture d'office (on peut régler le volume plus bas en écoutant) */
+MT.inView = true;
+MT.mini = function(){ const b = $('#mt-mini'); const show = this.playing && !this.inView && !$('#mt-dlg').open; if (b.hidden === show) b.hidden = !show; };
+if ('IntersectionObserver' in window) new IntersectionObserver(es => { const e = es[es.length - 1]; MT.inView = e.isIntersecting && e.intersectionRatio >= .25; MT.mini(); }, {threshold:[0, .25, .5]}).observe(MT.stage);
+$('#mt-mini').addEventListener('click', () => { if (document.activeElement === $('#mt-mini')) $('#mt-play').focus({preventScroll:true}); MT.pause(); toast('Aperçu en pause.'); });
 
 /* écoute d'un morceau de la bibliothèque */
 const lib = new Audio(); lib.preload = 'none';
 let libBtn = null;
-function stopLib(){ try { lib.pause(); } catch(e) {} if (libBtn) { libBtn.setAttribute('aria-pressed', 'false'); libBtn.querySelector('span').textContent = 'Écouter'; libBtn = null; } }
+/* écoute : léger fondu d'entrée et de sortie côté lecteur (les fichiers n'ont pas forcément de fondu intégré) */
+let libRaf = 0, libVol = .7;
+function libFade(){
+  cancelAnimationFrame(libRaf);
+  const step = () => {
+    if (lib.paused) return;
+    const d = isFinite(lib.duration) && lib.duration > 0 ? lib.duration : 0, ct = lib.currentTime;
+    const k = Math.max(0, Math.min(1, ct / .5, d ? (d - ct) / 1.2 : 1));
+    lib.volume = Math.max(0, Math.min(1, libVol * k));
+    libRaf = requestAnimationFrame(step);
+  };
+  libRaf = requestAnimationFrame(step);
+}
+lib.addEventListener('playing', libFade);
+function stopLib(){ cancelAnimationFrame(libRaf); try { lib.pause(); } catch(e) {} if (libBtn) { libBtn.setAttribute('aria-pressed', 'false'); libBtn.querySelector('span').textContent = 'Écouter'; libBtn = null; } }
 lib.addEventListener('ended', stopLib);
 lib.addEventListener('error', () => { if (libBtn) { toast("Ce morceau n'a pas pu être lu."); stopLib(); } });
 $('#m-tracks').addEventListener('click', e => {
@@ -2592,7 +2660,7 @@ $('#m-tracks').addEventListener('click', e => {
   if (libBtn === b) return stopLib();
   hush('lib');
   const t = TRACKS.find(x => x.id === b.dataset.listen); if (!t) return;
-  lib.src = trackUrl(t); lib.volume = Math.max(.15, (draft ? draft.f.vol : 70) / 100);
+  lib.src = trackUrl(t); libVol = Math.max(.15, (draft ? draft.f.vol : 70) / 100); lib.volume = 0;
   libBtn = b; b.setAttribute('aria-pressed', 'true'); b.querySelector('span').textContent = 'Pause';
   const p = lib.play(); if (p && p.catch) p.catch(() => { if (libBtn === b) { toast('Lecture bloquée par le navigateur : réessayez.'); stopLib(); } });
 });
@@ -2629,7 +2697,15 @@ function renderTracks(){
       <button type="button" class="mt-listen" data-listen="${esc(t.id)}" aria-pressed="${playing ? 'true' : 'false'}" aria-label="Écouter « ${esc(t.titre)} »"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg><span>${playing ? 'Pause' : 'Écouter'}</span></button></li>`;
   }).join('');
   if (libBtn) { const nb = $(`#m-tracks [data-listen="${CSS.escape(libBtn.dataset.listen)}"]`); if (nb) libBtn = nb; }
-  $('#m-lib-note').textContent = none ? '' : list.length ? (list.some(t => t.source) ? `Morceaux libres de droits pour vos vidéos. Source : ${[...new Set(list.map(t => t.source).filter(Boolean))].join(', ')}.` : 'Morceaux libres de droits pour vos vidéos.') : 'Le morceau est choisi pour vous dans cette ambiance : la bibliothèque à écouter arrive bientôt.';
+}
+function libNote(f, P){
+  const list = tracksOf(f.music), tr = P.track;
+  if (f.music === 'Aucune') return '';
+  if (!list.length) return 'Le morceau est choisi pour vous dans cette ambiance : la bibliothèque à écouter arrive bientôt. En attendant, l\'aperçu est sans musique.';
+  const src = [...new Set(list.map(t => t.source).filter(Boolean))];
+  let n = `${list.every(t => t.ia) ? 'Morceaux originaux générés par IA, non exclusifs' : 'Morceaux fournis avec la vidéo'}, pour faire connaître ce bien (CGV, article 10).${src.length ? ` Source : ${src.join(', ')}.` : ''}`;
+  if (tr && tr.duree && musicStart(f, tr, P.total) + P.total > tr.duree) n += ` « ${tr.titre} » dure ${fmtT(tr.duree)} et la vidéo ${fmtT(P.total)} : dans l'aperçu, il reprend au début.`;
+  return n;
 }
 function renderStrip(){
   const f = draft.f, ph = draft.photos, P = buildPlan(f, ph), inc = includedOf(ph).length;
@@ -2662,6 +2738,7 @@ function renderStudioLive(hint){
   $('#mt-pre-note').textContent = pr ? (pr === 'recommande' ? 'Réglages « Recommandé » : prêts à générer, vous pouvez continuer.' : `Préréglage « ${PRESETS[pr].l} » : modifiable ci-dessous.`) : 'Réglages personnalisés.';
   /* musique */
   $('#m-vol-v').textContent = f.vol + ' %';
+  $('#m-lib-note').textContent = libNote(f, P);
   $('#sum-music').textContent = f.music === 'Aucune' ? 'Aucune musique' : [f.music, tr ? `« ${tr.titre} »` : '', `${f.vol} %`].filter(Boolean).join(' · ');
   $$('#m-tracks .mt-tr').forEach(li => li.classList.toggle('on', !!li.querySelector('input:checked')));
   $('#m-duck').disabled = !vOn; $('#m-duck-l').classList.toggle('mt-dis', !vOn);
@@ -2675,7 +2752,7 @@ function renderStudioLive(hint){
   /* plans */
   const bOK = !!(tr && tr.bpm);
   $('#m-beat').disabled = !bOK; $('#m-beat-l').classList.toggle('mt-dis', !bOK);
-  $('#m-beat-note').textContent = bOK ? `${Math.round(tr.bpm)} BPM : chaque plan dure un nombre entier de temps, les coupes tombent sur la musique.` : f.music === 'Aucune' ? 'Choisissez une musique pour caler les plans.' : 'Indisponible : le tempo de ce morceau n\'est pas connu.';
+  $('#m-beat-note').textContent = bOK ? `Chaque plan dure un nombre entier de temps du morceau (${Math.round(tr.bpm)} BPM) : les coupes suivent son tempo.` : f.music === 'Aucune' ? 'Choisissez une musique pour caler les plans.' : 'Indisponible : le tempo de ce morceau n\'est pas connu.';
   $('#sum-plans').textContent = `${n} plan${n > 1 ? 's' : ''} · ${TRANS[f.trans].l} · ${fmtT(P.total)}`;
   renderEstimate();
   /* voix */
@@ -2710,12 +2787,20 @@ function applyPreset(id){
   draft.photos.forEach(ph => { delete ph.cam; delete ph.len; });
   if (p.fmt) { if (!f.formats.includes(p.fmt)) f.formats = FMT_ORDER.filter(x => x === p.fmt || f.formats.includes(x)); f.preview = p.fmt; }
 }
-$('#mt-pre').addEventListener('click', e => {
+$('#mt-pre').addEventListener('click', async e => {
   const b = e.target.closest('[data-preset]'); if (!b || !draft) return;
+  const nCam = draft.photos.filter(p => p.cam).length, perLen = draft.f.lenMode === 'plan';
+  if (nCam || perLen) {
+    const what = [nCam ? `le mouvement choisi pour ${pl(nCam, 'plan', 'plans')}` : '', perLen ? 'les durées réglées plan par plan' : ''].filter(Boolean).join(' et ');
+    const v = await ask({title:`Appliquer « ${PRESETS[b.dataset.preset].l} » ?`, html:`<p>Ce préréglage remplace ${esc(what)} par ses propres réglages. L'ordre des plans, les plans exclus, la langue et votre marque ne changent pas.</p>`,
+      buttons:[{label:'Appliquer le préréglage', value:'ok'}, {label:'Annuler', value:null, kind:'ghost', focus:true}]});
+    if (v !== 'ok' || !draft) { b.focus(); return; }
+  }
   applyPreset(b.dataset.preset);
   fillForm(); renderStudio(); renderPreviews(); saveDraftSoon();
   $('#err3').textContent = '';
   toast(`Préréglage « ${PRESETS[b.dataset.preset].l} » appliqué : tout reste modifiable.`);
+  b.focus();
 });
 /* frise des plans */
 const strip = $('#mt-strip');
@@ -2739,7 +2824,7 @@ strip.addEventListener('click', e => {
   const m = e.target.closest('[data-smv]'); if (!m || !draft) return;
   const i = +m.dataset.smv, j = i + +m.dataset.d;
   movePhoto(i, j);
-  const b = $(`#mt-strip [data-smv="${j}"][data-d="${m.dataset.d}"]`) || $(`#mt-strip [data-smv="${j}"]`); b && b.focus();
+  focusFirst([`#mt-strip [data-smv="${j}"][data-d="${m.dataset.d}"]`, `#mt-strip [data-smv="${j}"][data-d="${-m.dataset.d}"]`, `#cam-${j}`, `#mt-strip [data-inc="${j}"]`]);
   toast(`Plan déplacé en position ${j + 1}.`);
 });
 let sDrag = null;
@@ -2781,7 +2866,8 @@ $$('.mt-sec').forEach(d => d.addEventListener('toggle', () => {
 }));
 
 /* ---------- résumé du montage (récapitulatif, écran vidéo) ---------- */
-function montageRows(f, photos, trackTitle){
+/* lenMode : le choix fait par l'utilisateur, pour le libellé (les durées, elles, viennent toujours de f et des plans) */
+function montageRows(f, photos, trackTitle, lenMode = f.lenMode){
   const P = buildPlan(f, photos), n = P.shots.length, tr = P.track;
   const tt = trackTitle || (tr ? tr.titre : '');
   const camCount = {}; P.shots.forEach(s => { const l = CAM_SHORT[s.cam] || s.cam; camCount[l] = (camCount[l] || 0) + 1; });
@@ -2790,7 +2876,7 @@ function montageRows(f, photos, trackTitle){
   const ms = musicStart(f, tr, P.total);
   return [
     ['Musique', f.music === 'Aucune' ? 'Aucune' : [f.music, tt ? `« ${tt} »` : 'morceau choisi dans l\'ambiance', `volume ${f.vol} %`, vOn && f.duck !== false ? 'baissée sous la voix' : '', ms ? `départ à ${Math.round(ms)} s` : ''].filter(Boolean).join(' · ')],
-    ['Montage', `${n} plans · ${TRANS[f.trans].l}${f.beat && tr && tr.bpm ? ' · calé sur le tempo' : ''} · ${f.lenMode === 'plan' ? 'durées plan par plan' : `plans ${{court:'courts', normal:'normaux', long:'longs'}[f.glen]}`} · environ ${fmtT(P.total)}`],
+    ['Montage', `${n} plans · ${TRANS[f.trans].l}${f.beat && tr && tr.bpm ? ' · calé sur le tempo' : ''} · ${lenMode === 'plan' ? 'durées plan par plan' : `plans ${{court:'courts', normal:'normaux', long:'longs'}[f.glen]}`} · environ ${fmtT(P.total)}`],
     ['Mouvements', camsTxt || '—'],
     ['Habillage', [`titre ${TITLES[f.title].toLowerCase()}`, f.badge ? `pastille « ${BADGES[f.badge]} »` : 'sans pastille', vOn && f.subs ? `sous-titres (${SUBST[f.subStyle]})` : 'sans sous-titres', f.logo || f.hasLogo ? `logo : ${LOGOPOS[f.logoPos]}` : '', `couleur ${f.accent}`].filter(Boolean).join(' · ')],
     ['Carton de fin', [String(f.agency || '').trim(), String(f.agentName || '').trim(), String(f.phone || '').trim(), String(f.endEmail || '').trim(), f.logo || f.hasLogo ? 'logo' : '', f.agentPhoto || f.hasAgentPhoto ? 'photo de l\'agent' : ''].filter(Boolean).join(' · ') || 'Neutre (sans coordonnées)'],
@@ -2876,7 +2962,7 @@ async function launch(){
       surface:f.surface.trim(), rooms:f.rooms.trim(), beds:f.beds.trim(), highlights:f.highlights.split('\n').map(s => s.trim()).filter(Boolean),
       music:f.music, voice:f.voice, lang:f.lang, formats:FMT_ORDER.filter(x => f.formats.includes(x)), nologo:!!f.nologo,
       agency:f.agency.trim(), phone:f.phone.trim(), hasLogo:!!f.logo, contact:acct.profile.email || session.email,
-      m:{track:P.track ? P.track.id : '', trackTitle:P.track ? P.track.titre : '', vol:f.vol, duck:f.duck !== false, mstart:f.mstart, trans:f.trans, beat:!!f.beat, glen:f.glen, cam:f.cam,
+      m:{track:P.track ? P.track.id : '', trackTitle:P.track ? P.track.titre : '', vol:f.vol, duck:f.duck !== false, mstart:f.mstart, trans:f.trans, beat:!!f.beat, lenMode:f.lenMode === 'plan' ? 'plan' : 'global', glen:f.glen, cam:f.cam,
         title:f.title, badge:f.badge, subs:!!f.subs, subStyle:f.subStyle, logoPos:f.logoPos, accent:f.accent, endEmail:f.endEmail.trim(), agentName:f.agentName.trim(), logoDark:!!f.logoDark,
         hasAgentPhoto:!!f.agentPhoto, total:Math.round(P.total), shots:P.shots.map(sh => ({cam:sh.cam, len:lenOf(sh.p, f), pt:camOf(sh.p, f, 0) === 'tilt' ? 1 : 0}))}};
     acct.videos.push(video);
@@ -2986,10 +3072,16 @@ function renderResultMontage(v){
   if (!v.m) return;
   const f = ensureStudio(Object.assign({}, v, v.m, {logo:null, lenMode:'plan'}));
   const photos = (v.m.shots || []).map((sh, i) => ({src:'', key:'f' + i, cam:sh.cam, len:sh.len, pt:sh.pt}));
-  $('#r-mt-dl').innerHTML = montageRows(f, photos, v.m.trackTitle).map(([a, b]) => `<dt>${a}</dt><dd>${esc(b)}</dd>`).join('');
+  /* vidéos d'avant l'enregistrement de lenMode : durées toutes égales au réglage global = « plans normaux » etc. */
+  const lm = v.m.lenMode || ((v.m.shots || []).every(sh => sh.len === v.m.glen) ? 'global' : 'plan');
+  $('#r-mt-dl').innerHTML = montageRows(f, photos, v.m.trackTitle, lm).map(([a, b]) => `<dt>${a}</dt><dd>${esc(b)}</dd>`).join('');
   const has = !!videoCtx(v);
   $('#r-replay').hidden = !has;
-  $('#r-replay-note').textContent = has ? 'Avec vos photos, votre musique et votre habillage. Mode test : la vidéo de démonstration ci-contre a été faite avec d\'autres photos.' : 'Aperçu indisponible : les images de ce montage ne sont plus enregistrées dans ce navigateur.';
+  /* la musique n'est citée que si l'aperçu la jouera vraiment */
+  const withMusic = f.music !== 'Aucune' && !!trackOf(f);
+  $('#r-replay-note').textContent = !has ? 'Aperçu indisponible : les images de ce montage ne sont plus enregistrées dans ce navigateur.'
+    : (withMusic ? 'Avec vos photos, votre musique et votre habillage.' : f.music === 'Aucune' ? 'Avec vos photos et votre habillage.' : 'Avec vos photos et votre habillage, sans musique pour l\'instant (la bibliothèque de morceaux arrive bientôt).')
+      + ' Mode test : la vidéo de démonstration ci-contre a été faite avec d\'autres photos.';
 }
 function setFormat(v, f){
   ui.fmt = f;
