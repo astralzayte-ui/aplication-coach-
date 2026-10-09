@@ -205,6 +205,20 @@ LE MÊME dans toutes les vidéos (l'image de marque). 🔴 Jamais présenté
 comme le fondateur ni comme un client · 🔴 étiquette « contenu IA » mise
 automatiquement par Claude via Metricool. Pas de Cowork (décidé le 05/10).
 
+**✅ 09/10 — LES E-MAILS (Brevo) :**
+```
+liste 4   SILENCE — inscrits     liste 5   SILENCE — clients
+modèle 1  Bienvenue + BIENVENUE10   → part tout seul à l'inscription
+modèle 2  J+10 « il te va comment ? »  ┐ prêts, se branchent quand le
+modèle 3  J+90 −15 % (code RETOUR15)   ┘ paiement Stripe donne l'e-mail
+textes    marque/emails/*.html
+code      boutique/netlify/functions/inscription.mjs (+ app.js)
+```
+🔴 Il manque UNE chose de son côté : la clé Brevo dans Netlify
+(réglages du site → Variables d'environnement → BREVO_API_KEY).
+🔴 Et la mise en ligne, bloquée chez Netlify jusqu'au 1ᵉʳ/11.
+🟠 Le code RETOUR15 n'existe pas sur le site : il le donne sur WhatsApp.
+
 **▶ QUAND IL DIT « GO » (prévu le 09/10) — la part de Claude :**
 ```
 1. écrire + brancher les e-mails Brevo (expéditeur SILENCE,

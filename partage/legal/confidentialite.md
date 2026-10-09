@@ -59,6 +59,7 @@ Le strict nécessaire, et rien de plus :
 | **[Transporteur]** | te livrer — nom, adresse, téléphone |
 | **Notre fournisseur logistique, [pays]** | préparer et expédier ton colis |
 | **Netlify** | héberger le site |
+| **Brevo** (France) | t'envoyer nos e-mails, si tu as coché la case — ton e-mail et la date de ton accord |
 
 🔴 **Nous ne vendons, ne louons et n'échangeons tes données avec personne.**
 Jamais. Aucune exception.
