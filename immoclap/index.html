@@ -423,28 +423,38 @@ header.scrolled{background:rgba(11,10,9,.86);backdrop-filter:blur(14px);-webkit-
 .cmp-note a{text-decoration:underline;text-underline-offset:3px;color:var(--muted);display:inline-block;padding:3px 0}
 
 /* ---------- VII tarifs ---------- */
-.toggles{display:flex;justify-content:center;gap:14px;margin-top:40px;flex-wrap:wrap}
-.seg{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:4px}
-.seg button{padding:9px 18px;border-radius:7px;font-size:14px;color:var(--muted);min-height:40px}
-.seg button[aria-pressed="true"]{background:var(--fg);color:#111}
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px;align-items:stretch}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px;align-items:stretch}
 .plan{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:34px 28px 28px;display:flex;flex-direction:column;position:relative}
 .plan.hl{border-color:rgba(246,188,40,.55)}
 .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gold);color:#16120a;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:20px;white-space:nowrap}
-.badge.soft{background:var(--card);color:var(--gold);border:1px solid rgba(246,188,40,.6)}
 .plan h3{font-size:26px}
 .plan .d{color:var(--muted);font-size:14px;margin-top:4px;min-height:44px}
 .price{margin:20px 0 2px;font-family:var(--serif);font-size:52px;line-height:1;white-space:nowrap}
 .price small{font-family:var(--sans);font-size:15px;color:var(--muted)}
 .ttc{font-size:13px;color:var(--muted);min-height:20px}
+.ttc:empty{display:none} /* prix en DH : pas de ligne TTC */
 .per{font-size:13px;color:var(--dim);min-height:20px;margin-top:2px}
 .plan ul{list-style:none;margin:22px 0 26px;display:flex;flex-direction:column;gap:10px;font-size:15px;color:var(--muted);flex:1}
 .plan li{display:flex;gap:10px}
 .plan li::before,.incl li::before{content:"";flex:none;width:16px;height:16px;margin-top:4px;background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23F6BC28' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8.5l3.2 3L13 4.5'/%3E%3C/svg%3E")}
 .plan .btn{width:100%}
-.subs-t{text-align:center;margin-top:72px}
-.subs-t p{color:var(--muted);margin:10px auto 0;max-width:620px}
-.plans.subs{grid-template-columns:1fr 1fr;max-width:800px;margin:44px auto 0}
+/* l'offre conseillée (au milieu) : bordure dorée, halo, étiquette « Recommandé » */
+.plan.rec{border-color:var(--gold);background:linear-gradient(180deg,rgba(246,188,40,.08),rgba(246,188,40,0) 45%),var(--bg2);box-shadow:0 34px 90px -38px rgba(246,188,40,.45)}
+.per.save{color:var(--muted);font-size:14px}
+.per.save b{color:var(--fg);font-weight:600}
+.pct{display:inline-block;margin-left:4px;padding:0 7px;border:1px solid rgba(246,188,40,.6);border-radius:20px;color:var(--gold);font-size:12px;font-weight:600;line-height:18px;white-space:nowrap}
+.deal{font-size:14px;color:var(--muted);margin-top:4px;min-height:22px}
+.plan.rec .deal{color:var(--gold);font-weight:600}
+/* lignes alignées d'une carte à l'autre : titre, accroche, prix, TTC, prix par vidéo, phrase, liste, bouton */
+@supports (grid-template-rows:subgrid){.plan{display:grid;grid-row:span 8;grid-template-rows:subgrid;row-gap:0}}
+/* l'abonnement expliqué simplement, au-dessus des offres */
+.subx{max-width:1000px;margin:56px auto 0;border:1px solid var(--line);border-radius:18px;background:var(--bg2);padding:30px 32px}
+.subx h3{text-align:center;font-size:clamp(22px,2.4vw,28px)}
+.subx h3 .k{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.subx ul{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:24px}
+.subx li{border-top:1px solid var(--line2);padding-top:14px}
+.subx li b{display:block;color:var(--fg);font-weight:600;font-size:15px}
+.subx li>span{display:block;color:var(--muted);font-size:14px;margin-top:4px;line-height:1.55}
 .taxline{text-align:center;margin-top:30px;color:var(--muted);font-size:14px}
 .incl{margin:72px auto 0;max-width:1000px;border:1px solid var(--line);border-radius:18px;padding:40px 36px;background:var(--bg2)}
 .incl h3{text-align:center;font-size:30px}
@@ -596,9 +606,10 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
   .mts.r916{max-width:min(170px,calc((100vh - var(--hh) - 150px) * .5625))}
   .mts.r11{max-width:min(260px,calc(100vh - var(--hh) - 150px))}
   .pre-row{grid-template-columns:1fr 1fr}
-  .plans{grid-template-columns:1fr 1fr}
-  .plans>.plan:first-child{grid-column:span 2}
-  .plans.subs>.plan:first-child{grid-column:auto}
+  .plans{gap:14px}
+  .plan{padding:32px 18px 22px}
+  .price{font-size:42px}
+  .subx ul{grid-template-columns:1fr 1fr}
   .fcols{grid-template-columns:1fr 1fr}
   .fcols>div:first-child{grid-column:span 2}
   .steps{grid-template-columns:repeat(5,1fr);gap:10px}
@@ -608,6 +619,11 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
   .step-detail{display:block;text-align:center;max-width:520px;margin:22px auto 0;min-height:96px}
   .step-detail b{display:block;font-family:var(--serif);font-weight:400;font-size:24px}
   .step-detail span{display:block;color:var(--muted);margin-top:6px}
+}
+@media (max-width:820px){
+  .plans{grid-template-columns:1fr;max-width:460px;margin-left:auto;margin-right:auto;gap:30px}
+  .plan{display:flex;grid-row:auto;padding:32px 22px 24px}
+  .price{font-size:48px}
 }
 @media (max-width:720px){
   :root{--hh:112px}
@@ -660,9 +676,8 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
   .cmp .us .h{font-size:19px}
   .cmp .us .v{font-size:15px}
   .cmp .stk small{font-size:11px}
-  .plans,.plans.subs{grid-template-columns:1fr;max-width:460px;margin-left:auto;margin-right:auto}
-  .plans>.plan:first-child{grid-column:auto}
-  .plan{padding:32px 22px 24px}
+  .subx{padding:24px 20px;margin-top:44px}
+  .subx ul{grid-template-columns:1fr;gap:16px}
   .incl{padding:30px 20px}
   .incl ul{grid-template-columns:1fr}
   .guar{grid-template-columns:1fr;padding:26px 22px}
@@ -1150,7 +1165,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
         <div class="cell v ok">Incluse, au choix</div>
         <div class="cell v ok">Incluse, 4 ambiances</div>
         <div class="cell v ok">Logo, agence et téléphone</div>
-        <div class="cell v stk"><span>À la vidéo ou au mois</span><small>Agence&nbsp;: <span data-cmp-month>99&nbsp;€ HT&nbsp;/&nbsp;mois</span>, 10 vidéos</small></div>
+        <div class="cell v stk"><span>À la vidéo ou au mois</span><small>Dès <span data-pr="agence" data-f="pv">7,90&nbsp;€</span> HT la vidéo</small></div>
       </div>
     </div>
     <div class="sr-only"><table>
@@ -1161,7 +1176,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
         <tr><th scope="row">Voix off en français, arabe ou anglais</th><td>Non indiquée dans les offres citées en note</td><td>Incluse, voix féminine ou masculine, au choix</td></tr>
         <tr><th scope="row">Musique</th><td>Incluse ou en option selon l'offre (voir la note)</td><td>Incluse, quatre ambiances au choix</td></tr>
         <tr><th scope="row">Logo et coordonnées en fin de vidéo</th><td>Selon l'offre (voir la note)</td><td>Inclus&nbsp;: logo, nom de l'agence et téléphone</td></tr>
-        <tr><th scope="row">Façon de payer</th><td>Un forfait par bien</td><td>À la vidéo, en pack ou au mois&nbsp;; abonnement Agence&nbsp;: <span data-cmp-month>99&nbsp;€ HT&nbsp;/&nbsp;mois</span> pour 10 vidéos</td></tr>
+        <tr><th scope="row">Façon de payer</th><td>Un forfait par bien</td><td>À la vidéo ou au mois, dès <span data-pr="agence" data-f="pv">7,90&nbsp;€</span> HT la vidéo avec l'abonnement Agence (10 vidéos par mois)</td></tr>
       </tbody>
     </table></div>
     <p class="cmp-note rv">* Offres publiées en France, relevées le 8 octobre 2026&nbsp;: <a href="https://shoootin.com/service/video" target="_blank" rel="noopener">Shoootin</a> (tarifs vidéo «&nbsp;à partir de 219&nbsp;€&nbsp;» en résidentiel&nbsp;; logo animé inclus, carte de visite finale en option, musique de leur catalogue en option dès 79&nbsp;€ ou la vôtre ajoutée sans frais), <a href="https://minutedrone.com/combien-coute-une-video-immobiliere-par-drone" target="_blank" rel="noopener">Minutedrone</a> (350&nbsp;€ la vidéo pour une demi-journée de prise de vue, montage indiqué à part à 220&nbsp;€), <a href="https://ohmydrone.fr/tarifs/" target="_blank" rel="noopener">Oh My Drone</a> (500&nbsp;€ HT pour un bien jusqu'à 100&nbsp;m², logo et musique libre de droits inclus). Aucune des trois ne mentionne de voix off. Le prix final dépend du bien et des options.</p>
@@ -1173,63 +1188,53 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
   <div class="wrap">
     <div class="eyebrow rv"><i>VII</i><b></b>Tarifs</div>
     <h2 class="center rv" id="t-tarifs">À la vidéo<br><span class="it">ou au mois.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
-    <p class="lead center rv">Des crédits quand un mandat arrive, un abonnement si vous publiez chaque mois. 1 crédit = 1 vidéo, livrée dans les 3 formats.</p>
-    <div class="toggles rv">
-      <div class="seg" id="cur" role="group" aria-label="Devise">
-        <button type="button" data-c="eur" aria-pressed="true">France · €</button>
-        <button type="button" data-c="mad" aria-pressed="false">Maroc · DH</button>
-      </div>
-    </div>
-    <div class="plans">
-      <div class="plan rv">
-        <h3>1 vidéo</h3><div class="d">Pour un mandat ponctuel.</div>
-        <div class="price" data-eur="19" data-mad="149" data-n="1">19&nbsp;<small>€ HT</small></div>
-        <div class="ttc">soit 22,80&nbsp;€ TTC en France</div><div class="per">1 crédit, valable 12 mois</div>
-        <ul><li>Une vidéo de 3 à 12 photos</li><li>Les 3 formats</li><li>Musique, voix off et carton de fin</li></ul>
-        <button type="button" class="btn ghost" data-open data-offre="1 vidéo">Être prévenu</button>
-      </div>
-      <div class="plan hl rv">
-        <span class="badge" data-disc="5">−17&nbsp;% par vidéo</span>
-        <h3>Pack 5</h3><div class="d">Pour l'agent qui rentre des mandats chaque mois.</div>
-        <div class="price" data-eur="79" data-mad="599" data-n="5">79&nbsp;<small>€ HT</small></div>
-        <div class="ttc">soit 94,80&nbsp;€ TTC en France</div><div class="per" data-each="5">soit 15,80&nbsp;€ la vidéo</div>
-        <ul><li>5 crédits, valables 12 mois</li><li>Les 3 formats à chaque vidéo</li><li>Musique, voix off et carton de fin</li></ul>
-        <button type="button" class="btn" data-open data-offre="Pack 5">Être prévenu <svg class="ar" width="14" height="14" aria-hidden="true"><use href="#arrow"/></svg></button>
-      </div>
-      <div class="plan hl rv">
-        <span class="badge" data-disc="10">−27&nbsp;% par vidéo</span>
-        <h3>Pack 10</h3><div class="d">Pour les agences et les gros volumes.</div>
-        <div class="price" data-eur="139" data-mad="999" data-n="10">139&nbsp;<small>€ HT</small></div>
-        <div class="ttc">soit 166,80&nbsp;€ TTC en France</div><div class="per" data-each="10">soit 13,90&nbsp;€ la vidéo</div>
-        <ul><li>10 crédits, valables 12 mois</li><li>Les 3 formats à chaque vidéo</li><li>Musique, voix off et carton de fin</li></ul>
-        <button type="button" class="btn" data-open data-offre="Pack 10">Être prévenu <svg class="ar" width="14" height="14" aria-hidden="true"><use href="#arrow"/></svg></button>
-      </div>
+    <p class="lead center rv">Une vidéo quand un bien arrive, ou un abonnement si vous en rentrez chaque mois. Chaque vidéo est livrée dans les 3 formats, avec musique, voix off et carton de fin.</p>
+
+    <div class="subx rv">
+      <h3><span class="k">L'abonnement, en clair</span>Chaque mois, vos nouvelles annonces passent en vidéo.</h3>
+      <ul>
+        <li><b>Des vidéos chaque mois</b><span>À chaque renouvellement, 3 vidéos (Solo) ou 10 vidéos (Agence) s'ajoutent à votre compte, pour les biens que vous rentrez.</span></li>
+        <li><b>Moins cher par vidéo</b><span><span data-pr="solo" data-f="pv">9,67&nbsp;€</span> la vidéo en Solo, <span data-pr="agence" data-f="pv">7,90&nbsp;€</span> en Agence, au lieu de <span data-pr="unit">15&nbsp;€</span> à l'unité.</span></li>
+        <li><b>Un mois plus calme&nbsp;?</b><span>Les vidéos non utilisées passent au mois suivant, tant que l'abonnement est actif (12&nbsp;mois maximum).</span></li>
+        <li><b>Vous arrêtez quand vous voulez</b><span>Sans engagement&nbsp;: depuis Mon compte, par le lien de gestion reçu par e-mail ou en nous écrivant. L'arrêt prend effet à la fin du mois payé.</span></li>
+      </ul>
     </div>
 
-    <div class="subs-t rv"><h3>Vous publiez chaque mois&nbsp;? Passez à l'abonnement.</h3><p>Sans engagement&nbsp;: résiliable à tout moment, effet à la fin du mois payé. Prix de lancement conservé pour les 100 premiers abonnés, tant que l'abonnement reste actif sans interruption.</p></div>
-    <div class="plans subs">
-      <div class="plan hl rv">
-        <span class="badge soft">Prix de lancement</span>
-        <h3>Solo</h3><div class="d">Pour l'agent indépendant ou le mandataire.</div>
-        <div class="price" data-eur="39" data-mad="349" data-n="3" data-month>39&nbsp;<small>€ HT / mois</small></div>
-        <div class="ttc">soit 46,80&nbsp;€ TTC en France</div><div class="per" data-each="3">soit 13&nbsp;€ la vidéo</div>
-        <ul><li>3 vidéos par mois, 3 formats</li><li>Crédits non utilisés reportés tant que l'abonnement est actif (12 mois maximum)</li><li>Résiliable à tout moment</li></ul>
-        <button type="button" class="btn ghost" data-open data-offre="Solo">Être prévenu</button>
+    <div class="plans">
+      <div class="plan rv">
+        <h3>1 vidéo</h3><div class="d">Pour essayer, ou pour un bien ponctuel.</div>
+        <div class="price" data-k="unit">15&nbsp;<small>€ HT</small></div>
+        <div class="ttc">soit 18&nbsp;€ TTC en France</div>
+        <div class="per">Paiement unique, sans abonnement</div>
+        <p class="deal">À utiliser dans les 12 mois</p>
+        <ul><li>Une vidéo de 3 à 12 photos</li><li>Les 3 formats&nbsp;: 16:9, 9:16&nbsp;et&nbsp;1:1</li><li>Musique, voix off et carton de fin</li></ul>
+        <button type="button" class="btn ghost" data-open data-offre="1 vidéo">Être prévenu</button>
       </div>
-      <div class="plan hl rv">
-        <span class="badge soft">Prix de lancement</span>
-        <h3>Agence</h3><div class="d">Pour les agences qui publient chaque semaine.</div>
-        <div class="price" data-eur="99" data-mad="899" data-n="10" data-month>99&nbsp;<small>€ HT / mois</small></div>
-        <div class="ttc">soit 118,80&nbsp;€ TTC en France</div><div class="per" data-each="10">soit 9,90&nbsp;€ la vidéo</div>
-        <ul><li>10 vidéos par mois, 3 formats</li><li>Crédits non utilisés reportés tant que l'abonnement est actif (12 mois maximum)</li><li>Résiliable à tout moment</li></ul>
-        <button type="button" class="btn" data-open data-offre="Agence">Être prévenu <svg class="ar" width="14" height="14" aria-hidden="true"><use href="#arrow"/></svg></button>
+      <div class="plan hl rec rv">
+        <span class="badge">Recommandé</span>
+        <h3>Solo</h3><div class="d">Pour l'agent ou le mandataire qui rentre quelques biens par mois.</div>
+        <div class="price" data-k="solo" data-month>29&nbsp;<small>€ HT / mois</small></div>
+        <div class="ttc">soit 34,80&nbsp;€ TTC en France</div>
+        <div class="per save"><b><span data-pr="solo" data-f="pv">9,67&nbsp;€</span> la vidéo</b> au lieu de <span data-pr="unit">15&nbsp;€</span><span class="pct" data-pr="solo" data-f="disc">−36&nbsp;%</span></div>
+        <p class="deal">3 vidéos pour moins que le prix de 2</p>
+        <ul><li>3 vidéos chaque mois, dans les 3 formats</li><li>Vidéos non utilisées reportées au mois suivant (12 mois maximum)</li><li>Sans engagement, résiliable à tout moment</li></ul>
+        <button type="button" class="btn" data-open data-offre="Solo">Être prévenu <svg class="ar" width="14" height="14" aria-hidden="true"><use href="#arrow"/></svg></button>
+      </div>
+      <div class="plan rv">
+        <h3>Agence</h3><div class="d">Pour les agences qui rentrent des biens chaque semaine.</div>
+        <div class="price" data-k="agence" data-month>79&nbsp;<small>€ HT / mois</small></div>
+        <div class="ttc">soit 94,80&nbsp;€ TTC en France</div>
+        <div class="per save"><b><span data-pr="agence" data-f="pv">7,90&nbsp;€</span> la vidéo</b> au lieu de <span data-pr="unit">15&nbsp;€</span><span class="pct" data-pr="agence" data-f="disc">−47&nbsp;%</span></div>
+        <p class="deal">Pour plus de 3 biens par mois</p>
+        <ul><li>10 vidéos chaque mois, dans les 3 formats</li><li>Vidéos non utilisées reportées au mois suivant (12 mois maximum)</li><li>Sans engagement, résiliable à tout moment</li></ul>
+        <button type="button" class="btn ghost" data-open data-offre="Agence">Être prévenu</button>
       </div>
     </div>
-    <p class="taxline rv">Prix hors taxes. TVA calculée au paiement selon votre pays. Les commandes ouvrent très bientôt.</p>
+    <p class="taxline rv">Prix hors taxes&nbsp;; TVA calculée au paiement selon votre pays. Prix de lancement&nbsp;: les 100 premiers abonnés gardent leur prix tant que leur abonnement reste actif. Les commandes ouvrent très bientôt.</p>
 
     <div class="incl rv">
       <h3>Tout est inclus</h3>
-      <p>Chaque crédit comprend la même chose, quelle que soit la formule.</p>
+      <p>Chaque vidéo comprend la même chose, quelle que soit l'offre.</p>
       <ul>
         <li><span><b>3 formats</b>&nbsp;: 16:9, 9:16 et 1:1</span></li>
         <li><span><b>3 à 12 plans</b>&nbsp;: un par photo, de 3, 5 ou 7&nbsp;s chacun, plus 4&nbsp;s de carton de fin</span></li>
@@ -1260,6 +1265,8 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
     <h2 class="center rv" id="t-faq">Vos questions,<br><span class="it">nos réponses.<svg class="swash" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 80 4, 200 2, 298 9"/></svg></span></h2>
     <div class="faq rv" id="faqList">
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa1" id="fq1">Quand pourrai-je commander&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa1" role="region" aria-labelledby="fq1"><div><p>Très bientôt&nbsp;: la génération des vidéos, les comptes clients et le paiement sont en cours de mise en place. Laissez votre e-mail et on vous écrit le jour où vous pouvez commander. Il n'y a pas d'essai gratuit, mais vous pouvez regarder les démonstrations de cette page avant de décider.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa15" id="fq15">Comment fonctionne l'abonnement&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa15" role="region" aria-labelledby="fq15"><div><p>C'est une formule au mois pour les agents et les agences qui rentrent des biens régulièrement&nbsp;: chaque mois, vos nouvelles annonces passent en vidéo.</p><p>À chaque renouvellement, 3 vidéos (Solo, <span data-pr="solo">29&nbsp;€</span> HT par mois) ou 10 vidéos (Agence, <span data-pr="agence">79&nbsp;€</span> HT par mois) s'ajoutent à votre compte. La vidéo vous revient ainsi à <span data-pr="solo" data-f="pv">9,67&nbsp;€</span> en Solo et à <span data-pr="agence" data-f="pv">7,90&nbsp;€</span> en Agence, au lieu de <span data-pr="unit">15&nbsp;€</span> à l'unité.</p><p>Un mois plus calme&nbsp;? Les vidéos non utilisées sont reportées au mois suivant, tant que l'abonnement est actif, dans la limite de 12 mois. L'abonnement est sans engagement&nbsp;: vous l'arrêtez quand vous voulez, depuis Mon compte, avec le lien de gestion reçu par e-mail ou en nous écrivant, et il prend fin à la fin du mois payé. Les 100 premiers abonnés gardent leur prix de lancement tant que leur abonnement reste actif.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa16" id="fq16">Vidéo à l'unité ou abonnement&nbsp;: que choisir&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa16" role="region" aria-labelledby="fq16"><div><p><strong>La vidéo à l'unité</strong> (<span data-pr="unit">15&nbsp;€</span> HT) sert à essayer ImmoClap ou à montrer un bien ponctuel&nbsp;: vous payez une fois, sans abonnement, et vous avez 12 mois pour l'utiliser.</p><p><strong>L'abonnement</strong> devient intéressant dès 2 biens par mois&nbsp;: Solo donne 3 vidéos pour <span data-pr="solo">29&nbsp;€</span> HT, moins que le prix de 2 vidéos à l'unité. Si vous rentrez des biens chaque semaine, Agence donne 10 vidéos pour <span data-pr="agence">79&nbsp;€</span> HT, soit <span data-pr="agence" data-f="pv">7,90&nbsp;€</span> la vidéo.</p><p>Vous pouvez commencer par une vidéo à l'unité, puis passer à l'abonnement quand vous le souhaitez.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa2" id="fq2">Combien de photos par vidéo&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa2" role="region" aria-labelledby="fq2"><div><p>De 3 à 12 photos par vidéo. Avec 8 à 12 photos, vous montrez le bien en entier&nbsp;: extérieur, pièces de vie, chambres, salle de bain, vue. Notre <a href="guide.html">guide photos</a> explique comment bien les préparer.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa3" id="fq3">Quelle sera la durée de la vidéo&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa3" role="region" aria-labelledby="fq3"><div><p>Elle dépend du nombre de photos et de la durée des plans&nbsp;: 3, 5 ou 7&nbsp;secondes chacun, à régler pour toute la vidéo ou plan par plan, plus 4&nbsp;secondes de carton de fin. Avec 7 photos en plans de 5&nbsp;secondes, la vidéo dure environ 40&nbsp;secondes. La durée estimée s'affiche pendant le montage.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa4" id="fq4">Combien de temps dure la génération&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa4" role="region" aria-labelledby="fq4"><div><p>Quelques minutes, sans rien faire de votre côté. Le délai varie selon le nombre de photos et la charge des serveurs.</p></div></div></div>
@@ -1270,7 +1277,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa7" id="fq7">L'IA peut-elle modifier mon bien&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa7" role="region" aria-labelledby="fq7"><div><p>Elle ne doit pas&nbsp;: elle ajoute un mouvement de caméra, sans changer les pièces, les volumes ni les matériaux. Il peut arriver qu'un plan présente une déformation. Vérifiez toujours la vidéo avant de la publier&nbsp;: un plan raté est refait gratuitement.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa8" id="fq8">Comment se passe le paiement&nbsp;? Aurai-je une facture&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa8" role="region" aria-labelledby="fq8"><div><p>Vous payez par carte sur la page sécurisée de notre prestataire de paiement, qui agit comme revendeur (Merchant of Record)&nbsp;: son nom figure sur la page de paiement et sur le reçu. Il calcule la TVA selon votre pays et vous envoie la facture. ImmoClap ne voit jamais vos données bancaires.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa9" id="fq9">Comment résilier l'abonnement&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa9" role="region" aria-labelledby="fq9"><div><p>À tout moment&nbsp;: depuis Mon compte, avec le lien de gestion reçu par e-mail, ou en nous écrivant. La résiliation prend effet à la fin du mois payé et vos crédits d'abonnement restent utilisables jusqu'à cette date. Un mois entamé n'est pas remboursé, sauf le premier&nbsp;: il est remboursé intégralement si vous le demandez dans les 14 jours suivant la souscription et qu'aucun crédit de l'abonnement n'a été utilisé (<a href="remboursement.html">politique de remboursement</a>).</p></div></div></div>
-      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa10" id="fq10">Combien de temps mes crédits sont-ils valables&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa10" role="region" aria-labelledby="fq10"><div><p>12 mois à partir de l'achat pour l'unité et les packs. Pour les abonnements, les crédits non utilisés sont reportés d'un mois sur l'autre tant que l'abonnement est actif, dans la limite de 12 mois.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa10" id="fq10">Combien de temps mes vidéos achetées restent-elles valables&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa10" role="region" aria-labelledby="fq10"><div><p>Une vidéo achetée à l'unité reste utilisable 12 mois à partir de l'achat. Avec un abonnement, les vidéos non utilisées sont reportées d'un mois sur l'autre tant que l'abonnement est actif, dans la limite de 12 mois.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa11" id="fq11">Quels droits ai-je sur la musique de la vidéo&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa11" role="region" aria-labelledby="fq11"><div><p>La musique est fournie avec la vidéo, pour un usage précis&nbsp;: faire connaître le bien concerné et votre activité. Les usages couverts sont listés à l'<a href="cgv.html#art10">article 10 des CGV</a>. Pour un autre projet, écrivez-nous avant.</p><p>Ce sont des morceaux originaux générés par intelligence artificielle. Ils ne sont pas exclusifs&nbsp;: un même morceau peut accompagner les vidéos d'autres clients, et l'outil qui les crée peut produire une musique identique ou proche pour d'autres.</p></div></div></div>
       <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="fa12" id="fq12">Qui est derrière ImmoClap&nbsp;?<span class="pm" aria-hidden="true">+</span></button></h3><div class="a" id="fa12" role="region" aria-labelledby="fq12"><div><p>Julien Wail COLLY, entrepreneur individuel installé à Marrakech. ImmoClap est né en 2026. Tout est expliqué sur la page <a href="a-propos.html">À propos</a>.</p></div></div></div>
     </div>
@@ -1379,7 +1386,7 @@ footer{background:var(--bg);padding:90px 0 0;overflow:hidden;border-top:1px soli
     <button type="button" class="x" aria-label="Fermer sans choisir">×</button>
     <svg width="40" height="40" style="margin:0 auto 14px;display:block" aria-hidden="true"><use href="#mark"/></svg>
     <h2 id="paysT">Vous êtes au Maroc<br><span class="it">ou en France&nbsp;?</span></h2>
-    <p class="intro" id="paysD">Selon votre réponse, les prix s'affichent en dirhams ou en euros. Vous pourrez changer à tout moment.</p>
+    <p class="intro" id="paysD">Selon votre réponse, les prix s'affichent en dirhams ou en euros. Vous pourrez changer plus tard, en bas de page.</p>
     <div class="pch-list">
       <button type="button" class="pch" data-c="mad"><span class="ci" aria-hidden="true">DH</span><span class="pl"><b>Maroc</b> <small>· prix en DH</small></span><svg class="ar" width="14" height="14" aria-hidden="true"><use href="#arrow"/></svg></button>
       <button type="button" class="pch" data-c="eur"><span class="ci" aria-hidden="true">€</span><span class="pl"><b>France</b> <small>· prix en €</small></span><svg class="ar" width="14" height="14" aria-hidden="true"><use href="#arrow"/></svg></button>
@@ -1801,23 +1808,19 @@ tabs.forEach((t,i)=>{t.addEventListener('click',()=>selectTab(t));
 const setPaysC=x=>{if(x!==paysC){paysC=x;refresh();}};
 renderAll();syncRun();
 
-/* tarifs */
+/* tarifs : 3 offres. La devise vient du choix du pays (clé immoclap_cur, partagée avec l'espace client) : aucune bascule €/DH visible */
 const fmtN=n=>Number.isInteger(n)?n.toLocaleString('fr-FR'):n.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const PRIX={eur:{unit:15,solo:29,agence:79},mad:{unit:129,solo:249,agence:699}}, NV={unit:1,solo:3,agence:10};
 let c='eur';
-const priceEls=$$('.price[data-eur]');
-const unit={eur:19,mad:149};
-const price=()=>{const sym=c==='eur'?'€':'DH';
-  priceEls.forEach(el=>{const v=+el.dataset[c], plan=el.closest('.plan'), n=+el.dataset.n;
+const money=v=>`${fmtN(v)}${NB}${c==='eur'?'€':'DH'}`;
+const price=()=>{const p=PRIX[c], sym=c==='eur'?'€':'DH';
+  $$('.price[data-k]').forEach(el=>{const v=p[el.dataset.k];
     el.innerHTML=`${fmtN(v)}${NB}<small>${sym} HT${el.hasAttribute('data-month')?' / mois':''}</small>`;
-    const ttc=$('.ttc',plan);ttc.textContent=c==='eur'?`soit ${fmtN(Math.round(v*120)/100)}${NB}€ TTC en France`:'';
-    const each=$('[data-each]',plan);if(each){const pu=Math.round(v/n*100)/100;each.textContent=`soit ${fmtN(pu)}${NB}${sym} la vidéo`;}
-    const b=$('[data-disc]',plan);if(b){const pu=v/n;const pct=Math.round((1-pu/unit[c])*100);b.textContent=`−${pct}${NB}% par vidéo`;}
-  });
-  const am=+$('.price[data-month][data-n="10"]').dataset[c];
-  $$('[data-cmp-month]').forEach(el=>el.textContent=`${fmtN(am)}${NB}${sym} HT${NB}/${NB}mois`);
-  $$('#cur button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.c===c)));
+    const ttc=$('.ttc',el.closest('.plan'));if(ttc)ttc.textContent=c==='eur'?`soit ${fmtN(Math.round(v*120)/100)}${NB}€ TTC en France`:'';});
+  /* data-pr = offre ; data-f : rien = prix, pv = prix par vidéo, disc = économie par rapport à la vidéo à l'unité */
+  $$('[data-pr]').forEach(el=>{const k=el.dataset.pr, f=el.dataset.f, pu=p[k]/NV[k];
+    el.textContent=f==='pv'?money(Math.round(pu*100)/100):f==='disc'?`−${Math.round((1-pu/p.unit)*100)}${NB}%`:money(p[k]);});
   $('#paysNom').textContent=c==='mad'?'Prix affichés en dirhams (Maroc)':'Prix affichés en euros (France)';setPaysC(c);};
-$$('#cur button').forEach(b=>b.addEventListener('click',()=>{c=b.dataset.c;store.set('immoclap_cur',c);price();}));
 const saved=store.get('immoclap_cur');
 if(saved==='eur'||saved==='mad')c=saved;
 else{try{const lang=(navigator.language||'').toLowerCase();if(lang.endsWith('-ma')||Intl.DateTimeFormat().resolvedOptions().timeZone==='Africa/Casablanca')c='mad';}catch(e){}}

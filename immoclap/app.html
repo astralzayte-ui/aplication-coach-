@@ -164,6 +164,7 @@ textarea{resize:vertical;min-height:96px}
 .subx ul{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 22px;margin-top:14px}
 .subx li{font-size:13.5px;color:var(--muted);line-height:1.5;padding-left:12px;border-left:2px solid rgba(246,188,40,.55)}
 .subx li b{display:block;color:var(--fg);font-weight:600;font-size:14px;margin-bottom:2px}
+.subx>p b{color:var(--fg);font-weight:600}
 @media(max-width:760px){.subx ul{grid-template-columns:minmax(0,1fr)}}
 .offers3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:stretch;padding-top:12px}
 @media(max-width:860px){.offers3{grid-template-columns:minmax(0,1fr);max-width:480px;margin:0 auto;gap:26px}}
@@ -174,7 +175,7 @@ textarea{resize:vertical;min-height:96px}
 .offer .badge.soft{background:var(--card);color:var(--gold);border:1px solid rgba(246,188,40,.6)}
 .offer .ot{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:26px;flex-wrap:wrap}
 .offer .ot h3,.offer .ot .h3{font-size:24px}
-.offer .d{font-size:13.5px;color:var(--muted);min-height:40px}
+.offer .d{font-size:13.5px;color:var(--muted);line-height:1.55;min-height:3.1em}
 .offer .p{font-family:var(--serif);font-size:38px;line-height:1.1;margin-top:8px;white-space:nowrap}
 .offer .p small,.bigp small{font-family:var(--sans);font-size:13px;color:var(--muted);letter-spacing:.02em}
 .offer .t{font-size:12.5px;color:var(--dim);min-height:19px}
@@ -1276,6 +1277,7 @@ const offerById = id => OFFERS.find(o => o.id === id);
 /* anciennes offres (lots de 5 et 10 crédits, retirées) : seulement pour afficher l'historique des comptes de test */
 const OLD_LOTS = {pack5:5, pack10:10};
 const lotName = src => { const o = offerById(src); if (o) return o.name; if (OLD_LOTS[src]) return `Lot de ${OLD_LOTS[src]} crédits (ancienne offre)`; return 'Crédits repris'; };
+const orderName = o => OLD_LOTS[o.offer] ? lotName(o.offer) : o.name; /* commandes : nom enregistré, sauf anciennes offres */
 const UNIT = () => offerById('one');
 /* prix d'une vidéo dans une formule (arrondi au centime) et économie par rapport à la vidéo à l'unité */
 const perVideo = (o, c) => Math.round(o[c] / o.credits * 100) / 100;
@@ -1708,34 +1710,70 @@ document.addEventListener('click', async e => {
 });
 $('#new-video').addEventListener('click', () => startNew());
 
+/* questions ouvertes gardées ouvertes quand les offres sont réaffichées (autre onglet, génération terminée…) */
+const openQ = new Set();
+$('#offers-faq').addEventListener('toggle', e => { const d = e.target; if (!d.dataset || !d.dataset.q) return; if (d.open) openQ.add(d.dataset.q); else openQ.delete(d.dataset.q); }, true);
+const mn = (v, c) => money(v, c, false); /* prix sans « HT », pour les comparaisons par vidéo */
 function renderOffers(){
+  const s = acct.sub, u = UNIT(), solo = offerById('solo'), ag = offerById('agence'), be = breakEven(cur);
+  /* ce que l'abonnement apporte, en clair */
+  $('#sub-explain').innerHTML = `<h3>L'abonnement, en clair</h3>
+    <p><b>Chaque mois, vos nouvelles annonces passent en vidéo.</b> ${solo.name} ajoute ${solo.credits} vidéos à votre compte chaque mois, ${ag.name} en ajoute ${ag.credits}. Quand un bien arrive, vous lancez sa vidéo sans repasser par le paiement.</p>
+    <ul>
+      <li><b>Moins cher par vidéo</b>${mn(perVideo(solo, cur), cur)} la vidéo avec ${solo.name}, ${mn(perVideo(ag, cur), cur)} avec ${ag.name}, au lieu de ${mn(u[cur], cur)} à l'unité.</li>
+      <li><b>Pas tout utilisé ?</b>Les vidéos restantes passent au mois suivant tant que l'abonnement est actif, dans la limite de 12 mois.</li>
+      <li><b>Pour arrêter</b>Sans engagement : depuis Mon compte, avec le lien de gestion reçu par e-mail, ou en nous écrivant. L'arrêt prend effet à la fin du mois payé.</li>
+    </ul>`;
+  /* cartes : 1 vidéo · Solo (recommandé, au milieu) · Agence */
   const card = o => {
-    const price = o[cur], unit = offerById('one')[cur];
-    let pill = '', per = '';
-    if (o.kind === 'once' && o.credits > 1) { pill = `<span class="pill">−${Math.round((1 - price / (unit * o.credits)) * 100)}\u00a0%</span>`; }
-    if (o.kind === 'sub') pill = '<span class="pill gold">Prix de lancement</span>';
-    if (o.credits > 1) per = `soit ${money(Math.round(price / o.credits * 100) / 100, cur)} la vidéo`;
-    else per = 'Crédit valable 12 mois';
-    const tt = cur === 'eur' ? `soit ${ttc(price, cur)} en France` : 'hors taxes';
-    const isCur = acct.sub && acct.sub.id === o.id;
+    const isSub = o.kind === 'sub', c = isSub && s && s.cur ? s.cur : cur; /* abonnement en cours : sa devise de facturation */
+    const price = o[c], isCur = !!(s && s.id === o.id);
+    const badge = isCur ? '<span class="badge soft">Votre formule</span>' : o.rec && !s ? '<span class="badge">Recommandé</span>' : '';
+    const pill = isSub ? '<span class="pill gold">Prix de lancement</span>' : '';
+    const tt = c === 'eur' ? `soit ${ttc(price, c)}${isSub ? ' par mois' : ''} en France` : 'hors taxes';
+    let per = 'Sans abonnement', save = '', items;
+    if (isSub) {
+      per = `${mn(perVideo(o, c), c)} la vidéo au lieu de ${mn(u[c], c)} (−${savePct(o, c)} %)`;
+      let k = 2; while (k < o.credits && price >= k * u[c]) k++;
+      if (k < o.credits) save = `${o.credits} vidéos pour moins que le prix de ${k}`;
+      items = [`${o.credits} vidéos par mois, en 3 formats`, "Vidéos non utilisées reportées tant que l'abonnement est actif (12 mois maximum)", 'Sans engagement, résiliable à tout moment'];
+    } else items = ['1 vidéo de 3 à 12 photos, en 3 formats', 'Musique, voix off et carton de fin', 'Crédit valable 12 mois'];
     let btn;
-    if (o.kind === 'sub') {
-      if (isCur) btn = `<button class="btn sm ghost full" type="button" disabled>Formule actuelle</button>`;
-      else if (acct.sub) btn = `<button class="btn sm ghost full" type="button" data-plan="${o.id}">${subEnding() && o.eur < offerById(acct.sub.id).eur ? `Annuler la résiliation et passer à ${o.name}` : `Passer à ${o.name}`}</button>`;
-      else btn = `<a class="btn sm ghost full" href="#paiement/${o.id}">S'abonner</a>`;
-    } else btn = `<a class="btn sm ghost full" href="#paiement/${o.id}">Acheter</a>`;
-    const sub = o.kind === 'sub' ? `${o.credits} vidéos par mois. Crédits reportés tant que l'abonnement est actif (12 mois maximum). Résiliable à tout moment : depuis Mon compte, avec le lien de gestion reçu par e-mail, ou en nous écrivant.` : '';
-    return `<div class="offer${isCur ? ' cur-plan' : ''}"><div class="ot"><h4 class="h3">${o.name}</h4>${pill}</div>
-      <div class="p">${moneyBig(price, cur)}${o.kind === 'sub' ? ' <small>/ mois</small>' : ''}</div><div class="t">${tt}</div><div class="u">${per}</div>
-      <div class="d">${o.d}${sub ? '<br>' + sub : ''}</div>${btn}</div>`;
+    if (!isSub) btn = `<a class="btn ghost full" href="#paiement/${o.id}">Acheter 1 vidéo</a>`;
+    else if (isCur) btn = `<button class="btn ghost full" type="button" disabled>Formule actuelle</button>`;
+    else if (s) btn = `<button class="btn ghost full" type="button" data-plan="${o.id}">${subEnding() && o.eur < offerById(s.id).eur ? `Annuler la résiliation et passer à ${o.name}` : `Passer à ${o.name}`}</button>`;
+    else btn = `<a class="btn${o.rec ? '' : ' ghost'} full" href="#paiement/${o.id}">Choisir ${o.name}</a>`;
+    return `<div class="offer${o.rec && !s ? ' hl' : ''}${isCur ? ' cur-plan' : ''}">${badge}
+      <div class="ot"><h3>${o.name}</h3>${pill}</div><p class="d">${o.d}</p>
+      <div class="p">${moneyBig(price, c)}${isSub ? ' <small>/ mois</small>' : ''}</div><div class="t">${tt}</div>
+      <div class="u">${per}</div><div class="save">${save}</div>
+      <ul>${items.map(x => `<li>${x}</li>`).join('')}</ul>${btn}</div>`;
   };
-  $('#offers-once').innerHTML = OFFERS.filter(o => o.kind === 'once').map(card).join('');
-  $('#offers-sub').innerHTML = OFFERS.filter(o => o.kind === 'sub').map(card).join('');
+  $('#offers').innerHTML = OFFERS.map(card).join('');
+  const other = s && s.cur && s.cur !== cur ? ` Votre abonnement est facturé en ${s.cur === 'eur' ? 'euros' : 'dirhams'} : ses prix restent affichés dans cette devise.` : '';
+  $('#offers-tax').textContent = (cur === 'eur'
+    ? "Prix HT. En France, la TVA de 20 % s'ajoute (prix TTC indiqué sous chaque prix) ; ailleurs, la TVA éventuelle est calculée au paiement selon votre pays."
+    : 'Prix hors taxes. La TVA éventuelle est calculée au paiement selon votre pays.')
+    + other + " Prix de lancement conservé pour les 100 premiers abonnés, tant que l'abonnement reste actif sans interruption. Chaque vidéo comprend musique, voix off, logo et carton de fin et, sur demande, une version sans logo pour les portails. Le paiement passe par notre prestataire de paiement, qui agit comme revendeur (Merchant of Record) ; son nom figure sur la page de paiement et sur le reçu.";
+  /* questions fréquentes sur les offres (prix calculés dans la devise du pays) */
+  const um = money(u[cur], cur), sm = money(solo[cur], cur), am = money(ag[cur], cur);
+  const q = (id, title, body) => `<details data-q="${id}"${openQ.has(id) ? ' open' : ''}><summary>${title}</summary><div class="a">${body}</div></details>`;
+  $('#offers-faq').innerHTML = `<h3>Questions sur les offres</h3>` +
+    q('abo', "Comment fonctionne l'abonnement ?",
+      `<p>Vous payez ${sm} par mois avec ${solo.name}, ou ${am} avec ${ag.name}. En échange, ${solo.credits} ou ${ag.credits} vidéos sont ajoutées à votre compte le jour de la souscription, puis chaque mois à la même date. Vous les utilisez quand un bien arrive, sans repasser par le paiement.</p>
+       <p>Les vidéos non utilisées passent au mois suivant tant que l'abonnement est actif, dans la limite de 12 mois après leur ajout. Sans engagement : vous arrêtez quand vous voulez, et l'arrêt prend effet à la fin du mois payé.</p>`) +
+    q('choix', "Vidéo à l'unité ou abonnement : que choisir ?",
+      `<p><b>Un bien de temps en temps, ou pour essayer</b> : la vidéo à l'unité, ${um}, sans abonnement (crédit valable 12 mois).</p>
+       <p><b>${be.solo} vidéos par mois ou plus</b> : ${solo.name} revient moins cher. ${solo.credits} vidéos coûtent ${sm}, moins que ${be.solo} vidéos à l'unité (${money(be.solo * u[cur], cur)}).</p>
+       <p><b>${be.agence} vidéos par mois ou plus</b> : ${ag.name} (${ag.credits} vidéos pour ${am}, soit ${mn(perVideo(ag, cur), cur)} la vidéo) revient moins cher que ${solo.name} complété par des vidéos à l'unité.</p>`) +
+    q('stop', 'Comment arrêter ou changer de formule ?',
+      `<p>Pour arrêter : bouton « Résilier » dans <a href="#compte">Mon compte</a>, lien de gestion reçu par e-mail, ou message à <a href="mailto:contact.immoclap@gmail.com">contact.immoclap@gmail.com</a>. L'abonnement reste actif jusqu'à la fin du mois payé, sans nouveau prélèvement, et les vidéos d'abonnement restantes sont utilisables jusqu'à cette date. Les vidéos achetées à l'unité restent valables 12 mois.</p>
+       <p>Pour changer : passez de ${solo.name} à ${ag.name}, ou l'inverse, depuis Mon compte. Le prix de lancement est conservé tant que l'abonnement reste actif sans interruption ; après une résiliation, une nouvelle souscription se fait au prix en vigueur.</p>`);
   syncCur();
 }
-function syncCur(){ $$('.cur button').forEach(b => b.setAttribute('aria-pressed', b.dataset.c === cur ? 'true' : 'false')); updatePaysLink(); }
+function syncCur(){ updatePaysLink(); }
 function updatePaysLink(){ const el = $('#pays-now'); if (el) el.textContent = cur === 'mad' ? '(prix en DH)' : '(prix en €)'; }
-/* devise choisie (bascule €/DH ou choix du pays) : mémorisée sous la même clé que le site */
+/* devise = pays choisi (fenêtre du pays, lien « Changer de pays » en pied de page) : même clé que le site */
 function setCur(c){
   if (c !== 'eur' && c !== 'mad') return;
   cur = c; LS.set(K.cur, c);
@@ -1752,10 +1790,6 @@ function refreshPrices(){
   if (r.a === 'nouvelle' && curStep() === 4) renderCreditBox();
   updatePricePlaceholder();
 }
-document.addEventListener('click', e => {
-  const b = e.target.closest('.cur button'); if (!b || b.disabled) return;
-  setCur(b.dataset.c);
-});
 
 /* ---------- choix du pays : Maroc (DH) ou France (€) ----------
    Posé une seule fois, à la première visite, si aucune devise n'a été choisie (ici ou sur le site, même clé).
@@ -2970,9 +3004,16 @@ function renderRecap(){
 function renderCreditBox(){
   const n = creditsAvail(), box = $('#credit-box');
   if (n >= 1) box.innerHTML = `<b>Crédits : ${n} disponible${n > 1 ? 's' : ''}</b> → ${n - 1} après la génération.<p class="fine" style="margin-top:4px">Le crédit est réservé pendant la génération et utilisé seulement quand la vidéo est enregistrée.</p>`;
-  else box.innerHTML = `<b>Vous n'avez plus de crédit.</b><p class="fine" style="margin-top:4px">Choisissez une offre : votre brouillon est gardé et vous revenez ici après le paiement.</p>
-    <div class="mini">${OFFERS.map(o => `<a class="btn sm ghost" href="#paiement/${o.id}/reprise">${o.name} · ${moneyT(o[cur], cur)}${o.kind === 'sub' ? ' / mois' : ''}</a>`).join('')}</div>
-    <p class="fine" style="margin-top:10px">${cur === 'eur' ? 'Prix HT ; entre parenthèses, le prix TTC en France (TVA 20 %).' : 'Prix hors taxes.'}</p>`;
+  else {
+    /* abonné sans crédit : vidéo à l'unité, ou passage immédiat à la formule supérieure (jamais sa formule actuelle) */
+    const s = acct.sub, list = OFFERS.filter(o => o.kind === 'once' || (s ? o.eur > offerById(s.id).eur : true));
+    const lab = o => { const c = o.kind === 'sub' && s && s.cur ? s.cur : cur; return o.kind === 'sub'
+      ? `${s ? `Passer à ${o.name}` : o.name} · ${o.credits} vidéos par mois · ${moneyT(o[c], c)} / mois${o.rec && !s ? ' · recommandé' : ''}`
+      : `${o.name} · ${moneyT(o[c], c)}`; };
+    box.innerHTML = `<b>Vous n'avez plus de crédit.</b><p class="fine" style="margin-top:4px">Choisissez une offre : votre brouillon est gardé et vous revenez ici après le paiement.</p>
+    <div class="mini">${list.map(o => `<a class="btn sm${o.rec && !s ? '' : ' ghost'}" href="#paiement/${o.id}/reprise">${lab(o)}</a>`).join('')}</div>
+    <p class="fine" style="margin-top:10px">${cur === 'eur' ? 'Prix HT ; entre parenthèses, le prix TTC en France (TVA 20 %).' : 'Prix hors taxes.'}${list.some(o => o.kind === 'sub') ? ` Abonnement : ${offerById('solo').credits} ou ${offerById('agence').credits} vidéos ajoutées chaque mois, sans engagement.` : ''}</p>`;
+  }
   updateNextBtn(4);
 }
 
@@ -3255,28 +3296,35 @@ function routePay(id, resume){
   renderHeader('');
   showScreen('pay', 'Paiement (test)');
 }
+/* devise du paiement : celle du pays choisi ; un changement de formule reste dans la devise de l'abonnement en cours */
+const payCur = () => payCtx && payCtx.change && acct.sub && acct.sub.cur ? acct.sub.cur : cur;
 function renderPaySummary(){
   if (!payCtx) return;
-  const o = payCtx.offer, c = pay.busy && pay.ctx ? pay.ctx.cur : cur, p = o[c];
+  const o = payCtx.offer, c = pay.busy && pay.ctx ? pay.ctx.cur : payCur(), p = o[c], u = UNIT();
   const lines = [];
   if (o.kind === 'sub') {
-    lines.push(`${o.credits} vidéos par mois, renouvelé chaque mois. Sans engagement : résiliable à tout moment depuis Mon compte, avec le lien de gestion reçu par e-mail, ou en nous écrivant.`);
-    if (payCtx.change && acct.sub) lines.push(`Changement de formule : ${o.name} remplace ${offerById(acct.sub.id).name} dès aujourd'hui et vos crédits actuels sont conservés. En production, le montant exact du changement est affiché sur la page de paiement.`);
+    if (payCtx.change && acct.sub) lines.push(`Changement de formule : ${o.name} remplace ${offerById(acct.sub.id).name} dès aujourd'hui. ${o.credits} vidéos sont ajoutées dès le paiement, puis ${o.credits} chaque mois à la même date, et vos crédits actuels sont conservés. En production, le montant exact du changement est affiché sur la page de paiement.`);
+    else lines.push(`${o.credits} vidéos ajoutées à votre compte dès le paiement, puis ${o.credits} chaque mois à la même date : chaque mois, vos nouvelles annonces passent en vidéo.`);
+    lines.push(`Soit ${mn(perVideo(o, c), c)} la vidéo, au lieu de ${mn(u[c], c)} à l'unité (−${savePct(o, c)} %).`);
+    lines.push("Vidéos non utilisées reportées au mois suivant tant que l'abonnement est actif, dans la limite de 12 mois.");
+    lines.push("Sans engagement : résiliable à tout moment depuis Mon compte, avec le lien de gestion reçu par e-mail, ou en nous écrivant. L'arrêt prend effet à la fin du mois payé.");
     lines.push("Prix de lancement conservé tant que l'abonnement reste actif sans interruption (100 premiers abonnés).");
     lines.push(`L'abonnement est facturé en ${c === 'eur' ? 'euros' : 'dirhams'} : cette devise reste la même à chaque renouvellement.`);
-  } else lines.push(`${pl(o.credits, 'crédit', 'crédits')}, valable${o.credits > 1 ? 's' : ''} 12 mois. 1 crédit = 1 vidéo en 3 formats.`);
+  } else {
+    lines.push(`${pl(o.credits, 'crédit', 'crédits')}, valable${o.credits > 1 ? 's' : ''} 12 mois, sans abonnement. 1 crédit = 1 vidéo en 3 formats.`);
+  }
   if (payCtx.resume) lines.push('Votre brouillon est gardé : vous revenez au récapitulatif juste après.');
-  const dis = pay.busy ? ' disabled' : '';
-  $('#pay-sum').innerHTML = `<div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap">
-      <div><p class="eyebrow" style="margin-bottom:4px">${o.kind === 'sub' ? 'Abonnement mensuel' : 'Achat de crédits'}</p><h2 class="h3" style="font-size:24px">${o.name}</h2></div>
-      <div class="cur" role="group" aria-label="Devise"><button type="button" data-c="eur"${dis}>€</button><button type="button" data-c="mad"${dis}>DH</button></div></div>
+  /* vidéo à l'unité sans abonnement : rappel de l'offre recommandée (effet de comparaison, sans pression) */
+  const solo = offerById('solo');
+  const hint = o.kind === 'once' && !acct.sub && !pay.busy
+    ? `<p class="fine" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--line)">Vous avez au moins ${breakEven(c).solo} biens par mois ? Avec ${solo.name}, ${solo.credits} vidéos coûtent ${money(solo[c], c)} par mois, soit ${mn(perVideo(solo, c), c)} la vidéo. <a href="#paiement/solo${payCtx.resume ? '/reprise' : ''}" style="color:var(--gold2)">Voir ${solo.name}</a></p>` : '';
+  $('#pay-sum').innerHTML = `<p class="eyebrow" style="margin-bottom:4px">${o.kind === 'sub' ? 'Abonnement mensuel' : 'Achat de crédits'}</p><h2 class="h3" style="font-size:24px">${o.name}</h2>
     <p class="bigp" style="font-family:var(--serif);font-size:34px;margin:8px 0 2px">${moneyBig(p, c)}${o.kind === 'sub' ? ' <small>/ mois</small>' : ''}</p>
     <p class="fine">${c === 'eur' ? `Soit ${ttc(p, c)}${o.kind === 'sub' ? ' par mois' : ''} en France (TVA 20 %). Ailleurs, TVA éventuelle calculée au paiement selon votre pays.` : 'Prix hors taxes. TVA éventuelle calculée au paiement selon votre pays.'}</p>
-    <ul class="fine" style="margin:10px 0 0 18px">${lines.map(l => `<li>${esc(l)}</li>`).join('')}</ul>`;
+    <ul class="fine" style="margin:10px 0 0 18px">${lines.map(l => `<li>${esc(l)}</li>`).join('')}</ul>${hint}`;
   $('#pay-ok').textContent = pay.busy ? 'Paiement en cours…' : `Payer ${money(p, c)}${c === 'eur' ? ` · ${ttc(p, c)} en France` : ''}${o.kind === 'sub' ? ' / mois' : ''} (test)`;
   $$('#f-pay [data-sim], #pay-cancel').forEach(b => b.disabled = pay.busy);
   syncCur();
-  if (pay.busy && pay.ctx) $$('#pay-sum .cur button').forEach(b => b.setAttribute('aria-pressed', b.dataset.c === pay.ctx.cur ? 'true' : 'false'));
 }
 $('#f-pay').addEventListener('submit', e => e.preventDefault());
 $$('#f-pay [data-sim]').forEach(b => b.addEventListener('click', () => startPay(b.dataset.sim)));
@@ -3285,7 +3333,7 @@ function startPay(result){
   $('#pay-err').textContent = ''; $('#pay-cgv-err').textContent = '';
   if (!$('#pay-cgv').checked) { $('#pay-cgv-err').textContent = 'Cochez la case pour accepter les CGV et demander l\'exécution immédiate.'; $('#pay-cgv').focus(); return; }
   /* offre et devise figées au clic */
-  const ctx = {offer:payCtx.offer, resume:payCtx.resume, email:session.email, cur};
+  const ctx = {offer:payCtx.offer, resume:payCtx.resume, email:session.email, cur:payCur()};
   pay.busy = true; pay.ctx = ctx; renderHeader('');
   renderPaySummary();
   pay.timer = setTimeout(() => finishPay(ctx, result), CONFIG.payMs);
@@ -3373,27 +3421,29 @@ function renderPlanCard(){
     <dl class="kv"><dt>Crédits disponibles</dt><dd><b>${n}</b>${rs ? ` (+${rs} réservé${rs > 1 ? 's' : ''} pour une génération en cours)` : ''}</dd>
     <dt>Prochaine expiration</dt><dd>${ex ? `${pl(ex.n, 'crédit expire', 'crédits expirent')} le ${fmtDate(ex.date)}${endNote(ex)}` : '—'}</dd>`;
   if (!s) {
+    const solo = offerById('solo'), ag = offerById('agence'), u = UNIT();
     html += `<dt>Formule</dt><dd>À la carte (sans abonnement)</dd></dl>
-      <p class="fine">Vous publiez chaque mois ? Un abonnement revient moins cher par vidéo.</p>
-      <div class="row-act">${OFFERS.filter(o => o.kind === 'sub').map(o => `<a class="btn sm ghost" href="#paiement/${o.id}">S'abonner à ${o.name} · ${moneyT(o[cur], cur)} / mois</a>`).join('')}</div>`;
+      <p class="fine"><b style="color:var(--fg);font-weight:600">Chaque mois, vos nouvelles annonces passent en vidéo.</b> Avec ${solo.name}, ${solo.credits} vidéos sont ajoutées à votre compte chaque mois (${mn(perVideo(solo, cur), cur)} la vidéo au lieu de ${mn(u[cur], cur)}) ; avec ${ag.name}, ${ag.credits} vidéos (${mn(perVideo(ag, cur), cur)} la vidéo). Vidéos non utilisées reportées tant que l'abonnement est actif (12 mois maximum). Sans engagement.</p>
+      <div class="row-act">${OFFERS.filter(o => o.kind === 'sub').map(o => `<a class="btn sm${o.rec ? '' : ' ghost'}" href="#paiement/${o.id}">S'abonner à ${o.name} · ${moneyT(o[cur], cur)} / mois</a>`).join('')}</div>`;
   } else {
     const o = offerById(s.id), other = OFFERS.find(x => x.kind === 'sub' && x.id !== s.id), c = s.cur || cur, ending = s.status === 'canceling';
-    html += `<dt>Formule</dt><dd>${o.name} · ${moneyT(o[c], c)} / mois · ${o.credits} vidéos par mois</dd>
+    html += `<dt>Formule</dt><dd>${o.name} · ${moneyT(o[c], c)} / mois</dd>
+      <dt>Ce qu'elle vous apporte</dt><dd>${ending ? `${o.credits} vidéos par mois jusqu'au ${fmtDate(s.renew)} ; plus d'ajout ensuite` : `${o.credits} vidéos ajoutées chaque mois (prochain ajout le ${fmtDate(s.renew)}${s.next ? ` : ${offerById(s.next).credits} vidéos avec ${offerById(s.next).name}` : ''})`}, soit ${mn(perVideo(o, c), c)} la vidéo au lieu de ${mn(UNIT()[c], c)} à l'unité</dd>
       <dt>Statut</dt><dd>${s.status === 'canceling' ? `<span class="pill err">Résilié</span> reste actif jusqu'au ${fmtDate(s.renew)}` : '<span class="pill ok">Actif</span>'}</dd>
       <dt>${s.status === 'canceling' ? 'Fin' : 'Prochain renouvellement'}</dt><dd>${fmtDate(s.renew)}${s.next ? ` · passage à ${offerById(s.next).name} prévu` : ''}</dd>
       <dt>Prix de lancement</dt><dd>Conservé tant que l'abonnement reste actif sans interruption.</dd></dl>
       <p class="fine">${ending ? `Résiliation : vos crédits d'abonnement restent utilisables jusqu'au ${fmtDate(s.renew)}, puis ils expirent. Aucun nouveau prélèvement.` : "Crédits d'abonnement reportés tant que l'abonnement est actif, dans la limite de 12 mois. Résiliable à tout moment : depuis Mon compte (bouton Résilier ci-dessous), avec le lien de gestion reçu par e-mail, ou en nous écrivant."}</p>
       <div class="row-act">
         ${ending ? '<button class="btn sm" type="button" id="sub-resume">Reprendre l\'abonnement</button>' : '<button class="btn sm danger" type="button" id="sub-cancel">Résilier</button>'}
-        ${ending ? '' : s.next ? '<button class="btn sm ghost" type="button" id="sub-next-cancel">Garder ' + esc(o.name) + '</button>' : `<button class="btn sm ghost" type="button" data-plan="${other.id}">Passer à ${other.name} · ${moneyT(other[c], c)} / mois</button>`}
+        ${ending ? '' : s.next ? '<button class="btn sm ghost" type="button" id="sub-next-cancel">Garder ' + esc(o.name) + '</button>' : `<button class="btn sm ghost" type="button" data-plan="${other.id}">Passer à ${other.name} · ${other.credits} vidéos par mois · ${moneyT(other[c], c)} / mois</button>`}
       </div>
       <div class="testtools">Outil de test : avancer d'un mois pour voir le renouvellement${s.status === 'canceling' ? ' (ici : la fin de l\'abonnement)' : ''}.<br><button class="btn sm ghost" type="button" id="sub-sim">Simuler le renouvellement</button></div>`;
   }
   const lots = acct.lots.filter(l => l.n > 0).slice().reverse();
   if (lots.length) {
     html += `<h3 class="subh" style="font-size:19px;margin:22px 0 4px">Détail des crédits</h3><ul class="lots">${lots.map(l => {
-      const o = offerById(l.src), le = lotExp(l), exp = le <= now();
-      return `<li><span><b>${esc(o ? o.name : 'Crédits repris')}</b> <span class="meta">· ${l.sub ? 'abonnement · ' : ''}reçu le ${fmtDate(l.at)}</span></span><span class="meta">${l.ended ? "expirés (fin d'abonnement)" : exp ? 'expirés' : `${l.left} / ${l.n} restant${l.left > 1 ? 's' : ''} · jusqu'au ${fmtDate(le)}${le < l.exp ? " (fin de l'abonnement)" : ''}`}</span></li>`;
+      const le = lotExp(l), exp = le <= now();
+      return `<li><span><b>${esc(lotName(l.src))}</b> <span class="meta">· ${l.sub ? 'abonnement · ' : ''}reçu le ${fmtDate(l.at)}</span></span><span class="meta">${l.ended ? "expirés (fin d'abonnement)" : exp ? 'expirés' : `${l.left} / ${l.n} restant${l.left > 1 ? 's' : ''} · jusqu'au ${fmtDate(le)}${le < l.exp ? " (fin de l'abonnement)" : ''}`}</span></li>`;
     }).join('')}</ul>`;
   }
   $('#plan-card').innerHTML = html;
@@ -3402,7 +3452,7 @@ document.addEventListener('click', async e => {
   const t = e.target;
   if (t.closest('#sub-cancel')) {
     const s = acct.sub, o = offerById(s.id);
-    const v = await ask({title:`Résilier ${o.name} ?`, html:`<p>L'abonnement reste actif jusqu'au ${fmtDate(s.renew)}, puis il s'arrête. Aucun nouveau prélèvement.</p><p>Vos crédits d'abonnement restent utilisables jusqu'à cette date. Les crédits achetés à l'unité ou en pack restent valables 12 mois.</p><p>Le prix de lancement est perdu si l'abonnement est interrompu.</p>`,
+    const v = await ask({title:`Résilier ${o.name} ?`, html:`<p>L'abonnement reste actif jusqu'au ${fmtDate(s.renew)}, puis il s'arrête. Aucun nouveau prélèvement.</p><p>Vos vidéos d'abonnement non utilisées restent utilisables jusqu'à cette date, puis elles expirent. Les vidéos achetées à l'unité restent valables 12 mois après l'achat.</p><p>Le prix de lancement est perdu si l'abonnement est interrompu : une nouvelle souscription se fera au prix en vigueur.</p>`,
       buttons:[{label:'Résilier', value:'ok', kind:'danger'}, {label:'Garder mon abonnement', value:null, kind:'ghost', focus:true}]});
     if (v !== 'ok') return;
     refreshAcct();
@@ -3421,12 +3471,12 @@ function renderOrders(){
   const os = acct.orders.slice().reverse();
   const kindL = {once:'Achat', sub:'Abonnement', change:'Changement de formule', renew:'Renouvellement (simulé)'};
   $('#orders-card').innerHTML = `<h2>Commandes et reçus</h2><p class="fine">Le numéro de commande est à indiquer pour toute demande de remboursement. En production, le reçu officiel est envoyé par notre prestataire de paiement.</p>
-    ${os.length ? `<ul class="orders">${os.map(o => `<li><span><b>${esc(o.name)}</b> <span class="meta">· ${kindL[o.kind] || ''} · ${fmtDate(o.at)}</span><br><span class="meta">N° ${esc(o.id)} · ${money(o[o.cur] ?? o.eur, o.cur || 'eur')} · payée (test)</span></span><button class="btn sm ghost" type="button" data-receipt="${esc(o.id)}">Reçu</button></li>`).join('')}</ul>` : '<p class="muted small" style="margin-top:10px">Aucune commande pour l\'instant.</p>'}`;
+    ${os.length ? `<ul class="orders">${os.map(o => `<li><span><b>${esc(orderName(o))}</b> <span class="meta">· ${kindL[o.kind] || ''} · ${fmtDate(o.at)}</span><br><span class="meta">N° ${esc(o.id)} · ${money(o[o.cur] ?? o.eur, o.cur || 'eur')} · payée (test)</span></span><button class="btn sm ghost" type="button" data-receipt="${esc(o.id)}">Reçu</button></li>`).join('')}</ul>` : '<p class="muted small" style="margin-top:10px">Aucune commande pour l\'instant.</p>'}`;
 }
 function receiptHTML(o){
   const c = o.cur || 'eur', amt = o[c] ?? o.eur, p = acct.profile;
   const offer = offerById(o.offer);
-  const what = offer && offer.kind === 'sub' ? `Abonnement ${o.name} · ${o.credits} crédits vidéo pour un mois` : `${o.name} · ${pl(o.credits, 'crédit vidéo', 'crédits vidéo')} (valable${o.credits > 1 ? 's' : ''} 12 mois)`;
+  const what = offer && offer.kind === 'sub' ? `Abonnement ${o.name} · ${o.credits} crédits vidéo pour un mois` : `${orderName(o)} · ${pl(o.credits, 'crédit vidéo', 'crédits vidéo')} (valable${o.credits > 1 ? 's' : ''} 12 mois)`;
   return `<div class="receipt"><div class="rtop"><div><div style="font-family:var(--serif);font-size:24px">Immo<span style="color:var(--gold)">Clap</span></div><div class="fine">Reçu de test</div></div><span class="stamp">Test · non valable</span></div>
     <p><b>Commande n° ${esc(o.id)}</b><br>Date : ${fmtDateTime(o.at)}<br>Client : ${esc(p.agency ? p.agency + ' · ' : '')}${esc(session.email)}</p>
     <table><tr><td>${esc(what)}</td><td>${money(amt, c)}</td></tr>
