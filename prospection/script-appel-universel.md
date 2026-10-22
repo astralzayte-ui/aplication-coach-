@@ -26,7 +26,5 @@ SI ELLE DIT…
 - « L'IA va dire n'importe quoi » → « Elle répond seulement avec vos prix et vos infos. Si elle ne sait pas, elle vous passe la cliente. »
 
 APRÈS L'APPEL
-- Elle a dit oui → envoie-lui ce message sur WhatsApp :
-  « Bonjour, c'est Julien de Sahir Digital, merci pour votre temps. Voici notre présentation (1 minute) : https://docs.google.com/document/d/1Ib7KM6cMAuo_6Q2Pp096CxbSuRZkf1JmQMU5BCmGVFU/view
-  Et le formulaire pour choisir vos services (2 minutes) : https://docs.google.com/forms/d/e/1FAIpQLSdi8TdPCkn8NXu9gUG9mdvEtbMgEiSgeX3q3PuiUMrK3mrKTQ/viewform »
-- Pas de réponse → clique sur « Envoyer WhatsApp » dans la fiche.
+- Elle a dit oui → dans la fiche, clique sur « Formulaire » (ou « Formulaire (AR) » si elle parle arabe).
+- Pas de réponse → dans la fiche, clique sur « Présentation » (ou « Présentation (AR) »).
