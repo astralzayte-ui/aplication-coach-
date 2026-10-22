@@ -108,6 +108,24 @@ def audit(nom, note=None, avis=None, site=None, point_faible=None, barbier=False
             "Si ça vous intéresse, je vous envoie tous nos packs.")
 
 
+PRESENTATION_AR = "https://docs.google.com/document/d/12jE3A5oSy4mfm7x3yP7hE9xcIZNGrG3sufgR3876xfw/view"
+
+
+def audit_ar(nom):
+    """Le même message en arabe, avec le lien de la présentation en arabe."""
+    return (f"مرحباً {nom}،\nأنا جوليان من Sahir Digital في مراكش. اتصلت بكم ولم أتمكن من الوصول إليكم.\n\n"
+            "نساعد صالونات مراكش على جذب زبونات أكثر، دون أي مجهود منكم:\n"
+            "- واتساب وإنستغرام يردّان 24/24\n"
+            "- فيديوهات وستوريات كل أسبوع\n"
+            "- موقع احترافي وإعلانات\n\n"
+            f"هذا عرضنا (دقيقة واحدة): {PRESENTATION_AR}\n\n"
+            "إذا كان الأمر يهمّكم، أرسل لكم كل عروضنا.")
+
+
+def lien_wa(cle, texte):
+    return "https://wa.me/212" + cle + "?text=" + urllib.parse.quote(texte)
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("sortie"); p.add_argument("date"); p.add_argument("fichiers", nargs="+")
@@ -132,18 +150,19 @@ def main():
         nom = propre(it["title"])
         mobile = cle[0] in "67"
         site_txt = {None: "Non", "facebook": "Page Facebook", "instagram": "Instagram seulement", "site": "Oui", "site-basique": "Page gratuite"}[site_type(it)]
-        wa = ("https://wa.me/212" + cle + "?text=" + urllib.parse.quote(audit(nom, it.get("totalScore"), it.get("reviewsCount"), site_txt, pf, secteur(it) == "barbier"))) if mobile else "Fixe : appeler seulement"
+        wa = lien_wa(cle, audit(nom, it.get("totalScore"), it.get("reviewsCount"), site_txt, pf, secteur(it) == "barbier")) if mobile else "Fixe : appeler seulement"
+        wa_ar = lien_wa(cle, audit_ar(nom)) if mobile else "Fixe : appeler seulement"
         t = "0" + cle
         site = {None: "Non", "facebook": "Page Facebook", "instagram": "Instagram seulement", "site": "Oui", "site-basique": "Page gratuite"}[site_type(it)]
         insta = (it.get("instagrams") or [""])[0]
         insta = "@" + insta.rstrip("/").split("/")[-1].split("?")[0] if insta else ""
         lignes.append([score, nom, " ".join([t[:2], t[2:4], t[4:6], t[6:8], t[8:10]]), "J'ai remarqué " + que(acc) + ".", wa, pf,
-                       str(it.get("totalScore") or "").replace(".", ","), it.get("reviewsCount") or 0, site, insta, it.get("categoryName") or ""])
+                       str(it.get("totalScore") or "").replace(".", ","), it.get("reviewsCount") or 0, site, insta, it.get("categoryName") or "", wa_ar])
     lignes.sort(key=lambda l: (l[0], -int(l[7])))
     lignes = lignes[: a.max]
     buf = io.StringIO(); w = csv.writer(buf, lineterminator="\n")
     w.writerow(["Appelé", "A répondu", "WhatsApp envoyé", "Intéressé", "Score", "Nom", "Téléphone", "Accroche (à lire au téléphone)",
-                "WhatsApp 1 clic", "Point faible", "Note Google", "Nb avis", "Site", "Instagram", "Secteur", "Date ajout", "Notes"])
+                "WhatsApp 1 clic", "Point faible", "Note Google", "Nb avis", "Site", "Instagram", "Secteur", "WhatsApp arabe", "Date ajout", "Notes"])
     for l in lignes:
         w.writerow(["", "", "", ""] + l + [a.date, ""])
     open(a.sortie, "w").write(buf.getvalue())
