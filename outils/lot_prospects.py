@@ -96,30 +96,34 @@ EXCLUS = re.compile(r"(vêtement|boutique de mode|pharmacie|parapharmacie|magasi
 PRESENTATION = "https://docs.google.com/document/d/1Ib7KM6cMAuo_6Q2Pp096CxbSuRZkf1JmQMU5BCmGVFU/view"
 
 
+FORMULAIRE = "https://docs.google.com/forms/d/e/1FAIpQLSdi8TdPCkn8NXu9gUG9mdvEtbMgEiSgeX3q3PuiUMrK3mrKTQ/viewform"
+FORMULAIRE_AR = "https://docs.google.com/forms/d/e/1FAIpQLSeMBzEkndDdQEImYd2D9S0btnydqTW2tUHZsYoURNk4EECK5g/viewform"
+
+
 def audit(nom, note=None, avis=None, site=None, point_faible=None, barbier=False):
-    """Message WhatsApp universel : présentation du service + lien du Google Doc (le même pour tous)."""
+    """Message WhatsApp universel (avant ou après l'appel) : présentation + formulaire."""
     cl = "clients" if barbier else "clientes"
-    return (f"Bonjour {nom},\nJe suis Julien, de Sahir Digital, à Marrakech. Je vous ai appelé, mais je n'ai pas réussi à vous joindre.\n\n"
+    return (f"Bonjour {nom},\nJe suis Julien, de Sahir Digital, à Marrakech.\n\n"
             f"Nous aidons les salons de Marrakech à avoir plus de {cl}, sans rien faire de votre côté :\n"
             f"- un WhatsApp et un Instagram qui répondent à vos {cl} 24h/24\n"
             "- des vidéos et des stories publiées pour vous chaque semaine\n"
             "- un site internet professionnel et des publicités ciblées\n\n"
-            f"Voici notre présentation (1 minute) : {PRESENTATION}\n\n"
-            "Si ça vous intéresse, je vous envoie tous nos packs.")
+            f"Notre présentation (1 minute) : {PRESENTATION}\n\n"
+            f"Pour choisir vos services (2 minutes) : {FORMULAIRE}")
 
 
 PRESENTATION_AR = "https://docs.google.com/document/d/12jE3A5oSy4mfm7x3yP7hE9xcIZNGrG3sufgR3876xfw/view"
 
 
 def audit_ar(nom):
-    """Le même message en arabe, avec le lien de la présentation en arabe."""
-    return (f"مرحباً {nom}،\nأنا جوليان من Sahir Digital في مراكش. اتصلت بكم ولم أتمكن من الوصول إليكم.\n\n"
+    """Le même message en arabe : présentation arabe + formulaire arabe."""
+    return (f"مرحباً {nom}،\nأنا جوليان من Sahir Digital في مراكش.\n\n"
             "نساعد صالونات مراكش على جذب زبونات أكثر، دون أي مجهود منكم:\n"
             "- واتساب وإنستغرام يردّان 24/24\n"
             "- فيديوهات وستوريات كل أسبوع\n"
             "- موقع احترافي وإعلانات\n\n"
-            f"هذا عرضنا (دقيقة واحدة): {PRESENTATION_AR}\n\n"
-            "إذا كان الأمر يهمّكم، أرسل لكم كل عروضنا.")
+            f"عرضنا (دقيقة واحدة): {PRESENTATION_AR}\n\n"
+            f"لاختيار خدماتكم (دقيقتان): {FORMULAIRE_AR}")
 
 
 def lien_wa(cle, texte):
