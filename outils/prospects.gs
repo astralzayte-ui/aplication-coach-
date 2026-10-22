@@ -6,7 +6,7 @@
  */
 var TOKEN = 'VOIR_DOC_DRIVE'; // le vrai jeton est dans le Google Doc « Sahir Digital — Script fiche prospects V3 » (dépôt public)
 var COLONNES = ['Appelé', 'A répondu', 'WhatsApp envoyé', 'Intéressé',
-  'Score', 'Nom', 'Téléphone', 'WhatsApp français', 'WhatsApp arabe', 'Accroche (à lire au téléphone)', 'Point faible',
+  'Score', 'Nom', 'Téléphone', 'Présentation FR', 'Formulaire FR', 'Présentation AR', 'Formulaire AR', 'Point faible',
   'Note Google', 'Nb avis', 'Site', 'Instagram', 'Secteur', 'Date ajout', 'Notes'];
 
 function lien(url, texte) {
@@ -21,7 +21,7 @@ function installerProspects() {
     .setFontWeight('bold').setBackground('#1f2937').setFontColor('#ffffff');
   sh.setFrozenRows(1);
   sh.setColumnWidths(1, 4, 95);
-  var plage = sh.getRange('A2:R2000');
+  var plage = sh.getRange('A2:S2000');
   sh.setConditionalFormatRules([
     // Intéressé → ligne verte
     SpreadsheetApp.newConditionalFormatRule().whenFormulaSatisfied('=$D2=TRUE')
@@ -39,8 +39,11 @@ function doPost(e) {
   if (data.token !== TOKEN) return ContentService.createTextOutput('refusé');
   var sh = SpreadsheetApp.openById(PropertiesService.getScriptProperties().getProperty('SHEET_ID'))
     .getSheetByName('Prospects');
-  // V4 : ajoute la colonne « WhatsApp arabe » à côté du WhatsApp français si elle n'existe pas encore
-  if (sh.getRange(1, 9).getValue() !== 'WhatsApp arabe') sh.insertColumnAfter(8);
+  // V5 : 4 boutons (présentation / formulaire, en français / en arabe) à la place des anciennes colonnes WhatsApp
+  if (sh.getRange(1, 8).getValue() !== 'Présentation FR') {
+    if (sh.getRange(1, 9).getValue() !== 'WhatsApp arabe') sh.insertColumnAfter(8);
+    sh.insertColumnAfter(9);
+  }
   sh.getRange(1, 1, 1, COLONNES.length).setValues([COLONNES])
     .setFontWeight('bold').setBackground('#1f2937').setFontColor('#ffffff');
   if (data.action === 'reset' && sh.getLastRow() > 1) {
@@ -54,11 +57,10 @@ function doPost(e) {
     tels.forEach(function (t, i) {
       var tel = String(t[0]);
       if (!(tel in parTel)) return;
-      if (parTel[tel]) sh.getRange(i + 2, 9).setFormula(lien(parTel[tel], 'Envoyer en arabe'));
-      else sh.getRange(i + 2, 9).setValue('Fixe : appeler');
+      if (parTel[tel]) sh.getRange(i + 2, 10).setFormula(lien(parTel[tel], 'Présentation (AR)'));
+      else sh.getRange(i + 2, 10).setValue('Fixe : appeler');
       n++;
     });
-    sh.setColumnWidth(9, 150);
     return ContentService.createTextOutput(String(n));
   }
   var rows = data.rows || [];
@@ -66,12 +68,11 @@ function doPost(e) {
   var debut = sh.getLastRow() + 1;
   var valeurs = rows.map(function (r) {
     return [false, false, false, false, r.score, r.nom, r.telephone,
-      lien(r.whatsapp, 'Envoyer en français'), lien(r.whatsapp_ar, 'Envoyer en arabe'),
-      r.accroche || '', r.point_faible, r.note, r.avis, r.site, r.instagram, r.secteur, r.date, ''];
+      lien(r.whatsapp, 'Présentation'), lien(r.whatsapp_form, 'Formulaire'),
+      lien(r.whatsapp_ar, 'Présentation (AR)'), lien(r.whatsapp_form_ar, 'Formulaire (AR)'), r.point_faible, r.note, r.avis, r.site, r.instagram, r.secteur, r.date, ''];
   });
   sh.getRange(debut, 1, valeurs.length, COLONNES.length).setValues(valeurs);
   sh.getRange(debut, 1, valeurs.length, 4).insertCheckboxes();
-  sh.setColumnWidth(6, 220); sh.setColumnWidth(8, 150); sh.setColumnWidth(9, 150); sh.setColumnWidth(10, 420);
-  sh.getRange(debut, 10, valeurs.length, 1).setWrap(true);
+  sh.setColumnWidth(6, 220); sh.setColumnWidths(8, 4, 140); sh.setColumnWidth(12, 260);
   return ContentService.createTextOutput(String(valeurs.length));
 }

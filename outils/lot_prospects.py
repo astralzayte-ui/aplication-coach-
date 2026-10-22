@@ -101,29 +101,41 @@ FORMULAIRE_AR = "https://docs.google.com/forms/d/e/1FAIpQLSeMBzEkndDdQEImYd2D9S0
 
 
 def audit(nom, note=None, avis=None, site=None, point_faible=None, barbier=False):
-    """Message WhatsApp universel (avant ou après l'appel) : présentation + formulaire."""
+    """Message WhatsApp « présentation » (le même pour tous)."""
     cl = "clients" if barbier else "clientes"
     return (f"Bonjour {nom},\nJe suis Julien, de Sahir Digital, à Marrakech.\n\n"
             f"Nous aidons les salons de Marrakech à avoir plus de {cl}, sans rien faire de votre côté :\n"
             f"- un WhatsApp et un Instagram qui répondent à vos {cl} 24h/24\n"
             "- des vidéos et des stories publiées pour vous chaque semaine\n"
             "- un site internet professionnel et des publicités ciblées\n\n"
-            f"Notre présentation (1 minute) : {PRESENTATION}\n\n"
-            f"Pour choisir vos services (2 minutes) : {FORMULAIRE}")
+            f"Voici notre présentation (1 minute) : {PRESENTATION}")
+
+
+def formulaire(nom):
+    """Message WhatsApp « formulaire » (après un appel où la personne est intéressée)."""
+    return (f"Bonjour {nom},\nC'est Julien, de Sahir Digital. Merci pour votre temps.\n\n"
+            f"Voici le formulaire pour choisir vos services (2 minutes) : {FORMULAIRE}\n\n"
+            "Je vous prépare ensuite votre offre.")
 
 
 PRESENTATION_AR = "https://docs.google.com/document/d/12jE3A5oSy4mfm7x3yP7hE9xcIZNGrG3sufgR3876xfw/view"
 
 
 def audit_ar(nom):
-    """Le même message en arabe : présentation arabe + formulaire arabe."""
+    """Message « présentation » en arabe."""
     return (f"مرحباً {nom}،\nأنا جوليان من Sahir Digital في مراكش.\n\n"
             "نساعد صالونات مراكش على جذب زبونات أكثر، دون أي مجهود منكم:\n"
             "- واتساب وإنستغرام يردّان 24/24\n"
             "- فيديوهات وستوريات كل أسبوع\n"
             "- موقع احترافي وإعلانات\n\n"
-            f"عرضنا (دقيقة واحدة): {PRESENTATION_AR}\n\n"
-            f"لاختيار خدماتكم (دقيقتان): {FORMULAIRE_AR}")
+            f"هذا عرضنا (دقيقة واحدة): {PRESENTATION_AR}")
+
+
+def formulaire_ar(nom):
+    """Message « formulaire » en arabe."""
+    return (f"مرحباً {nom}،\nمعكم جوليان من Sahir Digital. شكراً على وقتكم.\n\n"
+            f"هذه الاستمارة لاختيار خدماتكم (دقيقتان): {FORMULAIRE_AR}\n\n"
+            "بعدها أجهّز لكم عرضكم.")
 
 
 def lien_wa(cle, texte):
@@ -156,17 +168,19 @@ def main():
         site_txt = {None: "Non", "facebook": "Page Facebook", "instagram": "Instagram seulement", "site": "Oui", "site-basique": "Page gratuite"}[site_type(it)]
         wa = lien_wa(cle, audit(nom, it.get("totalScore"), it.get("reviewsCount"), site_txt, pf, secteur(it) == "barbier")) if mobile else "Fixe : appeler seulement"
         wa_ar = lien_wa(cle, audit_ar(nom)) if mobile else "Fixe : appeler seulement"
+        wa_form = lien_wa(cle, formulaire(nom)) if mobile else "Fixe : appeler seulement"
+        wa_form_ar = lien_wa(cle, formulaire_ar(nom)) if mobile else "Fixe : appeler seulement"
         t = "0" + cle
         site = {None: "Non", "facebook": "Page Facebook", "instagram": "Instagram seulement", "site": "Oui", "site-basique": "Page gratuite"}[site_type(it)]
         insta = (it.get("instagrams") or [""])[0]
         insta = "@" + insta.rstrip("/").split("/")[-1].split("?")[0] if insta else ""
         lignes.append([score, nom, " ".join([t[:2], t[2:4], t[4:6], t[6:8], t[8:10]]), "J'ai remarqué " + que(acc) + ".", wa, pf,
-                       str(it.get("totalScore") or "").replace(".", ","), it.get("reviewsCount") or 0, site, insta, it.get("categoryName") or "", wa_ar])
+                       str(it.get("totalScore") or "").replace(".", ","), it.get("reviewsCount") or 0, site, insta, it.get("categoryName") or "", wa_ar, wa_form, wa_form_ar])
     lignes.sort(key=lambda l: (l[0], -int(l[7])))
     lignes = lignes[: a.max]
     buf = io.StringIO(); w = csv.writer(buf, lineterminator="\n")
     w.writerow(["Appelé", "A répondu", "WhatsApp envoyé", "Intéressé", "Score", "Nom", "Téléphone", "Accroche (à lire au téléphone)",
-                "WhatsApp 1 clic", "Point faible", "Note Google", "Nb avis", "Site", "Instagram", "Secteur", "WhatsApp arabe", "Date ajout", "Notes"])
+                "WhatsApp 1 clic", "Point faible", "Note Google", "Nb avis", "Site", "Instagram", "Secteur", "WhatsApp arabe", "Formulaire FR", "Formulaire AR", "Date ajout", "Notes"])
     for l in lignes:
         w.writerow(["", "", "", ""] + l + [a.date, ""])
     open(a.sortie, "w").write(buf.getvalue())
