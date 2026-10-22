@@ -25,7 +25,7 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - ✅ Lien client (vérifié, version V3) : https://docs.google.com/forms/d/e/1FAIpQLSdi8TdPCkn8NXu9gUG9mdvEtbMgEiSgeX3q3PuiUMrK3mrKTQ/viewform
 - ✅ Formulaire mis à jour (numéro WhatsApp obligatoire + nouveau message de fin)
 - ✅ Formulaire refait le 22/10 avec les nouvelles offres (`outils/refaire-formulaire.gs`), vérifié en ligne
-- ⬜ Présentation : coller le texte de `prospection/presentation.md` + partager « Tous les utilisateurs disposant du lien »
+- ✅ Présentation à jour et partagée (lien public), notifications du formulaire activées, script d'appel V3 dans le doc (22/10)
 - ✅ Google Form créé : https://docs.google.com/forms/d/1ldDv-l5HZtRyAnomwYz6TWRs56snThL90FLpsl73_jQ/edit · Réponses : Google Sheet id 1bL_39qJ3cPVC8J0j0wiW8Wm4OXotvLpkU6s91tEtioE
 - ✅ Nom : **Sahir Digital** (ساهر ديجيتال) — ⬜ vérifier dispo (OMPIC, nom de domaine, Instagram)
 - ✅ Prix validés (questionnaire `clients/_modele/message-client.md`)
