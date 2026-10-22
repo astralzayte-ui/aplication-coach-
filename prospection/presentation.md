@@ -14,7 +14,7 @@ Sans engagement, payé à la semaine, installation offerte.
 Votre WhatsApp répond à vos clientes 24h/24 en 5 secondes : vos prix, vos disponibilités, et elles réservent. Écrit et vocal, en français et en arabe.
 Le prix d'un brushing par semaine.
 
-2. ESSENTIEL (le plus choisi) : 450 DH / semaine au lieu de 500
+2. ESSENTIEL (recommandé) : 450 DH / semaine au lieu de 500
 WhatsApp automatisé + 7 vidéos et 7 stories publiées pour vous chaque semaine sur Instagram, TikTok et Facebook.
 Une agence de community management au Maroc coûte 2 000 à 5 000 DH par mois.
 
