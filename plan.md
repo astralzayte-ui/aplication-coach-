@@ -25,6 +25,7 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - ✅ Lien client (vérifié, version V3) : https://docs.google.com/forms/d/e/1FAIpQLSdi8TdPCkn8NXu9gUG9mdvEtbMgEiSgeX3q3PuiUMrK3mrKTQ/viewform
 - ✅ Formulaire mis à jour (numéro WhatsApp obligatoire + nouveau message de fin)
 - ✅ Formulaire refait le 22/10 avec les nouvelles offres (`outils/refaire-formulaire.gs`), vérifié en ligne
+- 🔄 Version arabe (22/10) : présentation arabe doc 12jE3A5oSy4mfm7x3yP7hE9xcIZNGrG3sufgR3876xfw (à partager « tous avec le lien »), fiche V4 avec bouton « WhatsApp arabe » (code avec jeton : doc Drive 1D9oFtyHg7LagdAJKS_nR9F8ULVVtVyKUyPel_DNK2CE ; liens arabes des 83 salons prêts dans le scratchpad push_ar.json, envoi avec action « ar » après le déploiement)
 - ✅ Présentation à jour et partagée (lien public), notifications du formulaire activées, script d'appel V3 dans le doc (22/10)
 - ✅ Google Form créé : https://docs.google.com/forms/d/1ldDv-l5HZtRyAnomwYz6TWRs56snThL90FLpsl73_jQ/edit · Réponses : Google Sheet id 1bL_39qJ3cPVC8J0j0wiW8Wm4OXotvLpkU6s91tEtioE
 - ✅ Nom : **Sahir Digital** (ساهر ديجيتال) — ⬜ vérifier dispo (OMPIC, nom de domaine, Instagram)
