@@ -27,6 +27,7 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - ✅ Google Form créé : https://docs.google.com/forms/d/1ldDv-l5HZtRyAnomwYz6TWRs56snThL90FLpsl73_jQ/edit · Réponses : Google Sheet id 1bL_39qJ3cPVC8J0j0wiW8Wm4OXotvLpkU6s91tEtioE
 - ✅ Nom : **Sahir Digital** (ساهر ديجيتال) — ⬜ vérifier dispo (OMPIC, nom de domaine, Instagram)
 - ✅ Prix validés (questionnaire `clients/_modele/message-client.md`)
+- ✅ Étude de marché Sahir Digital (`prospection/etude-marche.md`, 22/10)
 - ⬜ Pitch appris (`prospection/pitch.md`)
 - ⬜ 1er commerce démarché
 
