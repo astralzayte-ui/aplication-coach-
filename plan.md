@@ -18,6 +18,7 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - ⬜ Démo WhatsApp IA (faux spa, écrit + vocal, français + arabe)
 - ⬜ Démo site du faux spa
 - ⬜ Vidéo de présentation FR (script : `prospection/video-demo.md`)
+- 🔄 Vidéo motion design 3D à envoyer sur WhatsApp (décidé le 26/10) : 9:16, sous-titres, < 16 Mo, ≤ 40 s. Ordre : message à 23h sans réponse → IA WhatsApp/Instagram + compteur de temps gagné → pubs de concurrents (bloc à changer selon le secteur) → vidéo d'un site bien fait → « dès 100 DH/semaine » + logo. Modèle réutilisable (FR/AR, autres secteurs). En attente : compétences motion design de Julien, puis import des pubs et de la vidéo du site.
 - ⬜ Vidéo de présentation arabe classique
 
 ## Étape 3 — Prospection (toi)
