@@ -8,7 +8,6 @@
 > - l'adresse du siège *(celle de ton agent de formation compte)*
 > - le numéro d'immatriculation de l'État + l'EIN
 > - le numéro de TVA, une fois le guichet unique obtenu
-> - l'adresse du siège de Netlify — **à copier sur leur page légale**, pas de mémoire
 
 ---
 
@@ -35,9 +34,9 @@ américain *(Limited Liability Company)* immatriculée dans l'État de
 
 ## L'hébergeur du site
 
-**Netlify, Inc.**
-[Adresse du siège — à recopier depuis la page légale de Netlify]
-États-Unis · `netlify.com`
+**Cloudflare, Inc.**
+101 Townsend St., San Francisco, CA 94107, États-Unis
++1 (650) 319-8930 · `cloudflare.com`
 
 ## La marque
 

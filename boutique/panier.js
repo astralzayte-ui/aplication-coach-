@@ -19,7 +19,7 @@
     return vieux || { v: '', le: Date.now() };
   }
 
-  /* ---------- 2. le comptage → /api/clic (netlify/functions/clic.mjs) ---------- */
+  /* ---------- 2. le comptage → /api/clic (functions/api/clic.js) ---------- */
   function compter(quoi, extra) {
     var s = source(), corps = { quoi: quoi, v: s.v, page: location.pathname };
     for (var k in (extra || {})) corps[k] = extra[k];

@@ -135,14 +135,10 @@
 
   function envoyerLettre(email, source) {
     var accord = 'oui — ' + new Date().toISOString();   // la preuve de l'accord, datée
-    var corps = 'form-name=newsletter&email=' + encodeURIComponent(email) + '&source=' + encodeURIComponent(source) +
-      '&accord=' + encodeURIComponent(accord);
-    // 1. la copie de sécurité chez Netlify  2. Brevo : la liste + l'e-mail de bienvenue avec le code
+    // /api/inscription : la copie de sécurité + Brevo (la liste + l'e-mail de bienvenue avec le code)
     var v = ''; try { v = (JSON.parse(localStorage.getItem('silence.source')) || {}).v || ''; } catch (e) {}
-    fetch('/api/inscription', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+    return fetch('/api/inscription', { method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: email, source: source, accord: accord, v: v }) }).catch(function () {});
-    return fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: corps })
-      .catch(function () {});
   }
 
   function activerCode() {

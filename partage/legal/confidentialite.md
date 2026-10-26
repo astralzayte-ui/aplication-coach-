@@ -58,7 +58,7 @@ Le strict nécessaire, et rien de plus :
 | **[Prestataire de paiement]** | encaisser ta carte |
 | **[Transporteur]** | te livrer — nom, adresse, téléphone |
 | **Notre fournisseur logistique, [pays]** | préparer et expédier ton colis |
-| **Netlify** | héberger le site |
+| **Cloudflare** | héberger le site, garder les chiffres de visite (sans aucune donnée sur toi) et une copie de sécurité de ton inscription aux nouveautés |
 | **Brevo** (France) | t'envoyer nos e-mails, si tu as coché la case — ton e-mail et la date de ton accord |
 
 🔴 **Nous ne vendons, ne louons et n'échangeons tes données avec personne.**
