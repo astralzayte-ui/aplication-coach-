@@ -1,5 +1,7 @@
 // Tout ce qui change d'un secteur ou d'une langue à l'autre est ici.
-// Pour passer aux restaurants : copier `salonAr`, changer les textes, les vidéos (public/ads) et le site (public/site).
+// Pour passer aux restaurants : copier `salonFr` ou `salonAr`, changer les textes, les vidéos (public/ads) et le site (public/site).
+// Le minutage (durée des scènes, début des sous-titres) vient de minutage.json, calculé par voix.py à partir des voix off.
+import minutage from './minutage.json';
 
 export type Sub = { de: number; a: number; texte: string };
 export type Pub3 = { fichier: string; vues: string; debut: number };
@@ -7,8 +9,9 @@ export type Pub3 = { fichier: string; vues: string; debut: number };
 export type Config = {
   rtl: boolean;
   police: string;
-  voix: string[]; // public/voice/a0.wav ... une ligne par scène
+  voix: string[]; // une voix par scène
   musique: string;
+  durees: number[]; // durée de chaque scène (frames)
   sousTitres: Sub[][]; // une liste par scène (frames locales à la scène)
   heure: string;
   chat: {
@@ -24,43 +27,35 @@ export type Config = {
   scene2: { chrono: string; temps: string; tempsLegende: string; canaux: string };
   scene3: { titre: string; vues: string; videos: Pub3[] };
   scene4: { titre: string; site: string; boutonY: number; confirme: string; detail: string };
-  scene5: { slogan: string; prix: string; prixLegende: string; engagement: string; cta: string };
+  scene5: { slogan: string; aPartir: string; prix: string; prixLegende: string; engagement: string; cta: string };
 };
+
+type Minutage = { durees: number[]; debuts: number[][]; fins: number[] };
+
+// Associe les textes des sous-titres au minutage calculé
+const sous = (m: Minutage, textes: string[][]): Sub[][] =>
+  textes.map((ligne, i) =>
+    ligne.map((texte, j) => ({ de: m.debuts[i][j], a: j + 1 < ligne.length ? m.debuts[i][j + 1] - 1 : m.fins[i], texte })));
+
+const videos: Pub3[] = [
+  { fichier: 'ads/complex.mp4', vues: '3.9M', debut: 0 },
+  { fichier: 'ads/golden.mp4', vues: '6.3M', debut: 0 },
+  { fichier: 'ads/djeph.mp4', vues: '774K', debut: 60 },
+];
 
 export const salonAr: Config = {
   rtl: true,
   police: 'Cairo',
-  voix: ['voice/a0.wav', 'voice/a1.wav', 'voice/a2.wav', 'voice/a3.wav', 'voice/a4.wav'],
+  voix: ['voice/ar0.wav', 'voice/ar1.wav', 'voice/ar2.wav', 'voice/ar3.wav', 'voice/ar4.wav'],
   musique: 'music/m872.mp3',
-  sousTitres: [
-    [
-      { de: 6, a: 80, texte: 'الساعة الحادية عشرة ليلاً.' },
-      { de: 85, a: 155, texte: 'زبونة تكتب لصالونكم...' },
-      { de: 160, a: 200, texte: 'ولا أحد يرد.' },
-      { de: 206, a: 262, texte: 'فتحجز عند غيركم.' },
-    ],
-    [
-      { de: 6, a: 48, texte: 'مع ساهر ديجيتال،' },
-      { de: 51, a: 150, texte: 'يرد ذكاء اصطناعي مكانكم في خمس ثوانٍ،' },
-      { de: 154, a: 248, texte: 'على واتساب وإنستغرام، ليلاً ونهاراً.' },
-      { de: 252, a: 342, texte: 'وتربحون حتى ساعتين كل يوم.' },
-    ],
-    [
-      { de: 6, a: 84, texte: 'ونصنع لكم فيديوهات مثل هذه،' },
-      { de: 86, a: 146, texte: 'تحصد ملايين المشاهدات،' },
-      { de: 146, a: 236, texte: 'وننشرها لكم كل أسبوع.' },
-    ],
-    [
-      { de: 6, a: 60, texte: 'وموقعاً احترافياً،' },
-      { de: 64, a: 104, texte: 'ترى فيه زبوناتكم أسعاركم،' },
-      { de: 106, a: 200, texte: 'وتحجز بنقرة واحدة.' },
-    ],
-    [
-      { de: 6, a: 82, texte: 'ابتداءً من مئة درهم في الأسبوع،' },
-      { de: 86, a: 130, texte: 'وبدون التزام.' },
-      { de: 135, a: 250, texte: 'ردّوا بكلمة «نعم» على هذه الرسالة.' },
-    ],
-  ],
+  durees: minutage.ar.durees,
+  sousTitres: sous(minutage.ar, [
+    ['الساعة الحادية عشرة ليلاً.', 'زبونة تكتب لصالونكم...', 'ولا أحد يرد.', 'فتحجز عند غيركم.'],
+    ['مع ساهر ديجيتال،', 'يرد ذكاء اصطناعي مكانكم في خمس ثوانٍ،', 'على واتساب وإنستغرام، ليلاً ونهاراً.', 'وتربحون حتى ساعتين كل يوم.'],
+    ['ونصنع لكم فيديوهات مثل هذه،', 'تحصد ملايين المشاهدات،', 'وننشرها لكم كل أسبوع.'],
+    ['وموقعاً احترافياً،', 'ترى فيه زبوناتكم أسعاركم،', 'وتحجز بنقرة واحدة.'],
+    ['ابتداءً من مئة درهم في الأسبوع،', 'وبدون التزام.', 'ردّوا بكلمة «نعم» على هذه الرسالة.'],
+  ]),
   heure: '23:14',
   chat: {
     contact: 'زبونة جديدة',
@@ -73,15 +68,7 @@ export const salonAr: Config = {
   },
   scene1: { perdue: 'حجزت عند صالون آخر', sansReponse: 'بدون رد' },
   scene2: { chrono: 'الرد في', temps: 'ساعتين', tempsLegende: 'تربحونها كل يوم', canaux: '24/24' },
-  scene3: {
-    titre: 'فيديوهات بملايين المشاهدات',
-    vues: 'مشاهدة',
-    videos: [
-      { fichier: 'ads/complex.mp4', vues: '3.9M', debut: 0 },
-      { fichier: 'ads/golden.mp4', vues: '6.3M', debut: 0 },
-      { fichier: 'ads/djeph.mp4', vues: '774K', debut: 60 },
-    ],
-  },
+  scene3: { titre: 'فيديوهات بملايين المشاهدات', vues: 'مشاهدة', videos },
   scene4: {
     titre: 'موقع يحوّل الزوار إلى زبونات',
     site: 'site/site.png',
@@ -91,9 +78,51 @@ export const salonAr: Config = {
   },
   scene5: {
     slogan: 'أنتم نائمون، وساهر يسهر على عملكم',
+    aPartir: 'ابتداءً من',
     prix: '100',
     prixLegende: 'درهم / الأسبوع',
     engagement: 'بدون التزام',
     cta: 'ردّوا بكلمة «نعم»',
+  },
+};
+
+export const salonFr: Config = {
+  ...salonAr,
+  rtl: false,
+  voix: ['voice/fr0.wav', 'voice/fr1.wav', 'voice/fr2.wav', 'voice/fr3.wav', 'voice/fr4.wav'],
+  durees: minutage.fr.durees,
+  sousTitres: sous(minutage.fr, [
+    ['Il est 23 heures.', 'Une cliente écrit à votre salon...', 'Personne ne répond.', 'Alors, elle réserve ailleurs.'],
+    ['Avec Sahir Digital,', 'une IA répond à votre place en 5 secondes,', 'sur WhatsApp et Instagram, jour et nuit.', "Et vous gagnez jusqu'à 2 heures par jour."],
+    ['On crée pour vous des vidéos comme celles-ci,', 'qui font des millions de vues.', 'Et on les publie chaque semaine.'],
+    ['Et un site professionnel,', 'où vos clientes voient vos prix,', 'et réservent en un clic.'],
+    ['À partir de 100 DH par semaine,', 'sans engagement.', 'Répondez OUI à ce message.'],
+  ]),
+  chat: {
+    contact: 'Nouvelle cliente',
+    enLigne: 'en ligne',
+    question: 'Bonsoir, vous avez une place demain pour un brushing ?',
+    reponse: 'Bonsoir ! Oui, demain nous avons 10h00 ou 15h00. Le brushing est à 80 DH. Je vous réserve ?',
+    choix: '15h00 svp',
+    confirmation: "C'est réservé : demain à 15h00. À demain !",
+    ecrit: "L'IA écrit...",
+  },
+  scene1: { perdue: 'Elle a réservé ailleurs', sansReponse: 'Sans réponse' },
+  scene2: { chrono: 'Réponse en', temps: '2 heures', tempsLegende: 'gagnées chaque jour', canaux: '24/24' },
+  scene3: { titre: 'Des vidéos à des millions de vues', vues: 'vues', videos },
+  scene4: {
+    titre: 'Un site qui fait réserver',
+    site: 'site/site.png',
+    boutonY: 710,
+    confirme: 'Réservation confirmée',
+    detail: 'Demain - 15h00',
+  },
+  scene5: {
+    slogan: 'Vous dormez, Sahir veille sur votre salon',
+    aPartir: 'À partir de',
+    prix: '100',
+    prixLegende: 'DH / semaine',
+    engagement: 'Sans engagement',
+    cta: 'Répondez « OUI »',
   },
 };

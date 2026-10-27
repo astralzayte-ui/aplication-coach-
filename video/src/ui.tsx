@@ -33,7 +33,7 @@ export const Fond: React.FC<{ lune?: number }> = ({ lune = 1 }) => {
         <div key={i} style={{ position: 'absolute', left: e.x, top: e.y, width: e.t, height: e.t, borderRadius: '50%', background: '#fff',
           opacity: 0.25 + 0.75 * Math.abs(Math.sin(f / 22 + e.p)) }} />
       ))}
-      <div style={{ opacity: lune }}><Lune x={880} y={150} taille={120} /></div>
+      <div style={{ opacity: lune }}><Lune x={975} y={115} taille={84} /></div>
     </AbsoluteFill>
   );
 };
@@ -68,19 +68,30 @@ export const Telephone: React.FC<{ x?: number; y?: number; s?: number; rx?: numb
   </div>
 );
 
-// ---------- Sous-titres ----------
+// ---------- Sous-titres : les mots apparaissent au rythme de la voix, le mot dit en doré ----------
 export const SousTitres: React.FC<{ liste: Sub[]; police: string; rtl: boolean }> = ({ liste, police, rtl }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
   const s = liste.find((x) => f >= x.de && f < x.a);
   if (!s) return null;
   const p = pop(f, s.de, fps, 14);
+  const mots = s.texte.split(' ');
+  const parle = Math.max(10, s.a - s.de - 8); // frames pendant lesquelles la phrase est dite
+  const instant = (k: number) => s.de + (mots.slice(0, k).join(' ').length / s.texte.length) * parle;
   return (
-    <div style={{ position: 'absolute', left: 50, right: 50, top: 1590, display: 'flex', justifyContent: 'center' }}>
-      <div style={{ direction: rtl ? 'rtl' : 'ltr', fontFamily: police, fontWeight: 900, fontSize: 62, lineHeight: 1.35, color: '#fff', textAlign: 'center',
-        background: 'rgba(5,5,20,0.62)', border: '2px solid rgba(242,207,122,0.45)', borderRadius: 30, padding: '14px 34px',
-        textShadow: '0 3px 10px rgba(0,0,0,0.6)', transform: `scale(${0.85 + 0.15 * p}) translateY(${(1 - p) * 30}px)`, opacity: p }}>
-        {s.texte}
+    <div style={{ position: 'absolute', left: 40, right: 40, top: 1560, display: 'flex', justifyContent: 'center' }}>
+      <div style={{ direction: rtl ? 'rtl' : 'ltr', fontFamily: police, fontWeight: 900, fontSize: 66, lineHeight: 1.3, color: '#fff', textAlign: 'center',
+        background: 'rgba(5,5,20,0.66)', border: '2px solid rgba(242,207,122,0.45)', borderRadius: 30, padding: '12px 28px',
+        textShadow: '0 3px 10px rgba(0,0,0,0.6)', transform: `scale(${0.85 + 0.15 * p})`, opacity: Math.min(1, p * 1.5) }}>
+        {mots.map((m, i) => {
+          const t = instant(i);
+          const q = spring({ frame: f - t, fps, config: { damping: 11, stiffness: 220, mass: 0.5 } });
+          const dit = f >= t && (i === mots.length - 1 || f < instant(i + 1));
+          return (
+            <span key={i} style={{ display: 'inline-block', marginInline: 8, opacity: f < t ? 0 : 1, color: dit ? OR : '#fff',
+              transform: `translateY(${(1 - q) * 22}px) scale(${0.6 + 0.4 * q})` }}>{m}</span>
+          );
+        })}
       </div>
     </div>
   );
@@ -92,7 +103,7 @@ export const Titre: React.FC<{ texte: string; police: string; rtl: boolean; de?:
   const p = pop(f, de, fps, 15);
   return (
     <div style={{ position: 'absolute', left: 40, right: 40, top: y, textAlign: 'center', direction: rtl ? 'rtl' : 'ltr', fontFamily: police, fontWeight: 900,
-      fontSize: 66, color: OR, textShadow: '0 0 30px rgba(242,207,122,0.45)', opacity: p, transform: `translateY(${(1 - p) * -40}px)` }}>
+      fontSize: 66, lineHeight: 1.2, color: OR, textShadow: '0 0 30px rgba(242,207,122,0.45)', opacity: p, transform: `translateY(${(1 - p) * -40}px)` }}>
       {texte}
     </div>
   );
