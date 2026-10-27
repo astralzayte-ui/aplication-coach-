@@ -132,6 +132,13 @@ export const IconeInstagram: React.FC<{ taille: number }> = ({ taille }) => (
   </svg>
 );
 
+// Message privé (avion en papier) : pour « envoyez oui en privé »
+export const IconeMessage: React.FC<{ taille: number }> = ({ taille }) => (
+  <svg width={taille} height={taille} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinejoin="round">
+    <path d="M22 2L11 13" /><path d="M22 2l-7 20-4-9-9-4 20-7z" />
+  </svg>
+);
+
 export const IconeOeil: React.FC<{ taille: number; couleur?: string }> = ({ taille, couleur = '#fff' }) => (
   <svg width={taille} height={taille} viewBox="0 0 24 24"><path d="M12 5C6 5 2 12 2 12s4 7 10 7 10-7 10-7-4-7-10-7zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" fill={couleur} /></svg>
 );

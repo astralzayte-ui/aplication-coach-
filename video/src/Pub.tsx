@@ -2,10 +2,10 @@ import React from 'react';
 import {
   AbsoluteFill, Audio, Img, OffthreadVideo, Sequence, continueRender, delayRender, interpolate, staticFile, useCurrentFrame, useVideoConfig,
 } from 'remotion';
-import type { Config } from './config';
+import type { Config, TypeScene } from './config';
 import { Chat, ChatVocal } from './Chat';
 import {
-  Fond, IconeCoche, IconeCroix, IconeHorloge, IconeInstagram, IconeOeil, IconeWhatsApp, Lune, OR, SousTitres, Telephone, Titre, VERT, lisse, pop,
+  Fond, IconeCoche, IconeCroix, IconeHorloge, IconeInstagram, IconeMessage, IconeOeil, IconeWhatsApp, Lune, OR, SousTitres, Telephone, Titre, VERT, lisse, pop,
 } from './ui';
 
 // Polices (chargées avant le rendu)
@@ -34,9 +34,9 @@ const Son: React.FC<{ src: 'pop' | 'ding' | 'whoosh'; de: number; volume?: numbe
 );
 
 // Entrée en zoom avec flou, léger travelling avant, sortie rapide
-const Transition: React.FC<{ duree: number; children: React.ReactNode }> = ({ duree, children }) => {
+const Transition: React.FC<{ duree: number; premiere: boolean; children: React.ReactNode }> = ({ duree, premiere, children }) => {
   const f = useCurrentFrame();
-  const entree = lisse(f, 0, 9, 0, 1);
+  const entree = premiere ? 1 : lisse(f, 0, 9, 0, 1);
   const sortie = interpolate(f, [duree - 6, duree], [0, 1], clamp);
   const echelle = 1.22 - 0.22 * entree + 0.04 * (f / duree) + 0.08 * sortie;
   return (
@@ -53,40 +53,48 @@ const Scene1: React.FC<Props> = ({ cfg, duree, st }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
   const dir = cfg.rtl ? 'rtl' : 'ltr';
-  const heure = pop(f, 0, fps, 10);
-  const entree = pop(f, 2, fps, 13);
+  const a = st[st.length - 2]; // « personne ne répond »
+  const b = st[st.length - 1]; // « elle réserve ailleurs »
+  const heure = pop(f, -8, fps, 10); // déjà presque en place dès la 1re image (l'accroche)
+  const entree = pop(f, -6, fps, 13);
   const vibre = f >= 10 && f < 24 ? Math.sin((f - 10) * 2.2) * (24 - f) * 0.35 : 0;
-  const perdue = pop(f, st[3], fps, 9);
-  const gris = lisse(f, st[3], st[3] + 12, 0, 1);
+  const perdue = pop(f, b, fps, 9);
+  const gris = lisse(f, b, b + 12, 0, 1);
   return (
     <AbsoluteFill>
       <Son src="ding" de={10} volume={0.4} />
-      <Son src="pop" de={st[2]} volume={0.35} />
-      <Son src="pop" de={st[3]} volume={0.55} />
+      <Son src="pop" de={a} volume={0.35} />
+      <Son src="pop" de={b} volume={0.55} />
       <div style={{ position: 'absolute', top: 110, width: '100%', textAlign: 'center', fontFamily: 'Inter', fontWeight: 800, fontSize: 160, color: OR,
         letterSpacing: 6, textShadow: '0 0 50px rgba(242,207,122,0.6)', opacity: Math.min(1, heure * 2), transform: `scale(${2.2 - 1.2 * heure + 0.03 * Math.sin(f / 8)})` }}>
         {cfg.heure}
       </div>
+      {cfg.scene1.accroche && f < b && (
+        <div style={{ position: 'absolute', top: 300, width: '100%', display: 'flex', justifyContent: 'center' }}>
+          <div style={{ fontFamily: cfg.police, fontWeight: 900, fontSize: 58, color: '#fff', background: '#e5383b', borderRadius: 40, padding: '6px 36px',
+            direction: dir, boxShadow: '0 15px 40px rgba(229,56,59,0.5)', transform: `scale(${pop(f, 6, fps, 9)})` }}>{cfg.scene1.accroche}</div>
+        </div>
+      )}
       <AbsoluteFill style={{ filter: `grayscale(${gris}) brightness(${1 - 0.25 * gris})` }}>
         <Telephone y={(1 - entree) * 900 + 70 + Math.sin(f / 18) * 10} s={1 + 0.06 * lisse(f, 10, 40, 0, 1)} rx={8} ry={lisse(f, 0, duree, -32, -10)} rz={-2 + vibre}>
-          <Chat cfg={cfg} t={{ question: 10, perdue: st[3] }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)', opacity: lisse(f, st[2], st[2] + 20, 0, 1) }} />
+          <Chat cfg={cfg} t={{ question: 10, perdue: b }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)', opacity: lisse(f, a, a + 20, 0, 1) }} />
         </Telephone>
       </AbsoluteFill>
-      {f >= st[2] && (
+      {f >= a && (
         <div style={{ position: 'absolute', top: 1270, width: '100%', display: 'flex', justifyContent: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, direction: dir, fontFamily: cfg.police, fontWeight: 900, fontSize: 48, color: '#fff',
             background: 'rgba(30,30,50,0.9)', border: '2px solid rgba(255,255,255,0.25)', borderRadius: 40, padding: '8px 34px',
-            transform: `scale(${pop(f, st[2], fps, 10)})` }}>
-            <IconeHorloge taille={48} couleur="#aaa" angle={(f - st[2]) * 18} />{cfg.scene1.sansReponse}
+            transform: `scale(${pop(f, a, fps, 10)})` }}>
+            <IconeHorloge taille={48} couleur="#aaa" angle={(f - a) * 18} />{cfg.scene1.sansReponse}
           </div>
         </div>
       )}
-      {f >= st[3] && (
+      {f >= b && (
         <div style={{ position: 'absolute', top: 370, width: '100%', display: 'flex', justifyContent: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, direction: dir, background: '#e5383b', color: '#fff', fontFamily: cfg.police,
             fontWeight: 900, fontSize: 54, borderRadius: 50, padding: '14px 40px', boxShadow: '0 20px 50px rgba(229,56,59,0.6)',
-            transform: `scale(${perdue}) rotate(${(1 - perdue) * -14 + Math.sin(f / 3) * (f < st[3] + 14 ? 2 : 0)}deg)` }}>
+            transform: `scale(${perdue}) rotate(${(1 - perdue) * -14 + Math.sin(f / 3) * (f < b + 14 ? 2 : 0)}deg)` }}>
             <IconeCroix taille={50} />{cfg.scene1.perdue}
           </div>
         </div>
@@ -101,23 +109,27 @@ const Scene2: React.FC<Props> = ({ cfg, st }) => {
   const { fps } = useVideoConfig();
   const dir = cfg.rtl ? 'rtl' : 'ltr';
   const t = { question: -100, ecrit: [6, 22] as [number, number], reponse: 22, choix: 44, confirmation: 64 };
-  const glisse = lisse(f, st[2] - 4, st[2] + 18, 0, 1);
+  const k = st[Math.min(2, st.length - 1)]; // moment où le téléphone glisse et où les icônes arrivent
+  const avecIg = cfg.ia?.instagram ?? true;
+  const avecCompteur = (cfg.ia?.compteur ?? true) && st.length > 3;
+  const c = avecCompteur ? st[3] : 99999;
+  const glisse = lisse(f, k - 4, k + 18, 0, 1);
   const secondes = interpolate(f, [6, 22], [0, 5], clamp);
   const fini = pop(f, 22, fps, 8);
-  const iconeWa = pop(f, st[2], fps, 9);
-  const iconeIg = pop(f, st[2] + 8, fps, 9);
-  const compteur = pop(f, st[3], fps, 10);
-  const minutes = Math.round(interpolate(f, [st[3] + 4, st[3] + 40], [0, 120], clamp));
+  const iconeWa = pop(f, k, fps, 9);
+  const iconeIg = pop(f, k + 8, fps, 9);
+  const compteur = pop(f, c, fps, 10);
+  const minutes = Math.round(interpolate(f, [c + 4, c + 40], [0, 120], clamp));
   const hh = `${Math.floor(minutes / 60)}:${String(minutes % 60).padStart(2, '0')}`;
   return (
     <AbsoluteFill>
       <Son src="pop" de={t.reponse} />
       <Son src="pop" de={t.choix} volume={0.4} />
       <Son src="ding" de={t.confirmation} volume={0.35} />
-      <Son src="pop" de={st[2]} />
-      <Son src="pop" de={st[2] + 8} />
-      <Son src="whoosh" de={st[3] - 4} volume={0.3} />
-      {f < st[2] + 6 && (
+      <Son src="pop" de={k} />
+      {avecIg && <Son src="pop" de={k + 8} />}
+      {avecCompteur && <Son src="whoosh" de={c - 4} volume={0.3} />}
+      {f < k + 6 && (
         <div style={{ position: 'absolute', top: 140, width: '100%', display: 'flex', justifyContent: 'center', opacity: 1 - glisse,
           transform: `scale(${pop(f, 2, fps, 10) * (1 + 0.12 * fini * Math.max(0, 1 - (f - 22) / 12))})` }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 18, background: 'rgba(37,211,102,0.18)', border: `3px solid ${VERT}`, borderRadius: 60,
@@ -135,15 +147,15 @@ const Scene2: React.FC<Props> = ({ cfg, st }) => {
         <div style={{ transform: `scale(${iconeWa}) rotateY(${(1 - iconeWa) * 180 + Math.sin(f / 14) * 25}deg) translateY(${Math.sin(f / 11) * 14}px)`,
           filter: 'drop-shadow(0 20px 40px rgba(37,211,102,0.55))' }}><IconeWhatsApp taille={230} /></div>
       </div>
-      <div style={{ position: 'absolute', left: 760, top: 810, perspective: 1200 }}>
+      {avecIg && <div style={{ position: 'absolute', left: 760, top: 810, perspective: 1200 }}>
         <div style={{ transform: `scale(${iconeIg}) rotateY(${(1 - iconeIg) * -180 + Math.cos(f / 14) * 25}deg) translateY(${Math.cos(f / 11) * 14}px)`,
           filter: 'drop-shadow(0 20px 40px rgba(214,41,118,0.55))' }}><IconeInstagram taille={200} /></div>
-      </div>
-      {f >= st[2] && (
-        <div style={{ position: 'absolute', left: 650, top: 1075, fontFamily: 'Inter', fontWeight: 900, fontSize: 92, color: '#fff', opacity: iconeIg,
-          transform: `scale(${iconeIg})`, textShadow: '0 0 30px rgba(255,255,255,0.35)' }}>{cfg.scene2.canaux}</div>
+      </div>}
+      {f >= k && (
+        <div style={{ position: 'absolute', left: 650, top: avecIg ? 1075 : 800, fontFamily: 'Inter', fontWeight: 900, fontSize: 92, color: '#fff', opacity: avecIg ? iconeIg : iconeWa,
+          transform: `scale(${avecIg ? iconeIg : iconeWa})`, textShadow: '0 0 30px rgba(255,255,255,0.35)' }}>{cfg.scene2.canaux}</div>
       )}
-      {f >= st[3] && (
+      {f >= c && (
         <div style={{ position: 'absolute', left: 540, right: 10, top: 1230, display: 'flex', justifyContent: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 22, background: 'linear-gradient(135deg,#2a2150,#3b1f4f)', border: `3px solid ${OR}`,
             borderRadius: 40, padding: '16px 24px', transform: `scale(${compteur * (minutes === 120 ? 1 + 0.04 * Math.sin(f / 4) : 1)})`,
@@ -321,14 +333,16 @@ const Scene5: React.FC<Props> = ({ cfg, st }) => {
   const carte = pop(f, 4, fps, 10);
   const prix = Math.round(interpolate(f, [6, 26], [0, Number(cfg.scene5.prix)], { ...clamp, easing: (x) => 1 - Math.pow(1 - x, 3) }));
   const reflet = interpolate(f, [26, 46], [-120, 220], clamp);
-  const engagement = pop(f, st[1], fps, 10);
-  const cta = pop(f, st[2], fps, 8);
-  const pulse = f > st[2] + 12 ? 1 + 0.06 * Math.sin((f - st[2] - 12) / 4) : 1;
+  const e = st.length >= 3 ? st[1] : 26; // « sans engagement » : dit, ou affiché sans être dit
+  const ap = st.length >= 2 ? st[st.length - 1] : 24; // appel à l'action
+  const engagement = pop(f, e, fps, 10);
+  const cta = pop(f, ap, fps, 8);
+  const pulse = f > ap + 12 ? 1 + 0.06 * Math.sin((f - ap - 12) / 4) : 1;
   const s = cfg.scene5;
   return (
     <AbsoluteFill>
-      <Son src="pop" de={st[1]} volume={0.45} />
-      <Son src="ding" de={st[2]} volume={0.45} />
+      <Son src="pop" de={e} volume={0.45} />
+      <Son src="ding" de={ap} volume={0.45} />
       <div style={{ position: 'absolute', top: 110, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', opacity: Math.min(1, logo * 1.5),
         transform: `scale(${0.6 + 0.4 * logo})` }}>
         <div style={{ position: 'relative', width: 140, height: 140 }}><Lune x={84} y={70} taille={110} /></div>
@@ -346,7 +360,7 @@ const Scene5: React.FC<Props> = ({ cfg, st }) => {
           <div style={{ fontFamily: cfg.police, fontWeight: 900, fontSize: 56, color: '#fff', direction: dir }}>{s.prixLegende}</div>
         </div>
       </div>
-      {f >= st[1] && (
+      {f >= e && (
         <div style={{ position: 'absolute', top: 1140, width: '100%', display: 'flex', justifyContent: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, direction: dir, background: 'rgba(255,255,255,0.12)', borderRadius: 40, padding: '10px 34px',
             transform: `scale(${engagement})` }}>
@@ -356,11 +370,11 @@ const Scene5: React.FC<Props> = ({ cfg, st }) => {
           </div>
         </div>
       )}
-      {f >= st[2] && (
+      {f >= ap && (
         <div style={{ position: 'absolute', top: 1320, width: '100%', display: 'flex', justifyContent: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 22, direction: dir, background: VERT, borderRadius: 70, padding: '20px 50px',
             boxShadow: `0 0 ${40 + 25 * Math.sin(f / 4)}px rgba(37,211,102,0.8)`, transform: `scale(${cta * pulse})` }}>
-            <IconeWhatsApp taille={84} />
+            {s.ctaMessage ? <IconeMessage taille={74} /> : <IconeWhatsApp taille={84} />}
             <span style={{ fontFamily: cfg.police, fontWeight: 900, fontSize: 64, color: '#fff' }}>{s.cta}</span>
           </div>
           <div style={{ position: 'absolute', top: 150, width: '100%', textAlign: 'center', fontFamily: cfg.police, fontWeight: 700, fontSize: 42, color: '#fff',
@@ -371,22 +385,98 @@ const Scene5: React.FC<Props> = ({ cfg, st }) => {
   );
 };
 
-const SCENE_COMPOSANTS = [Scene1, Scene2, SceneVocal, Scene3, Scene4, Scene5];
+// ---------- Notifications qui s'empilent pendant que la gérante travaille ----------
+const IconeCiseaux: React.FC<{ taille: number }> = ({ taille }) => (
+  <svg width={taille} height={taille} viewBox="0 0 24 24" fill="none" stroke={OR} strokeWidth="2" strokeLinecap="round">
+    <circle cx="6" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M20 4L8.1 15.9M14.5 14.5L20 20M8.1 8.1L12 12" />
+  </svg>
+);
+
+const SceneNotifs: React.FC<Props> = ({ cfg, duree, st }) => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const dir = cfg.rtl ? 'rtl' : 'ltr';
+  const n = cfg.notifs!;
+  const fin = st[st.length - 1]; // « qui va répondre ? »
+  const total = n.liste.length;
+  // les 3 premières tombent tout de suite (l'accroche), les autres jusqu'à la dernière phrase
+  const arrivees = n.liste.map((_, i) => Math.round(i < 3 ? -8 + i * 7 : 16 + (fin - 22) * ((i - 2) / (total - 2))));
+  const recues = arrivees.filter((x) => f >= x).length;
+  const derniere = arrivees[Math.max(0, recues - 1)];
+  const vibre = recues > 0 && f - derniere < 8 ? Math.sin((f - derniere) * 2.5) * (8 - (f - derniere)) * 0.6 : 0;
+  const question = pop(f, fin, fps, 9);
+  const H = 116; // hauteur d'une notification + espace
+  return (
+    <AbsoluteFill>
+      {arrivees.map((x, i) => <Son key={i} src={i % 3 === 0 ? 'ding' : 'pop'} de={x} volume={0.3} />)}
+      <div style={{ position: 'absolute', top: 140, width: '100%', textAlign: 'center', fontFamily: cfg.police, fontWeight: 900, fontSize: 76, color: OR,
+        direction: dir, textShadow: '0 0 30px rgba(242,207,122,0.45)', transform: `scale(${1.3 - 0.3 * pop(f, -3, fps, 10)})` }}>{n.accroche}</div>
+      <div style={{ position: 'absolute', top: 290, width: '100%', display: 'flex', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, direction: dir, background: 'rgba(255,255,255,0.1)', border: '2px solid rgba(242,207,122,0.4)',
+          borderRadius: 40, padding: '6px 28px', transform: `scale(${pop(f, 8, fps, 10)})` }}>
+          <IconeCiseaux taille={44} />
+          <span style={{ fontFamily: cfg.police, fontWeight: 900, fontSize: 42, color: '#fff' }}>{n.occupee}</span>
+        </div>
+      </div>
+      <Telephone y={90 + Math.sin(f / 18) * 8} s={0.98} rx={6} ry={lisse(f, 0, duree, -16, 8)} rz={vibre}>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg,#4a2470,#1b1035 60%,#0d0a1f)' }}>
+          <div style={{ position: 'absolute', top: 70, width: '100%', textAlign: 'center', fontFamily: cfg.police, fontWeight: 700, fontSize: 26, color: '#e0d6f0', direction: dir }}>{n.date}</div>
+          <div style={{ position: 'absolute', top: 100, width: '100%', textAlign: 'center', fontFamily: 'Inter', fontWeight: 700, fontSize: 118, color: '#fff' }}>{n.heureEcran}</div>
+          {n.liste.map((x, i) => {
+            if (f < arrivees[i]) return null;
+            const p = pop(f, arrivees[i], fps, 12);
+            // chaque nouvelle notification pousse les anciennes vers le bas
+            const y = arrivees.slice(i + 1).reduce((acc, a) => acc + pop(f, a, fps, 14) * H, 0);
+            return (
+              <div key={i} style={{ position: 'absolute', left: 14, right: 14, top: 270, height: H - 12, borderRadius: 26, background: 'rgba(255,255,255,0.17)',
+                display: 'flex', alignItems: 'center', gap: 14, padding: '0 16px', direction: dir,
+                opacity: p * interpolate(y, [4 * H, 5.5 * H], [1, 0], clamp) * (1 - 0.5 * lisse(f, fin, fin + 10, 0, 1)),
+                transform: `translateY(${y + (1 - p) * -80}px) scale(${0.85 + 0.15 * p})` }}>
+                {x.app === 'wa' ? <IconeWhatsApp taille={52} /> : <IconeInstagram taille={52} />}
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <span style={{ fontFamily: cfg.police, fontWeight: 900, fontSize: 25, color: '#fff' }}>{x.nom}</span>
+                    <span style={{ fontFamily: 'Inter', fontSize: 18, color: '#cfc6e0' }}>{cfg.rtl ? 'الآن' : 'maintenant'}</span>
+                  </div>
+                  <div style={{ fontFamily: cfg.police, fontWeight: 700, fontSize: 26, color: '#fff' }}>{x.texte}</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </Telephone>
+      {recues > 0 && (
+        <div style={{ position: 'absolute', left: 742, top: 520, width: 96, height: 96, borderRadius: 48, background: '#ff3b30', display: 'flex', alignItems: 'center',
+          justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 50, color: '#fff', boxShadow: '0 10px 30px rgba(255,59,48,0.6)',
+          transform: `scale(${1 + 0.25 * Math.max(0, 1 - (f - derniere) / 8)})` }}>{recues}</div>
+      )}
+      {f >= fin && (
+        <div style={{ position: 'absolute', right: 40, top: 760, fontFamily: 'Inter', fontWeight: 900, fontSize: 300, color: OR, lineHeight: 1,
+          textShadow: '0 0 50px rgba(242,207,122,0.6)', transform: `scale(${question * (1 + 0.06 * Math.sin(f / 4))}) rotate(${(1 - question) * 30}deg)` }}>?</div>
+      )}
+    </AbsoluteFill>
+  );
+};
+
+const SCENES: Record<TypeScene, React.FC<Props>> = { nuit: Scene1, ia: Scene2, vocal: SceneVocal, videos: Scene3, site: Scene4, prix: Scene5, notifs: SceneNotifs };
 
 export const Pub: React.FC<{ cfg: Config }> = ({ cfg }) => {
   const { durationInFrames } = useVideoConfig();
   const f = useCurrentFrame();
   const debuts = cfg.durees.map((_, i) => cfg.durees.slice(0, i).reduce((a, b) => a + b, 0));
+  // la lune du fond disparaît avant les scènes qui ont un titre ou un logo en haut
+  const k = cfg.scenes.findIndex((t) => t === 'videos' || t === 'site' || t === 'prix');
+  const finLune = k >= 0 ? debuts[k] : durationInFrames + 20;
   return (
     <AbsoluteFill style={{ backgroundColor: '#04071a' }}>
-      <Fond lune={interpolate(f, [debuts[3] - 10, debuts[3] + 4], [1, 0], clamp)} />
+      <Fond lune={interpolate(f, [finLune - 10, finLune + 4], [1, 0], clamp)} />
       <Audio src={staticFile(cfg.musique)} volume={(x) => interpolate(x, [0, 10, durationInFrames - 30, durationInFrames], [0, 0.2, 0.2, 0], clamp)} />
       {cfg.durees.map((duree, i) => {
-        const Comp = SCENE_COMPOSANTS[i];
+        const Comp = SCENES[cfg.scenes[i]];
         const st = cfg.sousTitres[i].map((s) => s.de);
         return (
           <Sequence key={i} from={debuts[i]} durationInFrames={duree}>
-            <Transition duree={duree}><Comp cfg={cfg} duree={duree} st={st} /></Transition>
+            <Transition duree={duree} premiere={i === 0}><Comp cfg={cfg} duree={duree} st={st} /></Transition>
             <SousTitres liste={cfg.sousTitres[i]} police={cfg.police} rtl={cfg.rtl} />
             <Sequence from={4} layout="none"><Audio src={staticFile(cfg.voix[i])} /></Sequence>
           </Sequence>

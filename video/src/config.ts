@@ -5,8 +5,11 @@ import minutage from './minutage.json';
 
 export type Sub = { de: number; a: number; texte: string };
 export type Pub3 = { fichier: string; vues: string; debut: number };
+export type TypeScene = 'nuit' | 'ia' | 'vocal' | 'videos' | 'site' | 'prix' | 'notifs';
+export type Notif = { app: 'wa' | 'ig'; nom: string; texte: string };
 
 export type Config = {
+  scenes: TypeScene[]; // l'ordre des scènes de la vidéo
   rtl: boolean;
   police: string;
   voix: string[]; // une voix par scène
@@ -23,12 +26,14 @@ export type Config = {
     confirmation: string;
     ecrit: string;
   };
-  scene1: { perdue: string; sansReponse: string };
+  scene1: { perdue: string; sansReponse: string; accroche?: string };
+  ia?: { instagram: boolean; compteur: boolean }; // par défaut : les deux
+  notifs?: { accroche: string; occupee: string; heureEcran: string; date: string; liste: Notif[] };
   scene2: { chrono: string; temps: string; tempsLegende: string; canaux: string };
   vocal: { titre: string; transcription: string; reponse: string; duree: string; langues: string[]; distance: string; etapes: string[] };
   scene3: { titre: string; vues: string; videos: Pub3[] };
   scene4: { titre: string; site: string; boutonY: number; confirme: string; detail: string };
-  scene5: { slogan: string; aPartir: string; prix: string; prixLegende: string; engagement: string; cta: string; ctaDetail: string };
+  scene5: { slogan: string; aPartir: string; prix: string; prixLegende: string; engagement: string; cta: string; ctaDetail: string; ctaMessage?: boolean };
 };
 
 type Minutage = { durees: number[]; debuts: number[][]; fins: number[] };
@@ -45,6 +50,7 @@ const videos: Pub3[] = [
 ];
 
 export const salonAr: Config = {
+  scenes: ['nuit', 'ia', 'vocal', 'videos', 'site', 'prix'],
   rtl: true,
   police: 'Cairo',
   voix: ['voice/ar0.wav', 'voice/ar1.wav', 'voice/ar2.wav', 'voice/ar3.wav', 'voice/ar4.wav', 'voice/ar5.wav'],
@@ -148,4 +154,48 @@ export const salonFr: Config = {
     cta: 'Répondez « OUI »',
     ctaDetail: 'pour en savoir plus',
   },
+};
+
+// ---------- Pubs de la semaine (scripts dans pubs/semaine-27-10.md) ----------
+// Même moule que la vidéo de présentation, mais 3 scènes et une fin « envoyez oui en privé ».
+const pub = (id: 'v01' | 'v02', scenes: TypeScene[], textes: string[][], extra: Partial<Config> = {}): Config => ({
+  ...salonAr,
+  scenes,
+  voix: scenes.map((_, i) => `voice/${id}${i}.wav`),
+  durees: minutage[id].durees,
+  sousTitres: sous(minutage[id], textes),
+  ia: { instagram: false, compteur: false },
+  scene5: { ...salonAr.scene5, cta: 'أرسلوا «نعم»', ctaDetail: 'في الخاص', ctaMessage: true },
+  ...extra,
+});
+
+export const pubs: Record<string, Config> = {
+  V01: pub('v01', ['nuit', 'ia', 'prix'], [
+    ['زبونة كتبت لصالونكم في منتصف الليل.', 'ولم يرد عليها أحد.', 'في الصباح، كانت قد حجزت عند صالون آخر.'],
+    ['مع ساهر ديجيتال،', 'يرد ذكاء اصطناعي مكانكم في خمس ثوانٍ،', 'ليلاً ونهاراً.'],
+    ['ابتداءً من مئة درهم في الأسبوع.', 'أرسلوا «نعم» في الخاص.'],
+  ], { scene1: { ...salonAr.scene1, accroche: 'رسالة بدون رد' } }),
+  V02: pub('v02', ['notifs', 'ia', 'prix'], [
+    ['أنتم مع زبونة...', 'والهاتف لا يتوقف عن الرنين.', 'رسائل، أسئلة، طلبات مواعيد...', 'من سيرد عليها؟'],
+    ['الذكاء الاصطناعي يرد مكانكم في خمس ثوانٍ،', 'وأنتم تركزون على عملكم.'],
+    ['أرسلوا «نعم» في الخاص لمعرفة المزيد.'],
+  ], {
+    heure: '14:32',
+    notifs: {
+      accroche: 'الهاتف لا يتوقف...',
+      occupee: 'مشغولة مع زبونة',
+      heureEcran: '14:32',
+      date: 'الثلاثاء 27 أكتوبر',
+      liste: [
+        { app: 'wa', nom: 'سلمى', texte: 'بشحال البروشينغ؟' },
+        { app: 'ig', nom: 'نور', texte: 'واش كاين بلاصة اليوم؟' },
+        { app: 'wa', nom: 'إيمان', texte: 'فين جايين بالضبط؟' },
+        { app: 'wa', nom: 'هدى', texte: 'بغيت نحجز للمانيكير' },
+        { app: 'ig', nom: 'مريم', texte: 'شحال ثمن الصباغة؟' },
+        { app: 'wa', nom: 'سارة', texte: 'واش حالين نهار الأحد؟' },
+        { app: 'wa', nom: 'خديجة', texte: 'عافاك جاوبيني' },
+        { app: 'ig', nom: 'ليلى', texte: 'كاين شي عرض؟' },
+      ],
+    },
+  }),
 };

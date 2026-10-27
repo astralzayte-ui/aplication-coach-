@@ -11,28 +11,40 @@ import re
 import subprocess
 
 FPS = 30
-TEMPO = {'ar': 1.3, 'fr': 1.2}  # vitesse de la voix par langue (1.2 = 20 % plus rapide)
+TEMPO = 1.3          # vitesse de la voix (1.3 = 30 % plus rapide) ; le français passe à 1.2
+TEMPO_FR = 1.2
 PAUSE = 0.10         # durée max d'une pause entre deux morceaux de phrase (s)
 DEBUT = 4            # frame où la voix démarre dans chaque scène
-QUEUE = [12, 10, 12, 10, 18, 45]  # frames gardées après la voix, par scène (temps de lecture de la fin)
 
-# Fichier source + début de chaque sous-titre dans le fichier d'origine (secondes, repérés aux pauses).
+# Pour chaque vidéo, une entrée par scène : fichier source, début de chaque sous-titre dans le fichier
+# d'origine (secondes, repérés aux pauses), frames gardées après la voix (temps de lecture).
 VOIX = {
     'ar': [
-        ('v0.mp3', [0, 2.77, 5.40, 6.99]),
-        ('v1.mp3', [0, 1.58, 5.17, 8.60]),
-        ('vvoc.mp3', [0, 2.39, 4.66]),
-        ('v2b.mp3', [0, 4.67, 8.44]),
-        ('v3.mp3', [0, 2.02, 3.50]),
-        ('v4b.mp3', [0, 2.87, 4.56]),
+        ('v0.mp3', [0, 2.77, 5.40, 6.99], 12),
+        ('v1.mp3', [0, 1.58, 5.17, 8.60], 10),
+        ('vvoc.mp3', [0, 2.39, 4.66], 12),
+        ('v2b.mp3', [0, 4.67, 8.44], 10),
+        ('v3.mp3', [0, 2.02, 3.50], 18),
+        ('v4b.mp3', [0, 2.87, 4.56], 45),
     ],
     'fr': [
-        ('f0.mp3', [0.11, 1.58, 4.04, 5.41]),
-        ('f1.mp3', [0, 1.52, 5.16, 7.85]),
-        ('fvoc.mp3', [0, 2.01, 3.97]),
-        ('f2b.mp3', [0, 2.81, 6.14]),
-        ('f3.mp3', [0, 1.64, 3.35]),
-        ('f4b.mp3', [0, 2.20, 3.47]),
+        ('f0.mp3', [0.11, 1.58, 4.04, 5.41], 12),
+        ('f1.mp3', [0, 1.52, 5.16, 7.85], 10),
+        ('fvoc.mp3', [0, 2.01, 3.97], 12),
+        ('f2b.mp3', [0, 2.81, 6.14], 10),
+        ('f3.mp3', [0, 1.64, 3.35], 18),
+        ('f4b.mp3', [0, 2.20, 3.47], 45),
+    ],
+    # Pubs de la semaine (pubs/semaine-27-10.md)
+    'v01': [
+        ('p01a.mp3', [0, 3.72, 5.79], 14),
+        ('p01b.mp3', [0, 1.59, 5.34], 10),
+        ('p01c.mp3', [0, 3.09], 40),
+    ],
+    'v02': [
+        ('p02a.mp3', [0, 1.65, 4.50, 7.88], 12),
+        ('p02b.mp3', [0, 4.24], 10),
+        ('p02c.mp3', [0], 40),
     ],
 }
 
@@ -83,13 +95,13 @@ def preparer(source, sortie, tempo):
 minutage = {}
 for langue, fichiers in VOIX.items():
     m = {'durees': [], 'debuts': [], 'fins': []}
-    for i, (source, coupes) in enumerate(fichiers):
+    for i, (source, coupes, queue) in enumerate(fichiers):
         sortie = f'public/voice/{langue}{i}.wav'
-        nouveau = preparer(f'public/voice/{source}', sortie, TEMPO[langue])
+        nouveau = preparer(f'public/voice/{source}', sortie, TEMPO_FR if langue == 'fr' else TEMPO)
         voix = round(duree(sortie) * FPS)
         m['debuts'].append([DEBUT + round(nouveau(c) * FPS) for c in coupes])
         m['fins'].append(DEBUT + voix + 6)
-        m['durees'].append(DEBUT + voix + QUEUE[i])
+        m['durees'].append(DEBUT + voix + queue)
     minutage[langue] = m
     print(langue, 'total', round(sum(m['durees']) / FPS, 1), 's', m['durees'])
 
