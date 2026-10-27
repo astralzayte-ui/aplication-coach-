@@ -207,7 +207,7 @@ export const RemakeAgence: React.FC = () => {
         <Plan src="c_talk1.mp4" />
         <Sequence durationInFrames={VOIX + CI.debuts[1]}><Texte texte="ماذا سننشر لصالون تجميل؟" y={170} taille={72} /></Sequence>
         <Sequence from={VOIX + CI.debuts[2]} durationInFrames={CI.debuts[3] - CI.debuts[2] + 4}>
-          <Texte texte="نعم" y={760} taille={200} />
+          <Texte texte="نعم" y={1020} taille={200} />
         </Sequence>
         <Sequence from={VOIX}><Legendes textes={TEXTES_CI} debuts={CI.debuts} fin={CI.duree} style="doux" y={1450} /></Sequence>
         <Sequence from={VOIX}><Audio src={R('c_intro.wav')} /></Sequence>
