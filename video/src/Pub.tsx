@@ -5,7 +5,7 @@ import {
 import type { Config, TypeScene } from './config';
 import { Chat, ChatVocal } from './Chat';
 import {
-  Fond, IconeCoche, IconeCroix, IconeHorloge, IconeInstagram, IconeMessage, IconeOeil, IconeWhatsApp, Lune, OR, SousTitres, Telephone, Titre, VERT, lisse, pop,
+  Fond, IconeCoche, IconeCroix, IconeHorloge, IconeInstagram, IconeMessage, IconeOeil, IconeWhatsApp, Lune, OR, Pouls, SousTitres, Telephone, Titre, VERT, lisse, pop,
 } from './ui';
 
 // Polices (chargées avant le rendu)
@@ -345,8 +345,8 @@ const Scene5: React.FC<Props> = ({ cfg, st }) => {
       <Son src="ding" de={ap} volume={0.45} />
       <div style={{ position: 'absolute', top: 110, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', opacity: Math.min(1, logo * 1.5),
         transform: `scale(${0.6 + 0.4 * logo})` }}>
-        <div style={{ position: 'relative', width: 140, height: 140 }}><Lune x={84} y={70} taille={110} /></div>
-        <div style={{ fontFamily: 'Inter', fontWeight: 900, fontSize: 84, color: '#fff', letterSpacing: 10, marginTop: 10 }}>SAHIR DIGITAL</div>
+        {cfg.marque.pouls ? <Pouls largeur={260} trace={lisse(f, 0, 24, 0, 1)} /> : <div style={{ position: 'relative', width: 140, height: 140 }}><Lune x={84} y={70} taille={110} /></div>}
+        <div style={{ fontFamily: 'Inter', fontWeight: 900, fontSize: 84, color: '#fff', letterSpacing: 10, marginTop: 10 }}>{cfg.marque.nom}</div>
         <div style={{ fontFamily: cfg.police, fontWeight: 700, fontSize: 40, color: OR, direction: dir, marginTop: 4 }}>{s.slogan}</div>
       </div>
       <div style={{ position: 'absolute', top: 620, width: '100%', display: 'flex', justifyContent: 'center', perspective: 1600 }}>
@@ -482,6 +482,10 @@ export const Pub: React.FC<{ cfg: Config }> = ({ cfg }) => {
           </Sequence>
         );
       })}
+      {cfg.marque.compte && (
+        <div style={{ position: 'absolute', top: 42, left: 44, fontFamily: 'Inter', fontWeight: 800, fontSize: 34, color: '#fff', opacity: 0.75,
+          textShadow: '0 2px 8px rgba(0,0,0,0.6)' }}>{cfg.marque.compte}</div>
+      )}
       {debuts.slice(1).map((d, i) => <Sequence key={i} from={d - 6} durationInFrames={20} layout="none"><Audio src={staticFile('sfx/whoosh.wav')} volume={0.3} /></Sequence>)}
       {debuts.slice(1).map((d, i) => f >= d && f < d + 5 && (
         <AbsoluteFill key={i} style={{ background: '#fff', opacity: 0.22 * (1 - (f - d) / 5), pointerEvents: 'none' }} />

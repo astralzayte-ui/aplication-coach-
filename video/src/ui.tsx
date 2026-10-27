@@ -132,6 +132,14 @@ export const IconeInstagram: React.FC<{ taille: number }> = ({ taille }) => (
   </svg>
 );
 
+// Logo Pulse Digital : une ligne de pouls dorée qui se trace
+export const Pouls: React.FC<{ largeur: number; trace: number }> = ({ largeur, trace }) => (
+  <svg width={largeur} height={largeur * 0.42} viewBox="0 0 100 42" style={{ filter: 'drop-shadow(0 0 12px rgba(242,207,122,0.7))' }}>
+    <path d="M2 24 H30 L36 10 L44 36 L52 4 L59 30 L64 24 H98" fill="none" stroke={OR} strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round"
+      pathLength={1} strokeDasharray={1} strokeDashoffset={1 - trace} />
+  </svg>
+);
+
 // Message privé (avion en papier) : pour « envoyez oui en privé »
 export const IconeMessage: React.FC<{ taille: number }> = ({ taille }) => (
   <svg width={taille} height={taille} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinejoin="round">

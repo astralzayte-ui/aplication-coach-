@@ -10,6 +10,7 @@ export type Notif = { app: 'wa' | 'ig'; nom: string; texte: string };
 
 export type Config = {
   scenes: TypeScene[]; // l'ordre des scènes de la vidéo
+  marque: { nom: string; compte?: string; pouls?: boolean }; // logo de fin ; compte = mention discrète en haut
   rtl: boolean;
   police: string;
   voix: string[]; // une voix par scène
@@ -51,6 +52,7 @@ const videos: Pub3[] = [
 
 export const salonAr: Config = {
   scenes: ['nuit', 'ia', 'vocal', 'videos', 'site', 'prix'],
+  marque: { nom: 'SAHIR DIGITAL' },
   rtl: true,
   police: 'Cairo',
   voix: ['voice/ar0.wav', 'voice/ar1.wav', 'voice/ar2.wav', 'voice/ar3.wav', 'voice/ar4.wav', 'voice/ar5.wav'],
@@ -165,14 +167,15 @@ const pub = (id: 'v01' | 'v02', scenes: TypeScene[], textes: string[][], extra: 
   durees: minutage[id].durees,
   sousTitres: sous(minutage[id], textes),
   ia: { instagram: false, compteur: false },
-  scene5: { ...salonAr.scene5, cta: 'أرسلوا «نعم»', ctaDetail: 'في الخاص', ctaMessage: true },
+  marque: { nom: 'PULSE DIGITAL', compte: '@pulsedigit', pouls: true },
+  scene5: { ...salonAr.scene5, slogan: 'صالونكم يعمل حتى وأنتم نائمون', cta: 'أرسلوا «نعم»', ctaDetail: 'في الخاص', ctaMessage: true },
   ...extra,
 });
 
 export const pubs: Record<string, Config> = {
   V01: pub('v01', ['nuit', 'ia', 'prix'], [
     ['زبونة كتبت لصالونكم في منتصف الليل.', 'ولم يرد عليها أحد.', 'في الصباح، كانت قد حجزت عند صالون آخر.'],
-    ['مع ساهر ديجيتال،', 'يرد ذكاء اصطناعي مكانكم في خمس ثوانٍ،', 'ليلاً ونهاراً.'],
+    ['مع بالس ديجيتال،', 'يرد ذكاء اصطناعي مكانكم في خمس ثوانٍ،', 'ليلاً ونهاراً.'],
     ['ابتداءً من مئة درهم في الأسبوع.', 'أرسلوا «نعم» في الخاص.'],
   ], { scene1: { ...salonAr.scene1, accroche: 'رسالة بدون رد' } }),
   V02: pub('v02', ['notifs', 'ia', 'prix'], [

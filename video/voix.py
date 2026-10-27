@@ -38,7 +38,7 @@ VOIX = {
     # Pubs de la semaine (pubs/semaine-27-10.md)
     'v01': [
         ('p01a.mp3', [0, 3.72, 5.79], 14),
-        ('p01b.mp3', [0, 1.59, 5.34], 10),
+        ('p01b_pulse.mp3', [0, 1.59, 5.26], 10),
         ('p01c.mp3', [0, 3.09], 40),
     ],
     'v02': [
@@ -92,18 +92,19 @@ def preparer(source, sortie, tempo):
     return lambda x: (x - sum(max(0.0, min(b, x) - a) for a, b in retire)) / tempo
 
 
-minutage = {}
-for langue, fichiers in VOIX.items():
-    m = {'durees': [], 'debuts': [], 'fins': []}
-    for i, (source, coupes, queue) in enumerate(fichiers):
-        sortie = f'public/voice/{langue}{i}.wav'
-        nouveau = preparer(f'public/voice/{source}', sortie, TEMPO_FR if langue == 'fr' else TEMPO)
-        voix = round(duree(sortie) * FPS)
-        m['debuts'].append([DEBUT + round(nouveau(c) * FPS) for c in coupes])
-        m['fins'].append(DEBUT + voix + 6)
-        m['durees'].append(DEBUT + voix + queue)
-    minutage[langue] = m
-    print(langue, 'total', round(sum(m['durees']) / FPS, 1), 's', m['durees'])
+if __name__ == '__main__':
+    minutage = {}
+    for langue, fichiers in VOIX.items():
+        m = {'durees': [], 'debuts': [], 'fins': []}
+        for i, (source, coupes, queue) in enumerate(fichiers):
+            sortie = f'public/voice/{langue}{i}.wav'
+            nouveau = preparer(f'public/voice/{source}', sortie, TEMPO_FR if langue == 'fr' else TEMPO)
+            voix = round(duree(sortie) * FPS)
+            m['debuts'].append([DEBUT + round(nouveau(c) * FPS) for c in coupes])
+            m['fins'].append(DEBUT + voix + 6)
+            m['durees'].append(DEBUT + voix + queue)
+        minutage[langue] = m
+        print(langue, 'total', round(sum(m['durees']) / FPS, 1), 's', m['durees'])
 
-with open('src/minutage.json', 'w') as f:
-    json.dump(minutage, f, indent=1)
+    with open('src/minutage.json', 'w') as f:
+        json.dump(minutage, f, indent=1)
