@@ -25,6 +25,7 @@ export type Config = {
   };
   scene1: { perdue: string; sansReponse: string };
   scene2: { chrono: string; temps: string; tempsLegende: string; canaux: string };
+  vocal: { titre: string; transcription: string; reponse: string; duree: string; langues: string[]; distance: string; etapes: string[] };
   scene3: { titre: string; vues: string; videos: Pub3[] };
   scene4: { titre: string; site: string; boutonY: number; confirme: string; detail: string };
   scene5: { slogan: string; aPartir: string; prix: string; prixLegende: string; engagement: string; cta: string; ctaDetail: string };
@@ -46,12 +47,13 @@ const videos: Pub3[] = [
 export const salonAr: Config = {
   rtl: true,
   police: 'Cairo',
-  voix: ['voice/ar0.wav', 'voice/ar1.wav', 'voice/ar2.wav', 'voice/ar3.wav', 'voice/ar4.wav'],
+  voix: ['voice/ar0.wav', 'voice/ar1.wav', 'voice/ar2.wav', 'voice/ar3.wav', 'voice/ar4.wav', 'voice/ar5.wav'],
   musique: 'music/m872.mp3',
   durees: minutage.ar.durees,
   sousTitres: sous(minutage.ar, [
     ['الساعة الحادية عشرة ليلاً.', 'زبونة تكتب لصالونكم...', 'ولا أحد يرد.', 'فتحجز عند غيركم.'],
     ['مع ساهر ديجيتال،', 'يرد ذكاء اصطناعي مكانكم في خمس ثوانٍ،', 'على واتساب وإنستغرام، ليلاً ونهاراً.', 'وتربحون حتى ساعتين كل يوم.'],
+    ['وتفهم حتى الرسائل الصوتية،', 'بالدارجة أو بالفرنسية.', 'ونجهّز لكم كل شيء عن بُعد.'],
     ['ونصنع لكم فيديوهات تجعل الجميع يتحدث عن صالونكم.', 'عشرات، بل مئات الآلاف من المشاهدات.', 'وننشرها لكم كل أسبوع.'],
     ['وموقعاً احترافياً،', 'ترى فيه زبوناتكم أسعاركم،', 'وتحجز بنقرة واحدة.'],
     ['ابتداءً من مئة درهم في الأسبوع،', 'وبدون التزام.', 'ردّوا بكلمة «نعم» لمعرفة المزيد.'],
@@ -68,6 +70,15 @@ export const salonAr: Config = {
   },
   scene1: { perdue: 'حجزت عند صالون آخر', sansReponse: 'بدون رد' },
   scene2: { chrono: 'الرد في', temps: 'ساعتين', tempsLegende: 'تربحونها كل يوم', canaux: '24/24' },
+  vocal: {
+    titre: 'حتى الرسائل الصوتية',
+    transcription: '«مساء الخير، واش كديرو المانيكير؟»',
+    reponse: 'مساء النور! نعم، المانيكير بـ 100 درهم. غدا 11:00 أو 17:00، شنو يناسبك؟',
+    duree: '0:06',
+    langues: ['الدارجة', 'العربية', 'Français'],
+    distance: 'تجهيز عن بُعد',
+    etapes: ['واتساب', 'إنستغرام', 'أسعاركم ومواعيدكم'],
+  },
   scene3: { titre: 'فيديوهات يتحدث عنها الجميع', vues: 'مشاهدة', videos },
   scene4: {
     titre: 'موقع يحوّل الزوار إلى زبونات',
@@ -90,11 +101,12 @@ export const salonAr: Config = {
 export const salonFr: Config = {
   ...salonAr,
   rtl: false,
-  voix: ['voice/fr0.wav', 'voice/fr1.wav', 'voice/fr2.wav', 'voice/fr3.wav', 'voice/fr4.wav'],
+  voix: ['voice/fr0.wav', 'voice/fr1.wav', 'voice/fr2.wav', 'voice/fr3.wav', 'voice/fr4.wav', 'voice/fr5.wav'],
   durees: minutage.fr.durees,
   sousTitres: sous(minutage.fr, [
     ['Il est 23 heures.', 'Une cliente écrit à votre salon...', 'Personne ne répond.', 'Alors, elle réserve ailleurs.'],
     ['Avec Sahir Digital,', 'une IA répond à votre place en 5 secondes,', 'sur WhatsApp et Instagram, jour et nuit.', "Et vous gagnez jusqu'à 2 heures par jour."],
+    ['Elle comprend même les messages vocaux,', 'en darija comme en français.', 'Et on installe tout pour vous, à distance.'],
     ['On crée des vidéos qui font parler de votre salon.', 'Des dizaines, voire des centaines de milliers de vues.', 'Et on les publie pour vous, chaque semaine.'],
     ['Et un site professionnel,', 'où vos clientes voient vos prix,', 'et réservent en un clic.'],
     ['À partir de 100 DH par semaine,', 'sans engagement.', 'Répondez OUI pour en savoir plus.'],
@@ -110,6 +122,15 @@ export const salonFr: Config = {
   },
   scene1: { perdue: 'Elle a réservé ailleurs', sansReponse: 'Sans réponse' },
   scene2: { chrono: 'Réponse en', temps: '2 heures', tempsLegende: 'gagnées chaque jour', canaux: '24/24' },
+  vocal: {
+    titre: 'Même les vocaux',
+    transcription: '« Bonsoir, vous faites les ongles ? »',
+    reponse: 'Bonsoir ! Oui, la manucure est à 100 DH. Demain 11h00 ou 17h00, ça vous va ?',
+    duree: '0:06',
+    langues: ['Darija', 'العربية', 'Français'],
+    distance: 'Installé à distance',
+    etapes: ['WhatsApp', 'Instagram', 'Vos prix et horaires'],
+  },
   scene3: { titre: 'Des vidéos qui font parler de vous', vues: 'vues', videos },
   scene4: {
     titre: 'Un site qui fait réserver',

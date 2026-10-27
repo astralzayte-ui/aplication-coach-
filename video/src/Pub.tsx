@@ -3,7 +3,7 @@ import {
   AbsoluteFill, Audio, Img, OffthreadVideo, Sequence, continueRender, delayRender, interpolate, staticFile, useCurrentFrame, useVideoConfig,
 } from 'remotion';
 import type { Config } from './config';
-import { Chat } from './Chat';
+import { Chat, ChatVocal } from './Chat';
 import {
   Fond, IconeCoche, IconeCroix, IconeHorloge, IconeInstagram, IconeOeil, IconeWhatsApp, Lune, OR, SousTitres, Telephone, Titre, VERT, lisse, pop,
 } from './ui';
@@ -160,7 +160,70 @@ const Scene2: React.FC<Props> = ({ cfg, st }) => {
   );
 };
 
-// ---------- Scène 3 : vidéos virales dans 3 téléphones en carrousel 3D ----------
+// ---------- Scène 3 : l'IA comprend les vocaux, et on installe tout à distance ----------
+const SceneVocal: React.FC<Props> = ({ cfg, st }) => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const dir = cfg.rtl ? 'rtl' : 'ltr';
+  const v = cfg.vocal;
+  const t = { vocal: 4, lecture: [8, 30] as [number, number], ecrit: [32, 44] as [number, number], reponse: 44 };
+  const glisse = lisse(f, st[2] - 4, st[2] + 16, 0, 1);
+  const carte = pop(f, st[2] + 2, fps, 11);
+  const bulles = [{ left: 36, top: 400 }, { left: 800, top: 760 }, { left: 36, top: 1150 }];
+  return (
+    <AbsoluteFill>
+      <Son src="ding" de={t.vocal} volume={0.4} />
+      <Son src="pop" de={t.reponse} />
+      {v.langues.map((_, i) => <Son key={i} src="pop" de={st[1] + i * 5} volume={0.35} />)}
+      <Son src="whoosh" de={st[2] - 4} volume={0.3} />
+      {v.etapes.map((_, i) => <Son key={`e${i}`} src="pop" de={st[2] + 10 + i * 7} volume={0.4} />)}
+      <div style={{ opacity: 1 - glisse }}><Titre texte={v.titre} police={cfg.police} rtl={cfg.rtl} y={140} /></div>
+      <Telephone x={-200 * glisse} y={60 - 20 * glisse + Math.sin(f / 18) * 10} s={1.02 - 0.24 * glisse} rx={6} ry={lisse(f, 0, 30, 20, 0) + 20 * glisse} rz={1 - glisse}>
+        <ChatVocal cfg={cfg} t={t} />
+      </Telephone>
+      {f >= st[1] && v.langues.map((l, i) => {
+        const q = pop(f, st[1] + i * 5, fps, 9);
+        return (
+          <div key={i} style={{ position: 'absolute', ...bulles[i], opacity: q * (1 - glisse), transform: `scale(${q}) translateY(${Math.sin(f / 10 + i * 2) * 8}px)`,
+            fontFamily: cfg.police, fontWeight: 900, fontSize: 44, color: '#1a1030', background: OR, borderRadius: 40, padding: '8px 30px',
+            boxShadow: '0 15px 40px rgba(242,207,122,0.45)' }}>{l}</div>
+        );
+      })}
+      {f >= st[2] && (
+        <div style={{ position: 'absolute', left: 560, width: 480, top: 600, perspective: 1400 }}>
+          <div style={{ background: 'linear-gradient(145deg,#2a2150,#3b1f4f)', border: `3px solid ${OR}`, borderRadius: 40, padding: '30px 30px 20px',
+            boxShadow: '0 30px 70px rgba(0,0,0,0.55)', transform: `rotateY(${(1 - carte) * (cfg.rtl ? 70 : -70) + Math.sin(f / 20) * 5}deg) scale(${0.6 + 0.4 * carte})`,
+            opacity: Math.min(1, carte * 1.5), direction: dir }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 18 }}>
+              <svg width="64" height="64" viewBox="0 0 24 24">
+                {[0, 1, 2].map((k) => (
+                  <path key={k} d={['M12 18.5h.01', 'M8.5 15a5 5 0 0 1 7 0', 'M5 11.5a10 10 0 0 1 14 0'][k]} fill="none" stroke={OR} strokeWidth="2.4" strokeLinecap="round"
+                    opacity={0.35 + 0.65 * Math.max(0, Math.sin(f / 5 - k))} />
+                ))}
+                <path d="M1.5 8a15 15 0 0 1 21 0" fill="none" stroke={OR} strokeWidth="2.4" strokeLinecap="round" opacity={0.35 + 0.65 * Math.max(0, Math.sin(f / 5 - 3))} />
+              </svg>
+              <div style={{ fontFamily: cfg.police, fontWeight: 900, fontSize: 44, color: OR, lineHeight: 1.15 }}>{v.distance}</div>
+            </div>
+            {v.etapes.map((e, i) => {
+              const de = st[2] + 10 + i * 7;
+              const q = pop(f, de, fps, 10);
+              return (
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16, margin: '12px 0', opacity: q, transform: `translateX(${(1 - q) * (cfg.rtl ? 40 : -40)}px)` }}>
+                  <div style={{ width: 50, height: 50, borderRadius: 25, background: VERT, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <IconeCoche taille={36} trace={interpolate(f, [de + 2, de + 12], [0, 1], clamp)} />
+                  </div>
+                  <span style={{ fontFamily: cfg.police, fontWeight: 900, fontSize: 38, color: '#fff' }}>{e}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </AbsoluteFill>
+  );
+};
+
+// ---------- Scène 4 : vidéos virales dans 3 téléphones en carrousel 3D ----------
 const Scene3: React.FC<Props> = ({ cfg, duree, st }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -205,7 +268,7 @@ const Scene3: React.FC<Props> = ({ cfg, duree, st }) => {
   );
 };
 
-// ---------- Scène 4 : le site, on défile, on clique sur « Réserver », réservation confirmée ----------
+// ---------- Scène 5 : le site, on défile, on clique sur « Réserver », réservation confirmée ----------
 const Scene4: React.FC<Props> = ({ cfg, duree, st }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -249,7 +312,7 @@ const Scene4: React.FC<Props> = ({ cfg, duree, st }) => {
   );
 };
 
-// ---------- Scène 5 : logo, prix, « Répondez OUI » ----------
+// ---------- Scène 6 : logo, prix, « Répondez OUI » ----------
 const Scene5: React.FC<Props> = ({ cfg, st }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -308,7 +371,7 @@ const Scene5: React.FC<Props> = ({ cfg, st }) => {
   );
 };
 
-const SCENE_COMPOSANTS = [Scene1, Scene2, Scene3, Scene4, Scene5];
+const SCENE_COMPOSANTS = [Scene1, Scene2, SceneVocal, Scene3, Scene4, Scene5];
 
 export const Pub: React.FC<{ cfg: Config }> = ({ cfg }) => {
   const { durationInFrames } = useVideoConfig();
@@ -316,7 +379,7 @@ export const Pub: React.FC<{ cfg: Config }> = ({ cfg }) => {
   const debuts = cfg.durees.map((_, i) => cfg.durees.slice(0, i).reduce((a, b) => a + b, 0));
   return (
     <AbsoluteFill style={{ backgroundColor: '#04071a' }}>
-      <Fond lune={interpolate(f, [debuts[2] - 10, debuts[2] + 4], [1, 0], clamp)} />
+      <Fond lune={interpolate(f, [debuts[3] - 10, debuts[3] + 4], [1, 0], clamp)} />
       <Audio src={staticFile(cfg.musique)} volume={(x) => interpolate(x, [0, 10, durationInFrames - 30, durationInFrames], [0, 0.2, 0.2, 0], clamp)} />
       {cfg.durees.map((duree, i) => {
         const Comp = SCENE_COMPOSANTS[i];

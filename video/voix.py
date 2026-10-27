@@ -14,13 +14,14 @@ FPS = 30
 TEMPO = {'ar': 1.3, 'fr': 1.2}  # vitesse de la voix par langue (1.2 = 20 % plus rapide)
 PAUSE = 0.10         # durée max d'une pause entre deux morceaux de phrase (s)
 DEBUT = 4            # frame où la voix démarre dans chaque scène
-QUEUE = [12, 10, 10, 18, 45]  # frames gardées après la voix, par scène (temps de lecture de la fin)
+QUEUE = [12, 10, 12, 10, 18, 45]  # frames gardées après la voix, par scène (temps de lecture de la fin)
 
 # Fichier source + début de chaque sous-titre dans le fichier d'origine (secondes, repérés aux pauses).
 VOIX = {
     'ar': [
         ('v0.mp3', [0, 2.77, 5.40, 6.99]),
         ('v1.mp3', [0, 1.58, 5.17, 8.60]),
+        ('vvoc.mp3', [0, 2.39, 4.66]),
         ('v2b.mp3', [0, 4.67, 8.44]),
         ('v3.mp3', [0, 2.02, 3.50]),
         ('v4b.mp3', [0, 2.87, 4.56]),
@@ -28,6 +29,7 @@ VOIX = {
     'fr': [
         ('f0.mp3', [0.11, 1.58, 4.04, 5.41]),
         ('f1.mp3', [0, 1.52, 5.16, 7.85]),
+        ('fvoc.mp3', [0, 2.01, 3.97]),
         ('f2b.mp3', [0, 2.81, 6.14]),
         ('f3.mp3', [0, 1.64, 3.35]),
         ('f4b.mp3', [0, 2.20, 3.47]),
