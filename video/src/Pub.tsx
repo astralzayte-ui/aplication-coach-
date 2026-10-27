@@ -300,6 +300,8 @@ const Scene5: React.FC<Props> = ({ cfg, st }) => {
             <IconeWhatsApp taille={84} />
             <span style={{ fontFamily: cfg.police, fontWeight: 900, fontSize: 64, color: '#fff' }}>{s.cta}</span>
           </div>
+          <div style={{ position: 'absolute', top: 150, width: '100%', textAlign: 'center', fontFamily: cfg.police, fontWeight: 700, fontSize: 42, color: '#fff',
+            direction: dir, opacity: cta }}>{s.ctaDetail}</div>
         </div>
       )}
     </AbsoluteFill>

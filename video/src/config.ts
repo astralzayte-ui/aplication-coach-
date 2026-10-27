@@ -27,7 +27,7 @@ export type Config = {
   scene2: { chrono: string; temps: string; tempsLegende: string; canaux: string };
   scene3: { titre: string; vues: string; videos: Pub3[] };
   scene4: { titre: string; site: string; boutonY: number; confirme: string; detail: string };
-  scene5: { slogan: string; aPartir: string; prix: string; prixLegende: string; engagement: string; cta: string };
+  scene5: { slogan: string; aPartir: string; prix: string; prixLegende: string; engagement: string; cta: string; ctaDetail: string };
 };
 
 type Minutage = { durees: number[]; debuts: number[][]; fins: number[] };
@@ -38,9 +38,9 @@ const sous = (m: Minutage, textes: string[][]): Sub[][] =>
     ligne.map((texte, j) => ({ de: m.debuts[i][j], a: j + 1 < ligne.length ? m.debuts[i][j + 1] - 1 : m.fins[i], texte })));
 
 const videos: Pub3[] = [
-  { fichier: 'ads/complex.mp4', vues: '3.9M', debut: 0 },
-  { fichier: 'ads/golden.mp4', vues: '6.3M', debut: 0 },
-  { fichier: 'ads/djeph.mp4', vues: '774K', debut: 60 },
+  { fichier: 'ads/complex.mp4', vues: '86K', debut: 0 },
+  { fichier: 'ads/golden.mp4', vues: '320K', debut: 0 },
+  { fichier: 'ads/djeph.mp4', vues: '145K', debut: 60 },
 ];
 
 export const salonAr: Config = {
@@ -52,9 +52,9 @@ export const salonAr: Config = {
   sousTitres: sous(minutage.ar, [
     ['الساعة الحادية عشرة ليلاً.', 'زبونة تكتب لصالونكم...', 'ولا أحد يرد.', 'فتحجز عند غيركم.'],
     ['مع ساهر ديجيتال،', 'يرد ذكاء اصطناعي مكانكم في خمس ثوانٍ،', 'على واتساب وإنستغرام، ليلاً ونهاراً.', 'وتربحون حتى ساعتين كل يوم.'],
-    ['ونصنع لكم فيديوهات مثل هذه،', 'تحصد ملايين المشاهدات،', 'وننشرها لكم كل أسبوع.'],
+    ['ونصنع لكم فيديوهات تجعل الجميع يتحدث عن صالونكم.', 'عشرات، بل مئات الآلاف من المشاهدات.', 'وننشرها لكم كل أسبوع.'],
     ['وموقعاً احترافياً،', 'ترى فيه زبوناتكم أسعاركم،', 'وتحجز بنقرة واحدة.'],
-    ['ابتداءً من مئة درهم في الأسبوع،', 'وبدون التزام.', 'ردّوا بكلمة «نعم» على هذه الرسالة.'],
+    ['ابتداءً من مئة درهم في الأسبوع،', 'وبدون التزام.', 'ردّوا بكلمة «نعم» لمعرفة المزيد.'],
   ]),
   heure: '23:14',
   chat: {
@@ -68,7 +68,7 @@ export const salonAr: Config = {
   },
   scene1: { perdue: 'حجزت عند صالون آخر', sansReponse: 'بدون رد' },
   scene2: { chrono: 'الرد في', temps: 'ساعتين', tempsLegende: 'تربحونها كل يوم', canaux: '24/24' },
-  scene3: { titre: 'فيديوهات بملايين المشاهدات', vues: 'مشاهدة', videos },
+  scene3: { titre: 'فيديوهات يتحدث عنها الجميع', vues: 'مشاهدة', videos },
   scene4: {
     titre: 'موقع يحوّل الزوار إلى زبونات',
     site: 'site/site.png',
@@ -83,6 +83,7 @@ export const salonAr: Config = {
     prixLegende: 'درهم / الأسبوع',
     engagement: 'بدون التزام',
     cta: 'ردّوا بكلمة «نعم»',
+    ctaDetail: 'لمعرفة المزيد',
   },
 };
 
@@ -94,9 +95,9 @@ export const salonFr: Config = {
   sousTitres: sous(minutage.fr, [
     ['Il est 23 heures.', 'Une cliente écrit à votre salon...', 'Personne ne répond.', 'Alors, elle réserve ailleurs.'],
     ['Avec Sahir Digital,', 'une IA répond à votre place en 5 secondes,', 'sur WhatsApp et Instagram, jour et nuit.', "Et vous gagnez jusqu'à 2 heures par jour."],
-    ['On crée pour vous des vidéos comme celles-ci,', 'qui font des millions de vues.', 'Et on les publie chaque semaine.'],
+    ['On crée des vidéos qui font parler de votre salon.', 'Des dizaines, voire des centaines de milliers de vues.', 'Et on les publie pour vous, chaque semaine.'],
     ['Et un site professionnel,', 'où vos clientes voient vos prix,', 'et réservent en un clic.'],
-    ['À partir de 100 DH par semaine,', 'sans engagement.', 'Répondez OUI à ce message.'],
+    ['À partir de 100 DH par semaine,', 'sans engagement.', 'Répondez OUI pour en savoir plus.'],
   ]),
   chat: {
     contact: 'Nouvelle cliente',
@@ -109,7 +110,7 @@ export const salonFr: Config = {
   },
   scene1: { perdue: 'Elle a réservé ailleurs', sansReponse: 'Sans réponse' },
   scene2: { chrono: 'Réponse en', temps: '2 heures', tempsLegende: 'gagnées chaque jour', canaux: '24/24' },
-  scene3: { titre: 'Des vidéos à des millions de vues', vues: 'vues', videos },
+  scene3: { titre: 'Des vidéos qui font parler de vous', vues: 'vues', videos },
   scene4: {
     titre: 'Un site qui fait réserver',
     site: 'site/site.png',
@@ -124,5 +125,6 @@ export const salonFr: Config = {
     prixLegende: 'DH / semaine',
     engagement: 'Sans engagement',
     cta: 'Répondez « OUI »',
+    ctaDetail: 'pour en savoir plus',
   },
 };
