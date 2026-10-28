@@ -19,10 +19,10 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - ⬜ Démo site du faux spa
 - ⬜ Vidéo de présentation FR (script : `prospection/video-demo.md`)
 - ✅ Vidéo motion design 3D, arabe (~32 s) et français (~29 s), refaite le 27/10 plus rythmée : voix accélérée (pauses raccourcies), sous-titres mot à mot, zooms, transitions rapides, bruitages. Ordre : message à 23h sans réponse → IA WhatsApp/Instagram + 2 h gagnées → vocaux compris (darija/français) + installation à distance → 3 vidéos virales (dizaines à centaines de milliers de vues) de salons → site qui fait réserver → « dès 100 DH/semaine, sans engagement » → « Répondez OUI pour en savoir plus ». Code : `video/` (Remotion). Textes : `video/src/config.ts`. Voix : `python3 voix.py` (pauses, vitesse, minutage des sous-titres). Médias (vidéos, site, voix, musique) hors git. Rendu : `cd video && npx remotion render src/index.ts PubSalonFr out/pub-fr.mp4` (ou `PubSalonAr`).
-- 🔄 Pubs semaine 27/10 → 03/11 : 16 scripts arabes prêts (`pubs/semaine-27-10.md`), 2 vidéos par jour quand Julien dit « go ». À faire : ajouter Pulse Digital dans Metricool pour lire les vues.
+- ⏸ Pubs semaine 27/10 → 03/11 : 16 scripts arabes prêts (`pubs/semaine-27-10.md`). V01 et V02 faites, à poster le 29/10. Le reste (V03→V16) arrêté le 28/10 à la demande de Julien. À faire : ajouter Pulse Digital dans Metricool pour lire les vues.
 - ⬜ Vidéo de présentation arabe classique
 - ✅ Exemples (28/10) : 3 vidéos concurrentes refaites (Remotion) + 4 vidéos UGC d'exemple (Higgsfield), site concurrent à copier (`prospection/site-concurrent.md`)
-- 🔄 Pub motion design d'exemple pour le spa « Les Bains d'Andalous » (arabe + français, sans prix, angle beldi, angle repris du concurrent qui marche le mieux) — agent en cours, config réutilisable pour en faire des dizaines
+- ⏸ Pub motion design d'exemple pour le spa « Les Bains d'Andalous » (arabe + français, sans prix, angle beldi, angle repris du concurrent qui marche le mieux) — PAS encore montée : arrêtée le 28/10. Prêt dans video/public/spa (hors git) : infos Google (4,7 / 1 755 avis, 7j/7 9h30–22h), logo, 6 images, voix AR/FR. Reste ~1 h : angle concurrent, montage Remotion, rendu AR + FR
 
 ## Étape 3 — Prospection (toi)
 - ✅ Accès Google Drive testé (compte astralzayte@gmail.com)
