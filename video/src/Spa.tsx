@@ -275,7 +275,7 @@ const SceneRituel: React.FC<P> = ({ s, sc, o }) => {
     <>
       <Arche s={s}>
         {etapes.map((e, k) => (
-          <Photo key={k} src={e.image} x={x} de={debut(k)} duree={(sc.phrases[k + 1]?.[0] ?? sc.duree) - debut(k) + 20} focus={e.focus} zoom={e.focus ? 1.42 : 1.1} />
+          <Photo key={k} src={e.image} x={x} de={debut(k)} duree={(sc.phrases[k + 1]?.[0] ?? sc.duree) - debut(k) + 20} focus={e.focus} zoom={e.focus ? 1.42 : 1.1} sombre={e.clair ? -0.25 : 0} />
         ))}
         <Vapeur x={x} force={0.7} />
         <DegradeBas hauteur={480} force={0.92} />

@@ -23,7 +23,7 @@ export type Spa = {
   titres: (string | null)[];    // titre en haut de chaque scène ('' = nom du spa, null = rien)
   phrases: string[][];          // texte dit, par scène et par phrase
   accroche: { image: string };
-  rituel: { etapes: { nom: string; image: string; focus?: [number, number] }[] };
+  rituel: { etapes: { nom: string; image: string; focus?: [number, number]; clair?: boolean }[] };
   resultat: { image: string };
   confiance: { image: string; points: { icone: IconePoint; texte: string }[] };
   avis: { image: string; note: number; nombre: number; texteNombre: string };
@@ -40,7 +40,6 @@ export const andalousAr: Spa = {
   rtl: true,
   police: 'Amiri',
   musique: 'spa/musique.mp3',
-  illustration: 'صور للتوضيح',
   signature: 'Réalisé par Pulse Digital — @pulsedigit',
   filigrane: 'Julien Colly',
   titres: ['', 'الطقس البلدي، خطوة بخطوة', 'النتيجة', 'لماذا نحن؟', 'آراء الزبائن', 'زورونا', null],
@@ -53,26 +52,26 @@ export const andalousAr: Spa = {
     ['مفتوح كل يوم', 'من 9:30 صباحاً', 'إلى 10 ليلاً', 'في قلب مراكش'],
     ['', 'اتصلوا بنا على هذا الرقم', 'لمعرفة مواعيدنا المتاحة'],
   ],
-  accroche: { image: 'spa/i_hammam.png' },
+  accroche: { image: 'spa/google/g6.jpg' },
   rituel: {
     etapes: [
-      { nom: 'الصابون البلدي', image: 'spa/i_gommage.png', focus: [24, 52] },
-      { nom: 'الكيس', image: 'spa/i_gommage.png', focus: [48, 80] },
-      { nom: 'ماء الزهر', image: 'spa/site/2.png' },
-      { nom: 'الغاسول', image: 'spa/i_visage.png' },
+      { nom: 'الصابون البلدي', image: 'spa/google/g3.jpg', focus: [30, 74] },
+      { nom: 'الكيس', image: 'spa/google/g6.jpg', focus: [45, 72] },
+      { nom: 'ماء الزهر', image: 'spa/google/g1.jpg', clair: true },
+      { nom: 'الغاسول', image: 'spa/google/g10.jpg' },
     ],
   },
-  resultat: { image: 'spa/site/gffdddd.png' },
+  resultat: { image: 'spa/google/g3.jpg' },
   confiance: {
-    image: 'spa/i_cabine.png',
+    image: 'spa/google/g2.jpg',
     points: [
       { icone: 'calendrier', texte: 'منذ 2011' },
       { icone: 'porte', texte: 'غرف خاصة' },
       { icone: 'diplome', texte: 'معالجون معتمدون' },
     ],
   },
-  avis: { image: 'spa/i_the.png', note: 4.7, nombre: 1700, texteNombre: 'تقييم' },
-  infos: { image: 'spa/i_massage.png', jours: 'كل يوم', horaires: '9:30 — 22:00', lieu: 'في قلب مراكش', adresse: 'Résidence Oasis · N7' },
+  avis: { image: 'spa/google/g7.jpg', note: 4.7, nombre: 1700, texteNombre: 'تقييم' },
+  infos: { image: 'spa/google/g11.jpg', jours: 'كل يوم', horaires: '9:30 — 22:00', lieu: 'في قلب مراكش', adresse: 'Résidence Oasis · N7' },
   fin: { appel: 'اتصلوا بنا لمعرفة مواعيدنا المتاحة', telephone: '05 24 43 32 34', site: 'lesbainsdandalous.com' },
   m: minutage.andalous_ar as Minutage,
 };
