@@ -22,7 +22,7 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - ⏸ Pubs semaine 27/10 → 03/11 : 16 scripts arabes prêts (`pubs/semaine-27-10.md`). V01 et V02 faites, à poster le 29/10. Le reste (V03→V16) arrêté le 28/10 à la demande de Julien. À faire : ajouter Pulse Digital dans Metricool pour lire les vues.
 - ⬜ Vidéo de présentation arabe classique
 - ✅ Exemples (28/10) : 3 vidéos concurrentes refaites (Remotion) + 4 vidéos UGC d'exemple (Higgsfield), site concurrent à copier (`prospection/site-concurrent.md`)
-- ⏸ Pub motion design d'exemple pour le spa « Les Bains d'Andalous » (arabe + français, sans prix, angle beldi, angle repris du concurrent qui marche le mieux) — PAS encore montée : arrêtée le 28/10. Prêt dans video/public/spa (hors git) : infos Google (4,7 / 1 755 avis, 7j/7 9h30–22h), logo, 6 images, voix AR/FR. Reste ~1 h : angle concurrent, montage Remotion, rendu AR + FR
+- ✅ Pub motion design d'exemple du spa « Les Bains d'Andalous », en arabe (35 s, 28/10). Angle repris des vidéos hammam les plus vues sur TikTok (« peau neuve », jusqu'à 2,2 M de vues) : accroche gommage beldi → rituel en 4 étapes → résultat → depuis 2011, cabines privées → 4,7 sur Google (1 700+ avis) → tous les jours 9h30–22h → « appelez-nous pour nos disponibilités » + numéro. Sans prix. Code : `video/src/Spa.tsx` + config `video/src/spa.ts` (une entrée par spa, réutilisable), voix/minutage/musique : `python3 spa.py`. Médias hors git (public/spa).
 
 ## Étape 3 — Prospection (toi)
 - ✅ Accès Google Drive testé (compte astralzayte@gmail.com)

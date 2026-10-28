@@ -4,6 +4,8 @@ import { Pub, dureeTotale } from './Pub';
 import { pubs, salonAr, salonFr } from './config';
 import { DUREE_A, DUREE_B, DUREE_C, RemakeAgence, RemakeBoite, RemakeEquipe } from './Remake';
 import { VideoUgc, dureeUgc, ugcs } from './Ugc';
+import { SpaPub } from './Spa';
+import { spas } from './spa';
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -20,6 +22,11 @@ export const RemotionRoot: React.FC = () => (
     {Object.entries(ugcs).map(([id, u]) => (
       <React.Fragment key={id}>
         <Composition id={`Ugc${id}`} component={VideoUgc} durationInFrames={dureeUgc(u)} fps={30} width={1080} height={1920} defaultProps={{ u }} />
+      </React.Fragment>
+    ))}
+    {Object.entries(spas).map(([id, s]) => (
+      <React.Fragment key={id}>
+        <Composition id={`Spa${id}`} component={SpaPub} durationInFrames={s.m.duree} fps={30} width={1080} height={1920} defaultProps={{ s }} />
       </React.Fragment>
     ))}
   </>
