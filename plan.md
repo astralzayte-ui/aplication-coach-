@@ -21,6 +21,8 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - ✅ Vidéo motion design 3D, arabe (~32 s) et français (~29 s), refaite le 27/10 plus rythmée : voix accélérée (pauses raccourcies), sous-titres mot à mot, zooms, transitions rapides, bruitages. Ordre : message à 23h sans réponse → IA WhatsApp/Instagram + 2 h gagnées → vocaux compris (darija/français) + installation à distance → 3 vidéos virales (dizaines à centaines de milliers de vues) de salons → site qui fait réserver → « dès 100 DH/semaine, sans engagement » → « Répondez OUI pour en savoir plus ». Code : `video/` (Remotion). Textes : `video/src/config.ts`. Voix : `python3 voix.py` (pauses, vitesse, minutage des sous-titres). Médias (vidéos, site, voix, musique) hors git. Rendu : `cd video && npx remotion render src/index.ts PubSalonFr out/pub-fr.mp4` (ou `PubSalonAr`).
 - 🔄 Pubs semaine 27/10 → 03/11 : 16 scripts arabes prêts (`pubs/semaine-27-10.md`), 2 vidéos par jour quand Julien dit « go ». À faire : ajouter Pulse Digital dans Metricool pour lire les vues.
 - ⬜ Vidéo de présentation arabe classique
+- ✅ Exemples (28/10) : 3 vidéos concurrentes refaites (Remotion) + 4 vidéos UGC d'exemple (Higgsfield), site concurrent à copier (`prospection/site-concurrent.md`)
+- 🔄 Pub motion design d'exemple pour le spa « Les Bains d'Andalous » (arabe + français, sans prix, angle beldi, angle repris du concurrent qui marche le mieux) — agent en cours, config réutilisable pour en faire des dizaines
 
 ## Étape 3 — Prospection (toi)
 - ✅ Accès Google Drive testé (compte astralzayte@gmail.com)
