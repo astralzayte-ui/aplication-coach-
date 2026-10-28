@@ -24,6 +24,7 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - ✅ Exemples (28/10) : 3 vidéos concurrentes refaites (Remotion) + 4 vidéos UGC d'exemple (Higgsfield), site concurrent à copier (`prospection/site-concurrent.md`)
 - ✅ Pub motion design d'exemple du spa « Les Bains d'Andalous », en arabe (35 s, 28/10). Angle repris des vidéos hammam les plus vues sur TikTok (« peau neuve », jusqu'à 2,2 M de vues) : accroche gommage beldi → rituel en 4 étapes → résultat → depuis 2011, cabines privées → 4,7 sur Google (1 700+ avis) → tous les jours 9h30–22h → « appelez-nous pour nos disponibilités » + numéro. Sans prix. Code : `video/src/Spa.tsx` + config `video/src/spa.ts` (une entrée par spa, réutilisable), voix/minutage/musique : `python3 spa.py`. Photos : les vraies photos de leur fiche Google (public/spa/google), filigrane « Julien Colly ». Médias hors git (public/spa).
 - ⬜ Plus tard : des dizaines voire centaines de pubs motion design pour CE spa (variantes d'accroche, d'angle, de soin mis en avant) — une entrée par variante dans `video/src/spa.ts`
+- ✅ 5 pubs de spas français qui marchent (actives 56 à 348 jours), envoyées pour la prospection + méthode « client spa → pubs » : `pubs/spa-methode.md` (28/10)
 
 ## Étape 3 — Prospection (toi)
 - ✅ Accès Google Drive testé (compte astralzayte@gmail.com)
