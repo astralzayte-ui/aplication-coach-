@@ -19,6 +19,7 @@ export type Spa = {
   musique: string;
   illustration?: string;        // mention en bas des photos si elles ne sont pas celles du lieu
   signature: string;
+  filigrane?: string;           // texte répété en transparence sur toute la vidéo
   titres: (string | null)[];    // titre en haut de chaque scène ('' = nom du spa, null = rien)
   phrases: string[][];          // texte dit, par scène et par phrase
   accroche: { image: string };
@@ -41,6 +42,7 @@ export const andalousAr: Spa = {
   musique: 'spa/musique.mp3',
   illustration: 'صور للتوضيح',
   signature: 'Réalisé par Pulse Digital — @pulsedigit',
+  filigrane: 'Julien Colly',
   titres: ['', 'الطقس البلدي، خطوة بخطوة', 'النتيجة', 'لماذا نحن؟', 'آراء الزبائن', 'زورونا', null],
   phrases: [
     ['هل جرّبتم يوماً الحمّام البلدي الحقيقي؟', 'انتظروا حتى تروا ما يُزيله الكيس من بشرتكم!'],

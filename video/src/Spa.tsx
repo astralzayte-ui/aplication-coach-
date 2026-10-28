@@ -478,6 +478,21 @@ const SceneFin: React.FC<P> = ({ s, sc, o }) => {
   );
 };
 
+// Filigrane : le texte répété en diagonale sur toute l'image, très transparent
+const Filigrane: React.FC<{ texte: string }> = ({ texte }) => (
+  <AbsoluteFill style={{ overflow: 'hidden', pointerEvents: 'none' }}>
+    <div style={{ position: 'absolute', left: -700, top: -600, width: 2500, height: 3100, transform: 'rotate(-28deg)', display: 'flex', flexDirection: 'column', gap: 120 }}>
+      {Array.from({ length: 16 }, (_, r) => (
+        <div key={r} style={{ display: 'flex', gap: 170, marginLeft: (r % 2) * 260, whiteSpace: 'nowrap' }}>
+          {Array.from({ length: 7 }, (_, c) => (
+            <span key={c} style={{ fontFamily: LATIN, fontStyle: 'italic', fontSize: 40, color: '#fff', opacity: 0.11, letterSpacing: 2 }}>{texte}</span>
+          ))}
+        </div>
+      ))}
+    </div>
+  </AbsoluteFill>
+);
+
 const SCENES = [SceneAccroche, SceneRituel, SceneResultat, SceneConfiance, SceneAvis, SceneInfos, SceneFin];
 
 // Chaque scène commence T frames avant son début « officiel » pour que sa photo s'ouvre par-dessus la précédente
@@ -516,6 +531,7 @@ export const SpaPub: React.FC<{ s: Spa }> = ({ s }) => {
       <Audio src={staticFile(s.musique)} volume={(f) => interpolate(f, [0, 15, total - 30, total], [0, 0.2, 0.2, 0], clamp)} />
       <div style={{ position: 'absolute', left: 0, right: 0, bottom: 34, textAlign: 'center', fontFamily: 'Cairo', fontWeight: 900, fontSize: 22, letterSpacing: 6,
         color: s.couleurs.creme, opacity: 0.35 }}>PULSE DIGITAL · @pulsedigit</div>
+      {s.filigrane && <Filigrane texte={s.filigrane} />}
     </AbsoluteFill>
   );
 };
