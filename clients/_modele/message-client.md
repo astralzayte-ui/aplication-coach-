@@ -1,5 +1,5 @@
 Bonjour 👋 Merci pour votre confiance !
-*Sahir Digital* — entreprise déclarée, facture fournie pour chaque paiement.
+*Pulse Digital* — entreprise déclarée, facture fournie pour chaque paiement.
 
 *1) Choisissez un pack* (répondez avec la lettre)
 A. Pack Essentiel : 7 vidéos + 7 stories + IA WhatsApp — 450 DH / semaine

@@ -1,6 +1,6 @@
-# Pubs Sahir Digital — semaine du mardi 27/10 au mardi 03/11
+# Pubs Pulse Digital — semaine du mardi 27/10 au mardi 03/11
 
-2 vidéos par jour, en arabe, pour le compte Sahir Digital au Maroc. Cible : gérantes de salons de beauté.
+2 vidéos par jour, en arabe, pour le compte Pulse Digital au Maroc. Cible : gérantes de salons de beauté.
 Quand Julien dit « go », je lance les 2 vidéos du jour : voix off, montage, rendu, envoi.
 
 ## Le moule (identique pour les 16 vidéos)
@@ -39,7 +39,7 @@ On garde leurs angles, avec nos mots.
 | V09 | sam 31/10 | jour de fermeture | الأحد — مغلق | offre IA |
 | V10 | sam 31/10 | site | صالون تجميل مراكش (recherche) | offre site |
 | V11 | dim 01/11 | zéro risque | بدون عقد. بدون التزام. | pubs Meta (sans risque) |
-| V12 | dim 01/11 | le nom Sahir | ساهر = الذي لا ينام | marque |
+| V12 | dim 01/11 | le nom Pulse | Pulse = النبض | marque |
 | V13 | lun 02/11 | analyse gratuite | لماذا تذهب زبوناتكم عند غيركم؟ | pubs Meta (cadeau) |
 | V14 | lun 02/11 | Instagram | 12 رسالة تنتظر... | offre IA Instagram |
 | V15 | mar 03/11 | humain + IA | «زبوناتي يفضّلن التحدث مع إنسان» | objection |
@@ -47,7 +47,7 @@ On garde leurs angles, avec nos mots.
 
 Scènes : NUIT, IA, VOCAL, VIDÉOS, SITE et PRIX existent déjà. NOTIFS, COURSE, BARRES, LISTE, RECHERCHE, INSTA et ACCROCHE (texte géant seul) sont à fabriquer le jour où elles servent.
 
-Hashtags (toutes les vidéos) : #مراكش #صالون_تجميل #المغرب #تجميل #صالونات_مراكش #Marrakech #SalonDeBeaute #SahirDigital
+Hashtags (toutes les vidéos) : #مراكش #صالون_تجميل #المغرب #تجميل #صالونات_مراكش #Marrakech #SalonDeBeaute #PulseDigital
 
 ---
 
@@ -60,7 +60,7 @@ Hashtags (toutes les vidéos) : #مراكش #صالون_تجميل #المغرب
   1. زبونة كتبت لصالونكم في منتصف الليل.
   2. ولم يرد عليها أحد.
   3. في الصباح، كانت قد حجزت عند صالون آخر.
-  4. مع ساهر ديجيتال، يرد ذكاء اصطناعي مكانكم في خمس ثوانٍ، ليلاً ونهاراً.
+  4. مع بالس ديجيتال، يرد ذكاء اصطناعي مكانكم في خمس ثوانٍ، ليلاً ونهاراً.
   5. ابتداءً من مئة درهم في الأسبوع. أرسلوا «نعم» في الخاص.
 - Légende : زبونة كتبت في منتصف الليل ولم يرد أحد. كم زبونة ضاعت هكذا؟ أرسلوا «نعم» في الخاص.
 
@@ -108,7 +108,7 @@ Hashtags (toutes les vidéos) : #مراكش #صالون_تجميل #المغرب
   1. الزبونة اليوم تكتب لعدة صالونات في نفس الوقت.
   2. الأول يرد بعد ثلاث ساعات، والثاني لا يرد أبداً...
   3. والذي يرد أولاً، هو الذي يربح الزبونة.
-  4. مع ساهر ديجيتال، صالونكم يرد في خمس ثوانٍ.
+  4. مع بالس ديجيتال، صالونكم يرد في خمس ثوانٍ.
   5. ابتداءً من مئة درهم في الأسبوع. أرسلوا «نعم» في الخاص.
 - Légende : الصالون الذي يرد أولاً يربح الزبونة. هل صالونكم هو الأول؟ أرسلوا «نعم» في الخاص.
 
@@ -139,7 +139,7 @@ Hashtags (toutes les vidéos) : #مراكش #صالون_تجميل #المغرب
 
 ### V08 — Moins cher qu'une appli à régler soi-même
 - Écran 0-1,5 s : « تطبيقات الرد الآلي: 625 درهم / الشهر », puis « ...وعليكم ضبطها بأنفسكم ».
-- Scènes : BARRES (appli : 625 DH/mois, à régler soi-même ; Sahir : environ 433 DH/mois, installé pour vous), puis PRIX.
+- Scènes : BARRES (appli : 625 DH/mois, à régler soi-même ; Pulse : environ 433 DH/mois, installé pour vous), puis PRIX.
 - Voix et sous-titres :
   1. تطبيقات الرد الآلي تبدأ من ستمائة وخمسة وعشرين درهماً في الشهر...
   2. وعليكم أن تضبطوها بأنفسكم.
@@ -185,16 +185,16 @@ Hashtags (toutes les vidéos) : #مراكش #صالون_تجميل #المغرب
   5. أرسلوا «نعم» في الخاص.
 - Légende : جربوا بدون التزام، وتوقفوا متى شئتم. أرسلوا «نعم» في الخاص.
 
-### V12 — Le nom Sahir
-- Écran 0-1,5 s : une lune géante, et « ساهر = الذي لا ينام ».
-- Scènes : ACCROCHE (lune), puis NUIT (raccourcie : un message à 3h, l'IA répond), puis PRIX (avec le slogan).
+### V12 — Le nom Pulse
+- Écran 0-1,5 s : une ligne de pouls dorée qui bat, et « Pulse = النبض ».
+- Scènes : ACCROCHE (pouls), puis NUIT (raccourcie : un message à 3h, l'IA répond), puis PRIX (avec le slogan).
 - Voix et sous-titres :
-  1. ساهر... هو الذي يبقى مستيقظاً حين ينام الجميع.
-  2. وهذا بالضبط ما نفعله لصالونكم.
+  1. بالس... يعني النبض.
+  2. ونحن نُبقي نبض صالونكم حياً، ليلاً ونهاراً.
   3. في الثالثة صباحاً، زبونة تسأل... ونحن نجيب.
-  4. أنتم نائمون، وساهر يسهر على عملكم.
+  4. صالونكم يعمل حتى وأنتم نائمون.
   5. أرسلوا «نعم» في الخاص.
-- Légende : أنتم نائمون، وساهر يسهر على عملكم. أرسلوا «نعم» في الخاص.
+- Légende : صالونكم يعمل حتى وأنتم نائمون. أرسلوا «نعم» في الخاص.
 
 ## Lundi 02/11
 
@@ -247,6 +247,6 @@ Hashtags (toutes les vidéos) : #مراكش #صالون_تجميل #المغرب
 ---
 
 ## Suivi
-- Pour savoir quel angle gagne, il faut les vues et la rétention à 3 s de chaque vidéo. Metricool ne connaît pour l'instant que la marque SILENCE : il faut y ajouter le compte Sahir Digital. Sinon, envoie-moi une capture des statistiques de chaque vidéo.
+- Pour savoir quel angle gagne, il faut les vues et la rétention à 3 s de chaque vidéo. Metricool ne connaît pour l'instant que la marque SILENCE : il faut y ajouter le compte Pulse Digital. Sinon, envoie-moi une capture des statistiques de chaque vidéo.
 - On ne juge pas une vidéo sous environ 1 000 vues.
 - À la fin de la semaine : on garde les 3 meilleurs angles et on leur fait de nouvelles accroches.

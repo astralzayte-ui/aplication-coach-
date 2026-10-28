@@ -1,5 +1,5 @@
-# Google Form « Sahir Digital — Démarrage »
-Paramètres : réponses envoyées vers une Google Sheet « Sahir Digital — Réponses clients » (onglet Réponses → icône Sheets).
+# Google Form « Pulse Digital — Démarrage »
+Paramètres : réponses envoyées vers une Google Sheet « Pulse Digital — Réponses clients » (onglet Réponses → icône Sheets).
 Ne PAS demander de fichiers dans le formulaire (oblige le client à se connecter à Google) : photos et logo → envoyés sur WhatsApp.
 
 ## Section 1 — Services

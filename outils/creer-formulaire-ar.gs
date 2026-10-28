@@ -1,12 +1,12 @@
 /**
- * Crée le formulaire client « Sahir Digital » en arabe (mêmes offres que le formulaire français).
+ * Crée le formulaire client « Pulse Digital » en arabe (mêmes offres que le formulaire français).
  * Les réponses arrivent dans la même Google Sheet de réponses, dans un nouvel onglet.
  * script.google.com/u/1/create → coller → Ctrl+S → Exécuter → autoriser (compte astralzayte).
  * Le lien à envoyer s'affiche dans le Journal d'exécution.
  */
 function creerFormulaireArabe() {
-  var form = FormApp.create('Sahir Digital — Formulaire arabe');
-  form.setTitle('Sahir Digital : عرضكم');
+  var form = FormApp.create('Pulse Digital — Formulaire arabe');
+  form.setTitle('Pulse Digital : عرضكم');
   form.setDescription(
     'زبونات أكثر لصالونكم، دون أي مجهود من جانبكم.\n\n' +
     'بدون التزام، الدفع كل أسبوع، التركيب مجاني، وفاتورة مع كل دفعة.\n' +
@@ -63,7 +63,7 @@ function creerFormulaireArabe() {
   form.addTextItem().setTitle('اسم الموقع المرغوب (مثال: salonlina.com)');
 
   form.setConfirmationMessage(
-    'شكراً! وصلنا طلبكم وتم حجز سعر الإطلاق لكم. سيتواصل معكم جوليان قريباً في واتساب لتجهيز كل شيء. Sahir Digital');
+    'شكراً! وصلنا طلبكم وتم حجز سعر الإطلاق لكم. سيتواصل معكم جوليان قريباً في واتساب لتجهيز كل شيء. Pulse Digital');
 
   // Même Google Sheet de réponses que le formulaire français (nouvel onglet)
   form.setDestination(FormApp.DestinationType.SPREADSHEET, '1bL_39qJ3cPVC8J0j0wiW8Wm4OXotvLpkU6s91tEtioE');

@@ -103,7 +103,7 @@ FORMULAIRE_AR = "https://docs.google.com/forms/d/e/1FAIpQLSeMBzEkndDdQEImYd2D9S0
 def audit(nom, note=None, avis=None, site=None, point_faible=None, barbier=False):
     """Message WhatsApp « présentation » (le même pour tous)."""
     cl = "clients" if barbier else "clientes"
-    return (f"Bonjour {nom},\nJe suis Julien, de Sahir Digital, à Marrakech.\n\n"
+    return (f"Bonjour {nom},\nJe suis Julien, de Pulse Digital, à Marrakech.\n\n"
             f"Nous aidons les salons de Marrakech à avoir plus de {cl}, sans rien faire de votre côté :\n"
             f"- un WhatsApp et un Instagram qui répondent à vos {cl} 24h/24\n"
             "- des vidéos et des stories publiées pour vous chaque semaine\n"
@@ -113,7 +113,7 @@ def audit(nom, note=None, avis=None, site=None, point_faible=None, barbier=False
 
 def formulaire(nom):
     """Message WhatsApp « formulaire » (après un appel où la personne est intéressée)."""
-    return (f"Bonjour {nom},\nC'est Julien, de Sahir Digital. Merci pour votre temps.\n\n"
+    return (f"Bonjour {nom},\nC'est Julien, de Pulse Digital. Merci pour votre temps.\n\n"
             f"Voici le formulaire pour choisir vos services (2 minutes) : {FORMULAIRE}\n\n"
             "Je vous prépare ensuite votre offre.")
 
@@ -123,7 +123,7 @@ PRESENTATION_AR = "https://docs.google.com/document/d/12jE3A5oSy4mfm7x3yP7hE9xcI
 
 def audit_ar(nom):
     """Message « présentation » en arabe."""
-    return (f"مرحباً {nom}،\nأنا جوليان من Sahir Digital في مراكش.\n\n"
+    return (f"مرحباً {nom}،\nأنا جوليان من Pulse Digital في مراكش.\n\n"
             "نساعد صالونات مراكش على جذب زبونات أكثر، دون أي مجهود منكم:\n"
             "- واتساب وإنستغرام يردّان 24/24\n"
             "- فيديوهات وستوريات كل أسبوع\n"
@@ -133,7 +133,7 @@ def audit_ar(nom):
 
 def formulaire_ar(nom):
     """Message « formulaire » en arabe."""
-    return (f"مرحباً {nom}،\nمعكم جوليان من Sahir Digital. شكراً على وقتكم.\n\n"
+    return (f"مرحباً {nom}،\nمعكم جوليان من Pulse Digital. شكراً على وقتكم.\n\n"
             f"هذه الاستمارة لاختيار خدماتكم (دقيقتان): {FORMULAIRE_AR}\n\n"
             "بعدها أجهّز لكم عرضكم.")
 

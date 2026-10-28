@@ -1,8 +1,8 @@
 /**
- * Met à jour le formulaire existant « Sahir Digital — Démarrage » (le lien client ne change pas).
+ * Met à jour le formulaire existant « Pulse Digital — Démarrage » (le lien client ne change pas).
  * script.google.com → Nouveau projet → coller → Ctrl+S → Exécuter → autoriser.
  */
-function majFormulaireSahir() {
+function majFormulairePulse() {
   var form = FormApp.openById('1ldDv-l5HZtRyAnomwYz6TWRs56snThL90FLpsl73_jQ');
 
   // Numéro WhatsApp : portable marocain ou français uniquement (06 / 07 / +212 / +33)
@@ -21,7 +21,7 @@ function majFormulaireSahir() {
   });
 
   form.setConfirmationMessage(
-    'Merci ! Nous vous contacterons d\'ici peu sur WhatsApp. Si vous avez des questions, écrivez-nous directement sur WhatsApp. — Sahir Digital');
+    'Merci ! Nous vous contacterons d\'ici peu sur WhatsApp. Si vous avez des questions, écrivez-nous directement sur WhatsApp. — Pulse Digital');
 
   Logger.log('✅ Formulaire mis à jour : ' + form.getPublishedUrl());
 }

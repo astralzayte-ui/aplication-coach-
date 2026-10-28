@@ -52,7 +52,7 @@ const videos: Pub3[] = [
 
 export const salonAr: Config = {
   scenes: ['nuit', 'ia', 'vocal', 'videos', 'site', 'prix'],
-  marque: { nom: 'SAHIR DIGITAL' },
+  marque: { nom: 'PULSE DIGITAL', compte: '@pulsedigit', pouls: true },
   rtl: true,
   police: 'Cairo',
   voix: ['voice/ar0.wav', 'voice/ar1.wav', 'voice/ar2.wav', 'voice/ar3.wav', 'voice/ar4.wav', 'voice/ar5.wav'],
@@ -60,7 +60,7 @@ export const salonAr: Config = {
   durees: minutage.ar.durees,
   sousTitres: sous(minutage.ar, [
     ['الساعة الحادية عشرة ليلاً.', 'زبونة تكتب لصالونكم...', 'ولا أحد يرد.', 'فتحجز عند غيركم.'],
-    ['مع ساهر ديجيتال،', 'يرد ذكاء اصطناعي مكانكم في خمس ثوانٍ،', 'على واتساب وإنستغرام، ليلاً ونهاراً.', 'وتربحون حتى ساعتين كل يوم.'],
+    ['مع بالس ديجيتال،', 'يرد ذكاء اصطناعي مكانكم في خمس ثوانٍ،', 'على واتساب وإنستغرام، ليلاً ونهاراً.', 'وتربحون حتى ساعتين كل يوم.'],
     ['وتفهم حتى الرسائل الصوتية،', 'بالدارجة أو بالفرنسية.', 'ونجهّز لكم كل شيء عن بُعد.'],
     ['ونصنع لكم فيديوهات تجعل الجميع يتحدث عن صالونكم.', 'عشرات، بل مئات الآلاف من المشاهدات.', 'وننشرها لكم كل أسبوع.'],
     ['وموقعاً احترافياً،', 'ترى فيه زبوناتكم أسعاركم،', 'وتحجز بنقرة واحدة.'],
@@ -96,7 +96,7 @@ export const salonAr: Config = {
     detail: 'غدا - 15:00',
   },
   scene5: {
-    slogan: 'أنتم نائمون، وساهر يسهر على عملكم',
+    slogan: 'صالونكم يعمل حتى وأنتم نائمون',
     aPartir: 'ابتداءً من',
     prix: '100',
     prixLegende: 'درهم / الأسبوع',
@@ -113,7 +113,7 @@ export const salonFr: Config = {
   durees: minutage.fr.durees,
   sousTitres: sous(minutage.fr, [
     ['Il est 23 heures.', 'Une cliente écrit à votre salon...', 'Personne ne répond.', 'Alors, elle réserve ailleurs.'],
-    ['Avec Sahir Digital,', 'une IA répond à votre place en 5 secondes,', 'sur WhatsApp et Instagram, jour et nuit.', "Et vous gagnez jusqu'à 2 heures par jour."],
+    ['Avec Pulse Digital,', 'une IA répond à votre place en 5 secondes,', 'sur WhatsApp et Instagram, jour et nuit.', "Et vous gagnez jusqu'à 2 heures par jour."],
     ['Elle comprend même les messages vocaux,', 'en darija comme en français.', 'Et on installe tout pour vous, à distance.'],
     ['On crée des vidéos qui font parler de votre salon.', 'Des dizaines, voire des centaines de milliers de vues.', 'Et on les publie pour vous, chaque semaine.'],
     ['Et un site professionnel,', 'où vos clientes voient vos prix,', 'et réservent en un clic.'],
@@ -148,7 +148,7 @@ export const salonFr: Config = {
     detail: 'Demain - 15h00',
   },
   scene5: {
-    slogan: 'Vous dormez, Sahir veille sur votre salon',
+    slogan: 'Vous dormez, Pulse veille sur votre salon',
     aPartir: 'À partir de',
     prix: '100',
     prixLegende: 'DH / semaine',

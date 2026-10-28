@@ -8,7 +8,7 @@
 - Avis sans réponse : « vous ne répondez pas à vos avis Google, et vos futurs clients les lisent »
 
 ## Appel (40 secondes)
-1. Bonjour, je suis bien au [Nom du commerce] ? Je suis [Prénom], de Sahir Digital, à Marrakech. Je vous prends 30 secondes, pas plus.
+1. Bonjour, je suis bien au [Nom du commerce] ? Je suis [Prénom], de Pulse Digital, à Marrakech. Je vous prends 30 secondes, pas plus.
 2. En préparant mon appel, j'ai remarqué une chose : [ACCROCHE].
 3. Chaque jour, ça vous fait perdre des clients, qui partent chez un concurrent.
 4. Nous, on aide les [spas / restaurants] à régler ça : un WhatsApp qui répond à vos clients tout seul, même la nuit, et des vidéos UGC de qualité publiées pour vous sur Instagram.
@@ -23,7 +23,7 @@
 
 ## Message WhatsApp (si pas de réponse à l'appel)
 Bonjour [Nom],
-Je suis [Prénom], de Sahir Digital, à Marrakech. J'ai essayé de vous appeler.
+Je suis [Prénom], de Pulse Digital, à Marrakech. J'ai essayé de vous appeler.
 
 En regardant votre [fiche Google / Instagram / site], j'ai remarqué que [ACCROCHE].
 
@@ -66,7 +66,7 @@ C. Il répond « oui » sur WhatsApp → mini-audit (+ vidéo quand elle exister
 D. Intéressé → Google Form.
 
 ## Message « après appel » (WhatsApp)
-Bonjour [Nom], c'est Julien de Sahir Digital, suite à notre appel.
+Bonjour [Nom], c'est Julien de Pulse Digital, suite à notre appel.
 Comme promis, voici votre mini-audit :
 [mini-audit préparé par Claude]
 Vous voulez qu'on en parle 5 minutes, ou je vous envoie nos formules ?

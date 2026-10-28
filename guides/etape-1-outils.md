@@ -6,7 +6,7 @@
 3. Ouvrir https://script.google.com/home/projects/create (compte astralzayte@gmail.com).
 4. Effacer `function myFunction() {}` → Coller.
 5. Cliquer 💾 (Enregistrer).
-6. Vérifier que la liste en haut affiche `creerFormulaireSahir` → cliquer ▶ Exécuter.
+6. Vérifier que la liste en haut affiche `creerFormulairePulse` → cliquer ▶ Exécuter.
 7. « Autorisation requise » → Examiner les autorisations → choisir astralzayte@gmail.com
    → Paramètres avancés → Accéder à Projet sans titre (non sécurisé) → Autoriser.
 8. En bas, Journal d'exécution : copier la ligne « ✅ LIEN À ENVOYER AUX CLIENTS ».
@@ -14,7 +14,7 @@
 
 ## B. Meta Business (5 min)
 1. https://business.facebook.com/overview → Créer un compte.
-2. Nom de l'entreprise : Sahir Digital · ton nom · e-mail pro → Envoyer.
+2. Nom de l'entreprise : Pulse Digital · ton nom · e-mail pro → Envoyer.
 3. Confirmer l'e-mail reçu.
 
 ## C. Cloudflare (2 min)

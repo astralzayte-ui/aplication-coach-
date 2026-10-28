@@ -36,7 +36,7 @@ FR :
 3. « Votre WhatsApp lui répond en 5 secondes. Écrit ou vocal. »
 4. « Un site à votre image. »
 5. « Des vidéos publiées pour vous, chaque semaine. »
-6. « Vous dormez. Sahir veille. Sahir Digital. »
+6. « Vous dormez. Pulse veille. Pulse Digital. »
 
 Arabe classique :
 1. « إنها الثانية صباحًا، وأنتِ نائمة… »
@@ -44,7 +44,7 @@ Arabe classique :
 3. « الواتساب يجيبها خلال خمس ثوانٍ، كتابةً أو صوتًا. »
 4. « موقع يشبهكِ. »
 5. « فيديوهات تُنشر لكِ كل أسبوع. »
-6. « أنتِ نائمة، وساهر يسهر على عملكِ. ساهر ديجيتال. »
+6. « أنتِ نائمة، وصالونكِ يعمل. بالس ديجيتال. »
 
 ## Écran de fin
-Logo Sahir Digital + « Vous dormez. Sahir veille. » + numéro WhatsApp de l'agence.
+Logo Pulse Digital + « Vous dormez. Pulse veille. » + numéro WhatsApp de l'agence.

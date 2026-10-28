@@ -8,7 +8,7 @@ export const VERT = '#25d366';
 export const pop = (f: number, de: number, fps: number, damping = 12) =>
   spring({ frame: f - de, fps, config: { damping, stiffness: 140, mass: 0.7 } });
 
-// ---------- Fond : nuit étoilée + lune (Sahir = celui qui veille la nuit) ----------
+// ---------- Fond : nuit étoilée + lune ----------
 export const Fond: React.FC<{ lune?: number }> = ({ lune = 1 }) => {
   const f = useCurrentFrame();
   const etoiles = useMemo(

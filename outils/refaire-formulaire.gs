@@ -1,12 +1,12 @@
 /**
- * Refait le formulaire client « Sahir Digital » avec les nouvelles offres (le lien client ne change pas).
+ * Refait le formulaire client « Pulse Digital » avec les nouvelles offres (le lien client ne change pas).
  * script.google.com/create → coller → Ctrl+S → Exécuter → autoriser (compte astralzayte).
  */
-function refaireFormulaireSahir() {
+function refaireFormulairePulse() {
   var form = FormApp.openById('1ldDv-l5HZtRyAnomwYz6TWRs56snThL90FLpsl73_jQ');
   form.getItems().forEach(function (item) { form.deleteItem(item); });
 
-  form.setTitle('Sahir Digital : votre offre');
+  form.setTitle('Pulse Digital : votre offre');
   form.setDescription(
     'Plus de clientes pour votre salon, sans rien faire de votre côté.\n\n' +
     'Sans engagement, payé à la semaine, installation offerte, facture pour chaque paiement.\n' +
@@ -64,7 +64,7 @@ function refaireFormulaireSahir() {
 
   form.setConfirmationMessage(
     'Merci ! Votre demande est bien reçue et votre prix de lancement est réservé. ' +
-    'Julien vous écrit très vite sur WhatsApp pour tout mettre en place. Sahir Digital');
+    'Julien vous écrit très vite sur WhatsApp pour tout mettre en place. Pulse Digital');
   form.setAcceptingResponses(true);
 
   Logger.log('Formulaire refait. Lien client (inchangé) : ' + form.getPublishedUrl());

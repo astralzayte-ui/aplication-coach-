@@ -1,6 +1,6 @@
-# Présentation client (texte du Google Doc « Sahir Digital — Présentation »)
+# Présentation client (texte du Google Doc « Pulse Digital — Présentation »)
 
-SAHIR DIGITAL
+PULSE DIGITAL
 Plus de clientes pour votre salon, sans rien faire de votre côté.
 Agence de Marrakech. Entreprise déclarée, facture pour chaque paiement.
 
@@ -38,4 +38,4 @@ Choisissez vos services ici (2 minutes) :
 https://docs.google.com/forms/d/e/1FAIpQLSdi8TdPCkn8NXu9gUG9mdvEtbMgEiSgeX3q3PuiUMrK3mrKTQ/viewform
 
 Une question ? Répondez simplement à notre message WhatsApp.
-Julien, Sahir Digital
+Julien, Pulse Digital

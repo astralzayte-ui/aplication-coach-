@@ -103,7 +103,7 @@ def bilan():
           if "_modele" not in p]
     ca = sum(r["ca_sem"] for r in rs); co = sum(r["cout_sem"] for r in rs)
     vids = sum(r["videos"] for r in rs) * S
-    out = ["# Bilan Sahir Digital", "", "| Client | Payé / sem | Coût / sem | Bénéfice / sem | Bénéfice / mois |",
+    out = ["# Bilan Pulse Digital", "", "| Client | Payé / sem | Coût / sem | Bénéfice / sem | Bénéfice / mois |",
            "|---|---|---|---|---|"]
     out += [f"| {r['nom']} | {dh(r['ca_sem'])} | {dh(r['cout_sem'])} | {dh(r['ca_sem'] - r['cout_sem'])} | "
             f"{dh((r['ca_sem'] - r['cout_sem']) * S)} |" for r in rs]

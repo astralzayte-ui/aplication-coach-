@@ -1,10 +1,10 @@
 /**
- * Fiche de prospects Sahir Digital (Google Sheet) + point d'entrée pour que Claude ajoute les prospects.
+ * Fiche de prospects Pulse Digital (Google Sheet) + point d'entrée pour que Claude ajoute les prospects.
  * 1) Coller ce code dans script.google.com → Ctrl+S → choisir « installerProspects » → Exécuter → autoriser.
  * 2) Déployer → Nouveau déploiement → ⚙ Application Web → Exécuter en tant que : Moi → Accès : Tout le monde → Déployer.
  * 3) Copier l'URL de l'application Web et l'envoyer à Claude.
  */
-var TOKEN = 'VOIR_DOC_DRIVE'; // le vrai jeton est dans le Google Doc « Sahir Digital — Script fiche prospects V3 » (dépôt public)
+var TOKEN = 'VOIR_DOC_DRIVE'; // le vrai jeton est dans le Google Doc « Pulse Digital — Script fiche prospects V3 » (dépôt public)
 var COLONNES = ['Appelé', 'A répondu', 'WhatsApp envoyé', 'Intéressé',
   'Score', 'Nom', 'Téléphone', 'Présentation FR', 'Formulaire FR', 'Présentation AR', 'Formulaire AR', 'Point faible',
   'Note Google', 'Nb avis', 'Site', 'Instagram', 'Secteur', 'Date ajout', 'Notes'];
@@ -14,7 +14,7 @@ function lien(url, texte) {
 }
 
 function installerProspects() {
-  var ss = SpreadsheetApp.create('Sahir Digital — Prospects');
+  var ss = SpreadsheetApp.create('Pulse Digital — Prospects');
   var sh = ss.getActiveSheet();
   sh.setName('Prospects');
   sh.getRange(1, 1, 1, COLONNES.length).setValues([COLONNES])

@@ -24,7 +24,7 @@ const Bulle: React.FC<{ texte: string; moi: boolean; de: number; police: string;
       transform: `translateY(${(1 - p) * 24}px) scale(${0.8 + 0.2 * p})`, transformOrigin: moi ? 'right bottom' : 'left bottom' }}>
       <div style={{ maxWidth: '86%', background: moi ? '#005c4b' : '#202c33', color: '#e9edef', borderRadius: 18,
         borderTopRightRadius: moi ? 4 : 18, borderTopLeftRadius: moi ? 18 : 4, padding: '10px 16px 6px', boxShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
-        {ia && <div style={{ fontFamily: police, fontSize: 21, fontWeight: 700, color: '#f2cf7a', direction: dir }}>Sahir IA</div>}
+        {ia && <div style={{ fontFamily: police, fontSize: 21, fontWeight: 700, color: '#f2cf7a', direction: dir }}>Pulse IA</div>}
         <div style={{ direction: dir, fontFamily: police, fontWeight: 700, fontSize: 33, lineHeight: 1.4 }}>{texte}</div>
         <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', fontFamily: 'Inter', fontSize: 18, color: '#8696a0', marginTop: 2 }}>
           {heure}{moi && <Coches lu={!!lu} />}

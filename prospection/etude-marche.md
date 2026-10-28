@@ -1,4 +1,4 @@
-# Étude de marché Sahir Digital (octobre 2026)
+# Étude de marché Pulse Digital (octobre 2026)
 
 Prix publics trouvés en ligne. Nos prix au mois = prix semaine × 4,33.
 

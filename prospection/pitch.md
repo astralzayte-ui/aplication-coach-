@@ -1,7 +1,7 @@
 # Pitch en face à face (≈ 1 min 30)
 
 **1. Accroche (10 s)**
-« Bonjour, je suis [prénom], de Sahir Digital. On aide les [spas / restaurants] du quartier à avoir plus de clients
+« Bonjour, je suis [prénom], de Pulse Digital. On aide les [spas / restaurants] du quartier à avoir plus de clients
 grâce aux réseaux et à WhatsApp. Je vous prends 1 minute ? »
 
 **2. Le problème (15 s)**

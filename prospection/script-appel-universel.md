@@ -1,7 +1,7 @@
-SCRIPT D'APPEL — SAHIR DIGITAL
+SCRIPT D'APPEL — PULSE DIGITAL
 Avant d'appeler : regarde les colonnes « Site » et « Note Google » de la fiche.
 
-1. « Bonjour, je suis bien au salon [nom] ? Julien, de Sahir Digital, à Marrakech. Je vous prends trente secondes. »
+1. « Bonjour, je suis bien au salon [nom] ? Julien, de Pulse Digital, à Marrakech. Je vous prends trente secondes. »
 
 2. L'accroche, selon la colonne « Site » :
 - Site = Non, Instagram seulement ou Page Facebook : « J'ai regardé votre salon sur Google : [note] étoiles, c'est très bien. Mais vous n'avez pas de site : les clientes qui vous cherchent ne voient ni vos prix ni où réserver, alors elles vont chez un salon qui en a un. »

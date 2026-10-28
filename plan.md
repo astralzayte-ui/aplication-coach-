@@ -19,7 +19,7 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - ⬜ Démo site du faux spa
 - ⬜ Vidéo de présentation FR (script : `prospection/video-demo.md`)
 - ✅ Vidéo motion design 3D, arabe (~32 s) et français (~29 s), refaite le 27/10 plus rythmée : voix accélérée (pauses raccourcies), sous-titres mot à mot, zooms, transitions rapides, bruitages. Ordre : message à 23h sans réponse → IA WhatsApp/Instagram + 2 h gagnées → vocaux compris (darija/français) + installation à distance → 3 vidéos virales (dizaines à centaines de milliers de vues) de salons → site qui fait réserver → « dès 100 DH/semaine, sans engagement » → « Répondez OUI pour en savoir plus ». Code : `video/` (Remotion). Textes : `video/src/config.ts`. Voix : `python3 voix.py` (pauses, vitesse, minutage des sous-titres). Médias (vidéos, site, voix, musique) hors git. Rendu : `cd video && npx remotion render src/index.ts PubSalonFr out/pub-fr.mp4` (ou `PubSalonAr`).
-- 🔄 Pubs semaine 27/10 → 03/11 : 16 scripts arabes prêts (`pubs/semaine-27-10.md`), 2 vidéos par jour quand Julien dit « go ». À faire : ajouter Sahir Digital dans Metricool pour lire les vues.
+- 🔄 Pubs semaine 27/10 → 03/11 : 16 scripts arabes prêts (`pubs/semaine-27-10.md`), 2 vidéos par jour quand Julien dit « go ». À faire : ajouter Pulse Digital dans Metricool pour lire les vues.
 - ⬜ Vidéo de présentation arabe classique
 
 ## Étape 3 — Prospection (toi)
@@ -32,9 +32,9 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - ✅ Version arabe (22/10) : présentation arabe partagée (doc 12jE3A5oSy4mfm7x3yP7hE9xcIZNGrG3sufgR3876xfw), fiche V4 déployée avec boutons « Envoyer en français » / « Envoyer en arabe » sur les 83 salons (code avec jeton : doc Drive 1D9oFtyHg7LagdAJKS_nR9F8ULVVtVyKUyPel_DNK2CE ; projet Apps Script id 14xJ0fxDWBxLOev4o0693dE6C6jg_uatQ5asJk2LDllvjfW6FsXflsUtz)
 - ✅ Présentation à jour et partagée (lien public), notifications du formulaire activées, script d'appel V3 dans le doc (22/10)
 - ✅ Google Form créé : https://docs.google.com/forms/d/1ldDv-l5HZtRyAnomwYz6TWRs56snThL90FLpsl73_jQ/edit · Réponses : Google Sheet id 1bL_39qJ3cPVC8J0j0wiW8Wm4OXotvLpkU6s91tEtioE
-- ✅ Nom : **Sahir Digital** (ساهر ديجيتال) — ⬜ vérifier dispo (OMPIC, nom de domaine, Instagram)
+- ✅ Nom : **Pulse Digital** (بالس ديجيتال), compte @pulsedigit — remplace Sahir Digital le 28/10 — ⬜ vérifier dispo (OMPIC, nom de domaine, Instagram)
 - ✅ Prix validés (questionnaire `clients/_modele/message-client.md`)
-- ✅ Étude de marché Sahir Digital (`prospection/etude-marche.md`, 22/10)
+- ✅ Étude de marché Pulse Digital (`prospection/etude-marche.md`, 22/10)
 - ⬜ Pitch appris (`prospection/pitch.md`)
 - ⬜ 1er commerce démarché
 
@@ -48,13 +48,13 @@ Guide pas à pas : `guides/etape-1-outils.md`
 ## À rappeler à l'utilisateur (à chaque « on en est où »)
 - 👉 PROCHAINE ÉTAPE PRIORITAIRE : faire la vidéo de démo universelle (plus pro). Prompts : `prospection/prompts-video-demo.md`. Il faut des crédits Higgsfield.
 - Script d'appel universel (le même pour tous) : `prospection/script-appel-universel.md`
-- Positionnement : Sahir Digital cherche des CLIENTS (prestataire), pas un employeur. À développer plus tard.
+- Positionnement : Pulse Digital cherche des CLIENTS (prestataire), pas un employeur. À développer plus tard.
 - Plus tard : liste des sites où poster ses annonces + publication automatique
 - Prospection en ligne : `prospection/approche-en-ligne.md` (fiche prospects + lien WhatsApp 1 clic)
 - Pitch appel + message : `prospection/pitch-appel-message.md`
-- ✅ Fiche prospects automatique (V3, sans emoji, lien WhatsApp = audit complet) : Google Sheet « Sahir Digital — Prospects » id 1rdMYXguMDDb9hl84ina2mNt6FZQiOxEbpVnBj6T8LEo. Cible : SALONS DE BEAUTÉ uniquement (pas de barbiers, on ne mélange pas). 30 prospects chargés le 24/09.
+- ✅ Fiche prospects automatique (V3, sans emoji, lien WhatsApp = audit complet) : Google Sheet « Pulse Digital — Prospects » id 1rdMYXguMDDb9hl84ina2mNt6FZQiOxEbpVnBj6T8LEo. Cible : SALONS DE BEAUTÉ uniquement (pas de barbiers, on ne mélange pas). 30 prospects chargés le 24/09.
   Ajout de lignes : POST JSON {token, rows:[…]} sur https://script.google.com/macros/s/AKfycbye2-0QXlh9jogL7HdK25HZ6OB_kPvBx8rJ-SNhXiYuxJa1ppwUz_kLjHsBMaZ6nQsUQg/exec (curl -L).
-  Le jeton est dans le Google Doc « Sahir Digital — Script fiche prospects » (id 1s69VElVoQkIcKPw72ppG76a0U82hmgUa86uuca0KoUA), jamais dans le dépôt.
+  Le jeton est dans le Google Doc « Pulse Digital — Script fiche prospects » (id 1s69VElVoQkIcKPw72ppG76a0U82hmgUa86uuca0KoUA), jamais dans le dépôt.
   Lot quotidien : Apify compass/crawler-google-places (Marrakech, 15 avis, contacts) → outils/lot_prospects.py → POST.
   Routine : trig_015zQEr54xvSjHyenvT9m2xF, chaque jour 8h30 UTC (9h30 Maroc), message avec les liens avant 10h, dans cette session. ARRÊTÉE le 30/09 à la demande de Julien (aucun prospect encore traité).
   Script d'appel V2 (court) : Google Doc 1gcgQ0fnpw9G7hppIa45bYbJgdfRVA28s9wH6y6trsTg. Présentation : Google Doc 1Ib7KM6cMAuo_6Q2Pp096CxbSuRZkf1JmQMU5BCmGVFU.
@@ -72,4 +72,4 @@ Guide pas à pas : `guides/etape-1-outils.md`
   - TikTok ❌ abandonné (décision 2026-09-23 : on reste sur Instagram). Pour info : API Business Messaging en ligne, mais accès seulement via des partenaires agréés (SleekFlow, respond.io, ManyChat, MessageGate), donc payant. Disponibilité au Maroc à vérifier. Gratuit en natif : message de bienvenue + réponses par mots-clés (pas d'IA).
 
 ## Décisions en attente
-- Vérifier la disponibilité du nom Sahir Digital
+- Vérifier la disponibilité du nom Pulse Digital

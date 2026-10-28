@@ -1,12 +1,12 @@
 /**
- * Crée le Google Form « Sahir Digital — Démarrage » et sa Google Sheet de réponses.
+ * Crée le Google Form « Pulse Digital — Démarrage » et sa Google Sheet de réponses.
  * Mode d'emploi : script.google.com → Nouveau projet → coller ce code → Exécuter → autoriser.
  * Les liens s'affichent dans le « Journal d'exécution » en bas.
  */
-function creerFormulaireSahir() {
-  var form = FormApp.create('Sahir Digital — Démarrage');
+function creerFormulairePulse() {
+  var form = FormApp.create('Pulse Digital — Démarrage');
   form.setDescription(
-    'Sahir Digital — entreprise déclarée, facture fournie pour chaque paiement.\n' +
+    'Pulse Digital — entreprise déclarée, facture fournie pour chaque paiement.\n' +
     'Cochez les services qui vous intéressent et donnez-nous quelques infos sur votre commerce. 2 minutes suffisent.');
   form.setProgressBar(true);
 
@@ -56,9 +56,9 @@ function creerFormulaireSahir() {
   form.addTextItem().setTitle('Nom de site souhaité (ex. spaserenite.com)');
 
   form.setConfirmationMessage(
-    'Merci ! Nous vous contacterons d\'ici peu sur WhatsApp. Si vous avez des questions, écrivez-nous directement sur WhatsApp. — Sahir Digital');
+    'Merci ! Nous vous contacterons d\'ici peu sur WhatsApp. Si vous avez des questions, écrivez-nous directement sur WhatsApp. — Pulse Digital');
 
-  var ss = SpreadsheetApp.create('Sahir Digital — Réponses clients');
+  var ss = SpreadsheetApp.create('Pulse Digital — Réponses clients');
   form.setDestination(FormApp.DestinationType.SPREADSHEET, ss.getId());
   try { form.setPublished(true); } catch (e) {}
   form.setAcceptingResponses(true);

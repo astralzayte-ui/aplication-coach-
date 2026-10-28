@@ -1,5 +1,5 @@
 {
-  "name": "sahir-video",
+  "name": "pulse-video",
   "private": true,
   "scripts": {
     "studio": "remotion studio",
