@@ -41,6 +41,7 @@ Guide pas à pas : `guides/etape-1-outils.md`
 - ✅ Prix validés (questionnaire `clients/_modele/message-client.md`)
 - ✅ Étude de marché Pulse Digital (`prospection/etude-marche.md`, 22/10)
 - ⬜ Pitch appris (`prospection/pitch.md`)
+- ✅ Nouvelle niche (28/10) : RIADS de Marrakech (réservations directes sans commission Booking). 40 riads (moins de 200 avis, mobile, pas de site) : Google Sheet « Pulse Digital — Prospects riads Marrakech (40) » id 1DLbDUSEUegbLFslPd_XkfOMyUO6kNa6WbA7zOtTUnAU. Message en français, 2 liens WhatsApp par riad (vidéo FR ou AR). ⬜ coller les liens des 2 vidéos (cases B45/B46), ⬜ cases à cocher Appelé / À rappeler / Intéressé (Insertion → Case à cocher)
 - ⬜ 1er commerce démarché
 
 ## Étape 4 — Premier client (skill `nouveau-client`)
