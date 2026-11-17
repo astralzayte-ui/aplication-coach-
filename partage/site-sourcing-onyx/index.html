@@ -91,9 +91,11 @@
   .devis { background: var(--encre); color: #fff; border-radius: 18px; padding: 28px 22px; }
   .devis h2 { color: #fff; }
   .devis ol { margin: 18px 0 0; padding-left: 22px; display: grid; gap: 8px; color: #e7e5df; }
-  .contacts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-  .contacts span { border: 1px solid #3a3a3d; border-radius: 10px; padding: 10px 14px; font-size: 14px; user-select: all; }
-  .contacts b { color: var(--or); margin-right: 6px; }
+  .canal { margin: 22px 0 0; border: 1px solid #3a3a3d; border-radius: 12px; padding: 14px 16px; color: #e7e5df; }
+  .canal b { color: var(--or); }
+  .titre-cible { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+  .cible { display: inline-flex; align-items: baseline; gap: 6px; background: var(--encre); color: #fff; border-radius: 999px; padding: 6px 14px; font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
+  .cible b { font: 400 20px 'Anton', Impact, sans-serif; color: var(--or); letter-spacing: .02em; }
   /* les prix cibles */
   .tableau { overflow-x: auto; background: var(--carte); border: 1px solid var(--trait); border-radius: 14px; }
   .tableau table { width: 100%; border-collapse: collapse; font-size: 15px; }
@@ -270,7 +272,10 @@
 
   <section id="sets">
     <div class="tete-section">
-      <h2><span class="en">Sets</span><span class="fr">Ensembles</span></h2>
+      <div class="titre-cible">
+        <h2><span class="en">Sets</span><span class="fr">Ensembles</span></h2>
+        <span class="cible"><span class="en">Target</span><span class="fr">Prix cible</span> <b>18 €</b></span>
+      </div>
       <p><span class="en">Hoodie or sweatshirt + matching sweatpants · 5 pieces</span><span class="fr">Sweat + jogging assorti · 5 pièces</span></p>
     </div>
     <div class="grille">
@@ -301,7 +306,10 @@
 
   <section id="knitwear">
     <div class="tete-section">
-      <h2><span class="en">Knitwear &amp; sweatshirts</span><span class="fr">Pulls et sweats</span></h2>
+      <div class="titre-cible">
+        <h2><span class="en">Knitwear &amp; sweatshirts</span><span class="fr">Pulls et sweats</span></h2>
+        <span class="cible"><span class="en">Target</span><span class="fr">Prix cible</span> <b>13 €</b></span>
+      </div>
       <p><span class="en">6 pieces</span><span class="fr">6 pièces</span></p>
     </div>
     <div class="grille">
@@ -334,7 +342,10 @@
 
   <section id="dresses">
     <div class="tete-section">
-      <h2><span class="en">Winter dresses</span><span class="fr">Robes d'hiver</span></h2>
+      <div class="titre-cible">
+        <h2><span class="en">Winter dresses</span><span class="fr">Robes d'hiver</span></h2>
+        <span class="cible"><span class="en">Target</span><span class="fr">Prix cible</span> <b>11 €</b></span>
+      </div>
       <p><span class="en">Long sleeves · 5 pieces</span><span class="fr">Manches longues · 5 pièces</span></p>
     </div>
     <div class="grille">
@@ -368,7 +379,10 @@
 
   <section id="bags">
     <div class="tete-section">
-      <h2><span class="en">Bags</span><span class="fr">Sacs</span></h2>
+      <div class="titre-cible">
+        <h2><span class="en">Bags</span><span class="fr">Sacs</span></h2>
+        <span class="cible"><span class="en">Target</span><span class="fr">Prix cible</span> <b>13 €</b></span>
+      </div>
       <p><span class="en">Large everyday bags · 5 pieces</span><span class="fr">Grands sacs de tous les jours · 5 pièces</span></p>
     </div>
     <div class="grille">
@@ -403,7 +417,10 @@
 
   <section id="scarves">
     <div class="tete-section">
-      <h2><span class="en">Scarves</span><span class="fr">Écharpes</span></h2>
+      <div class="titre-cible">
+        <h2><span class="en">Scarves</span><span class="fr">Écharpes</span></h2>
+        <span class="cible"><span class="en">Target</span><span class="fr">Prix cible</span> <b>7 €</b></span>
+      </div>
       <p><span class="en">2 pieces</span><span class="fr">2 pièces</span></p>
     </div>
     <div class="grille">
@@ -423,7 +440,10 @@
 
   <section id="beanies">
     <div class="tete-section">
-      <h2><span class="en">Beanies</span><span class="fr">Bonnets</span></h2>
+      <div class="titre-cible">
+        <h2><span class="en">Beanies</span><span class="fr">Bonnets</span></h2>
+        <span class="cible"><span class="en">Target</span><span class="fr">Prix cible</span> <b>5 €</b></span>
+      </div>
       <p><span class="en">3 pieces</span><span class="fr">3 pièces</span></p>
     </div>
     <div class="grille">
@@ -506,10 +526,8 @@
         <li>De vraies photos de la vraie pièce</li>
         <li>Si vous n'avez pas la pièce exacte : la plus proche, avec sa photo</li>
       </ol>
-      <div class="contacts">
-        <span><b>WhatsApp</b>+212 728 861 105</span>
-        <span><b>Email</b>silenceworlwide@gmail.com</span>
-      </div>
+      <p class="canal en">📩 <b>Please reply only through the CJ app</b> (sourcing request and messages), with the code of each piece.</p>
+      <p class="canal fr">📩 <b>Merci de répondre uniquement dans l'application CJ</b> (demande de sourcing et messages), avec le code de chaque pièce.</p>
     </div>
   </section>
 
