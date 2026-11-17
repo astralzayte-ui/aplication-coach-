@@ -344,6 +344,15 @@ dans `v2.md` et `v5.md`.
 
 ## 📌 À ressortir quand il le demande
 
+**« Je veux créer ma marque » / « livrer plus vite »** → lui ressortir **le plan C
+(17/11)** : un agent à Humen (Chine, capitale des usines de mode femme) fait
+fabriquer les modèles qui vendent, avec l'étiquette de la marque, et les stocke
+dans un entrepôt en Europe. **Livraison 2 à 4 jours, meilleure marge, vraie
+marque — mais du stock à payer d'avance.** C'est le palier 3 de
+`PLAN-MILLION.md`. Agents repérés : Epic Sourcing (epicsourcing.co), Jing
+Sourcing (jingsourcing.com). **Il a dit : « ça c'est pas mal pour créer ma
+marque ».**
+
 **« Je suis à l'agence »** → lui renvoyer **les 2 questions pour l'agence de la
 LLC** (la TVA, et le médiateur / le droit de la consommation français). Elles
 sont dans la conversation du 30/09. Il peut aussi demander **une traduction en

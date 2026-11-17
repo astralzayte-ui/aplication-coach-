@@ -179,6 +179,11 @@ CE QU'ON FAIT 1. TikTok Shop ouvert + 30 à 60 créateurs affiliés
               2. booster les vidéos gratuites qui ont gagné (pas de
                  nouvelles pubs inventées)
               3. 1ʳᵉ commande de stock en Europe, payée par les ventes
+                 → LE PLAN C (retenu le 17/11) : un agent à Humen (capitale
+                 des usines de mode femme) fait fabriquer les modèles
+                 gagnants, avec NOTRE étiquette, et les pose dans un
+                 entrepôt en Europe. Livraison 2-4 jours, meilleure marge,
+                 vraie marque. Agents : epicsourcing.co, jingsourcing.com
 CE QUE ÇA     la pub = au maximum 30 % de la marge de la semaine
 COÛTE         précédente. Jamais d'argent qui n'est pas déjà rentré.
 LE FREIN 🔴   une vente payée coûte plus que sa marge, 2 semaines →
