@@ -94,6 +94,19 @@
   .contacts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
   .contacts span { border: 1px solid #3a3a3d; border-radius: 10px; padding: 10px 14px; font-size: 14px; user-select: all; }
   .contacts b { color: var(--or); margin-right: 6px; }
+  /* les prix cibles */
+  .tableau { overflow-x: auto; background: var(--carte); border: 1px solid var(--trait); border-radius: 14px; }
+  .tableau table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .tableau th, .tableau td { text-align: left; padding: 13px 18px; border-bottom: 1px solid var(--trait); }
+  .tableau tr:last-child td { border-bottom: 0; }
+  .tableau th { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--doux); font-weight: 700; }
+  .tableau td.prix { font-family: 'Anton', Impact, sans-serif; font-size: 20px; color: var(--encre); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .tableau .pack td { background: #fbf6ec; }
+  .note { color: var(--doux); font-size: 14px; margin: 12px 0 0; max-width: 70ch; }
+  .leviers { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 18px; }
+  .levier { background: var(--carte); border: 1px solid var(--trait); border-radius: 14px; padding: 16px 18px; }
+  .levier b { display: block; margin-bottom: 4px; }
+  .levier p { margin: 0; color: #45443f; font-size: 14px; }
   footer { max-width: 1100px; margin: 0 auto; padding: 0 16px 40px; color: var(--doux); font-size: 13px; }
 </style>
 </head>
@@ -116,6 +129,7 @@
       <li><a href="#bags"><span class="en">Bags</span><span class="fr">Sacs</span></a></li>
       <li><a href="#scarves"><span class="en">Scarves</span><span class="fr">Écharpes</span></a></li>
       <li><a href="#beanies"><span class="en">Beanies</span><span class="fr">Bonnets</span></a></li>
+      <li><a href="#prices"><span class="en">Target prices</span><span class="fr">Prix cibles</span></a></li>
       <li><a href="#quote"><span class="en">Your quote</span><span class="fr">Votre devis</span></a></li>
     </ul>
   </nav>
@@ -433,12 +447,51 @@
     </div>
   </section>
 
+  <section id="prices">
+    <div class="tete-section">
+      <h2><span class="en">Target prices</span><span class="fr">Prix cibles</span></h2>
+      <p><span class="en">Delivered to the customer in France, taxes included</span><span class="fr">Livré chez la cliente en France, taxes comprises</span></p>
+    </div>
+    <div class="tableau">
+      <table>
+        <thead><tr>
+          <th><span class="en">Category</span><span class="fr">Catégorie</span></th>
+          <th><span class="en">Codes</span><span class="fr">Codes</span></th>
+          <th><span class="en">Target price</span><span class="fr">Prix cible</span></th>
+        </tr></thead>
+        <tbody>
+          <tr><td><span class="en">Sets</span><span class="fr">Ensembles</span></td><td>S1–S5</td><td class="prix">18 €</td></tr>
+          <tr><td><span class="en">Sweaters &amp; sweatshirts</span><span class="fr">Pulls et sweats</span></td><td>K1 · K3 · K4 · K6</td><td class="prix">13 €</td></tr>
+          <tr><td><span class="en">Cardigans</span><span class="fr">Cardigans</span></td><td>K2 · K5</td><td class="prix">13 €</td></tr>
+          <tr><td><span class="en">Dresses</span><span class="fr">Robes</span></td><td>D1–D5</td><td class="prix">11 €</td></tr>
+          <tr><td><span class="en">Bags</span><span class="fr">Sacs</span></td><td>B1–B5</td><td class="prix">13 €</td></tr>
+          <tr><td><span class="en">Scarves</span><span class="fr">Écharpes</span></td><td>E1 · E2</td><td class="prix">7 €</td></tr>
+          <tr><td><span class="en">Beanies</span><span class="fr">Bonnets</span></td><td>H1–H3</td><td class="prix">5 €</td></tr>
+          <tr class="pack"><td><b><span class="en">Winter pack</span><span class="fr">Pack tenue d'hiver</span></b><br><span class="en">1 set + 1 scarf + 1 beanie, one parcel</span><span class="fr">1 ensemble + 1 écharpe + 1 bonnet, un colis</span></td><td>S + E + H</td><td class="prix">30 €</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note en">Price = the piece + shipping to the customer's door in France, VAT and customs included. Please quote Morocco separately.</p>
+    <p class="note fr">Prix = la pièce + l'envoi jusqu'à la porte de la cliente en France, TVA et douane comprises. Le Maroc à part, s'il vous plaît.</p>
+    <div class="leviers">
+      <div class="levier"><b><span class="en">Lower price with volume</span><span class="fr">Un prix qui baisse avec le volume</span></b>
+        <p class="en">Give us your price for 1 piece, from 50 pieces, and from 100 pieces.</p>
+        <p class="fr">Donnez-nous votre prix à l'unité, à partir de 50 pièces, et à partir de 100 pièces.</p></div>
+      <div class="levier"><b><span class="en">Price locked for 3 months</span><span class="fr">Un prix bloqué 3 mois</span></b>
+        <p class="en">No price increase without warning during the first 3 months.</p>
+        <p class="fr">Aucune hausse sans prévenir pendant les 3 premiers mois.</p></div>
+      <div class="levier"><b><span class="en">Sample refunded</span><span class="fr">L'échantillon remboursé</span></b>
+        <p class="en">The sample price is deducted from our first real order.</p>
+        <p class="fr">Le prix de l'échantillon est déduit de notre première vraie commande.</p></div>
+    </div>
+  </section>
+
   <section id="quote">
     <div class="devis">
       <div class="sur"><span class="en">What we need from you</span><span class="fr">Ce qu'on attend de vous</span></div>
       <h2><span class="en">Your quote, for each code</span><span class="fr">Votre devis, pour chaque code</span></h2>
       <ol class="en">
-        <li>Price of the piece (USD), per size and colour</li>
+        <li>Price of the piece, per size and colour — for 1 piece, from 50, and from 100</li>
         <li>Shipping price and delivery days to <b>France</b>, then to <b>Morocco</b> — taxes included</li>
         <li>Price and days for a <b>pack</b> (3 pieces in one parcel)</li>
         <li>Fibre composition in %, weight, available sizes and colours</li>
@@ -446,7 +499,7 @@
         <li>If you don't have the exact piece: the closest one, with its photo</li>
       </ol>
       <ol class="fr">
-        <li>Le prix de la pièce (USD), par taille et par couleur</li>
+        <li>Le prix de la pièce, par taille et par couleur : à l'unité, à partir de 50, et à partir de 100</li>
         <li>Le prix d'envoi et le délai vers la <b>France</b>, puis vers le <b>Maroc</b>, taxes comprises</li>
         <li>Le prix et le délai d'un <b>pack</b> (3 pièces dans un colis)</li>
         <li>La composition en %, le poids, les tailles et couleurs disponibles</li>
@@ -491,11 +544,28 @@
         if (!e.isIntersecting || !liens[e.target.id]) return;
         Object.keys(liens).forEach(function (k) { liens[k].classList.toggle('actif', k === e.target.id); });
         var a = liens[e.target.id], menu = document.querySelector('.menu');
-        menu.scrollTo({ left: a.offsetLeft - (menu.clientWidth - a.offsetWidth) / 2, behavior: 'smooth' });
+        menu.scrollLeft = a.offsetLeft - (menu.clientWidth - a.offsetWidth) / 2;
       });
     }, { rootMargin: '-130px 0px -60% 0px' });
     document.querySelectorAll('main section[id]').forEach(function (s) { obs.observe(s); });
   }
+
+  // un appui sur le menu : on va à la section, et on rattrape si la page a bougé pendant le trajet
+  function viser(cible) { return cible.getBoundingClientRect().top + scrollY - document.querySelector('.haut').offsetHeight - 8; }
+  document.querySelectorAll('.menu a').forEach(function (a) {
+    a.addEventListener('click', function (ev) {
+      var cible = document.getElementById(a.getAttribute('href').slice(1));
+      if (!cible) return;
+      ev.preventDefault();
+      scrollTo({ top: viser(cible), behavior: 'smooth' });
+      var essais = 0, t = setInterval(function () {
+        var ecart = viser(cible) - scrollY;
+        if (Math.abs(ecart) < 4 || ++essais > 12) { clearInterval(t); return; }
+        if (essais > 3) scrollTo({ top: viser(cible), behavior: 'smooth' });
+      }, 350);
+      history.replaceState(null, '', '#' + cible.id);
+    });
+  });
 })();
 </script>
 </body>
