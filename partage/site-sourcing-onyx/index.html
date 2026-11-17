@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>ONYX — Sourcing brief</title>
+<link rel="stylesheet" href="polices.css">
+<style>
+  :root {
+    --encre: #0c0c0d;
+    --papier: #f5f4f1;
+    --carte: #ffffff;
+    --trait: #e2e0da;
+    --doux: #6b6963;
+    --or: #c8953c;
+    --rouge: #b3261e;
+    --vert: #2f6b45;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--papier); color: var(--encre); font: 16px/1.55 'Inter', system-ui, -apple-system, sans-serif; }
+  img { max-width: 100%; display: block; }
+  [data-lang="en"] .fr, [data-lang="fr"] .en { display: none !important; }
+
+  /* en-tête collée */
+  .haut { position: sticky; top: 0; z-index: 10; background: var(--encre); color: #fff; }
+  .barre { max-width: 1100px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .logo { font-family: 'Anton', Impact, sans-serif; font-size: 26px; letter-spacing: .16em; line-height: 1; }
+  .logo small { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: .14em; font-weight: 600; color: #b9b7b0; margin-left: 10px; vertical-align: middle; text-transform: uppercase; }
+  .langue { display: flex; border: 1px solid #3a3a3d; border-radius: 999px; overflow: hidden; }
+  .langue button { background: none; border: 0; color: #b9b7b0; font: 600 13px 'Inter', sans-serif; padding: 7px 14px; cursor: pointer; }
+  .langue button[aria-pressed="true"] { background: #fff; color: var(--encre); }
+  .menu { border-top: 1px solid #222; overflow-x: auto; scrollbar-width: none; }
+  .menu::-webkit-scrollbar { display: none; }
+  .menu ul { list-style: none; margin: 0 auto; padding: 10px 16px; display: flex; gap: 8px; max-width: 1100px; }
+  .menu a { display: block; white-space: nowrap; color: #fff; text-decoration: none; font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 999px; border: 1px solid #3a3a3d; }
+  .menu a:hover, .menu a.actif { background: var(--or); border-color: var(--or); color: var(--encre); }
+
+  main { max-width: 1100px; margin: 0 auto; padding-inline: 16px; padding-block: 0 64px; }
+  section { scroll-margin-top: 118px; padding-top: 48px; }
+  h1, h2 { font-family: 'Archivo Black', 'Inter', sans-serif; font-weight: 400; text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(30px, 6vw, 52px); line-height: 1.05; text-transform: uppercase; }
+  h2 { font-size: clamp(24px, 4vw, 34px); text-transform: uppercase; }
+  .sur { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: var(--or); margin-bottom: 10px; }
+  .intro { max-width: 62ch; color: #33322f; font-size: 17px; margin: 18px 0 0; }
+  .chiffres { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .chiffres > span { background: var(--carte); border: 1px solid var(--trait); border-radius: 10px; padding: 10px 14px; font-size: 14px; }
+  .chiffres b { font-variant-numeric: tabular-nums; }
+  .tete-section { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; margin-bottom: 18px; }
+  .tete-section p { margin: 0; color: var(--doux); font-size: 14px; }
+
+  /* les conditions : on appuie, ça s'ouvre */
+  .groupes { display: grid; gap: 12px; }
+  details { background: var(--carte); border: 1px solid var(--trait); border-radius: 14px; }
+  summary { list-style: none; cursor: pointer; padding: 18px 20px; display: flex; align-items: center; gap: 14px; }
+  summary::-webkit-details-marker { display: none; }
+  .ico { flex: none; width: 40px; height: 40px; border-radius: 10px; background: var(--encre); color: #fff; display: grid; place-items: center; font-size: 19px; }
+  .titre-groupe { flex: 1; font-weight: 700; font-size: 17px; }
+  .titre-groupe small { display: block; font-weight: 500; font-size: 13px; color: var(--doux); }
+  .fleche { transition: transform .2s; color: var(--doux); font-size: 20px; }
+  details[open] .fleche { transform: rotate(180deg); }
+  .regles { list-style: none; margin: 0; padding: 0 20px 18px; display: grid; gap: 10px; }
+  .regles li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding-top: 12px; border-top: 1px solid var(--trait); }
+  .num { font-family: 'Anton', Impact, sans-serif; font-size: 22px; line-height: 1.1; color: var(--or); font-variant-numeric: tabular-nums; }
+  .regles b { display: block; }
+  .regles p { margin: 2px 0 0; color: #45443f; font-size: 15px; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; margin-left: 6px; vertical-align: 2px; }
+  .doit { background: #f7e1df; color: var(--rouge); }
+  .voulu { background: #e3efe7; color: var(--vert); }
+
+  /* les produits */
+  .grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; }
+  .produit { background: var(--carte); border: 1px solid var(--trait); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+  .photo { position: relative; aspect-ratio: 3 / 4; background: #e9e7e2; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .photo.entiere img { object-fit: contain; }
+  .exemple { position: absolute; left: 10px; bottom: 10px; background: rgba(12,12,13,.82); color: #fff; font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; padding: 4px 9px; border-radius: 999px; }
+  .code { position: absolute; left: 10px; top: 10px; background: var(--or); color: var(--encre); font: 400 18px 'Anton', Impact, sans-serif; letter-spacing: .06em; padding: 3px 10px; border-radius: 8px; }
+  .texte { padding: 14px 16px 16px; display: grid; gap: 6px; }
+  .texte h3 { margin: 0; font-size: 16px; line-height: 1.3; }
+  .texte p { margin: 0; color: #45443f; font-size: 14px; }
+  .attention { margin-top: 4px !important; background: #fdf3e2; color: #7a4e0f !important; border-radius: 8px; padding: 7px 10px; font-size: 13px !important; font-weight: 600; }
+  .liste-codes { margin: 4px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 14px; }
+  .liste-codes b { font-family: 'Anton', Impact, sans-serif; font-weight: 400; color: var(--or); margin-right: 6px; letter-spacing: .04em; }
+  .large { grid-column: span 2; }
+  @media (max-width: 560px) { .large { grid-column: auto; } }
+
+  /* le devis */
+  .devis { background: var(--encre); color: #fff; border-radius: 18px; padding: 28px 22px; }
+  .devis h2 { color: #fff; }
+  .devis ol { margin: 18px 0 0; padding-left: 22px; display: grid; gap: 8px; color: #e7e5df; }
+  .contacts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .contacts span { border: 1px solid #3a3a3d; border-radius: 10px; padding: 10px 14px; font-size: 14px; user-select: all; }
+  .contacts b { color: var(--or); margin-right: 6px; }
+  footer { max-width: 1100px; margin: 0 auto; padding: 0 16px 40px; color: var(--doux); font-size: 13px; }
+</style>
+</head>
+<body>
+
+<header class="haut">
+  <div class="barre">
+    <div class="logo">ONYX<small class="en">Sourcing brief</small><small class="fr">Cahier des charges</small></div>
+    <div class="langue" role="group" aria-label="Language">
+      <button type="button" data-choix="en" aria-pressed="true">EN</button>
+      <button type="button" data-choix="fr" aria-pressed="false">FR</button>
+    </div>
+  </div>
+  <nav class="menu" aria-label="Sections">
+    <ul>
+      <li><a href="#conditions"><span class="en">Conditions</span><span class="fr">Conditions</span></a></li>
+      <li><a href="#sets"><span class="en">Sets</span><span class="fr">Ensembles</span></a></li>
+      <li><a href="#knitwear"><span class="en">Knitwear</span><span class="fr">Pulls</span></a></li>
+      <li><a href="#dresses"><span class="en">Dresses</span><span class="fr">Robes</span></a></li>
+      <li><a href="#bags"><span class="en">Bags</span><span class="fr">Sacs</span></a></li>
+      <li><a href="#scarves"><span class="en">Scarves</span><span class="fr">Écharpes</span></a></li>
+      <li><a href="#beanies"><span class="en">Beanies</span><span class="fr">Bonnets</span></a></li>
+      <li><a href="#quote"><span class="en">Your quote</span><span class="fr">Votre devis</span></a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <section id="haut" style="padding-top:40px">
+    <div class="sur"><span class="en">Women's streetwear · France &amp; Morocco</span><span class="fr">Streetwear femme · France et Maroc</span></div>
+    <h1><span class="en">We are looking for a supplier</span><span class="fr">On cherche un fournisseur</span></h1>
+    <p class="intro en">ONYX is a new women's streetwear brand. We sell online, to customers in France, Europe and Morocco. Below: our conditions, then the 25 pieces we want. The photos are <b>examples only</b> — find us the same style, or the closest piece you have.</p>
+    <p class="intro fr">ONYX est une nouvelle marque de streetwear femme. On vend en ligne, en France, en Europe et au Maroc. Ci-dessous : nos conditions, puis les 25 pièces qu'on cherche. Les photos sont <b>des exemples</b> : trouvez-nous le même style, ou la pièce la plus proche que vous avez.</p>
+    <div class="chiffres">
+      <span><b>25</b> <span class="en">pieces</span><span class="fr">pièces</span></span>
+      <span><b>6</b> <span class="en">categories</span><span class="fr">catégories</span></span>
+      <span><b>7</b> <span class="en">days max to the customer</span><span class="fr">jours max jusqu'à la cliente</span></span>
+      <span><b>XS–XL</b> <span class="en">sizes</span><span class="fr">tailles</span></span>
+    </div>
+  </section>
+
+  <section id="conditions">
+    <div class="tete-section">
+      <h2><span class="en">Our conditions</span><span class="fr">Nos conditions</span></h2>
+      <p><span class="en">Tap a block to open it.</span><span class="fr">Appuyez sur un bloc pour l'ouvrir.</span></p>
+    </div>
+    <div class="groupes">
+
+      <details open>
+        <summary>
+          <span class="ico">🚚</span>
+          <span class="titre-groupe"><span class="en">Delivery &amp; tracking</span><span class="fr">Livraison et suivi</span>
+            <small class="en">How fast, where, and how we follow each order</small><small class="fr">En combien de temps, où, et comment on suit chaque commande</small></span>
+          <span class="fleche" aria-hidden="true">⌄</span>
+        </summary>
+        <ol class="regles">
+          <li><span class="num">01</span><div>
+            <b><span class="en">7 days maximum, to the customer's door</span><span class="fr">7 jours maximum, jusqu'à la porte de la cliente</span><span class="badge doit en">Must</span><span class="badge doit fr">Obligatoire</span></b>
+            <p class="en">Counted from the order to the delivery at the customer — not to a warehouse.</p>
+            <p class="fr">Compté de la commande à la livraison chez la cliente, pas jusqu'à un entrepôt.</p></div></li>
+          <li><span class="num">02</span><div>
+            <b><span class="en">A tracking number for every order</span><span class="fr">Un numéro de suivi pour chaque commande</span><span class="badge doit en">Must</span><span class="badge doit fr">Obligatoire</span></b>
+            <p class="en">Sent to us as soon as the parcel leaves.</p>
+            <p class="fr">Envoyé dès que le colis part.</p></div></li>
+          <li><span class="num">03</span><div>
+            <b><span class="en">Order prepared in 2 days maximum</span><span class="fr">Commande préparée en 2 jours maximum</span><span class="badge voulu en">Wanted</span><span class="badge voulu fr">Souhaité</span></b>
+            <p class="en">Inside the 7 days, not on top of them.</p>
+            <p class="fr">Compris dans les 7 jours, pas en plus.</p></div></li>
+          <li><span class="num">04</span><div>
+            <b><span class="en">Delivery to Morocco too</span><span class="fr">Livraison au Maroc aussi</span><span class="badge doit en">Must</span><span class="badge doit fr">Obligatoire</span></b>
+            <p class="en">Please give the price and the delivery time for Morocco separately.</p>
+            <p class="fr">Merci de donner le prix et le délai pour le Maroc à part.</p></div></li>
+          <li><span class="num">05</span><div>
+            <b><span class="en">Several pieces in one parcel</span><span class="fr">Plusieurs pièces dans un seul colis</span><span class="badge voulu en">Wanted</span><span class="badge voulu fr">Souhaité</span></b>
+            <p class="en">We sell packs (a set + a scarf + a beanie). They must ship together, with one shipping cost.</p>
+            <p class="fr">On vend des packs (ensemble + écharpe + bonnet). Ils doivent partir ensemble, avec un seul prix d'envoi.</p></div></li>
+          <li><span class="num">06</span><div>
+            <b><span class="en">Later: stock in a European warehouse</span><span class="fr">Plus tard : du stock dans un entrepôt en Europe</span><span class="badge voulu en">Wanted</span><span class="badge voulu fr">Souhaité</span></b>
+            <p class="en">For the pieces that sell well, we want delivery in 2–3 days. Tell us if you can do it, and the cost.</p>
+            <p class="fr">Pour les pièces qui vendent bien, on veut livrer en 2 à 3 jours. Dites-nous si c'est possible, et le prix.</p></div></li>
+        </ol>
+      </details>
+
+      <details>
+        <summary>
+          <span class="ico">⚖️</span>
+          <span class="titre-groupe"><span class="en">Customs &amp; European law</span><span class="fr">Douane et loi européenne</span>
+            <small class="en">What we need to sell legally in France</small><small class="fr">Ce qu'il faut pour vendre légalement en France</small></span>
+          <span class="fleche" aria-hidden="true">⌄</span>
+        </summary>
+        <ol class="regles">
+          <li><span class="num">07</span><div>
+            <b><span class="en">Taxes and customs already paid (DDP / IOSS)</span><span class="fr">Taxes et douane déjà payées (DDP / IOSS)</span><span class="badge doit en">Must</span><span class="badge doit fr">Obligatoire</span></b>
+            <p class="en">The customer must never pay anything at delivery. Your price includes VAT and customs.</p>
+            <p class="fr">La cliente ne doit jamais rien payer à la livraison. Votre prix inclut la TVA et la douane.</p></div></li>
+          <li><span class="num">08</span><div>
+            <b><span class="en">A label inside every garment</span><span class="fr">Une étiquette dans chaque vêtement</span><span class="badge doit en">Must</span><span class="badge doit fr">Obligatoire</span></b>
+            <p class="en">Fibre composition in % (e.g. "80% cotton, 20% polyester") and care instructions. Required by law in France.</p>
+            <p class="fr">La composition en % (ex. « 80 % coton, 20 % polyester ») et l'entretien. Obligatoire en France.</p></div></li>
+          <li><span class="num">09</span><div>
+            <b><span class="en">No chemicals banned in Europe (REACH)</span><span class="fr">Aucun produit chimique interdit en Europe (REACH)</span><span class="badge doit en">Must</span><span class="badge doit fr">Obligatoire</span></b>
+            <p class="en">Fabrics, dyes and leather must follow the EU REACH rules.</p>
+            <p class="fr">Tissus, teintures et cuir conformes à la règle européenne REACH.</p></div></li>
+          <li><span class="num">10</span><div>
+            <b><span class="en">No logo of another brand — no copies</span><span class="fr">Aucun logo d'une autre marque, aucune copie</span><span class="badge doit en">Must</span><span class="badge doit fr">Obligatoire</span></b>
+            <p class="en">Some example photos show other brands. We want the style only: plain, no logo, no brand text, no copy of a designer model.</p>
+            <p class="fr">Certaines photos montrent d'autres marques. On veut seulement le style : uni, sans logo, sans nom de marque, sans copie d'un modèle de créateur.</p></div></li>
+        </ol>
+      </details>
+
+      <details>
+        <summary>
+          <span class="ico">🔍</span>
+          <span class="titre-groupe"><span class="en">Quality</span><span class="fr">Qualité</span>
+            <small class="en">Checked before it leaves, and fixed if it's wrong</small><small class="fr">Vérifié avant de partir, et réparé si ça ne va pas</small></span>
+          <span class="fleche" aria-hidden="true">⌄</span>
+        </summary>
+        <ol class="regles">
+          <li><span class="num">11</span><div>
+            <b><span class="en">Quality check before shipping, with a photo</span><span class="fr">Contrôle qualité avant l'envoi, avec une photo</span><span class="badge doit en">Must</span><span class="badge doit fr">Obligatoire</span></b>
+            <p class="en">A real photo of the real piece, before it is packed.</p>
+            <p class="fr">Une vraie photo de la vraie pièce, avant l'emballage.</p></div></li>
+          <li><span class="num">12</span><div>
+            <b><span class="en">A sample before we start</span><span class="fr">Un échantillon avant de commencer</span><span class="badge doit en">Must</span><span class="badge doit fr">Obligatoire</span></b>
+            <p class="en">We order one piece of each model first, to check it by hand.</p>
+            <p class="fr">On commande d'abord une pièce de chaque modèle, pour la vérifier en main.</p></div></li>
+          <li><span class="num">13</span><div>
+            <b><span class="en">Defective or wrong piece = replaced or refunded</span><span class="fr">Pièce défectueuse ou fausse = remplacée ou remboursée</span><span class="badge doit en">Must</span><span class="badge doit fr">Obligatoire</span></b>
+            <p class="en">At your cost, including shipping.</p>
+            <p class="fr">À vos frais, envoi compris.</p></div></li>
+          <li><span class="num">14</span><div>
+            <b><span class="en">All sizes XS to XL, with a size chart in cm</span><span class="fr">Toutes les tailles du XS au XL, avec un tableau en cm</span><span class="badge voulu en">Wanted</span><span class="badge voulu fr">Souhaité</span></b>
+            <p class="en">Measurements for each size: chest, length, waist, hips, sleeve.</p>
+            <p class="fr">Les mesures de chaque taille : poitrine, longueur, taille, hanches, manche.</p></div></li>
+        </ol>
+      </details>
+
+      <details>
+        <summary>
+          <span class="ico">📦</span>
+          <span class="titre-groupe"><span class="en">Photos &amp; packaging</span><span class="fr">Photos et emballage</span>
+            <small class="en">What the customer sees</small><small class="fr">Ce que la cliente voit</small></span>
+          <span class="fleche" aria-hidden="true">⌄</span>
+        </summary>
+        <ol class="regles">
+          <li><span class="num">15</span><div>
+            <b><span class="en">Written permission to use your photos</span><span class="fr">Votre accord écrit pour utiliser vos photos</span><span class="badge doit en">Must</span><span class="badge doit fr">Obligatoire</span></b>
+            <p class="en">We will show your product photos on our website. We need your OK in writing.</p>
+            <p class="fr">On mettra vos photos sur notre site. Il nous faut votre accord par écrit.</p></div></li>
+          <li><span class="num">16</span><div>
+            <b><span class="en">Neutral parcel</span><span class="fr">Un colis neutre</span><span class="badge voulu en">Wanted</span><span class="badge voulu fr">Souhaité</span></b>
+            <p class="en">No invoice with your prices, no flyers, no supplier name inside the parcel.</p>
+            <p class="fr">Pas de facture avec vos prix, pas de pub, pas le nom du fournisseur dans le colis.</p></div></li>
+        </ol>
+      </details>
+
+    </div>
+  </section>
+
+  <section id="sets">
+    <div class="tete-section">
+      <h2><span class="en">Sets</span><span class="fr">Ensembles</span></h2>
+      <p><span class="en">Hoodie or sweatshirt + matching sweatpants · 5 pieces</span><span class="fr">Sweat + jogging assorti · 5 pièces</span></p>
+    </div>
+    <div class="grille">
+      <article class="produit">
+        <div class="photo"><img src="img/s1.jpg" alt="" loading="lazy"><span class="code">S1</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Cropped crewneck sweatshirt + wide-leg sweatpants</span><span class="fr">Sweat col rond court + jogging large</span></h3>
+          <p><span class="en">Heather grey · fold-over waistband · balloon sleeves</span><span class="fr">Gris chiné · taille repliée · manches bouffantes</span></p></div>
+      </article>
+      <article class="produit">
+        <div class="photo"><img src="img/s2.jpg" alt="" loading="lazy"><span class="code">S2</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Oversized hoodie + oversized sweatpants</span><span class="fr">Sweat à capuche oversize + jogging oversize</span></h3>
+          <p><span class="en">Royal blue · thick fleece</span><span class="fr">Bleu roi · molleton épais</span></p>
+          <p class="attention"><span class="en">Plain — no embroidery or logo</span><span class="fr">Uni, sans broderie ni logo</span></p></div>
+      </article>
+      <article class="produit">
+        <div class="photo entiere"><img src="img/s3.jpg" alt="" loading="lazy"><span class="code">S3 · S4</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Cropped hoodie + straight sweatpants, leopard lining</span><span class="fr">Sweat à capuche court + jogging droit, doublure léopard</span></h3>
+          <p><span class="en"><b>S3</b> grey · <b>S4</b> black · leopard inside the hood and the waistband</span><span class="fr"><b>S3</b> gris · <b>S4</b> noir · léopard dans la capuche et la ceinture</span></p></div>
+      </article>
+      <article class="produit">
+        <div class="photo"><img src="img/s5.jpg" alt="" loading="lazy"><span class="code">S5</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Oversized hoodie + gathered-waist sweatpants</span><span class="fr">Sweat à capuche oversize + jogging à taille froncée</span></h3>
+          <p><span class="en">Khaki · raw seams · double waistband</span><span class="fr">Kaki · coutures apparentes · double ceinture</span></p>
+          <p class="attention"><span class="en">Photo shows another brand: same style, NO logo</span><span class="fr">La photo montre une autre marque : même style, SANS logo</span></p></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="knitwear">
+    <div class="tete-section">
+      <h2><span class="en">Knitwear &amp; sweatshirts</span><span class="fr">Pulls et sweats</span></h2>
+      <p><span class="en">6 pieces</span><span class="fr">6 pièces</span></p>
+    </div>
+    <div class="grille">
+      <article class="produit large">
+        <div class="photo entiere"><img src="img/k-collage.jpg" alt="" loading="lazy"><span class="code">K1–K5</span><span class="exemple en">Examples</span><span class="exemple fr">Exemples</span></div>
+        <div class="texte"><h3><span class="en">5 pieces on this photo</span><span class="fr">5 pièces sur cette photo</span></h3>
+          <ul class="liste-codes en">
+            <li><b>K1</b>Light grey hoodie, silver wings embroidered on the back</li>
+            <li><b>K2</b>Black fitted ribbed cardigan, snap buttons</li>
+            <li><b>K3</b>Charcoal oversized hoodie, big yellow front print — <u>our own text</u>, never the word in the photo</li>
+            <li><b>K4</b>Oversized crewneck sweater, green and blue stripes</li>
+            <li><b>K5</b>Pink oversized knit cardigan, buttons</li>
+          </ul>
+          <ul class="liste-codes fr">
+            <li><b>K1</b>Sweat à capuche gris clair, ailes argentées brodées dans le dos</li>
+            <li><b>K2</b>Gilet noir cintré en côtes, boutons pression</li>
+            <li><b>K3</b>Sweat à capuche anthracite oversize, gros texte jaune devant : <u>notre texte</u>, jamais le mot de la photo</li>
+            <li><b>K4</b>Pull col rond oversize, rayures vert et bleu</li>
+            <li><b>K5</b>Gilet rose oversize en maille, boutons</li>
+          </ul></div>
+      </article>
+      <article class="produit">
+        <div class="photo entiere"><img src="img/k6.jpg" alt="" loading="lazy"><span class="code">K6</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Oversized fluffy knit sweater, 6 colours</span><span class="fr">Pull en maille douce oversize, 6 couleurs</span></h3>
+          <p><span class="en">One model · beige, cream, grey, navy, pale pink, black · crewneck</span><span class="fr">Un modèle · beige, crème, gris, marine, rose pâle, noir · col rond</span></p>
+          <p class="attention"><span class="en">Plain label — no brand tag</span><span class="fr">Étiquette neutre, aucune marque</span></p></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="dresses">
+    <div class="tete-section">
+      <h2><span class="en">Winter dresses</span><span class="fr">Robes d'hiver</span></h2>
+      <p><span class="en">Long sleeves · 5 pieces</span><span class="fr">Manches longues · 5 pièces</span></p>
+    </div>
+    <div class="grille">
+      <article class="produit">
+        <div class="photo"><img src="img/d1.jpg" alt="" loading="lazy"><span class="code">D1</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Wrap-neck ruched bodycon mini dress</span><span class="fr">Robe courte moulante, col croisé, froncée</span></h3>
+          <p><span class="en">Light blue · stretch jersey</span><span class="fr">Bleu ciel · jersey stretch</span></p></div>
+      </article>
+      <article class="produit">
+        <div class="photo"><img src="img/d2.jpg" alt="" loading="lazy"><span class="code">D2</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Pinstripe V-neck mini dress</span><span class="fr">Robe courte à fines rayures, col V</span></h3>
+          <p><span class="en">Black with fine white stripes · tailored</span><span class="fr">Noire à fines rayures blanches · coupe tailleur</span></p></div>
+      </article>
+      <article class="produit">
+        <div class="photo"><img src="img/d3.jpg" alt="" loading="lazy"><span class="code">D3</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Open-back maxi bodycon dress</span><span class="fr">Robe longue moulante, dos nu</span></h3>
+          <p><span class="en">Black · stretch jersey · mermaid hem</span><span class="fr">Noire · jersey stretch · bas évasé</span></p></div>
+      </article>
+      <article class="produit">
+        <div class="photo"><img src="img/d4.jpg" alt="" loading="lazy"><span class="code">D4</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Lace V-neck maxi dress</span><span class="fr">Robe longue en dentelle, col V</span></h3>
+          <p><span class="en">Butter yellow · lined</span><span class="fr">Jaune beurre · doublée</span></p></div>
+      </article>
+      <article class="produit">
+        <div class="photo"><img src="img/d5.jpg" alt="" loading="lazy"><span class="code">D5</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Collared V-neck midi dress</span><span class="fr">Robe mi-longue, col chemise, décolleté V</span></h3>
+          <p><span class="en">Cream · structured fabric · shoulder pads</span><span class="fr">Crème · tissu structuré · épaulettes</span></p></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="bags">
+    <div class="tete-section">
+      <h2><span class="en">Bags</span><span class="fr">Sacs</span></h2>
+      <p><span class="en">Large everyday bags · 5 pieces</span><span class="fr">Grands sacs de tous les jours · 5 pièces</span></p>
+    </div>
+    <div class="grille">
+      <article class="produit">
+        <div class="photo"><img src="img/b1.jpg" alt="" loading="lazy"><span class="code">B1</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Large tote with a wide buckle belt</span><span class="fr">Grand cabas avec large ceinture à boucle</span></h3>
+          <p><span class="en">Light blue + brown belt · pebbled leather look</span><span class="fr">Bleu ciel + ceinture marron · aspect cuir grainé</span></p></div>
+      </article>
+      <article class="produit">
+        <div class="photo"><img src="img/b2.jpg" alt="" loading="lazy"><span class="code">B2</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Oversized glossy bag, flap and buckle belt</span><span class="fr">Grand sac brillant, rabat et ceinture à boucle</span></h3>
+          <p><span class="en">Black · glossy leather look</span><span class="fr">Noir · aspect cuir brillant</span></p></div>
+      </article>
+      <article class="produit">
+        <div class="photo"><img src="img/b3.jpg" alt="" loading="lazy"><span class="code">B3</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Minimalist shoulder tote</span><span class="fr">Cabas simple porté épaule</span></h3>
+          <p><span class="en">Black · fits a laptop</span><span class="fr">Noir · un ordinateur rentre dedans</span></p></div>
+      </article>
+      <article class="produit">
+        <div class="photo"><img src="img/b4.jpg" alt="" loading="lazy"><span class="code">B4</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Washed leather shoulder bag with studs</span><span class="fr">Sac en cuir vieilli avec rivets</span></h3>
+          <p><span class="en">Grey · vintage look</span><span class="fr">Gris · aspect vintage</span></p>
+          <p class="attention"><span class="en">Must NOT copy a designer bag: different shape, studs and straps</span><span class="fr">Ne doit PAS copier un sac de créateur : forme, rivets et sangles différents</span></p></div>
+      </article>
+      <article class="produit">
+        <div class="photo"><img src="img/b5.jpg" alt="" loading="lazy"><span class="code">B5</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Suede tote, round handles</span><span class="fr">Cabas en daim, anses rondes</span></h3>
+          <p><span class="en">Chocolate brown · soft suede look</span><span class="fr">Marron chocolat · aspect daim souple</span></p></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="scarves">
+    <div class="tete-section">
+      <h2><span class="en">Scarves</span><span class="fr">Écharpes</span></h2>
+      <p><span class="en">2 pieces</span><span class="fr">2 pièces</span></p>
+    </div>
+    <div class="grille">
+      <article class="produit">
+        <div class="photo"><img src="img/e1.jpg" alt="" loading="lazy"><span class="code">E1</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Chunky bouclé scarf with fringes</span><span class="fr">Grosse écharpe bouclette à franges</span></h3>
+          <p><span class="en">Heather grey · long and wide</span><span class="fr">Gris chiné · longue et large</span></p></div>
+      </article>
+      <article class="produit">
+        <div class="photo"><img src="img/e2.jpg" alt="" loading="lazy"><span class="code">E2</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Leopard print scarf with fringes</span><span class="fr">Écharpe léopard à franges</span></h3>
+          <p><span class="en">Brown and black · soft brushed</span><span class="fr">Marron et noir · toucher doux</span></p>
+          <p class="attention"><span class="en">Only the scarf — not the cap or the trousers</span><span class="fr">Seulement l'écharpe, pas la casquette ni le pantalon</span></p></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="beanies">
+    <div class="tete-section">
+      <h2><span class="en">Beanies</span><span class="fr">Bonnets</span></h2>
+      <p><span class="en">3 pieces</span><span class="fr">3 pièces</span></p>
+    </div>
+    <div class="grille">
+      <article class="produit">
+        <div class="photo"><img src="img/h1.jpg" alt="" loading="lazy"><span class="code">H1</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Chunky knit beanie with a square patch</span><span class="fr">Bonnet grosse maille avec étiquette carrée</span></h3>
+          <p><span class="en">Black</span><span class="fr">Noir</span></p>
+          <p class="attention"><span class="en">The patch must be BLANK — no brand logo</span><span class="fr">L'étiquette doit être VIDE, aucun logo de marque</span></p></div>
+      </article>
+      <article class="produit">
+        <div class="photo"><img src="img/h2.jpg" alt="" loading="lazy"><span class="code">H2</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Camo beanie with big red stars</span><span class="fr">Bonnet camouflage à grosses étoiles rouges</span></h3>
+          <p><span class="en">Green camo + red · jacquard knit</span><span class="fr">Camouflage vert + rouge · maille jacquard</span></p></div>
+      </article>
+      <article class="produit">
+        <div class="photo"><img src="img/h3.jpg" alt="" loading="lazy"><span class="code">H3</span><span class="exemple en">Example</span><span class="exemple fr">Exemple</span></div>
+        <div class="texte"><h3><span class="en">Union Jack beanie</span><span class="fr">Bonnet drapeau anglais</span></h3>
+          <p><span class="en">Red, white and blue · jacquard knit</span><span class="fr">Rouge, blanc et bleu · maille jacquard</span></p>
+          <p class="attention"><span class="en">Only the beanie — not the shoe</span><span class="fr">Seulement le bonnet, pas la chaussure</span></p></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="quote">
+    <div class="devis">
+      <div class="sur"><span class="en">What we need from you</span><span class="fr">Ce qu'on attend de vous</span></div>
+      <h2><span class="en">Your quote, for each code</span><span class="fr">Votre devis, pour chaque code</span></h2>
+      <ol class="en">
+        <li>Price of the piece (USD), per size and colour</li>
+        <li>Shipping price and delivery days to <b>France</b>, then to <b>Morocco</b> — taxes included</li>
+        <li>Price and days for a <b>pack</b> (3 pieces in one parcel)</li>
+        <li>Fibre composition in %, weight, available sizes and colours</li>
+        <li>Real photos of the real piece</li>
+        <li>If you don't have the exact piece: the closest one, with its photo</li>
+      </ol>
+      <ol class="fr">
+        <li>Le prix de la pièce (USD), par taille et par couleur</li>
+        <li>Le prix d'envoi et le délai vers la <b>France</b>, puis vers le <b>Maroc</b>, taxes comprises</li>
+        <li>Le prix et le délai d'un <b>pack</b> (3 pièces dans un colis)</li>
+        <li>La composition en %, le poids, les tailles et couleurs disponibles</li>
+        <li>De vraies photos de la vraie pièce</li>
+        <li>Si vous n'avez pas la pièce exacte : la plus proche, avec sa photo</li>
+      </ol>
+      <div class="contacts">
+        <span><b>WhatsApp</b>+212 728 861 105</span>
+        <span><b>Email</b>silenceworlwide@gmail.com</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p class="en">The photos on this page are examples found online, used only to show the style we are looking for. They belong to their owners and are not our products.</p>
+  <p class="fr">Les photos de cette page sont des exemples trouvés en ligne, utilisés seulement pour montrer le style recherché. Elles appartiennent à leurs auteurs et ne sont pas nos produits.</p>
+</footer>
+
+<script>
+(function () {
+  var racine = document.documentElement;
+  var boutons = document.querySelectorAll('[data-choix]');
+  function choisir(l) {
+    racine.setAttribute('data-lang', l);
+    racine.setAttribute('lang', l);
+    boutons.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-choix') === l ? 'true' : 'false'); });
+    try { localStorage.setItem('onyx.langue', l); } catch (e) {}
+  }
+  boutons.forEach(function (b) { b.addEventListener('click', function () { choisir(b.getAttribute('data-choix')); }); });
+  var memo = null;
+  try { memo = localStorage.getItem('onyx.langue'); } catch (e) {}
+  if (memo === 'fr' || memo === 'en') choisir(memo);
+
+  // la pastille du menu suit la section à l'écran
+  var liens = {};
+  document.querySelectorAll('.menu a').forEach(function (a) { liens[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function (entrees) {
+      entrees.forEach(function (e) {
+        if (!e.isIntersecting || !liens[e.target.id]) return;
+        Object.keys(liens).forEach(function (k) { liens[k].classList.toggle('actif', k === e.target.id); });
+        var a = liens[e.target.id], menu = document.querySelector('.menu');
+        menu.scrollTo({ left: a.offsetLeft - (menu.clientWidth - a.offsetWidth) / 2, behavior: 'smooth' });
+      });
+    }, { rootMargin: '-130px 0px -60% 0px' });
+    document.querySelectorAll('main section[id]').forEach(function (s) { obs.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
