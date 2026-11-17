@@ -15,6 +15,24 @@ LA SUITE    relancer l'agent — tout le reste en dépend
 
 ---
 
+## 🆕 17/11 — ONYX, streetwear FEMME (nouvelle niche)
+
+```
+LE NOM        boutique renommée ONYX → onyx-boutique.pages.dev (photos retirées)
+              🔴 « ONYX » est déjà déposé en classe 25 (INPI + UE) — il a choisi quand même
+LE FOURNISSEUR CJdropshipping, branché en connecteur (OAuth, 180 jours)
+              entrepôts UE : quasi vides en femme → tout part de Chine, 4-7 j
+              décidé : test depuis la Chine, puis stock UE pour les gagnants (2-3 j)
+LE CAHIER     onyx-sourcing.pages.dev — 25 pièces (S, K, D, B, E, H) + 16 conditions
+              + prix cibles · aucun WhatsApp ni email : réponses dans l'appli CJ
+LA DEMANDE    envoyée le 17/11 · cjSourcingId 2611172315554484700 · CJSPU960981361
+              → lire avec query_sourcing quand il demande
+LES PRIX      max achat (pièce + envoi) : ensemble 24 · pull 18 · robe 15 · sac 18
+              · écharpe 10 · bonnet 8 · pack hiver 40 — affichés (cibles) : 18/13/11/13/7/5/30
+LA VENTE      ensemble 54,90 · pull 39,90 · robe 34,90 · sac 39,90 · écharpe 19,90
+              · bonnet 14,90 · ens.+écharpe 64,90 · pack hiver 74,90 · pull+écharpe 49,90
+```
+
 ## Ce qui est fait
 
 | | |
