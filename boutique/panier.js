@@ -155,7 +155,7 @@
     var art = panier(); if (!art.length) return;
     var s = source(), c = code();
     var lignes = art.map(function (a) { return '• ' + a.nom + (a.taille ? ' — taille ' + a.taille : '') + ' ×' + a.n + ' — ' + euro(a.prix * a.n); });
-    var txt = 'Bonjour, je veux commander sur SILENCE :\n\n' + lignes.join('\n') +
+    var txt = 'Bonjour, je veux commander sur ONYX :\n\n' + lignes.join('\n') +
       '\n\nSous-total : ' + euro(sousTotal()) +
       (remiseLot() ? '\nLot tenue + veste : −' + euro(remiseLot()) : '') +
       (c ? '\nCode ' + c.code + ' : −' + euro(remise()) : '') +

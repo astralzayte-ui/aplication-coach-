@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="heros-photo">
-        <img src="img/hero.jpg" alt="Un homme en survêtement sous une structure de béton" fetchpriority="high">
+        <img src="img/vide.svg" alt="" fetchpriority="high">
         <div class="heros-badge"><b>−36 %</b><span>vs le marché</span></div>
         <div class="heros-carte"><span data-ico="bulle"></span><div><b>Réponse sous 24 h</b><span>Sur WhatsApp, avant comme après</span></div></div>
       </div>
@@ -40,11 +40,11 @@
   <!-- 3. LES DEUX BANNIÈRES -->
   <section class="bannieres">
     <a class="banniere" href="collection.html?c=ensembles">
-      <img src="img/sweat.jpg" alt="" loading="lazy">
+      <img src="img/vide.svg" alt="" loading="lazy">
       <div class="banniere-texte"><h3>Les ensembles</h3><p>Le haut et le bas, même bain de teinture.</p><span>Découvrir</span></div>
     </a>
     <a class="banniere" href="produit.html?p=tshirt">
-      <img src="img/tshirt.jpg" alt="" loading="lazy">
+      <img src="img/vide.svg" alt="" loading="lazy">
       <div class="banniere-texte"><h3>Le test à 11 €</h3><p>Juge notre matière sans risquer gros.</p><span>Découvrir</span></div>
     </a>
   </section>
@@ -78,7 +78,7 @@
 
   <!-- 7. LES AVIS — masqués tant qu'il n'y a pas de vrais clients -->
   <section class="section">
-    <div class="enveloppe"><h2 class="titre-section">Ils portent SILENCE</h2><div class="avis-piste" data-avis></div></div>
+    <div class="enveloppe"><h2 class="titre-section">Ils portent ONYX</h2><div class="avis-piste" data-avis></div></div>
   </section>
 
   <!-- 8. LA FAQ -->

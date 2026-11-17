@@ -56,11 +56,11 @@
                 '<a href="produit.html?p=tshirt">Le test à 11 €</a>' +
               '</div></div>' +
             '<a href="index.html#faq">F.A.Q</a>' +
-            '<a href="' + waTexte('Bonjour SILENCE, j\'ai une question : ') + '" target="_blank" rel="noopener">Contact</a>' +
+            '<a href="' + waTexte('Bonjour ONYX, j\'ai une question : ') + '" target="_blank" rel="noopener">Contact</a>' +
             '<a href="' + waTexte('Bonjour, je voudrais suivre ma commande. Mon numéro de commande : ') + '" target="_blank" rel="noopener">Suivre ma commande</a>' +
           '</nav>' +
         '</div>' +
-        '<a class="logo" href="index.html" aria-label="SILENCE — accueil"><img src="img/logo.png" alt="SILENCE" width="158" height="45"></a>' +
+        '<a class="logo" href="index.html" aria-label="ONYX — accueil"><span class="logo-mot">ONYX</span></a>' +
         '<div class="icones">' +
           '<button class="icone" type="button" aria-label="Rechercher" data-ouvre-recherche>' + ICO.loupe + '</button>' +
           '<a class="icone favori-tete" href="collection.html?c=favoris" aria-label="Mes favoris">' + ICO.coeur + '<span class="pastille" data-compte-favoris></span></a>' +
@@ -75,7 +75,7 @@
         '<a href="collection.html?c=favoris">Mes favoris</a>' +
         '<a href="index.html#faq">F.A.Q</a>' +
         '<a href="' + waTexte('Bonjour, je voudrais suivre ma commande. Mon numéro de commande : ') + '" target="_blank" rel="noopener">Suivre ma commande</a>' +
-        '<a href="' + waTexte('Bonjour SILENCE, j\'ai une question : ') + '" target="_blank" rel="noopener">Contact WhatsApp <span class="petit">' + C.whatsappAffiche + '</span></a>' +
+        '<a href="' + waTexte('Bonjour ONYX, j\'ai une question : ') + '" target="_blank" rel="noopener">Contact WhatsApp <span class="petit">' + C.whatsappAffiche + '</span></a>' +
       '</div></div>' +
       '<div class="recherche" data-recherche><div class="recherche-boite">' +
         '<input type="search" placeholder="Rechercher une pièce…" aria-label="Rechercher" data-champ-recherche>' +
@@ -90,7 +90,7 @@
     f.innerHTML =
       '<footer class="pied"><div class="enveloppe pied-haut">' +
         '<div class="pied-lettre">' +
-          '<a class="logo-pied" href="index.html"><img src="img/logo.png" alt="SILENCE" width="190" height="54"></a>' +
+          '<a class="logo-pied" href="index.html"><span class="logo-mot">ONYX</span></a>' +
           '<h3>−10 % pour commencer</h3>' +
           '<p>Laisse ton e-mail : tu reçois 10 % sur ta première commande, et tu passes avant tout le monde sur les nouvelles pièces.</p>' +
           formulaire('pied', 'C\'est parti') +
@@ -114,7 +114,7 @@
           '<a href="https://tiktok.com/@' + C.tiktokMaroc + '" target="_blank" rel="noopener">TikTok Maroc</a>' +
         '</div>' +
       '</div>' +
-      '<div class="pied-bas"><div class="enveloppe"><span>© ' + new Date().getFullYear() + ' SILENCE. Tous droits réservés.</span>' +
+      '<div class="pied-bas"><div class="enveloppe"><span>© ' + new Date().getFullYear() + ' ONYX. Tous droits réservés.</span>' +
         '<div class="paiements"><span>Carte bancaire</span><span>Visa</span><span>Mastercard</span></div></div></div>' +
       '</footer>';
   }
@@ -122,7 +122,7 @@
   /* ---------- le formulaire e-mail (popup + pied) ---------- */
   function accord() {
     return '<label class="accord"><input type="checkbox" name="accord" value="oui">' +
-      '<span>J\'accepte de recevoir les e-mails de SILENCE (nouveautés et offres). Désinscription en un clic. <a href="confidentialite.html">Confidentialité</a></span></label>';
+      '<span>J\'accepte de recevoir les e-mails de ONYX (nouveautés et offres). Désinscription en un clic. <a href="confidentialite.html">Confidentialité</a></span></label>';
   }
 
   function formulaire(source, bouton) {
@@ -182,9 +182,9 @@
       '<div class="popup-fond" data-ferme-popup></div>' +
       '<div class="popup-boite">' +
         '<button class="popup-fermer" type="button" aria-label="Fermer" data-ferme-popup>&times;</button>' +
-        '<div class="popup-photo"><img src="img/sweat.jpg" alt=""></div>' +
+        '<div class="popup-photo"><img src="img/vide.svg" alt=""></div>' +
         '<div class="popup-texte">' +
-          '<img class="popup-logo" src="img/logo.png" alt="SILENCE">' +
+          '<span class="logo-mot popup-logo">ONYX</span>' +
           '<h3>Profite de 10 %<br>de réduction</h3>' +
           '<div data-popup-form><p>Exclusivement pour ta première commande</p>' +
             '<form data-lettre="popup" novalidate>' +
@@ -369,7 +369,7 @@
     var zone = $('[data-fiche]'); if (!zone) return;
     var id = new URLSearchParams(location.search).get('p') || 'ensemble';
     var p = produit(id) || produit('ensemble');
-    document.title = p.nom + ' — SILENCE';
+    document.title = p.nom + ' — ONYX';
     var tailles = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
     var ticketLivraison = C.livraison == null ? '<span>Confirmée sur WhatsApp</span>' : '<span>' + euro(C.livraison) + '</span>';
@@ -461,7 +461,7 @@
     var titre = c === 'favoris' ? 'Mes favoris' : (r ? r.nom : 'Toute la boutique');
     var liste = c === 'favoris' ? P.filter(function (p) { return favoris().indexOf(p.id) > -1; })
               : (r ? P.filter(function (p) { return p.rayon === c; }) : P);
-    document.title = titre + ' — SILENCE';
+    document.title = titre + ' — ONYX';
     $('[data-col-titre]').textContent = titre;
     $('[data-col-compte]').textContent = liste.length + ' pièce' + (liste.length > 1 ? 's' : '');
     var onglets = $('[data-col-onglets]');

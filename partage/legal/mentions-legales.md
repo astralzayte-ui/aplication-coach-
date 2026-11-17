@@ -40,7 +40,7 @@ américain *(Limited Liability Company)* immatriculée dans l'État de
 
 ## La marque
 
-« SILENCE » et son emblème sont la propriété de [Nom de la société].
+« ONYX » et son emblème sont la propriété de [Nom de la société].
 Les textes, visuels et éléments graphiques du site sont protégés. Toute
 reproduction, même partielle, sans autorisation écrite est interdite.
 

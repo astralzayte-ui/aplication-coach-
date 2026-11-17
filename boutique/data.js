@@ -25,7 +25,7 @@ window.PRODUITS = [
     nom: 'Sweat à capuche + jogging', court: 'La tenue',
     grammage: '320 g/m²', note: 'Velours, strass',
     prix: 34.90, marche: '50 à 75 €', ecart: -36,
-    photos: ['sweat.jpg', 'hero.jpg', 'tenue.jpg'],
+    photos: ['vide.svg'],
     description: "Le sweat et le jogging, même bain de teinture, même ton. Molleton lourd de 320 g/m² : il tient sa forme après les lavages au lieu de pocher aux genoux et aux coudes."
   },
   {
@@ -33,7 +33,7 @@ window.PRODUITS = [
     nom: 'Veste zippée délavée', court: 'La veste',
     grammage: '300 g/m²', note: 'Zip-hoodie noir délavé',
     prix: 19.90, marche: '24 à 35 €', ecart: -25,
-    photos: ['veste.jpg', 'hero.jpg'],
+    photos: ['vide.svg'],
     description: "Zip intégral, capuche, délavage noir. 300 g/m² : assez épaisse pour se porter seule à la mi-saison, assez fine pour passer sous une doudoune."
   },
   {
@@ -41,7 +41,7 @@ window.PRODUITS = [
     nom: 'T-shirt', court: 'Le t-shirt',
     grammage: '200 g/m²', note: 'Le test à 11 €',
     prix: 11.00, marche: null, ecart: null,
-    photos: ['tshirt.jpg', 'hero.jpg'],
+    photos: ['vide.svg'],
     description: "Le t-shirt pour juger notre matière sans risquer gros. 200 g/m² : tu le touches, tu le laves, tu juges — avant de mettre plus."
   },
   {
@@ -49,7 +49,7 @@ window.PRODUITS = [
     nom: 'Survêtement imperméable', court: 'Le survêtement',
     grammage: null, note: 'Nylon camo marine',
     prix: 39.90, marche: '55 à 60 €', ecart: -28,
-    photos: ['survet.jpg', 'hero.jpg'],
+    photos: ['vide.svg'],
     description: "Veste et pantalon en nylon déperlant. La pluie glisse au lieu de traverser."
   },
   {
@@ -57,7 +57,7 @@ window.PRODUITS = [
     nom: 'Doudoune matelassée', court: 'La doudoune',
     grammage: null, note: 'Crème matelassée',
     prix: 39.90, marche: '60 à 190 €', ecart: -31,
-    photos: ['doudoune.jpg', 'hero.jpg'],
+    photos: ['vide.svg'],
     description: "Matelassage large, col montant. La pièce de l'hiver, au prix d'une pièce de mi-saison."
   },
   {
@@ -65,7 +65,7 @@ window.PRODUITS = [
     nom: 'Tête aux pieds — 4 pièces', court: 'La tenue complète',
     grammage: null, note: '4 pièces',
     prix: 84.00, marche: '~120 €', ecart: -26,
-    photos: ['tenue.jpg', 'sweat.jpg', 'hero.jpg'],
+    photos: ['vide.svg'],
     description: "Le haut, le bas, la veste et le t-shirt. Une tenue entière, assortie, en une commande."
   }
 ];

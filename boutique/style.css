@@ -420,3 +420,9 @@ h1, h2, h3 { font-family: var(--titre); font-weight: 400; margin: 0; line-height
 .avis-vide p { margin: 0; line-height: 1.7; color: var(--texte-doux); }
 .avis-vide b { color: var(--noir); }
 @media (max-width: 520px) { .lot-fiche { flex-direction: column; align-items: stretch; } }
+
+/* ONYX — le logo en lettres, en attendant le vrai logo */
+.logo-mot { font-family: 'Anton', 'Archivo Black', Impact, sans-serif; font-size: 34px; letter-spacing: .14em; line-height: 1; color: inherit; text-transform: uppercase; display: inline-block; }
+.logo-pied .logo-mot { font-size: 44px; margin-bottom: 20px; color: #fff; }
+.popup-texte .popup-logo { font-size: 38px; margin-bottom: 26px; }
+@media (max-width: 760px) { .logo .logo-mot { font-size: 28px; } }

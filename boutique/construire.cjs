@@ -7,7 +7,7 @@ fs.mkdirSync(OUT, { recursive: true });
 
 /* ---- les 3 pages de la boutique : _tete + corps + _queue ---- */
 const T = n => fs.readFileSync(path.join(ICI, n), 'utf8');
-for (const [nom, titre] of [['index', 'SILENCE — Tu parles pas. Tu portes.'], ['produit', 'SILENCE'], ['collection', 'La boutique — SILENCE']]) {
+for (const [nom, titre] of [['index', 'ONYX — Streetwear à prix justes'], ['produit', 'ONYX'], ['collection', 'La boutique — ONYX']]) {
   const page = T('_tete.html').replace('__TITRE__', titre) + T('_' + nom + '.corps') + T('_queue.html');
   fs.writeFileSync(path.join(ICI, nom + '.html'), page);      // gardé à côté, pour les tests
   fs.writeFileSync(path.join(OUT, nom + '.html'), page);
@@ -66,13 +66,13 @@ for (const [nom, titre, fichier] of PAGES) {
   const reste = (corpsMd.match(/\[[^\]<>]{2,60}\]/g) || []).length;
   const avert = reste ? `<div class="avert">⚠️ Page en cours de finalisation — ${reste} information(s) restent à compléter avant l'ouverture.</div>` : '';
   fs.writeFileSync(path.join(OUT, fichier),
-    tete.replace('__TITRE__', titre + ' — SILENCE') +
+    tete.replace('__TITRE__', titre + ' — ONYX') +
     `<body data-page="legal">\n<div id="entete"></div>\n<main class="enveloppe"><article class="legal">${avert}\n${corpsMd}\n</article></main>\n` + queue);
 }
 
 /* ---- Netlify : les formulaires et les adresses propres ---- */
 fs.writeFileSync(path.join(OUT, '_headers'), '/*\n  X-Robots-Tag: noindex\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n');
-fs.writeFileSync(path.join(OUT, '404.html'), tete.replace('__TITRE__', 'Page introuvable — SILENCE') +
+fs.writeFileSync(path.join(OUT, '404.html'), tete.replace('__TITRE__', 'Page introuvable — ONYX') +
   '<body><div id="entete"></div><main class="enveloppe" style="padding-block:80px;text-align:center"><h1 style="font-size:44px;margin-bottom:16px">PAGE INTROUVABLE</h1><p style="color:var(--texte-doux);margin-bottom:28px">Cette page n\'existe pas, ou plus.</p><a class="btn btn-plein" href="index.html">Retour à la boutique</a></main>' + queue);
 
 console.log('construit →', fs.readdirSync(OUT).filter(f => f.endsWith('.html')).length, 'pages dans boutique/dist/');
