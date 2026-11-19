@@ -27,6 +27,12 @@ LE CAHIER     onyx-sourcing.pages.dev — 25 pièces (S, K, D, B, E, H) + 16 con
               + prix cibles · aucun WhatsApp ni email : réponses dans l'appli CJ
 LA DEMANDE    envoyée le 17/11 · cjSourcingId 2611172315554484700 · CJSPU960981361
               → lire avec query_sourcing quand il demande
+LES PIÈCES    une demande par pièce (5/jour max, compte niveau 1) :
+              19/11 S2 2611190045114487902 · S3/S4 2611190045144483002
+                    S5 2611190045154485402 · K6 2611190045164489700
+                    K1 2611190045174487602
+              RESTE K2 K3 K4 K5 · D1-D5 · B1-B5 · E1 E2 · H1-H3 (18, ~4 jours)
+              photos découpées : img/k1..k5.jpg sur onyx-sourcing.pages.dev
 LES PRIX      max achat (pièce + envoi) : ensemble 24 · pull 18 · robe 15 · sac 18
               · écharpe 10 · bonnet 8 · pack hiver 40 — affichés (cibles) : 18/13/11/13/7/5/30
 LA VENTE      ensemble 54,90 · pull 39,90 · robe 34,90 · sac 39,90 · écharpe 19,90
