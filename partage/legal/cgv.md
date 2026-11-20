@@ -16,7 +16,7 @@
 Le site est édité et exploité par **Onyx Street Wear LLC**, LLC immatriculée
 dans l'État du **Wyoming** (États-Unis), sous la marque **Ambre Noire Paris** — voir les *Mentions légales*.
 
-**Contact :** silenceworlwide@gmail.com · +212 728 861 105
+**Contact :** ambrenoirparis@gmail.com · +212 728 861 105
 
 Les présentes conditions s'appliquent à toute commande passée sur le site
 par un consommateur. Passer commande vaut acceptation sans réserve.
@@ -121,7 +121,7 @@ te rétracter, **sans avoir à te justifier**.
 
 Deux possibilités, au choix :
 
-- nous envoyer une déclaration claire par e-mail à **silenceworlwide@gmail.com**
+- nous envoyer une déclaration claire par e-mail à **ambrenoirparis@gmail.com**
 - ou utiliser le **formulaire type de rétractation** joint au site
 
 Le délai est respecté si tu envoies ta déclaration **avant la fin du 14ᵉ jour**.
@@ -173,7 +173,7 @@ remboursement total ou une réduction du prix.
 
 ## 9. Une réclamation
 
-Écris-nous d'abord à **silenceworlwide@gmail.com**. Nous répondons sous 24 h ouvrées et
+Écris-nous d'abord à **ambrenoirparis@gmail.com**. Nous répondons sous 24 h ouvrées et
 cherchons une solution.
 
 ### Le médiateur de la consommation

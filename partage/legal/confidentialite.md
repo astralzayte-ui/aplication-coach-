@@ -16,7 +16,7 @@
 
 **Onyx Street Wear LLC** (marque Ambre Noire Paris), 30 N Gould St Ste R, Sheridan, WY 82801, États-Unis — voir les *Mentions légales*.
 
-Pour toute question ou pour exercer tes droits : **silenceworlwide@gmail.com**
+Pour toute question ou pour exercer tes droits : **ambrenoirparis@gmail.com**
 
 ---
 
@@ -94,7 +94,7 @@ récupérer          obtenir tes données dans un fichier lisible
 retirer            annuler ton consentement aux nouveautés
 ```
 
-**Écris à silenceworlwide@gmail.com.** Nous répondons **sous un mois**.
+**Écris à ambrenoirparis@gmail.com.** Nous répondons **sous un mois**.
 
 Si notre réponse ne te convient pas, tu peux saisir la **CNIL** —
 `cnil.fr` — 3 place de Fontenoy, 75334 Paris Cedex 07.
