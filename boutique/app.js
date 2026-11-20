@@ -290,7 +290,7 @@
     var grille = $('[data-grille]'); if (!grille) return;
     function remplir(filtre) {
       var liste = P.filter(function (p) {
-        if (filtre === 'pepites') return true;
+        if (filtre === 'pepites') return !!p.vedette;
         return p.rayon === filtre;
       });
       grille.innerHTML = liste.map(carte).join('');
@@ -369,10 +369,10 @@
 
   function fiche() {
     var zone = $('[data-fiche]'); if (!zone) return;
-    var id = new URLSearchParams(location.search).get('p') || 'ensemble';
-    var p = produit(id) || produit('ensemble');
+    var id = new URLSearchParams(location.search).get('p') || 'ensemble-gris';
+    var p = produit(id) || window.PRODUITS[0];
     document.title = p.nom + ' — Ambre Noire Paris';
-    var tailles = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+    var tailles = (p.rayon === 'sacs' || p.rayon === 'accessoires') ? [] : ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
     var ticketLivraison = C.livraison == null ? '<span>Confirmée sur WhatsApp</span>' : '<span>' + euro(C.livraison) + '</span>';
     var dateLigne = '';
@@ -394,14 +394,14 @@
       '<div class="fiche-info">' +
         '<h1>' + echap(p.nom) + (p.grammage ? ' ' + echap(p.grammage) : '') + '</h1>' +
         '<div class="fiche-ligne-preuve">' +
-          (p.ecart ? '<span class="ecart">' + p.ecart + ' % vs le marché</span><span>Ailleurs : ' + echap(p.marche) + '</span>' : '<span class="ecart">Le test</span><span>Pour juger notre matière</span>') +
+          (p.ecart ? '<span class="ecart">' + p.ecart + ' % vs le marché</span><span>Ailleurs : ' + echap(p.marche) + '</span>' : '<span>' + echap(p.note || '') + '</span>') +
         '</div>' +
         '<div class="fiche-prix">' + euro(p.prix) + '</div>' +
         '<div class="fiche-prix-note">Taxes incluses' + (C.livraison == null ? ' · livraison confirmée à la commande' : ' · + ' + euro(C.livraison) + ' de livraison') + '</div>' +
-        '<div class="choix-titre"><span>Taille : <b data-taille-affichee>M</b></span><a href="#tailles" data-ouvre-tailles>Guide des tailles</a></div>' +
+        (tailles.length ? '<div class="choix-titre"><span>Taille : <b data-taille-affichee>M</b></span><a href="#tailles" data-ouvre-tailles>Guide des tailles</a></div>' +
         '<div class="tailles" role="radiogroup" aria-label="Taille">' + tailles.map(function (t) {
           return '<button type="button" class="taille" role="radio" data-taille="' + t + '" data-choisie="' + (t === 'M' ? 'oui' : 'non') + '" aria-checked="' + (t === 'M') + '">' + t + '</button>';
-        }).join('') + '</div>' +
+        }).join('') + '</div>' : '') +
         '<div class="choix-titre"><span>Quantité</span></div>' +
         '<div class="quantite"><button type="button" aria-label="Moins" data-qte-moins>−</button><input type="number" min="1" max="9" value="1" data-qte aria-label="Quantité"><button type="button" aria-label="Plus" data-qte-plus>+</button></div>' +
         '<button class="btn btn-plein btn-large" type="button" data-ajouter="' + echap(p.nom) + '" data-prix="' + p.prix.toFixed(2).replace('.', ',') + '">Ajouter au panier</button>' +

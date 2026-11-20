@@ -22,67 +22,133 @@ window.CONFIG = {
 
 window.PRODUITS = [
   {
-    id: 'ensemble', rayon: 'ensembles', vedette: true,
-    nom: 'Sweat à capuche + jogging', court: 'La tenue',
-    grammage: '320 g/m²', note: 'Velours, strass',
-    prix: 34.90, marche: '50 à 75 €', ecart: -36,
+    id: 'ensemble-gris', rayon: 'ensembles', vedette: true,
+    nom: 'Ensemble côtelé gris', court: "L'ensemble gris",
+    grammage: null, note: 'Sweat + pantalon large',
+    prix: 54.90, marche: null, ecart: null,
     photos: ['vide.svg'],
-    description: "Le sweat et le jogging, même bain de teinture, même ton. Molleton lourd de 320 g/m² : il tient sa forme après les lavages au lieu de pocher aux genoux et aux coudes."
+    description: 'Le haut et le pantalon large en maille côtelée grise. Assortis, faciles à porter du matin au soir. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
-    id: 'veste', rayon: 'vestes',
-    nom: 'Veste zippée délavée', court: 'La veste',
-    grammage: '300 g/m²', note: 'Zip-hoodie noir délavé',
-    prix: 19.90, marche: '24 à 35 €', ecart: -25,
+    id: 'ensemble-hoodie', rayon: 'ensembles', vedette: true,
+    nom: 'Ensemble hoodie + jogging large', court: "L'ensemble hoodie",
+    grammage: null, note: 'Plusieurs couleurs',
+    prix: 54.90, marche: null, ecart: null,
     photos: ['vide.svg'],
-    description: "Zip intégral, capuche, délavage noir. 300 g/m² : assez épaisse pour se porter seule à la mi-saison, assez fine pour passer sous une doudoune."
+    description: "Le sweat à capuche et le jogging large, même couleur. Le confort du jogging, l'allure d'une tenue. Composition exacte : à confirmer avec le fournisseur."
   },
   {
-    id: 'tshirt', rayon: 'hauts', test: true,
-    nom: 'T-shirt', court: 'Le t-shirt',
-    grammage: '200 g/m²', note: 'Le test à 11 €',
-    prix: 11.00, marche: null, ecart: null,
+    id: 'hoodie-ailes', rayon: 'pulls', vedette: true,
+    nom: 'Hoodie ailes brodées', court: 'Le hoodie ailes',
+    grammage: null, note: 'Gris clair, ailes dans le dos',
+    prix: 39.90, marche: null, ecart: null,
     photos: ['vide.svg'],
-    description: "Le t-shirt pour juger notre matière sans risquer gros. 200 g/m² : tu le touches, tu le laves, tu juges — avant de mettre plus."
+    description: 'Sweat à capuche gris clair, avec des ailes brodées dans le dos. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
-    id: 'survet', rayon: 'ensembles',
-    nom: 'Survêtement imperméable', court: 'Le survêtement',
-    grammage: null, note: 'Nylon camo marine',
-    prix: 39.90, marche: '55 à 60 €', ecart: -28,
+    id: 'pull-cotele', rayon: 'pulls',
+    nom: 'Pull côtelé à boutons', court: 'Le pull côtelé',
+    grammage: null, note: 'Coupe ajustée',
+    prix: 39.90, marche: null, ecart: null,
     photos: ['vide.svg'],
-    description: "Veste et pantalon en nylon déperlant. La pluie glisse au lieu de traverser."
+    description: 'Pull en maille côtelée, ajusté, fermé par des boutons. Se porte seul ou ouvert sur un top. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
-    id: 'doudoune', rayon: 'vestes',
-    nom: 'Doudoune matelassée', court: 'La doudoune',
-    grammage: null, note: 'Crème matelassée',
-    prix: 39.90, marche: '60 à 190 €', ecart: -31,
+    id: 'hoodie-oversize', rayon: 'pulls',
+    nom: 'Hoodie oversize anthracite', court: 'Le hoodie oversize',
+    grammage: null, note: 'Coupe large',
+    prix: 39.90, marche: null, ecart: null,
     photos: ['vide.svg'],
-    description: "Matelassage large, col montant. La pièce de l'hiver, au prix d'une pièce de mi-saison."
+    description: 'Sweat à capuche ample, gris foncé. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
-    id: 'tenue', rayon: 'ensembles',
-    nom: 'Tête aux pieds — 4 pièces', court: 'La tenue complète',
-    grammage: null, note: '4 pièces',
-    prix: 84.00, marche: '~120 €', ecart: -26,
+    id: 'pull-rayures', rayon: 'pulls',
+    nom: 'Pull à rayures oversize', court: 'Le pull rayé',
+    grammage: null, note: 'Col rond',
+    prix: 39.90, marche: null, ecart: null,
     photos: ['vide.svg'],
-    description: "Le haut, le bas, la veste et le t-shirt. Une tenue entière, assortie, en une commande."
+    description: 'Pull col rond, coupe large, rayures. Composition exacte : à confirmer avec le fournisseur.'
+  },
+  {
+    id: 'gilet-oversize', rayon: 'pulls',
+    nom: 'Gilet oversize à boutons', court: 'Le gilet',
+    grammage: null, note: 'Maille épaisse',
+    prix: 39.90, marche: null, ecart: null,
+    photos: ['vide.svg'],
+    description: 'Gilet en maille, ample, à gros boutons. Composition exacte : à confirmer avec le fournisseur.'
+  },
+  {
+    id: 'robe-froncee', rayon: 'robes',
+    nom: 'Robe courte froncée', court: 'La robe froncée',
+    grammage: null, note: 'Manches longues',
+    prix: 34.90, marche: null, ecart: null,
+    photos: ['vide.svg'],
+    description: 'Robe courte moulante, froncée à la taille, col croisé, manches longues. Composition exacte : à confirmer avec le fournisseur.'
+  },
+  {
+    id: 'robe-rayee', rayon: 'robes',
+    nom: 'Robe tailleur rayée', court: 'La robe rayée',
+    grammage: null, note: 'Coupe tailleur',
+    prix: 34.90, marche: null, ecart: null,
+    photos: ['vide.svg'],
+    description: 'Robe courte à rayures, coupe tailleur. Composition exacte : à confirmer avec le fournisseur.'
+  },
+  {
+    id: 'robe-dos-nu', rayon: 'robes', vedette: true,
+    nom: 'Robe dos nu', court: 'La robe dos nu',
+    grammage: null, note: 'Polyester, légèrement extensible',
+    prix: 34.90, marche: null, ecart: null,
+    photos: ['vide.svg'],
+    description: 'Robe moulante à manches longues, dos nu. Matière : polyester, légèrement extensible (pourcentage exact à confirmer avec le fournisseur).'
+  },
+  {
+    id: 'sac-boucle', rayon: 'sacs',
+    nom: 'Sac à boucle', court: 'Le sac à boucle',
+    grammage: null, note: 'Grande contenance',
+    prix: 39.90, marche: null, ecart: null,
+    photos: ['vide.svg'],
+    description: 'Grand sac porté épaule, fermé par une large boucle. Composition exacte : à confirmer avec le fournisseur.'
+  },
+  {
+    id: 'sac-rivets', rayon: 'sacs',
+    nom: 'Sac cuir vieilli à rivets', court: 'Le sac à rivets',
+    grammage: null, note: 'Aspect cuir vieilli',
+    prix: 39.90, marche: null, ecart: null,
+    photos: ['vide.svg'],
+    description: 'Sac porté épaule, aspect cuir vieilli, détails rivets. Composition exacte : à confirmer avec le fournisseur.'
+  },
+  {
+    id: 'echarpe', rayon: 'accessoires',
+    nom: 'Écharpe douce à franges', court: "L'écharpe",
+    grammage: null, note: 'Grise, longue et large',
+    prix: 19.90, marche: null, ecart: null,
+    photos: ['vide.svg'],
+    description: 'Grosse écharpe toute douce à franges, longue et large. Composition exacte : à confirmer avec le fournisseur.'
+  },
+  {
+    id: 'bonnet', rayon: 'accessoires',
+    nom: 'Bonnet camouflage', court: 'Le bonnet',
+    grammage: null, note: '5 € dès 2 articles',
+    prix: 14.90, marche: null, ecart: null,
+    photos: ['vide.svg'],
+    description: 'Bonnet en maille, motif camouflage. 5 € au lieu de 14,90 € dès que tu as un autre article dans ton panier. Composition exacte : à confirmer avec le fournisseur.'
   }
 ];
 
-/* L'escalier des lots — trois marches, celle du milieu mise en avant.
+/* Les packs — un prix, un colis. Le détail (taille, couleur) est confirmé avec la cliente.
    🔴 « Le plus choisi » seulement quand c'est VRAI. Avant les ventes : « Recommandé ». */
 window.LOTS = [
-  { titre: 'La tenue', detail: 'Sweat + jogging', prix: 34.90, ajouter: 'Sweat à capuche + jogging' },
-  { titre: 'La tenue + la veste', detail: 'Séparément 54,80 €', prix: 49.90, ajouter: 'Lot tenue + veste', mis: 'Recommandé', gain: '−4,90 €' },
-  { titre: 'Tête aux pieds', detail: '4 pièces assorties', prix: 84.00, ajouter: 'Tête aux pieds — 4 pièces' }
+  { titre: 'Pull + écharpe', detail: 'Séparément 59,80 €', prix: 49.90, ajouter: 'Pack pull + écharpe', gain: '−9,90 €' },
+  { titre: 'Ensemble + écharpe', detail: 'Séparément 74,80 €', prix: 64.90, ajouter: 'Pack ensemble + écharpe', mis: 'Recommandé', gain: '−9,90 €' },
+  { titre: "Tenue d'hiver", detail: 'Ensemble + écharpe + bonnet', prix: 74.90, ajouter: "Pack tenue d'hiver", gain: '−14,80 €' }
 ];
 
 window.RAYONS = [
-  { id: 'ensembles', nom: 'Ensembles', texte: "Le haut et le bas assortis. Le rayon qui vend le mieux dans le streetwear — le bas se vend plus que le haut." },
-  { id: 'vestes',    nom: 'Vestes',    texte: "La veste zippée pour la mi-saison, la doudoune pour l'hiver." },
-  { id: 'hauts',     nom: 'Hauts',     texte: "Le t-shirt à 11 € : la porte d'entrée pour juger notre matière." }
+  { id: 'ensembles',   nom: 'Ensembles',          texte: "Le haut et le bas assortis. La tenue complète, sans réfléchir le matin." },
+  { id: 'pulls',       nom: 'Pulls & sweats',     texte: "Hoodies, pulls et gilets, en coupe ample ou ajustée." },
+  { id: 'robes',       nom: 'Robes',              texte: "Courtes ou longues, pour la journée comme pour sortir." },
+  { id: 'sacs',        nom: 'Sacs',               texte: "Des grands sacs qui portent tout, portés épaule." },
+  { id: 'accessoires', nom: 'Écharpes & bonnets', texte: "Le bonnet passe à 5 € dès que tu as un autre article dans ton panier." }
 ];
 
 /* Les avis — VIDE tant qu'il n'y a pas de vrais clients.

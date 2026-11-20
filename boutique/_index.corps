@@ -31,7 +31,7 @@
     <div class="onglets" role="tablist">
       <button class="onglet actif" type="button" role="tab" aria-selected="true" data-onglet="pepites">Nos pépites</button>
       <button class="onglet" type="button" role="tab" aria-selected="false" data-onglet="ensembles">Ensembles</button>
-      <button class="onglet" type="button" role="tab" aria-selected="false" data-onglet="vestes">Vestes</button>
+      <button class="onglet" type="button" role="tab" aria-selected="false" data-onglet="pulls">Pulls</button>
     </div>
     <div class="grille" data-grille></div>
     <div class="tout-voir"><a class="btn btn-plein" href="collection.html?c=tout">Tout voir</a></div>
