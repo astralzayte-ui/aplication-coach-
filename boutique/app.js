@@ -36,7 +36,7 @@
   function entete() {
     var e = $('#entete'); if (!e) return;
     var messages = [
-      '🇫🇷 🇲🇦 France &amp; Maroc',
+      '🇫🇷 Livraison en France',
       '−10 % sur ta première commande',
       'Changé d\'avis ? Remboursé sur ta carte',
       'Paiement par carte, jamais à la livraison',
@@ -111,9 +111,7 @@
         '</div>' +
         '<div><h4>Nous suivre</h4>' +
           '<a href="https://instagram.com/' + C.instagram + '" target="_blank" rel="noopener">Instagram</a>' +
-          '<a href="https://instagram.com/' + C.instagramMaroc + '" target="_blank" rel="noopener">Instagram Maroc</a>' +
           '<a href="https://tiktok.com/@' + C.tiktok + '" target="_blank" rel="noopener">TikTok</a>' +
-          '<a href="https://tiktok.com/@' + C.tiktokMaroc + '" target="_blank" rel="noopener">TikTok Maroc</a>' +
         '</div>' +
       '</div>' +
       '<div class="pied-bas"><div class="enveloppe"><span>© ' + new Date().getFullYear() + ' Ambre Noire Paris. Tous droits réservés.</span>' +

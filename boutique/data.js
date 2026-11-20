@@ -12,7 +12,7 @@ window.CONFIG = {
 
   // 🔴 PAS ENCORE ARRÊTÉS — laisser null tant que l'agent n'a pas répondu.
   // null = la ligne n'apparaît nulle part sur le site.
-  livraison: null,        // ex. 4.99
+  livraison: 4.99,        // France métropolitaine (CGV)
   delaiJours: null,       // ex. [2, 3]  → « Arrivée estimée le … »
 
   // le code du popup -10 %

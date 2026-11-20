@@ -41,15 +41,15 @@ intégralement.
 
 ## 3. Les prix
 
-Tous les prix sont affichés **toutes taxes comprises**, en euros pour la
-France et en dirhams pour le Maroc.
+Tous les prix sont affichés **toutes taxes comprises**, en euros.
+
+**Nous livrons uniquement en France métropolitaine** pour le moment.
 
 **Les frais de livraison s'ajoutent et sont affichés dès la fiche produit :**
 
 | Destination | Livraison |
 |---|---|
 | France métropolitaine | **4,99 €** |
-| Maroc | **49 MAD** |
 
 Aucun prix barré ne figure sur le site s'il n'a pas été réellement pratiqué.
 
@@ -70,8 +70,7 @@ paiement. Un e-mail de confirmation récapitulant la commande t'est envoyé.
 ## 5. Le paiement
 
 Le paiement se fait **par carte bancaire uniquement**, au moment de la
-commande. **Il n'y a pas de paiement à la livraison**, ni en France, ni au
-Maroc.
+commande. **Il n'y a pas de paiement à la livraison.**
 
 Les données de carte sont traitées directement par notre prestataire de
 paiement. **Nous ne les voyons ni ne les conservons à aucun moment.**
@@ -207,11 +206,3 @@ Ta qualité de consommateur résidant en France te garantit le bénéfice des
 règles protectrices françaises, quelle que soit la nationalité du vendeur,
 et la compétence des tribunaux de ton lieu de résidence.
 
-### 🇲🇦 Pour les clients au Maroc
-
-La loi marocaine **31-08** sur la protection du consommateur s'applique. Elle
-prévoit un droit de rétractation de **7 jours**.
-
-**Nous accordons 14 jours à tout le monde**, France et Maroc, plutôt que deux
-règles différentes. C'est plus que ce que la loi marocaine exige, et c'est
-volontaire.

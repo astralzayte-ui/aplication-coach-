@@ -6,7 +6,7 @@
   <section class="heros">
     <div class="enveloppe heros-grille">
       <div>
-        <span class="etiquette">Marque indépendante · France &amp; Maroc</span>
+        <span class="etiquette">Marque indépendante · Livraison en France</span>
         <h1>Le streetwear,<br>version chic.</h1>
         <p class="chapeau">Ensembles, pulls, robes et sacs pour femmes. Des pièces faciles à porter, qui ont de l'allure. Et un vrai contact sur WhatsApp, avant comme après ta commande.</p>
         <div class="heros-boutons">
@@ -88,7 +88,7 @@
       <div class="faq-contact"><a class="btn btn-vide" href="https://wa.me/212728861105" target="_blank" rel="noopener">Nous contacter</a></div>
       <div class="faq" data-faq></div>
       <div class="badges">
-        <span>🇫🇷 🇲🇦 <b>Marque indépendante</b> · France &amp; Maroc</span>
+        <span>🇫🇷 <b>Marque indépendante</b> · Livraison en France</span>
         <span><b>Remboursé</b> sur ta carte</span>
         <span><b>Le bonnet à 5 €</b> dès 2 articles</span>
         <span><b>SAV</b> sur WhatsApp</span>
