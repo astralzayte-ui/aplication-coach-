@@ -40,7 +40,8 @@
       '−10 % sur ta première commande',
       'Changé d\'avis ? Remboursé sur ta carte',
       'Paiement par carte, jamais à la livraison',
-      'SAV sous 24 h'
+      'Le bonnet à 5 € dès 2 articles',
+      'Un vrai contact sur WhatsApp'
     ];
     var piste = messages.concat(messages).map(function (m) { return '<span>' + m + '</span>'; }).join('');
     e.innerHTML =
@@ -60,7 +61,7 @@
             '<a href="' + waTexte('Bonjour, je voudrais suivre ma commande. Mon numéro de commande : ') + '" target="_blank" rel="noopener">Suivre ma commande</a>' +
           '</nav>' +
         '</div>' +
-        '<a class="logo" href="index.html" aria-label="Ambre Noire Paris — accueil"><span class="logo-mot">Ambre Noire</span></a>' +
+        '<a class="logo" href="index.html" aria-label="Ambre Noire Paris — accueil"><span class="logo-mot">Ambre<span class="goutte"></span> Noire</span></a>' +
         '<div class="icones">' +
           '<button class="icone" type="button" aria-label="Rechercher" data-ouvre-recherche>' + ICO.loupe + '</button>' +
           '<a class="icone favori-tete" href="collection.html?c=favoris" aria-label="Mes favoris">' + ICO.coeur + '<span class="pastille" data-compte-favoris></span></a>' +
@@ -90,7 +91,7 @@
     f.innerHTML =
       '<footer class="pied"><div class="enveloppe pied-haut">' +
         '<div class="pied-lettre">' +
-          '<a class="logo-pied" href="index.html"><span class="logo-mot">Ambre Noire</span></a>' +
+          '<a class="logo-pied" href="index.html"><span class="logo-mot logo-pile">Ambre<span class="goutte"></span><br>Noire<small>Paris</small></span></a>' +
           '<h3>−10 % pour commencer</h3>' +
           '<p>Laisse ton e-mail : tu reçois 10 % sur ta première commande, et tu passes avant tout le monde sur les nouvelles pièces.</p>' +
           formulaire('pied', 'C\'est parti') +
@@ -184,7 +185,7 @@
         '<button class="popup-fermer" type="button" aria-label="Fermer" data-ferme-popup>&times;</button>' +
         '<div class="popup-photo"><img src="img/vide.svg" alt=""></div>' +
         '<div class="popup-texte">' +
-          '<span class="logo-mot popup-logo">Ambre Noire</span>' +
+          '<span class="logo-mot logo-pile popup-logo">Ambre<span class="goutte"></span><br>Noire<small>Paris</small></span>' +
           '<h3>Profite de 10 %<br>de réduction</h3>' +
           '<div data-popup-form><p>Exclusivement pour ta première commande</p>' +
             '<form data-lettre="popup" novalidate>' +
@@ -407,7 +408,7 @@
           '<li>' + ICO.retour + 'Changé d\'avis ? Remboursé sur ta carte</li>' +
           '<li>' + ICO.bouclier + 'Un défaut ? On rembourse ou on remplace</li>' +
           '<li>' + ICO.carte + 'Paiement par carte, jamais à la livraison</li>' +
-          '<li>' + ICO.bulle + 'SAV sous 24 h, sur WhatsApp</li>' +
+          '<li>' + ICO.bulle + 'Un vrai contact, sur WhatsApp</li>' +
         '</ul>' +
         lotFiche(p) +
         '<div class="ticket" aria-label="Récapitulatif">' +
@@ -424,7 +425,7 @@
             '<table class="table-tailles"><thead><tr><th>Taille</th><th>Poitrine</th><th>Longueur</th><th>Entrejambe</th></tr></thead><tbody>' +
             tailles.map(function (t) { return '<tr><td><b>' + t + '</b></td><td>—</td><td>—</td><td>—</td></tr>'; }).join('') +
             '</tbody></table><p class="a-confirmer" style="margin-top:0">[Mesures en cm à recevoir de l\'atelier]</p></details>' +
-          '<details><summary>Livraison &amp; retours</summary><p>Expédié depuis un entrepôt en Europe, suivi envoyé dès le départ du colis. Le délai exact t\'est confirmé avant de payer. Pour changer d\'avis ou signaler un défaut, tout est dans nos <a href="cgv.html" style="text-decoration:underline">conditions générales de vente</a>.</p></details>' +
+          '<details><summary>Livraison &amp; retours</summary><p>Expédié depuis l\'entrepôt de notre fournisseur en Chine, 4 à 10 jours ouvrés. Suivi envoyé dès le départ du colis. Le délai exact t\'est confirmé avant de payer. Pour changer d\'avis ou signaler un défaut, tout est dans nos <a href="cgv.html" style="text-decoration:underline">conditions générales de vente</a>.</p></details>' +
         '</div>' +
       '</div>';
 

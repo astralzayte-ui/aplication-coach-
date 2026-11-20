@@ -14,7 +14,7 @@
 
 ## 1. Qui est responsable
 
-**[Nom de la société]**, [adresse] — voir les *Mentions légales*.
+**Onyx Street Wear LLC** (marque Ambre Noire Paris), 30 N Gould St Ste R, Sheridan, WY 82801, États-Unis — voir les *Mentions légales*.
 
 Pour toute question ou pour exercer tes droits : **silenceworlwide@gmail.com**
 
@@ -55,9 +55,9 @@ Le strict nécessaire, et rien de plus :
 
 | Qui | Pour quoi |
 |---|---|
-| **[Prestataire de paiement]** | encaisser ta carte |
-| **[Transporteur]** | te livrer — nom, adresse, téléphone |
-| **Notre fournisseur logistique, [pays]** | préparer et expédier ton colis |
+| **Stripe** (Irlande) | encaisser ta carte |
+| **Le transporteur** (CJPacket et la poste du pays de livraison) | te livrer — nom, adresse, téléphone |
+| **Notre fournisseur, CJdropshipping (Chine)** | préparer et expédier ton colis |
 | **Cloudflare** | héberger le site, garder les chiffres de visite (sans aucune donnée sur toi) et une copie de sécurité de ton inscription aux nouveautés |
 | **Brevo** (France) | t'envoyer nos e-mails, si tu as coché la case — ton e-mail et la date de ton accord |
 

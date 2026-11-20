@@ -93,13 +93,13 @@ window.FAQ = [
   { q: 'Vos vêtements taillent comment ?',
     r: "Coupe normale à légèrement ample. Entre deux tailles, prends la plus grande pour un rendu oversize. Un doute ? Écris-nous sur WhatsApp, on te guide." },
   { q: 'Quels sont les délais de livraison ?',
-    r: "Les colis partent d'un entrepôt en Europe. Le délai exact t'est confirmé au moment de ta commande, avant que tu paies." },
+    r: "Les colis partent de l'entrepôt de notre fournisseur, en Chine. Compte 4 à 10 jours ouvrés après l'expédition. Le délai t'est confirmé avant que tu paies." },
   { q: 'Et si la taille ne me va pas ?',
     r: "Tu peux changer d'avis : toutes les conditions sont dans nos conditions générales de vente. Un défaut ? On rembourse ou on remplace, sans frais pour toi." },
   { q: 'Le paiement est-il sécurisé ?',
     r: "Paiement par carte uniquement, jamais à la livraison. Tes données bancaires ne passent jamais par nous." },
   { q: 'Où sont fabriquées vos pièces ?',
-    r: "On ne fabrique pas nous-mêmes, et on le dit : nos pièces viennent d'un atelier partenaire, stockées et expédiées depuis l'Europe. C'est ce qui nous permet d'être 25 à 36 % sous le prix du marché. Et ton contrat est avec nous, avec nous seuls." },
+    r: "On ne fabrique pas nous-mêmes, et on le dit : nos pièces viennent d'un fournisseur partenaire, qui les stocke et les expédie depuis la Chine. C'est ce qui nous permet de garder des prix justes. Et ton contrat est avec nous, avec nous seuls." },
   { q: 'Une question, un souci ?',
-    r: "On répond sous 24 h, sur WhatsApp ou par e-mail. Avant comme après ta commande." }
+    r: "Écris-nous sur WhatsApp ou par e-mail, avant comme après ta commande. Une vraie personne te répond." }
 ];

@@ -4,23 +4,22 @@
 > Tant qu'il reste un crochet, cette page ne va pas en ligne.
 >
 > Ce qui te manque :
-> - le nom exact de la LLC et son État
-> - l'adresse du siège *(celle de ton agent de formation compte)*
-> - le numéro d'immatriculation de l'État + l'EIN
-> - le numéro de TVA, une fois le guichet unique obtenu
+> - le numéro de TVA (voir le comptable)
 
 ---
 
 ## L'éditeur du site
 
-**[Nom exact de la société]**, société à responsabilité limitée de droit
+Le site **Ambre Noire Paris** est édité par **Onyx Street Wear LLC**, société à responsabilité limitée de droit
 américain *(Limited Liability Company)* immatriculée dans l'État de
-**[État]** sous le numéro **[numéro d'immatriculation]**.
+**Wyoming** (États-Unis) le 7 août 2026, sous le numéro **2026-002050731**.
+
+*Ambre Noire Paris est une marque de Onyx Street Wear LLC.*
 
 | | |
 |---|---|
-| Siège | [Adresse complète] |
-| Identifiant fiscal américain | EIN **[EIN]** |
+| Siège | 30 N Gould St Ste R, Sheridan, WY 82801, États-Unis |
+| Identifiant fiscal américain | EIN **98-1962343** |
 | Numéro de TVA intracommunautaire | **[à compléter dès l'inscription au guichet unique]** |
 | Responsable de la publication | Julien Wail Colly |
 
@@ -40,7 +39,7 @@ américain *(Limited Liability Company)* immatriculée dans l'État de
 
 ## La marque
 
-« Ambre Noire Paris » et son logo sont la propriété de [Nom de la société].
+« Ambre Noire Paris » et son logo sont la propriété de Onyx Street Wear LLC.
 Les textes, visuels et éléments graphiques du site sont protégés. Toute
 reproduction, même partielle, sans autorisation écrite est interdite.
 

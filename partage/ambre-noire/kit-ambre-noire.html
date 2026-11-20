@@ -1,0 +1,279 @@
+<title>Kit Ambre Noire</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Mise en page : en-tête, menu collant à 4 onglets (ancres), sections de cartes. Les prompts ont un bouton Copier. */
+:root {
+  --fond: #f6f5f3; --carte: #ffffff; --encre: #17130f; --gris: #6c655d; --trait: #e5e1db;
+  --ambre: #9a5509; --ambre-doux: #f5e6d1; --ok: #1d7446; --ok-doux: #dcf0e3; --cher: #b0261d; --cher-doux: #f9dfdc;
+  --titre: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --texte: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fond: #110f0d; --carte: #1b1815; --encre: #f2ede7; --gris: #a69d92; --trait: #2f2a25;
+    --ambre: #e6a650; --ambre-doux: #3a2a16; --ok: #57c690; --ok-doux: #163526; --cher: #f2766b; --cher-doux: #3d1b18;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --fond: #110f0d; --carte: #1b1815; --encre: #f2ede7; --gris: #a69d92; --trait: #2f2a25;
+  --ambre: #e6a650; --ambre-doux: #3a2a16; --ok: #57c690; --ok-doux: #163526; --cher: #f2766b; --cher-doux: #3d1b18;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--fond); color: var(--encre); font: 15px/1.55 var(--texte);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 48px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--fond); }
+.page { max-width: 980px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--titre); text-wrap: balance; margin: 0; }
+.tete { padding-block: 28px 16px; display: grid; gap: 10px; }
+.marque { font: 800 13px/1 var(--titre); font-stretch: 125%; letter-spacing: .28em; text-transform: uppercase; color: var(--ambre); }
+.tete h1 { font-size: clamp(30px, 6vw, 50px); font-weight: 900; font-stretch: 70%; line-height: .95; text-transform: uppercase; }
+.tete p { margin: 0; color: var(--gris); max-width: 62ch; }
+.menu { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--fond); border-bottom: 1px solid var(--trait);
+  display: flex; gap: 6px; overflow-x: auto; padding-block: 10px; scrollbar-width: none;
+  margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+.menu::-webkit-scrollbar { display: none; }
+.menu a { flex: 0 0 auto; text-decoration: none; color: var(--encre); font: 700 14px/1 var(--texte); padding: 9px 14px; border-radius: 999px; border: 1px solid var(--trait); background: var(--carte); }
+.menu a:hover { border-color: var(--ambre); }
+.menu a:focus-visible, button:focus-visible { outline: 2px solid var(--ambre); outline-offset: 2px; }
+section { scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 66px); padding-top: 32px; display: grid; gap: 14px; }
+section > h2 { font-size: clamp(26px, 4.5vw, 36px); font-weight: 900; font-stretch: 72%; text-transform: uppercase; line-height: 1; }
+.intro { margin: 0; color: var(--gris); max-width: 68ch; }
+.bloc { background: var(--carte); border: 1px solid var(--trait); border-radius: 12px; padding: 16px; display: grid; gap: 10px; min-width: 0; }
+.bloc h3 { font: 700 16px/1.3 var(--texte); }
+.bloc p, .bloc ul { margin: 0; }
+.bloc ul { padding-left: 18px; display: grid; gap: 4px; }
+.fiche { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; margin: 0; }
+.fiche dt { color: var(--gris); font-size: 14px; }
+.fiche dd { margin: 0; font-weight: 600; }
+.alerte { background: var(--ambre-doux); border-radius: 8px; padding: 10px 12px; font-size: 14px; }
+.peurs { display: grid; gap: 10px; counter-reset: p; }
+.peur { display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: start; }
+.peur::before { counter-increment: p; content: counter(p); font: 900 24px/1 var(--titre); font-stretch: 75%; color: var(--ambre); }
+.peur q { font-weight: 700; quotes: "« " " »"; }
+.peur span { display: block; color: var(--gris); font-size: 14px; }
+.hooks { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.hook { background: var(--carte); border: 1px solid var(--trait); border-radius: 10px; padding: 12px 14px; display: grid; gap: 6px; }
+.hook b { font-size: 16px; }
+.hook span { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--ambre); }
+.prompt { position: relative; background: var(--fond); border: 1px solid var(--trait); border-radius: 8px; padding: 12px 12px 44px; white-space: pre-wrap; font: 13.5px/1.55 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; overflow-wrap: anywhere; }
+.copier { position: absolute; right: 8px; bottom: 8px; font: 700 13px/1 var(--texte); padding: 8px 12px; border-radius: 999px; border: 1px solid var(--encre); background: var(--encre); color: var(--fond); cursor: pointer; }
+.copier.fait { background: var(--ok); border-color: var(--ok); }
+.pieces { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.piece { display: grid; grid-template-columns: 64px 1fr; gap: 10px; align-items: center; background: var(--carte); border: 1px solid var(--trait); border-radius: 10px; padding: 8px; }
+.piece img { width: 64px; height: 85px; object-fit: cover; border-radius: 6px; background: var(--trait); max-width: 100%; }
+.piece b { display: block; font-size: 14px; }
+.piece span { font-size: 13px; color: var(--gris); }
+.video { display: grid; gap: 10px; }
+.video-tete { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.pastille { font-size: 12px; font-weight: 700; padding: 4px 9px; border-radius: 999px; background: var(--ambre-doux); color: var(--ambre); }
+.pastille.soir { background: var(--ok-doux); color: var(--ok); }
+.temps { display: grid; gap: 6px; margin: 0; }
+.temps > div { display: grid; grid-template-columns: 110px 1fr; gap: 10px; }
+.temps dt { font-size: 13px; color: var(--gris); font-variant-numeric: tabular-nums; }
+.temps dd { margin: 0; }
+@media (max-width: 520px) { .temps > div { grid-template-columns: 1fr; gap: 0; } .fiche { grid-template-columns: 1fr; gap: 0 0; } .fiche dd { margin-bottom: 6px; } }
+</style>
+
+<div class="page">
+  <header class="tete">
+    <span class="marque">Ambre Noire Paris</span>
+    <h1>Kit de lancement</h1>
+    <p>La cliente qu'on vise, ses peurs, les hooks, les prompts pour les photos et les textes des 6 premières vidéos. Tout se copie d'un clic.</p>
+  </header>
+
+  <nav class="menu" aria-label="Parties">
+    <a href="#cliente">Cliente</a>
+    <a href="#hooks">Hooks</a>
+    <a href="#photos">Photos</a>
+    <a href="#videos">Vidéos</a>
+  </nav>
+
+  <section id="cliente">
+    <h2>La cliente</h2>
+    <div class="bloc">
+      <h3>Inès, 22 ans</h3>
+      <dl class="fiche">
+        <dt>Vie</dt><dd>Étudiante ou en alternance, vit en banlieue parisienne ou à Casablanca</dd>
+        <dt>Budget mode</dt><dd>Serré : une ou deux pièces par mois, rarement plus de 60 € d'un coup</dd>
+        <dt>Où elle traîne</dt><dd>TikTok et Instagram, le soir, en scrollant</dd>
+        <dt>Ce qu'elle porte</dt><dd>Ensembles jogging, gros pulls, une robe pour sortir, un grand sac pour les cours</dd>
+        <dt>Le style qu'elle veut</dt><dd>Street mais propre : avoir l'air soignée sans avoir l'air d'avoir trop essayé</dd>
+      </dl>
+    </div>
+    <div class="bloc">
+      <h3>Pourquoi elle achète vraiment</h3>
+      <p><b>Le besoin social pèse plus que le besoin pratique.</b> Elle n'a pas besoin d'un pull de plus : elle veut que ses copines lui demandent « il vient d'où ? », et être bien sur les photos.</p>
+    </div>
+    <div class="bloc">
+      <h3>Ce qui lui fait peur, dans ses mots</h3>
+      <div class="peurs">
+        <div class="peur"><p><q>C'est pas une arnaque votre site ?</q><span>Elle ne connaît pas la marque.</span></p></div>
+        <div class="peur"><p><q>Sur la photo c'est beau, en vrai c'est tout fin.</q><span>Peur de la mauvaise qualité.</span></p></div>
+        <div class="peur"><p><q>Ça taille comment ? J'ai peur que ça me grossisse.</q><span>Peur que la coupe ne lui aille pas.</span></p></div>
+        <div class="peur"><p><q>Ça va arriver dans trois semaines…</q><span>Peur d'attendre.</span></p></div>
+        <div class="peur"><p><q>Une fois que t'as payé, plus personne répond.</q><span>Peur d'être seule en cas de souci.</span></p></div>
+      </div>
+      <p class="alerte">Ces phrases sont déduites, pas relevées dans de vrais avis. À confirmer dès qu'on a les premiers commentaires.</p>
+    </div>
+  </section>
+
+  <section id="hooks">
+    <h2>Les hooks</h2>
+    <p class="intro">7 mots maximum, écrits à l'écran dès la première seconde. Chacun répond à une peur. Le prix ne revient qu'une fois sur six.</p>
+    <div class="hooks">
+      <div class="hook"><span>Arnaque</span><b>« Votre site c'est une arnaque ? »</b></div>
+      <div class="hook"><span>Arnaque</span><b>Je te montre qui répond, en vrai.</b></div>
+      <div class="hook"><span>Qualité</span><b>Regarde l'épaisseur de ce pull.</b></div>
+      <div class="hook"><span>Qualité</span><b>Elle croyait que c'était tout fin.</b></div>
+      <div class="hook"><span>Taille</span><b>1 m 65, taille M : le vrai rendu.</b></div>
+      <div class="hook"><span>Taille</span><b>Oversize mais pas « sac à patates ».</b></div>
+      <div class="hook"><span>Délai</span><b>Commandé lundi, regarde ce qui arrive.</b></div>
+      <div class="hook"><span>Après l'achat</span><b>Elle nous écrit après sa commande.</b></div>
+      <div class="hook"><span>Démonstration</span><b>Un ensemble, trois tenues différentes.</b></div>
+      <div class="hook"><span>Démonstration</span><b>Tenue de cours en dix secondes.</b></div>
+      <div class="hook"><span>Réaction</span><b>« Il vient d'où ton ensemble ? »</b></div>
+      <div class="hook"><span>Prix</span><b>Le bonnet à 5 €, sérieux ?</b></div>
+    </div>
+    <p class="alerte">« Commandé lundi » et « elle nous écrit » ne se tournent qu'avec une vraie commande et un vrai message. Pas de faux client.</p>
+  </section>
+
+  <section id="photos">
+    <h2>Les photos produits</h2>
+    <p class="intro">Dans Gemini : joins la photo CJ de la pièce, puis colle le prompt. Garde toujours la même femme : quand une photo est réussie, joins-la aussi aux suivantes en disant « même femme que sur cette photo ».</p>
+    <div class="bloc">
+      <h3>Le prompt, pour toutes les pièces portées</h3>
+      <div class="prompt" id="p1">À partir de la photo jointe, crée une photo produit pour une boutique en ligne de vêtements pour femmes.
+
+Le vêtement doit rester EXACTEMENT le même : même coupe, même matière, même couleur, mêmes coutures et mêmes détails. Ne le modifie pas.
+
+Portée par une femme de 22 ans, cheveux bruns longs, peau mate, maquillage léger, expression naturelle et sûre d'elle. Pose simple, debout, une main dans la poche ou le long du corps.
+
+Décor : mur uni blanc cassé, sol clair, rien d'autre dans l'image.
+Lumière : douce, comme une journée sans soleil direct, sans ombre dure.
+Cadrage : en pied, la personne centrée, format portrait 3:4.
+
+Interdit : aucun logo, aucun texte, aucune marque visible, aucun filtre, pas de style illustration. Ça doit ressembler à une vraie photo.<button class="copier" type="button" data-cible="p1">Copier</button></div>
+    </div>
+    <div class="bloc">
+      <h3>Le prompt, pour les sacs, écharpes et bonnets</h3>
+      <div class="prompt" id="p2">À partir de la photo jointe, crée une photo produit pour une boutique en ligne.
+
+L'objet doit rester EXACTEMENT le même : même forme, même matière, même couleur, mêmes détails. Ne le modifie pas.
+
+Porté par une femme de 22 ans, cheveux bruns longs, peau mate, en pull uni noir simple. Cadrage serré, du visage à la taille, pour que l'objet soit bien visible. L'objet occupe au moins un tiers de l'image.
+
+Décor : mur uni blanc cassé. Lumière douce, sans ombre dure. Format portrait 3:4.
+
+Interdit : aucun logo, aucun texte, aucune marque visible. Ça doit ressembler à une vraie photo.<button class="copier" type="button" data-cible="p2">Copier</button></div>
+    </div>
+    <div class="bloc">
+      <h3>Les photos CJ à joindre</h3>
+      <div class="pieces">
+        <div class="piece"><img src="img/cj/s1a.jpg" alt=""><div><b>S1</b><span>Ensemble côtelé gris</span></div></div>
+        <div class="piece"><img src="img/cj/s2a.jpg" alt=""><div><b>S2 · S3 · S4</b><span>Hoodie + jogging large</span></div></div>
+        <div class="piece"><img src="img/cj/s5a.jpg" alt=""><div><b>S5</b><span>Ensemble hoodie sable</span></div></div>
+        <div class="piece"><img src="img/cj/k1a.jpg" alt=""><div><b>K1</b><span>Hoodie ailes brodées</span></div></div>
+        <div class="piece"><img src="img/cj/k2a.jpg" alt=""><div><b>K2</b><span>Pull côtelé à boutons</span></div></div>
+        <div class="piece"><img src="img/cj/k3a.jpg" alt=""><div><b>K3</b><span>Hoodie oversize</span></div></div>
+        <div class="piece"><img src="img/cj/k4b.jpg" alt=""><div><b>K4</b><span>Pull à rayures</span></div></div>
+        <div class="piece"><img src="img/cj/k5a.jpg" alt=""><div><b>K5</b><span>Gilet oversize</span></div></div>
+        <div class="piece"><img src="img/cj/k6d.jpg" alt=""><div><b>K6</b><span>Pull uni col rond</span></div></div>
+        <div class="piece"><img src="img/cj/d1a.jpg" alt=""><div><b>D1</b><span>Robe courte froncée</span></div></div>
+        <div class="piece"><img src="img/cj/d3a.jpg" alt=""><div><b>D3</b><span>Robe dos nu</span></div></div>
+        <div class="piece"><img src="img/cj/d5a.jpg" alt=""><div><b>D5</b><span>Robe col V épaulettes</span></div></div>
+        <div class="piece"><img src="img/cj/b1a.jpg" alt=""><div><b>B1</b><span>Sac à boucle</span></div></div>
+        <div class="piece"><img src="img/cj/b2a.jpg" alt=""><div><b>B2</b><span>Sac verni noir</span></div></div>
+        <div class="piece"><img src="img/cj/b3c.jpg" alt=""><div><b>B3</b><span>Cabas noir simple</span></div></div>
+        <div class="piece"><img src="img/cj/b4c.jpg" alt=""><div><b>B4</b><span>Sac cuir vieilli</span></div></div>
+        <div class="piece"><img src="img/cj/b5a.jpg" alt=""><div><b>B5</b><span>Cabas daim marron</span></div></div>
+        <div class="piece"><img src="img/cj/e1a.jpg" alt=""><div><b>E1</b><span>Écharpe douce grise</span></div></div>
+        <div class="piece"><img src="img/cj/e2a.jpg" alt=""><div><b>E2</b><span>Écharpe léopard</span></div></div>
+        <div class="piece"><img src="img/cj/h1a.jpg" alt=""><div><b>H1</b><span>Bonnet grosse maille</span></div></div>
+        <div class="piece"><img src="img/cj/h2a.jpg" alt=""><div><b>H2</b><span>Bonnet camouflage</span></div></div>
+      </div>
+      <p class="alerte">Les photos CJ servent de modèle. Pour mettre une photo CJ telle quelle sur le site, il faut l'accord écrit du fournisseur.</p>
+    </div>
+  </section>
+
+  <section id="videos">
+    <h2>Les 6 premières vidéos</h2>
+    <p class="intro">3 jours, 2 vidéos par jour. Midi : une scène parlée, qui teste le hook. Soir : sans parole, le produit sous tous les angles, qui teste la pièce. Format vertical, 8 à 12 secondes. Même fin partout : <b>« Lien en bio. »</b></p>
+
+    <div class="bloc video">
+      <div class="video-tete"><span class="pastille">Jour 1 · midi</span><b>Hook : « Votre site c'est une arnaque ? »</b></div>
+      <dl class="temps">
+        <div><dt>0–2 s</dt><dd>Inès face caméra, sourcil levé, lit le commentaire à voix haute. Le hook est écrit à l'écran.</dd></div>
+        <div><dt>2–6 s</dt><dd>« Bonne question. » Elle montre son téléphone : la page Retours du site.</dd></div>
+        <div><dt>6–10 s</dt><dd>Elle porte l'ensemble S2, tourne sur elle-même.</dd></div>
+        <div><dt>10–12 s</dt><dd>Texte : « Lien en bio. »</dd></div>
+      </dl>
+      <p><b>Décor :</b> chambre claire, lumière de fenêtre. <b>Cadrage :</b> mi-corps, puis en pied.</p>
+    </div>
+
+    <div class="bloc video">
+      <div class="video-tete"><span class="pastille soir">Jour 1 · soir</span><b>Pièce : K6, le pull uni</b></div>
+      <dl class="temps">
+        <div><dt>0–2 s</dt><dd>Gros plan sur la maille, main qui la froisse. Texte : « Regarde l'épaisseur de ce pull. »</dd></div>
+        <div><dt>2–8 s</dt><dd>Le pull porté : de face, de profil, de dos, manches.</dd></div>
+        <div><dt>8–10 s</dt><dd>Texte : « Lien en bio. »</dd></div>
+      </dl>
+      <p><b>Son :</b> musique douce, pas de voix.</p>
+    </div>
+
+    <div class="bloc video">
+      <div class="video-tete"><span class="pastille">Jour 2 · midi</span><b>Hook : « Un ensemble, trois tenues différentes. »</b></div>
+      <dl class="temps">
+        <div><dt>0–2 s</dt><dd>Inès en ensemble S1, hook à l'écran.</dd></div>
+        <div><dt>2–9 s</dt><dd>3 coupes rapides : avec baskets pour les cours, avec le cabas B3, avec l'écharpe E1.</dd></div>
+        <div><dt>9–12 s</dt><dd>« Et toi, tu le portes comment ? » Texte : « Lien en bio. »</dd></div>
+      </dl>
+    </div>
+
+    <div class="bloc video">
+      <div class="video-tete"><span class="pastille soir">Jour 2 · soir</span><b>Pièce : D3, la robe dos nu</b></div>
+      <dl class="temps">
+        <div><dt>0–2 s</dt><dd>De dos, la robe sur Inès. Texte : « Robe dos nu, test en soirée. »</dd></div>
+        <div><dt>2–8 s</dt><dd>Elle se retourne, marche vers la caméra, lumière chaude de soirée.</dd></div>
+        <div><dt>8–10 s</dt><dd>Texte : « Lien en bio. »</dd></div>
+      </dl>
+    </div>
+
+    <div class="bloc video">
+      <div class="video-tete"><span class="pastille">Jour 3 · midi</span><b>Hook : « Il vient d'où ton ensemble ? »</b></div>
+      <dl class="temps">
+        <div><dt>0–2 s</dt><dd>Dans la rue, une amie arrête Inès et pose la question. Hook à l'écran.</dd></div>
+        <div><dt>2–7 s</dt><dd>Inès sourit, montre l'ensemble S5 de haut en bas.</dd></div>
+        <div><dt>7–10 s</dt><dd>« Ambre Noire. Lien en bio. »</dd></div>
+      </dl>
+      <p><b>Casting :</b> Inès + une amie, toujours la même dans les prochaines vidéos.</p>
+    </div>
+
+    <div class="bloc video">
+      <div class="video-tete"><span class="pastille soir">Jour 3 · soir</span><b>Pièce : H1 + E1, bonnet et écharpe</b></div>
+      <dl class="temps">
+        <div><dt>0–2 s</dt><dd>Gros plan sur le bonnet. Texte : « Le bonnet à 5 €, sérieux ? »</dd></div>
+        <div><dt>2–8 s</dt><dd>Inès enfile le bonnet puis l'écharpe, dehors, il fait froid.</dd></div>
+        <div><dt>8–10 s</dt><dd>Texte : « Dès 2 articles. Lien en bio. »</dd></div>
+      </dl>
+    </div>
+  </section>
+</div>
+
+<script>
+document.querySelectorAll('.copier').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var bloc = document.getElementById(b.dataset.cible);
+    var texte = bloc.firstChild.textContent.trim();
+    function ok() { b.textContent = 'Copié ✓'; b.classList.add('fait'); setTimeout(function () { b.textContent = 'Copier'; b.classList.remove('fait'); }, 1800); }
+    function secours() { var r = document.createRange(); r.selectNodeContents(bloc.firstChild); var s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Sélectionné'; }
+    try { navigator.clipboard.writeText(texte).then(ok, secours); } catch (e) { secours(); }
+  });
+});
+</script>

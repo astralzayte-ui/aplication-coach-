@@ -13,8 +13,8 @@
 
 ## 1. Qui vend
 
-Le site est édité et exploité par **[Nom de la société]**, LLC immatriculée
-dans l'État de **[État]** — voir les *Mentions légales*.
+Le site est édité et exploité par **Onyx Street Wear LLC**, LLC immatriculée
+dans l'État du **Wyoming** (États-Unis), sous la marque **Ambre Noire Paris** — voir les *Mentions légales*.
 
 **Contact :** silenceworlwide@gmail.com · +212 728 861 105
 
@@ -83,21 +83,21 @@ paiement. **Nous ne les voyons ni ne les conservons à aucun moment.**
 ### Comment nous travaillons — dit clairement
 
 **Nous ne fabriquons pas les vêtements que nous vendons.** Nous les
-sélectionnons chez un atelier partenaire, qui les stocke dans un entrepôt en
-**[pays de l'entrepôt européen]** et les expédie directement à ton adresse.
+sélectionnons chez un fournisseur partenaire, qui les stocke dans son entrepôt en
+**Chine** et les expédie directement à ton adresse.
 
 **Ce mode de vente s'appelle le dropshipping.** Nous le disons plutôt que de
-le cacher : c'est ce qui nous permet de vendre 25 % sous le prix du marché.
+le cacher : c'est ce qui nous permet de garder des prix justes.
 
 **Ce que ça ne change pas :** ton contrat de vente est conclu avec nous, et
 avec nous seuls. C'est nous qui répondons de la conformité du produit, de la
 garantie légale, de la rétractation et du remboursement. **Tu n'auras jamais
-à t'adresser à l'atelier.**
+à t'adresser au fournisseur.**
 
 | | |
 |---|---|
-| Expédition depuis | **[pays de l'entrepôt européen]** |
-| Délai indicatif | **2 à 3 jours ouvrés** après expédition |
+| Expédition depuis | **Chine** |
+| Délai indicatif | **4 à 10 jours ouvrés** après expédition |
 | Délai maximum engagé | **30 jours** à compter de la commande |
 
 Un numéro de suivi t'est envoyé à l'expédition.

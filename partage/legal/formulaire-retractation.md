@@ -19,8 +19,8 @@ du contrat.)*
 
 **À l'attention de :**
 
-**[Nom de la société]**
-[Adresse postale complète]
+**Onyx Street Wear LLC** — Ambre Noire Paris
+30 N Gould St Ste R, Sheridan, WY 82801, États-Unis
 Téléphone : +212 728 861 105
 E-mail : silenceworlwide@gmail.com
 
