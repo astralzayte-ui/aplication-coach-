@@ -51,6 +51,13 @@ CATALOGUE CJ 20/11 : 23/26 pièces ont un équivalent (18 dans la marge, D2 et D
 LA LLC        Onyx Street Wear LLC, Wyoming, créée le 07/08/2026, n° 2026-002050731,
               EIN 98-1962343, 30 N Gould St Ste R, Sheridan WY 82801 (Registered Agents Inc)
               → sur le site : « Ambre Noire Paris, une marque de Onyx Street Wear LLC »
+BOUTIQUE 20/11 renommée AMBRE NOIRE PARIS (même adresse onyx-boutique.pages.dev).
+              Textes encore ceux de SILENCE homme (−36 %, « Tu parles pas ») → à réécrire
+DOMAINES 20/11 libres : ambrenoireparis.com · ambre-noire.com · ambrenoireparis.fr
+              · ambrenoire.fr · ambre-noire.fr (ambrenoire.com PRIS depuis 1999)
+À LUI RAPPELER : Stripe (fini le 21/11 ?) · médiateur · comptable TVA/IOSS
+              · Refashion · réserver @ambrenoireparis + domaine · INPI pas vérifié
+ABANDONNÉ 20/11 : échantillons, remplacement D2/D4, Metricool (pas pour l'instant)
 ```
 
 ## Ce qui est fait
