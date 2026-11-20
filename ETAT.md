@@ -44,6 +44,13 @@ LES PRIX      max achat (pièce + envoi) : ensemble 24 · pull 18 · robe 15 · 
               · écharpe 10 · bonnet 8 · pack hiver 40 — affichés (cibles) : 18/13/11/13/7/5/30
 LA VENTE      ensemble 54,90 · pull 39,90 · robe 34,90 · sac 39,90 · écharpe 19,90
               · bonnet 14,90 · ens.+écharpe 64,90 · pack hiver 74,90 · pull+écharpe 49,90
+LA PROMO 20/11 VALIDÉE : dès 2 articles, le bonnet à 5 €. TVA jamais en option
+              (prix TTC obligatoires) · encaisser la TVA des colis Chine (IOSS) → comptable
+CATALOGUE CJ 20/11 : 23/26 pièces ont un équivalent (18 dans la marge, D2 et D4
+              trop chères, S3/S4/H3 introuvables) → claude.ai/artifact/Bs5z6R6fmohmCfB3gg9kZV
+LA LLC        Onyx Street Wear LLC, Wyoming, créée le 07/08/2026, n° 2026-002050731,
+              EIN 98-1962343, 30 N Gould St Ste R, Sheridan WY 82801 (Registered Agents Inc)
+              → sur le site : « Ambre Noire Paris, une marque de Onyx Street Wear LLC »
 ```
 
 ## Ce qui est fait
