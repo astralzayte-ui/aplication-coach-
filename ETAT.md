@@ -57,6 +57,8 @@ DOMAINES 20/11 libres : ambrenoireparis.com · ambre-noire.com · ambrenoirepari
               · ambrenoire.fr · ambre-noire.fr (ambrenoire.com PRIS depuis 1999)
 À LUI RAPPELER : Stripe (fini le 21/11 ?) · médiateur · comptable TVA/IOSS
               · Refashion · réserver @ambrenoireparis + domaine · INPI pas vérifié
+FRANCE SEULE 20/11 : Maroc retiré du site (CJ → Maroc = 12 à 50 j). Maroc plus tard
+              (stock sur place ou plan C). Comptes Maroc gardés : insta ambrenoirparis, tiktok ambrenoirparis2
 ABANDONNÉ 20/11 : échantillons, remplacement D2/D4, Metricool (pas pour l'instant)
 ```
 
