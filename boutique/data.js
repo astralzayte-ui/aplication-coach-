@@ -1,13 +1,13 @@
-/* SILENCE — tout ce qui change se change ICI, et nulle part ailleurs.
+/* AMBRE NOIRE PARIS — tout ce qui change se change ICI, et nulle part ailleurs.
    Un prix, un délai, un numéro : une seule ligne à modifier. */
 
 window.CONFIG = {
   whatsapp: '212728861105',
   whatsappAffiche: '+212 728 861 105',
   email: 'ambrenoirparis@gmail.com',
-  instagram: 'silence.worldwide',
-  tiktok: 'silence.worldwide',
-  tiktokMaroc: 'silence.worldwide_maroc',
+  instagram: 'ambrenoirparis',
+  tiktok: 'ambrenoirparis',
+  tiktokMaroc: 'ambrenoirparis2',
 
   // 🔴 PAS ENCORE ARRÊTÉS — laisser null tant que l'agent n'a pas répondu.
   // null = la ligne n'apparaît nulle part sur le site.
