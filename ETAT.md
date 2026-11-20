@@ -480,3 +480,13 @@ marque/le-vocabulaire.md  chaque mot en français normal
 partage/BRIEF-SITE-SILENCE.md   à envoyer à Claude Design
 partage/site-fournisseur/       ce qui est en ligne
 ```
+
+## TO-DO LANCEMENT (20/11, technique de l'entonnoir)
+
+LUI : photos Gemini des 14 pièces · vidéos · Stripe (21/11) · demander à CJ (accord photos,
+composition %, tableau des tailles, adresse de retour) · médiateur · Refashion · devis
+intermédiaire TVA · domaine · nom Insta « Noire » (dans 4 j) · dépôt marque INPI (conseillé)
+· LLC : formulaire 5472 + 1120 avant le 15/04, rapport annuel Wyoming en août
+MOI : photos sur le site · composition + pays de fabrication + entretien + tableau des tailles ·
+date de livraison avant paiement · Stripe branché · « dont TVA » au panier · message devis TVA ·
+taxe petits colis dans les marges · domaine branché · retirer le noindex à l'ouverture
