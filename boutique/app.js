@@ -111,6 +111,7 @@
         '</div>' +
         '<div><h4>Nous suivre</h4>' +
           '<a href="https://instagram.com/' + C.instagram + '" target="_blank" rel="noopener">Instagram</a>' +
+          '<a href="https://instagram.com/' + C.instagramMaroc + '" target="_blank" rel="noopener">Instagram Maroc</a>' +
           '<a href="https://tiktok.com/@' + C.tiktok + '" target="_blank" rel="noopener">TikTok</a>' +
           '<a href="https://tiktok.com/@' + C.tiktokMaroc + '" target="_blank" rel="noopener">TikTok Maroc</a>' +
         '</div>' +

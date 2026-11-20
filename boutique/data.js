@@ -5,7 +5,8 @@ window.CONFIG = {
   whatsapp: '212728861105',
   whatsappAffiche: '+212 728 861 105',
   email: 'ambrenoirparis@gmail.com',
-  instagram: 'ambrenoirparis',
+  instagram: 'ambrenoirparisfr',
+  instagramMaroc: 'ambrenoirparis',
   tiktok: 'ambrenoirparis',
   tiktokMaroc: 'ambrenoirparis2',
 
