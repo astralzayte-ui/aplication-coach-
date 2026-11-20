@@ -33,6 +33,13 @@ LES PIÈCES    une demande par pièce (5/jour max, compte niveau 1) :
                     K1 2611190045174487602
               RESTE K2 K3 K4 K5 · D1-D5 · B1-B5 · E1 E2 · H1-H3 (18, ~4 jours)
               photos découpées : img/k1..k5.jpg sur onyx-sourcing.pages.dev
+RÉPONSES 20/11 K1 TROUVÉ (pid 2511040800371638200, 3,84 $, 5 couleurs, XS-5XL,
+              envoi FR 4-10 j ~9 $ → ~11 € total) · K6 « proches » à voir dans l'appli
+              · S3/S4 en attente · S2, S5 REFUSÉS « copyright » (logo sur la photo)
+              · la demande groupée du 17 refusée. LEÇON : jamais de logo sur la photo
+LE NOM 20/11 choisi : AMBRE NOIRE PARIS (@ambrenoireparis libre TikTok,
+              ambrenoireparis.com et .fr libres). Instagram : à vérifier par lui.
+              Dépôt de marque : PAS vérifié (il a refusé la recherche INPI).
 LES PRIX      max achat (pièce + envoi) : ensemble 24 · pull 18 · robe 15 · sac 18
               · écharpe 10 · bonnet 8 · pack hiver 40 — affichés (cibles) : 18/13/11/13/7/5/30
 LA VENTE      ensemble 54,90 · pull 39,90 · robe 34,90 · sac 39,90 · écharpe 19,90
