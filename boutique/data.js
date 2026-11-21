@@ -37,7 +37,7 @@ window.PRODUITS = [
     nom: 'Ensemble hoodie + jogging large', court: "L'ensemble hoodie",
     grammage: null, note: 'Hoodie + jogging large',
     prix: 54.90, marche: null, ecart: null,
-    couleur: 'Crème chiné',
+    couleur: 'Blanc chiné',
     photos: ['ensemble-hoodie-1.jpg', 'ensemble-hoodie-2.jpg', 'ensemble-hoodie-3.jpg', 'ensemble-hoodie-4.jpg'],
     description: 'Le sweat à capuche et le jogging large, même couleur.',
     details: ['Sweat à capuche + jogging large assorti', 'Matière : à confirmer avec le fournisseur']
