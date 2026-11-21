@@ -422,6 +422,7 @@
           (bonnet ? '<div>' + ICO.carte + '<span><b>5 € au lieu de 14,90 €</b> dès que tu as un autre article dans ton panier</span></div>'
                   : '<div>' + ICO.carte + '<span>Ajoute un bonnet : <b>5 € au lieu de 14,90 €</b></span></div>') +
           '<div>' + ICO.retour + '<span>Changé d\'avis ? <b>Remboursé sur ta carte</b></span></div>' +
+          '<div>' + ICO.bulle + '<span>Une question ? <a class="lien-wa" href="' + waTexte('Bonjour Ambre Noire, une question sur : ' + p.nom) + '" target="_blank" rel="noopener"><b>Écris-nous sur WhatsApp</b></a> · ' + C.whatsappAffiche + '</span></div>' +
         '</div>' +
         '<div class="faq tiroirs">' +
           '<details open><summary>Détails du produit</summary><div class="tiroir-texte"><p>' + echap(p.description) + '</p><ul>' +
@@ -505,10 +506,22 @@
   }
 
   /* ---------- les icônes posées dans le HTML ---------- */
+  /* ---------- le bouton WhatsApp, toujours à portée de pouce ---------- */
+  function boutonWhatsApp() {
+    if (document.body.getAttribute('data-page') === 'legal') return;
+    var a = document.createElement('a');
+    a.className = 'wa-flottant';
+    a.href = waTexte('Bonjour Ambre Noire, j\'ai une question : ');
+    a.target = '_blank'; a.rel = 'noopener';
+    a.setAttribute('aria-label', 'Nous écrire sur WhatsApp au ' + C.whatsappAffiche);
+    a.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg><span>WhatsApp</span>';
+    document.body.appendChild(a);
+  }
+
   function icones() { $$('[data-ico]').forEach(function (el) { var n = el.getAttribute('data-ico'); if (ICO[n]) el.innerHTML = ICO[n]; }); }
 
   /* ---------- démarrage ---------- */
-  entete(); pied(); icones(); navigation(); brancherFormulaires();
+  entete(); pied(); icones(); navigation(); brancherFormulaires(); boutonWhatsApp();
   accueil(); fiche(); collection(); majFavoris();
   popup();
 })();

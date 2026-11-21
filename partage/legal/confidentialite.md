@@ -59,6 +59,7 @@ Le strict nécessaire, et rien de plus :
 | **Le transporteur** (CJPacket et la poste du pays de livraison) | te livrer — nom, adresse, téléphone |
 | **Notre fournisseur, CJdropshipping (Chine)** | préparer et expédier ton colis |
 | **Cloudflare** | héberger le site, garder les chiffres de visite (sans aucune donnée sur toi) et une copie de sécurité de ton inscription aux nouveautés |
+| **WhatsApp** (Meta, Irlande) | seulement si tu choisis de nous écrire sur WhatsApp : ton numéro et tes messages, pour te répondre |
 | **Brevo** (France) | t'envoyer nos e-mails, si tu as coché la case — ton e-mail et la date de ton accord |
 
 🔴 **Nous ne vendons, ne louons et n'échangeons tes données avec personne.**
