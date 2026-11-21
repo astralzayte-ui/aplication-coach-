@@ -490,3 +490,12 @@ intermédiaire TVA · domaine · nom Insta « Noire » (dans 4 j) · dépôt mar
 MOI : photos sur le site · composition + pays de fabrication + entretien + tableau des tailles ·
 date de livraison avant paiement · Stripe branché · « dont TVA » au panier · message devis TVA ·
 taxe petits colis dans les marges · domaine branché · retirer le noindex à l'ouverture
+
+## POINT DU 21/11 (soir)
+- Site refait façon Edikted + 69 photos IA (même blonde, 3-4 angles/produit), en ligne, toujours noindex : onyx-boutique.pages.dev
+- En-tête collée avec catégories, logo à gauche (place pour le futur logo), bouton WhatsApp, pop-up −10 % retiré
+- Matières : 11 produits avec la fibre (CJ, sans %), 6 « à confirmer avec le fournisseur ». Messages Merchant Comment CJ : à envoyer par lui (17 liens donnés)
+- Hoodie renommé « ailes argentées » (CJ : impression, pas strass). Délais : préparation 2-5 j + 4-10 j ouvrés
+- Retours : changement d'avis = renvoi à ses frais (adresse possiblement en Chine) ; défaut = photo, remboursé ou neuf sans renvoi
+- Refashion : compte déclarant créé, société pas enregistrée (formulaire bloque, maintenance jusqu'au 30/11), message envoyé au contact → réessayer le 1er décembre
+- BLOQUE LA VENTE : 1) Stripe 2) 50 € sur CJ 3) numéro de TVA (intermédiaire). Lui : ouvre ses comptes bancaires et finit la LLC
