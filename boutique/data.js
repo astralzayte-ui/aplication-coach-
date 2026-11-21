@@ -30,7 +30,7 @@ window.PRODUITS = [
     description: 'Le sweat col rond et le pantalon large, assortis. Confortable et propre, du matin au soir. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
-    id: 'ensemble-hoodie', rayon: 'ensembles', vedette: true, badge: 'Tendance',
+    id: 'ensemble-hoodie', rayon: 'ensembles', vedette: true, badge: 'Nouveau',
     nom: 'Ensemble hoodie + jogging large', court: "L'ensemble hoodie",
     grammage: null, note: 'Plusieurs couleurs',
     prix: 54.90, marche: null, ecart: null,
@@ -48,7 +48,7 @@ window.PRODUITS = [
   {
     id: 'hoodie-ailes', rayon: 'pulls', vedette: true,
     nom: 'Hoodie ailes en strass', court: 'Le hoodie ailes',
-    grammage: null, note: 'Ailes en strass dans le dos', badge: 'Tendance', couleur: 'Gris chiné',
+    grammage: null, note: 'Ailes en strass dans le dos', badge: 'Nouveau', couleur: 'Gris chiné',
     prix: 39.90, marche: null, ecart: null,
     photos: ['hoodie-ailes-1.jpg', 'hoodie-ailes-2.jpg', 'hoodie-ailes-3.jpg'],
     details: ['Sweat à capuche', 'Coupe ample, épaules tombantes', 'Deux ailes en strass argentés dans le dos', 'Matière : polyester', 'Entretien : à confirmer avec le fournisseur'],
