@@ -429,3 +429,170 @@ h1, h2, h3 { font-family: var(--titre); font-weight: 400; margin: 0; line-height
 .logo-pied .logo-mot { font-size: 30px; margin-bottom: 20px; color: #fff; }
 .popup-texte .popup-logo { font-size: 30px; margin-bottom: 26px; }
 @media (max-width: 760px) { .logo .logo-mot { font-size: 18px; } }
+
+/* =====================================================================
+   REFONTE « GRANDE BOUTIQUE » — la structure d'Edikted, l'identité Ambre Noire.
+   Fond blanc, en-tête blanc, titres épais en majuscules, boutons noirs arrondis,
+   des photos hautes partout. L'ambre ne reste que dans le logo et les pastilles.
+   ===================================================================== */
+:root { --gris-clair: #F2F2F2; --pilule: 999px; }
+
+/* l'en-tête passe au blanc */
+.entete { background: var(--blanc); color: var(--noir); border-bottom: 1px solid var(--ligne); }
+.nav a, .nav button.lien { color: var(--noir); font-weight: 600; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; }
+.nav a:hover, .nav button.lien:hover, .icone:hover { color: var(--ambre-texte); }
+.icone { color: var(--noir); }
+.bandeau { font-size: 12px; }
+
+/* les boutons : noirs et arrondis */
+.btn-noir { background: var(--noir); color: var(--blanc); border-color: var(--noir); }
+.btn-pilule { border-radius: var(--pilule); letter-spacing: .1em; font-weight: 800; }
+.btn-pilule svg { width: 18px; height: 18px; }
+.btn-petit { min-height: 38px; padding: 0 18px; font-size: 12.5px; }
+
+/* les titres de section : gros, épais, « Tout voir » à droite */
+.bloc { padding-block: 34px; }
+.rangee-titre { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 18px; }
+.rangee-titre h2 { font-family: var(--titre); font-size: clamp(24px, 3vw, 36px); text-transform: uppercase; letter-spacing: .01em; line-height: 1; }
+.rangee-titre a { font-size: 13.5px; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.rangee-note { font-size: 13.5px; color: var(--texte-doux); }
+.rangee-centre { justify-content: center; }
+
+/* 1. la une */
+.une { position: relative; }
+.une-lien { display: block; position: relative; color: var(--blanc); }
+.une-photo { width: 100%; height: min(78vh, 760px); object-fit: cover; object-position: center 22%; background: var(--fond-photo); }
+.une-lien::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.55)); }
+.une-texte { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 0 20px 40px; text-align: center;
+             display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.une-sur { font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+.une h1 { font-size: clamp(36px, 6vw, 76px); text-transform: uppercase; line-height: .95; color: var(--blanc); }
+.une-bouton { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 30px;
+              background: var(--blanc); color: var(--noir); border-radius: var(--pilule); font-weight: 800; font-size: 13px;
+              letter-spacing: .12em; text-transform: uppercase; margin-top: 6px; }
+.une-bouton-noir { background: var(--noir); color: var(--blanc); }
+
+/* 2. les tuiles de rayons */
+.tuiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.tuile { position: relative; display: block; aspect-ratio: 3 / 4; overflow: hidden; background: var(--fond-photo); color: var(--blanc); }
+.tuile img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s; }
+.tuile:hover img { transform: scale(1.04); }
+.tuile::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,.55)); }
+.tuile-texte { position: absolute; left: 0; right: 0; bottom: 18px; z-index: 1; text-align: center; display: flex; flex-direction: column; gap: 4px; }
+.tuile-texte b { font-family: var(--titre); font-weight: 400; font-size: clamp(18px, 2.4vw, 30px); text-transform: uppercase; letter-spacing: .03em; line-height: 1; }
+.tuile-texte span { font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+.tuile img[src$="vide.svg"] + .tuile-texte, .tuile:has(img[src$="vide.svg"]) { color: var(--noir); }
+.tuile:has(img[src$="vide.svg"])::after { display: none; }
+@media (max-width: 720px) { .tuiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } .tuile-texte { bottom: 12px; } }
+
+/* 3. la piste « tendance » qui glisse */
+.piste { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 3 * 14px) / 4); gap: 14px;
+         overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; scrollbar-width: thin; }
+.piste > * { scroll-snap-align: start; }
+@media (max-width: 900px) { .piste { grid-auto-columns: 44%; gap: 10px; } }
+
+/* les cartes produit : photo haute, nom fin, prix */
+.carte-photo { border-radius: 0; aspect-ratio: 2 / 3; }
+.carte-badge { position: absolute; top: 10px; left: 10px; z-index: 1; background: var(--noir); color: var(--blanc);
+               font-size: 10.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: 4px 8px; }
+.coeur { background: transparent; top: 4px; right: 4px; }
+.coeur svg { width: 20px; height: 20px; }
+.carte-nom { font-family: var(--corps); font-size: 13.5px; font-weight: 500; margin: 10px 0 2px; line-height: 1.35; }
+.carte-prix { font-size: 13.5px; font-weight: 700; }
+.grille { gap: 28px 14px; }
+@media (max-width: 720px) { .grille { gap: 22px 10px; } }
+
+/* 4. la bande promo */
+.bande-promo a { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center;
+                 background: var(--gris-clair); padding: 38px 20px; }
+.bande-gros { font-family: var(--titre); font-size: clamp(34px, 6vw, 68px); text-transform: uppercase; line-height: .95; }
+.bande-petit { font-size: 14px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--texte-doux); }
+
+/* 5. les packs, en cartes sobres */
+.marche { border-radius: 0; border: 1px solid var(--ligne); }
+.marche.mise { border-color: var(--noir); box-shadow: none; }
+.marche-drapeau { background: var(--noir); color: var(--blanc); border-radius: 0; }
+.marche .btn { border-radius: var(--pilule); }
+.marche .btn-plein { background: var(--noir); border-color: var(--noir); color: var(--blanc); }
+.marche .gain { color: var(--noir); }
+
+/* 7. instagram */
+.insta { text-align: center; }
+.insta-sur { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--texte-doux); }
+.insta-nom { display: inline-block; font-family: var(--titre); font-size: clamp(26px, 4vw, 44px); text-transform: uppercase; margin: 4px 0 18px; }
+.insta-grille { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.insta-grille img { width: 100%; aspect-ratio: 1; object-fit: cover; background: var(--fond-photo); }
+@media (max-width: 720px) { .insta-grille { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.reassurance { border-top: 1px solid var(--ligne); border-bottom: 1px solid var(--ligne); padding-block: 28px; }
+.reassure i { background: var(--gris-clair); }
+
+/* la fiche produit */
+.fiche { grid-template-columns: 1.3fr 1fr; gap: 48px; padding-block: 20px 10px; }
+.galerie2 { position: relative; min-width: 0; }
+.defile { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.defile img { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; background: var(--fond-photo); }
+.defile img:first-child:nth-last-child(odd) { grid-column: 1 / -1; }
+.defile-points { display: none; }
+.fiche-info { position: sticky; top: 90px; }
+.fiche-badge { position: static; display: inline-block; margin-bottom: 12px; }
+.fiche-info h1 { font-family: var(--corps); font-weight: 600; font-size: clamp(20px, 2vw, 26px); line-height: 1.25; margin-bottom: 8px; }
+.fiche-prix { font-size: 20px; }
+.fiche-prix-note { margin-bottom: 18px; }
+.choix-titre { font-size: 13.5px; text-transform: uppercase; letter-spacing: .04em; }
+.choix-titre b { font-weight: 700; }
+.taille { border-radius: 6px; min-width: 52px; min-height: 44px; border-width: 1px; }
+.taille[data-choisie="oui"] { background: var(--blanc); color: var(--noir); border: 2px solid var(--noir); }
+.fiche-info > .btn-pilule { min-height: 54px; margin-top: 4px; }
+.fiche-lignes { display: grid; gap: 10px; margin: 18px 0 8px; font-size: 13.5px; }
+.fiche-lignes div { display: flex; gap: 10px; align-items: flex-start; }
+.fiche-lignes svg { width: 18px; height: 18px; flex: none; margin-top: 1px; }
+.tiroirs summary { font-size: 14.5px !important; text-transform: uppercase; letter-spacing: .05em; }
+.tiroir-texte { padding: 0 2px 18px; font-size: 14.5px; color: #33332F; }
+.tiroir-texte p { margin: 0 0 10px; color: #33332F; }
+.tiroir-texte ul { margin: 0 0 10px; padding-left: 18px; }
+.tiroir-texte li { margin-bottom: 4px; }
+.tiroir-texte a { text-decoration: underline; }
+.petit-gris { font-size: 12.5px; color: var(--texte-doux) !important; }
+.table-defile { overflow-x: auto; }
+.avec { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.avec-ligne { display: grid; grid-template-columns: 110px 1fr; gap: 14px; align-items: center; }
+.avec-ligne img { width: 110px; aspect-ratio: 2 / 3; object-fit: cover; background: var(--fond-photo); }
+.avec-nom { display: block; font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+.avec-prix { font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+.barre-achat .btn { border-radius: var(--pilule); }
+@media (max-width: 900px) {
+  .fiche { grid-template-columns: 1fr; gap: 18px; padding-block: 0 10px; }
+  .fiche-info { position: static; }
+  .galerie2 { margin-inline: -16px; }
+  .defile { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 4px; scrollbar-width: none; }
+  .defile::-webkit-scrollbar { display: none; }
+  .defile img { flex: 0 0 88%; scroll-snap-align: start; }
+  .defile img:only-child { flex-basis: 100%; }
+  .defile-points { display: flex; justify-content: center; gap: 6px; padding-top: 10px; }
+  .defile-points span { width: 6px; height: 6px; border-radius: 50%; background: #CFCFCA; }
+  .defile-points span.actif { background: var(--noir); }
+  .avec { grid-template-columns: 1fr; }
+}
+
+/* la collection */
+.col-tete h1 { font-size: clamp(28px, 4vw, 48px); }
+.onglet { font-size: 13.5px; font-weight: 700; letter-spacing: .08em; }
+.onglets { gap: 22px; }
+
+/* le pied passe au gris clair */
+.pied { background: var(--gris-clair); color: var(--noir); margin-top: 40px; }
+.pied h4 { color: var(--noir); }
+.pied a { color: #44443F; }
+.pied a:hover { color: var(--noir); text-decoration: underline; }
+.pied-lettre h3 { color: var(--noir); }
+.pied-lettre p { color: var(--texte-doux); }
+.logo-pied .logo-mot { color: var(--noir); }
+.formulaire-lettre input[type=email] { background: var(--blanc); border-color: var(--ligne); color: var(--noir); border-radius: var(--pilule); padding-inline: 20px; }
+.formulaire-lettre .btn { border-radius: var(--pilule); background: var(--noir); border-color: var(--noir); color: var(--blanc); }
+.pied .accord { color: var(--texte-doux); }
+.pied-bas { background: #E8E8E6; color: #55554F; }
+.paiements span { border-color: #C9C9C4; color: #33332F; }
+.tuile-texte { padding-inline: 8px; }
+@media (max-width: 720px) { .tuile-texte b { font-size: 16px; } }
+@media (min-width: 721px) { .tuile { aspect-ratio: 4 / 5; } }

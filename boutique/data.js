@@ -30,7 +30,7 @@ window.PRODUITS = [
     description: 'Le sweat col rond et le pantalon large, assortis. Confortable et propre, du matin au soir. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
-    id: 'ensemble-hoodie', rayon: 'ensembles', vedette: true,
+    id: 'ensemble-hoodie', rayon: 'ensembles', vedette: true, badge: 'Tendance',
     nom: 'Ensemble hoodie + jogging large', court: "L'ensemble hoodie",
     grammage: null, note: 'Plusieurs couleurs',
     prix: 54.90, marche: null, ecart: null,
@@ -47,11 +47,12 @@ window.PRODUITS = [
   },
   {
     id: 'hoodie-ailes', rayon: 'pulls', vedette: true,
-    nom: 'Hoodie ailes brodées', court: 'Le hoodie ailes',
-    grammage: null, note: 'Ailes argentées dans le dos',
+    nom: 'Hoodie ailes en strass', court: 'Le hoodie ailes',
+    grammage: null, note: 'Ailes en strass dans le dos', badge: 'Tendance', couleur: 'Gris chiné',
     prix: 39.90, marche: null, ecart: null,
-    photos: ['vide.svg'],
-    description: 'Sweat à capuche gris clair, ailes argentées dans le dos. Composition exacte : à confirmer avec le fournisseur.'
+    photos: ['hoodie-ailes-1.jpg', 'hoodie-ailes-2.jpg', 'hoodie-ailes-3.jpg'],
+    details: ['Sweat à capuche', 'Coupe ample, épaules tombantes', 'Deux ailes en strass argentés dans le dos', 'Matière : polyester', 'Entretien : à confirmer avec le fournisseur'],
+    description: 'Le sweat à capuche gris chiné, coupe ample, avec deux grandes ailes en strass argentés dans le dos. Elles brillent à la lumière.'
   },
   {
     id: 'gilet-court', rayon: 'pulls',
@@ -102,7 +103,7 @@ window.PRODUITS = [
     description: 'Robe longue en maille, col V, épaulettes, fermée par des boutons. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
-    id: 'robe-dos-nu', rayon: 'robes', vedette: true,
+    id: 'robe-dos-nu', rayon: 'robes', vedette: true, badge: 'Nouveau',
     nom: 'Robe longue dos nu', court: 'La robe dos nu',
     grammage: null, note: 'Décolleté V, manches longues',
     prix: 34.90, marche: null, ecart: null,
@@ -110,7 +111,7 @@ window.PRODUITS = [
     description: 'Robe longue moulante, décolleté V, dos nu, manches longues. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
-    id: 'doudoune-courte', rayon: 'vestes', vedette: true,
+    id: 'doudoune-courte', rayon: 'vestes', vedette: true, badge: 'Nouveau',
     nom: 'Doudoune courte', court: 'La doudoune courte',
     grammage: null, note: 'Col montant, bas resserré',
     prix: 59.90, marche: null, ecart: null,
@@ -158,7 +159,7 @@ window.PRODUITS = [
     description: 'Écharpe imprimé léopard, douce et chaude. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
-    id: 'bonnet-camouflage', rayon: 'accessoires',
+    id: 'bonnet-camouflage', rayon: 'accessoires', badge: '5 € dès 2 articles',
     nom: 'Bonnet camouflage', court: 'Le bonnet camouflage',
     grammage: null, note: '5 € dès 2 articles',
     prix: 14.90, marche: null, ecart: null,
@@ -166,7 +167,7 @@ window.PRODUITS = [
     description: 'Bonnet en maille, motif camouflage. 5 € au lieu de 14,90 € dès que tu as un autre article dans ton panier. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
-    id: 'bonnet-pompon', rayon: 'accessoires',
+    id: 'bonnet-pompon', rayon: 'accessoires', badge: '5 € dès 2 articles',
     nom: 'Bonnet grosse maille à pompon', court: 'Le bonnet à pompon',
     grammage: null, note: '5 € dès 2 articles',
     prix: 14.90, marche: null, ecart: null,

@@ -54,7 +54,6 @@
               '<div class="sous">' +
                 '<a href="collection.html?c=tout">Tout voir</a>' +
                 window.RAYONS.map(function (r) { return '<a href="collection.html?c=' + r.id + '">' + r.nom + '</a>'; }).join('') +
-                '<a href="produit.html?p=tshirt">Le test à 11 €</a>' +
               '</div></div>' +
             '<a href="index.html#faq">F.A.Q</a>' +
             '<a href="' + waTexte('Bonjour Ambre Noire, j\'ai une question : ') + '" target="_blank" rel="noopener">Contact</a>' +
@@ -72,7 +71,6 @@
         '<button class="tiroir-fermer" type="button" aria-label="Fermer" data-ferme-tiroir>&times;</button>' +
         '<a href="collection.html?c=tout">Tout voir</a>' +
         window.RAYONS.map(function (r) { return '<a href="collection.html?c=' + r.id + '">' + r.nom + '</a>'; }).join('') +
-        '<a href="produit.html?p=tshirt">Le test à 11 €</a>' +
         '<a href="collection.html?c=favoris">Mes favoris</a>' +
         '<a href="index.html#faq">F.A.Q</a>' +
         '<a href="' + waTexte('Bonjour, je voudrais suivre ma commande. Mon numéro de commande : ') + '" target="_blank" rel="noopener">Suivre ma commande</a>' +
@@ -80,7 +78,7 @@
       '</div></div>' +
       '<div class="recherche" data-recherche><div class="recherche-boite">' +
         '<input type="search" placeholder="Rechercher une pièce…" aria-label="Rechercher" data-champ-recherche>' +
-        '<div class="recherche-pop">Recherches populaires : <a href="#" data-cherche="jogging">Jogging</a><a href="#" data-cherche="veste">Veste</a><a href="#" data-cherche="t-shirt">T-shirt</a></div>' +
+        '<div class="recherche-pop">Recherches populaires : <a href="#" data-cherche="hoodie">Hoodie</a><a href="#" data-cherche="ensemble">Ensemble</a><a href="#" data-cherche="robe">Robe</a><a href="#" data-cherche="bonnet">Bonnet</a></div>' +
         '<div class="recherche-res" data-resultats></div>' +
       '</div></div>';
   }
@@ -165,7 +163,7 @@
         $('[data-popup-form]').classList.add('cache');
         $('[data-popup-code]').classList.add('visible');
       } else {
-        f.innerHTML = '<p style="color:#fff;margin:0">C\'est noté ✓ Ton code : <b style="color:var(--ambre);letter-spacing:.1em">' + C.codeBienvenue + '</b> — il s\'applique tout seul dans ton panier.</p>';
+        f.innerHTML = '<p style="color:var(--noir);margin:0">C\'est noté ✓ Ton code : <b style="color:var(--ambre);letter-spacing:.1em">' + C.codeBienvenue + '</b> — il s\'applique tout seul dans ton panier.</p>';
       }
     });
   }
@@ -268,8 +266,9 @@
   }, true);
 
   /* ---------- la carte produit ---------- */
+  /* la carte, façon grande boutique : photo haute, petite étiquette, le cœur, le nom, le prix */
   function carte(p) {
-    var badge = p.test ? '<span class="carte-ecart carte-test">Le test</span>' : (p.ecart ? '<span class="carte-ecart">' + p.ecart + ' % vs marché</span>' : '');
+    var badge = p.badge ? '<span class="carte-badge">' + echap(p.badge) + '</span>' : '';
     var seconde = p.photos[1] ? '<img class="seconde" src="img/' + p.photos[1] + '" alt="" loading="lazy">' : '';
     return '<a class="carte-produit" href="produit.html?p=' + p.id + '" data-produit="' + echap(p.nom) + '">' +
       '<div class="carte-photo">' +
@@ -277,30 +276,52 @@
         '<button class="coeur" type="button" aria-label="Ajouter aux favoris" data-favori="' + p.id + '">' + ICO.coeur + '</button>' +
       '</div>' +
       '<div class="carte-nom">' + echap(p.nom) + '</div>' +
-      '<div class="carte-sous">' + echap([p.grammage, p.note].filter(Boolean).join(' · ')) + '</div>' +
-      '<div class="carte-prix">' + euro(p.prix) + (p.marche ? '<small>ailleurs ' + echap(p.marche) + '</small>' : '') + '</div>' +
+      '<div class="carte-prix">' + euro(p.prix) + '</div>' +
     '</a>';
   }
   window.SILENCE_CARTE = carte;
 
   /* ---------- l'accueil ---------- */
+  /* la plus belle photo d'un rayon : celle de sa première pièce qui en a une */
+  function photoRayon(id) {
+    var avec = P.filter(function (p) { return p.rayon === id && p.photos[0] !== 'vide.svg'; })[0];
+    return avec ? avec.photos[0] : 'vide.svg';
+  }
+
   function accueil() {
-    var grille = $('[data-grille]'); if (!grille) return;
-    function remplir(filtre) {
-      var liste = P.filter(function (p) {
-        if (filtre === 'pepites') return !!p.vedette;
-        return p.rayon === filtre;
-      });
-      grille.innerHTML = liste.map(carte).join('');
-      majFavoris();
+    if (document.body.getAttribute('data-page') !== 'accueil') return;
+
+    // les rayons en grandes tuiles
+    var tu = $('[data-tuiles]');
+    if (tu) tu.innerHTML = window.RAYONS.map(function (r) {
+      return '<a class="tuile" href="collection.html?c=' + r.id + '">' +
+        '<img src="img/' + photoRayon(r.id) + '" alt="" loading="lazy">' +
+        '<span class="tuile-texte"><b>' + echap(r.nom) + '</b><span>Voir tout</span></span></a>';
+    }).join('');
+
+    // tendance : les pièces vedettes d'abord, puis le reste
+    var pi = $('[data-piste]');
+    if (pi) pi.innerHTML = P.filter(function (p) { return p.vedette; })
+      .concat(P.filter(function (p) { return !p.vedette; })).slice(0, 8).map(carte).join('');
+
+    // nouveautés : toute la boutique, celles qui ont leurs photos en premier
+    var grille = $('[data-grille]');
+    if (grille) grille.innerHTML = P.slice().sort(function (a, b) {
+      return (a.photos[0] === 'vide.svg') - (b.photos[0] === 'vide.svg');
+    }).map(carte).join('');
+
+    // insta : 4 photos de la boutique
+    var ins = $('[data-insta]');
+    if (ins) {
+      var photos = [];
+      P.forEach(function (p) { p.photos.forEach(function (ph) { if (ph !== 'vide.svg') photos.push(ph); }); });
+      while (photos.length < 4) photos.push('vide.svg');
+      ins.innerHTML = photos.slice(0, 4).map(function (ph) {
+        return '<a href="https://instagram.com/' + C.instagram + '" target="_blank" rel="noopener"><img src="img/' + ph + '" alt="" loading="lazy"></a>';
+      }).join('');
+      var lien = $('[data-insta-lien]'); if (lien) { lien.href = 'https://instagram.com/' + C.instagram; lien.textContent = '@' + C.instagram; }
     }
-    $$('[data-onglet]').forEach(function (o) {
-      o.addEventListener('click', function () {
-        $$('[data-onglet]').forEach(function (x) { x.classList.toggle('actif', x === o); x.setAttribute('aria-selected', x === o ? 'true' : 'false'); });
-        remplir(o.getAttribute('data-onglet'));
-      });
-    });
-    remplir('pepites');
+    majFavoris();
 
     // l'escalier des lots
     var esc = $('[data-escalier]');
@@ -356,100 +377,110 @@
   }
 
   /* ---------- la fiche produit ---------- */
-  /* l'ensemble et la veste se vendent mieux à deux : le panier applique le prix du lot tout seul */
-  function lotFiche(p) {
-    if (p.id !== 'ensemble' && p.id !== 'veste') return '';
-    var autre = produit(p.id === 'ensemble' ? 'veste' : 'ensemble');
-    return '<div class="lot-fiche"><div><b>Avec ' + (p.id === 'ensemble' ? 'la veste' : 'le sweat + jogging') + ' : 49,90 €</b>' +
-      '<span>au lieu de 54,80 € séparément — le panier l\'applique tout seul</span></div>' +
-      '<a class="btn btn-vide" href="produit.html?p=' + autre.id + '">Voir ' + (p.id === 'ensemble' ? 'la veste' : 'l\'ensemble') + '</a></div>';
+  /* façon grande boutique : les photos qui glissent, le nom, le prix, la taille, un gros bouton noir,
+     puis les détails en tiroirs. Pas d'avis inventés : la zone n'existe pas tant qu'il n'y en a pas. */
+  var SANS_TAILLE = { sacs: 1, accessoires: 1 };
+
+  function avecQuoi(p) {
+    // deux pièces qui vont avec : un accessoire pour un vêtement, un vêtement pour un accessoire
+    var ids = SANS_TAILLE[p.rayon] ? ['hoodie-ailes', 'ensemble-hoodie'] : ['echarpe-grise', 'bonnet-camouflage'];
+    if (/^bonnet/.test(p.id)) ids = ['hoodie-ailes', 'echarpe-leopard'];
+    return ids.map(produit).filter(function (x) { return x && x.id !== p.id; });
   }
 
   function fiche() {
     var zone = $('[data-fiche]'); if (!zone) return;
-    var id = new URLSearchParams(location.search).get('p') || 'ensemble-gris';
+    var id = new URLSearchParams(location.search).get('p') || 'hoodie-ailes';
     var p = produit(id) || window.PRODUITS[0];
     document.title = p.nom + ' — Ambre Noire Paris';
-    var tailles = (p.rayon === 'sacs' || p.rayon === 'accessoires') ? [] : ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
-
-    var ticketLivraison = C.livraison == null ? '<span>Confirmée sur WhatsApp</span>' : '<span>' + euro(C.livraison) + '</span>';
-    var dateLigne = '';
-    if (C.delaiJours) {
-      var d1 = new Date(), d2 = new Date();
-      d1.setDate(d1.getDate() + C.delaiJours[0]); d2.setDate(d2.getDate() + C.delaiJours[1]);
-      var f = function (d) { return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }); };
-      dateLigne = '<div class="ticket-ligne"><span>Arrivée estimée</span><b class="vert">' + f(d1) + ' au ' + f(d2) + '</b></div>';
-    }
-    var num = 'N° ' + String(Math.floor(1000 + Math.random() * 9000)) + '-' + String(new Date().getFullYear()).slice(2);
+    var sansTaille = !!SANS_TAILLE[p.rayon];
+    var tailles = sansTaille ? [] : ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+    var prixTexte = p.prix.toFixed(2).replace('.', ',');
+    var details = p.details || [p.note, 'Composition exacte : à confirmer avec le fournisseur'];
+    var bonnet = /^bonnet/.test(p.id);
 
     zone.innerHTML =
-      '<div class="galerie">' +
-        '<div class="vignettes">' + p.photos.map(function (ph, i) {
-          return '<button type="button" class="' + (i === 0 ? 'actif' : '') + '" data-vignette="' + ph + '" aria-label="Photo ' + (i + 1) + '"><img src="img/' + ph + '" alt=""></button>';
+      '<div class="galerie2">' +
+        '<div class="defile" data-defile>' + p.photos.map(function (ph, i) {
+          return '<img src="img/' + ph + '" alt="' + echap(p.nom) + ' — photo ' + (i + 1) + '"' + (i ? ' loading="lazy"' : ' fetchpriority="high"') + '>';
         }).join('') + '</div>' +
-        '<div class="photo-principale"><img data-principale src="img/' + p.photos[0] + '" alt="' + echap(p.nom) + '"></div>' +
+        (p.photos.length > 1 ? '<div class="defile-points" data-points>' + p.photos.map(function (ph, i) { return '<span' + (i ? '' : ' class="actif"') + '></span>'; }).join('') + '</div>' : '') +
       '</div>' +
       '<div class="fiche-info">' +
-        '<h1>' + echap(p.nom) + (p.grammage ? ' ' + echap(p.grammage) : '') + '</h1>' +
-        '<div class="fiche-ligne-preuve">' +
-          (p.ecart ? '<span class="ecart">' + p.ecart + ' % vs le marché</span><span>Ailleurs : ' + echap(p.marche) + '</span>' : '<span>' + echap(p.note || '') + '</span>') +
-        '</div>' +
+        (p.badge ? '<span class="carte-badge fiche-badge">' + echap(p.badge) + '</span>' : '') +
+        '<h1>' + echap(p.nom) + '</h1>' +
         '<div class="fiche-prix">' + euro(p.prix) + '</div>' +
-        '<div class="fiche-prix-note">Taxes incluses' + (C.livraison == null ? ' · livraison confirmée à la commande' : ' · + ' + euro(C.livraison) + ' de livraison') + '</div>' +
-        (tailles.length ? '<div class="choix-titre"><span>Taille : <b data-taille-affichee>M</b></span><a href="#tailles" data-ouvre-tailles>Guide des tailles</a></div>' +
+        '<div class="fiche-prix-note">Taxes incluses · + ' + euro(C.livraison) + ' de livraison</div>' +
+        (p.couleur ? '<div class="choix-titre"><span>Couleur / <b>' + echap(p.couleur) + '</b></span></div>' : '') +
+        (tailles.length ? '<div class="choix-titre"><span>Taille / <b data-taille-affichee>M</b></span><a href="#tailles" data-ouvre-tailles>Guide des tailles</a></div>' +
         '<div class="tailles" role="radiogroup" aria-label="Taille">' + tailles.map(function (t) {
           return '<button type="button" class="taille" role="radio" data-taille="' + t + '" data-choisie="' + (t === 'M' ? 'oui' : 'non') + '" aria-checked="' + (t === 'M') + '">' + t + '</button>';
         }).join('') + '</div>' : '') +
-        '<div class="choix-titre"><span>Quantité</span></div>' +
-        '<div class="quantite"><button type="button" aria-label="Moins" data-qte-moins>−</button><input type="number" min="1" max="9" value="1" data-qte aria-label="Quantité"><button type="button" aria-label="Plus" data-qte-plus>+</button></div>' +
-        '<button class="btn btn-plein btn-large" type="button" data-ajouter="' + echap(p.nom) + '" data-prix="' + p.prix.toFixed(2).replace('.', ',') + '">Ajouter au panier</button>' +
-        '<ul class="reassure-liste">' +
-          '<li>' + ICO.retour + 'Changé d\'avis ? Remboursé sur ta carte</li>' +
-          '<li>' + ICO.bouclier + 'Un défaut ? On rembourse ou on remplace</li>' +
-          '<li>' + ICO.carte + 'Paiement par carte, jamais à la livraison</li>' +
-          '<li>' + ICO.bulle + 'Un vrai contact, sur WhatsApp</li>' +
-        '</ul>' +
-        lotFiche(p) +
-        '<div class="ticket" aria-label="Récapitulatif">' +
-          '<div class="ticket-tete"><span>Ta commande</span><span>' + num + '</span></div>' +
-          '<div class="ticket-ligne"><span>' + echap(p.court) + '</span><b>' + euro(p.prix) + '</b></div>' +
-          '<div class="ticket-ligne"><span>Livraison</span>' + ticketLivraison + '</div>' +
-          dateLigne +
-          '<hr><div class="ticket-ligne"><span>Paiement</span><span>Par carte, sécurisé</span></div>' +
+        '<button class="btn btn-noir btn-large btn-pilule" type="button" data-ajouter="' + echap(p.nom) + '" data-prix="' + prixTexte + '">Ajouter au panier ' + ICO.sac + '</button>' +
+        '<div class="fiche-lignes">' +
+          '<div>' + ICO.camion + '<span><b>Livraison en France</b> · 4 à 10 jours ouvrés après l\'expédition</span></div>' +
+          (bonnet ? '<div>' + ICO.carte + '<span><b>5 € au lieu de 14,90 €</b> dès que tu as un autre article dans ton panier</span></div>'
+                  : '<div>' + ICO.carte + '<span>Ajoute un bonnet : <b>5 € au lieu de 14,90 €</b></span></div>') +
+          '<div>' + ICO.retour + '<span>Changé d\'avis ? <b>Remboursé sur ta carte</b></span></div>' +
         '</div>' +
-        '<div class="faq">' +
-          '<details open><summary>Description</summary><p>' + echap(p.description) + '</p></details>' +
-          '<details><summary>Composition &amp; entretien</summary><p><span class="a-confirmer">[À confirmer avec l\'atelier]</span> — la composition exacte des fibres sera affichée ici avant l\'ouverture.</p></details>' +
-          '<details id="tailles"><summary>Guide des tailles</summary><p>Mesure ton tour de poitrine sans serrer et reporte-toi au tableau. Entre deux tailles, prends la plus grande.</p>' +
-            '<table class="table-tailles"><thead><tr><th>Taille</th><th>Poitrine</th><th>Longueur</th><th>Entrejambe</th></tr></thead><tbody>' +
-            tailles.map(function (t) { return '<tr><td><b>' + t + '</b></td><td>—</td><td>—</td><td>—</td></tr>'; }).join('') +
-            '</tbody></table><p class="a-confirmer" style="margin-top:0">[Mesures en cm à recevoir de l\'atelier]</p></details>' +
-          '<details><summary>Livraison &amp; retours</summary><p>Expédié depuis l\'entrepôt de notre fournisseur en Chine, 4 à 10 jours ouvrés. Suivi envoyé dès le départ du colis. Le délai exact t\'est confirmé avant de payer. Pour changer d\'avis ou signaler un défaut, tout est dans nos <a href="cgv.html" style="text-decoration:underline">conditions générales de vente</a>.</p></details>' +
+        '<div class="faq tiroirs">' +
+          '<details open><summary>Détails du produit</summary><div class="tiroir-texte"><p>' + echap(p.description) + '</p><ul>' +
+            details.map(function (d) { return '<li>' + echap(d) + '</li>'; }).join('') + '</ul>' +
+            '<p class="petit-gris">Photos de présentation réalisées par IA, à partir des photos du produit.</p></div></details>' +
+          (tailles.length ? '<details id="tailles"><summary>Guide des tailles</summary><div class="tiroir-texte"><p>Mesure ton tour de poitrine sans serrer et reporte-toi au tableau. Entre deux tailles, prends la plus grande.</p>' +
+            '<div class="table-defile"><table class="table-tailles"><thead><tr><th>Taille</th><th>Poitrine</th><th>Longueur</th></tr></thead><tbody>' +
+            tailles.map(function (t) { return '<tr><td><b>' + t + '</b></td><td>—</td><td>—</td></tr>'; }).join('') +
+            '</tbody></table></div><p class="a-confirmer">Mesures en cm à recevoir du fournisseur.</p></div></details>' : '') +
+          '<details><summary>Livraison &amp; retours</summary><div class="tiroir-texte"><p>Expédié depuis l\'entrepôt de notre fournisseur, en Chine : 4 à 10 jours ouvrés. Le suivi t\'est envoyé dès le départ du colis. Pour changer d\'avis ou signaler un défaut, tout est dans nos <a href="cgv.html">conditions générales de vente</a>.</p></div></details>' +
         '</div>' +
       '</div>';
+
+    // les points sous les photos suivent le glissement
+    var def = $('[data-defile]'), pts = $$('[data-points] span');
+    if (def && pts.length) def.addEventListener('scroll', function () {
+      var i = Math.round(def.scrollLeft / (def.scrollWidth / pts.length));
+      pts.forEach(function (s, k) { s.classList.toggle('actif', k === i); });
+    }, { passive: true });
 
     // la barre d'achat collée en bas, sur téléphone
     var barre = document.createElement('div');
     barre.className = 'barre-achat';
-    barre.innerHTML = '<div><b>' + euro(p.prix) + '</b></div><button class="btn btn-plein" type="button" data-ajouter="' + echap(p.nom) + '" data-prix="' + p.prix.toFixed(2).replace('.', ',') + '">Ajouter au panier</button>';
+    barre.innerHTML = '<div><b>' + euro(p.prix) + '</b></div><button class="btn btn-noir btn-pilule" type="button" data-ajouter="' + echap(p.nom) + '" data-prix="' + prixTexte + '">Ajouter au panier</button>';
     document.body.appendChild(barre);
 
     zone.addEventListener('click', function (e) {
-      var v = e.target.closest('[data-vignette]');
-      if (v) { $('[data-principale]').src = 'img/' + v.getAttribute('data-vignette'); $$('[data-vignette]').forEach(function (x) { x.classList.toggle('actif', x === v); }); return; }
       var t = e.target.closest('[data-taille]');
       if (t) {
         $$('[data-taille]').forEach(function (x) { var on = x === t; x.setAttribute('data-choisie', on ? 'oui' : 'non'); x.setAttribute('aria-checked', on); });
         $('[data-taille-affichee]').textContent = t.getAttribute('data-taille'); return;
       }
-      if (e.target.closest('[data-qte-moins]')) { var q = $('[data-qte]'); q.value = Math.max(1, (+q.value || 1) - 1); return; }
-      if (e.target.closest('[data-qte-plus]')) { var q2 = $('[data-qte]'); q2.value = Math.min(9, (+q2.value || 1) + 1); return; }
-      if (e.target.closest('[data-ouvre-tailles]')) { var d = $('#tailles'); d.open = true; }
+      if (e.target.closest('[data-ouvre-tailles]')) { var d = $('#tailles'); if (d) d.open = true; }
     });
 
-    // complète la tenue : les autres pièces
+    // porte-le avec
+    var av = $('[data-avec]');
+    if (av) {
+      var liste = avecQuoi(p);
+      if (!liste.length) $('[data-avec-zone]').hidden = true;
+      av.innerHTML = liste.map(function (x) {
+        var direct = !!SANS_TAILLE[x.rayon];
+        return '<div class="avec-ligne">' +
+          '<a href="produit.html?p=' + x.id + '"><img src="img/' + x.photos[0] + '" alt="" loading="lazy"></a>' +
+          '<div><a href="produit.html?p=' + x.id + '" class="avec-nom">' + echap(x.nom) + '</a>' +
+          '<div class="avec-prix">' + euro(x.prix) + '</div>' +
+          (direct ? '<button class="btn btn-noir btn-pilule btn-petit" type="button" data-ajouter="' + echap(x.nom) + '" data-prix="' + x.prix.toFixed(2).replace('.', ',') + '" data-sans-taille>+ Ajouter</button>'
+                  : '<a class="btn btn-noir btn-pilule btn-petit" href="produit.html?p=' + x.id + '">Choisir ma taille</a>') +
+          '</div></div>';
+      }).join('');
+    }
+
+    // tu vas aimer : les pièces du même rayon d'abord
     var autres = $('[data-autres]');
-    if (autres) { autres.innerHTML = P.filter(function (x) { return x.id !== p.id; }).slice(0, 4).map(carte).join(''); majFavoris(); }
+    if (autres) {
+      var memes = P.filter(function (x) { return x.id !== p.id && x.rayon === p.rayon; });
+      var reste = P.filter(function (x) { return x.id !== p.id && x.rayon !== p.rayon; });
+      autres.innerHTML = memes.concat(reste).slice(0, 4).map(carte).join(''); majFavoris();
+    }
     faq($('[data-faq]'));
   }
 

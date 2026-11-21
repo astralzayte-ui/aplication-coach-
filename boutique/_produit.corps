@@ -3,17 +3,19 @@
 <main>
   <div class="enveloppe fiche" data-fiche></div>
 
-  <section class="section">
-    <div class="enveloppe">
-      <h2 class="titre-section">Complète la tenue</h2>
-      <div class="grille grille-4" data-autres></div>
-    </div>
+  <!-- PORTE-LE AVEC — deux pièces qui vont avec -->
+  <section class="enveloppe bloc" data-avec-zone>
+    <div class="rangee-titre"><h2>Porte-le avec</h2></div>
+    <div class="avec" data-avec></div>
   </section>
 
-  <section class="section section-gris" id="faq">
-    <div class="enveloppe">
-      <h2 class="titre-section">Les questions qu'on nous pose</h2>
-      <div class="faq" data-faq></div>
-    </div>
+  <section class="enveloppe bloc">
+    <div class="rangee-titre"><h2>Tu vas aimer</h2><a href="collection.html?c=tout">Tout voir</a></div>
+    <div class="grille grille-4" data-autres></div>
+  </section>
+
+  <section class="enveloppe bloc" id="faq">
+    <div class="rangee-titre rangee-centre"><h2>Tes questions</h2></div>
+    <div class="faq" data-faq></div>
   </section>
 </main>

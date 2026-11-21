@@ -189,7 +189,7 @@
         ajouter({
           nom: b.getAttribute('data-ajouter'),
           prix: prixDe(b.getAttribute('data-prix')),
-          taille: dansFiche && choisie ? choisie.getAttribute('data-taille') : (dansFiche ? '' : 'à préciser'),
+          taille: b.hasAttribute('data-sans-taille') ? '' : (dansFiche && choisie ? choisie.getAttribute('data-taille') : (dansFiche ? '' : 'à préciser')),
           n: dansFiche && q ? Math.max(1, Math.min(9, +q.value || 1)) : 1
         });
         return;

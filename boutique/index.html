@@ -19,98 +19,69 @@
 <div id="entete"></div>
 <main>
 
-  <!-- 1. LE HÉROS — une phrase de marque, pas un produit -->
-  <section class="heros">
-    <div class="enveloppe heros-grille">
-      <div>
-        <span class="etiquette">Marque indépendante · Livraison en France</span>
+  <!-- 1. LA UNE — une grande photo, une phrase, un bouton -->
+  <section class="une">
+    <a class="une-lien" href="collection.html?c=tout">
+      <img class="une-photo" src="img/hoodie-ailes-1.jpg" alt="La mannequin Ambre Noire en hoodie ailes en strass" fetchpriority="high">
+      <div class="une-texte">
+        <span class="une-sur">Collection hiver</span>
         <h1>Le streetwear,<br>version chic.</h1>
-        <p class="chapeau">Ensembles, pulls, robes et sacs pour femmes. Des pièces faciles à porter, qui ont de l'allure. Et un vrai contact sur WhatsApp, avant comme après ta commande.</p>
-        <div class="heros-boutons">
-          <a class="btn btn-plein" href="collection.html?c=tout">Découvrir →</a>
-          <a class="btn btn-vide" href="collection.html?c=tout">Le bonnet à 5 € →</a>
-        </div>
-        <div class="preuve">
-          <div class="preuve-chiffre">5 €</div>
-          <div class="preuve-texte"><b>le bonnet, dès 2 articles</b><span>ajouté à ton panier à ce prix</span></div>
-        </div>
+        <span class="une-bouton">Découvrir</span>
       </div>
-      <div class="heros-photo">
-        <img src="img/vide.svg" alt="" fetchpriority="high">
-        <div class="heros-badge"><b>5 €</b><span>le bonnet dès 2 articles</span></div>
-        <div class="heros-carte"><span data-ico="bulle"></span><div><b>Une question ?</b><span>Sur WhatsApp, avant comme après</span></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2. LES ONGLETS + LA GRILLE -->
-  <section class="enveloppe" style="padding-bottom:56px">
-    <div class="onglets" role="tablist">
-      <button class="onglet actif" type="button" role="tab" aria-selected="true" data-onglet="pepites">Nos pépites</button>
-      <button class="onglet" type="button" role="tab" aria-selected="false" data-onglet="ensembles">Ensembles</button>
-      <button class="onglet" type="button" role="tab" aria-selected="false" data-onglet="pulls">Pulls</button>
-    </div>
-    <div class="grille" data-grille></div>
-    <div class="tout-voir"><a class="btn btn-plein" href="collection.html?c=tout">Tout voir</a></div>
-  </section>
-
-  <!-- 3. LES DEUX BANNIÈRES -->
-  <section class="bannieres">
-    <a class="banniere" href="collection.html?c=ensembles">
-      <img src="img/vide.svg" alt="" loading="lazy">
-      <div class="banniere-texte"><h3>Les ensembles</h3><p>Le haut et le bas, assortis.</p><span>Découvrir</span></div>
-    </a>
-    <a class="banniere" href="collection.html?c=tout">
-      <img src="img/vide.svg" alt="" loading="lazy">
-      <div class="banniere-texte"><h3>Le bonnet à 5 €</h3><p>Dès 2 articles dans ton panier.</p><span>Découvrir</span></div>
     </a>
   </section>
 
-  <!-- 4. LA RÉASSURANCE -->
+  <!-- 2. LES RAYONS — une photo, un mot, un clic -->
+  <section class="enveloppe bloc">
+    <div class="tuiles" data-tuiles></div>
+  </section>
+
+  <!-- 3. TENDANCE — la piste qui glisse -->
+  <section class="enveloppe bloc">
+    <div class="rangee-titre"><h2>Tendance</h2><a href="collection.html?c=tout">Tout voir</a></div>
+    <div class="piste" data-piste></div>
+  </section>
+
+  <!-- 4. LA BANDE PROMO -->
+  <section class="bande-promo">
+    <a href="collection.html?c=accessoires">
+      <span class="bande-gros">Le bonnet à 5 €</span>
+      <span class="bande-petit">dès 2 articles dans ton panier</span>
+      <span class="une-bouton une-bouton-noir">J'en profite</span>
+    </a>
+  </section>
+
+  <!-- 5. LES PACKS -->
+  <section class="enveloppe bloc">
+    <div class="rangee-titre"><h2>Les packs</h2><span class="rangee-note">Un prix, un colis</span></div>
+    <div class="escalier" data-escalier></div>
+  </section>
+
+  <!-- 6. NOUVEAUTÉS — toute la boutique -->
+  <section class="enveloppe bloc">
+    <div class="rangee-titre"><h2>Nouveautés</h2><a href="collection.html?c=tout">Tout voir</a></div>
+    <div class="grille grille-4" data-grille></div>
+  </section>
+
+  <!-- 7. INSTAGRAM -->
+  <section class="enveloppe bloc insta">
+    <p class="insta-sur">Suis-nous sur Insta</p>
+    <a class="insta-nom" data-insta-lien href="#" target="_blank" rel="noopener">@ambrenoirparisfr</a>
+    <div class="insta-grille" data-insta></div>
+  </section>
+
+  <!-- 8. LA RÉASSURANCE -->
   <section class="enveloppe reassurance">
-    <div class="reassure"><i data-ico="retour"></i><div><b>Changé d'avis ?</b><span>Remboursé sur ta carte</span></div></div>
+    <div class="reassure"><i data-ico="camion"></i><div><b>Livraison en France</b><span>Suivi envoyé dès le départ</span></div></div>
     <div class="reassure"><i data-ico="carte"></i><div><b>Paiement sécurisé</b><span>Par carte bancaire</span></div></div>
-    <div class="reassure"><i data-ico="bouclier"></i><div><b>Un défaut ?</b><span>On rembourse ou on remplace</span></div></div>
-    <div class="reassure"><i data-ico="bulle"></i><div><b>Un vrai contact</b><span>Sur WhatsApp</span></div></div>
+    <div class="reassure"><i data-ico="retour"></i><div><b>Changé d'avis ?</b><span>Remboursé sur ta carte</span></div></div>
+    <div class="reassure"><i data-ico="bulle"></i><div><b>Un vrai contact</b><span>Avant comme après</span></div></div>
   </section>
 
-  <!-- 5. L'ESCALIER DES LOTS -->
-  <section class="section">
-    <div class="enveloppe">
-      <div class="surtitre">★ Le bon plan</div>
-      <h2 class="titre-section">La tenue, en 3 marches</h2>
-      <div class="escalier" data-escalier></div>
-    </div>
-  </section>
-
-  <!-- 6. LES UNIVERS -->
-  <section class="section section-gris">
-    <div class="enveloppe">
-      <div class="surtitre">★ Notre catalogue</div>
-      <h2 class="titre-section" style="margin-bottom:8px">Nos <span style="color:var(--ambre-texte)">univers</span></h2>
-      <p style="text-align:center;color:var(--texte-doux);margin:0 0 34px">Clique sur un univers pour voir ses pièces.</p>
-      <div class="univers" data-univers></div>
-    </div>
-  </section>
-
-  <!-- 7. LES AVIS — masqués tant qu'il n'y a pas de vrais clients -->
-  <section class="section">
-    <div class="enveloppe"><h2 class="titre-section">Elles portent Ambre Noire</h2><div class="avis-piste" data-avis></div></div>
-  </section>
-
-  <!-- 8. LA FAQ -->
-  <section class="section" id="faq">
-    <div class="enveloppe">
-      <h2 class="titre-section">Les questions qu'on nous pose</h2>
-      <div class="faq-contact"><a class="btn btn-vide" href="https://wa.me/212728861105" target="_blank" rel="noopener">Nous contacter</a></div>
-      <div class="faq" data-faq></div>
-      <div class="badges">
-        <span>🇫🇷 <b>Marque indépendante</b> · Livraison en France</span>
-        <span><b>Remboursé</b> sur ta carte</span>
-        <span><b>Le bonnet à 5 €</b> dès 2 articles</span>
-        <span><b>SAV</b> sur WhatsApp</span>
-      </div>
-    </div>
+  <!-- 9. LA FAQ -->
+  <section class="enveloppe bloc" id="faq">
+    <div class="rangee-titre rangee-centre"><h2>Tes questions</h2></div>
+    <div class="faq" data-faq></div>
   </section>
 
 </main>
