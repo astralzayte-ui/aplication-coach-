@@ -37,9 +37,8 @@
     var e = $('#entete'); if (!e) return;
     var messages = [
       '🇫🇷 Livraison en France',
-      '−10 % sur ta première commande',
       'Changé d\'avis ? Remboursé sur ta carte',
-      'Paiement par carte, jamais à la livraison',
+      'Paiement par carte',
       'Le bonnet à 5 € dès 2 articles',
       'Un vrai contact sur WhatsApp'
     ];
@@ -98,8 +97,8 @@
       '<footer class="pied"><div class="enveloppe pied-haut">' +
         '<div class="pied-lettre">' +
           '<a class="logo-pied" href="index.html"><span class="logo-mot logo-pile">Ambre<span class="goutte"></span><br>Noire<small>Paris</small></span></a>' +
-          '<h3>−10 % pour commencer</h3>' +
-          '<p>Laisse ton e-mail : tu reçois 10 % sur ta première commande, et tu passes avant tout le monde sur les nouvelles pièces.</p>' +
+          '<h3>Les nouveautés en premier</h3>' +
+          '<p>Laisse ton e-mail : tu passes avant tout le monde sur les nouvelles pièces.</p>' +
           formulaire('pied', 'C\'est parti') +
         '</div>' +
         '<div><h4>Aide &amp; Contact</h4>' +
@@ -148,7 +147,6 @@
   }
 
   function activerCode() {
-    ecrire('silence.code', { code: C.codeBienvenue, pct: C.remiseBienvenue });
     ecrire('silence.inscrit', true);
     if (window.SILENCE && window.SILENCE.rafraichir) window.SILENCE.rafraichir();
   }
@@ -171,7 +169,7 @@
         $('[data-popup-form]').classList.add('cache');
         $('[data-popup-code]').classList.add('visible');
       } else {
-        f.innerHTML = '<p style="color:var(--noir);margin:0">C\'est noté ✓ Ton code : <b style="color:var(--ambre);letter-spacing:.1em">' + C.codeBienvenue + '</b> — il s\'applique tout seul dans ton panier.</p>';
+        f.innerHTML = '<p style="color:var(--noir);margin:0">C\'est noté ✓ Tu verras les nouveautés avant tout le monde.</p>';
       }
     });
   }
@@ -533,5 +531,6 @@
   /* ---------- démarrage ---------- */
   entete(); enteteVivante(); pied(); icones(); navigation(); brancherFormulaires(); boutonWhatsApp();
   accueil(); fiche(); collection(); majFavoris();
-  // popup(); — retiré à la demande : le code −10 % reste dans le pied de page
+  // popup(); — retiré à la demande (plus d'offre −10 %)
+  try { localStorage.removeItem('silence.code'); } catch (e) {}   // efface un ancien code −10 % gardé dans le navigateur
 })();

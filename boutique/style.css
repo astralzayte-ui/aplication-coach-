@@ -635,3 +635,22 @@ h1, h2, h3 { font-family: var(--titre); font-weight: 400; margin: 0; line-height
   .rayons-piste { justify-content: flex-start; gap: 22px; }
   .rayons-piste a { font-size: 12px; padding: 11px 0; }
 }
+
+/* ===== ordinateur : tout plus compact, on voit le produit d'un coup d'œil ===== */
+@media (min-width: 901px) {
+  .une-photo { height: min(58vh, 540px); object-position: center 20%; }
+  .une h1 { font-size: clamp(34px, 4vw, 56px); }
+  .tuiles { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+  .tuile { aspect-ratio: 3 / 4; }
+  .tuile-texte b { font-size: 16px; }
+  .tuile-texte span { font-size: 10.5px; }
+  .grille-4, .grille { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px 12px; }
+  .piste { grid-auto-columns: calc((100% - 5 * 12px) / 6); gap: 12px; }
+  .bloc { padding-block: 26px; }
+  .rangee-titre h2 { font-size: clamp(22px, 2.2vw, 30px); }
+  .insta-grille { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .fiche { grid-template-columns: minmax(0, 640px) minmax(0, 1fr); justify-content: center; gap: 40px; }
+  .defile img { max-height: calc(100vh - 200px); object-fit: cover; }
+  .avec { grid-template-columns: repeat(2, minmax(0, 420px)); }
+}
+@media (min-width: 1500px) { .grille-4, .grille { grid-template-columns: repeat(6, minmax(0, 1fr)); } }

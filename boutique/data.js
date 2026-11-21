@@ -15,9 +15,9 @@ window.CONFIG = {
   livraison: 4.99,        // France métropolitaine (CGV)
   delaiJours: null,       // ex. [2, 3]  → « Arrivée estimée le … »
 
-  // le code du popup -10 %
-  codeBienvenue: 'BIENVENUE10',
-  remiseBienvenue: 10
+  // plus d'offre −10 % (retirée le 21/11)
+  codeBienvenue: null,
+  remiseBienvenue: 0
 };
 
 window.PRODUITS = [
