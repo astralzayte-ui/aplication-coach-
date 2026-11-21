@@ -45,28 +45,25 @@
     ];
     var piste = messages.concat(messages).map(function (m) { return '<span>' + m + '</span>'; }).join('');
     e.innerHTML =
+      '<div class="haut" data-haut>' +
       '<div class="bandeau" aria-hidden="true"><div class="bandeau-piste">' + piste + '</div></div>' +
       '<header class="entete"><div class="enveloppe entete-rangee">' +
-        '<div style="display:flex;align-items:center">' +
+        '<div class="entete-gauche">' +
           '<button class="icone burger" type="button" aria-label="Menu" data-ouvre-tiroir>' + ICO.burger + '</button>' +
-          '<nav class="nav" aria-label="Navigation principale">' +
-            '<div class="menu-deroulant"><button class="lien" type="button" aria-haspopup="true">Collections ' + ICO.fleche + '</button>' +
-              '<div class="sous">' +
-                '<a href="collection.html?c=tout">Tout voir</a>' +
-                window.RAYONS.map(function (r) { return '<a href="collection.html?c=' + r.id + '">' + r.nom + '</a>'; }).join('') +
-              '</div></div>' +
-            '<a href="index.html#faq">F.A.Q</a>' +
-            '<a href="' + waTexte('Bonjour Ambre Noire, j\'ai une question : ') + '" target="_blank" rel="noopener">Contact</a>' +
-            '<a href="' + waTexte('Bonjour, je voudrais suivre ma commande. Mon numéro de commande : ') + '" target="_blank" rel="noopener">Suivre ma commande</a>' +
-          '</nav>' +
+          '<a class="logo" href="index.html" aria-label="Ambre Noire Paris — accueil"><span class="logo-mot">Ambre<span class="goutte"></span> Noire</span></a>' +
         '</div>' +
-        '<a class="logo" href="index.html" aria-label="Ambre Noire Paris — accueil"><span class="logo-mot">Ambre<span class="goutte"></span> Noire</span></a>' +
         '<div class="icones">' +
           '<button class="icone" type="button" aria-label="Rechercher" data-ouvre-recherche>' + ICO.loupe + '</button>' +
           '<a class="icone favori-tete" href="collection.html?c=favoris" aria-label="Mes favoris">' + ICO.coeur + '<span class="pastille" data-compte-favoris></span></a>' +
           '<button class="icone" type="button" aria-label="Ton panier" data-ouvrir-panier>' + ICO.sac + '<span class="pastille" data-compteur></span></button>' +
         '</div>' +
-      '</div></header>' +
+      '</div>' +
+      '<nav class="rayons-barre" aria-label="Catégories"><div class="enveloppe rayons-piste">' +
+        '<a href="collection.html?c=tout" data-rayon="tout">Nouveautés</a>' +
+        window.RAYONS.map(function (r) { return '<a href="collection.html?c=' + r.id + '" data-rayon="' + r.id + '">' + r.nom + '</a>'; }).join('') +
+        '<a href="index.html#faq">F.A.Q</a>' +
+      '</div></nav>' +
+      '</header></div>' +
       '<div class="tiroir" data-tiroir><div class="tiroir-fond" data-ferme-tiroir></div><div class="tiroir-corps">' +
         '<button class="tiroir-fermer" type="button" aria-label="Fermer" data-ferme-tiroir>&times;</button>' +
         '<a href="collection.html?c=tout">Tout voir</a>' +
@@ -81,6 +78,17 @@
         '<div class="recherche-pop">Recherches populaires : <a href="#" data-cherche="hoodie">Hoodie</a><a href="#" data-cherche="ensemble">Ensemble</a><a href="#" data-cherche="robe">Robe</a><a href="#" data-cherche="bonnet">Bonnet</a></div>' +
         '<div class="recherche-res" data-resultats></div>' +
       '</div></div>';
+  }
+
+  function enteteVivante() {
+    var c = new URLSearchParams(location.search).get('c');
+    if (c) $$('[data-rayon]').forEach(function (a) { a.classList.toggle('actif', a.getAttribute('data-rayon') === c); });
+    var h = $('[data-haut]'); if (!h) return;
+    var plie = false;
+    window.addEventListener('scroll', function () {
+      var p = scrollY > 140;
+      if (p !== plie) { plie = p; h.classList.toggle('plie', p); }
+    }, { passive: true });
   }
 
   /* ---------- le pied ---------- */
@@ -523,7 +531,7 @@
   function icones() { $$('[data-ico]').forEach(function (el) { var n = el.getAttribute('data-ico'); if (ICO[n]) el.innerHTML = ICO[n]; }); }
 
   /* ---------- démarrage ---------- */
-  entete(); pied(); icones(); navigation(); brancherFormulaires(); boutonWhatsApp();
+  entete(); enteteVivante(); pied(); icones(); navigation(); brancherFormulaires(); boutonWhatsApp();
   accueil(); fiche(); collection(); majFavoris();
   popup();
 })();
