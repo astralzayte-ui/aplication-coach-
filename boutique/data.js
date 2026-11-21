@@ -26,7 +26,8 @@ window.PRODUITS = [
     nom: 'Ensemble sweat + pantalon large', court: "L'ensemble col rond",
     grammage: null, note: 'Col rond, pantalon large',
     prix: 54.90, marche: null, ecart: null,
-    photos: ['vide.svg'],
+    couleur: 'Noir',
+    photos: ['ensemble-col-rond-1.jpg', 'ensemble-col-rond-2.jpg', 'ensemble-col-rond-3.jpg', 'ensemble-col-rond-4.jpg'],
     description: 'Le sweat col rond et le pantalon large, assortis. Confortable et propre, du matin au soir. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
@@ -34,7 +35,8 @@ window.PRODUITS = [
     nom: 'Ensemble hoodie + jogging large', court: "L'ensemble hoodie",
     grammage: null, note: 'Plusieurs couleurs',
     prix: 54.90, marche: null, ecart: null,
-    photos: ['vide.svg'],
+    couleur: 'Crème chiné',
+    photos: ['ensemble-hoodie-1.jpg', 'ensemble-hoodie-2.jpg', 'ensemble-hoodie-3.jpg', 'ensemble-hoodie-4.jpg'],
     description: 'Le sweat à capuche et le jogging large, même couleur. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
@@ -42,7 +44,8 @@ window.PRODUITS = [
     nom: 'Ensemble hoodie sable', court: "L'ensemble sable",
     grammage: null, note: 'Couleur sable',
     prix: 54.90, marche: null, ecart: null,
-    photos: ['vide.svg'],
+    couleur: 'Sable',
+    photos: ['ensemble-sable-1.jpg', 'ensemble-sable-2.jpg', 'ensemble-sable-3.jpg', 'ensemble-sable-4.jpg'],
     description: 'Sweat à capuche et jogging resserré aux chevilles, couleur sable. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
@@ -59,7 +62,8 @@ window.PRODUITS = [
     nom: 'Gilet court ajusté à boutons', court: 'Le gilet court',
     grammage: null, note: 'Maille torsadée',
     prix: 39.90, marche: null, ecart: null,
-    photos: ['vide.svg'],
+    couleur: 'Rose',
+    photos: ['gilet-court-1.jpg', 'gilet-court-2.jpg', 'gilet-court-3.jpg', 'gilet-court-4.jpg'],
     description: 'Gilet court, ajusté, en maille torsadée, fermé par des boutons. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
@@ -67,7 +71,8 @@ window.PRODUITS = [
     nom: 'Pull uni oversize', court: 'Le pull uni',
     grammage: null, note: 'Col rond, plusieurs couleurs',
     prix: 39.90, marche: null, ecart: null,
-    photos: ['vide.svg'],
+    couleur: 'Jaune pastel',
+    photos: ['pull-uni-1.jpg', 'pull-uni-2.jpg', 'pull-uni-3.jpg', 'pull-uni-4.jpg'],
     description: 'Pull col rond, coupe large, maille douce. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
@@ -75,7 +80,8 @@ window.PRODUITS = [
     nom: 'Pull rayé oversize', court: 'Le pull rayé',
     grammage: null, note: 'Col rond',
     prix: 39.90, marche: null, ecart: null,
-    photos: ['vide.svg'],
+    couleur: 'Rayé bleu, lilas et blanc',
+    photos: ['pull-raye-1.jpg', 'pull-raye-2.jpg', 'pull-raye-3.jpg', 'pull-raye-4.jpg'],
     description: 'Pull col rond, coupe large, à rayures. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
@@ -83,7 +89,8 @@ window.PRODUITS = [
     nom: 'Gilet tout doux à boutons', court: 'Le gilet doux',
     grammage: null, note: 'Maille duveteuse',
     prix: 39.90, marche: null, ecart: null,
-    photos: ['vide.svg'],
+    couleur: 'Vert olive',
+    photos: ['gilet-doux-1.jpg', 'gilet-doux-2.jpg', 'gilet-doux-3.jpg', 'gilet-doux-4.jpg'],
     description: 'Gilet en maille duveteuse, col V, boutons nacrés. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
@@ -91,7 +98,8 @@ window.PRODUITS = [
     nom: 'Robe courte cache-cœur', court: 'La robe cache-cœur',
     grammage: null, note: 'Manches longues',
     prix: 34.90, marche: null, ecart: null,
-    photos: ['vide.svg'],
+    couleur: 'Noir',
+    photos: ['robe-cache-coeur-1.jpg', 'robe-cache-coeur-2.jpg', 'robe-cache-coeur-3.jpg', 'robe-cache-coeur-4.jpg'],
     description: 'Robe courte moulante, col cache-cœur, manches longues. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
@@ -99,7 +107,8 @@ window.PRODUITS = [
     nom: 'Robe longue col V en maille', court: 'La robe en maille',
     grammage: null, note: 'Épaulettes, boutons',
     prix: 34.90, marche: null, ecart: null,
-    photos: ['vide.svg'],
+    couleur: 'Vert olive foncé',
+    photos: ['robe-maille-1.jpg', 'robe-maille-2.jpg', 'robe-maille-3.jpg', 'robe-maille-4.jpg'],
     description: 'Robe longue en maille, col V, épaulettes, fermée par des boutons. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
@@ -107,7 +116,8 @@ window.PRODUITS = [
     nom: 'Robe longue dos nu', court: 'La robe dos nu',
     grammage: null, note: 'Décolleté V, manches longues',
     prix: 34.90, marche: null, ecart: null,
-    photos: ['vide.svg'],
+    couleur: 'Noir',
+    photos: ['robe-dos-nu-1.jpg', 'robe-dos-nu-2.jpg', 'robe-dos-nu-3.jpg'],
     description: 'Robe longue moulante, décolleté V, dos nu, manches longues. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
@@ -115,7 +125,8 @@ window.PRODUITS = [
     nom: 'Doudoune courte', court: 'La doudoune courte',
     grammage: null, note: 'Col montant, bas resserré',
     prix: 59.90, marche: null, ecart: null,
-    photos: ['vide.svg'],
+    couleur: 'Chocolat',
+    photos: ['doudoune-courte-1.jpg', 'doudoune-courte-2.jpg', 'doudoune-courte-3.jpg', 'doudoune-courte-4.jpg'],
     description: 'Doudoune courte et épaisse, col montant, bas resserré. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
@@ -123,7 +134,8 @@ window.PRODUITS = [
     nom: 'Doudoune à col montant', court: 'La doudoune col montant',
     grammage: null, note: 'Coupe droite',
     prix: 59.90, marche: null, ecart: null,
-    photos: ['vide.svg'],
+    couleur: 'Rose pâle',
+    photos: ['doudoune-col-1.jpg', 'doudoune-col-2.jpg', 'doudoune-col-3.jpg', 'doudoune-col-4.jpg'],
     description: 'Doudoune matelassée, col montant, fermeture éclair. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
@@ -131,7 +143,8 @@ window.PRODUITS = [
     nom: 'Sac à boucle', court: 'Le sac à boucle',
     grammage: null, note: 'Porté épaule',
     prix: 39.90, marche: null, ecart: null,
-    photos: ['vide.svg'],
+    couleur: 'Marron foncé',
+    photos: ['sac-boucle-1.jpg', 'sac-boucle-2.jpg', 'sac-boucle-3.jpg'],
     description: 'Sac porté épaule avec une ceinture à boucle. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
@@ -139,7 +152,8 @@ window.PRODUITS = [
     nom: 'Sac hobo', court: 'Le sac hobo',
     grammage: null, note: 'Grand, forme arrondie',
     prix: 39.90, marche: null, ecart: null,
-    photos: ['vide.svg'],
+    couleur: 'Bordeaux',
+    photos: ['sac-hobo-1.jpg', 'sac-hobo-2.jpg', 'sac-hobo-3.jpg'],
     description: 'Grand sac rond porté épaule, aspect cuir souple. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
@@ -147,7 +161,8 @@ window.PRODUITS = [
     nom: 'Écharpe douce à franges', court: "L'écharpe grise",
     grammage: null, note: 'Longue et large',
     prix: 19.90, marche: null, ecart: null,
-    photos: ['vide.svg'],
+    couleur: 'Gris clair',
+    photos: ['echarpe-grise-1.jpg', 'echarpe-grise-2.jpg', 'echarpe-grise-3.jpg'],
     description: 'Grosse écharpe toute douce à franges. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
@@ -155,7 +170,8 @@ window.PRODUITS = [
     nom: 'Écharpe léopard', court: "L'écharpe léopard",
     grammage: null, note: 'Douce et chaude',
     prix: 19.90, marche: null, ecart: null,
-    photos: ['vide.svg'],
+    couleur: 'Léopard noir et beige',
+    photos: ['echarpe-leopard-1.jpg', 'echarpe-leopard-2.jpg', 'echarpe-leopard-3.jpg'],
     description: 'Écharpe imprimé léopard, douce et chaude. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
@@ -163,7 +179,8 @@ window.PRODUITS = [
     nom: 'Bonnet camouflage', court: 'Le bonnet camouflage',
     grammage: null, note: '5 € dès 2 articles',
     prix: 14.90, marche: null, ecart: null,
-    photos: ['vide.svg'],
+    couleur: 'Camouflage rose',
+    photos: ['bonnet-camouflage-1.jpg', 'bonnet-camouflage-2.jpg', 'bonnet-camouflage-3.jpg'],
     description: 'Bonnet en maille, motif camouflage. 5 € au lieu de 14,90 € dès que tu as un autre article dans ton panier. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
@@ -171,7 +188,8 @@ window.PRODUITS = [
     nom: 'Bonnet grosse maille à pompon', court: 'Le bonnet à pompon',
     grammage: null, note: '5 € dès 2 articles',
     prix: 14.90, marche: null, ecart: null,
-    photos: ['vide.svg'],
+    couleur: 'Noir',
+    photos: ['bonnet-pompon-1.jpg', 'bonnet-pompon-2.jpg', 'bonnet-pompon-3.jpg'],
     description: 'Bonnet en grosse maille avec pompon. 5 € au lieu de 14,90 € dès que tu as un autre article dans ton panier. Composition exacte : à confirmer avec le fournisseur.'
   }
 ];
