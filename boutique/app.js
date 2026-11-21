@@ -435,7 +435,7 @@
           '<div>' + ICO.bulle + '<span>Une question ? <a class="lien-wa" href="' + waTexte('Bonjour Ambre Noire, une question sur : ' + p.nom) + '" target="_blank" rel="noopener"><b>Écris-nous sur WhatsApp</b></a> · ' + C.whatsappAffiche + '</span></div>' +
         '</div>' +
         '<div class="faq tiroirs">' +
-          '<details open><summary>Détails du produit</summary><div class="tiroir-texte"><p>' + echap(p.description) + '</p><ul>' +
+          '<details><summary>Détails du produit</summary><div class="tiroir-texte"><p>' + echap(p.description) + '</p><ul>' +
             details.map(function (d) { return '<li>' + echap(d) + '</li>'; }).join('') + '</ul>' +
             '<p class="petit-gris">Photos de présentation réalisées par IA, à partir des photos du produit.</p></div></details>' +
           (tailles.length ? '<details id="tailles"><summary>Guide des tailles</summary><div class="tiroir-texte"><p>Mesure ton tour de poitrine sans serrer et reporte-toi au tableau. Entre deux tailles, prends la plus grande.</p>' +
@@ -533,5 +533,5 @@
   /* ---------- démarrage ---------- */
   entete(); enteteVivante(); pied(); icones(); navigation(); brancherFormulaires(); boutonWhatsApp();
   accueil(); fiche(); collection(); majFavoris();
-  popup();
+  // popup(); — retiré à la demande : le code −10 % reste dans le pied de page
 })();
