@@ -120,7 +120,7 @@
           '<a href="https://tiktok.com/@' + C.tiktok + '" target="_blank" rel="noopener">TikTok</a>' +
         '</div>' +
       '</div>' +
-      '<div class="pied-bas"><div class="enveloppe"><span>© ' + new Date().getFullYear() + ' Ambre Noire Paris. Tous droits réservés.</span>' +
+      '<div class="pied-bas"><div class="enveloppe"><span>© ' + new Date().getFullYear() + ' Ambre Noire Paris, une marque de <b>Onyx Street Wear LLC</b> (Wyoming, États-Unis, n° 2026-002050731) · 30 N Gould St Ste R, Sheridan, WY 82801 · <a href="mentions-legales.html" style="display:inline;text-decoration:underline">Mentions légales</a></span>' +
         '<div class="paiements"><span>Carte bancaire</span><span>Visa</span><span>Mastercard</span></div></div></div>' +
       '</footer>';
   }
