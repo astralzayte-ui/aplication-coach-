@@ -133,6 +133,8 @@ porté, non lavé, avec ses étiquettes d'origine.
 
 🔴 **Les frais de renvoi sont à ta charge.**
 
+L'adresse de renvoi t'est donnée par écrit quand tu nous écris. Nos articles partent de l'entrepôt de notre fournisseur : **l'adresse de renvoi peut se trouver hors d'Europe (en Chine)**. Renseigne-toi sur le tarif avant d'envoyer.
+
 ### Le remboursement
 
 Nous te remboursons **sous 14 jours** à compter de la récupération de
@@ -159,7 +161,9 @@ existait déjà** : c'est présumé.
 
 Tu choisis entre la **réparation** et le **remplacement**. Si aucun des deux
 n'est possible, ou s'il faut attendre plus d'un mois, tu peux obtenir le
-**remboursement** contre renvoi de l'article. **Aucun frais à ta charge.**
+**remboursement**. **Aucun frais à ta charge.**
+
+**En pratique :** tu nous envoies une photo du défaut. Dans la plupart des cas, **tu n'as pas à nous renvoyer l'article** : on te rembourse ou on t'envoie un neuf. Si nous te demandons de le renvoyer, le renvoi est **à nos frais**.
 
 *Articles L217-3 et suivants du code de la consommation.*
 

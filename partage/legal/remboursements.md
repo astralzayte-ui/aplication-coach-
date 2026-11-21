@@ -25,6 +25,8 @@ Tu as **14 jours** à compter de la réception pour nous renvoyer un article,
 
 🔴 **Les frais de renvoi sont à ta charge.**
 
+L'adresse de renvoi t'est donnée par écrit quand tu nous écris. Nos articles partent de l'entrepôt de notre fournisseur : **l'adresse de renvoi peut se trouver hors d'Europe (en Chine)**. Renseigne-toi sur le tarif avant d'envoyer.
+
 ### Le remboursement
 
 ```
@@ -47,7 +49,7 @@ Pièce abîmée, mauvaise taille envoyée, article différent de la photo :
 2. On te répond **sous 24 h**.
 3. Tu choisis : **le remplacement** ou **le remboursement**.
 
-**Tout est à nos frais**, renvoi compris. C'est la garantie légale de
+**Le plus souvent, la photo suffit : tu gardes l'article, pas de renvoi.** Si on te demande de le renvoyer, **c'est à nos frais**. C'est la garantie légale de
 conformité : elle dure **2 ans** et ne se négocie pas.
 
 ---
@@ -60,9 +62,9 @@ le colis n'arrive pas dans le délai supplémentaire que tu nous fixes, tu es
 
 ---
 
-## 4. Ce qui ne se rembourse pas
+## 4. Ce qui peut réduire le remboursement
 
-Un article porté, lavé, ou rendu sans ses étiquettes.
+Un article porté, lavé, ou rendu sans ses étiquettes : le remboursement peut être réduit de la perte de valeur.
 
 ---
 
