@@ -39,7 +39,6 @@
       '🇫🇷 Livraison en France',
       'Changé d\'avis ? Remboursé sur ta carte',
       'Paiement par carte',
-      'Le bonnet à 5 € dès 2 articles',
       'Un vrai contact sur WhatsApp'
     ];
     var piste = messages.concat(messages).map(function (m) { return '<span>' + m + '</span>'; }).join('');
@@ -427,8 +426,6 @@
         '<button class="btn btn-noir btn-large btn-pilule" type="button" data-ajouter="' + echap(p.nom) + '" data-prix="' + prixTexte + '">Ajouter au panier ' + ICO.sac + '</button>' +
         '<div class="fiche-lignes">' +
           '<div>' + ICO.camion + '<span><b>Livraison en France</b> · expédiée sous 2 à 5 jours, puis 4 à 10 jours ouvrés de transport</span></div>' +
-          (bonnet ? '<div>' + ICO.carte + '<span><b>5 € au lieu de 14,90 €</b> dès que tu as un autre article dans ton panier</span></div>'
-                  : '<div>' + ICO.carte + '<span>Ajoute un bonnet : <b>5 € au lieu de 14,90 €</b></span></div>') +
           '<div>' + ICO.retour + '<span>Changé d\'avis ? <b>Remboursé sur ta carte</b></span></div>' +
           '<div>' + ICO.bulle + '<span>Une question ? <a class="lien-wa" href="' + waTexte('Bonjour Ambre Noire, une question sur : ' + p.nom) + '" target="_blank" rel="noopener"><b>Écris-nous sur WhatsApp</b></a> · ' + C.whatsappAffiche + '</span></div>' +
         '</div>' +

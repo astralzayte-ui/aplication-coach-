@@ -201,34 +201,30 @@ window.PRODUITS = [
     details: ['Imprimé léopard', 'Dimensions : environ 190 × 60 cm', 'Matière : polyester (pourcentage exact à confirmer)']
   },
   {
-    id: 'bonnet-camouflage', rayon: 'accessoires', badge: '5 € dès 2 articles',
+    id: 'bonnet-camouflage', rayon: 'accessoires',
     nom: 'Bonnet camouflage', court: 'Le bonnet camouflage',
-    grammage: null, note: '5 € dès 2 articles',
+    grammage: null, note: 'Taille unique',
     prix: 14.90, marche: null, ecart: null,
     couleur: 'Camouflage rose',
     photos: ['bonnet-camouflage-1.jpg', 'bonnet-camouflage-2.jpg', 'bonnet-camouflage-3.jpg'],
-    description: 'Bonnet en maille, motif camouflage. 5 € au lieu de 14,90 € dès que tu as un autre article dans ton panier.',
+    description: 'Bonnet en maille, motif camouflage.',
     details: ['Bonnet en maille, motif camouflage', 'Taille unique : 55 à 61 cm de tour de tête', 'Matière : acrylique (pourcentage exact à confirmer)']
   },
   {
-    id: 'bonnet-pompon', rayon: 'accessoires', badge: '5 € dès 2 articles',
+    id: 'bonnet-pompon', rayon: 'accessoires',
     nom: 'Bonnet grosse maille à pompon', court: 'Le bonnet à pompon',
-    grammage: null, note: '5 € dès 2 articles',
+    grammage: null, note: 'Taille unique',
     prix: 14.90, marche: null, ecart: null,
     couleur: 'Noir',
     photos: ['bonnet-pompon-1.jpg', 'bonnet-pompon-2.jpg', 'bonnet-pompon-3.jpg'],
-    description: 'Bonnet en grosse maille avec pompon. 5 € au lieu de 14,90 € dès que tu as un autre article dans ton panier.',
+    description: 'Bonnet en grosse maille avec pompon.',
     details: ['Bonnet grosse maille, pompon', 'Taille unique : 56 à 60 cm de tour de tête', 'Matière : acrylique (pourcentage exact à confirmer)']
   }
 ];
 
 /* Les packs — un prix, un colis. Le détail (taille, couleur) est confirmé avec la cliente.
    🔴 « Le plus choisi » seulement quand c'est VRAI. Avant les ventes : « Recommandé ». */
-window.LOTS = [
-  { titre: 'Pull + écharpe', detail: 'Séparément 59,80 €', prix: 49.90, ajouter: 'Pack pull + écharpe', gain: '−9,90 €' },
-  { titre: 'Ensemble + écharpe', detail: 'Séparément 74,80 €', prix: 64.90, ajouter: 'Pack ensemble + écharpe', mis: 'Recommandé', gain: '−9,90 €' },
-  { titre: "Tenue d'hiver", detail: 'Ensemble + écharpe + bonnet', prix: 74.90, ajouter: "Pack tenue d'hiver", gain: '−14,80 €' }
-];
+window.LOTS = [];   // packs retirés le 21/11 : on vend au prix affiché
 
 window.RAYONS = [
   { id: 'ensembles',   nom: 'Ensembles',          texte: "Le haut et le bas assortis. La tenue complète, sans réfléchir le matin." },
@@ -236,7 +232,7 @@ window.RAYONS = [
   { id: 'robes',       nom: 'Robes',              texte: "Courtes ou longues, pour la journée comme pour sortir." },
   { id: 'vestes',      nom: 'Doudounes',          texte: "Courtes et chaudes, pour tout l'hiver." },
   { id: 'sacs',        nom: 'Sacs',               texte: "Des grands sacs qui portent tout, portés épaule." },
-  { id: 'accessoires', nom: 'Écharpes & bonnets', texte: "Les bonnets passent à 5 € dès que tu as un autre article dans ton panier." }
+  { id: 'accessoires', nom: 'Écharpes & bonnets', texte: "Pour finir la tenue et avoir chaud tout l'hiver." }
 ];
 
 /* Les avis — VIDE tant qu'il n'y a pas de vrais clients.

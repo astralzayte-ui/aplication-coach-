@@ -39,7 +39,7 @@
   function estBonnet(nom) { return /^Bonnet /.test(nom); }
   function nombreDe(nom) { return panier().reduce(function (t, a) { return t + (a.nom === nom ? a.n : 0); }, 0); }
   function bonnets() { return panier().reduce(function (t, a) { return t + (estBonnet(a.nom) ? a.n : 0); }, 0); }
-  function promoBonnet() { return bonnets() >= 1 && combien() >= 2; }
+  function promoBonnet() { return false; }   // promo retirée le 21/11 : on vend au prix affiché
   function remiseLot() { return promoBonnet() ? Math.round((PRIX_BONNET - PROMO_BONNET) * 100) / 100 : 0; }
   function remise() { var c = code(); return c ? Math.round((sousTotal() - remiseLot()) * c.pct) / 100 : 0; }
   function total() { return sousTotal() - remiseLot() - remise() + (C.livraison || 0); }
@@ -114,6 +114,7 @@
   }
 
   function suggestion(art) {
+    return '';   // plus de suggestion promo
     if (!art.length || bonnets()) return '';
     return '<div style="margin:18px 0 6px;padding:14px 16px;border:1.5px solid #E0A458;border-radius:4px;background:#FDF6EC">' +
       '<div style="font-weight:800;font-size:14.5px">Le bonnet à 5 € au lieu de 14,90 €</div>' +
