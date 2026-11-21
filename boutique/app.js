@@ -420,7 +420,7 @@
         }).join('') + '</div>' : '') +
         '<button class="btn btn-noir btn-large btn-pilule" type="button" data-ajouter="' + echap(p.nom) + '" data-prix="' + prixTexte + '">Ajouter au panier ' + ICO.sac + '</button>' +
         '<div class="fiche-lignes">' +
-          '<div>' + ICO.camion + '<span><b>Livraison en France</b> · 4 à 10 jours ouvrés après l\'expédition</span></div>' +
+          '<div>' + ICO.camion + '<span><b>Livraison en France</b> · expédiée sous 2 à 5 jours, puis 4 à 10 jours ouvrés de transport</span></div>' +
           (bonnet ? '<div>' + ICO.carte + '<span><b>5 € au lieu de 14,90 €</b> dès que tu as un autre article dans ton panier</span></div>'
                   : '<div>' + ICO.carte + '<span>Ajoute un bonnet : <b>5 € au lieu de 14,90 €</b></span></div>') +
           '<div>' + ICO.retour + '<span>Changé d\'avis ? <b>Remboursé sur ta carte</b></span></div>' +
@@ -434,7 +434,7 @@
             '<div class="table-defile"><table class="table-tailles"><thead><tr><th>Taille</th><th>Poitrine</th><th>Longueur</th></tr></thead><tbody>' +
             tailles.map(function (t) { return '<tr><td><b>' + t + '</b></td><td>—</td><td>—</td></tr>'; }).join('') +
             '</tbody></table></div><p class="a-confirmer">Mesures en cm à recevoir du fournisseur.</p></div></details>' : '') +
-          '<details><summary>Livraison &amp; retours</summary><div class="tiroir-texte"><p>Expédié depuis l\'entrepôt de notre fournisseur, en Chine : 4 à 10 jours ouvrés. Le suivi t\'est envoyé dès le départ du colis. Pour changer d\'avis ou signaler un défaut, tout est dans nos <a href="cgv.html">conditions générales de vente</a>.</p></div></details>' +
+          '<details><summary>Livraison &amp; retours</summary><div class="tiroir-texte"><p>Expédié depuis l\'entrepôt de notre fournisseur, en Chine : préparation en 2 à 5 jours, puis 4 à 10 jours ouvrés de transport. Le suivi t\'est envoyé dès le départ du colis. Pour changer d\'avis ou signaler un défaut, tout est dans nos <a href="cgv.html">conditions générales de vente</a>.</p></div></details>' +
         '</div>' +
       '</div>';
 

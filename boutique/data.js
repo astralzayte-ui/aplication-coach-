@@ -55,12 +55,12 @@ window.PRODUITS = [
   },
   {
     id: 'hoodie-ailes', rayon: 'pulls', vedette: true,
-    nom: 'Hoodie ailes en strass', court: 'Le hoodie ailes',
-    grammage: null, note: 'Ailes en strass dans le dos', badge: 'Nouveau', couleur: 'Gris chiné',
+    nom: 'Hoodie ailes argentées', court: 'Le hoodie ailes',
+    grammage: null, note: 'Ailes argentées dans le dos', badge: 'Nouveau', couleur: 'Gris chiné',
     prix: 39.90, marche: null, ecart: null,
     photos: ['hoodie-ailes-1.jpg', 'hoodie-ailes-2.jpg', 'hoodie-ailes-3.jpg'],
-    details: ['Sweat à capuche', 'Coupe ample, épaules tombantes', 'Deux ailes en strass argentés dans le dos', 'Matière : polyester (pourcentage exact à confirmer)', 'Entretien : à confirmer avec le fournisseur'],
-    description: 'Le sweat à capuche gris chiné, coupe ample, avec deux grandes ailes en strass argentés dans le dos. Elles brillent à la lumière.',
+    details: ['Sweat à capuche', 'Coupe ample, épaules tombantes', 'Deux grandes ailes argentées dans le dos', 'Matière : polyester (pourcentage exact à confirmer)', 'Entretien : à confirmer avec le fournisseur'],
+    description: 'Le sweat à capuche gris chiné, coupe ample, avec deux grandes ailes argentées dans le dos.',
     tailles: ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL']
   },
   {
@@ -248,7 +248,7 @@ window.FAQ = [
   { q: 'Vos vêtements taillent comment ?',
     r: "Coupe normale à légèrement ample. Entre deux tailles, prends la plus grande pour un rendu oversize. Un doute ? Écris-nous sur WhatsApp, on te guide." },
   { q: 'Quels sont les délais de livraison ?',
-    r: "Les colis partent de l'entrepôt de notre fournisseur, en Chine. Compte 4 à 10 jours ouvrés après l'expédition. Le délai t'est confirmé avant que tu paies." },
+    r: "Les colis partent de l'entrepôt de notre fournisseur, en Chine. Ta commande est expédiée sous 2 à 5 jours, puis compte 4 à 10 jours ouvrés de transport. Le délai t'est confirmé avant que tu paies." },
   { q: 'Et si la taille ne me va pas ?',
     r: "Tu peux changer d'avis : toutes les conditions sont dans nos conditions générales de vente. Un défaut ? On rembourse ou on remplace, sans frais pour toi." },
   { q: 'Le paiement est-il sécurisé ?',

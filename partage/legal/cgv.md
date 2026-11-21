@@ -96,6 +96,7 @@ garantie légale, de la rétractation et du remboursement. **Tu n'auras jamais
 | | |
 |---|---|
 | Expédition depuis | **Chine** |
+| Préparation avant envoi | **2 à 5 jours** |
 | Délai indicatif | **4 à 10 jours ouvrés** après expédition |
 | Délai maximum engagé | **30 jours** à compter de la commande |
 
