@@ -36,7 +36,7 @@
   function entete() {
     var e = $('#entete'); if (!e) return;
     var messages = [
-      '🇫🇷 Livraison en France',
+      '🇫🇷 Livrée en France en 6 à 15 jours',
       'Changé d\'avis ? Remboursé sur ta carte',
       'Paiement par carte',
       'Un vrai contact sur WhatsApp'
