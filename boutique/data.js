@@ -22,12 +22,12 @@ window.CONFIG = {
 
 window.PRODUITS = [
   {
-    id: 'ensemble-gris', rayon: 'ensembles', vedette: true,
-    nom: 'Ensemble côtelé gris', court: "L'ensemble gris",
-    grammage: null, note: 'Sweat + pantalon large',
+    id: 'ensemble-col-rond', rayon: 'ensembles',
+    nom: 'Ensemble sweat + pantalon large', court: "L'ensemble col rond",
+    grammage: null, note: 'Col rond, pantalon large',
     prix: 54.90, marche: null, ecart: null,
     photos: ['vide.svg'],
-    description: 'Le haut et le pantalon large en maille côtelée grise. Assortis, faciles à porter du matin au soir. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Le sweat col rond et le pantalon large, assortis. Confortable et propre, du matin au soir. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
     id: 'ensemble-hoodie', rayon: 'ensembles', vedette: true,
@@ -35,103 +35,143 @@ window.PRODUITS = [
     grammage: null, note: 'Plusieurs couleurs',
     prix: 54.90, marche: null, ecart: null,
     photos: ['vide.svg'],
-    description: "Le sweat à capuche et le jogging large, même couleur. Le confort du jogging, l'allure d'une tenue. Composition exacte : à confirmer avec le fournisseur."
+    description: 'Le sweat à capuche et le jogging large, même couleur. Composition exacte : à confirmer avec le fournisseur.'
+  },
+  {
+    id: 'ensemble-sable', rayon: 'ensembles',
+    nom: 'Ensemble hoodie sable', court: "L'ensemble sable",
+    grammage: null, note: 'Couleur sable',
+    prix: 54.90, marche: null, ecart: null,
+    photos: ['vide.svg'],
+    description: 'Sweat à capuche et jogging resserré aux chevilles, couleur sable. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
     id: 'hoodie-ailes', rayon: 'pulls', vedette: true,
     nom: 'Hoodie ailes brodées', court: 'Le hoodie ailes',
-    grammage: null, note: 'Gris clair, ailes dans le dos',
+    grammage: null, note: 'Ailes argentées dans le dos',
     prix: 39.90, marche: null, ecart: null,
     photos: ['vide.svg'],
-    description: 'Sweat à capuche gris clair, avec des ailes brodées dans le dos. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Sweat à capuche gris clair, ailes argentées dans le dos. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
-    id: 'pull-cotele', rayon: 'pulls',
-    nom: 'Pull côtelé à boutons', court: 'Le pull côtelé',
-    grammage: null, note: 'Coupe ajustée',
+    id: 'gilet-court', rayon: 'pulls',
+    nom: 'Gilet court ajusté à boutons', court: 'Le gilet court',
+    grammage: null, note: 'Maille torsadée',
     prix: 39.90, marche: null, ecart: null,
     photos: ['vide.svg'],
-    description: 'Pull en maille côtelée, ajusté, fermé par des boutons. Se porte seul ou ouvert sur un top. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Gilet court, ajusté, en maille torsadée, fermé par des boutons. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
-    id: 'hoodie-oversize', rayon: 'pulls',
-    nom: 'Hoodie oversize anthracite', court: 'Le hoodie oversize',
-    grammage: null, note: 'Coupe large',
+    id: 'pull-uni', rayon: 'pulls',
+    nom: 'Pull uni oversize', court: 'Le pull uni',
+    grammage: null, note: 'Col rond, plusieurs couleurs',
     prix: 39.90, marche: null, ecart: null,
     photos: ['vide.svg'],
-    description: 'Sweat à capuche ample, gris foncé. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Pull col rond, coupe large, maille douce. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
-    id: 'pull-rayures', rayon: 'pulls',
-    nom: 'Pull à rayures oversize', court: 'Le pull rayé',
+    id: 'pull-raye', rayon: 'pulls',
+    nom: 'Pull rayé oversize', court: 'Le pull rayé',
     grammage: null, note: 'Col rond',
     prix: 39.90, marche: null, ecart: null,
     photos: ['vide.svg'],
-    description: 'Pull col rond, coupe large, rayures. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Pull col rond, coupe large, à rayures. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
-    id: 'gilet-oversize', rayon: 'pulls',
-    nom: 'Gilet oversize à boutons', court: 'Le gilet',
-    grammage: null, note: 'Maille épaisse',
+    id: 'gilet-doux', rayon: 'pulls',
+    nom: 'Gilet tout doux à boutons', court: 'Le gilet doux',
+    grammage: null, note: 'Maille duveteuse',
     prix: 39.90, marche: null, ecart: null,
     photos: ['vide.svg'],
-    description: 'Gilet en maille, ample, à gros boutons. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Gilet en maille duveteuse, col V, boutons nacrés. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
-    id: 'robe-froncee', rayon: 'robes',
-    nom: 'Robe courte froncée', court: 'La robe froncée',
+    id: 'robe-cache-coeur', rayon: 'robes',
+    nom: 'Robe courte cache-cœur', court: 'La robe cache-cœur',
     grammage: null, note: 'Manches longues',
     prix: 34.90, marche: null, ecart: null,
     photos: ['vide.svg'],
-    description: 'Robe courte moulante, froncée à la taille, col croisé, manches longues. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Robe courte moulante, col cache-cœur, manches longues. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
-    id: 'robe-rayee', rayon: 'robes',
-    nom: 'Robe tailleur rayée', court: 'La robe rayée',
-    grammage: null, note: 'Coupe tailleur',
+    id: 'robe-maille', rayon: 'robes',
+    nom: 'Robe longue col V en maille', court: 'La robe en maille',
+    grammage: null, note: 'Épaulettes, boutons',
     prix: 34.90, marche: null, ecart: null,
     photos: ['vide.svg'],
-    description: 'Robe courte à rayures, coupe tailleur. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Robe longue en maille, col V, épaulettes, fermée par des boutons. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
     id: 'robe-dos-nu', rayon: 'robes', vedette: true,
-    nom: 'Robe dos nu', court: 'La robe dos nu',
-    grammage: null, note: 'Polyester, légèrement extensible',
+    nom: 'Robe longue dos nu', court: 'La robe dos nu',
+    grammage: null, note: 'Décolleté V, manches longues',
     prix: 34.90, marche: null, ecart: null,
     photos: ['vide.svg'],
-    description: 'Robe moulante à manches longues, dos nu. Matière : polyester, légèrement extensible (pourcentage exact à confirmer avec le fournisseur).'
+    description: 'Robe longue moulante, décolleté V, dos nu, manches longues. Composition exacte : à confirmer avec le fournisseur.'
+  },
+  {
+    id: 'doudoune-courte', rayon: 'vestes', vedette: true,
+    nom: 'Doudoune courte', court: 'La doudoune courte',
+    grammage: null, note: 'Col montant, bas resserré',
+    prix: 59.90, marche: null, ecart: null,
+    photos: ['vide.svg'],
+    description: 'Doudoune courte et épaisse, col montant, bas resserré. Composition exacte : à confirmer avec le fournisseur.'
+  },
+  {
+    id: 'doudoune-col', rayon: 'vestes',
+    nom: 'Doudoune à col montant', court: 'La doudoune col montant',
+    grammage: null, note: 'Coupe droite',
+    prix: 59.90, marche: null, ecart: null,
+    photos: ['vide.svg'],
+    description: 'Doudoune matelassée, col montant, fermeture éclair. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
     id: 'sac-boucle', rayon: 'sacs',
     nom: 'Sac à boucle', court: 'Le sac à boucle',
-    grammage: null, note: 'Grande contenance',
+    grammage: null, note: 'Porté épaule',
     prix: 39.90, marche: null, ecart: null,
     photos: ['vide.svg'],
-    description: 'Grand sac porté épaule, fermé par une large boucle. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Sac porté épaule avec une ceinture à boucle. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
-    id: 'sac-rivets', rayon: 'sacs',
-    nom: 'Sac cuir vieilli à rivets', court: 'Le sac à rivets',
-    grammage: null, note: 'Aspect cuir vieilli',
+    id: 'sac-hobo', rayon: 'sacs',
+    nom: 'Sac hobo', court: 'Le sac hobo',
+    grammage: null, note: 'Grand, forme arrondie',
     prix: 39.90, marche: null, ecart: null,
     photos: ['vide.svg'],
-    description: 'Sac porté épaule, aspect cuir vieilli, détails rivets. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Grand sac rond porté épaule, aspect cuir souple. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
-    id: 'echarpe', rayon: 'accessoires',
-    nom: 'Écharpe douce à franges', court: "L'écharpe",
-    grammage: null, note: 'Grise, longue et large',
+    id: 'echarpe-grise', rayon: 'accessoires',
+    nom: 'Écharpe douce à franges', court: "L'écharpe grise",
+    grammage: null, note: 'Longue et large',
     prix: 19.90, marche: null, ecart: null,
     photos: ['vide.svg'],
-    description: 'Grosse écharpe toute douce à franges, longue et large. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Grosse écharpe toute douce à franges. Composition exacte : à confirmer avec le fournisseur.'
   },
   {
-    id: 'bonnet', rayon: 'accessoires',
-    nom: 'Bonnet camouflage', court: 'Le bonnet',
+    id: 'echarpe-leopard', rayon: 'accessoires',
+    nom: 'Écharpe léopard', court: "L'écharpe léopard",
+    grammage: null, note: 'Douce et chaude',
+    prix: 19.90, marche: null, ecart: null,
+    photos: ['vide.svg'],
+    description: 'Écharpe imprimé léopard, douce et chaude. Composition exacte : à confirmer avec le fournisseur.'
+  },
+  {
+    id: 'bonnet-camouflage', rayon: 'accessoires',
+    nom: 'Bonnet camouflage', court: 'Le bonnet camouflage',
     grammage: null, note: '5 € dès 2 articles',
     prix: 14.90, marche: null, ecart: null,
     photos: ['vide.svg'],
     description: 'Bonnet en maille, motif camouflage. 5 € au lieu de 14,90 € dès que tu as un autre article dans ton panier. Composition exacte : à confirmer avec le fournisseur.'
+  },
+  {
+    id: 'bonnet-pompon', rayon: 'accessoires',
+    nom: 'Bonnet grosse maille à pompon', court: 'Le bonnet à pompon',
+    grammage: null, note: '5 € dès 2 articles',
+    prix: 14.90, marche: null, ecart: null,
+    photos: ['vide.svg'],
+    description: 'Bonnet en grosse maille avec pompon. 5 € au lieu de 14,90 € dès que tu as un autre article dans ton panier. Composition exacte : à confirmer avec le fournisseur.'
   }
 ];
 
@@ -145,10 +185,11 @@ window.LOTS = [
 
 window.RAYONS = [
   { id: 'ensembles',   nom: 'Ensembles',          texte: "Le haut et le bas assortis. La tenue complète, sans réfléchir le matin." },
-  { id: 'pulls',       nom: 'Pulls & sweats',     texte: "Hoodies, pulls et gilets, en coupe ample ou ajustée." },
+  { id: 'pulls',       nom: 'Pulls & gilets',     texte: "Hoodies, pulls et gilets, en coupe ample ou ajustée." },
   { id: 'robes',       nom: 'Robes',              texte: "Courtes ou longues, pour la journée comme pour sortir." },
+  { id: 'vestes',      nom: 'Doudounes',          texte: "Courtes et chaudes, pour tout l'hiver." },
   { id: 'sacs',        nom: 'Sacs',               texte: "Des grands sacs qui portent tout, portés épaule." },
-  { id: 'accessoires', nom: 'Écharpes & bonnets', texte: "Le bonnet passe à 5 € dès que tu as un autre article dans ton panier." }
+  { id: 'accessoires', nom: 'Écharpes & bonnets', texte: "Les bonnets passent à 5 € dès que tu as un autre article dans ton panier." }
 ];
 
 /* Les avis — VIDE tant qu'il n'y a pas de vrais clients.

@@ -36,8 +36,10 @@
   function sousTotal() { return panier().reduce(function (t, a) { return t + a.prix * a.n; }, 0); }
   /* la promo : un bonnet passe à 5 € dès qu'il y a un autre article dans le panier (un bonnet par commande) */
   var BONNET = 'Bonnet camouflage', PRIX_BONNET = 14.90, PROMO_BONNET = 5;
+  function estBonnet(nom) { return /^Bonnet /.test(nom); }
   function nombreDe(nom) { return panier().reduce(function (t, a) { return t + (a.nom === nom ? a.n : 0); }, 0); }
-  function promoBonnet() { return nombreDe(BONNET) >= 1 && combien() >= 2; }
+  function bonnets() { return panier().reduce(function (t, a) { return t + (estBonnet(a.nom) ? a.n : 0); }, 0); }
+  function promoBonnet() { return bonnets() >= 1 && combien() >= 2; }
   function remiseLot() { return promoBonnet() ? Math.round((PRIX_BONNET - PROMO_BONNET) * 100) / 100 : 0; }
   function remise() { var c = code(); return c ? Math.round((sousTotal() - remiseLot()) * c.pct) / 100 : 0; }
   function total() { return sousTotal() - remiseLot() - remise() + (C.livraison || 0); }
@@ -112,7 +114,7 @@
   }
 
   function suggestion(art) {
-    if (!art.length || nombreDe(BONNET)) return '';
+    if (!art.length || bonnets()) return '';
     return '<div style="margin:18px 0 6px;padding:14px 16px;border:1.5px solid #E0A458;border-radius:4px;background:#FDF6EC">' +
       '<div style="font-weight:800;font-size:14.5px">Le bonnet à 5 € au lieu de 14,90 €</div>' +
       '<div style="font-size:13px;color:#66665F;margin:3px 0 12px;line-height:1.5">Tu as déjà un article : ajoute le bonnet, le prix de 5 € s\'applique tout seul.</div>' +
