@@ -142,6 +142,7 @@
     if (remiseLot()) t += ligneTotal('Bonnet à 5 € (dès 2 articles)', '<span style="color:#1B7F3B;font-weight:700">−' + euro(remiseLot()) + '</span>');
     if (c && art.length) t += ligneTotal('Code ' + echap(c.code) + ' (−' + c.pct + ' %)', '<span style="color:#1B7F3B;font-weight:700">−' + euro(remise()) + '</span>');
     t += ligneTotal('Livraison', C.livraison == null ? 'confirmée sur WhatsApp' : euro(C.livraison));
+    t += '<div style="font-size:12.5px;color:#66665F;padding:0 0 4px">Livrée en France en 4 à 10 jours ouvrés après l\'expédition</div>';
     t += ligneTotal('Total', euro(total()), true);
     p.querySelector('[data-totaux]').innerHTML = t;
   }
