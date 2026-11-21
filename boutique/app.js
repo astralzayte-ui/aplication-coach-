@@ -394,9 +394,11 @@
     var p = produit(id) || window.PRODUITS[0];
     document.title = p.nom + ' — Ambre Noire Paris';
     var sansTaille = !!SANS_TAILLE[p.rayon];
-    var tailles = sansTaille ? [] : ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+    var tailles = sansTaille ? [] : (p.tailles || ['XS', 'S', 'M', 'L', 'XL', 'XXL']);
+    var parDefaut = tailles.indexOf('M') > -1 ? 'M' : tailles[0];
     var prixTexte = p.prix.toFixed(2).replace('.', ',');
-    var details = p.details || [p.note, 'Composition exacte : à confirmer avec le fournisseur'];
+    var details = (p.details || [p.note, 'Matière : à confirmer avec le fournisseur']).slice();
+    if (!details.some(function (d) { return /^Entretien/.test(d); })) details.push('Entretien et pays de fabrication : à confirmer avec le fournisseur');
     var bonnet = /^bonnet/.test(p.id);
 
     zone.innerHTML =
@@ -414,7 +416,7 @@
         (p.couleur ? '<div class="choix-titre"><span>Couleur / <b>' + echap(p.couleur) + '</b></span></div>' : '') +
         (tailles.length ? '<div class="choix-titre"><span>Taille / <b data-taille-affichee>M</b></span><a href="#tailles" data-ouvre-tailles>Guide des tailles</a></div>' +
         '<div class="tailles" role="radiogroup" aria-label="Taille">' + tailles.map(function (t) {
-          return '<button type="button" class="taille" role="radio" data-taille="' + t + '" data-choisie="' + (t === 'M' ? 'oui' : 'non') + '" aria-checked="' + (t === 'M') + '">' + t + '</button>';
+          return '<button type="button" class="taille" role="radio" data-taille="' + t + '" data-choisie="' + (t === parDefaut ? 'oui' : 'non') + '" aria-checked="' + (t === parDefaut) + '">' + t + '</button>';
         }).join('') + '</div>' : '') +
         '<button class="btn btn-noir btn-large btn-pilule" type="button" data-ajouter="' + echap(p.nom) + '" data-prix="' + prixTexte + '">Ajouter au panier ' + ICO.sac + '</button>' +
         '<div class="fiche-lignes">' +

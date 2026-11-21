@@ -23,21 +23,24 @@ window.CONFIG = {
 window.PRODUITS = [
   {
     id: 'ensemble-col-rond', rayon: 'ensembles',
-    nom: 'Ensemble sweat + pantalon large', court: "L'ensemble col rond",
-    grammage: null, note: 'Col rond, pantalon large',
+    nom: 'Ensemble sweat à poche + pantalon large', court: 'L\'ensemble sweat noir',
+    grammage: null, note: 'Petit col montant, poche poitrine',
     prix: 54.90, marche: null, ecart: null,
     couleur: 'Noir',
     photos: ['ensemble-col-rond-1.jpg', 'ensemble-col-rond-2.jpg', 'ensemble-col-rond-3.jpg', 'ensemble-col-rond-4.jpg'],
-    description: 'Le sweat col rond et le pantalon large, assortis. Confortable et propre, du matin au soir. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Le sweat ample avec sa poche sur la poitrine et le pantalon large, assortis. Confortable et propre, du matin au soir.',
+    details: ['Sweat ample, petit col montant, poche poitrine', 'Pantalon large assorti', 'Matière : à confirmer avec le fournisseur'],
+    tailles: ['S', 'M', 'L', 'XL', 'XXL']
   },
   {
     id: 'ensemble-hoodie', rayon: 'ensembles', vedette: true, badge: 'Nouveau',
     nom: 'Ensemble hoodie + jogging large', court: "L'ensemble hoodie",
-    grammage: null, note: 'Plusieurs couleurs',
+    grammage: null, note: 'Hoodie + jogging large',
     prix: 54.90, marche: null, ecart: null,
     couleur: 'Crème chiné',
     photos: ['ensemble-hoodie-1.jpg', 'ensemble-hoodie-2.jpg', 'ensemble-hoodie-3.jpg', 'ensemble-hoodie-4.jpg'],
-    description: 'Le sweat à capuche et le jogging large, même couleur. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Le sweat à capuche et le jogging large, même couleur.',
+    details: ['Sweat à capuche + jogging large assorti', 'Matière : à confirmer avec le fournisseur']
   },
   {
     id: 'ensemble-sable', rayon: 'ensembles',
@@ -46,7 +49,9 @@ window.PRODUITS = [
     prix: 54.90, marche: null, ecart: null,
     couleur: 'Sable',
     photos: ['ensemble-sable-1.jpg', 'ensemble-sable-2.jpg', 'ensemble-sable-3.jpg', 'ensemble-sable-4.jpg'],
-    description: 'Sweat à capuche et jogging resserré aux chevilles, couleur sable. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Sweat à capuche court et jogging resserré aux chevilles, couleur sable.',
+    details: ['Sweat à capuche court + jogging resserré aux chevilles', 'Matière : à confirmer avec le fournisseur'],
+    tailles: ['S', 'M', 'L', 'XL', 'XXL']
   },
   {
     id: 'hoodie-ailes', rayon: 'pulls', vedette: true,
@@ -54,8 +59,9 @@ window.PRODUITS = [
     grammage: null, note: 'Ailes en strass dans le dos', badge: 'Nouveau', couleur: 'Gris chiné',
     prix: 39.90, marche: null, ecart: null,
     photos: ['hoodie-ailes-1.jpg', 'hoodie-ailes-2.jpg', 'hoodie-ailes-3.jpg'],
-    details: ['Sweat à capuche', 'Coupe ample, épaules tombantes', 'Deux ailes en strass argentés dans le dos', 'Matière : polyester', 'Entretien : à confirmer avec le fournisseur'],
-    description: 'Le sweat à capuche gris chiné, coupe ample, avec deux grandes ailes en strass argentés dans le dos. Elles brillent à la lumière.'
+    details: ['Sweat à capuche', 'Coupe ample, épaules tombantes', 'Deux ailes en strass argentés dans le dos', 'Matière : polyester (pourcentage exact à confirmer)', 'Entretien : à confirmer avec le fournisseur'],
+    description: 'Le sweat à capuche gris chiné, coupe ample, avec deux grandes ailes en strass argentés dans le dos. Elles brillent à la lumière.',
+    tailles: ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL']
   },
   {
     id: 'gilet-court', rayon: 'pulls',
@@ -64,16 +70,19 @@ window.PRODUITS = [
     prix: 39.90, marche: null, ecart: null,
     couleur: 'Rose',
     photos: ['gilet-court-1.jpg', 'gilet-court-2.jpg', 'gilet-court-3.jpg', 'gilet-court-4.jpg'],
-    description: 'Gilet court, ajusté, en maille torsadée, fermé par des boutons. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Gilet court et ajusté en maille torsadée, col rond orné de perles, fermé par des boutons.',
+    details: ['Gilet court ajusté, maille torsadée', 'Col rond orné de perles, boutons', 'Matière : à confirmer avec le fournisseur'],
+    tailles: ['S', 'M', 'L', 'XL', 'XXL']
   },
   {
     id: 'pull-uni', rayon: 'pulls',
     nom: 'Pull uni oversize', court: 'Le pull uni',
-    grammage: null, note: 'Col rond, plusieurs couleurs',
+    grammage: null, note: 'Col rond, coupe ample',
     prix: 39.90, marche: null, ecart: null,
     couleur: 'Jaune pastel',
     photos: ['pull-uni-1.jpg', 'pull-uni-2.jpg', 'pull-uni-3.jpg', 'pull-uni-4.jpg'],
-    description: 'Pull col rond, coupe large, maille douce. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Pull col rond, coupe ample, maille douce.',
+    details: ['Pull col rond, coupe ample', 'Matière : acrylique (pourcentage exact à confirmer)']
   },
   {
     id: 'pull-raye', rayon: 'pulls',
@@ -82,7 +91,9 @@ window.PRODUITS = [
     prix: 39.90, marche: null, ecart: null,
     couleur: 'Rayé bleu, lilas et blanc',
     photos: ['pull-raye-1.jpg', 'pull-raye-2.jpg', 'pull-raye-3.jpg', 'pull-raye-4.jpg'],
-    description: 'Pull col rond, coupe large, à rayures. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Pull col rond, coupe ample, à rayures.',
+    details: ['Pull col rond, coupe ample, à rayures', 'Matière : acrylique et nylon (pourcentages exacts à confirmer)', 'Mesures S / M / L : poitrine 104 / 108 / 112 cm · longueur 56 / 58 / 60 cm · manches 53 / 54 / 55 cm'],
+    tailles: ['S', 'M', 'L']
   },
   {
     id: 'gilet-doux', rayon: 'pulls',
@@ -91,25 +102,31 @@ window.PRODUITS = [
     prix: 39.90, marche: null, ecart: null,
     couleur: 'Vert olive',
     photos: ['gilet-doux-1.jpg', 'gilet-doux-2.jpg', 'gilet-doux-3.jpg', 'gilet-doux-4.jpg'],
-    description: 'Gilet en maille duveteuse, col V, boutons nacrés. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Gilet en maille duveteuse, col V, boutons effet perle.',
+    details: ['Gilet col V, maille duveteuse', 'Boutons effet perle', 'Matière : à confirmer avec le fournisseur'],
+    tailles: ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL']
   },
   {
     id: 'robe-cache-coeur', rayon: 'robes',
-    nom: 'Robe courte cache-cœur', court: 'La robe cache-cœur',
+    nom: 'Robe courte cache-cœur effet velours', court: 'La robe cache-cœur',
     grammage: null, note: 'Manches longues',
     prix: 34.90, marche: null, ecart: null,
     couleur: 'Noir',
     photos: ['robe-cache-coeur-1.jpg', 'robe-cache-coeur-2.jpg', 'robe-cache-coeur-3.jpg', 'robe-cache-coeur-4.jpg'],
-    description: 'Robe courte moulante, col cache-cœur, manches longues. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Robe courte moulante effet velours, col cache-cœur, manches longues.',
+    details: ['Robe courte moulante, col cache-cœur', 'Manches longues, aspect velours', 'Matière : à confirmer avec le fournisseur'],
+    tailles: ['S', 'M', 'L', 'XL', 'XXL']
   },
   {
     id: 'robe-maille', rayon: 'robes',
-    nom: 'Robe longue col V en maille', court: 'La robe en maille',
-    grammage: null, note: 'Épaulettes, boutons',
+    nom: 'Robe longue col V effet velours', court: 'La robe velours',
+    grammage: null, note: 'Épaulettes, boutons, fente',
     prix: 34.90, marche: null, ecart: null,
     couleur: 'Vert olive foncé',
     photos: ['robe-maille-1.jpg', 'robe-maille-2.jpg', 'robe-maille-3.jpg', 'robe-maille-4.jpg'],
-    description: 'Robe longue en maille, col V, épaulettes, fermée par des boutons. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Robe longue effet velours, col V, épaulettes, boutonnée sur le devant, avec une fente.',
+    details: ['Robe longue, col V, épaulettes', 'Boutons sur le devant, fente', 'Matière : polyester (pourcentage exact à confirmer)'],
+    tailles: ['S', 'M', 'L', 'XL', 'XXL', '3XL']
   },
   {
     id: 'robe-dos-nu', rayon: 'robes', vedette: true, badge: 'Nouveau',
@@ -118,7 +135,9 @@ window.PRODUITS = [
     prix: 34.90, marche: null, ecart: null,
     couleur: 'Noir',
     photos: ['robe-dos-nu-1.jpg', 'robe-dos-nu-2.jpg', 'robe-dos-nu-3.jpg'],
-    description: 'Robe longue moulante, décolleté V, dos nu, manches longues. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Robe longue moulante effet brillant, décolleté V, dos nu, drapée et fendue, manches longues.',
+    details: ['Robe longue moulante, effet brillant', 'Décolleté V, dos nu, drapé, fente', 'Matière : polyester (pourcentage exact à confirmer)'],
+    tailles: ['XS', 'S', 'M', 'L', 'XL']
   },
   {
     id: 'doudoune-courte', rayon: 'vestes', vedette: true, badge: 'Nouveau',
@@ -127,7 +146,9 @@ window.PRODUITS = [
     prix: 59.90, marche: null, ecart: null,
     couleur: 'Chocolat',
     photos: ['doudoune-courte-1.jpg', 'doudoune-courte-2.jpg', 'doudoune-courte-3.jpg', 'doudoune-courte-4.jpg'],
-    description: 'Doudoune courte et épaisse, col montant, bas resserré. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Doudoune courte et épaisse, col montant, bas resserré.',
+    details: ['Doudoune courte, col montant, bas resserré', 'Matière : polyester, garnissage ouate synthétique (pourcentages à confirmer)'],
+    tailles: ['S', 'M', 'L', 'XL']
   },
   {
     id: 'doudoune-col', rayon: 'vestes',
@@ -136,7 +157,8 @@ window.PRODUITS = [
     prix: 59.90, marche: null, ecart: null,
     couleur: 'Rose pâle',
     photos: ['doudoune-col-1.jpg', 'doudoune-col-2.jpg', 'doudoune-col-3.jpg', 'doudoune-col-4.jpg'],
-    description: 'Doudoune matelassée, col montant, fermeture éclair. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Doudoune matelassée, col montant, fermeture éclair.',
+    details: ['Doudoune matelassée, col montant, fermeture éclair', 'Matière : polyester, garnissage coton (pourcentages à confirmer)']
   },
   {
     id: 'sac-boucle', rayon: 'sacs',
@@ -145,7 +167,8 @@ window.PRODUITS = [
     prix: 39.90, marche: null, ecart: null,
     couleur: 'Marron foncé',
     photos: ['sac-boucle-1.jpg', 'sac-boucle-2.jpg', 'sac-boucle-3.jpg'],
-    description: 'Sac porté épaule avec une ceinture à boucle. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Sac porté épaule avec une ceinture à boucle, aspect cuir.',
+    details: ['Porté épaule, ceinture à boucle', 'Dimensions : 30 × 15 × 10 cm, anse ≈ 29 cm', 'Matière : simili cuir (PU), doublure polyester']
   },
   {
     id: 'sac-hobo', rayon: 'sacs',
@@ -154,7 +177,8 @@ window.PRODUITS = [
     prix: 39.90, marche: null, ecart: null,
     couleur: 'Bordeaux',
     photos: ['sac-hobo-1.jpg', 'sac-hobo-2.jpg', 'sac-hobo-3.jpg'],
-    description: 'Grand sac rond porté épaule, aspect cuir souple. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Grand sac rond porté épaule, aspect cuir souple.',
+    details: ['Grand sac porté épaule, forme arrondie', 'Dimensions : 32,5 × 30,5 × 11 cm', 'Matière : simili cuir (PU)']
   },
   {
     id: 'echarpe-grise', rayon: 'accessoires',
@@ -163,7 +187,8 @@ window.PRODUITS = [
     prix: 19.90, marche: null, ecart: null,
     couleur: 'Gris clair',
     photos: ['echarpe-grise-1.jpg', 'echarpe-grise-2.jpg', 'echarpe-grise-3.jpg'],
-    description: 'Grosse écharpe toute douce à franges. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Grosse écharpe toute douce à franges.',
+    details: ['Écharpe épaisse à franges', 'Dimensions : 240 × 40 cm', 'Matière : polyester (pourcentage exact à confirmer)']
   },
   {
     id: 'echarpe-leopard', rayon: 'accessoires',
@@ -172,7 +197,8 @@ window.PRODUITS = [
     prix: 19.90, marche: null, ecart: null,
     couleur: 'Léopard noir et beige',
     photos: ['echarpe-leopard-1.jpg', 'echarpe-leopard-2.jpg', 'echarpe-leopard-3.jpg'],
-    description: 'Écharpe imprimé léopard, douce et chaude. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Écharpe imprimé léopard, douce et chaude.',
+    details: ['Imprimé léopard', 'Dimensions : environ 190 × 60 cm', 'Matière : polyester (pourcentage exact à confirmer)']
   },
   {
     id: 'bonnet-camouflage', rayon: 'accessoires', badge: '5 € dès 2 articles',
@@ -181,7 +207,8 @@ window.PRODUITS = [
     prix: 14.90, marche: null, ecart: null,
     couleur: 'Camouflage rose',
     photos: ['bonnet-camouflage-1.jpg', 'bonnet-camouflage-2.jpg', 'bonnet-camouflage-3.jpg'],
-    description: 'Bonnet en maille, motif camouflage. 5 € au lieu de 14,90 € dès que tu as un autre article dans ton panier. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Bonnet en maille, motif camouflage. 5 € au lieu de 14,90 € dès que tu as un autre article dans ton panier.',
+    details: ['Bonnet en maille, motif camouflage', 'Taille unique : 55 à 61 cm de tour de tête', 'Matière : acrylique (pourcentage exact à confirmer)']
   },
   {
     id: 'bonnet-pompon', rayon: 'accessoires', badge: '5 € dès 2 articles',
@@ -190,7 +217,8 @@ window.PRODUITS = [
     prix: 14.90, marche: null, ecart: null,
     couleur: 'Noir',
     photos: ['bonnet-pompon-1.jpg', 'bonnet-pompon-2.jpg', 'bonnet-pompon-3.jpg'],
-    description: 'Bonnet en grosse maille avec pompon. 5 € au lieu de 14,90 € dès que tu as un autre article dans ton panier. Composition exacte : à confirmer avec le fournisseur.'
+    description: 'Bonnet en grosse maille avec pompon. 5 € au lieu de 14,90 € dès que tu as un autre article dans ton panier.',
+    details: ['Bonnet grosse maille, pompon', 'Taille unique : 56 à 60 cm de tour de tête', 'Matière : acrylique (pourcentage exact à confirmer)']
   }
 ];
 
