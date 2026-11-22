@@ -499,3 +499,11 @@ taxe petits colis dans les marges · domaine branché · retirer le noindex à l
 - Retours : changement d'avis = renvoi à ses frais (adresse possiblement en Chine) ; défaut = photo, remboursé ou neuf sans renvoi
 - Refashion : compte déclarant créé, société pas enregistrée (formulaire bloque, maintenance jusqu'au 30/11), message envoyé au contact → réessayer le 1er décembre
 - BLOQUE LA VENTE : 1) Stripe 2) 50 € sur CJ 3) numéro de TVA (intermédiaire). Lui : ouvre ses comptes bancaires et finit la LLC
+
+## POINT DU 22/11
+- Prix : un prix par article (12,90 → 54,90 €), en ligne. Pub hoodie ailes refaite à 32,90 €
+- Matières : demandes d'infos envoyées à CJ via l'outil (5 par jour max). 5 envoyées le 22/11, 12 restantes (rappel programmé le 23/11 au soir). Plan B : QKsource (site européen de CJ), Sign In avec le compte CJ, bouton « Contact » du fournisseur
+- WhatsApp : Agent IA de Meta (WhatsApp Business > Outils > Agent IA), gratuit jusqu'à une limite non publiée. Dispo par pays, à vérifier sur son numéro +212. Je prépare le texte « Connaissances » quand il l'a
+- À FAIRE AVEC STRIPE : plafond 100 € par commande, message validé dans le panier :
+  « Pendant le lancement de la collection, chaque commande est limitée à 100 €, pour garantir une expédition rapide. Merci pour ta confiance ! »
+  (ne jamais parler du fournisseur ; on l'enlève quand il le dit)
