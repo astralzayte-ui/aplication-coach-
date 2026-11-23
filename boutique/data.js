@@ -251,6 +251,8 @@ window.FAQ = [
     r: "Paiement par carte uniquement, jamais à la livraison. Tes données bancaires ne passent jamais par nous." },
   { q: 'Où sont fabriquées vos pièces ?',
     r: "On ne fabrique pas nous-mêmes, et on le dit : nos pièces viennent d'un fournisseur partenaire, qui les stocke et les expédie depuis la Chine. C'est ce qui nous permet de garder des prix justes. Et ton contrat est avec nous, avec nous seuls." },
+  { q: 'Qui se cache derrière Ambre Noire ?',
+    r: "Ambre Noire Paris est une marque de Onyx Street Wear LLC, société enregistrée dans l'État du Wyoming (États-Unis) sous le n° 2026-002050731, au 30 N Gould St Ste R, Sheridan, WY 82801. Toutes nos informations sont dans les mentions légales, en bas de chaque page." },
   { q: 'Une question, un souci ?',
     r: "Écris-nous sur WhatsApp ou par e-mail, avant comme après ta commande. Une vraie personne te répond." }
 ];

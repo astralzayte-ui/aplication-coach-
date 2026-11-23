@@ -113,6 +113,10 @@
           '<a href="confidentialite.html">Confidentialité</a>' +
           '<a href="mentions-legales.html">Mentions légales</a>' +
         '</div>' +
+        '<div class="pied-vendeur"><h4>Qui vend ?</h4>' +
+          '<p><b>Onyx Street Wear LLC</b><br>Société enregistrée dans l\'État du Wyoming (États-Unis)<br>N° 2026-002050731<br>30 N Gould St Ste R, Sheridan, WY 82801<br>' + C.email + '</p>' +
+          '<a href="mentions-legales.html">Toutes nos informations légales</a>' +
+        '</div>' +
         '<div><h4>Nous suivre</h4>' +
           '<a href="https://instagram.com/' + C.instagram + '" target="_blank" rel="noopener">Instagram</a>' +
           '<a href="https://tiktok.com/@' + C.tiktok + '" target="_blank" rel="noopener">TikTok</a>' +
@@ -427,6 +431,7 @@
         '<div class="fiche-lignes">' +
           '<div>' + ICO.camion + '<span><b>Livraison en France</b> · expédiée sous 2 à 5 jours, puis 4 à 10 jours ouvrés de transport</span></div>' +
           '<div>' + ICO.retour + '<span>Changé d\'avis ? <b>Remboursé sur ta carte</b></span></div>' +
+          '<div>' + ICO.bouclier + '<span>Vendu par <b>Onyx Street Wear LLC</b>, société propriétaire de la marque Ambre Noire Paris · <a href="mentions-legales.html" style="text-decoration:underline">qui sommes-nous</a></span></div>' +
           '<div>' + ICO.bulle + '<span>Une question ? <a class="lien-wa" href="' + waTexte('Bonjour Ambre Noire, une question sur : ' + p.nom) + '" target="_blank" rel="noopener"><b>Écris-nous sur WhatsApp</b></a> · ' + C.whatsappAffiche + '</span></div>' +
         '</div>' +
         '<div class="faq tiroirs">' +

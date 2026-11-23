@@ -145,6 +145,7 @@
     t += ligneTotal('Livraison', C.livraison == null ? 'confirmée sur WhatsApp' : euro(C.livraison));
     t += '<div style="font-size:12.5px;color:#66665F;padding:0 0 4px">Expédiée sous 2 à 5 jours, puis livrée en France en 4 à 10 jours ouvrés</div>';
     t += ligneTotal('Total', euro(total()), true);
+    t += '<div style="font-size:12px;color:#66665F;padding:6px 0 0">Vendeur : <b>Onyx Street Wear LLC</b> (Wyoming, États-Unis, n° 2026-002050731), propriétaire de la marque Ambre Noire Paris</div>';
     p.querySelector('[data-totaux]').innerHTML = t;
   }
 
